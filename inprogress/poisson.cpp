@@ -41,8 +41,11 @@ enum nbcouleurs{uneC,deuxC,troisC,quatreC,cinqC};
 enum venin{absent,anesthesique,paralysant,mortel,hallucinatoire};
 
 //La masse est en kg.
-class Masse{
+//On peut eventuellement ajouter dans cette classe la converstion en unité pour le gameplay. Il faut définir un étalon unité, genre 1 unité = 100 g
+//On peut egalement envisager que l'unité s'adapte au cas : viande, poisson, epices, graines,... Je pense que cette classe peut etre très utile pour gérer ces aspects.
+//Pourqoi avoir besoin d'unite? Quand on ramasse qqchose, il donne la quantité, et on la stocke directement. Une entite(viande,epices) est disponible en poids,volume. Comme ca on peut faire des conversions, et utile pour chimie,physique.
 
+class Masse{
   private:
     double m_ ;
   public:
@@ -52,13 +55,38 @@ class Masse{
     double getMasse() ;
     std::string printMasse() ;
 };
-
 std::string Masse::printMasse() 
 {
   std::stringstream buffer;
-  if ( m_ < 1. )  buffer << setprecision(4) << m_ * 1000 << " g"; 
+  if ( m_ < 0.001 )  buffer << setprecision(3) << m_ * 1000000 << " mg"; 
+  if ( m_ > 0.001 && m_ < 1. )  buffer << setprecision(4) << m_ * 1000 << " g"; 
   if ( m_ >= 1. ) buffer << setprecision(1) << m_ << " kg"; 
   return buffer.str();
+}
+
+class Volume{
+  private:
+    double v_ ;
+  public:
+    Volume() { v_ = 0. ; } ;
+    Volume(double v) : v_(v) {}; 
+    ~Volume() {};
+    double getVolume() ;
+    std::string printVolume() ;
+};
+std::string Volume::printVolume() 
+{
+  std::stringstream buffer;
+  if ( v_ < 0.001 )  buffer << setprecision(3) << v_ * 1000000 << " mL"; 
+  if ( v_ > 0.001 && v_ < 1. )  buffer << setprecision(4) << v_ * 1000 << " L"; 
+  if ( v_ >= 1. ) buffer << setprecision(1) << v_ << " kL"; 
+  return buffer.str();
+}
+
+
+int Masse::getUnits() 
+{
+
 }
 
 class Poisson{
@@ -108,7 +136,7 @@ Poisson::Poisson()
 
   int main() {
     cout<<"Poisson génération."<<endl;
-    Poisson a(2.) , b(0.1);
+    Poisson a(0.0001) , b(0.1);
     a.print();
     b.print();
     return 0;
