@@ -74,6 +74,7 @@ class Volume{
     double getVolume() ;
     std::string printVolume() ;
 };
+
 std::string Volume::printVolume() 
 {
   std::stringstream buffer;
@@ -114,30 +115,38 @@ class Poisson{
     Poisson();
     Poisson(double);
     ~Poisson();
-    void print();
+    void getDescription();
 
 };
 
 Poisson::Poisson(double m) : masse_(m) {}
-void Poisson::print() { cout<<masse_.printMasse()<<endl; } ;
+
 Poisson::~Poisson(){};
+
 Poisson::Poisson()
 {
 
   gabarit_ = gabarit( rand() % 4 ) ;
 
+
+
+};
+
+
+void Poisson::getDescription()
+{ 
+  cout<<masse_.printMasse()<<endl;
   switch ( gabarit_ ){
     case petit : cout<<"petit"<<endl; break;
   }
+} 
 
 
-  };
 
-
-  int main() {
-    cout<<"Poisson génération."<<endl;
-    Poisson a(0.0001) , b(0.1);
-    a.print();
-    b.print();
-    return 0;
-  }
+int main() {
+  cout<<"Poisson génération."<<endl;
+  Poisson a(0.0001) , b(0.1);
+  a.print();
+  b.print();
+  return 0;
+}
