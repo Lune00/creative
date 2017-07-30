@@ -45,8 +45,7 @@ void makewall(Point* grid, int ny, int i, int j, int di, int dj)
     }
   }
 }
-
-//Ca marche toujours pas bien. On devrait avoir des diagonales. A mediter...
+//Breadth first search : arret si pas de chemin, arret quand le but est trouve
 
 int main(){
 
@@ -54,15 +53,14 @@ int main(){
   int ny = 40 ;
 
   //On fixe un point de depart
-  Point start = { 25 , 20 , 25 , 20 , true};
-  Point end = { 0 , 20 , 0 , 20 , true};
+  Point start = { 35 , 20 , 35 , 20 , true};
+  Point end = { 5 , 30 , 0 , 20 , true};
 
   Point * grid = new Point [nx * ny];
   //contient les points de la frontiere
   std::vector<Point> frontier ;
   //contient les points deja visite
   std::vector<Point> came_from;
-
 
   //Initialise la grille ;
   for(unsigned int i = 0 ; i < nx ; i++)
@@ -75,9 +73,9 @@ int main(){
     }
   }
 
-  makewall(grid,ny,nx/2,1,4,ny-3);
-  makewall(grid,ny,nx/4,15,2,25);
-  makewall(grid,ny,nx/4,0,2,12);
+  makewall(grid,ny,33,15,1,12);
+  makewall(grid,ny,10,15,8,12);
+
   //On initialise la frontiere
   frontier.push_back(start);
   came_from.push_back(start);
@@ -86,48 +84,30 @@ int main(){
   //On cree une liste de tous les points visites en leur associant un point
   //Une fois cette liste contenant tous les points on s'en sert pour mettre a jour la grille
 
+  bool goalvisited = false ;
   while(frontier.size() != 0 )
   {
-    //cerr<<"Frontier size = "<<frontier.size()<<endl;
-
     //On prend le premier point de la frontiere
-
     Point current = frontier[0]; 
-
-   // cerr<<"Le point courrant est "<<current.i<<" "<<current.j<<endl;
     //On retire le point de la frontiere
     frontier.erase(frontier.begin());
-
     //contient les voisins de current
     std::vector<Point> voisins ; 
-
     int i = current.i ;
     int j = current.j ;
-
-    //On prend ses voisin
+    //On prend ses voisins
     for(int k = i - 1 ; k < i + 2 ; k++  )
     {
       for(int l = j - 1 ; l < j + 2 ; l++  )
       {
-
 	if ( (k == i && l == j) || (grid[ k * ny + l].w == false) ) continue ;
-
 	if ( (k >= 0 && k < nx ) && ( l >= 0 && l < ny ) ) 
 	{
 	  Point p = { k , l } ;
 	  voisins.push_back(p);
 	}
-
       }
     }
-
-  //  cerr<<"Le point "<<i<<" "<<j<<" a "<<voisins.size()<<" voisins:"<<endl;
-
-  //  for(std::vector<Point>::iterator it = voisins.begin(); it != voisins.end(); it++)
-  //  {
-  //    cerr<<it->i<<" "<<it->j<<endl;
-  //  }
-
     //On parcourt les voisins
     for(std::vector<Point>::iterator it = voisins.begin(); it != voisins.end(); it++)
     {
@@ -136,31 +116,37 @@ int main(){
       for(std::vector<Point>::iterator it2 = came_from.begin(); it2 != came_from.end(); it2++)
       {
 	if( *it == *it2){
-	  //cerr<<"Ce point a deja ete visite, on passe au suivant."<<endl;
 	  alreadyvisited = true ;
 	  break;
 	}
+	if( *it == end) goalvisited = true ;
       }
-
       if(alreadyvisited) continue; 
-
       //S'il n'a pas ete visite on l'ajoute a la frontiere en lui associant le point d ou on vient
       it->ifrom = current.i ;
       it->jfrom = current.j ;
-
       frontier.push_back( *it );
       came_from.push_back( *it) ;
     }
+    //Si le point d arrivee est visite, on arrete de rechercher
+    if(goalvisited ) break;
   }
 
   cerr<<"Nombre de points visites : "<<came_from.size()<<endl;
-  
+
+  //On check si le point d arrivee est dans la liste des points visites, si non, pas de chemin
+  if(!goalvisited)
+  {
+    cerr<<"Il n'y a pas de chemin."<<endl;
+    return 0 ;
+  }
+
   //On met a jour la grille
   cerr<<"Mise a jour de la grille."<<endl;
   for(std::vector<Point>::iterator it = came_from.begin() ; it != came_from.end() ; it++)
   {
-      grid[ it->i * ny + it->j].ifrom = it->ifrom ; 
-      grid[ it->i * ny + it->j].jfrom = it->jfrom ; 
+    grid[ it->i * ny + it->j].ifrom = it->ifrom ; 
+    grid[ it->i * ny + it->j].jfrom = it->jfrom ; 
   }
 
   //On trace le chemin du depart a la destination:
@@ -178,17 +164,15 @@ int main(){
   }
 
   cerr<<"Nombre de points a parcourir pour arriver a destination : "<<path.size()<<endl;
-  
+
   //On print les paths
   ofstream opath("paths.txt");
   ofstream grille("grid.txt");
   ofstream lechemin("chemin.txt");
 
-  //A la fin pour chaque point on a le point d'ou il vient
   for(std::vector<Point>::iterator it2 = came_from.begin(); it2 != came_from.end(); it2++)
   {
     double s = 0.5 ;
-   // cerr<<it2->i<<" "<<it2->j<<" attache a "<<it2->ifrom<<" "<<it2->jfrom<<endl;
     opath<<it2->i+0.5<<" "<<(it2->j)+0.5<<" "<<(it2->ifrom -it2->i)*s<<" "<<(it2->jfrom - it2->j)*s<<endl;
   }
   opath.close();
@@ -204,16 +188,11 @@ int main(){
 
   for(std::vector<Point>::iterator it2 = path.begin(); it2 != path.end(); it2++)
   {
-    //cerr<<it2->i<<" "<<it2->j<<endl;
     lechemin<<it2->i+0.5<<" "<<it2->j+0.5<<endl;
   }
-
   lechemin.close();
 
   delete [] grid;
 
   return 0;
 }
-
-
-
