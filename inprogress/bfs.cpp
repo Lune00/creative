@@ -35,6 +35,16 @@ bool operator!=(const Point& a, const Point& b)
   return ( a.i != b.i || a.j != b.j);
 }
 
+void makewall(Point* grid, int ny, int i, int j, int di, int dj)
+{
+  for(unsigned int k = i  ; k < i + di ; k++)
+  {
+    for(unsigned int l = j ; l < j + dj ; l++)
+    {
+      grid[ k * ny + l ].w = false ;
+    }
+  }
+}
 
 //Ca marche toujours pas bien. On devrait avoir des diagonales. A mediter...
 
@@ -44,8 +54,8 @@ int main(){
   int ny = 40 ;
 
   //On fixe un point de depart
-  Point start = { 2 , 25 , 2 , 25 , true};
-  Point end = { 33 , 34 , 33 , 33 , true};
+  Point start = { 25 , 20 , 25 , 20 , true};
+  Point end = { 0 , 20 , 0 , 20 , true};
 
   Point * grid = new Point [nx * ny];
   //contient les points de la frontiere
@@ -65,26 +75,9 @@ int main(){
     }
   }
 
-  //Obstacle:
-  int obstracle = 0 ;
-  int width = 5 ;
-  for(unsigned int i = nx /4 - width  ; i < nx/4 + width ; i++)
-  {
-    for(unsigned int j = ny/4 -width ; j < ny/4 + width ; j++)
-    {
-      grid[ i * ny + j ].w = false ;
-      obstracle++;
-    }
-  }
-  for(unsigned int i = nx /2 - 2  ; i < nx/2 +2 ; i++)
-  {
-    for(unsigned int j = ny/2 -2 ; j < ny/2+2 ; j++)
-    {
-      grid[ i * ny + j ].w = false ;
-      obstracle++;
-    }
-  }
-
+  makewall(grid,ny,nx/2,1,4,ny-3);
+  makewall(grid,ny,nx/4,15,2,25);
+  makewall(grid,ny,nx/4,0,2,12);
   //On initialise la frontiere
   frontier.push_back(start);
   came_from.push_back(start);
@@ -161,7 +154,6 @@ int main(){
   }
 
   cerr<<"Nombre de points visites : "<<came_from.size()<<endl;
-  cerr<<"Taille obstacle : "<<obstracle<<endl;
   
   //On met a jour la grille
   cerr<<"Mise a jour de la grille."<<endl;
@@ -175,19 +167,13 @@ int main(){
   cerr<<"Calcul du chemin entre start et end."<<endl;
 
   std::vector<Point> path ;
-
   path.push_back(grid[end.i * ny + end.j]);
   std::vector<Point>::iterator it = path.begin();
 
   while( *it != start)
   {
-
     Point next = grid[it->ifrom * ny + it->jfrom];
-    cerr<<"Point suivant :" <<next.i<<" "<<next.j<<endl;
-    cerr<<"Ce point est lie a :" <<next.ifrom<<" "<<next.jfrom<<endl;
     path.push_back(next);
-    cerr<<"Path.size : "<<path.size()<<endl;
-    //Next element
     it = path.begin() + (path.size()- 1);
   }
 
@@ -201,7 +187,7 @@ int main(){
   //A la fin pour chaque point on a le point d'ou il vient
   for(std::vector<Point>::iterator it2 = came_from.begin(); it2 != came_from.end(); it2++)
   {
-    double s = 1. ;
+    double s = 0.5 ;
    // cerr<<it2->i<<" "<<it2->j<<" attache a "<<it2->ifrom<<" "<<it2->jfrom<<endl;
     opath<<it2->i+0.5<<" "<<(it2->j)+0.5<<" "<<(it2->ifrom -it2->i)*s<<" "<<(it2->jfrom - it2->j)*s<<endl;
   }
