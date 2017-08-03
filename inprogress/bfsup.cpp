@@ -25,9 +25,7 @@ struct Point{
   //A remplacer ensuite par un id (seule une variable, utile pour autre chose, comparaison== etc...)
   int ifrom;
   int jfrom;
-  unsigned int id;
   bool w ;
-  bool v ;
   bool camefrom ;
 };
 
@@ -54,7 +52,7 @@ void makewall(Point* grid, int i, int j, int di, int dj)
 //Marque un point de la grille visite
 void markv(Point* grid,Point p)
 {
-  grid[p.i*ny + p.j].v = true ;
+  grid[p.i*ny + p.j].camefrom = true ;
   grid[p.i*ny + p.j].ifrom = p.ifrom ;
   grid[p.i*ny + p.j].jfrom = p.jfrom ;
 }
@@ -71,12 +69,11 @@ int pointvisites(Point* grid)
   {
     for(unsigned int j = 0 ; j < ny ; j++)
     {
-      if(grid[i*ny+j].v) v++;
+      if(grid[i*ny+j].camefrom) v++;
     }
   }
   return v;
 }
-
 
 //Breadth first search : arret si pas de chemin, arret quand le but est trouve
 
@@ -89,23 +86,19 @@ int main(){
   int max_size_frontier = 0 ;
 
   //Initialise la grille ;
-  int u = 0 ;
   for(unsigned int i = 0 ; i < nx ; i++)
   {
     for(unsigned int j = 0 ; j < ny ; j++)
     {
       grid[ i * ny + j ].i = i ;
       grid[ i * ny + j ].j = j ;
-      grid[ i * ny + j ].w = true ;
-      grid[ i * ny + j ].v = false ;
-      grid[ i * ny + j ].id = u ;
       grid[ i * ny + j ].camefrom = false ;
-      u++;
+      grid[ i * ny + j ].w = true ;
     }
   }
 
   //On fixe un point de depart
-  Point start = { 2 , 10 , 10 , 10 , true, true};
+  Point start = { 2 , 10 , 2 , 10 , true, true};
   Point end = { 18 , 5 , 0 , 0 , true, false};
 
   //On marque la grille avec le point de depart
@@ -126,13 +119,9 @@ int main(){
 
   bool goalvisited = false ;
 
-  int test=0;
-
   while(frontier.size() != 0 )
   {
-    test++;
     frontier.size() > max_size_frontier ? max_size_frontier = frontier.size() : max_size_frontier = max_size_frontier ;
-
     //On prend le premier point de la frontiere
     Point current = frontier[0]; 
     //On retire le point de la frontiere
@@ -142,11 +131,6 @@ int main(){
 
     int i = current.i ;
     int j = current.j ;
-
-    //On marque ce point visite
-    grid[i*ny+j].v = true;
-
-    cerr<<"Nombre de points visites : "<<pointvisites(grid)<<endl;
 
     //Voisins:
     //Faire des logiques haut bas gauche droite et construire a partir de ca
@@ -171,8 +155,6 @@ int main(){
     if( (i-1) >= 0 && (i-1)<nx && !grid[(i-1)*ny+j].camefrom) {
       if(grid[(i-1)*ny+j].w) gauche =true ;
     } 
-    //Mettre les voisins dans un ordre aleatoire?
-    cout<<"Nombre de voisins non visites:"<<voisins.size()<<endl;
     if( haut) voisins.push_back(grid[i*ny+j+1]);
     if (bas) voisins.push_back(grid[i*ny+j-1]) ;
     if( droite) voisins.push_back(grid[(i+1)*ny+j]) ;
@@ -202,7 +184,7 @@ int main(){
   if(!goalvisited)
   {
     cerr<<"Il n'y a pas de chemin."<<endl;
-     return 0 ;
+    return 0 ;
   }
 
   //On trace le chemin du depart a la destination:
@@ -231,9 +213,8 @@ int main(){
     for(unsigned int j = 0 ; j < ny ; j++)
     {
       Point p = getPoint(grid,i,j);
-      if( p.i==1 && p.j==1) cerr<<p.ifrom<<" - "<<p.jfrom<<endl;
       double s = 0.5 ;
-      if(p.v) opath<<p.i+0.5<<" "<<p.j+0.5<<" "<<(p.ifrom-p.i)*s<<" "<<(p.jfrom-p.j)*s<<endl;
+      if(p.camefrom) opath<<p.i+0.5<<" "<<p.j+0.5<<" "<<(p.ifrom-p.i)*s<<" "<<(p.jfrom-p.j)*s<<endl;
     }
   }
   opath.close();
