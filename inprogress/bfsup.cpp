@@ -105,16 +105,15 @@ int main(){
   }
 
   //On fixe un point de depart
-  Point start = { 10 , 10 , 10 , 10 , true, true};
-  Point end = { 18 , 2 , 0 , 0 , true, false};
+  Point start = { 2 , 10 , 10 , 10 , true, true};
+  Point end = { 18 , 5 , 0 , 0 , true, false};
 
   //On marque la grille avec le point de depart
   markv(grid,start);
 
-  makewall(grid,5,1,1,7);
-  //makewall(grid,15,15,2,2);
-  //makewall(grid,5,5,4,8);
-  //makewall(grid,15,5,4,12);
+  makewall(grid,5,0,2,18);
+  makewall(grid,10,5,2,7);
+  makewall(grid,15,5,2,7);
   //makewall(grid,9,5,12,6);
   //makewall(grid,15,5,1,10);
   //  makewall(grid,ny,10,15,1,12);
@@ -152,59 +151,50 @@ int main(){
     //Voisins:
     //Faire des logiques haut bas gauche droite et construire a partir de ca
     //Haut
+    bool haut = false;
+    bool bas = false ;
+    bool gauche = false ;
+    bool droite = false ;
+
     if( (j+1) >= 0 && (j+1)<ny && !grid[i*ny+j+1].camefrom) {
-      if(grid[i*ny+j+1].w) voisins.push_back(grid[i*ny+j+1]);
+      if(grid[i*ny+j+1].w) haut = true ;
     } 
     //Bas
     if( (j-1) >= 0 && (j-1)<ny && !grid[i*ny+j-1].camefrom) {
-      if(grid[i*ny+j-1].w) voisins.push_back(grid[i*ny+j-1]);
+      if(grid[i*ny+j-1].w) bas = true ;
     } 
     //Droite
     if( (i+1) >= 0 && (i+1)<nx && !grid[(i+1)*ny+j].camefrom) {
-      if(grid[(i+1)*ny+j].w) voisins.push_back(grid[(i+1)*ny+j]);
+      if(grid[(i+1)*ny+j].w) droite = true ;
     } 
     //Gauche
     if( (i-1) >= 0 && (i-1)<nx && !grid[(i-1)*ny+j].camefrom) {
-      if(grid[(i-1)*ny+j].w) voisins.push_back(grid[(i-1)*ny+j]);
+      if(grid[(i-1)*ny+j].w) gauche =true ;
     } 
     //Mettre les voisins dans un ordre aleatoire?
     cout<<"Nombre de voisins non visites:"<<voisins.size()<<endl;
-
-    ////Diagonale haut-droite
-    //if( ((i+1) >= 0 && (i+1)<nx) && ((j+1)>=0 && (j+1)<ny)  ) {
-    //  Point p = getPoint(grid,i+1,j+1) ;
-    //  voisins.push_back(p);
-    //} 
-    ////Diagonale haut-gauche
-    //if( ((i-1) >= 0 && (i-1)<nx) && ((j+1)>=0 && (j+1)<ny)  ) {
-    //  Point p = getPoint(grid,i-1,j+1) ;
-    //  voisins.push_back(p);
-    //} 
-    ////Diagonale bas-droite
-    //if( ((i+1) >= 0 && (i+1)<nx) && ((j-1)>=0 && (j-1)<ny)  ) {
-    //  Point p = getPoint(grid,i-1,j-1) ;
-    //  voisins.push_back(p);
-    //} 
-    ////Diagonale bas-gauche
-    //if( ((i-1) >= 0 && (i-1)<nx) && ((j-1)>=0 && (j-1)<ny)  ) {
-    //  Point p = getPoint(grid,i-1,j-1) ;
-    //  voisins.push_back(p);
-    //} 
+    if( haut) voisins.push_back(grid[i*ny+j+1]);
+    if (bas) voisins.push_back(grid[i*ny+j-1]) ;
+    if( droite) voisins.push_back(grid[(i+1)*ny+j]) ;
+    if( gauche) voisins.push_back(grid[(i-1)*ny+j]);
+    if(haut && droite) voisins.push_back(grid[(i+1)*ny+j+1]);
+    if(bas && gauche) voisins.push_back(grid[(i-1)*ny+j-1]);
+    if(haut && gauche) voisins.push_back(grid[(i-1)*ny+j+1]);
+    if(bas && droite) voisins.push_back(grid[(i+1)*ny+j-1]);
 
     //On parcourt les voisins
     for(std::vector<Point>::iterator it = voisins.begin(); it != voisins.end(); it++)
     {
       if( *it == end) goalvisited = true ;
 
-	grid[it->i*ny+it->j].camefrom = true;
-	grid[it->i*ny+it->j].ifrom = current.i;
-	grid[it->i*ny+it->j].jfrom = current.j;
+      grid[it->i*ny+it->j].camefrom = true;
+      grid[it->i*ny+it->j].ifrom = current.i;
+      grid[it->i*ny+it->j].jfrom = current.j;
 
-	frontier.push_back( *it );
+      frontier.push_back( *it );
     }
     //Si le point d arrivee est visite, on arrete de rechercher
-    //if(goalvisited ) break;
-    //if(test>100) return 0 ;
+    if(goalvisited ) break;
   }
 
   cerr<<"Nombre de points visites : "<<pointvisites(grid)<<endl;
@@ -212,7 +202,7 @@ int main(){
   if(!goalvisited)
   {
     cerr<<"Il n'y a pas de chemin."<<endl;
-    // return 0 ;
+     return 0 ;
   }
 
   //On trace le chemin du depart a la destination:
