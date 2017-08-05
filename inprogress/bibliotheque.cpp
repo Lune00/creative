@@ -75,21 +75,22 @@ const map<string,string> ConjPremier::futur_ = ConjPremier::makeFutur();
 
 //On peut lui donner un type. La forme infinitive stocke le mot, et conjuguer, accorder ne peut s'appliquer que si le mot est du bon groupe
 //reflechir a ce point
+//Reflechir aux accords, a la structure, pour le moment que verbe
+
+
+//De l'héritage !!!!!! Verbe herite de mot, Adjectif herite de mot etc... Mais oui bien sur!!!!
 
 class Mot{
 
   private:
     //Définit le groupe
     string infinitif_;
-    string accord_;
 
   public:
     Mot();
-    Mot(string infinitif, string accord) : infinitif_(infinitif) , accord_(accord) {} ;
+    Mot(string infinitif) : infinitif_(infinitif) {} ;
     ~Mot();
-
     const string& getInfinitif() const { return infinitif_;}
-    const string&  getAccord() const { return accord_;} 
 
     //Conjugaison
     string getTerminaison();
@@ -100,7 +101,6 @@ class Mot{
 
 Mot::Mot(){
   string infinitif_ = " ";
-  string masculin_ = " ";
 }
 
 Mot::~Mot(){
@@ -164,8 +164,8 @@ string Mot::conjuguepremier(string pronom,int temps){
 int main()
 {
 
-  Mot mot("manger","mangé");
-  Mot mot2("partir","parti");
+  Mot mot("manger");
+  Mot mot2("partir");
 
   cerr<<"On conjugue le verbe "<<mot.getInfinitif()<<endl;
   cerr<<"Il "<<mot.conjugue("il",present)<<endl;
