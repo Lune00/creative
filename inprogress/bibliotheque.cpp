@@ -341,8 +341,9 @@ string Verbe::conjuguerdeuxieme(string pronom,int temps){
 int main()
 {
 
-  Verbe mot("manger");
+  Verbe mot("hair");
   Verbe mot2("partir");
+  Verbe mot3("s'envoler");
 
   cerr<<"On conjuguer le verbe : "<<mot.getInfinitif()<<endl;
   cerr<<"Il "<<mot.conjuguer("il",present)<<endl;
@@ -359,12 +360,10 @@ int main()
   NomC nc5("festival",'m');
   NomC nc6("oiseau",'m');
 
-  cerr<<"Des "<<nc.accorder("des")<<endl;
   cerr<<"Des "<<nc1.accorder("des")<<endl;
   cerr<<"Des "<<nc3.accorder("des")<<endl;
-  cerr<<"Des "<<nc4.accorder("des")<<endl;
-  cerr<<"Des "<<nc5.accorder("des")<<endl;
-  cerr<<"Des "<<nc6.accorder("des")<<endl;
+  cerr<<"Des "<<nc6.accorder("des")<<" "<<mot3.conjuguer("ils",futur)<<" dans les "<<nc4.accorder("les")<<"."<<endl;
+  cerr<<"Ils nous "<<mot.conjuguer("ils",present)<<"."<<endl;
 
   return 0;
 }
