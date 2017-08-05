@@ -1,3 +1,4 @@
+#include<list>
 #include<cstdio>
 #include<iomanip>
 #include<cmath>
@@ -8,6 +9,8 @@
 #include<vector>
 #include<map>
 
+
+//A remplacer par des enum
 
 //Pronoms:
 //#define il 0
@@ -35,6 +38,21 @@ using namespace std;
 
 //Il faut une structure qui contienne les tables de conjugaison pour chaque temps de tous les pronoms
 //Stocke les terminaisons de conjugaison des verbes du premier groupe
+
+
+//Liste des verbes irreguliers (troisieme groupe)
+struct ListeIrr{
+  static list<string> makeliste()
+  {
+    list<string> l;
+    l.push_back("partir");
+    return l;
+  }
+  static const list<string> irreguliers;
+};
+
+const list<string> ListeIrr::irreguliers = ListeIrr::makeliste();
+
 
 struct ConjPremier{
 
@@ -73,6 +91,39 @@ struct ConjPremier{
 const map<string,string> ConjPremier::present_ = ConjPremier::makePresent();
 const map<string,string> ConjPremier::futur_ = ConjPremier::makeFutur();
 
+
+struct ConjDeuxieme{
+  static map<string,string> makePresent(){
+    map<string,string> m;
+    m["je"] = "s";
+    m["tu"] = "s";
+    m["il"] = "t";
+    m["elle"] = "t";
+    m["nous"] = "ssons";
+    m["vous"] = "ssez";
+    m["ils"] = "ssent";
+    m["elles"] = "ssent";
+    return m;
+  }
+  static map<string,string> makeFutur(){
+    map<string,string> m;
+    m["je"] = "ai";
+    m["tu"] = "as";
+    m["il"] = "a";
+    m["elle"] = "a";
+    m["nous"] = "ons";
+    m["vous"] = "ez";
+    m["ils"] = "ont";
+    m["elles"] = "ont";
+    return m;
+  }
+
+  static const map<string,string> present_;
+  static const map<string,string> futur_;
+};
+
+const map<string,string> ConjDeuxieme::present_ = ConjDeuxieme::makePresent();
+const map<string,string> ConjDeuxieme::futur_ = ConjDeuxieme::makeFutur();
 
 //Exceptions des Noms Communs (NC): forme plurielle (NCP)
 //A completer
@@ -193,6 +244,7 @@ class Verbe{
     int groupe();
     string conjuguer(string,int);
     string conjuguerpremier(string,int);
+    string conjuguerdeuxieme(string,int);
 };
 
 Verbe::Verbe(){
@@ -222,10 +274,19 @@ string Verbe::getTerminaison(){
 
 //Fonction qui determine le groupe a partir de la forme infinitive (les deux dernieres lettres-
 int Verbe::groupe(){
+  //D'abord tester si irregulier (base), sinon tester terminaison
+  string mot = this->getInfinitif();
+  bool found = ( std::find(ListeIrr::irreguliers.begin(), ListeIrr::irreguliers.end(), mot) != ListeIrr::irreguliers.end());
+
+  if(found){
+    return troisieme;
+  }
+  else{
   string terminaison = this->getTerminaison();
   if(terminaison == "er" ) return premier;
   else if(terminaison == "ir" ) return deuxieme;
-  else return troisieme;
+  else return 2;
+  }
 }
 
 //Fonction qui en fonction du group (1er, 2e ou 3e) renvoies la conjugaison (pour le moment: passe, present, futur)
@@ -233,7 +294,7 @@ string Verbe::conjuguer(string pronom, int temps){
   //Test si conjuguable ici
   //Fonction groupe:
   if(this->groupe() == 0 ) return this->conjuguerpremier(pronom,temps);
-  //else if(this->groupe() == 1 ) this->conjuguerdeuxieme(pronom,temps);
+  else if(this->groupe() == 1 ) return this->conjuguerdeuxieme(pronom,temps);
   //else if(this->groupe() == 2 ) this->conjuguertroisieme(pronom,temps);
   else return string();
 }
@@ -257,15 +318,38 @@ string Verbe::conjuguerpremier(string pronom,int temps){
   return c;
 }
 
+string Verbe::conjuguerdeuxieme(string pronom,int temps){
+
+  string mot = this->getInfinitif() ;
+
+  string c , term;
+
+  switch(temps){
+    case(0): c = mot.substr(0,mot.size()-1);
+             term = ConjDeuxieme::present_.find(pronom)->second;
+	     break;
+    case(2): c = mot ; 
+	     term = ConjDeuxieme::futur_.find(pronom)->second;
+	     break;
+    default : term = string();
+	      break;
+  }
+  c += term ;
+  return c;
+}
+
 int main()
 {
 
   Verbe mot("manger");
   Verbe mot2("partir");
 
-  cerr<<"On conjuguer le verbe "<<mot.getInfinitif()<<endl;
+  cerr<<"On conjuguer le verbe : "<<mot.getInfinitif()<<endl;
   cerr<<"Il "<<mot.conjuguer("il",present)<<endl;
   cerr<<"Il "<<mot.conjuguer("il",futur)<<endl;
+  cerr<<"On conjugue le verbe : "<<mot2.getInfinitif()<<endl;
+  cerr<<"Nous "<<mot2.conjuguer("nous",present)<<endl;
+  cerr<<"Nous "<<mot2.conjuguer("nous",futur)<<endl;
 
   NomC nc("bijou",'m');
   NomC nc1("eau",'f');
