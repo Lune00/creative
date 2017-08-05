@@ -73,42 +73,138 @@ struct ConjPremier{
 const map<string,string> ConjPremier::present_ = ConjPremier::makePresent();
 const map<string,string> ConjPremier::futur_ = ConjPremier::makeFutur();
 
-//On peut lui donner un type. La forme infinitive stocke le mot, et conjuguer, accorder ne peut s'appliquer que si le mot est du bon groupe
-//reflechir a ce point
-//Reflechir aux accords, a la structure, pour le moment que verbe
 
+//Exceptions des Noms Communs (NC): forme plurielle (NCP)
+//A completer
+struct Exception_NC{
 
-//De l'héritage !!!!!! Verbe herite de mot, Adjectif herite de mot etc... Mais oui bien sur!!!!
+  static map<string,string> makeNPC(){
+    map<string,string> m;
+    //En -al
+    m["aval"] = "avals";
+    m["bal"] = "bals";
+    m["carnaval"] = "carnavals";
+    m["festival"] = "festivals";
+    m["récitals"] = "récitals";
+    m["chacal"] = "chacals";
+    m["cheval"] = "chevaux";
+    //En -ail
+    m["travail"] = "travaux";
+    //En -ou
+    m["bijou"] = "bijoux";
+    m["genou"] = "genoux";
+    m["caillou"] = "cailloux";
 
-class Mot{
+    //Cas particuliers:
+    m["oeil"] = "yeux";
+    m["ciel"] = "cieux";
+    return m;
+  }
+  static const map<string,string> NCP;
+}; 
 
+const map<string,string> Exception_NC::NCP = Exception_NC::makeNPC();
+
+//Mots qui s'accordent: adjectifs et noms communs
+class NomC{
   private:
-    //Définit le groupe
-    string infinitif_;
-
+    string mot_;
+    //Le genre (auto?)
+    char g_;
   public:
-    Mot();
-    Mot(string infinitif) : infinitif_(infinitif) {} ;
-    ~Mot();
-    const string& getInfinitif() const { return infinitif_;}
+    NomC(){};
+    NomC(string mot,char g) : mot_(mot), g_(g) {} ;
+    ~NomC(){};
+    const string& getmot() const {return mot_;}
+    string getAccord(string article); // renvoie le bon accord avec l'aricle determinant
+};
 
-    //Conjugaison
+
+//Renvoie le nom propre avec le bon accord
+string NomC::getAccord(string article){
+
+  string mot = this->mot_;
+  string term ;
+
+  //On regarde si l'article est au pluriel
+  if(article.back() == 's') 
+  {
+    //Regarde si c'est un cas particulier
+    std::map<string,string>::const_iterator it =  Exception_NC::NCP.find(mot);
+    if(it != Exception_NC::NCP.end()) {
+      return it->second;
+    }
+
+    //ex : des os
+    if(mot.back() == 's' || mot.back() == 'z' || mot.back() == 'x' ) return mot;
+
+    //Checker la taille
+    if( mot.size() >= 3)
+    {
+      string last_one= mot.substr(mot.size()-2);
+      string last_two= mot.substr(mot.size()-2);
+      string last_three= mot.substr(mot.size()-3);
+
+      //On rajoute un x
+      if( last_two == "au" || last_two == "eu" || last_three == "eau") 
+      {
+	mot += "x";
+	return mot;
+      }
+      //On enleve -al et on remplace par -aux
+      else if (last_two == "al") 
+      {
+	mot = mot.substr(0,mot.size()-2);
+	mot += "aux";
+	return mot;
+      }
+      else
+      {
+	mot += "s";
+	return mot;
+      }
+
+    }
+    else
+    {
+      //On renvoie avec un s par défaut
+	mot += "s";
+	return mot;
+    }
+
+  }
+  else
+  {
+    return this->mot_;
+  }
+}
+
+
+//Mots qui se conjuguent : verbes
+class Verbe{
+  private:
+    string infinitif_;
+  public:
+    Verbe();
+    Verbe(string infinitif) : infinitif_(infinitif) {} ;
+    ~Verbe();
+    const string& getInfinitif() const { return infinitif_;}
     string getTerminaison();
     int groupe();
     string conjugue(string,int);
     string conjuguepremier(string,int);
 };
 
-Mot::Mot(){
+Verbe::Verbe(){
   string infinitif_ = " ";
 }
 
-Mot::~Mot(){
+Verbe::~Verbe(){
 
 }
 
 //Recupere la terminaison (deux dernieres lettres) de l'infinitif 
-string Mot::getTerminaison(){
+string Verbe::getTerminaison(){
 
   if( ! this->getInfinitif().empty() )
   {
@@ -125,7 +221,7 @@ string Mot::getTerminaison(){
 }
 
 //Fonction qui determine le groupe a partir de la forme infinitive (les deux dernieres lettres-
-int Mot::groupe(){
+int Verbe::groupe(){
   string terminaison = this->getTerminaison();
   if(terminaison == "er" ) return premier;
   else if(terminaison == "ir" ) return deuxieme;
@@ -133,7 +229,7 @@ int Mot::groupe(){
 }
 
 //Fonction qui en fonction du group (1er, 2e ou 3e) renvoies la conjugaison (pour le moment: passe, present, futur)
-string Mot::conjugue(string pronom, int temps){
+string Verbe::conjugue(string pronom, int temps){
   //Test si conjuguable ici
   //Fonction groupe:
   if(this->groupe() == 0 ) return this->conjuguepremier(pronom,temps);
@@ -143,7 +239,7 @@ string Mot::conjugue(string pronom, int temps){
 }
 
 //Gerer les exceptions (ex manger pour nous)
-string Mot::conjuguepremier(string pronom,int temps){
+string Verbe::conjuguepremier(string pronom,int temps){
   string mot = this->getInfinitif() ;
   std::string::size_type size = mot.size();
   std::size_t pos = size - 2 ;
@@ -164,13 +260,27 @@ string Mot::conjuguepremier(string pronom,int temps){
 int main()
 {
 
-  Mot mot("manger");
-  Mot mot2("partir");
+  Verbe mot("manger");
+  Verbe mot2("partir");
 
   cerr<<"On conjugue le verbe "<<mot.getInfinitif()<<endl;
   cerr<<"Il "<<mot.conjugue("il",present)<<endl;
   cerr<<"Il "<<mot.conjugue("il",futur)<<endl;
 
+  NomC nc("bijou",'m');
+  NomC nc1("eau",'f');
+  NomC nc2("cheval",'m');
+  NomC nc3("vis",'f');
+  NomC nc4("ciel",'m');
+  NomC nc5("festival",'m');
+  NomC nc6("oiseau",'m');
+
+  cerr<<"Des "<<nc.getAccord("des")<<endl;
+  cerr<<"Des "<<nc1.getAccord("des")<<endl;
+  cerr<<"Des "<<nc3.getAccord("des")<<endl;
+  cerr<<"Des "<<nc4.getAccord("des")<<endl;
+  cerr<<"Des "<<nc5.getAccord("des")<<endl;
+  cerr<<"Des "<<nc6.getAccord("des")<<endl;
 
   return 0;
 }
