@@ -116,12 +116,12 @@ class NomC{
     NomC(string mot,char g) : mot_(mot), g_(g) {} ;
     ~NomC(){};
     const string& getmot() const {return mot_;}
-    string getAccord(string article); // renvoie le bon accord avec l'aricle determinant
+    string accorder(string article); // renvoie le bon accord avec l'aricle determinant
 };
 
 
 //Renvoie le nom propre avec le bon accord
-string NomC::getAccord(string article){
+string NomC::accorder(string article){
 
   string mot = this->mot_;
   string term ;
@@ -168,8 +168,8 @@ string NomC::getAccord(string article){
     else
     {
       //On renvoie avec un s par défaut
-	mot += "s";
-	return mot;
+      mot += "s";
+      return mot;
     }
 
   }
@@ -275,12 +275,12 @@ int main()
   NomC nc5("festival",'m');
   NomC nc6("oiseau",'m');
 
-  cerr<<"Des "<<nc.getAccord("des")<<endl;
-  cerr<<"Des "<<nc1.getAccord("des")<<endl;
-  cerr<<"Des "<<nc3.getAccord("des")<<endl;
-  cerr<<"Des "<<nc4.getAccord("des")<<endl;
-  cerr<<"Des "<<nc5.getAccord("des")<<endl;
-  cerr<<"Des "<<nc6.getAccord("des")<<endl;
+  cerr<<"Des "<<nc.accorder("des")<<endl;
+  cerr<<"Des "<<nc1.accorder("des")<<endl;
+  cerr<<"Des "<<nc3.accorder("des")<<endl;
+  cerr<<"Des "<<nc4.accorder("des")<<endl;
+  cerr<<"Des "<<nc5.accorder("des")<<endl;
+  cerr<<"Des "<<nc6.accorder("des")<<endl;
 
   return 0;
 }
