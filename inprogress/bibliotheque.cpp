@@ -180,7 +180,7 @@ string NomC::accorder(string article){
 }
 
 
-//Mots qui se conjuguent : verbes
+//Mots qui se conjuguernt : verbes
 class Verbe{
   private:
     string infinitif_;
@@ -191,8 +191,8 @@ class Verbe{
     const string& getInfinitif() const { return infinitif_;}
     string getTerminaison();
     int groupe();
-    string conjugue(string,int);
-    string conjuguepremier(string,int);
+    string conjuguer(string,int);
+    string conjuguerpremier(string,int);
 };
 
 Verbe::Verbe(){
@@ -229,17 +229,17 @@ int Verbe::groupe(){
 }
 
 //Fonction qui en fonction du group (1er, 2e ou 3e) renvoies la conjugaison (pour le moment: passe, present, futur)
-string Verbe::conjugue(string pronom, int temps){
+string Verbe::conjuguer(string pronom, int temps){
   //Test si conjuguable ici
   //Fonction groupe:
-  if(this->groupe() == 0 ) return this->conjuguepremier(pronom,temps);
-  //else if(this->groupe() == 1 ) this->conjuguedeuxieme(pronom,temps);
-  //else if(this->groupe() == 2 ) this->conjuguetroisieme(pronom,temps);
+  if(this->groupe() == 0 ) return this->conjuguerpremier(pronom,temps);
+  //else if(this->groupe() == 1 ) this->conjuguerdeuxieme(pronom,temps);
+  //else if(this->groupe() == 2 ) this->conjuguertroisieme(pronom,temps);
   else return string();
 }
 
 //Gerer les exceptions (ex manger pour nous)
-string Verbe::conjuguepremier(string pronom,int temps){
+string Verbe::conjuguerpremier(string pronom,int temps){
   string mot = this->getInfinitif() ;
   std::string::size_type size = mot.size();
   std::size_t pos = size - 2 ;
@@ -263,9 +263,9 @@ int main()
   Verbe mot("manger");
   Verbe mot2("partir");
 
-  cerr<<"On conjugue le verbe "<<mot.getInfinitif()<<endl;
-  cerr<<"Il "<<mot.conjugue("il",present)<<endl;
-  cerr<<"Il "<<mot.conjugue("il",futur)<<endl;
+  cerr<<"On conjuguer le verbe "<<mot.getInfinitif()<<endl;
+  cerr<<"Il "<<mot.conjuguer("il",present)<<endl;
+  cerr<<"Il "<<mot.conjuguer("il",futur)<<endl;
 
   NomC nc("bijou",'m');
   NomC nc1("eau",'f');
