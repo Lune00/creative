@@ -30,3 +30,14 @@ Il ne faut pas trop en dire. Par exemple, s'il a un gros nez on le mentionnera c
 
 --- Verbes: on essaye un systeme de balise. La lecture devra lire les balises et les stocker. Ensuite on pourra appeler un mot d'une liste de cette balise. Par exemple on peut faire un objet conteneur Categorie. Il a un nom, un vecteur de Verbe. On peut imaginer ensuite complexifier la liste en mettant des associations supplementaires, des sous categories. Pour cela il suffirait d'enrichir l'objet Verbe pour rajouter des infos.
 
+
+Inutile de s'embarquer a l'aveugle. On peut commencer par se documenter sur la generation procedurale de texte (description, dialogue...) car c'est bien ce qu'on veut faire. Il faut regarder comment inventer. Si on prend du texte en faisant varier un mot ci, un mot la, de maniere aleatoire ce ne sera pas interessant. Ne vaudrait il mieux pas partir de plots prédéfinis, ou generes eux memes.
+Ex: Personne1 a rencontre Personne2 quelquepart. Personne1 a fait quelquechose a Personne2 et celui ci ne fut plus jamais le meme. Personne2 revit plus tart personne1 et lui fit quelquechose quelquepart.
+
+Abstract model of narrative. Construire une histoire en utilisant quelques modes definis. Partir d'une image, d'une situation grossiere qu'un algo viendrait populer de details, de personnages tout en restant coherent. Chaud ! Il semble qu'il y ait deux paradigmes: est ce que l'histoire doit etre bonne ou preferer une mauvaise histoire bien ecrite? Il faudrait une bonne histoire bien ecrite ; ) Narration generee en fonction de l'etat emotif du personnage... Generateur peut etre une representation textuelle d'une histoire (prefabrique par un humain).Le mieux c'est de donner un plot qu'on imagine que le programme va etre charge d ecrire. Creer un bon moteur comme ca permet de l'enrichir a l'infini.
+
+
+
+
+
+
