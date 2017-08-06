@@ -22,5 +22,11 @@ On peut imaginer qu a des mots soient attribues un score refletant la distinctio
 Commencer par essayer de produire une phrase procedurale de description en fonction de differents parametres.
 Exemple : Arrivee devant une grande foret. Quelqun' de non sensible dira "Cette satanée foret s'etend a perte de vue." Quelquen de plus sensible dira "Cette belle foret s'etend a perte de vue".
 
+
+Laisser tomber l'indice d'intensite. Gardons le plus simple possible. Il vaut mieux pour le moment completer avec des complements circonstanciels (avec force, a vive allure etc...)
 Note sur la descpition : La description d'un personnage doit etre compose d'une description physique de base ( visage, carrure, specificites) , de son origine sociale et geographique, de ses liens, son caractere, ses passions et son metier, et de quelques anecdotes, elements qui le rendent uniques. Ex : Il avale ses repas". La conjugaison (au lieu de la forme infinitive) rend plus reel et permet de faire des variations dans le passe Ex: Il a longtemps eu peur du noir. Ex: Il adore marcher en foret. Ex: Il n'a jamais aimé la mer.
 Il ne faut pas trop en dire. Par exemple, s'il a un gros nez on le mentionnera car ca permet de le distinguer, sinon non. Sinon on se perd dans une myriade de details qui rendent impossible la representation. Ex: Il rigole a haute voix. Ex: Elle ne s'attache jamais les cheveux, elle les prefere libres. Ex: Cet homme a un coeur de pierre, rien ne peut l'emouvoir.
+
+
+--- Verbes: on essaye un systeme de balise. La lecture devra lire les balises et les stocker. Ensuite on pourra appeler un mot d'une liste de cette balise. Par exemple on peut faire un objet conteneur Categorie. Il a un nom, un vecteur de Verbe. On peut imaginer ensuite complexifier la liste en mettant des associations supplementaires, des sous categories. Pour cela il suffirait d'enrichir l'objet Verbe pour rajouter des infos.
+
