@@ -8,7 +8,7 @@
 #include<string>
 #include<vector>
 #include<map>
-
+#include"irreguliers.hpp"
 
 //A remplacer par des enum
 
@@ -53,6 +53,39 @@ struct ListeIrr{
 
 const list<string> ListeIrr::irreguliers = ListeIrr::makeliste();
 
+
+struct ConjTroisieme{
+  //Verbes finissant en -dre , -tre, -cre
+  static map<string,string> makePresent_credretre(){
+    map<string,string> m;
+    m["je"] = "s";
+    m["tu"] = "s";
+    m["il"] = "";
+    m["elle"] = "";
+    m["nous"] = "ons";
+    m["vous"] = "ez";
+    m["ils"] = "ent";
+    m["elles"] = "ent";
+    return m;
+  }
+  static map<string,string> makePresent_defaut(){
+    map<string,string> m;
+    m["je"] = "s";
+    m["tu"] = "s";
+    m["il"] = "t";
+    m["elle"] = "t";
+    m["nous"] = "ons";
+    m["vous"] = "ez";
+    m["ils"] = "ent";
+    m["elles"] = "ent";
+    return m;
+  }
+  const static map<string,string> present_credretre;
+  const static map<string,string> present_defaut;
+};
+
+const map<string,string> ConjTroisieme::present_credretre = ConjTroisieme::makePresent_credretre();
+const map<string,string> ConjTroisieme::present_defaut = ConjTroisieme::makePresent_defaut();
 
 struct ConjPremier{
 
@@ -245,6 +278,8 @@ class Verbe{
     string conjuguer(string,int);
     string conjuguerpremier(string,int);
     string conjuguerdeuxieme(string,int);
+    string conjuguertroisieme(string,int);
+    string troisiemepresent(string,string);
 };
 
 Verbe::Verbe(){
@@ -282,10 +317,10 @@ int Verbe::groupe(){
     return troisieme;
   }
   else{
-  string terminaison = this->getTerminaison();
-  if(terminaison == "er" ) return premier;
-  else if(terminaison == "ir" ) return deuxieme;
-  else return 2;
+    string terminaison = this->getTerminaison();
+    if(terminaison == "er" ) return premier;
+    else if(terminaison == "ir" ) return deuxieme;
+    else return 2;
   }
 }
 
@@ -295,7 +330,7 @@ string Verbe::conjuguer(string pronom, int temps){
   //Fonction groupe:
   if(this->groupe() == 0 ) return this->conjuguerpremier(pronom,temps);
   else if(this->groupe() == 1 ) return this->conjuguerdeuxieme(pronom,temps);
-  //else if(this->groupe() == 2 ) this->conjuguertroisieme(pronom,temps);
+  else if(this->groupe() == 2 ) return this->conjuguertroisieme(pronom,temps);
   else return string();
 }
 
@@ -326,7 +361,7 @@ string Verbe::conjuguerdeuxieme(string pronom,int temps){
 
   switch(temps){
     case(0): c = mot.substr(0,mot.size()-1);
-             term = ConjDeuxieme::present_.find(pronom)->second;
+	     term = ConjDeuxieme::present_.find(pronom)->second;
 	     break;
     case(2): c = mot ; 
 	     term = ConjDeuxieme::futur_.find(pronom)->second;
@@ -338,19 +373,65 @@ string Verbe::conjuguerdeuxieme(string pronom,int temps){
   return c;
 }
 
+string Verbe::conjuguertroisieme(string pronom,int temps){
+  string mot = this->getInfinitif() ;
+  string c , term;
+  switch(temps){
+    case(0) : return this->troisiemepresent(mot,pronom);
+    default:
+	      return string();
+  }
+  c += term ;
+  return c;
+}
+
+//Conjugue au present un verbe du troisieme groupe
+string Verbe::troisiemepresent(string mot, string pronom){
+  string c, term ;
+  if(mot.size() <= 3 ) cerr<<"@attention 3e groupe inf a 3 lettres"<<endl;
+
+  string last_one= mot.substr(mot.size()-2);
+  string last_two= mot.substr(mot.size()-2);
+  string last_three= mot.substr(mot.size()-3);
+  string last_four= mot.substr(mot.size()-4);
+
+  if( last_four == "indre" || last_four == "oudre"){
+    //Exception, regarder un dictionnaire
+    return string();
+  }
+  else if (last_three == "cre" || last_three == "dre" || last_three == "tre")
+  {
+    //Appeler struct
+    c = mot.substr(0,mot.size()-2);
+    term = ConjTroisieme::present_credretre.find(pronom)->second;
+    c += term;
+    return c;
+  }
+  else
+  {
+    //Appeler struct par defaut
+    c = mot.substr(0,mot.size()-2);
+    term = ConjTroisieme::present_defaut.find(pronom)->second;
+    c += term;
+    return c;
+
+  }
+
+
+}
+
 int main()
 {
 
   Verbe mot("hair");
-  Verbe mot2("partir");
+  Verbe mot2("attendre");
   Verbe mot3("s'envoler");
 
   cerr<<"On conjuguer le verbe : "<<mot.getInfinitif()<<endl;
   cerr<<"Il "<<mot.conjuguer("il",present)<<endl;
   cerr<<"Il "<<mot.conjuguer("il",futur)<<endl;
   cerr<<"On conjugue le verbe : "<<mot2.getInfinitif()<<endl;
-  cerr<<"Nous "<<mot2.conjuguer("nous",present)<<endl;
-  cerr<<"Nous "<<mot2.conjuguer("nous",futur)<<endl;
+  cerr<<"Il "<<mot2.conjuguer("il",present)<<endl;
 
   NomC nc("bijou",'m');
   NomC nc1("eau",'f');
