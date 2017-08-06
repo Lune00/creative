@@ -11,19 +11,18 @@
 #include <fstream>
 #include <sstream>
 
+
+// Y a toujours un detail qui marche pas, je n'arrive pas avoir de ligne droite, de lignes de courant qui convergent vers le point de depart
+
 using namespace std;
 
 struct Point{
-
   int i;
   int j;
-
   //A remplacer ensuite par un id (seule une variable, utile pour autre chose, comparaison== etc...)
   int ifrom;
   int jfrom;
-
   bool w ;
-
 };
 
 bool operator==(const Point& a, const Point& b)
@@ -45,16 +44,17 @@ void makewall(Point* grid, int ny, int i, int j, int di, int dj)
     }
   }
 }
+
 //Breadth first search : arret si pas de chemin, arret quand le but est trouve
 
 int main(){
 
-  int nx = 40 ;
-  int ny = 40 ;
+  int nx = 10 ;
+  int ny = 10 ;
 
   //On fixe un point de depart
-  Point start = { 35 , 20 , 35 , 20 , true};
-  Point end = { 5 , 30 , 0 , 20 , true};
+  Point start = { 5 , 5 , 5 , 5 , true};
+  Point end = { 0 , 0 , 0 , 0 , true};
 
   Point * grid = new Point [nx * ny];
   //contient les points de la frontiere
@@ -73,8 +73,11 @@ int main(){
     }
   }
 
-  makewall(grid,ny,33,15,1,12);
-  makewall(grid,ny,10,15,8,12);
+//  makewall(grid,ny,0,25,nx-1,2);
+//  makewall(grid,ny,10,15,1,12);
+//  makewall(grid,ny,0,13,8,1);
+//  makewall(grid,ny,20,20,3,12);
+//  makewall(grid,ny,20,0,3,12);
 
   //On initialise la frontiere
   frontier.push_back(start);
@@ -96,18 +99,41 @@ int main(){
     int i = current.i ;
     int j = current.j ;
     //On prend ses voisins
-    for(int k = i - 1 ; k < i + 2 ; k++  )
-    {
-      for(int l = j - 1 ; l < j + 2 ; l++  )
-      {
-	if ( (k == i && l == j) || (grid[ k * ny + l].w == false) ) continue ;
-	if ( (k >= 0 && k < nx ) && ( l >= 0 && l < ny ) ) 
-	{
-	  Point p = { k , l } ;
-	  voisins.push_back(p);
-	}
-      }
-    }
+    //Essayer commencer voisin de droite, bas, gauche, haut
+    //for(int k = i + 1 ; k > i - 2 ; k--  )
+    //{
+    //  for(int l = j + 1 ; l > j - 2 ; l--  )
+    //  {
+    //    if ( (k == i && l == j) || (grid[ k * ny + l].w == false) ) continue ;
+    //    if ( (k >= 0 && k < nx ) && ( l >= 0 && l < ny ) ) 
+    //    {
+    //      Point p = { k , l } ;
+    //      voisins.push_back(p);
+    //    }
+    //  }
+    //}
+
+    //Droite
+    if( (i+1) >= 0 && (i+1)<nx ) {
+      Point p = { i+1 , j } ;
+      voisins.push_back(p);
+    } 
+    //Bas
+    if( (j-1) >= 0 && (j-1)<ny ) {
+      Point p = { i , j-1 } ;
+      voisins.push_back(p);
+    } 
+    //Gauche
+    if( (i-1) >= 0 && (i-1)<nx ) {
+      Point p = { i-1 , j } ;
+      voisins.push_back(p);
+    } 
+    //Haut
+    if( (j+1) >= 0 && (j+1)<ny ) {
+      Point p = { i, j+1 } ;
+      voisins.push_back(p);
+    } 
+
     //On parcourt les voisins
     for(std::vector<Point>::iterator it = voisins.begin(); it != voisins.end(); it++)
     {
