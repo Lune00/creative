@@ -23,4 +23,5 @@ path.txt
 paths.txt
 test_advance_iterator.cpp
 ../a.out
-.bfsup.cpp.swo
+.bfsup.cpp.swo.accord.cpp.swp
+.accord.o
