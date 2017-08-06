@@ -48,6 +48,7 @@ struct ListeIrr{
   static const list<string> irreguliers;
 };
 
+//Stocke les conjugaisons des verbes du troisieme groupe( quand regles)
 struct ConjTroisieme{
   //Verbes finissant en -dre , -tre, -cre
   static map<string,string> makePresent_credretre(){
@@ -113,6 +114,7 @@ struct ConjPremier{
 
 };
 
+//Stocke les conjugaisons des verbes du deuxieme groupe
 struct ConjDeuxieme{
   static map<string,string> makePresent(){
     map<string,string> m;
