@@ -1,0 +1,203 @@
+@START-COLOR#/*
+bleus-clair
+bleus
+bleus-vert
+marrons-clair
+marrons
+noirs
+couleur ambre
+sombres
+clairs
+bruns
+pers
+de couleur amande
+couleur d'argent
+d'un bleu azur
+d'un bleu acier
+d'un bleu canard
+d'un bleu ciel
+d'un bleu de minuit
+d'un bleu givré
+d'un bleu nuit
+couleur émeraude
+d'un gris de lin
+d'un gris fer
+d'un vert de jade
+couleur menthe
+couleur miel
+d'un noir animal
+d'un noir charbon
+d'un noir d'encre
+couleur d'opale
+couleur pastel
+couleur pistache
+couleur tabac
+d'un vert anis
+d'un vert d'eau
+vert épinard
+vert impérial
+vert poireau
+vert opaline
+vert pin
+vert sapin
+vert tilleul
+vert prairie
+vert pomme
+vert sauge
+vert de gris
+vert avocat
+vert canard
+vert jade
+d'un vert de printemps
+d'un vert pur
+d'un vert très pur
+d'un bleu salé
+d'un vert étrange
+d'un noir bleuté
+d'un noir obscur
+d'un noir félin
+d'un bleu pur
+d'un bleu très pur
+d'un noir profond
+d'un noir macabre
+d'un noir bleu
+d'un bleu océan
+couleur saphir
+couleur sable
+couleur rouille
+bleux marin
+couleur algue-marine
+d'un vert minéral
+d'un bleu minéral
+d'un bleu minéral,teinté de vert
+d'un bleu minéral,teinté de violet
+d'un bleu des mers du sud
+d'un bleu roi
+couleur chaudron
+couleur chocolat
+couleur bronze
+d'un noir d'encre
+noirauds
+couleur réglisse
+rouge-sang, ce qui est extrêmement rare
+@END
+
+@START-FORME#/*
+globuleux
+écarquillés
+pétillants
+louches
+pochés
+papillotants
+étincelants
+hagards
+cernés
+vitreux
+enfoncés
+mauvais
+brillants
+espiègles
+écarquillés
+mélancoliques
+luisants
+proéminents
+sévères
+caves
+@END
+
+@START-TAILLE#/*
+grands
+petits
+immenses
+@END
+
+
+@START-REGARD1:POSITIF#/*
+un océan[mots,adjectif,BEAU,*,M]
+le vol d'un oiseau[mots,adjectif,BEAU,*,M]
+un met[mots,adjectif,BEAU,*,M]
+une vie[mots,adjectif,BEAU,*,F]
+une mer[mots,adjectif,BEAU,*,F]
+des nuages[mots,adjectif,BEAU,*,MP]
+une flamme[mots,adjectif,BEAU,*,F]
+une étincelle[mots,adjectif,BEAU,*,F]
+une forêt[mots,adjectif,BEAU,*,F]
+un animal[mots,adjectif,BEAU,*,M]
+un ciel[mots,adjectif,BEAU,*,M]
+l'espace[mots,adjectif,BEAU,*,M]
+une présence[mots,adjectif,BEAU,*,F][mots,adjectif,BEAU,*,F]
+une planète[mots,adjectif,BEAU,*,F]
+une lune[mots,adjectif,BEAU,*,F]
+une lueur[mots,adjectif,BEAU,*,F]
+une étoile[mots,adjectif,BEAU,*,F]
+une fleur[mots,adjectif,BEAU,*,F]
+une passion[mots,adjectif,BEAU,*,F]
+un feux d'artifice[mots,adjectif,BEAU,*,M]
+@END-QUALIF1-POSITIF
+
+
+@START-REGARD1:NEGATIF#/*
+une présence[mots,adjectif,SOMBRE,*,F][mots,adjectif,SOMBRE,*,F]
+des présences[mots,adjectif,SOMBRE,*,FP][mots,adjectif,SOMBRE,*,FP]
+une planète[mots,verbe,DEPLACEMENT,*,i]
+une forêt[mots,adjectif,SOMBRE,*,F]
+des planètes[mots,verbe,DEPLACEMENT,*,i]
+un incendie[mots,adjectif,SANS,*,*][mots,adjectif,SOMBRE,*,M]
+un feu[mots,adjectif,SANS,*,*]
+un marais[mots,adjectif,SOMBRE,*,M]
+une lune[mots,adjectif,SOMBRE,*,F]
+une âme[mots,adjectif,SOMBRE,*,F]
+un paysage[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+des paysages[mots,adjectif,SOMBRE,*,MP][mots,adjectif,SOMBRE,*,MP]
+une plaine[mots,adjectif,SOMBRE,*,F][mots,adjectif,SOMBRE,*,F]
+des plaines[mots,adjectif,SOMBRE,*,FP][mots,adjectif,SOMBRE,*,FP]
+une créature[mots,adjectif,SOMBRE,*,F][mots,adjectif,SOMBRE,*,F]
+des créatures[mots,adjectif,SOMBRE,*,FP][mots,adjectif,SOMBRE,*,FP]
+un insecte[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+des insectes[mots,adjectif,SOMBRE,*,MP][mots,adjectif,SOMBRE,*,MP]
+un démon[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+un vagabond[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+le néant[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+le vide[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+un brouillard[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+un corps[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+l'espace[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+un océan[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+un chemin[mots,adjectif,SOMBRE,*,M][mots,adjectif,SOMBRE,*,M]
+une vallée[mots,adjectif,SOMBRE,*,F]
+une tempête[mots,adjectif,SOMBRE,*,F]
+une mer[mots,adjectif,SOMBRE,*,F]
+une nuée d'insectes[mots,adjectif,SOMBRE,*,MP]
+une horde d'insectes[mots,adjectif,SOMBRE,*,MP]
+une nuée de chauve-souris[mots,adjectif,SOMBRE,*,FP]
+@END
+
+
+
+@START-MISSING:GAU#/*
+a perdu son oeil gauche[histoire,lieu,*,*,*]
+a perdu son oeil droit[histoire,lieu,*,*,*]
+a perdu son oeil gauche[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END
+
+@START-MISSING:DROI#/*
+a perdu son oeil droit[histoire,lieu,*,*,*]
+a perdu son oeil droit[histoire,lieu,*,*,*]
+a perdu son oeil droit[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END
+
+@START-MISSING:DEUX#/*
+a perdu son oeil droit[histoire,lieu,*,*,*]
+a perdu son oeil droit[histoire,lieu,*,*,*]
+a perdu ses deux yeux[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END
+
+@START-SOURCILS#/*
+broussailleux[mots,metaphore,SOURCILS,BROUSAILLEUX,*]
+épais[mots,metaphore,SOURCILS,EPAIS,*]
+fins
+arqués
+droits
+@END
+
+

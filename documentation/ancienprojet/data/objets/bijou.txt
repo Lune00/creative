@@ -1,0 +1,118 @@
+@START-MAIN:OREILLE#/*
+un[objets,bijou,PIERCING,ASPECT,M][objets,bijou,PIERCING,OREILLEM,*][objets,bijou,PIERCING,MATERIAU_ORE,M]
+une[objets,bijou,PIERCING,ASPECT,F][objets,bijou,PIERCING,OREILLEF,*][objets,bijou,PIERCING,MATERIAU_ORE,F]
+@END
+
+
+@START-MAIN:NEZ#/*
+un[objets,bijou,PIERCING,ASPECT,M][objets,bijou,PIERCING,NEZMASC,*][objets,bijou,PIERCING,MATERIAU_NEZ,*]
+une[objets,bijou,PIERCING,ASPECT,F][objets,bijou,PIERCING,NEZFEM,*][objets,bijou,PIERCING,MATERIAU_NEZ,*]
+@END
+
+
+@START-PIERCING:ASPECT#/M/F
+immense;immense
+grand;grande
+petit;petite
+étrange;étrange
+ancien;ancienne
+discret;discrète
+élégant;élégante
+ancien;ancienne
+remarquable;remarquable
+surprenant;surprenante
+obscur;obscure
+curieux;curieuse
+coquet;coquette
+@END
+
+@START-PIERCING:OREILLEM#/*
+anneau
+bijou
+@END
+
+@START-PIERCING:OREILLEF#/*
+boucle
+perle
+@END
+
+
+@START-PIERCING:NEZMASC#/*
+anneau
+fer à cheval
+joyau
+bijou
+@END
+
+@START-PIERCING:NEZFEM#/*
+puce
+pointe
+tige
+@END
+
+
+@START-PIERCING:MATERIAU_ORE#/M/F
+en toc;en toc
+en ivoire;en ivoire
+en or;en or
+en acier;en acier
+de bronze;de bronze
+de cuivre;de cuivre
+en bois;en bois
+en étain;en étain
+en acier;en acier
+en or, serti[objets,bijou,PIERCING,SERTISSAGE,*];en or, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en acier, serti[objets,bijou,PIERCING,SERTISSAGE,*];en acier, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+de bronze, serti[objets,bijou,PIERCING,SERTISSAGE,*];de bronze, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+d'argent, serti[objets,bijou,PIERCING,SERTISSAGE,*];d'argent, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+de cuivre, serti[objets,bijou,PIERCING,SERTISSAGE,*];de cuivre, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en platine, serti[objets,bijou,PIERCING,SERTISSAGE,*];en platine, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en acier, serti[objets,bijou,PIERCING,SERTISSAGE,*];en acier, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en os, serti[objets,bijou,PIERCING,SERTISSAGE,*];en os, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en bois, serti[objets,bijou,PIERCING,SERTISSAGE,*];en bois, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en étain, serti[objets,bijou,PIERCING,SERTISSAGE,*];en étain, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+de plomb, serti[objets,bijou,PIERCING,SERTISSAGE,*];de plomb, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+en palladium, serti[objets,bijou,PIERCING,SERTISSAGE,*];en palladium, sertie[objets,bijou,PIERCING,SERTISSAGE,*]
+@END
+
+
+@START-PIERCING:MATERIAU_NEZ#/*
+en toc
+en or
+en or pur
+en acier
+de bronze
+de cuivre
+en bois
+en étain
+en acier
+en plomb
+en os
+en os
+en ivoire
+@END
+
+
+
+
+
+@START-PIERCING:SERTISSAGE#/S/P
+d'une vieille pierre précieuse;de vieilles pierres précieuses
+d'une pierre vaguement précieuse;de pierres vaguement précieuses
+d'un diamant;de diamants
+d'un rubis;de rubis
+d'une émeraude;d'émeraudes
+d'un saphir;de saphirs
+d'un grenat;de grenats
+d'une pierre de jade;de jade
+de jaspe;de jaspe
+de pierre de lune;de pierre de lune
+d'une escarboucle;d'escarboucles
+de lapis-lazuli;de lapis-lazuli
+d'obsidienne;d'obsidienne
+de quartz rose;de quartz rose
+d'un topaze;de topazes
+d'une améthyste;de plusieurs améthystes
+@END
+
+

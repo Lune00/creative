@@ -1,0 +1,60 @@
+Regroupe toutes les possibilites logiques d'histoires pouvant se produire
+Faire des Main differents pour les bagarres, les rencontres etc.. ça permet de pouvoir utiliser les lieux,action,personnes dans toutes les situations possibles avec le texte a trou
+
+
+
+
+--------------------------------------
+	TYPES D'HISTOIRES            -
+--------------------------------------
+LIEU/PERIODE  ACTION	      TIERS  -
+    1		2		3    -	
+--------------------------------------
+PERIODE		X		X    -
+PERIODE		V		V    -
+LIEU		V		V    -
+LIEU		X		X    -
+LIEU		V		V    -
+MALADIE		X		X    -
+ACCIDENT	X		X    -
+--------------------------------------
+
+=>CODES HISTOIRES:
+
+->PERTE D'UN MEMBRE: A possiblites:Combat,Accident,Maladie,Justice
+
+
+
+
+
+=>PERMIER EMBRANCHEMENT GENERIQUE:
+
+[histoire,lieu,PERIODE,*,*]
+[histoire,lieu,PERIODE,*,*]
+[histoire,lieu,INTERIEUR,PUBLIQUE,*]
+[histoire,lieu,INTERIEUR,PRIVE,*]
+[histoire,lieu,INTERIEUR,ACADEMIQUE,*]
+[histoire,lieu,EXTERIEUR,TERRE,*]
+[histoire,lieu,EXTERIEUR,MER,*]
+[histoire,accident,MALADIE,*,*]
+[histoire,accident,ACCIDENT,*,*]
+[histoire,accident,JUSTICE,COMMANDITAIRE,*]pour cause[histoire,accident,JUSTICE,ACCUSATION,*]
+
+///////////////////////////////////////////////////////////
+
+
+
+@START-MAIN:A#/*
+[histoire,lieu,PERIODE,*,*][histoire,action,COMBAT/COMBAT/EXPERIENCE/INTERIEUR,HUMAINS/CREATURES/*/NOTIERS,*/*/*/*][histoire,intervenant,HUMAIN,ETRANGER,!]
+@END 
+
+
+[histoire,lieu,PERIODE,*,*]
+[histoire,lieu,INTERIEUR,PUBLIQUE,*]
+[histoire,lieu,INTERIEUR,PRIVE,*]
+[histoire,lieu,INTERIEUR,ACADEMIQUE,*]
+[histoire,lieu,EXTERIEUR,TERRE,*]
+[histoire,lieu,EXTERIEUR,MER,*]
+[histoire,accident,MALADIE,*,*]
+[histoire,accident,ACCIDENT,*,*]
+[histoire,accident,JUSTICE,COMMANDITAIRE,*]l'accusant[histoire,accident,JUSTICE,ACCUSATION,*]

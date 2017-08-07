@@ -1,0 +1,53 @@
+***********COMBAT
+
+@START-COMBAT:HUMAINS#/*
+en luttant contre[histoire,intervenant,CREA/HUMAIN,SAUVAGE/ETRANGER,!/!]
+en se battant contre[histoire,intervenant,CREA/HUMAIN,SAUVAGE/ETRANGER,!/!]
+dans un duel contre[histoire,intervenant,HUMAIN,ETRANGER,S]
+dans une altercation avec[histoire,intervenant,HUMAIN,ETRANGER,S]
+dans une échauffourée avec[histoire,intervenant,HUMAIN,ETRANGER,S]
+en se battant pour[histoire,intervenant,HUMAIN,PROCHE,S]
+un défendant un pauvre diable contre[histoire,intervenant,HUMAIN,ETRANGER,!]
+lors d'une rencontre malheureuse avec[histoire,intervenant,CREA,DOMESTIQUE,!]
+lors d'une rixe contre[histoire,intervenant,CREA/HUMAIN,DOMESTIQUE/ETRANGER,!/!]
+lors d'une bagarre avec[histoire,intervenant,CREA/HUMAIN,DOMESTIQUE/ETRANGER,!/!]
+lors d'une rencontre malheureuse avec[histoire,intervenant,CREA,DOMESTIQUE,!]
+suite à une discussion houleuse avec[histoire,intervenant,HUMAIN,ETRANGER,!]
+suite à un désaccord profond avec[histoire,intervenant,HUMAIN,ETRANGER,!]
+suite à une querelle avec[histoire,intervenant,HUMAIN,ETRANGER,!]
+suite à une divergence de point de vue fondamentale avec[histoire,intervenant,HUMAIN,ETRANGER,!]
+suite à un désaccord moral avec[histoire,intervenant,HUMAIN,ETRANGER,!]
+suite à un contentieux avec[histoire,intervenant,HUMAIN,ETRANGER,!]
+suite à un jet de pierres envoyé par[histoire,intervenant,HUMAIN,DESARME,!]
+@END
+
+@START-COMBAT:CREATURES#/*
+après avoir été attaqué par[histoire,intervenant,CREA,SAUVAGE,!]
+après avoir été sévèrement blessé par[histoire,intervenant,HUMAIN,ETRANGER,!]
+après avoir été agressé par[histoire,intervenant,HUMAIN,ETRANGER,!]
+@END
+
+
+*********EXPERIENCES:
+
+@START-EXPERIENCE#/*
+lors d'une expérience importante mais dangereuse
+lors d'une expérience capitale
+lors d'une expérience qui a mal tourné
+au cours d'une démonstration
+@END
+
+
+*********SANS TIERS:
+@START-INTERIEUR:NOTIERS#/*
+au cours d'une partie d'échecs qui n'a jamais pu se terminer
+au cours d'une partie de cartes qui a mal tourné
+au cours d'une partie d'échecs qui a mal tourné
+au cours d'une répétition quelque peu enflammée
+lors d'une fête
+lors d'un bal
+lors d'une soirée d'ivresse
+@END
+
+
+

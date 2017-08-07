@@ -1,0 +1,61 @@
+@START-BOUCHE#/*
+une grande bouche
+une petite bouche
+une bouche plus petite que grande
+une très large bouche
+une large bouche
+une bouche plutôt grande que petite
+@END
+
+@START-SAINE#/*
+des dents blanches
+des dents éclatantes
+une dentition impeccable
+une belle dentition
+une dentition sans reproches
+une dentition qui ne laisse place à aucun reproche
+des dents blanches et plutôt bien rangées
+des dents blanches et passablement bien rangées
+@END
+
+@START-ALTERE#/*
+des vieux chicots
+des dents[mots,adjectif,QUALIF,DENTS,*]
+une dentition en ruine
+une très mauvaise dentition
+@END
+
+@START-MISSING:DENTS#/*
+a perdu une dent, remplacée depuis par une fausse[objets,bijou,PIERCING,MATERIAU_NEZ,*]
+a perdu des dents,remplacées depuis par des fausses[objets,bijou,PIERCING,MATERIAU_NEZ,*]
+a perdu plusieurs dents,remplacées depuis par des fausses[objets,bijou,PIERCING,MATERIAU_NEZ,*]
+a perdu une dent, qui n'a jamais été remplacée depuis
+a perdu des dents, qui n'ont jamais été remplacées depuis
+a perdu l'intégralité de ses dents[histoire,lieu,*,*,*]
+a perdu toutes ses dents[histoire,lieu,*,*,*]
+a perdu ses dents[histoire,lieu,*,*,*]
+a perdu toutes ses dents[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+a perdu presque toutes ses dents[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+a perdu ses dents[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END
+
+@START-LANGUE_PERCEE#/*
+a la langue percée d'[objets,bijou,MAIN,NEZ,*]
+a percé sa langue d'[objets,bijou,MAIN,NEZ,*]
+s'est percée la langue avec[objets,bijou,MAIN,NEZ,*]
+@END
+
+
+@START-MISSING:LANGUE#/*
+a perdu sa langue[histoire,lieu,*,*,*]
+a eu la langue arrachée[histoire,lieu,*,*,*]
+a eu la langue coupée[histoire,lieu,*,*,*]
+a eu la langue tranchée[histoire,lieu,*,*,*]
+@END
+
+@START-EXPRESSION:aaa#/*
+abrite
+garde jalousement
+dévoile
+renferme
+@END

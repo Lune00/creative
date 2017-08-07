@@ -1,0 +1,28 @@
+@START-DESORDRE:DENTS#/*
+comme un régiment en déroute
+comme si elles avaient choisi elles même où se nicher
+comme un champ de ruine
+comme si elles avaient été laissées à l'abandon
+@END
+
+@START-SOURCILS:BROUSAILLEUX#/*
+comme des toiles d'araignées
+comme un épais maquis
+comme un champ de fils emmêlés
+comme deux buissons sauvages
+comme deux pelotes de ficelles
+@END
+
+
+@START-SOURCILS:EPAIS#/*
+comme deux arches anciennes
+qui semblent chacun chercher à recouvrir l'autre
+tels deux arches, protégeant l'oeil de la pluie et du soleil,
+@END
+
+@SART-BARBE#/*
+comme une immense toile d'araignées
+comme un épais maquis
+semblable à une forêt millénaire
+rappelant les forêts primaires et sauvages
+@END

@@ -1,0 +1,112 @@
+@START-PERIODE#/*
+il y a bien longtemps[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+il y a longtemps[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+autrefois[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+durant son enfance[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un été[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un hiver[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un printemps[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un automne[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un jour pluvieux[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un jour d'orage[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un jour de tempête[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+une nuit d'hiver[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+une nuit[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un jour[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+un beau jour[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+une nuit sans lune[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+une nuit de pleine lune[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+une nuit sombre[histoire,action,INTERIEUR/INTERIEUR/EXTERIEUR,SOCIAL/FESTIVITE/NATURE,*/*/*]
+@END
+
+@START-INTERIEUR:PUBLIQUE#/*
+dans une taverne[histoire,action,INTERIEUR/INTERIEUR,SOCIAL/FESTIVITE,*/*]
+dans une auberge[histoire,action,INTERIEUR/INTERIEUR,SOCIAL/FESTIVITE,*/*]
+dans un théâtre[histoire,action,INTERIEUR/INTERIEUR,SOCIAL/FESTIVITE,*/*]
+dans un bordel[histoire,action,INTERIEUR/INTERIEUR,SOCIAL/FESTIVITE,*/*]
+dans une grange[histoire,action,INTERIEUR,SOCIAL,*]
+dans un phare[histoire,action,INTERIEUR,SOCIAL,*]
+dans un temple[histoire,action,INTERIEUR,SOCIAL,*]
+dans un bazar[histoire,action,INTERIEUR/INTERIEUR,SOCIAL/FESTIVITE,*/*]
+sur une criée
+dans un port
+dans un lieu de recueillement
+dans un cimetière
+dans un lieu sacré
+sur une place publique
+@END
+
+@START-INTERIEUR:ACADEMIQUE#/*
+dans une académie
+dans un laboratoire d'alchimie
+dans une université
+dans un lieu de savoir
+@END
+
+
+@START-INTERIEUR:#PRIVE/*
+chez un noble
+dans une grange
+dans une cabane de pêcheur
+dans une boucherie
+dans une poissonnerie
+dans une forge
+dans une boutique
+dans une échoppe
+chez un homme de foi
+dans un manoir
+chez un homme illustre
+chez un homme riche
+chez une femme riche
+dans un palais
+dans une maison
+dans un moulin
+dans un atelier
+chez un ami
+chez une amie
+dans un atelier
+dans la cour d'un château
+à la cour d'un roi
+@END
+
+
+@START-EXTERIEUR:TERRE#/*
+dans un naufrage en pleine mer
+dans un naufrage sur une côte
+dans une bataille terrible
+dans une bataille navale
+dans une bataille
+sur un port[histoire,action,EXTERIEUR,NATURE,*]
+sur le pont d'un navire[histoire,action,INTERIEUR,SOCIAL,*]
+dans les cales d'un navire[histoire,action,INTERIEUR,SOCIAL,*]
+dans la cabine d'un navire[histoire,action,INTERIEUR,SOCIAL,*]
+au bord d'un lac[histoire,action,EXTERIEUR,NATURE,*]
+au bord d'une rivière[histoire,action,EXTERIEUR,NATURE,*]
+dans une ruelle[histoire,action,EXTERIEUR,COMBAT,*]
+sur le rivage[histoire,action,EXTERIEUR,NATURE,*]
+à la montagne[histoire,action,EXTERIEUR,NATURE,*]
+sur la plage[histoire,action,EXTERIEUR,NATURE,*]
+dans un champ[histoire,action,EXTERIEUR,NATURE,*]
+dans une forêt[histoire,action,EXTERIEUR,NATURE,*]
+dans le désert[histoire,action,EXTERIEUR,NATURE,*]
+dans une grotte[histoire,action,EXTERIEUR,NATURE,*]
+sur un chemin[histoire,action,EXTERIEUR,NATURE,*]
+dans une allée[histoire,action,EXTERIEUR,NATURE,*]
+dans une rue[histoire,action,EXTERIEUR,NATURE,*]
+sur un sentier[histoire,action,EXTERIEUR,NATURE,*]
+en haut d'une falaise[histoire,action,EXTERIEUR,NATURE,*]
+dans des buissons[histoire,action,EXTERIEUR,NATURE,*]
+à la cime d'un arbre[histoire,action,EXTERIEUR,NATURE,*]
+dans la jungle[histoire,action,EXTERIEUR,NATURE,*]
+@END
+
+@START-EXTERIEUR:MER#/*
+lors d'une baignade en mer[histoire,action,EXTERIEUR,MER,*]
+en mer[histoire,action,EXTERIEUR,MER,*]
+dans une rivière[histoire,action,EXTERIEUR,MER,*]
+dans un lac[histoire,action,EXTERIEUR,MER,*]
+dans un étang[histoire,action,EXTERIEUR,MER,*]
+dans un cours d'eau[histoire,action,EXTERIEUR,MER,*]
+@END
+
+

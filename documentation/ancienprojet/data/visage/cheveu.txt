@@ -1,0 +1,78 @@
+@START-MAINC#/*
+courts[visage,cheveu,TYPE,ALL,*]
+courts[visage,cheveu,TYPE,SPE-COURT,*]
+@END
+
+@START-MAINL#/*
+longs[visage,cheveu,TYPE,ALL,*]
+longs[visage,cheveu,TYPE,SPE-LONG,*]
+@END
+
+@START-COLOR#/*
+brun
+châtain
+brun
+châtain
+brun
+châtain
+châtain clair
+châtain foncé
+blond
+blond doré
+brun clair
+brun cuivré
+brun cendré
+brun foncé
+brun foncé
+brun foncé
+brun corbeau
+grisonnant
+roux
+@END1
+
+@START-TYPE:ALL#/*
+frisés
+bouclés
+secs
+gras
+frisés
+@END
+
+@START-TYPE:SPE-LONG#/*
+raides
+fins
+lisses
+@END
+
+@START-TYPE:SPE-COURT#/*
+hérissés
+dégarnis
+ébouriffés
+en bataille
+rudes et drus
+@END
+
+@START-MISSING#/*
+chauve
+@END
+
+@START-EXPRESSION:aaa#/*
+qui recouvrent
+qui retombent sur
+qui voilent
+qui se déversent sur
+qui voilent
+qui cascadent le long de
+qui s'écoulent du haut de
+qui envoient dans l'ombre
+@END
+
+@START-EXPRESSION:bbb#/*
+qui semblent présider
+qui semblent gouverner
+qui laissent place à
+qui vont de pair avec
+@END
+
+
+

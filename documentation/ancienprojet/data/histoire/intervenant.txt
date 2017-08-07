@@ -1,0 +1,125 @@
+@START-CREA:SAUVAGE#/S/P
+une créature[mots,adjectif,CREATURE,SAUVAGE,F];une meute de créatures[mots,adjectif,CREATURE,SAUVAGE,FP]
+une créature[mots,adjectif,CREATURE,SAUVAGE,F];une horde de créatures[mots,adjectif,CREATURE,SAUVAGE,FP]
+une créature[mots,adjectif,CREATURE,SAUVAGE,F];une bande de créatures[mots,adjectif,CREATURE,SAUVAGE,FP]
+une bête[mots,adjectif,CREATURE,SAUVAGE,F];des bêtes[mots,adjectif,CREATURE,SAUVAGE,FP]
+une créature[mots,adjectif,CREATURE,SAUVAGE,F];une horde de bêtes[mots,adjectif,CREATURE,SAUVAGE,FP]
+une créature[mots,adjectif,CREATURE,SAUVAGE,F];une meute de bêtes[mots,adjectif,CREATURE,SAUVAGE,FP]
+un oiseau[mots,adjectif,CREATURE,*,M];des oiseaux[mots,adjectif,CREATURE,*,MP]
+un oiseau[mots,adjectif,CREATURE,*,M];une volée d'oiseaux[mots,adjectif,CREATURE,*,MP]
+une chauve-souris[mots,adjectif,CREATURE,SAUVAGE,F];des chauve-souris[mots,adjectif,CREATURE,SAUVAGE,FP]
+un mammifère[mots,adjectif,CREATURE,SAUVAGE,M];un troupeau de mammifères[mots,adjectif,CREATURE,SAUVAGE,MP]
+@END
+
+@START-CREA:DOMESTIQUE#/S/P
+un chien[mots,adjectif,CREATURE,*,M];des chiens[mots,adjectif,CREATURE,SAUVAGE,MP]
+un chat[mots,adjectif,CREATURE,*,M];des chats[mots,adjectif,CREATURE,DOMESTIQUE,MP]
+un coq[mots,adjectif,CREATURE,*,M];des coqs[mots,adjectif,CREATURE,*,MP]
+un oiseau[mots,adjectif,CREATURE,*,M];des oiseaux[mots,adjectif,CREATURE,*,MP]
+@END
+
+
+@START-CREA:MER#/S/P
+un squale[mots,adjectif,CREATURE,*,M];des squales[mots,adjectif,CREATURE,*,MP]
+un poisson[mots,adjectif,CREATURE,*,M];des poissons[mots,adjectif,CREATURE,*,MP]
+un poisson[mots,adjectif,CREATURE,*,M];un banc de poissons[mots,adjectif,CREATURE,*,MP]
+un mollusque[mots,adjectif,CREATURE,*,M];des mollusques[mots,adjectif,CREATURE,*,MP]
+un amphibien[mots,adjectif,CREATURE,*,M];des amphibiens[mots,adjectif,CREATURE,*,MP]
+un batracien[mots,adjectif,CREATURE,*,M];des batraciens[mots,adjectif,CREATURE,*,MP]
+@END
+
+
+@START-HUMAIN:ETRANGER#/S/P
+un milicien armé[histoire,intervenant,ARMES,*,*];des miliciens
+un capitaine;des marins
+une brute armé[histoire,intervenant,ARMES,*,*];des brutes
+un pirate[mots,adjectif,HUMAIN,SAUVAGE,M];des pirates
+un ivrogne[mots,adjectif,HUMAIN,SAUVAGE,M];des ivrognes
+un ivrogne;des ivrognes
+un ivrogne armé[histoire,intervenant,ARMES,*,*];des ivrognes
+un malfrat armé[histoire,intervenant,ARMES,*,*];des malfrats
+un brigand armé[histoire,intervenant,ARMES,*,*];des brigands
+un marchand[mots,adjectif,HUMAIN,SAUVAGE,M];des marchands
+un artisan;des artisans
+un voyou;des voyous
+une dame;des dames
+un inconnu[mots,adjectif,HUMAIN,SAUVAGE,M];des inconnus
+un inconnu armé[histoire,intervenant,ARMES,*,*];des inconnus
+un pêcheur;des pêcheurs
+un enfant;des enfants
+un charlatan;des charlatans
+un supérieur;des supérieurs
+un officier;des officiers
+un soldat;des soldats
+un peintre;des peintres
+un comédien;des comédiens
+une comédienne;des comédiennes
+un écrivain;des écrivains
+un homme d'affaires;des hommes d'affaires
+un commerçant;des commerçants
+un prisonnier;des prisonniers
+un voleur;des voleurs
+un homme de loi;des hommes de loi
+une prostituée armée[histoire,intervenant,ARMES,*,*];des prostituées
+un docteur;des docteurs
+un soulographe;des soulographes
+une éponge;des éponges
+@END
+
+@START-HUMAIN:DESARME#/S/P
+un bandit;des bandits
+un capitaine;des marins
+un pirate;des pirates
+un ivrogne;des ivrognes
+un marchand;des marchands
+un artisan;des artisans
+un voyou;des voyous
+une dame;des dames
+un inconnu;des inconnus
+un pêcheur;des pêcheurs
+un enfant;des enfants
+un charlatan;des charlatans
+un supérieur;des supérieurs
+un officier;des officiers
+un soldat;des soldats
+un homme d'affaires;des hommes d'affaires
+un commerçant;des commerçants
+un prisonnier;des prisonniers
+un voleur;des voleurs
+un homme de loi;des hommes de loi
+un docteur;des docteurs
+@END
+
+
+@START-HUMAIN:PROCHE#/S/P
+son frère;ses frères
+sa soeur;ses soeurs
+son père;sa mère
+un ami;une amie
+un ami cher;une amie chère
+un pauvre bougre;une pauvre bougre
+un être cher;un vieil ami
+@END
+
+
+@START-ARMES#/*
+d'un bâton
+d'un coutelas
+d'une bouteille en verre
+d'un couteau
+d'une lame
+d'une brique
+d'une pierre
+d'un bout de bois
+d'une masse
+d'un chandelier
+d'un poignard
+d'un objet contondant
+d'un tesson de bouteille
+d'une hache
+d'une pioche
+@END
+
+
+
+son ex-femme, son ex mari

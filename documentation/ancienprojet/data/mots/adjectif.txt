@@ -1,0 +1,202 @@
+@START-SOMBRE#/M/F/MP/FP
+dérangeant;dérangeante;dérangeants;dérangeantes
+mystérieux;mystérieuse;mystérieux;mystérieuses
+sombre;sombre;sombres;sombres
+esseulé;esseulée;esseulés;esseulées
+désespéré;désespérée;désespérés;désespérées
+blafard;blafarde;blafards;blafardes
+solitaire;solitaire;solitaires;solitaires;
+amorphe;amorphe;amorphes;amorphes
+malheureux;malheureuse;malheureux;malheureuses
+ténébreux;ténébreuse;ténébreux;ténébreuses
+opaque;opaque;opaques;opaques;
+impassible;impassible;impassibles;impassibles
+nerveux;nerveuse;nerveux;nerveuses
+pluvieux;pluvieuse;pluvieux;pluvieuses
+brumeux;brumeuse;brumeux;brumeuses
+nauséabond;nauséabonde;nauséabonds;nauséabondes
+dégoulinant;dégoulinante;dégoulinants;dégoulinantes
+gluant;gluante;gluants;gluantes
+dépressif;dépressive;dépressifs;dépressives
+désoeuvré;désoeuvrée;désoeuvrés;désoeuvrées
+désenchanté;désenchantée;désenchantés;désenchantées
+vicieux;vicieuse;vicieux;vicieuses
+désabusé;désabusée;désabusés;désabusées
+dégoulinant;dégoulinante;dégoulinants;dégoulinantes
+dégénéré;dégénérée;dégénérés;dégénérées
+sale;sale;sales;sales
+mauvais;mauvaise;mauvais;mauvaises
+moite;moite;moites;moites
+écoeurant;écoeurante;écoeurants;écoeurantes
+étrange;étrange;étranges;étranges
+vénéneux;vénéneuse;vénéneux;vénéneuses
+décomposé;décomposée;décomposés;décomposées
+nauséeux;nauséeuse;nauséeux;nauséeuses
+fétide;fétide;fétides;fétides
+immonde;immonde;immondes;immondes
+pestilentiel;pestilentielle;pestilentiels;pestilentielles
+repoussant;repoussante;repoussants;repoussantes
+ignoble;ignoble;ignobles;ignobles
+infect;infecte;infects;infectes
+abject;abjecte;abjects;abjectes
+rampant;rampante;rampants;rampantes
+livide;livide;livides;livides
+bourdonnant;bourdonnante;bourdonnants;bourdonnantes
+monstrueux;monstrueuse;monstrueux;monstrueuses
+cosmique;cosmique;cosmiques;cosmiques
+tentaculaire;tentaculaire;tentaculaires;tentaculaires
+effrayant;effrayante;effrayants;effrayantes
+agité;agitée;agités;agités
+poisseux;poisseuse;poisseux;poisseuses
+illusoire;illusoire;illusoires;illusoires
+@END
+
+@START-BEAU#/M/F/MP/FP
+ensoleillé;ensoleillée;ensoleillés;ensoleillées
+enchanteur;enchanteresse;enchanteurs;enchanteresses
+agréable;agréable;agréables;agréables
+délicat;délicate;délicats;délicates
+délicieux;délicieuse;délicieux;délicieuses
+éclairé;éclairée;éclairés;éclairées
+caressant;caressante;caressants;caressantes
+envoûtant;envoûtante;envoûtants;envoûtantes
+séduisant;séduisante;séduisants;séduisantes
+apaisé;apaisée;apaisés;apaisées
+calme;calme;calmes;calmes
+tranquille;tranquille;tranquilles;tranquilles
+doux;douce;doux;douces
+formidable;formidable;formidables;formidables
+crémeux;crémeuse;crémeux;crémeuses
+affectueux;affectueuse;affectueux;affectueuses
+aimant;aimante;aimants;aimantes
+angélique;angélique;angéliques;angéliques
+câlin;câline;câlins;câlines
+douillet;douillette;douillets;douillettes
+léger;légère;légers;légères
+onctueux;onctueuse;onctueux;onctueuses
+paisible;paisible;paisibles;paisibles
+savoureux;savoureuse;savoureux;savoureuses
+sage;sage;sages;sages
+reposant;reposante;reposants;reposantes
+exquis;exquise;exquis;exquises
+harmonieux;harmonieuse;harmonieux;harmonieuses
+inoffensif;inoffensive;inoffensifs;inoffensives
+amoureux;amoureuse;amoureux;amoureuses
+caressant;caressante;caressants;caressantes
+dansant;dansante;dansants;dansantes
+@END
+
+
+@START-SANS#/*
+sans envie
+sans ambition
+sans destin
+sans bords
+sans fond
+sans flammes
+sans chaleur
+sans début ni fin
+sans retour
+@END
+
+
+@START-HUMAIN:SAUVAGE#/F/FP/M/MP
+aggressive;agressives;agressif;agressifs
+folle;folles;fou;fous
+surprenante;surprenantes;surprenante;surprenantes
+imprévisible;imprévisibles;imprévisible;imprévisibles
+acerbe;acerbes;acerbe;acerbes
+bagarreuse;bagarreuses;bagarreur;bagarreurs
+belliqueuse;belliqueuses;belliqueux;belliqueux
+brutal;brut ales;brutal;brutal
+combative;combatives;combatif;combatifs
+fulminante;fulminantes;fulminant;fulminants
+malveillante;malveillantes;malveillant;malveillants
+menaçante;menaçantes;menaçant;menaçants
+provocatrice;provocatrices;provocateur;provocateurs
+querelleuse;querelleuses;querelleur;querelleurs
+violente;violentes;violent;violents
+@END
+
+@START-CREATURE:SAUVAGE#/F/FP/M/MP
+sauvage;sauvages;sauvage;sauvages
+féroce;féroces;féroce;féroces
+enragée;enragées;enragé;enragés
+affamée;affamées;affamé;affamés
+aggressive;agressives;agressif;agressifs
+folle;folles;fou;fous
+surprenante;surprenantes;surprenant;surprenants
+imprévisible;imprévisibles;imprévisible;imprévisibles
+acerbe;acerbes;acerbe;acerbes
+bagarreuse;bagarreuses;bagarreur;bagarreurs
+belliqueuse;belliqueuses;belliqueux;belliqueux
+brutal;brut ales;brutal;brutaux
+combative;combatives;combatif;combatifs
+fulminante;fulminantes;fulminant;fulminants
+malveillante;malveillantes;malveillant;malveillants
+menaçante;menaçantes;menaçant;menaçants
+provocatrice;provocatrices;provocateur;provocateurs
+querelleuse;querelleuses;querelleur;querelleurs
+violente;violentes;violent;violents
+@END
+
+@START-CREATURE:DOMESTIQUE#/F/FP/M/MP
+pauvrement apprivoisée;pauvrement apprivoisées;pauvrement apprivoisé;pauvrement apprivoisés;
+peu encline à la domestication;peu enclines à la domestication;peu enclin à la domestication;peu enclins à la domestication;
+qui résiste à la domestication;qui résistent à la domestication;qui résiste à la domestication;qui résistent à la domestication;
+mal élevée;mal élevées;mal élevé;mal élevés
+peu domestiquée;peu domestiquées;peu domestiqué;peu domestiqués
+mal intentionnée;mal intentionnées;mal intentionné;mal intentionnés
+de mauvaise humeur;de mauvaise humeur;de mauvaise humeur;de mauvaise humeur;
+peu courtoise;peu courtoises;peu courtois;peu courtois
+indisciplinée;indisciplinées;indiscipliné;indisciplinés
+téméraire;téméraires;téméraire;téméraires
+mesquine;mesquines;mesquin;mesquins
+solitaire;solitaires;solitaire;solitaires
+maladroite;maladroites;maladroit;maladroits
+peu affectueuse;peu affectueuses;peu affectueux;peu affectueux
+pleine de rancoeur;pleines de rancoeur;plein de rancoeur;pleins de rancoeur
+peu commode;peu commodes;peu commode;peu commodes
+incommodée;incommodées;incommodé;incommodés
+bagarreuse;bagarreuses;bagarreur;bagarreurs
+belliqueuse;belliqueuses;belliqueux;belliqueux
+brutal;brut ales;brutal;brutal
+combative;combatives;combatif;combatifs
+fulminante;fulminantes;fulminant;fulminants
+malveillante;malveillantes;malveillant;malveillants
+provocatrice;provocatrices;provocateur;provocateurs
+querelleuse;querelleuses;querelleur;querelleurs
+violente;violentes;violent;violents
+@END
+
+
+@START-QUALIF:BOUCHE#/S/P
+bien dessinée;bien dessinées
+n'offrant aucune sinuosités;n'offrant aucune sinuosités
+bien esquissée;bien esquissées
+filait bien droite;filaient bien droites
+tordue;tordues
+mince;minces
+épaisse;épaisses
+fine;fines
+courbe;courbes
+forte;fortes
+charnue;charnues
+@END
+
+@START-QUALIF:DENTS#/*
+en pagaille[mots,metaphore,DESORDRE,DENTS,*]
+en désordre[mots,metaphore,DESORDRE,DENTS,*]
+ébréchées ça et là
+ébréchées ça et là, comme les créneaux d'une forteresse
+de travers
+jaunies
+jaunes
+pourries
+plombées
+verdâtres
+tordues
+cassées
+@END
+
+

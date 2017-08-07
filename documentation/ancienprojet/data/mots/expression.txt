@@ -1,0 +1,48 @@
+@START-DESCRIPTION#/*
+on y devine
+on croit y surprendre
+on y distingue
+on peut y voir
+on pourrait y voir
+on croit y voir
+on semble y distinguer
+on croirait y voir
+on jurerait y voir
+on y décèle avec certitude
+on semble y voir
+on jure y voir
+on pense y voir
+on imagine y voir
+on a l'impression d'y voir
+cela nous évoque
+cela nous fait penser à
+on jurerait y distinguer
+on imagine
+@END
+
+@START-VISAGE#/*
+a une gueule
+a une face
+a une figure
+@END
+
+
+@START-ATTENUEMENT#/*
+plutôt
+plus ou moins
+presque
+assez
+très
+vraiment
+indiscutablement
+@END
+
+
+
+
+on semble y entendre le son d'
+on entend le cri d'
+on entend le chant d'
+on croit entendre la voix d'
+on jurerait entendre le cri d'
+

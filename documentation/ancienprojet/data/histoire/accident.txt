@@ -1,0 +1,37 @@
+@START-MALADIE#/*
+à cause d'une maladie d'enfance
+à cause d'une maladie
+à cause d'une infection
+à cause d'une maladie virale
+à cause d'une maladie vénérienne
+@END
+
+@START-ACCIDENT#/*
+à cause d'un accident de navigation
+à cause d'un accident de chantier
+à cause d'un accident de pêche
+à cause d'une chute malencontreuse
+à cause d'une chute périlleuse
+à cause de l'explosion d'une machine
+dans une bataille
+dans une guerre
+@END
+
+
+
+@START-JUSTICE:COMMANDITAIRE#/*
+sur ordre d'un roi
+sur ordre d'un noble
+sur ordre d'un chef
+sur ordre d'un homme religieux
+@END
+
+
+@START-JUSTICE:ACCUSATION#/*
+de vol à l'étalage
+de meurtre
+de vol
+de détournement de marchandises
+d'avoir préparer une mutinerie
+de pratiques hérétiques
+@END

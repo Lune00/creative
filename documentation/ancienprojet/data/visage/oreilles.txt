@@ -1,0 +1,46 @@
+@START-TAILLE#/*
+petites
+grandes
+@END
+
+
+@START-FORME#/*
+décollées
+délicates
+fines
+pointues
+épaisses
+allongées
+@END
+
+
+@START-2PERCES#/*
+percées aux lobes d'[objets,bijou,MAIN,OREILLE,*]
+percées dans leurs parties supérieures d'[objets,bijou,MAIN,OREILLE,*]
+@END
+
+
+@START-GAUCHE#/*
+la gauche seulement est percée d'[objets,bijou,MAIN,OREILLE,*]
+son lobe gauche est percé d'[objets,bijou,MAIN,OREILLE,*]
+@END
+
+
+@START-DROITE#/*
+la droite seulement est percée d'[objets,bijou,MAIN,OREILLE,*]
+son lobe droit est percé d'[objets,bijou,MAIN,OREILLE,*]
+@END
+
+@START-MISSING:GAU#/*
+a perdu son oreille gauche[histoire,lieu,*,*,*]
+a perdu son oreille gauche[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END
+
+@START-MISSING:DROI#/*
+a perdu son oreille droite[histoire,lieu,*,*,*]
+a perdu son oreille droite[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END
+
+@START-MISSING:DEUX#/*
+a perdu ses deux oreilles[histoire,accident,MALADIE/ACCIDENT,*/*,*/*]
+@END

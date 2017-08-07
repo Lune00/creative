@@ -1,0 +1,76 @@
+@START-FORME+#/*
+maigre
+osseux
+rond
+ovale
+allongé
+anguleux
+émacié
+joufflu
+carré
+triangulaire
+gai
+harmonieux
+noble
+harmonieux
+gracieux
+triste
+froid
+austère
+buriné
+@END
+
+
+@START-TEINT#/*
+blafard
+blême
+pâle
+clair
+bronzé
+éclatant
+frais
+livide
+lumineux
+mat
+halé
+cadavérique
+pâlot
+coloré
+rose
+@END
+
+@START-SOURCILS#/*
+arqués
+broussailleux
+droits
+@END
+
+@START-MENTON#/*
+carré
+proéminent
+fuyant
+avancé
+pointu
+rond
+droit
+@END
+
+@START-FRONT#/*
+étrangement haut
+étrangement bas
+irrigué de rides
+parsemmé de rides
+parcourru de rides
+parcouru de protubérances
+abusivement large
+large
+éminent
+fuyant
+haut
+lisse
+ridé
+bas
+bombé
+@END
+
+

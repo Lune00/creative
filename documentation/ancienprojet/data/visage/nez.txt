@@ -1,0 +1,36 @@
+@START-FORME#/*
+un[visage,nez,FORME,PRE,*]nez
+un nez[visage,nez,FORME,POST,*]
+@END
+
+@START-FORME:POST#/*
+crochu
+gracieux
+fin
+aquilin
+droit
+allongé
+courbé et mince
+épaté
+aplati
+protubérant
+d'ivrogne
+@END
+
+@START-FORME:PRE#/*
+gros
+grand
+petit
+large
+long
+@END
+
+@START-PERCE#/*
+percé à la narine gauche d'[objets,bijou,MAIN,NEZ,*]
+percé à la narine droite d'[objets,bijou,MAIN,NEZ,*]
+percé à la cloison nasale d'[objets,bijou,MAIN,NEZ,*]
+percé au septum d'[objets,bijou,MAIN,NEZ,*]
+percé à la base d'[objets,bijou,MAIN,NEZ,*]
+@END
+
+

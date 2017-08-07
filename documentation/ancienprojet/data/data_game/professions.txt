@@ -1,0 +1,141 @@
+01-@START-ACTION
+s'endormir,s'endort
+@END-ACTION
+
+@START-DEPLACEMENT#/i/S/P
+tourner,tourne,tournent
+se traîner,se traîne,se traînent
+courir,court
+avancer,avance
+bouger,bouge
+accélérer,accélère
+sauter,saute
+marcher,marche
+voler,vole
+nager,nage
+naviguer,navigue
+rouler,roule
+ramper,rampe
+grimper,grimpe
+cheminer,chemine
+venir,viens
+passer,passe
+reculer,recule
+s'approcher,s'approche
+s'enfuir,s'enfuit
+s'éloigner,s'éloigne
+descendre,descend
+monter,monte
+tomber,tombe
+trotter,trotte
+trottiner,trottine
+déambuler,déambule
+se promener,se promène
+progresser,progresse
+flancher,flanche
+refluer,reflue
+filer,file
+se faufiler,se faufile
+glisser,glisse
+couler,coule
+s'imposer,s'impose
+s'incruster,s'incruste
+piétiner,piétine
+bondir,bondit
+rebondir,rebondit
+gambader,gambade
+s'élancer,s'élance
+se précipiter,se précipite
+foncer,fonce
+se ruer,se rue
+pivoter,pivote
+virevolter,virevolte
+tournoyer,tournoie
+tourbilloner,tourbillone
+@END
+
+@START-MOUVEMENT2
+s'immiscer,s'immisce
+s'introduire,s'introduit
+se diriger,se dirige
+s'orienter,s'oriente
+se guider,se guide
+@END
+
+03-@START-NOURRITURE
+manger,mange
+se nourrir,se nourrit,
+avaler,avale
+bouffer,bouffe
+dévorer,dévore
+grignoter,grignote
+savourer,savoure
+se repaître,se repait
+ingérer,ingére
+ingurgiter,ingurgite
+se goinfrer,se goinfre
+ripailler,ripaille
+festoyer,festoie
+se rassasier,se rassasie
+se gaver,se gave
+déjeuner,déjeune
+dïner,dïne
+souper,soupe
+se sustenter,se sustente
+
+@END-NOURRITURE
+
+04-@START-BOISSON
+boire,boit
+s'abreuver,s'abreuve
+déguster,déguste
+ingurgiter,ingurgite
+licher,liche
+picoler,picole
+s'aviner,s'avine
+se soûler,se soûle
+boissonner,boissonne
+s'enivrer,s'enivre
+écluser,écluse
+buvoter,buvote
+se désaltèrer,se désaltère
+lamper,lampe
+humecter,humecte
+siroter,sirote
+godailler,godaille
+lichailler,lichaille
+pictancher,pictanche
+se gargariser,se gargarise
+tiser,tise
+écoper,écope
+chailler,chaille
+picter,picte
+pitancher,pitanche
+s'enfiler,s'enfile
+s'imbiber,s'imbibe
+s'arroser,s'arrose
+se rafraichir,se rafraichit
+bidonner,bidonne
+@END-BOISSON
+
+
+05@START-FUMER
+fumer,fume
+cramer,crame
+cloper,clope
+bombarder,bombarde
+brûler,brûle
+griller,grille
+pétuner,pétune
+boucaner,boucane
+mégoter,mégote
+maronner,maronne
+bisquer,bisque
+sécher,sèche
+@END-FUMER
+
+
+
+
+
+

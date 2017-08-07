@@ -1,0 +1,75 @@
+MOT PRINCIPAL:
+---------------------------
+@START-DESM#/*
+une moustache[visage,barbe,TYPE,MOU,*][visage,barbe,COIFFURE/COIFFURE,MOUBAR/MOU,*/*]
+@END
+
+@START-DESB#/*
+une barbe[visage,barbe,TYPE,BAR,*][visage,barbe,COIFFURE/COIFFURE,MOUBAR/BAR,*/*]
+@END
+
+@START-DESF#/*
+des favoris[visage,barbe,TYPE,FAVORIS,MP][visage,barbe,COIFFURE,FAVORIS,MP]
+des rouflaquettes[visage,barbe,TYPE,FAVORIS,FP][visage,barbe,COIFFURE,FAVORIS,FP]
+@END
+---------------------------
+
+@START-TYPE:MOU#/*
+fine
+retroussée
+frisée
+en brosse
+rugueuse
+tombante
+hérissée
+courte
+longue
+terminée en vibrisses
+@END
+
+@START-TYPE:BAR#/*
+longue
+immense[mots,metaphore,BARBE,*,*]
+énorme[mots,metaphore,BARBE,*,*]
+gigantesque[mots,metaphore,BARBE,*,*]
+fourchue
+@END
+
+@START-TYPE:FAVORIS#/MP/FP
+touffus;touffues
+broussailleux;broussailleuses
+@END
+
+---------------------------COIFFURE
+@START-COIFFURE:MOUBAR#/*
+raffinée
+qui pique lorsqu'on[mots,verbe,CONTACT,*,pP]
+@END
+
+@START-COIFFURE:MOU#/*
+bien peignée
+mal peignée
+@END
+
+@START-COIFFURE:BAR#/*
+très fournie
+broussailleuse
+bien taillée
+tressée
+mal taillée
+qui semble envahir son visage
+qui recouvre tout son visage
+qui envahit toute sa figure
+qui retombe sur son buste
+arrangée en une multitude de nattes
+arrangée en une multitude de tresses
+@END
+
+@START-COIFFURE:FAVORIS#/MP
+qui piquent lorsqu'on[mots,verbe,CONTACT,*,pP];qui piquent lorsqu'on[mots,verbe,CONTACT,*,pP]
+qui recouvrent son visage
+qui recouvrent ses joues
+envahissants
+@END
+
+-------------------------
