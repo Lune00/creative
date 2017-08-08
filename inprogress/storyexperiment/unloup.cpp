@@ -59,6 +59,9 @@ class Loup{
     int joursFaimMax_;
     //Capacite a attraper (et trouver) une proie trouvee (entre 0 et 100)
     int skill_;
+    //Stocke l'histoire
+    vector<int> souvenir_;
+
   public:
     Loup(){ mort_ = false ; age_ = 1 ; faim_ = 0 ; distance_ = 0 ; skill_ = 10 ; joursFaimMax_ = 0 ; };
     ~Loup(){};
@@ -78,12 +81,15 @@ void Loup::write(int i, string filename){
 
 //La mort est de paser 7 jours consecutifs au max de la faim
 bool Loup::estMort(){
-  if(joursFaimMax_ > survie ) return true;
+  if(joursFaimMax_ > survie ) {
+    //On construit le souvenir
+    return true;
   else return false;
 }
 
 void Loup::updateFaim()
 {
+  souvenir_.push_back(faim_);
   faim_+= unifRandInt(10,15);
   if( faim_ > 100 ) faim_ = 100;
   if( faim_ < 0 ) faim_ = 0;
