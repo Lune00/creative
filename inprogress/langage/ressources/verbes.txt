@@ -1,0 +1,8 @@
+#deplacement{
+marcher 
+s'avancer
+}
+
+
+
+

@@ -24,3 +24,4 @@
 
 
 //1er objectif: donner un code phonetique decomposer un mot en ses differents phonemes
+//ex; Qu'importe ___nom___, Qurimporte ___nom___, Et que ___nom___ soit ___adjectif___
