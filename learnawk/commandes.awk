@@ -26,9 +26,11 @@ Affiche toutes les lignes qui ont AU MOINS UN CHAMP
 awk 'NF > 0' filneame
 
 NF Number of Fields, si champ separes. Pratique pour supprimer les lignes vides d'un fichier
+awk 'NF > 0' filneame > newfilename
+
 Petit essai perso
 
-awk 'NF>0 {x=x+1;} END {print "Il y a " x " lignes vides dans le fichier"}' data.txt
+awk 'BEGIN{x=0} NF==0 {x=x+1;} END {print "Nombre de lignes vides dans le fichier: "x}' data.txt
 
 Affiche le nombre de lignes d'un fichier
 
