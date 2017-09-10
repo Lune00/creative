@@ -13,11 +13,27 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ] ;do
   #On prend une ligne au hasard
   line=$(gshuf $lib | head -n 1) 
   #On mouline avec awk la ligne pour recuperer les champs qui nous interessent (awk garde trace des champs vides ok)
+  #On a 9 champs de base auquel on va rajouter : un registre / synonymes / related
   mot=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $1}')
   phonetique=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $2}')
-  echo "Ligne prise au hasard: $line"
-  echo "Mot:$mot"
+  lemme=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $3}')
+  cgram=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $4}')
+  genre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $5}') #masculin,feminin
+  nombre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $6}') #singulier,pluriels
+  freqlivre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $8}') #frequence occurence livres
+  infover=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $11}') #mode,temps,personne pour verbe!
+  nsyll=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $24}') #mode,temps,personne pour verbe!
+
+  #echo "Ligne prise au hasard: $line"
+  echo "->Mot:$mot"
   echo "Phonetique:$phonetique"
+  echo "Classe gramm:$cgram"
+  echo "Genre:$genre"
+  echo "Nombre:$nombre"
+  echo "Infover:$infover"
+  echo "Nsyllabes:$nsyll"
+  echo "Freq Livres:$freqlivre"
+  #Ajouter registre, synonymes, related
 
   #On l'enregistre dans fichier de sortie
   #On supprime la ligne en reperant le premier champ (syntaxe spécifique a Mac OSX pour sed)
