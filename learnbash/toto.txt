@@ -1,2 +1,0 @@
-a	a	a	NOM	m		81.36	58.65	81.36	58.65		3	8	1	1	1	V	V	25	18	1	1	a	1	V	a	a	a	NOM,AUX,VER			1	1	a	1
-a capella	akapEla	a capella	ADV			0.04	0.07	0.04	0.07		1	2	1	9	7	V CVCVCCV	VCVCVCV	0	0	6	5	a-ka-pE-la	4	V-CV-CV-CV	allepac a	alEpaka	a ca-pel-la	ADV
