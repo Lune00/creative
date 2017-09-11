@@ -7,16 +7,19 @@ echo "$lib"
 while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   while [ -z $wordexist ] || [ $wordexist != "0" ];do
     echo""
-    echo "->Nouvelle entrée"
+    echo -e "->${Green}Nouvelle entrée ${NC}"
     echo""
     read -p "Entrez le mot à ajouter a la base de données: " mot
     #On teste si le mot n'existe pas deja dans la base
-    wordexist=$(grep -ci $mot $lib)
+    wordexist=$(awk '{print $1}' $formatedlib | grep -wc $mot)
     if [ $wordexist != "0" ];then
-      echo "Le mot $mot existe déjà dans la base."
+      echo -e "Le mot - ${Blue} $mot ${NC} - existe déjà dans la base de données."
     fi
   done
   wordexist=""
+
+  #Lemme (base du mot):
+  read -p "* Lemme du mot $mot: " lemme
 
   #Phonetique + test:
   echo ""
@@ -30,32 +33,32 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   echo ""
   found=""
   while [ "$found" != "found" ];do
-    read -p "* Grammaire du mot $mot: " grammar
+    read -p "* Grammaire du mot $mot (VER,NOM,ADJ): " -n 3 grammar
     found=$(check_grammar $grammar)
   done
+  echo""
 
   #Lire manuel
   infover=""
   if [ "$grammar" == VER ];then
     read -p "* Infoverbe :" infover
+  elif [ "$grammar" == NOM ] || [ "$grammar" == ADJ ];then
+    #Genre:m,f a checker
+    read -p "* Genre du mot $mot (m,f): " -n 1 genre
+    #Accord:s,p,i a checker
+    echo""
+    read -p "* Accord du mot $mot (s,p): " -n 1 accord
   fi
 
-  #Lemme (base du mot):
-  read -p "* Lemme du mot $mot: " lemme
-  #Genre:m,f a checker
-  echo""
-  read -p "* Genre du mot $mot (m,f): " genre
-  #Accord:s,p,i a checker
-  echo""
-  read -p "* Accord du mot $mot (s,p): " accord
   #Nombre de syllabes
   echo""
   read -p "* Nombre de syllabes du mot $mot: " nsyll
+
   #Registres 
   echo""
+  registres=()
+  regt=""
   while [ "$regt" != ${#registres[@]} ]; do 
-    registres=()
-    regt=""
     echo "Donnez un ou plusieurs registres: "
     read -a registres
     regt=$(check_registre "${registres[@]}")
@@ -66,6 +69,8 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
     freg+=$i";" 
   done 
   freg="${freg%?}"
+
+  if [ -z $freg ];then freg=neutre ; fi
 
   #synonymes
   synonymes=()
@@ -105,24 +110,24 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   echo "Accord: $accord"
   echo "Genre: $genre"
   echo "Nbsyllabes: $nsyll"
-  echo "Registre: ${registres[*]}"
+  echo "Registre: $freg"
   echo "Synonymes: ${synonymes[*]}"
   echo "Associés: ${related[*]}"
   echo "--------------------------------------"
 
   #Ecriture sortie
   sortie=""
-  sortie+=$(printf "%s" "$mot")
-  sortie+=$(printf "\t%s" "$lemme")
-  sortie+=$(printf "\t%s" "$phonetique")
-  sortie+=$(printf "\t%s" "$grammar")
-  sortie+=$(printf "\t%s" "$infover")
-  sortie+=$(printf "\t%s" "$genre")
-  sortie+=$(printf "\t%s" "$accord")
-  sortie+=$(printf "\t%s" "$nsyll")
-  sortie+=$(printf "\t%s" "$freg")
-  sortie+=$(printf "\t%s" "$fsyn")
-  sortie+=$(printf "\t%s" "$frel")
+  sortie+=$(printf "%20s" "$mot")
+  sortie+=$(printf "\t%20s" "$lemme")
+  sortie+=$(printf "\t%20s" "$phonetique")
+  sortie+=$(printf "\t%10s" "$grammar")
+  sortie+=$(printf "\t%20s" "$infover")
+  sortie+=$(printf "\t%10s" "$genre")
+  sortie+=$(printf "\t%10s" "$accord")
+  sortie+=$(printf "\t%10s" "$nsyll")
+  sortie+=$(printf "\t%40s" "$freg")
+  sortie+=$(printf "\t%40s" "$fsyn")
+  sortie+=$(printf "\t%40s" "$frel")
 
   echo -e "$sortie" >> $formatedlib
 
@@ -131,8 +136,6 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
 done
 
 echo "Base de données mise a jour."
-
-
 
 
 #On pourra implementer des petits scripts qui donne une analyse base de donnes

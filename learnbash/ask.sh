@@ -40,6 +40,7 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
     echo "Nsyllabes:$nsyll"
     read -p "Appuyez sur N pour passer au mot suivant. Entree pour l'ajouter " -n 1 next
   done
+  echo""
 
   #Checker registre
   while [ "$regt" != ${#registres[@]} ]; do 
@@ -56,6 +57,8 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   done 
   freg="${freg%?}"
 
+  if [ -z $freg ];then freg=neutre ; fi
+
   #synonymes
   synonymes=()
   fsyn=""
@@ -70,7 +73,43 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   read -a related
   for i in ${related[*]}; do frel+=$i";" ; done ; frel="${frel%?}"
 
-  #Formater la sortie totale du mot avec printf
+  #Format de sortie
+  echo ""
+  echo "Résumé"
+  echo ""
+
+  echo "--------------------------------------"
+  echo "Mot: $mot"
+  echo "Lemme: $lemme"
+  echo "Phonétique: $phonetique"
+  echo "Classe grammaticale: $grammar"
+  echo "Infover: $infover"
+  echo "Accord: $accord"
+  echo "Genre: $genre"
+  echo "Nbsyllabes: $nsyll"
+  echo "Registre: $freg}"
+  echo "Synonymes: ${synonymes[*]}"
+  echo "Associés: ${related[*]}"
+  echo "--------------------------------------"
+
+  #Ecriture sortie
+  sortie=""
+  sortie+=$(printf "%20s" "$mot")
+  sortie+=$(printf "\t%20s" "$lemme")
+  sortie+=$(printf "\t%20s" "$phonetique")
+  sortie+=$(printf "\t%10s" "$grammar")
+  sortie+=$(printf "\t%20s" "$infover")
+  sortie+=$(printf "\t%10s" "$genre")
+  sortie+=$(printf "\t%10s" "$accord")
+  sortie+=$(printf "\t%10s" "$nsyll")
+  sortie+=$(printf "\t%40s" "$freg")
+  sortie+=$(printf "\t%40s" "$fsyn")
+  sortie+=$(printf "\t%40s" "$frel")
+
+  echo -e "$sortie" >> $formatedlib
+
+  echo "Le mot $mot a ete ajouté a la base de données."
+  read -p "Tapez x pour arrêter la saisie." -n 1 reponse
 
   #On l'enregistre dans fichier de sortie
   #On supprime la ligne en reperant le premier champ (syntaxe spécifique a Mac OSX pour sed)

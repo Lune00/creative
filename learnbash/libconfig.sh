@@ -1,5 +1,10 @@
 #!/bin/bash
 
+red=`tput setaf 1`
+green=`tput setaf 2`
+
+reset=`tput sgr0`
+
 #Reference a la base de donnees(bdd)
 declare -r lib=toto.txt
 declare -r formatedlib=formatedtoto.txt
@@ -58,14 +63,14 @@ check_registre(){
 }
 
 #On test si la base existe, si elle n'existe pas, on la cree.
-if [ -f "$lib" ];then
-  echo "La base de donnees $lib existe."
+if [ -f "$formatedlib" ];then
+  echo "La base de donnees $formatedlib existe."
+  taillebase=`awk 'END{print NR}' $lib`
+  echo "La base contient $taillebase mots."
 else
-  echo "La base de donnees $lib n'a pas encore ete cree."
-  touch $lib
-  echo "La base de donnees $lib a ete cree."
+  echo "La base de donnees $formatedlib n'a pas encore ete cree."
+  touch $formatedlib
+  echo "La base de donnees $formatedlib a ete cree."
 fi
 
-taillebase=`awk 'END{print NR}' $lib`
-echo "La base contient $taillebase mots."
 
