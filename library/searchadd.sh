@@ -2,7 +2,7 @@
 
 source libconfig.sh
 
-#Script permet de lire la base de donnees lexique, de completer les entrees et de construire une nouvelle base de donnees personelle
+#Script permet de lire la base de donnees lexique, d'y chercher une entree particuliere et de l'ajouter a la base de donnees formatee.
 
 #On lit tant que l'utilisateur le souhaite ou tant que le fichier lib n'est pas vide
 #Ajouter possibilite de passer au mot suivant si celui choisi ne nous interesse pas (appuyer sur N )
