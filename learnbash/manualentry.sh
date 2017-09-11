@@ -61,7 +61,7 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   registres=()
   regt=""
   while [ "$regt" != ${#registres[@]} ]; do 
-    echo -e "Donnez un ou plusieurs ${bold}registres${reset}: "
+    echo -e "* Donnez un ou plusieurs ${bold}registres${reset}: "
     read -a registres
     regt=$(check_registre "${registres[@]}")
   done
@@ -77,7 +77,7 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   #synonymes
   synonymes=()
   fsyn=""
-  echo "Donnez des ${bold}synonymes${reset} du mot ${green}$mot${reset}:"
+  echo "* Donnez des ${bold}synonymes${reset} du mot ${green}$mot${reset}:"
   read -a synonymes
   #Format synonymes
   for i in ${synonymes[*]}
@@ -89,7 +89,7 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   #Related
   related=()
   frel=""
-  echo "Donnez des ${bold}mots associés ${reset}au mot ${green}$mot${reset}:"
+  echo "* Donnez des ${bold}mots associés ${reset}au mot ${green}$mot${reset}:"
   read -a related
   #Format related
   for i in ${related[*]}

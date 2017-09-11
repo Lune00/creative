@@ -39,7 +39,7 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   while [ "$regt" != ${#registres[@]} ]; do 
     registres=()
     regt=""
-    echo -e "Donnez un ou plusieurs ${bold}registres${reset}: "
+    echo -e "* Donnez un ou plusieurs ${bold}registres${reset}: "
     read -a registres
     regt=$(check_registre "${registres[@]}")
   done
@@ -55,14 +55,14 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   #synonymes
   synonymes=()
   fsyn=""
-  echo "Donnez des ${bold}synonymes${reset} du mot ${green}$mot${reset}:"
+  echo "* Donnez des ${bold}synonymes${reset} du mot ${green}$mot${reset}:"
   read -a synonymes
   for i in ${synonymes[*]}; do fsyn+=$i";" ; done ; fsyn="${fsyn%?}"
 
   #Related
   related=()
   frel=""
-  echo "Donnez des ${bold}mots associés ${reset}au mot ${green}$mot${reset}:"
+  echo "* Donnez des ${bold}mots associés ${reset}au mot ${green}$mot${reset}:"
   read -a related
   for i in ${related[*]}; do frel+=$i";" ; done ; frel="${frel%?}"
 
