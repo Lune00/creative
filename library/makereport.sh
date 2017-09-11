@@ -5,10 +5,6 @@ source libconfig.sh
 
 echo " -- ${red}Rapport${green} sur${yellow}${bold} $formatedlib ${reset} --"
 
-
-#Nombre de mots
-
-
 #Nombre de noms
 
 

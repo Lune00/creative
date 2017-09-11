@@ -66,6 +66,18 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   read -a related
   for i in ${related[*]}; do frel+=$i";" ; done ; frel="${frel%?}"
 
+  #Theme
+  theme=()
+  ftheme=""
+  echo "* Donnez un ou plusieurs ${bold}thèmes${reset} associés au mot ${green}$mot${reset}:"
+  read -a theme
+  #Format related
+  for i in ${theme[*]}
+  do 
+    ftheme+=$i";"
+  done
+  ftheme="${ftheme%?}"
+
   #Format de sortie
   echo ""
   echo "Résumé"
@@ -79,10 +91,11 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   echo "Infover: $infover"
   echo "Accord: $accord"
   echo "Genre: $genre"
-  echo "Nbsyllabes: $nsyll"
-  echo "Registre: $freg"
-  echo "Synonymes: ${synonymes[*]}"
-  echo "Associés: ${related[*]}"
+  echo "Nbsyllabe(s): $nsyll"
+  echo "Registre(s): $freg"
+  echo "Synonyme(s): ${synonymes[*]}"
+  echo "Associé(s): ${related[*]}"
+  echo "Theme(s): $ftheme"
   echo "--------------------------------------"
 
   #Ecriture sortie
@@ -98,6 +111,7 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   sortie+=$(printf "\t%40s" "$freg")
   sortie+=$(printf "\t%40s" "$fsyn")
   sortie+=$(printf "\t%40s" "$frel")
+  sortie+=$(printf "\t%40s" "$ftheme")
 
   #On l'enregistre dans fichier de sortie
   echo -e "$sortie" >> $formatedlib
