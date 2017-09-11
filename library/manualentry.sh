@@ -46,18 +46,16 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
     read -p "* Infoverbe :" infover
   elif [ "$grammar" == NOM ] || [ "$grammar" == ADJ ];then
     #Genre:m,f
-    echo -e "${bold}Genre${reset} du mot ${green}$mot${reset}(m,f): "
-    while read -n 1 genre && [ "$genre" != m ] && [ "$genre" != f ]; do
-      echo -e "\n* ${bold}Genre${reset} du mot ${green}$mot${reset}(m,f): "
+    while read -p "${bold}Genre${reset} du mot ${green}$mot${reset}(m,f): "  -n 1 genre && [ "$genre" != m ] && [ "$genre" != f ]; do
+      echo""
     done
     echo""
     #Accord:s,p
-    echo -e "${bold}Accord${reset} du mot ${green}$mot${reset}(s,p): "
-    while read -n 1 accord && [ "$accord" != s ] && [ "$accord" != p ];do
-      echo -e "\n* ${bold}Accord${reset} du mot ${green}$mot${reset}(s,p): "
+    while read -p "${bold}Accord${reset} du mot ${green}$mot${reset}(s,p): " -n 1 accord && [ "$accord" != s ] && [ "$accord" != p ];do
+      echo""
     done
-    echo""
   fi
+  echo""
 
   #Nombre de syllabes
   read -p "* Nombre de ${bold}syllabes${reset} du mot ${green}$mot${reset}: " nsyll 
@@ -103,6 +101,18 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   done
   frel="${frel%?}"
 
+  #Theme
+  theme=()
+  ftheme=""
+  echo "* Donnez un ou plusieurs ${bold}thèmes${reset} associés au mot ${green}$mot${reset}:"
+  read -a theme
+  #Format related
+  for i in ${theme[*]}
+  do 
+    ftheme+=$i";"
+  done
+  ftheme="${ftheme%?}"
+
   #Format de sortie
   echo ""
   echo "Résumé"
@@ -116,10 +126,11 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   echo "Infover: $infover"
   echo "Accord: $accord"
   echo "Genre: $genre"
-  echo "Nbsyllabes: $nsyll"
-  echo "Registre: $freg"
-  echo "Synonymes: ${synonymes[*]}"
-  echo "Associés: ${related[*]}"
+  echo "Nbsyllabe(s): $nsyll"
+  echo "Registre(s): $freg"
+  echo "Synonyme(s): ${synonymes[*]}"
+  echo "Associé(s): ${related[*]}"
+  echo "Theme(s): $ftheme"
   echo "--------------------------------------"
 
   #Ecriture sortie
@@ -135,6 +146,7 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   sortie+=$(printf "\t%40s" "$freg")
   sortie+=$(printf "\t%40s" "$fsyn")
   sortie+=$(printf "\t%40s" "$frel")
+  sortie+=$(printf "\t%40s" "$ftheme")
 
   echo -e "$sortie" >> $formatedlib
 

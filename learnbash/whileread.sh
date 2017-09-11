@@ -1,10 +1,8 @@
 #!/bin/bash
 echo 'Please type "m" or "f" to continue'
-word=""
 #while [ "$word" != "f" ] || [ "$word" != "m" ]; do
-while [ "$word" != f ] && [ "$word" != m ] ; do
-  read -n 1 word
-  echo""
+while read -p 'Please' -n 1 word && [ "$word" != f ] && [ "$word" != m ] ; do
+  echo ""
 done
 
 echo "End"
