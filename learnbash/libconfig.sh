@@ -2,6 +2,9 @@
 
 red=`tput setaf 1`
 green=`tput setaf 2`
+blue=`tput setaf 4`
+bold=`tput bold`
+magenta=`tput setaf 5`
 
 reset=`tput sgr0`
 
