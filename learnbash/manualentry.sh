@@ -4,7 +4,6 @@
 
 source libconfig.sh
 
-echo "$lib"
 #Debut boucle d'ajout a la librairie
 while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   while [ -z $wordexist ] || [ $wordexist != "0" ]; do

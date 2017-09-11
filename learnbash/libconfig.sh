@@ -8,14 +8,16 @@ magenta=`tput setaf 5`
 
 reset=`tput sgr0`
 
-#Reference a la base de donnees(bdd)
+#Base de donnees source (Librairie381.txt)
 declare -r lib=toto.txt
+#Base de donnees formatee generee
 declare -r formatedlib=formatedtoto.txt
 
 #Tableau de phonetique voyelle et consonnes
 phon_table=('a' 'i' 'y' 'u' 'o' 'O' 'e' 'E' '°' '2' '9' '5' '1' '@' '§' '3' 'j' '8' 'w' 'p' 'b' 't' 'd' 'k' 'g' 'f' 'v' 's' 'z' 'Z' 'm' 'n' 'N' 'I' 'R' 'x' 'G' 'S' 'l')
+#Tableau de classes gramaticales accpetees
 grammar_table=('NOM' 'ADJ' 'VER')
-
+#Tableau de registres acceptes, si aucun registre indique il sera par defaut neutre
 registre_table=('neutre' 'lyrique' 'epique' 'melancolique' 'scientifique' 'comique' 'dramatique')
 
 #Fonction qui teste si la phonetique correspond aux symboles (pas d erreur)
@@ -40,7 +42,7 @@ check_phonetique(){
   echo ${#verite}
 }
 
-#Verifie si la nature du mot existe
+#Verifie si la classe grammaticale du mot existe
 check_grammar(){
   for i in "${grammar_table[@]}"
   do
@@ -50,7 +52,7 @@ check_grammar(){
     fi
   done
 }
-#Si return de check_registre == taille du tableau de registre en argument alors c'estok
+#Verifie si le registre existe. Si return de check_registre == taille du tableau de registre en argument alors c'estok
 check_registre(){
   a=("$@")
   verite=()
@@ -65,15 +67,27 @@ check_registre(){
   echo ${#verite}
 }
 
-#On test si la base existe, si elle n'existe pas, on la cree.
-if [ -f "$formatedlib" ];then
-  echo "La base de donnees $formatedlib existe."
-  taillebase=`awk 'END{print NR}' $lib`
-  echo "La base contient $taillebase mots."
+#Test sur la base de donnees source
+if [ ! -f "$lib" ];then
+  echo "Impossible de trouver la librairie source ${red}$lib${reset}."
+  exit
 else
-  echo "La base de donnees $formatedlib n'a pas encore ete cree."
+  echo -e "Base de données source: ${red}$lib${reset}"
+  lastmodif=$(ls -l | grep -w $lib | awk ' {print $6" "$7" "$8}')
+  echo -e "Date de la dernière modification:${magenta} $lastmodif ${reset}"
+fi
+
+#Test sur la base de donnees cible
+if [ -f "$formatedlib" ];then
+  taillebase=`awk 'END{print NR}' $lib`
+  lastmodif=$(ls -l | grep -w $formatedlib | awk ' {print $6" "$7" "$8}')
+  echo -e "Base de données cible: ${red}$formatedlib${reset}"
+  echo "Nombre d'entrées dans $formatedlib: ${bold}${green}$taillebase${reset}"
+  echo -e "Date de la dernière modification:${magenta} $lastmodif ${reset}"
+else
+  echo "La base de données $formatedlib n'a pas encore été créee."
   touch $formatedlib
-  echo "La base de donnees $formatedlib a ete cree."
+  echo "La base de donnees $formatedlib est créee."
 fi
 
 
