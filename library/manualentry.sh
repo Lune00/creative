@@ -45,15 +45,21 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   if [ "$grammar" == VER ];then
     read -p "* Infoverbe :" infover
   elif [ "$grammar" == NOM ] || [ "$grammar" == ADJ ];then
-    #Genre:m,f a checker
-    read -p "* Genre du mot ${green}$mot${reset}(m,f): " -n 1 genre
-    #Accord:s,p,i a checker
+    #Genre:m,f
+    echo -e "${bold}Genre${reset} du mot ${green}$mot${reset}(m,f): "
+    while read -n 1 genre && [ "$genre" != m ] && [ "$genre" != f ]; do
+      echo -e "\n* ${bold}Genre${reset} du mot ${green}$mot${reset}(m,f): "
+    done
     echo""
-    read -p "* Accord du mot ${green}$mot${reset}(s,p): " -n 1 accord
+    #Accord:s,p
+    echo -e "${bold}Accord${reset} du mot ${green}$mot${reset}(s,p): "
+    while read -n 1 accord && [ "$accord" != s ] && [ "$accord" != p ];do
+      echo -e "\n* ${bold}Accord${reset} du mot ${green}$mot${reset}(s,p): "
+    done
+    echo""
   fi
 
   #Nombre de syllabes
-  echo""
   read -p "* Nombre de ${bold}syllabes${reset} du mot ${green}$mot${reset}: " nsyll 
   #Registres 
   echo""
