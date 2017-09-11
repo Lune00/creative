@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source libconfig.sh
+
 #Script permet de lire la base de donnees lexique, de completer les entrees et de construire une nouvelle base de donnees personelle
 #avec en plus le registre, les synonymes et des mots related. Ces derniers doivent aussi appartenir a la base (dans l'idéal pour avoir leur phonétique)
 
@@ -8,8 +10,6 @@
 #Checker pour doublon
 #Chercher une entree particuliere
 
-declare -r lib=toto.txt
-declare -r formatedlib=formatedtoto.txt
 
 #On lit tant que l'utilisateur le souhaite ou tant que le fichier lib n'est pas vide
 #Ajouter possibilite de passer au mot suivant si celui choisi ne nous interesse pas (appuyer sur N par exemple)
@@ -27,7 +27,6 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
     cgram=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $4}')
     genre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $5}') #masculin,feminin
     nombre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $6}') #singulier,pluriels
-    freqlivre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $8}') #frequence occurence livres
     infover=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $11}') #mode,temps,personne pour verbe!
     nsyll=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $24}') 
 
@@ -39,20 +38,23 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
     echo "Nombre:$nombre"
     echo "Infover:$infover"
     echo "Nsyllabes:$nsyll"
-    echo "Freq Livres:$freqlivre"
     read -p "Appuyez sur N pour passer au mot suivant. Entree pour l'ajouter " -n 1 next
   done
 
-  #Registres(plusieurs possibles)
-  #${x%?} supprime le dernier caractere
-  registres=()
-  freg=""
-  echo "Donnez un ou pleusieurs registres: "
-  read -a registres
-  for i in ${registres[*]}; do freg+=$i";" ; done ; freg="${freg%?}"
-
   #Checker registre
+  while [ "$regt" != ${#registres[@]} ]; do 
+    registres=()
+    regt=""
+    echo "Donnez un ou plusieurs registres: "
+    read -a registres
+    regt=$(check_registre "${registres[@]}")
+  done
 
+  for i in ${registres[*]}
+  do
+    freg+=$i";" 
+  done 
+  freg="${freg%?}"
 
   #synonymes
   synonymes=()
