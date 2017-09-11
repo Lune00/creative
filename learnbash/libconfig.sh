@@ -79,7 +79,7 @@ fi
 
 #Test sur la base de donnees cible
 if [ -f "$formatedlib" ];then
-  taillebase=`awk 'END{print NR}' $lib`
+  taillebase=`awk 'END{print NR}' $formatedlib`
   lastmodif=$(ls -l | grep -w $formatedlib | awk ' {print $6" "$7" "$8}')
   echo -e "Base de données cible: ${red}$formatedlib${reset}"
   echo "Nombre d'entrées dans $formatedlib: ${bold}${green}$taillebase${reset}"

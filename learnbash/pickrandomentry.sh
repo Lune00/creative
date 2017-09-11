@@ -25,17 +25,18 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
 
     echo ""
     echo -e "\n-> Mot : ${green}$mot${reset}"
-    echo "Phonetique:$phonetique"
-    echo "Classe gramm:$cgram"
-    echo "Genre:$genre"
-    echo "Nombre:$nombre"
-    echo "Infover:$infover"
-    echo "Nsyllabes:$nsyll"
-    read -p "Appuyez sur N pour passer au mot suivant. Entree pour l'ajouter " -n 1 next
+    echo "Phonetique: $phonetique"
+    echo "Classe gramm: $cgram"
+    echo "Genre: $genre"
+    echo "Nombre: $nombre"
+    echo "Infover: $infover"
+    echo "Nsyllabes: $nsyll"
+    read -p "* Appuyez sur N pour passer au mot suivant. Entree pour l'ajouter " -n 1 next
   done
   echo""
 
   #Checker registre
+  freg=""
   while [ "$regt" != ${#registres[@]} ]; do 
     registres=()
     regt=""
@@ -49,7 +50,6 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
     freg+=$i";" 
   done 
   freg="${freg%?}"
-
   if [ -z $freg ];then freg=neutre ; fi
 
   #synonymes
@@ -104,8 +104,10 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   echo "Le mot ${red}${bold}$mot${reset} a ete ajouté a la base de données."
 
   #On supprime la ligne en reperant le premier champ (syntaxe spécifique a Mac OSX pour sed)
-  #  sed -i '' "/${arr[0]}/d" $lib
-  read -p "Tapez x pour arrêter la saisie." uans
+  linetodel=$(awk -v pattern="$mot" 'BEGIN{FS="\t"}; $1==pattern {print NR}' $lib)
+  sed -i "${linetodel}d" $lib
+  read -p "Tapez x pour arrêter la saisie." -n 1 uans
+  echo ""
 done
 
 echo -e "\nBase de données mise à jour."
