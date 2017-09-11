@@ -1,2 +1,3 @@
                 chat	                chat	                  Sa	       NOM	                    	         m	         s	         1	                            melancolique	                matou;félin;minet;minou	souris;oiseau;paresse;dormir;chasser;nuit
          resquillant	          resquiller	             REskij@	       VER	            par:pre;	          	          	         3	                                  neutre	                      fraudant;profitant	               abuser;profiter;profiteur
+              chatte	                chat	                 Sat	       NOM	                    	         f	          	         1	                                  neutre	                                        	                                        
