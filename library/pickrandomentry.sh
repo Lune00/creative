@@ -104,8 +104,8 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   echo "Le mot ${red}${bold}$mot${reset} a ete ajouté a la base de données."
 
   #On supprime la ligne en reperant le premier champ (syntaxe spécifique a Mac OSX pour sed)
-  linetodel=$(awk -v pattern="$mot" 'BEGIN{FS="\t"}; $1==pattern {print NR}' $lib)
-  sed -i "${linetodel}d" $lib
+  #linetodel=$(awk -v pattern="$mot" 'BEGIN{FS="\t"}; $1==pattern {print NR}' $lib)
+  #sed -i "${linetodel}d" $lib
   read -p "Tapez x pour arrêter la saisie." -n 1 uans
   echo ""
 done
