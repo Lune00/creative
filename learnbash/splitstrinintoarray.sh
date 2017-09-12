@@ -1,10 +1,12 @@
 #!/usr/local/bin/bash
 
-#Decouper un string en element de tableau selon differents delimiteurs
+
+themes="poésie littérature;voyage poésie"
+
+#---- Decouper un string en element de tableau selon differents delimiteurs
 #Donner le nombre d'éléments differents/identiques
 
 #on suppose qu'on recupere l'ensemble des champs sous cette forme
-themes="poésie littérature;voyage poésie"
 
 #IFS permet de specifier l'ensemble des caracteres delimiteurs, ici le ";" et " "
 # <<< sert a envoyer de la sortie standard le contenu de string (un pipe poserait probleme car dans un subshell... a mediter)
@@ -17,27 +19,34 @@ done
 
 echo "Nombre de thèmes: ${#array[@]}"
 
-#echo "${array[0]}"
-#echo "${array[1]}"
-#echo "${array[2]}"
+#---- Effacer les doublons dans un chaine de caracteres avec awk
+doublons="poire pomme chocolat poire poirepoire pomme"
+#EN specifiant " "comme RS, on traite chaque parametre de la chaine comme un record(ligne) et non comme un field(colonne)
+sansdoublons=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{ if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$doublons")
+#echo "$doublons"
+#echo "$sansdoublons"
 
-#On declare une array associative
-#Supprimer un element avec unset arr[index]
+echo " ****   UPDATE **** "
+echo " "
+
+#Sans passer par un tableau
+#Formater
+themes="poésie littérature;voyage poésie"
+echo "Input : $themes"
+themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $themes)
+
+#Occurences avec une array associative -A
 declare -A asar
-
-for i in ${array[@]}
-do
-  for j in ${array[@]}
+for i in ${themes}
   do
-    if [ "$i" == "$j" ];then
       asar[$i]=$(( ${asar[$i]}+1)) #arithmetic expasion, transforme string en expression numerique
-      #On supprime j
-    fi
-  done
 done
-
-for i in ${array[@]}
+#Remove doublons:
+themes=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{ if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$themes")
+#Print occurences par theme
+echo "Output:"
+for i in ${themes}
 do
-  echo "Theme:$i Occurences:${asar[$i]}"
+  echo "Theme : $i  - Nombre d'entrées: ${asar[$i]} " 
 done
 

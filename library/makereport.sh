@@ -9,6 +9,8 @@ echo " -- ${red}Rapport${green} sur${yellow}${bold} $formatedlib ${reset} --"
 
 
 #Nombre de theme
+themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
+
 
 
 #Mots synonymes/related qui n'ont pas encore d'entree
