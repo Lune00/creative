@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 #Decouper un string en element de tableau selon differents delimiteurs
 #Donner le nombre d'éléments differents/identiques
@@ -21,4 +21,23 @@ echo "Nombre de thèmes: ${#array[@]}"
 #echo "${array[1]}"
 #echo "${array[2]}"
 
+#On declare une array associative
+#Supprimer un element avec unset arr[index]
+declare -A asar
+
+for i in ${array[@]}
+do
+  for j in ${array[@]}
+  do
+    if [ "$i" == "$j" ];then
+      asar[$i]=$(( ${asar[$i]}+1)) #arithmetic expasion, transforme string en expression numerique
+      #On supprime j
+    fi
+  done
+done
+
+for i in ${array[@]}
+do
+  echo "Theme:$i Occurences:${asar[$i]}"
+done
 
