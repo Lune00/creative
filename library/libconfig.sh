@@ -12,6 +12,8 @@ reset=`tput sgr0`
 declare -r lib=lexique381.txt
 #Base de donnees formatee generee
 declare -r formatedlib=mylibrary.txt
+#Mots synonymes/related en attente d'etre ajoute comme entree
+declare -r waitlib=awaiters.txt
 
 #Tableau de phonetique voyelle et consonnes
 phon_table=('a' 'i' 'y' 'u' 'o' 'O' 'e' 'E' '°' '2' '9' '5' '1' '@' '§' '3' 'j' '8' 'w' 'p' 'b' 't' 'd' 'k' 'g' 'f' 'v' 's' 'z' 'Z' 'm' 'n' 'N' 'I' 'R' 'x' 'G' 'S' 'l')
@@ -67,6 +69,8 @@ check_registre(){
   echo ${#verite}
 }
 
+balise=" - "
+
 #Test sur la base de donnees source
 if [ ! -f "$lib" ];then
   echo "Impossible de trouver la librairie source ${red}$lib${reset}."
@@ -74,7 +78,7 @@ if [ ! -f "$lib" ];then
 else
   echo -e "Base de données source: ${red}$lib${reset}"
   lastmodif=$(ls -l | grep -w $lib | awk ' {print $6" "$7" "$8}')
-  echo -e "Date de la dernière modification:${magenta} $lastmodif ${reset}"
+  echo -e "${balise}Date de la dernière modification:${magenta} $lastmodif ${reset}"
 fi
 
 #Test sur la base de donnees cible
@@ -82,8 +86,8 @@ if [ -f "$formatedlib" ];then
   taillebase=`awk 'END{print NR}' $formatedlib`
   lastmodif=$(ls -l | grep -w $formatedlib | awk ' {print $6" "$7" "$8}')
   echo -e "Base de données cible: ${red}$formatedlib${reset}"
-  echo "Nombre d'entrées dans $formatedlib: ${bold}${green}$taillebase${reset}"
-  echo -e "Date de la dernière modification:${magenta} $lastmodif ${reset}"
+  echo " - Nombre d'entrées dans $formatedlib: ${bold}${green}$taillebase${reset}"
+  echo -e " - Date de la dernière modification:${magenta} $lastmodif ${reset}"
   #Backup
   cp $formatedlib "bk_$formatedlib"
 else
@@ -92,4 +96,17 @@ else
   echo "La base de donnees $formatedlib est créee."
 fi
 
-
+#Test sur la base de mots a ajouter
+if [ -f "$waitlib" ];then
+  taillewait=`awk 'END{print NR}' $waitlib`
+  lastmodif=$(ls -l | grep -w $waitlib | awk ' {print $6" "$7" "$8}')
+  echo -e "Liste des mots à ajouter: ${red}$waitlib${reset}"
+  echo -e " - Mots en attente: ${green}$taillewait${reset}"
+  echo -e " - Date de la dernière modification:${magenta} $lastmodif ${reset}"
+  #Backup
+  cp $waitlib "bk_$waitlib"
+else
+  echo "La liste de mots en atttente n'a pas encore été créee."
+  touch $waitlib
+  echo "La liste $waitlib est créee"
+fi
