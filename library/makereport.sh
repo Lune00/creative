@@ -9,6 +9,7 @@ echo ""
 #Nombre de noms
 
 #Themes : nombre et occurences
+#A classer par proportion (%)
 
 themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
 themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $themes)
