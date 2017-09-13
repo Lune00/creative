@@ -15,16 +15,17 @@ while [ -z $uans ] || [ "$uans" != n ] && [ -s $lib ];do
   line=""
   while [ -z "$line" ];do
     read -p "Quel mot souhaitez-vous ajouter: " mot
-    line=$(gawk -v var="$mot" '{if($1==var)a[n++]=$0} END{for(i in a) {printf "%s%s", a[i],(i!=(n-1)?"-":"")}}' "$lib")
+    line=$(gawk -v var="$mot" '{if($1==var)a[n++]=$0} END{for(i in a) {printf "%s%s", a[i],(i!=(n-1)?"_":"")}}' "$lib")
   done
   clear
 
   #Il faut traiter le cas une ou plusieurs occurences
-  IFS="-" read -r -a arr_lines <<< "$line" 
+  #En esperant que '_' ne soit pas utilise par lexique...
+  IFS="_" read -r -a arr_lines <<< "$line" 
   echo "Nombre d'occurences du mot ${green}$mot${reset} dans $lib: ${bold}${#arr_lines[@]}${reset}"
   for i in "${arr_lines[@]}"
   do
-    line=$i
+    line="$i"
     #On a 13 champs en tout
     phonetique=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $2}')
     lemme=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $3}')
