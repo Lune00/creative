@@ -1,0 +1,4 @@
+danse	ADJ	bla
+danse	VER	bla
+danser	VER	bla
+danse	ADV	bla

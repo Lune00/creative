@@ -6,7 +6,6 @@ echo ""
 printf "%50s" "{ ${red}Rapport${green} sur${yellow}${bold} $formatedlib${reset} }"
 echo ""
 
-
 #Nombre de noms
 
 #Themes : nombre et occurences
@@ -25,7 +24,6 @@ done
 echo ""
 
 #Maj related et synonmes demandant une entree
-
 rsyn=$(awk 'BEGIN{FS="\t";} {print $10 $11}' $formatedlib)
 rsyn=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $rsyn)
 rsyn=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$rsyn")
@@ -56,7 +54,4 @@ add="${add%?}"
 echo -e ".Mots en attente ajoutés (${green}${#add}${reset}):\n$add"
 
 
-
-#Mots synonymes/related qui n'ont pas encore d'entree
-#on les sortira dans un fichier awaiters.txt
 #On fera un script manage_awaiters.sh qui se chargera de lire ce fichier awaiters.txt, de verifier si entre temps ils n'ont pas été ajoutés (soit manuellement soit a l'aide de la base), de les traiter jusqu'a ce que la liste soit vide
