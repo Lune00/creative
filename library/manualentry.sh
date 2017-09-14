@@ -12,6 +12,7 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
     echo""
     read -p "Entrez le mot à ajouter a la base de données: " mot
     #On teste si le mot n'existe pas deja dans la base
+    #A revoir pour les mutliples occurences. Doublon doit checker MOT et CLASSE GRAMMATICALE
     wordexist=$(awk '{print $1}' $formatedlib | grep -wc $mot)
     if [ $wordexist != "0" ];then
       echo -e "Le mot - ${magenta}${green}$mot${reset}${reset} - existe déjà dans la base de données."
