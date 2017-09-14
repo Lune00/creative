@@ -5,7 +5,7 @@ clear
 source libconfig.sh
 
 #Ce script se charge d'ajouter a la librairie les mots en attente (synonymes/related)
-if [ ! -z "$waitlib" ];then
+if [ ! -s "$waitlib" ];then
   echo "Aucun mot en attente pour le moment."
   exit
 fi
@@ -36,7 +36,7 @@ do
 
     clear
 
-    #On le traite:
+  #On le traite:
   line=$(gawk -v var="$mot" '{if($1==var)a[n++]=$0} END{for(i in a) {printf "%s%s", a[i],(i!=(n-1)?"_":"")}}' "$lib")
 
   IFS="_" read -r -a arr_lines <<< "$line" 
@@ -54,6 +54,23 @@ do
     nombre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $6}') #singulier,pluriels
     infover=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $11}') #mode,temps,personne pour verbe!
     nsyll=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $24}') 
+
+    #Check doublon: mot + grammar deja dans $lib
+    candidate=$mot$grammar
+    alreadyin=false
+    a=($(gawk -v var="$mot" '{if($1==var) print $1$4}' "$formatedlib"))
+    for u in "${a[@]}"
+    do
+      if [ "$candidate" == "$u" ];then
+	alreadyin=true
+	break
+      fi
+    done
+
+    if [ "$alreadyin" == true ];then
+      echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base"
+      break
+    fi
 
     #Entree disponible:
     echo ""
@@ -161,7 +178,6 @@ do
     sortie+=$(printf "\t%40s" "$frel")
     sortie+=$(printf "\t%40s" "$ftheme")
 
-    #Check doublon
 
     #Suppresion de waitlib
     sed -i "/$mot/d" $waitlib

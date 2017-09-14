@@ -6,19 +6,43 @@ source libconfig.sh
 
 #Debut boucle d'ajout a la librairie
 while [ -z $reponse ] || [ "$reponse" != "x" ]; do
-  while [ -z $wordexist ] || [ $wordexist != "0" ]; do
+
+  while [ -z $alreadyin ] || [ "$alreadyin" = true ]; do
+    
     echo""
     echo -e "${green}Nouvelle entrée ${reset}"
     echo""
     read -p "Entrez le mot à ajouter a la base de données: " mot
+
+    #Grammaire du mot: 3 lettres (adj,nom,verb...)
+    echo ""
+    found=""
+    while [ "$found" != "found" ];do
+      read -p "* Grammaire du mot ${green}$mot${reset}(VER,NOM,ADJ): " -n 3 grammar
+      found=$(check_grammar $grammar)
+    done
+    echo""
+
     #On teste si le mot n'existe pas deja dans la base
-    #A revoir pour les mutliples occurences. Doublon doit checker MOT et CLASSE GRAMMATICALE
-    wordexist=$(awk '{print $1}' $formatedlib | grep -wc $mot)
-    if [ $wordexist != "0" ];then
-      echo -e "Le mot - ${magenta}${green}$mot${reset}${reset} - existe déjà dans la base de données."
+    #Check doublon: mot + grammar deja dans $lib
+    #wordexist=$(awk '{print $1}' $formatedlib | grep -wc $mot)
+    candidate=$mot$grammar
+    alreadyin=false
+    a=($(gawk -v var="$mot" 'BEGIN{FS="\t"}{if($1==var) print $1$4}' "$formatedlib"))
+
+    for u in "${a[@]}"
+    do
+      if [ "$candidate" == "$u" ];then
+	alreadyin=true
+	break
+      fi
+    done
+
+    if [ "$alreadyin" == true ];then
+      echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base."
     fi
+
   done
-  wordexist=""
 
   #Lemme (base du mot):
   read -p "* ${magenta}Lemme${reset} du mot $mot: " lemme
@@ -31,15 +55,6 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
     if [ -z $phonetique ]; then phonetique=666; fi
     phonetique_t=$(check_phonetique $phonetique) 
   done
-
-  #Nature du mot: 3 lettres (adj,nom,verb...)
-  echo ""
-  found=""
-  while [ "$found" != "found" ];do
-    read -p "* Grammaire du mot ${green}$mot${reset}(VER,NOM,ADJ): " -n 3 grammar
-    found=$(check_grammar $grammar)
-  done
-  echo""
 
   #Lire manuel
   infover=""
@@ -114,12 +129,12 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   done
   ftheme="${ftheme%?}"
 
-  #Format de sortie
+  clear
   echo ""
-  echo "Résumé"
+  echo "${bold}Résumé${reset}"
   echo ""
 
-  echo "--------------------------------------"
+  echo "&---------------(*)------------------&"
   echo "Mot: ${green}$mot${reset}"
   echo "Lemme: $lemme"
   echo "Phonétique: $phonetique"
@@ -132,7 +147,7 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
   echo "Synonyme(s): ${synonymes[*]}"
   echo "Associé(s): ${related[*]}"
   echo "Theme(s): $ftheme"
-  echo "--------------------------------------"
+  echo "&---------------(*)------------------&"
 
   #Ecriture sortie
   sortie=""

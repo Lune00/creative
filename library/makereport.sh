@@ -31,28 +31,31 @@ rsyn=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{if(var[$0]==0){var[$0]+=1; print $0}}' <<
 
 awaiters=""
 #On check si ils ont deja une entree dans la librairie
-#Si non, on ajoute a awaiters
+#Les doublons seront geres par addawaiters et non ici
 for i in ${rsyn}
 do
-  found=$(awk -v var="$i" '$1==var' "$formatedlib")
-  if [ -z "$found" ]; then
+  #found=$(awk -v var="$i" '$1==var' "$formatedlib")
+  #if [ -z "$found" ]; then
     awaiters+=$i" "
-  fi
+  #fi
 done
 
 awaiters="${awaiters%?}"
-#On ecrit les awaiters dans un fichier awaiters.txt
+#On ecrit les awaiters de la librairie formatee dans un fichier awaiters.txt
 for i in ${awaiters}
 do
   #Check si pas deja present dans le fichier
   found=$(awk -v var="$i" '$1==var' "$waitlib")
-  if [ -z $found ]; then
+  if [ -z "$found" ]; then
     add+=$i" "
     echo "$i" >> $waitlib
   fi
 done
 add="${add%?}"
-echo -e ".Mots en attente ajoutés (${green}${#add}${reset}):\n$add"
+#Nombre de mots:
+add_table=($add)
+echo -e ".Mots en attente ajoutés depuis le dernier rapport (${green}${#add_table[@]}${reset}):\n$add"
 
-
-#On fera un script manage_awaiters.sh qui se chargera de lire ce fichier awaiters.txt, de verifier si entre temps ils n'ont pas été ajoutés (soit manuellement soit a l'aide de la base), de les traiter jusqu'a ce que la liste soit vide
+echo ""
+enattente=(`cat "$waitlib"`)
+echo -e ".Liste des mots en attente:\n ${enattente[@]}"
