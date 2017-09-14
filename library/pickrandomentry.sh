@@ -34,6 +34,22 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
     read -p "* Appuyez sur N pour passer au mot suivant. Entree pour l'ajouter " -n 1 next
   done
   echo""
+  #Check doublon
+
+  candidate=$mot$grammar
+  alreadyin=false
+  a=($(gawk -v var="$mot" '{if($1==var) print $1$4}' "$formatedlib"))
+  for u in "${a[@]}"
+  do
+    if [ "$candidate" == "$u" ];then
+      alreadyin=true
+      break
+    fi
+  done
+  if [ "$alreadyin" == true ];then
+    echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base"
+    continue
+  fi
 
   #Checker registre
   freg=""
@@ -59,69 +75,70 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   read -a synonymes
   for i in ${synonymes[*]}; do fsyn+=$i";" ; done ; fsyn="${fsyn%?}"
 
-  #Related
-  related=()
-  frel=""
-  echo "* Donnez des ${bold}mots associés ${reset}au mot ${green}$mot${reset}:"
-  read -a related
-  for i in ${related[*]}; do frel+=$i";" ; done ; frel="${frel%?}"
+    #Related
+    related=()
+    frel=""
+    echo "* Donnez des ${bold}mots associés ${reset}au mot ${green}$mot${reset}:"
+    read -a related
+    for i in ${related[*]}; do frel+=$i";" ; done ; frel="${frel%?}"
 
-  #Theme
-  theme=()
-  ftheme=""
-  echo "* Donnez un ou plusieurs ${bold}thèmes${reset} associés au mot ${green}$mot${reset}:"
-  read -a theme
-  #Format related
-  for i in ${theme[*]}
-  do 
-    ftheme+=$i";"
-  done
-  ftheme="${ftheme%?}"
+      #Theme
+      theme=()
+      ftheme=""
+      echo "* Donnez un ou plusieurs ${bold}thèmes${reset} associés au mot ${green}$mot${reset}:"
+      read -a theme
+      #Format related
+      for i in ${theme[*]}
+      do 
+	ftheme+=$i";"
+      done
+      ftheme="${ftheme%?}"
 
-  #Format de sortie
-  echo ""
-  echo "Résumé"
-  echo ""
+      clear
+      echo ""
+      echo "${bold}Résumé${reset}"
+      echo ""
 
-  echo "--------------------------------------"
-  echo "Mot: ${green}$mot${reset}"
-  echo "Lemme: $lemme"
-  echo "Phonétique: $phonetique"
-  echo "Classe grammaticale: $grammar"
-  echo "Infover: $infover"
-  echo "Accord: $accord"
-  echo "Genre: $genre"
-  echo "Nbsyllabe(s): $nsyll"
-  echo "Registre(s): $freg"
-  echo "Synonyme(s): ${synonymes[*]}"
-  echo "Associé(s): ${related[*]}"
-  echo "Theme(s): $ftheme"
-  echo "--------------------------------------"
+      echo "&---------------(*)------------------&"
+      echo "Mot: ${green}$mot${reset}"
+      echo "Lemme: $lemme"
+      echo "Phonétique: $phonetique"
+      echo "Classe grammaticale: $grammar"
+      echo "Infover: $infover"
+      echo "Accord: $accord"
+      echo "Genre: $genre"
+      echo "Nbsyllabe(s): $nsyll"
+      echo "Registre(s): $freg"
+      echo "Synonyme(s): ${synonymes[*]}"
+      echo "Associé(s): ${related[*]}"
+      echo "Theme(s): $ftheme"
+      echo "&---------------(*)------------------&"
 
-  #Ecriture sortie
-  sortie=""
-  sortie+=$(printf "%20s" "$mot")
-  sortie+=$(printf "\t%20s" "$lemme")
-  sortie+=$(printf "\t%20s" "$phonetique")
-  sortie+=$(printf "\t%10s" "$grammar")
-  sortie+=$(printf "\t%20s" "$infover")
-  sortie+=$(printf "\t%10s" "$genre")
-  sortie+=$(printf "\t%10s" "$accord")
-  sortie+=$(printf "\t%10s" "$nsyll")
-  sortie+=$(printf "\t%40s" "$freg")
-  sortie+=$(printf "\t%40s" "$fsyn")
-  sortie+=$(printf "\t%40s" "$frel")
-  sortie+=$(printf "\t%40s" "$ftheme")
 
-  #On l'enregistre dans fichier de sortie
-  echo -e "$sortie" >> $formatedlib
-  echo "Le mot ${red}${bold}$mot${reset} a ete ajouté a la base de données."
+      #Ecriture sortie
+      sortie=""
+      sortie+=$(printf "%20s" "$mot")
+      sortie+=$(printf "\t%20s" "$lemme")
+      sortie+=$(printf "\t%20s" "$phonetique")
+      sortie+=$(printf "\t%10s" "$grammar")
+      sortie+=$(printf "\t%20s" "$infover")
+      sortie+=$(printf "\t%10s" "$genre")
+      sortie+=$(printf "\t%10s" "$accord")
+      sortie+=$(printf "\t%10s" "$nsyll")
+      sortie+=$(printf "\t%40s" "$freg")
+      sortie+=$(printf "\t%40s" "$fsyn")
+      sortie+=$(printf "\t%40s" "$frel")
+      sortie+=$(printf "\t%40s" "$ftheme")
 
-  #On supprime la ligne en reperant le premier champ (syntaxe spécifique a Mac OSX pour sed)
-  #linetodel=$(awk -v pattern="$mot" 'BEGIN{FS="\t"}; $1==pattern {print NR}' $lib)
-  #sed -i "${linetodel}d" $lib
-  read -p "Tapez x pour arrêter la saisie." -n 1 uans
-  echo ""
-done
+      #On l'enregistre dans fichier de sortie
+      echo -e "$sortie" >> $formatedlib
+      echo "Le mot ${red}${bold}$mot${reset} a ete ajouté a la base de données."
 
-echo -e "\nBase de données mise à jour."
+      #On supprime la ligne en reperant le premier champ (syntaxe spécifique a Mac OSX pour sed)
+      #linetodel=$(awk -v pattern="$mot" 'BEGIN{FS="\t"}; $1==pattern {print NR}' $lib)
+      #sed -i "${linetodel}d" $lib
+      read -p "Tapez x pour arrêter la saisie." -n 1 uans
+      echo ""
+    done
+
+    echo -e "\nBase de données mise à jour."
