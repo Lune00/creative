@@ -60,6 +60,7 @@ do
     check_doublons_in_formatedlib "$mot" "$grammar"
 
     if [ "$?" == 1 ];then
+      #Si doublon on supprime $mot de la liste de mots en attente
       break
     fi
 
