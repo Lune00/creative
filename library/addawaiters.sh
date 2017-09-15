@@ -56,19 +56,10 @@ do
     nsyll=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $24}') 
 
     #Check doublon: mot + grammar deja dans $lib
-    candidate=$mot$grammar
-    alreadyin=false
-    a=($(gawk -v var="$mot" '{if($1==var) print $1$4}' "$formatedlib"))
-    for u in "${a[@]}"
-    do
-      if [ "$candidate" == "$u" ];then
-	alreadyin=true
-	break
-      fi
-    done
 
-    if [ "$alreadyin" == true ];then
-      echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base"
+    check_doublons_in_formatedlib "$mot" "$grammar"
+
+    if [ "$?" == 1 ];then
       break
     fi
 

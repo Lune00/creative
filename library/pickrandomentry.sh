@@ -36,18 +36,9 @@ while [ -z $uans ] || [ "$uans" != "x" ] && [ -s $lib ];do
   echo""
   #Check doublon
 
-  candidate=$mot$grammar
-  alreadyin=false
-  a=($(gawk -v var="$mot" '{if($1==var) print $1$4}' "$formatedlib"))
-  for u in "${a[@]}"
-  do
-    if [ "$candidate" == "$u" ];then
-      alreadyin=true
-      break
-    fi
-  done
-  if [ "$alreadyin" == true ];then
-    echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base"
+  check_doublons_in_formatedlib "$mot" "$grammar"
+
+  if [ "$?" == 1 ];then
     continue
   fi
 

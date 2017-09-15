@@ -7,7 +7,7 @@ source libconfig.sh
 #Debut boucle d'ajout a la librairie
 while [ -z $reponse ] || [ "$reponse" != "x" ]; do
 
-  while [ -z $alreadyin ] || [ "$alreadyin" = true ]; do
+  while [ -z $alreadyin ] || [ "$alreadyin" = 1 ]; do
     
     echo""
     echo -e "${green}Nouvelle entrée ${reset}"
@@ -22,26 +22,8 @@ while [ -z $reponse ] || [ "$reponse" != "x" ]; do
       found=$(check_grammar $grammar)
     done
     echo""
-
-    #On teste si le mot n'existe pas deja dans la base
-    #Check doublon: mot + grammar deja dans $lib
-    #wordexist=$(awk '{print $1}' $formatedlib | grep -wc $mot)
-    candidate=$mot$grammar
-    alreadyin=false
-    a=($(gawk -v var="$mot" 'BEGIN{FS="\t"}{if($1==var) print $1$4}' "$formatedlib"))
-
-    for u in "${a[@]}"
-    do
-      if [ "$candidate" == "$u" ];then
-	alreadyin=true
-	break
-      fi
-    done
-
-    if [ "$alreadyin" == true ];then
-      echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base."
-    fi
-
+    check_doublons_in_formatedlib "$mot" "$grammar"
+    alreadyin="$?"
   done
 
   #Lemme (base du mot):

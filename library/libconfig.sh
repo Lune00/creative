@@ -137,44 +137,61 @@ format_sortie(){
   sortie+=$(printf "\t%40s" "$themes")
 }
 
-  balise=" - "
+#Check doublons dans formatedlib
+#Return status: 0 si aucun, 1 si oui
+#Argument: mot/grammaire
+#Prend en argument candidate=$mot$grammar
+check_doublons_in_formatedlib(){
+  local candidate="$1$2"
+    a=($(gawk -v var="$mot" '{if($1==var) print $1$4}' "$formatedlib"))
+    for u in "${a[@]}"
+    do
+      if [ "$candidate" == "$u" ];then
+      echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base"
+	return 1
+	break
+      fi
+    done
+}
 
-  #Test sur la base de donnees source
-  if [ ! -f "$lib" ];then
-    echo "Impossible de trouver la librairie source ${red}$lib${reset}."
-    exit
-  else
-    echo -e "Base de données source: ${red}$lib${reset}"
-    lastmodif=$(ls -l | grep -w $lib | awk ' {print $6" "$7" "$8}')
-    echo -e "${balise}Date de la dernière modification:${magenta} $lastmodif ${reset}"
-  fi
+balise=" - "
 
-  #Test sur la base de donnees cible
-  if [ -f "$formatedlib" ];then
-    taillebase=`awk 'END{print NR}' $formatedlib`
-    lastmodif=$(ls -l | grep -w $formatedlib | awk ' {print $6" "$7" "$8}')
-    echo -e "Base de données cible: ${red}$formatedlib${reset}"
-    echo " - Nombre d'entrées dans $formatedlib: ${bold}${green}$taillebase${reset}"
-    echo -e " - Date de la dernière modification:${magenta} $lastmodif ${reset}"
-    #Backup
-    cp $formatedlib "bk_$formatedlib"
-  else
-    echo "La base de données $formatedlib n'a pas encore été créee."
-    touch $formatedlib
-    echo "La base de donnees $formatedlib est créee."
-  fi
+#Test sur la base de donnees source
+if [ ! -f "$lib" ];then
+  echo "Impossible de trouver la librairie source ${red}$lib${reset}."
+  exit
+else
+  echo -e "Base de données source: ${red}$lib${reset}"
+  lastmodif=$(ls -l | grep -w $lib | awk ' {print $6" "$7" "$8}')
+  echo -e "${balise}Date de la dernière modification:${magenta} $lastmodif ${reset}"
+fi
 
-  #Test sur la base de mots a ajouter
-  if [ -f "$waitlib" ];then
-    taillewait=`awk 'END{print NR}' $waitlib`
-    lastmodif=$(ls -l | grep -w $waitlib | awk ' {print $6" "$7" "$8}')
-    echo -e "Liste des mots à ajouter: ${red}$waitlib${reset}"
-    echo -e " - Mots en attente: ${green}$taillewait${reset}"
-    echo -e " - Date de la dernière modification:${magenta} $lastmodif ${reset}"
-    #Backup
-    cp $waitlib "bk_$waitlib"
-  else
-    echo "La liste de mots en atttente n'a pas encore été créee."
-    touch $waitlib
-    echo "La liste $waitlib est créee"
-  fi
+#Test sur la base de donnees cible
+if [ -f "$formatedlib" ];then
+  taillebase=`awk 'END{print NR}' $formatedlib`
+  lastmodif=$(ls -l | grep -w $formatedlib | awk ' {print $6" "$7" "$8}')
+  echo -e "Base de données cible: ${red}$formatedlib${reset}"
+  echo " - Nombre d'entrées dans $formatedlib: ${bold}${green}$taillebase${reset}"
+  echo -e " - Date de la dernière modification:${magenta} $lastmodif ${reset}"
+  #Backup
+  cp $formatedlib "bk_$formatedlib"
+else
+  echo "La base de données $formatedlib n'a pas encore été créee."
+  touch $formatedlib
+  echo "La base de donnees $formatedlib est créee."
+fi
+
+#Test sur la base de mots a ajouter
+if [ -f "$waitlib" ];then
+  taillewait=`awk 'END{print NR}' $waitlib`
+  lastmodif=$(ls -l | grep -w $waitlib | awk ' {print $6" "$7" "$8}')
+  echo -e "Liste des mots à ajouter: ${red}$waitlib${reset}"
+  echo -e " - Mots en attente: ${green}$taillewait${reset}"
+  echo -e " - Date de la dernière modification:${magenta} $lastmodif ${reset}"
+  #Backup
+  cp $waitlib "bk_$waitlib"
+else
+  echo "La liste de mots en atttente n'a pas encore été créee."
+  touch $waitlib
+  echo "La liste $waitlib est créee"
+fi

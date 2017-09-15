@@ -35,21 +35,10 @@ while [ -z $uans ] || [ "$uans" != n ] && [ -s $lib ];do
     infover=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $11}') #mode,temps,personne pour verbe!
     nsyll=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $24}') 
     
-
     #Check doublons
+    check_doublons_in_formatedlib "$mot" "$grammar"
 
-    candidate=$mot$grammar
-    alreadyin=false
-    a=($(gawk -v var="$mot" '{if($1==var) print $1$4}' "$formatedlib"))
-    for u in "${a[@]}"
-    do
-      if [ "$candidate" == "$u" ];then
-	alreadyin=true
-	break
-      fi
-    done
-if [ "$alreadyin" == true ];then
-      echo "Le mot $mot - (Gramm=$grammar) est déjà présent dans la base"
+    if [ "$?" == 1 ];then
       continue
     fi
 
