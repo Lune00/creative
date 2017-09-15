@@ -124,40 +124,10 @@ if [ "$alreadyin" == true ];then
     done
     ftheme="${ftheme%?}"
 
-    clear
-    echo ""
-    echo "${bold}Résumé${reset}"
-    echo ""
+    affiche_resume "$mot" "$lemme" "$phonetique" "$grammar" "$infover" "$accord" "$genre" "$nsyll" "$freg" "$fsyn" "$frel" "$ftheme" 
 
-    echo "&---------------(*)------------------&"
-    echo "Mot: ${green}$mot${reset}"
-    echo "Lemme: $lemme"
-    echo "Phonétique: $phonetique"
-    echo "Classe grammaticale: $grammar"
-    echo "Infover: $infover"
-    echo "Accord: $accord"
-    echo "Genre: $genre"
-    echo "Nbsyllabe(s): $nsyll"
-    echo "Registre(s): $freg"
-    echo "Synonyme(s): ${synonymes[*]}"
-    echo "Associé(s): ${related[*]}"
-    echo "Theme(s): $ftheme"
-    echo "&---------------(*)------------------&"
+    format_sortie "$mot" "$lemme" "$phonetique" "$grammar" "$infover" "$accord" "$genre" "$nsyll" "$freg" "$fsyn" "$frel" "$ftheme" 
 
-    #Ecriture sortie
-    sortie=""
-    sortie+=$(printf "%20s" "$mot")
-    sortie+=$(printf "\t%20s" "$lemme")
-    sortie+=$(printf "\t%20s" "$phonetique")
-    sortie+=$(printf "\t%10s" "$grammar")
-    sortie+=$(printf "\t%20s" "$infover")
-    sortie+=$(printf "\t%10s" "$genre")
-    sortie+=$(printf "\t%10s" "$accord")
-    sortie+=$(printf "\t%10s" "$nsyll")
-    sortie+=$(printf "\t%40s" "$freg")
-    sortie+=$(printf "\t%40s" "$fsyn")
-    sortie+=$(printf "\t%40s" "$frel")
-    sortie+=$(printf "\t%40s" "$ftheme")
 
     #On l'enregistre dans fichier de sortie
     echo -e "$sortie" >> $formatedlib

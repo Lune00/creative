@@ -62,6 +62,7 @@ echo $message
 echo $message_locale #unitialized parameter (car non partagé)
 
 #Passer un tableau a une fonction EQUIV passer tous ses elements
+#Les variables $* et $@ contiennent la liste des arguments d'un script shell.
 x=("un" "deux" "trois")
 
 print_tableau(){
