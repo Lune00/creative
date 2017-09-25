@@ -6,12 +6,13 @@
 
 #define mylibrary "mylibrary.txt"
 
+
 //Les doublons sont gérés (normalement) par la librairie elle-meme.
 //Inutile donc en pratique de devoir traiter le cas des doublons ici.
 
 //TODO
-//Fonction qui renvoie un mot terminant par la phonetique souhaitee
-//Fonction qui renvoie les mots par classe grammaticale
+//Travailler sur infover (comment il fonctionne, comment on le splitte)
+//Brancher le travail sur la conjugaison pour les verbes
 
 using namespace std;
 
@@ -65,33 +66,25 @@ class Mot{
     std::vector<string> ass_;
     std::vector<string> themes_;
 
-    static const string phon_table[];
 
   public:
     Mot();
     Mot(string);
     ~Mot();
     string getmot() {return mot_;}
-    string getgrammar();
+    vector<string> getgrammar() { return grammar_;}
     string getlastphoneme() {char last = phon_.back(); string last_s(1,last); return last_s;}
+    static const string phon_table[];
+    static const string grammar_table[];
 };
 
 
 const string Mot::phon_table[]={
 "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
-
+const string Mot::grammar_table[]={"NOM","VER","ADJ"};
 
 Mot::Mot(){};
 
-string Mot::getgrammar(){
-  string gram;
-  for (vector<std::string>::iterator it = grammar_.begin() ; it != grammar_.end(); it++)
-  {
-    gram += *it;
-    gram +=" ";
-    }  
-  return gram;
-} 
 
 
 //Constructeur d'un mot avec une entree de la bibliotheque
@@ -133,16 +126,65 @@ Mot::Mot(string entree)
 
 Mot::~Mot(){};
 
+
+//Checker la phonetique pour une phoneme donee (la phonetique de la librairie est deja checkee par la librairie)
+//en comparant a phon_table (39 phonemes, a verifier)
+bool check_phonetique(string phoneme){
+  bool isfound = false;
+  for(unsigned int i = 0 ; i != 39 ; i++)
+  {
+    if ( phoneme == Mot::phon_table[i] ) { isfound = true; break ;}
+  }
+  return isfound;
+}
+
+//Check classe grammaticale
+bool check_grammar(string grammar){
+  bool isfound = false;
+  for(unsigned int i = 0 ; i != 3 ; i++)
+  {
+    if ( grammar == Mot::grammar_table[i] ) { isfound = true; break ;}
+  }
+  return isfound;
+}
+
+
 //Fonction qui renvoie un vecteur de mots qui se terminent par la phoneme phoneme
 vector<Mot> return_last_phon_liste(vector<Mot>& corpus, string phoneme)
 {
-  //Checker dans table phonemes... todo
   vector<Mot> liste;
+  if( !check_phonetique(phoneme) ) return liste;
   for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
     if( it->getlastphoneme() == phoneme) liste.push_back(*it);
   }
   return liste;
 }
+
+//Renvoie les mots d'une classe grammaticale donnee
+vector<Mot> return_grammar_liste(vector<Mot>& corpus, string grammar)
+{
+  vector<Mot> liste;
+  if( !check_grammar(grammar) ) return liste;
+  for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
+    //Recupere vector grammar
+    vector<string> vgrammar = it->getgrammar();
+    for(vector<string>::const_iterator it2 = vgrammar.begin() ; it2 != vgrammar.end(); it2++){
+      if( *it2 == grammar){
+	liste.push_back(*it);
+	break;
+      }
+    }
+  }
+  return liste;
+}
+
+//Affiche sur la sortie standard les mots d'un vecteur de mots
+void affiche_mots(vector<Mot>& liste){
+  for(vector<Mot>::iterator it = liste.begin(); it != liste.end() ; it++){
+    cout<<it->getmot()<<endl;
+  }
+}
+
 
 // MAIN
 
@@ -152,21 +194,20 @@ int main(){
   std::vector<Mot> corpus;
   ifstream mylib(mylibrary);
 
-  //Lecture de la librairie
+  //Lecture de la librairie et construction du corpus
   while(true){
     string entree;
     getline(mylib,entree);
     if (mylib.eof() ) break;
     //Chaque entree (entree) de la librairie est contenue dans entree
-    //Il faut maintenant la splitter pour en faire un mot, constructeur mot
     Mot mot = Mot(entree);
     corpus.push_back(mot);
   };
 
+  //Tests:
 
-  vector<Mot> liste = return_last_phon_liste(corpus,"n");
-  //Operations:
-  for(vector<Mot>::iterator it = liste.begin() ; it != liste.end() ; it++ ){
-    cout<<it->getmot()<<endl;
-  }
+  vector<Mot> liste = return_last_phon_liste(corpus,"@");
+  vector<Mot> liste2 = return_grammar_liste(corpus,"VER");
+  //affiche_mots(liste);
+  affiche_mots(liste2);
 }
