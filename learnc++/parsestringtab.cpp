@@ -6,6 +6,7 @@ using namespace std;
 
 //Fonction prend en argument un string et le decoupe en element separes par un delimiteur.
 //Elle renvoie les éléments découpés dans un vecteur de tokens
+//Cette fonction fonctionne si les champs séparés sont vides.
 
 vector<std::string> parsestring(string stringtoparse, string delimiter)
 {
@@ -25,9 +26,12 @@ vector<std::string> parsestring(string stringtoparse, string delimiter)
 
 int main(){
 
-  string stringtoparse="Bonjour\tAurevoir\tBonjour";
+  string stringtoparse="A\t\tC\tD";
+
   vector<string> tokens = parsestring(stringtoparse,"\t");
+
   vector<string>::iterator it = tokens.begin();
+
   for(it = tokens.begin() ; it != tokens.end(); it++){
     cout<<*it<<endl;
   }
