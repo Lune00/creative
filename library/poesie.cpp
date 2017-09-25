@@ -11,12 +11,10 @@
 
 //TODO
 //Fonction qui renvoie un mot terminant par la phonetique souhaitee
-//Table de phonetique (const)
 //Fonction qui renvoie les mots par classe grammaticale
 
-
-
 using namespace std;
+
 
 // Global functions
 vector<std::string> parsestring(string, string);
@@ -67,13 +65,21 @@ class Mot{
     std::vector<string> ass_;
     std::vector<string> themes_;
 
+    static const string phon_table[];
+
   public:
     Mot();
     Mot(string);
     ~Mot();
     string getmot() {return mot_;}
     string getgrammar();
+    string getlastphoneme() {char last = phon_.back(); string last_s(1,last); return last_s;}
 };
+
+
+const string Mot::phon_table[]={
+"a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
+
 
 Mot::Mot(){};
 
@@ -127,19 +133,16 @@ Mot::Mot(string entree)
 
 Mot::~Mot(){};
 
-//class Librairie{
-//  private:
-//    std::vector<Mot> noms_;
-//    std::vector<Mot> adjectifs_;
-//    std::vector<Mot> verbes_;
-//  public:
-//    Librairie();
-//    ~Librairie();
-//};
-//
-//Librairie::Librairie(){};
-//Librairie::~Librairie(){};
-
+//Fonction qui renvoie un vecteur de mots qui se terminent par la phoneme phoneme
+vector<Mot> return_last_phon_liste(vector<Mot>& corpus, string phoneme)
+{
+  //Checker dans table phonemes... todo
+  vector<Mot> liste;
+  for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
+    if( it->getlastphoneme() == phoneme) liste.push_back(*it);
+  }
+  return liste;
+}
 
 // MAIN
 
@@ -149,6 +152,7 @@ int main(){
   std::vector<Mot> corpus;
   ifstream mylib(mylibrary);
 
+  //Lecture de la librairie
   while(true){
     string entree;
     getline(mylib,entree);
@@ -158,8 +162,11 @@ int main(){
     Mot mot = Mot(entree);
     corpus.push_back(mot);
   };
-  cout<<"Corpus: "<<corpus.size()<<" mots."<<endl;
-  for(vector<Mot>::iterator it = corpus.begin() ; it != corpus.end() ; it++ ){
-    cout<<it->getgrammar()<<endl;
+
+
+  vector<Mot> liste = return_last_phon_liste(corpus,"n");
+  //Operations:
+  for(vector<Mot>::iterator it = liste.begin() ; it != liste.end() ; it++ ){
+    cout<<it->getmot()<<endl;
   }
 }
