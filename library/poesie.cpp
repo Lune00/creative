@@ -9,10 +9,18 @@
 //Les doublons sont gérés (normalement) par la librairie elle-meme.
 //Inutile donc en pratique de devoir traiter le cas des doublons ici.
 
+//TODO
+//Fonction qui renvoie un mot terminant par la phonetique souhaitee
+//Table de phonetique (const)
+//Fonction qui renvoie les mots par classe grammaticale
+
+
+
 using namespace std;
 
 // Global functions
 vector<std::string> parsestring(string, string);
+
 
 vector<std::string> parsestring(string stringtoparse, string delimiter)
 {
@@ -48,12 +56,12 @@ class Mot{
     string mot_;
     string lemme_;
     string phon_;
-    string grammar_;
     string infover_;
     string genre_;
     string accord_;
     int nsyll_;
 
+    std::vector<string> grammar_;
     std::vector<string> registre_;
     std::vector<string> syn_;
     std::vector<string> ass_;
@@ -64,9 +72,20 @@ class Mot{
     Mot(string);
     ~Mot();
     string getmot() {return mot_;}
+    string getgrammar();
 };
 
 Mot::Mot(){};
+
+string Mot::getgrammar(){
+  string gram;
+  for (vector<std::string>::iterator it = grammar_.begin() ; it != grammar_.end(); it++)
+  {
+    gram += *it;
+    gram +=" ";
+    }  
+  return gram;
+} 
 
 
 //Constructeur d'un mot avec une entree de la bibliotheque
@@ -85,7 +104,6 @@ Mot::Mot(string entree)
   mot_  = tokens[0];
   lemme_= tokens[1];
   phon_ = tokens[2];
-  grammar_ = tokens[3];
   infover_ = tokens[4];
   genre_ = tokens[5];
   accord_= tokens[6];
@@ -100,6 +118,7 @@ Mot::Mot(string entree)
   }
   //Vecteur et split
   string delimiter = ";";
+  grammar_ = parsestring(tokens[3],",");
   registre_ = parsestring(tokens[8],delimiter);
   syn_ = parsestring(tokens[9],delimiter);
   ass_ = parsestring(tokens[10],delimiter);
@@ -141,6 +160,6 @@ int main(){
   };
   cout<<"Corpus: "<<corpus.size()<<" mots."<<endl;
   for(vector<Mot>::iterator it = corpus.begin() ; it != corpus.end() ; it++ ){
-    cout<<it->getmot()<<endl;
+    cout<<it->getgrammar()<<endl;
   }
 }
