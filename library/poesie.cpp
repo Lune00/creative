@@ -14,6 +14,14 @@
 //Travailler sur infover (comment il fonctionne, comment on le splitte)
 //Brancher le travail sur la conjugaison pour les verbes
 
+//Creer des systmes de templates de phrase, vers
+//Unite phrase, reliees les unes aux autres mais pas completement random
+//Le registre doit etre attachee a des formes de vers, ou enchainements
+//Reflechir a un systeme de probabilité conditionelle (je tire cette phrase, quelle chance de tirer l'autre)
+//Commencer simple avec des paragraphes (4 phrases, vers max) fixés
+//Ne pas oublier de partir du titre (un nom + un adjectif + un registre + un theme)
+//Chercher synonymes, lies, et random
+
 using namespace std;
 
 
@@ -66,7 +74,6 @@ class Mot{
     std::vector<string> ass_;
     std::vector<string> themes_;
 
-
   public:
     Mot();
     Mot(string);
@@ -85,15 +92,12 @@ const string Mot::grammar_table[]={"NOM","VER","ADJ"};
 
 Mot::Mot(){};
 
-
-
 //Constructeur d'un mot avec une entree de la bibliotheque
 //L'ordre des champs est donne par le formatage de la librairie (libconfig.sh)
 //Il doit y avoir 12 champs!
 Mot::Mot(string entree)
 {
   vector<string> tokens = parsestring(entree,"\t");
-  vector<string>::iterator it = tokens.begin();
 
   if( tokens.size() < 12 ) {
     cerr<<"Entrée ne contient pas 12 champs!"<<endl;
@@ -125,7 +129,6 @@ Mot::Mot(string entree)
 };
 
 Mot::~Mot(){};
-
 
 //Checker la phonetique pour une phoneme donee (la phonetique de la librairie est deja checkee par la librairie)
 //en comparant a phon_table (39 phonemes, a verifier)

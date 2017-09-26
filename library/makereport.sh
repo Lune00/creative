@@ -25,8 +25,10 @@ done
 echo ""
 
 #Maj related et synonmes demandant une entree
-rsyn=$(awk 'BEGIN{FS="\t";} {print $10 $11}' $formatedlib)
+#Un probleme sur la séparation etnre rsyn et related!!!
+rsyn=$(awk 'BEGIN{FS="\t";} {print $10";"$11}' $formatedlib)
 rsyn=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $rsyn)
+#rsyn=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $rsyn)
 rsyn=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$rsyn")
 
 awaiters=""

@@ -19,7 +19,7 @@ phon_table=('a' 'i' 'y' 'u' 'o' 'O' 'e' 'E' '°' '2' '9' '5' '1' '@' '§' '3' 'j
 #Tableau de classes gramaticales accpetees
 grammar_table=('NOM' 'ADJ' 'VER')
 #Tableau de registres acceptes, si aucun registre indique il sera par defaut neutre
-registre_table=('neutre' 'lyrique' 'epique' 'melancolique' 'scientifique' 'comique' 'dramatique')
+registre_table=('neutre' 'lyrique' 'épique' 'mélancolique' 'scientifique' 'comique' 'dramatique')
 
 #Fonction qui teste si la phonetique correspond aux symboles (pas d erreur)
 #Prend comme argument la phonetique du mot $1
@@ -132,9 +132,9 @@ format_sortie(){
   sortie+=$(printf "\t%10s" "$accord")
   sortie+=$(printf "\t%10s" "$nsyll")
   sortie+=$(printf "\t%40s" "$reg")
-  sortie+=$(printf "\t%40s" "$syn")
-  sortie+=$(printf "\t%40s" "$ass")
-  sortie+=$(printf "\t%40s" "$themes")
+  sortie+=$(printf "\t%50s" "$syn")
+  sortie+=$(printf "\t%50s" "$ass")
+  sortie+=$(printf "\t%50s" "$themes")
 }
 
 #Check doublons dans formatedlib

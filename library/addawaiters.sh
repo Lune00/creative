@@ -87,10 +87,12 @@ do
 
     #Ajout a la librairie
     freg=""
+    registres=()
+    regt=""
     while [ "$regt" != ${#registres[@]} ]; do 
-      registres=()
-      regt=""
       echo -e "* Donnez un ou plusieurs ${bold}registres${reset}: "
+      echo "(${registre_table[@]})"
+      echo ""
       read -a registres
       regt=$(check_registre "${registres[@]}")
     done
