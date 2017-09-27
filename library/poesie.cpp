@@ -211,6 +211,7 @@ int main(){
 
   vector<Mot> liste = return_last_phon_liste(corpus,"@");
   vector<Mot> liste2 = return_grammar_liste(corpus,"VER");
+  vector<Mot> liste3 = return_grammar_liste(corpus,"NOM");
   //affiche_mots(liste);
-  affiche_mots(liste2);
+  affiche_mots(liste3);
 }

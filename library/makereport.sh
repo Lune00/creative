@@ -2,6 +2,10 @@
 
 
 #Quand on construit les awaiters on doit supprimer de la liste ceux deja présent dans la base
+#On ne va pas rajouter toutes les formes conjuquées des verbes
+#Que l'infinif! Et Premier groupe en priorité
+#On se servira du programme de conjugaison pour conjugueur apres
+#Sinon ce sera interminable!!
 
 source libconfig.sh
 
