@@ -28,7 +28,6 @@ using namespace std;
 // Global functions
 vector<std::string> parsestring(string, string);
 
-
 vector<std::string> parsestring(string stringtoparse, string delimiter)
 {
   vector<std::string> tokens;
@@ -79,6 +78,7 @@ class Mot{
     Mot(string);
     ~Mot();
     string getmot() {return mot_;}
+    string getgenre() {return genre_;}
     vector<string> getgrammar() { return grammar_;}
     string getlastphoneme() {char last = phon_.back(); string last_s(1,last); return last_s;}
     static const string phon_table[];
@@ -188,14 +188,38 @@ void affiche_mots(vector<Mot>& liste){
   }
 }
 
+//Renvoie un mot au hasard dans un vecteur de mot
+Mot randomMot(vector<Mot>& liste){
+  int randomIndex = rand () % liste.size() ;
+  return liste[randomIndex];
+}
+
+//Gere article en genre/nombre
+//Partitif, défini, indéfini
+//Demonstratif ...
+//Ou faire une simple fonction plutot qui encapsule tout le travail!
+//Ou une classe abstraite, ou une fonction de Mot directement
+class Article{
+
+  private:
+
+
+  public:
+
+};
+
+
 
 // MAIN
 
 int main(){
 
+  srand (time(NULL));
+
   cout<<"Bonjour poésie."<<endl;
   std::vector<Mot> corpus;
   ifstream mylib(mylibrary);
+
 
   //Lecture de la librairie et construction du corpus
   while(true){
@@ -209,9 +233,25 @@ int main(){
 
   //Tests:
 
-  vector<Mot> liste = return_last_phon_liste(corpus,"@");
-  vector<Mot> liste2 = return_grammar_liste(corpus,"VER");
-  vector<Mot> liste3 = return_grammar_liste(corpus,"NOM");
+  //vector<Mot> liste = return_last_phon_liste(corpus,"@");
+  vector<Mot> liste_ver = return_grammar_liste(corpus,"VER");
+  vector<Mot> liste_nom = return_grammar_liste(corpus,"NOM");
+  vector<Mot> liste_adj = return_grammar_liste(corpus,"ADJ");
+
   //affiche_mots(liste);
-  affiche_mots(liste3);
+  Mot nom = randomMot(liste_nom);
+  Mot adj = randomMot(liste_adj);
+
+  //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
+  //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
+  if ( nom.getgenre() == "m") 
+  {
+    cout<<"Le "<<nom.getmot();
+  }
+  else
+  {
+    cout<<"La "<<nom.getmot();
+  }
+  cout<<"."<<endl;
+
 }
