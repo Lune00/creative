@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+#Pour simplifier peut etre que dans synonymes et related il faut laisser que des mots de la meme classe grammatical (pour ne pas etre oblige de leur donner une entree)
+
 red=`tput setaf 1`
 green=`tput setaf 2` yellow=`tput setaf 3`
 blue=`tput setaf 4`

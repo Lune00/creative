@@ -1,5 +1,8 @@
 #!/usr/local/bin/bash
 
+
+#Quand on construit les awaiters on doit supprimer de la liste ceux deja présent dans la base
+
 source libconfig.sh
 
 echo ""
