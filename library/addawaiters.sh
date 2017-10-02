@@ -51,7 +51,7 @@ do
     lemme=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $3}')
     grammar=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $4}')
     genre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $5}') #masculin,feminin
-    nombre=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $6}') #singulier,pluriels
+    accord=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $6}') #singulier,pluriels
     infover=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $11}') #mode,temps,personne pour verbe!
     nsyll=$(echo "$line" | awk 'BEGIN{FS="\t"}; {print $24}') 
 
@@ -70,7 +70,7 @@ do
     echo "Phonetique: $phonetique"
     echo "Classe gramm: $grammar"
     echo "Genre: $genre"
-    echo "Nombre: $nombre"
+    echo "Nombre: $accord"
     echo "Infover: $infover"
     echo "Nsyllabes: $nsyll"
 

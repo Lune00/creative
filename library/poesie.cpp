@@ -66,7 +66,7 @@ class Mot{
     string phon_;
     string infover_;
     string genre_;
-    string accord_;
+    string nombre_;
     int nsyll_;
 
     std::vector<string> grammar_;
@@ -82,7 +82,9 @@ class Mot{
     string getmot() {return mot_;}
     string getgenre() {return genre_;}
     bool isNOM();
-    string getaccord() {return accord_;}
+    //Commence par une voyelle?
+    bool startVoyelle();
+    string getnombre() {return nombre_;}
     vector<string> getgrammar() { return grammar_;}
     string getlastphoneme() {char last = phon_.back(); string last_s(1,last); return last_s;}
 };
@@ -92,6 +94,7 @@ Mot::Mot(){};
 //Constructeur d'un mot avec une entree de la bib
 //L'ordre des champs est donne par le formatage de la librairie (libconfig.sh)
 //Il doit y avoir 12 champs!
+//Chaine vide pour nombre par defaut est SINGULIER (erreur au debut du formattage de la sortie de libconfig)
 Mot::Mot(string entree)
 {
   vector<string> tokens = parsestring(entree,"\t");
@@ -106,7 +109,7 @@ Mot::Mot(string entree)
   phon_ = tokens[2];
   infover_ = tokens[4];
   genre_ = tokens[5];
-  accord_= tokens[6];
+  nombre_= tokens[6];
 
   if(tokens[7].length() == 0 ) 
   {
@@ -137,6 +140,7 @@ class bib
     //Variables:
     static const string phon_table[];
     static const string grammar_table[];
+    static const string voyelles[];
     static const string definis[];
     static const string indefinis[];
     //Fonctions:
@@ -156,6 +160,7 @@ const string bib::grammar_table[]={"NOM","VER","ADJ"};
 //0 masculin singulier/ 1 feminin singulier / 2 pluriel
 const string bib::definis[]= {"le","la","les"};
 const string bib::indefinis[]= {"un","une","des"};
+const string bib::voyelles[]= {"a","e","i","o","u","y"};
 
 //Checker la phonetique pour une phoneme donee (la phonetique de la librairie est deja checkee par la librairie)
 //en comparant a phon_table (39 phonemes, a verifier)
@@ -210,7 +215,7 @@ vector<Mot> bib::return_grammar_liste(vector<Mot>& corpus, string grammar)
 //Affiche sur la sortie standard les mots d'un vecteur de mots
 void affiche_mots(vector<Mot>& liste){
   for(vector<Mot>::iterator it = liste.begin(); it != liste.end() ; it++){
-    cout<<it->getmot()<<endl;
+    cout<<it->getnombre()<<endl;
   }
 }
 
@@ -222,11 +227,18 @@ Mot bib::randomMot(vector<Mot>& liste){
 }
 
 //Fonction qui renvoie vrai si le mot est un NOM
-
 bool Mot::isNOM(){
   for(vector<string>::const_iterator it = grammar_.begin(); it != grammar_.end(); it++)
   {
     if (*it == "NOM") { return true ; break ;}
+  }
+  return false;
+}
+//Fonction qui renvoie vrai si le mot commence par une voyelle
+bool Mot::startVoyelle(){
+  string firstLetter(1,mot_[0]);
+  for(unsigned int i = 0 ; i < 6 ; i++){
+    if( firstLetter == bib::voyelles[i]) { return true ; break ;}
   }
   return false;
 }
@@ -238,13 +250,66 @@ bool Mot::isNOM(){
 //Si defini, regarde premiere lettre du mot, si voyelle ou h eliser
 //CURRENT WORKING
 string bib::returnArticle(Mot& mot, string type){
+
+  string article = string();
   if( ! mot.isNOM() )
   {
-    return string();
+    return article;
   }
+
   else
   {
+    //Genre et nombre
+    //Singulier (s ou chaine vide par defaut), Pluriel (p)
+    string nombre = mot.getnombre();
+    string genre = mot.getgenre();
 
+    //Article defini (le,la,les)
+    if( type == "def" )
+    {
+      if(nombre == "p")
+      {
+	article= bib::definis[2];
+      }
+      else //singulier
+      {
+	if( genre == "f")
+	{
+	  article= bib::definis[1];
+	}
+	else
+	{
+	  article= bib::definis[0];
+	}
+      }
+    }   
+
+    else if (type == "ind")
+    {
+      if(nombre == "p")
+      {
+	article= bib::indefinis[2];
+      }
+      else //singulier
+      {
+	if( genre == "f")
+	{
+	  article= bib::indefinis[1];
+	}
+	else
+	{
+	  article= bib::indefinis[0];
+	}
+      }
+    }
+    article+=" ";
+    //Gerer l'elision: voyelle (h a faire)
+    if( (nombre == "s" || nombre == "") && (mot.startVoyelle()) && type == "def" )
+    {
+      //le/la en l'
+      article = "l'";
+    }
+    return article;
   }
 }
 // MAIN
@@ -281,14 +346,7 @@ int main(){
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
-  if ( nom.getgenre() == "m") 
-  {
-    cout<<"Le "<<nom.getmot();
-  }
-  else
-  {
-    cout<<"La "<<nom.getmot();
-  }
-  cout<<"."<<endl;
+  string test = bib::returnArticle(nom,"def") + nom.getmot() + "." ;
+  cout<<test<<endl;
 
 }
