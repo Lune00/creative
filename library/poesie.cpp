@@ -142,8 +142,8 @@ class bib
     static const string grammar_table[];
     static const string voyelles[];
     static const string VOYELLES[];
-    static const string consonnes[]:
-    static const string CONSONNES[]:
+    static const string consonnes[];
+    static const string CONSONNES[];
     static const string definis[];
     static const string indefinis[];
     //Fonctions:
@@ -355,6 +355,6 @@ int main(){
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   string test = bib::returnArticle(nom,"def") + nom.getmot() + "." ;
-  cout<<test<<endl;
+  cout<<"J'aime "<<test<<endl;
 
 }
