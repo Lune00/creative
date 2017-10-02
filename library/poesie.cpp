@@ -81,6 +81,7 @@ class Mot{
     ~Mot();
     string getmot() {return mot_;}
     string getgenre() {return genre_;}
+    bool isNOM();
     string getaccord() {return accord_;}
     vector<string> getgrammar() { return grammar_;}
     string getlastphoneme() {char last = phon_.back(); string last_s(1,last); return last_s;}
@@ -220,16 +221,31 @@ Mot bib::randomMot(vector<Mot>& liste){
   return liste[randomIndex];
 }
 
+//Fonction qui renvoie vrai si le mot est un NOM
+
+bool Mot::isNOM(){
+  for(vector<string>::const_iterator it = grammar_.begin(); it != grammar_.end(); it++)
+  {
+    if (*it == "NOM") { return true ; break ;}
+  }
+  return false;
+}
 
 //Prend le mot et le type (défini, indéfini, partitif, démonstratif...)
 // Defini: le la les
 // Indefini: un une des
 // Partitif: du de la des
 //Si defini, regarde premiere lettre du mot, si voyelle ou h eliser
+//CURRENT WORKING
 string bib::returnArticle(Mot& mot, string type){
-  if(mot.getgrammar() != "NOM") return string();
-  //A completer
-  return strin();
+  if( ! mot.isNOM() )
+  {
+    return string();
+  }
+  else
+  {
+
+  }
 }
 // MAIN
 
