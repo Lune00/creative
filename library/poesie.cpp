@@ -141,6 +141,9 @@ class bib
     static const string phon_table[];
     static const string grammar_table[];
     static const string voyelles[];
+    static const string VOYELLES[];
+    static const string consonnes[]:
+    static const string CONSONNES[]:
     static const string definis[];
     static const string indefinis[];
     //Fonctions:
@@ -160,7 +163,12 @@ const string bib::grammar_table[]={"NOM","VER","ADJ"};
 //0 masculin singulier/ 1 feminin singulier / 2 pluriel
 const string bib::definis[]= {"le","la","les"};
 const string bib::indefinis[]= {"un","une","des"};
+
+//Toutes les fonctions relatives consonnes/voyelles fonctionneront sur le fait que les éléments sont dans le meme ordre
 const string bib::voyelles[]= {"a","e","i","o","u","y"};
+const string bib::VOYELLES[]= {"A","E","I","O","U","Y"};
+const string bib::consonnes[]= {"z","r","t","p","q","s","d","f","g","h","j","k","l","m","w","x","v","b","n"};
+const string bib::CONSONNES[]= {"Z","R","T","P","Q","S","D","F","G","H","J","K","L","M","W","X","V","B","N"};
 
 //Checker la phonetique pour une phoneme donee (la phonetique de la librairie est deja checkee par la librairie)
 //en comparant a phon_table (39 phonemes, a verifier)
