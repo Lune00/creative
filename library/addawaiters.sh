@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 clear
 
@@ -129,12 +129,23 @@ do
     frel="${frel%?}"
 
     #Theme
-    al_themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
-    al_themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $al_themes)
+    clear
+
     theme=()
     ftheme=""
     echo "* Donnez un ou plusieurs ${bold}thèmes${reset} associés au mot ${green}$mot${reset}:"
-    echo "( ${yellow}${al_themes[@]}${reset})"
+    s_themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
+    s_themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $s_themes)
+    declare -A asar
+    for i in ${s_themes}; do asar[$i]=$(( ${asar[$i]}+1 )); done
+    s_themes=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{ if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$s_themes")
+    echo -e "\n.Liste des thèmes présents:\n"
+    for i in ${s_themes}
+    do
+      printf "${yellow}%-10s${reset}\tNombre d'entrées: ${green}%3s${reset}\n" "$i" "${asar[$i]}"
+    done
+
+    echo ""
     read -a theme
     #Format related
     for i in ${theme[*]}
