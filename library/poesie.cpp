@@ -225,7 +225,6 @@ void affiche_mots(vector<Mot>& liste){
 //WARNING pas un bon hasard (provisoire)
 Mot bib::randomMot(vector<Mot>& liste){
   int randomIndex = rand () % liste.size() ;
-  cout<<randomIndex<<endl;
   return liste[randomIndex];
 }
 
