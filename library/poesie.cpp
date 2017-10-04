@@ -148,6 +148,7 @@ class bib
     static vector<Mot> return_last_phon_liste(vector<Mot>&,string);
     static Mot randomMot(vector<Mot>&);
     static string returnArticle(Mot&,string);
+    static string return_adjectif(vector<Mot>& adj, string genre, string nombre);
 };
 
 const string bib::phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
@@ -213,6 +214,24 @@ vector<Mot> bib::return_grammar_liste(vector<Mot>& corpus, string grammar)
   }
   return liste;
 }
+
+//Renvoie un adjectif au hasard accordé en genre et nombre
+string bib::return_adjectif(vector<Mot>& adj, string genre, string nombre)
+{
+  vector<Mot> A_adj;
+  //Fais la liste des adj respectant la consigne
+  for(vector<Mot>::iterator it = adj.begin(); it != adj.end() ; it++){
+    if( (it->getgenre() == genre) && (it->getnombre()==nombre)){
+      A_adj.push_back(*it);
+    }
+  }
+  if(A_adj.size() == 0) return string();
+  //En prendre un au hasard
+  int randomIndex = rand () % A_adj.size() ;
+  return (A_adj[randomIndex]).getmot();
+}
+
+
 
 //Affiche sur la sortie standard les mots d'un vecteur de mots
 void affiche_mots(vector<Mot>& liste){
@@ -336,7 +355,6 @@ int main(){
   };
 
   //Tests:
-
   vector<Mot> liste_phon = bib::return_last_phon_liste(corpus,"e");
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   vector<Mot> liste_nom = bib::return_grammar_liste(corpus,"NOM");
@@ -348,12 +366,11 @@ int main(){
   //affiche_mots(liste);
   Mot nom = bib::randomMot(liste_nom);
   Mot adj = bib::randomMot(liste_adj);
-  affiche_mots(liste_phon);
+  //affiche_mots(liste_phon);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
-  string test = bib::returnArticle(nom,"def") + nom.getmot() + "." ;
-  cout<<"J'aime "<<test<<endl;
-  cout<<"C'est "<<adj.getmot()<<"."<<endl;
+  string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
+  cout<<test<<endl;
 
 }
