@@ -337,20 +337,23 @@ int main(){
 
   //Tests:
 
-  //vector<Mot> liste = return_last_phon_liste(corpus,"@");
+  vector<Mot> liste_phon = bib::return_last_phon_liste(corpus,"e");
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   vector<Mot> liste_nom = bib::return_grammar_liste(corpus,"NOM");
-  cout<<liste_nom.size()<<endl;
   vector<Mot> liste_adj = bib::return_grammar_liste(corpus,"ADJ");
+  //cout<<liste_nom.size()<<endl;
+  //cout<<liste_ver.size()<<endl;
+  //cout<<liste_adj.size()<<endl;
 
   //affiche_mots(liste);
   Mot nom = bib::randomMot(liste_nom);
   Mot adj = bib::randomMot(liste_adj);
-  //affiche_mots(liste_nom);
+  affiche_mots(liste_phon);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   string test = bib::returnArticle(nom,"def") + nom.getmot() + "." ;
   cout<<"J'aime "<<test<<endl;
+  cout<<"C'est "<<adj.getmot()<<"."<<endl;
 
 }
