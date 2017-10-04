@@ -129,9 +129,12 @@ do
     frel="${frel%?}"
 
     #Theme
+    al_themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
+    al_themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $al_themes)
     theme=()
     ftheme=""
     echo "* Donnez un ou plusieurs ${bold}thèmes${reset} associés au mot ${green}$mot${reset}:"
+    echo "( ${yellow}${al_themes[@]}${reset})"
     read -a theme
     #Format related
     for i in ${theme[*]}

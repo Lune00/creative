@@ -137,7 +137,6 @@ format_sortie(){
   sortie+=$(printf "\t%20s" "$infover")
   sortie+=$(printf "\t%10s" "$genre")
   sortie+=$(printf "\t%10s" "$accord")
-  sortie+=$(printf "\t%10s" "$nombre")
   sortie+=$(printf "\t%10s" "$nsyll")
   sortie+=$(printf "\t%40s" "$reg")
   sortie+=$(printf "\t%50s" "$syn")

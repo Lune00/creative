@@ -217,7 +217,7 @@ vector<Mot> bib::return_grammar_liste(vector<Mot>& corpus, string grammar)
 //Affiche sur la sortie standard les mots d'un vecteur de mots
 void affiche_mots(vector<Mot>& liste){
   for(vector<Mot>::iterator it = liste.begin(); it != liste.end() ; it++){
-    cout<<it->getnombre()<<endl;
+    cout<<it->getmot()<<endl;
   }
 }
 
@@ -225,6 +225,7 @@ void affiche_mots(vector<Mot>& liste){
 //WARNING pas un bon hasard (provisoire)
 Mot bib::randomMot(vector<Mot>& liste){
   int randomIndex = rand () % liste.size() ;
+  cout<<randomIndex<<endl;
   return liste[randomIndex];
 }
 
@@ -340,11 +341,13 @@ int main(){
   //vector<Mot> liste = return_last_phon_liste(corpus,"@");
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   vector<Mot> liste_nom = bib::return_grammar_liste(corpus,"NOM");
+  cout<<liste_nom.size()<<endl;
   vector<Mot> liste_adj = bib::return_grammar_liste(corpus,"ADJ");
 
   //affiche_mots(liste);
   Mot nom = bib::randomMot(liste_nom);
   Mot adj = bib::randomMot(liste_adj);
+  //affiche_mots(liste_nom);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
