@@ -8,8 +8,6 @@
 
 using namespace std;
 
-
-
 //Les doublons sont gérés (normalement) par la librairie elle-meme.
 //Inutile donc en pratique de devoir traiter le cas des doublons ici.
 
@@ -56,11 +54,9 @@ vector<std::string> parsestring(string stringtoparse, string delimiter)
 
 
 // Class / Templates
-
 class Mot{
 
   private:
-
     string mot_;
     string lemme_;
     string phon_;
@@ -136,7 +132,6 @@ class bib
 {
   public:
     bib();
-
     //Variables:
     static const string phon_table[];
     static const string grammar_table[];
@@ -155,8 +150,7 @@ class bib
     static string returnArticle(Mot&,string);
 };
 
-const string bib::phon_table[]={
-  "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
+const string bib::phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
 
 const string bib::grammar_table[]={"NOM","VER","ADJ"};
 
@@ -242,6 +236,7 @@ bool Mot::isNOM(){
   }
   return false;
 }
+
 //Fonction qui renvoie vrai si le mot commence par une voyelle
 bool Mot::startVoyelle(){
   string firstLetter(1,mot_[0]);
@@ -254,9 +249,8 @@ bool Mot::startVoyelle(){
 //Prend le mot et le type (défini, indéfini, partitif, démonstratif...)
 // Defini: le la les
 // Indefini: un une des
-// Partitif: du de la des
+// Partitif (a faire): du de la des
 //Si defini, regarde premiere lettre du mot, si voyelle ou h eliser
-//CURRENT WORKING
 string bib::returnArticle(Mot& mot, string type){
 
   string article = string();

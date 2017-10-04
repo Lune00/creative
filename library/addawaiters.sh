@@ -61,6 +61,9 @@ do
 
     if [ "$?" == 1 ];then
       #Si doublon on supprime $mot de la liste de mots en attente
+      linetodel=$(awk -v pattern="$mot" '$1==pattern{print NR}' $waitlib)
+      sed -i "${linetodel}d" $waitlib
+      echo "L'entrée ${yellow}$mot ${reset}a été supprimée de la liste."
       break
     fi
 
