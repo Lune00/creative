@@ -1,11 +1,6 @@
-force
-puissance
-taille
 grandeur
 colosse
 titan
-champion
-vagues
 distance
 choral
 couplet
