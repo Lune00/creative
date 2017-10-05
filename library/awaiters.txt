@@ -1,5 +1,3 @@
-abîme
-étendue
 distance
 air
 cantique
@@ -312,3 +310,9 @@ envoûtée
 magique
 rêve
 malédiction
+abîme
+gouffre
+précipice
+chute
+désespoir
+naufrage

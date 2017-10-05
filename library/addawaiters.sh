@@ -1,5 +1,7 @@
 #!/usr/local/bin/bash
 
+
+#Il faut themes: philosophie medecine mecanique naturaliste geologue politique 
 clear
 
 source libconfig.sh

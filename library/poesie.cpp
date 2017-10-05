@@ -82,7 +82,8 @@ class Mot{
     bool startVoyelle();
     string getnombre() {return nombre_;}
     vector<string> getgrammar() { return grammar_;}
-    string getlastphoneme() {char last = phon_.back(); string last_s(1,last); return last_s;}
+    string getlastphoneme() { return string (1,phon_.back());}
+    string getfirstletter() { return string (1,mot_[0]);}
 };
 
 Mot::Mot(){};
@@ -160,6 +161,8 @@ const string bib::definis[]= {"le","la","les"};
 const string bib::indefinis[]= {"un","une","des"};
 
 //Toutes les fonctions relatives consonnes/voyelles fonctionneront sur le fait que les éléments sont dans le meme ordre
+//Relfechir a comment gerer les accents dans les comparaisons, les opérations.
+//IL va falloir Unicode, une syntaxe.
 const string bib::voyelles[]= {"a","e","i","o","u","y"};
 const string bib::VOYELLES[]= {"A","E","I","O","U","Y"};
 const string bib::consonnes[]= {"z","r","t","p","q","s","d","f","g","h","j","k","l","m","w","x","v","b","n"};
@@ -259,7 +262,7 @@ bool Mot::isNOM(){
 //Fonction qui renvoie vrai si le mot commence par une voyelle
 bool Mot::startVoyelle(){
   string firstLetter(1,mot_[0]);
-  for(unsigned int i = 0 ; i < 6 ; i++){
+  for(unsigned int i = 0 ; i != 7 ; i++){
     if( firstLetter == bib::voyelles[i]) { return true ; break ;}
   }
   return false;
@@ -325,7 +328,7 @@ string bib::returnArticle(Mot& mot, string type){
     }
     article+=" ";
     //Gerer l'elision: voyelle (h a faire)
-    if( (nombre == "s" || nombre == "") && (mot.startVoyelle()) && type == "def" )
+    if( (nombre == "s" || nombre == "") && (mot.startVoyelle() || mot.getfirstletter()=="h") && type == "def" )
     {
       //le/la en l'
       article = "l'";
@@ -364,13 +367,15 @@ int main(){
   //cout<<liste_adj.size()<<endl;
 
   //affiche_mots(liste);
-  Mot nom = bib::randomMot(liste_nom);
-  Mot adj = bib::randomMot(liste_adj);
   //affiche_mots(liste_phon);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
+  for(unsigned int i = 0 ; i < 10 ; i++){
+  Mot nom = bib::randomMot(liste_nom);
+  Mot adj = bib::randomMot(liste_adj);
   string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
   cout<<test<<endl;
+  }
 
 }
