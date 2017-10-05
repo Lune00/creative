@@ -67,7 +67,7 @@ done
 add="${add%?}"
 #Nombre de mots:
 add_table=($add)
-echo -e ".Mots en attente ajoutés depuis le dernier rapport (${green}${#add_table[@]}${reset}):\n$add"
+#echo -e ".Mots en attente ajoutés depuis le dernier rapport (${green}${#add_table[@]}${reset}):\n$add"
 
 echo ""
 enattente=(`cat "$waitlib"`)
