@@ -149,6 +149,7 @@ class bib
     static vector<Mot> return_last_phon_liste(vector<Mot>&,string);
     static Mot randomMot(vector<Mot>&);
     static string returnArticle(Mot&,string);
+    static string returnPartitif(Mot&);
     static string return_adjectif(vector<Mot>& adj, string genre, string nombre);
 };
 
@@ -336,6 +337,21 @@ string bib::returnArticle(Mot& mot, string type){
     return article;
   }
 }
+
+string bib::returnPartitif(Mot& mot)
+{
+  if(!mot.isNOM()) return string();
+  if(mot.getnombre()=="p") return "des";
+  if(mot.startVoyelle()) return "de l'";
+  if(mot.getgenre()=="f")
+  {
+    return "de la";
+  }
+  else
+  {
+    return "du";
+  }
+}
 // MAIN
 
 int main(){
@@ -358,10 +374,11 @@ int main(){
   };
 
   //Tests:
-  vector<Mot> liste_phon = bib::return_last_phon_liste(corpus,"e");
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   vector<Mot> liste_nom = bib::return_grammar_liste(corpus,"NOM");
   vector<Mot> liste_adj = bib::return_grammar_liste(corpus,"ADJ");
+  vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"@");
+  liste_adj = bib::return_last_phon_liste(liste_adj,"@");
   //cout<<liste_nom.size()<<endl;
   //cout<<liste_ver.size()<<endl;
   //cout<<liste_adj.size()<<endl;
@@ -372,9 +389,12 @@ int main(){
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   for(unsigned int i = 0 ; i < 10 ; i++){
-  Mot nom = bib::randomMot(liste_nom);
+  Mot nom = bib::randomMot(liste_phon);
+  Mot nom2 = bib::randomMot(liste_phon);
   Mot adj = bib::randomMot(liste_adj);
   string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
+  string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
+  string test3 = bib::returnArticle(nom,"def") + nom.getmot()+ " et " +bib::returnArticle(nom2,"def") +  nom2.getmot()+  "." ;
   cout<<test<<endl;
   }
 
