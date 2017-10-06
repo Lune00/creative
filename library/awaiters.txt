@@ -1,9 +1,6 @@
 baigner
 eau
-nage
 poisson
-imposant
-peur
 impressionant
 pouvoir
 domination
@@ -437,3 +434,17 @@ opressant
 calme
 absence
 tranquilité
+brasse
+effort
+sauver
+nauffrage
+grandiose
+monumental
+magistral
+intimidant
+symbolique
+effroi
+frayeur
+frisson
+épouvante
+dépression
