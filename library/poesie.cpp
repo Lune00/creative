@@ -82,6 +82,7 @@ class Mot{
     bool startVoyelle();
     string getnombre() {return nombre_;}
     vector<string> getgrammar() { return grammar_;}
+    vector<string> getthemes() { return themes_;}
     string getlastphoneme() { return string (1,phon_.back());}
     string getfirstletter() { return string (1,mot_[0]);}
 };
@@ -151,6 +152,10 @@ class bib
     static string returnArticle(Mot&,string);
     static string returnPartitif(Mot&);
     static string return_adjectif(vector<Mot>& adj, string genre, string nombre);
+    static vector<Mot> return_theme_liste(vector<Mot>&,string);
+    //Fonction qui renvoie un vecteur de Mots de type grammaticl GRAM et d un theme THEME
+    //On utilisera des parametres par defaut: vide pour GRAM et vide pour THEME veut dire "n'impote lesquels"
+    static vector<Mot> return_words(vector<Mot>&,string GRAM, string THEME);
 };
 
 const string bib::phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
@@ -218,6 +223,34 @@ vector<Mot> bib::return_grammar_liste(vector<Mot>& corpus, string grammar)
   }
   return liste;
 }
+//Renvoie les mots correspondant a un theme donne en argument
+vector<Mot> bib::return_theme_liste(vector<Mot>& corpus, string theme)
+{
+  vector<Mot> liste;
+  for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
+    //Recupere vector grammar
+    vector<string> themes = it->getthemes();
+    for(vector<string>::const_iterator it2 = themes.begin() ; it2 != themes.end(); it2++){
+      if( *it2 == theme){
+	liste.push_back(*it);
+	break;
+      }
+    }
+  }
+  return liste;
+}
+
+
+//Renvoie un vecteur de mots correspondant a GRAM (pour l'instant a specifier par utilisateur) et au themes theme(option)
+//Plus tard on fera une fonction qui prend GRAM aussi en defaut (si les deux en defaut, tous les mots)
+//Juste du test pour le moment
+vector<Mot> bib::return_words(vector<Mot>& corpus, string gram , string theme = "")
+{
+  vector<Mot> liste = bib::return_grammar_liste(corpus,gram);
+  liste = bib::return_theme_liste(liste,theme);
+  return liste;
+}
+
 
 //Renvoie un adjectif au hasard accordé en genre et nombre
 string bib::return_adjectif(vector<Mot>& adj, string genre, string nombre)
@@ -247,6 +280,7 @@ void affiche_mots(vector<Mot>& liste){
 //Renvoie un mot au hasard dans un vecteur de mot
 //WARNING pas un bon hasard (provisoire)
 Mot bib::randomMot(vector<Mot>& liste){
+  if(liste.size()==0) return Mot();
   int randomIndex = rand () % liste.size() ;
   return liste[randomIndex];
 }
@@ -370,32 +404,29 @@ int main(){
     if (mylib.eof() ) break;
     //Chaque entree (entree) de la librairie est contenue dans entree
     Mot mot = Mot(entree);
-    corpus.push_back(mot);
-  };
+    corpus.push_back(mot); };
 
   //Tests:
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
-  vector<Mot> liste_nom = bib::return_grammar_liste(corpus,"NOM");
   vector<Mot> liste_adj = bib::return_grammar_liste(corpus,"ADJ");
-  vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"@");
-  liste_adj = bib::return_last_phon_liste(liste_adj,"@");
-  //cout<<liste_nom.size()<<endl;
-  //cout<<liste_ver.size()<<endl;
-  //cout<<liste_adj.size()<<endl;
+  //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
+  vector<Mot> liste_nom = bib::return_words(corpus,"NOM","poésie");
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   for(unsigned int i = 0 ; i < 10 ; i++){
-  Mot nom = bib::randomMot(liste_phon);
-  Mot nom2 = bib::randomMot(liste_phon);
+  Mot nom = bib::randomMot(liste_nom);
+  Mot nom2 = bib::randomMot(liste_nom);
   Mot adj = bib::randomMot(liste_adj);
-  string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
-  string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
+
+  //string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
+  //string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
   string test3 = bib::returnArticle(nom,"def") + nom.getmot()+ " et " +bib::returnArticle(nom2,"def") +  nom2.getmot()+  "." ;
-  cout<<test<<endl;
+  string test = bib::returnArticle(nom,"def") + nom.getmot() + ".";
+  cout<<test3<<endl;
   }
 
 }
