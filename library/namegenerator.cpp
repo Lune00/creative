@@ -27,8 +27,10 @@ class bib
     static const string phon_i[];
     static const string phon_y[];
     static const string phon_u[];
+    static const string phon_o[];
 };
-
+//On appelera chaque phoneme par un indice entier 
+//1 3 25 12 -> traduction en phonement -> element aleatoire dans chaque array
 const string bib::phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
 
 const string bib::voyelles[]= {"a","e","i","o","u","y"};
