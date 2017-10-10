@@ -420,8 +420,8 @@ int main(){
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
-  vector<Mot> liste_nom = bib::return_words(corpus,"NOM");
-  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ");
+  vector<Mot> liste_nom = bib::return_words(corpus,"NOM","navigation");
+  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ","navigation");
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
@@ -429,14 +429,14 @@ int main(){
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   for(unsigned int i = 0 ; i < 10 ; i++){
   Mot nom = bib::randomMot(liste_nom);
-  Mot nom2 = bib::randomMot(liste_nom);
   Mot adj = bib::randomMot(liste_adj);
+  Mot nom2 = bib::randomMot(liste_nom);
 
   string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
   string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
   string test3 = bib::returnArticle(nom,"def") + nom.getmot()+ " et " +bib::returnArticle(nom2,"def") +  nom2.getmot()+  "." ;
   //string test = bib::returnArticle(nom,"def") + nom.getmot() + ".";
-  cout<<test2<<endl;
+  cout<<test<<endl;
   }
 
 }
