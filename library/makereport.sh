@@ -18,6 +18,12 @@ echo ""
 #Themes : nombre et occurences
 #A classer par proportion (%)
 
+#Nombres d'entrees en NOM et ADJ
+echo ".Occurences par classe grammaticale:"
+awk 'BEGIN{FS="\t"}/NOM/{b=b+1} END{print "Nombre de NOM: " b}' $formatedlib
+awk 'BEGIN{FS="\t"}/ADJ/{a=a+1} END{print "Nomnbe de ADJ: "a}' $formatedlib
+awk 'BEGIN{FS="\t"}/VER/{a=a+1} END{print "Nomnbe de VER: "a}' $formatedlib
+
 themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
 themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $themes)
 declare -A asar
