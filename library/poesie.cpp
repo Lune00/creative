@@ -80,6 +80,7 @@ class Mot{
     bool isNOM();
     //Commence par une voyelle?
     bool startVoyelle();
+    bool start(string);
     string getnombre() {return nombre_;}
     vector<string> getgrammar() { return grammar_;}
     vector<string> getthemes() { return themes_;}
@@ -128,6 +129,13 @@ Mot::Mot(string entree)
 
 Mot::~Mot(){};
 
+//REnvoie vrai si le mot commence par lettre,faux sinon
+bool Mot::start(string lettre)
+{
+  if(string(1,mot_[0])==lettre) return true;
+  else
+    return false;
+}
 //Articles definition: ms fs mfp
 //On va ranger des attributs et des fonctions generales dans une classe
 class bib
@@ -378,7 +386,7 @@ string bib::returnPartitif(Mot& mot)
 {
   if(!mot.isNOM()) return string();
   if(mot.getnombre()=="p") return "des";
-  if(mot.startVoyelle()) return "de l'";
+  if(mot.startVoyelle() || mot.start("h")) return "de l'";
   if(mot.getgenre()=="f")
   {
     return "de la";
@@ -412,8 +420,8 @@ int main(){
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
-  vector<Mot> liste_nom = bib::return_words(corpus,"NOM","scientifique");
-  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ","scientifique");
+  vector<Mot> liste_nom = bib::return_words(corpus,"NOM");
+  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ");
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
@@ -425,10 +433,10 @@ int main(){
   Mot adj = bib::randomMot(liste_adj);
 
   string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
-  //string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
+  string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
   string test3 = bib::returnArticle(nom,"def") + nom.getmot()+ " et " +bib::returnArticle(nom2,"def") +  nom2.getmot()+  "." ;
   //string test = bib::returnArticle(nom,"def") + nom.getmot() + ".";
-  cout<<test<<endl;
+  cout<<test2<<endl;
   }
 
 }
