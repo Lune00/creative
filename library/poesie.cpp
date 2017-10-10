@@ -231,7 +231,7 @@ vector<Mot> bib::return_theme_liste(vector<Mot>& corpus, string theme)
     //Recupere vector grammar
     vector<string> themes = it->getthemes();
     for(vector<string>::const_iterator it2 = themes.begin() ; it2 != themes.end(); it2++){
-      if( *it2 == theme){
+      if( *it2 == theme || theme.empty()){
 	liste.push_back(*it);
 	break;
       }
@@ -253,12 +253,13 @@ vector<Mot> bib::return_words(vector<Mot>& corpus, string gram , string theme = 
 
 
 //Renvoie un adjectif au hasard accordé en genre et nombre
+//Si le genre n'est pas précisé (genre="") alors c'est masculin et feminin
 string bib::return_adjectif(vector<Mot>& adj, string genre, string nombre)
 {
   vector<Mot> A_adj;
   //Fais la liste des adj respectant la consigne
   for(vector<Mot>::iterator it = adj.begin(); it != adj.end() ; it++){
-    if( (it->getgenre() == genre) && (it->getnombre()==nombre)){
+    if( (it->getgenre() == genre || (it->getgenre()).empty()) && (it->getnombre()==nombre)){
       A_adj.push_back(*it);
     }
   }
@@ -319,6 +320,7 @@ string bib::returnArticle(Mot& mot, string type){
   else
   {
     //Genre et nombre
+    //Si genre vide : m et f
     //Singulier (s ou chaine vide par defaut), Pluriel (p)
     string nombre = mot.getnombre();
     string genre = mot.getgenre();
@@ -410,8 +412,8 @@ int main(){
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
-  vector<Mot> liste_nom = bib::return_words(corpus,"NOM","légendaire");
-  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ","légendaire");
+  vector<Mot> liste_nom = bib::return_words(corpus,"NOM","scientifique");
+  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ","scientifique");
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
