@@ -20,6 +20,7 @@ echo ""
 
 #Nombres d'entrees en NOM et ADJ
 echo ".Occurences par classe grammaticale:"
+echo ""
 awk 'BEGIN{FS="\t"}/NOM/{b=b+1} END{print "Nombre de NOM: " b}' $formatedlib
 awk 'BEGIN{FS="\t"}/ADJ/{a=a+1} END{print "Nomnbe de ADJ: "a}' $formatedlib
 awk 'BEGIN{FS="\t"}/VER/{a=a+1} END{print "Nomnbe de VER: "a}' $formatedlib
@@ -76,5 +77,5 @@ add_table=($add)
 #echo -e ".Mots en attente ajoutés depuis le dernier rapport (${green}${#add_table[@]}${reset}):\n$add"
 
 echo ""
-enattente=(`cat "$waitlib"`)
-echo -e "${green}.Liste des mots en attente:${reset}\n ${enattente[@]}"
+#enattente=(`cat "$waitlib"`)
+#echo -e "${green}.Liste des mots en attente:${reset}\n ${enattente[@]}"

@@ -420,8 +420,8 @@ int main(){
   vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
   //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
-  vector<Mot> liste_nom = bib::return_words(corpus,"NOM","navigation");
-  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ","navigation");
+  vector<Mot> liste_nom = bib::return_words(corpus,"NOM");
+  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ");
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
