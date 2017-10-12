@@ -5,3 +5,8 @@ sed -e '/^\<motif\>/d' file -> supprime les lignes commencant par le motif motif
 linetodel=$(awk '/^a$/ {print NR}' tmp2.txt) && sed -i "${linetodel}d" tmp2.txt   -> avec awk on recupere la ligne ou le motif exact 'a' est trouvé (permet de distinguer a et a capella par exemple grace aux records de awk), et sed vient supprimer sur place la ligne dans le fichier tmp2.txt. C'est la seule maniere que j'ai trouvé de supprimer 'a' et non 'a capella' avec)
 
 sed -e '/^\<motif\t\>/d' tmp2.txt.  -> on peut utiliser les delimiteurs pour discriminer des cas (par exemple a et a capella sur la premiere colonne si les champs sont séparés par une tabulation)
+sed 's/^\<cho\>/banane/g' tmp.txt > tmp2.txt -> remplace les debuts de ligne commencant (exact match) par cho et remplace par banane et flux redirigé vers tmp2.txt
+
+#Maintenant si je veux modifier plusieurs lignes d'un coup, puis enregistrer l'edition du flux dans un fichier?
+#Je remplace SAMPLE par banane et WALL par banane
+sed -e 's/^\<SAMPLE\>/banane/g ; s/^\<WALL\>/banane/g' tmp.txt > tmp2.txt
