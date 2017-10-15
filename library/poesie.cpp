@@ -425,18 +425,37 @@ int main(){
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
+
+  //Pour les mots se terminant en "s" il faut regarder les 2 dernieres phonemes pour voir une rime
+  //ex: ambiance / colosse non clairvoyance / distance oui
+  liste_nom = bib::return_last_phon_liste(liste_nom,"e");
+  liste_adj = bib::return_last_phon_liste(liste_adj,"5");
+
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   for(unsigned int i = 0 ; i < 10 ; i++){
-  Mot nom = bib::randomMot(liste_nom);
-  Mot adj = bib::randomMot(liste_adj);
+
+  Mot nom1 = bib::randomMot(liste_nom);
   Mot nom2 = bib::randomMot(liste_nom);
 
-  string test = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::return_adjectif(liste_adj,nom.getgenre(),nom.getnombre())+ "." ;
-  string test2 = bib::returnArticle(nom,"def") + nom.getmot()+ " " + bib::returnPartitif(nom2) + " "+ nom2.getmot()+  "." ;
-  string test3 = bib::returnArticle(nom,"def") + nom.getmot()+ " et " +bib::returnArticle(nom2,"def") +  nom2.getmot()+  "." ;
-  //string test = bib::returnArticle(nom,"def") + nom.getmot() + ".";
-  cout<<test<<endl;
+  //string adj1 = bib::return_adjectif(liste_adj, nom1.getgenre(), nom1.getnombre());
+  //string adj2 = bib::return_adjectif(liste_adj, nom2.getgenre(), nom2.getnombre());
+
+  string adj1 = bib::return_adjectif(liste_adj, "m", "s");
+  string adj2 = bib::return_adjectif(liste_adj, "m", "s");
+
+  string s1 = bib::returnArticle(nom1,"def") + nom1.getmot() ;
+  string s2 = bib::returnArticle(nom2,"def") + nom2.getmot() ;
+
+  //cout<<"        -        "<<endl;
+  //cout<<"Qui n'a jamais vu "<<s1<<","<<endl;
+  //cout<<"Jamais ne sera "<<adj1<<","<<endl;
+  //cout<<"Qui n'a jamais vu "<<s2<<","<<endl;
+  //cout<<"Jamais ne sera "<<adj2<<"."<<endl;
+  //cout<<"        -        "<<endl;
+  cout<<s1<<" et "<<s2<<""<<endl;
+
+
   }
 
 }
