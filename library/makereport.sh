@@ -76,6 +76,31 @@ add="${add%?}"
 add_table=($add)
 #echo -e ".Mots en attente ajoutés depuis le dernier rapport (${green}${#add_table[@]}${reset}):\n$add"
 
+
+#Last phoneme table occurence
+
+#Recuperer toutes les phonetiques des entresse
+phonetiques=$(awk 'BEGIN{FS="\t";} {print $3}' $formatedlib)
+#Recuperer le dernier caractere
+last_phon=()
+for i in ${phonetiques}
+do
+  lp="${i: -1}"
+  last_phon+=("$lp")
+done
+
+#Compter avec une associative arrau
+declare -A asar_lp
+for i in ${last_phon[@]}; do asar_lp[$i]=$(( ${asar_lp[$i]}+1 )); done
+echo -e "\n.Occurences par phonème:\n"
+for i in ${phon_table[@]}
+do
+  printf "${yellow}%-10s${reset}\tNombre d'entrées: ${green}%3s${reset}\n" "$i" "${asar_lp[$i]}"
+done
+
+echo ""
+
+
 echo ""
 #enattente=(`cat "$waitlib"`)
 #echo -e "${green}.Liste des mots en attente:${reset}\n ${enattente[@]}"
