@@ -75,7 +75,6 @@ class Mot{
     string getmot() {return mot_;}
     string getgenre() {return genre_;}
     bool isNOM();
-    //Commence par une voyelle?
     bool startVoyelle();
     bool start(string);
     string getnombre() {return nombre_;}
@@ -87,7 +86,6 @@ class Mot{
 };
 
 Mot::Mot(){};
-
 //Constructeur d'un mot avec une entree de la bib
 //L'ordre des champs est donne par le formatage de la librairie (libconfig.sh)
 //Il doit y avoir 12 champs!
@@ -100,7 +98,6 @@ Mot::Mot(string entree)
     cerr<<"Entrée ne contient pas 12 champs!"<<endl;
     return;
   }
-
   mot_  = tokens[0];
   lemme_= tokens[1];
   phon_ = tokens[2];
@@ -143,20 +140,14 @@ bool Mot::isNOM(){
   return false;
 }
 
-//Fonction qui renvoie vrai si le mot commence par une voyelle
-bool Mot::startVoyelle(){
-  string firstLetter(1,mot_[0]);
-  for(unsigned int i = 0 ; i != 7 ; i++){
-    if( firstLetter == bib::voyelles[i]) { return true ; break ;}
-  }
-  return false;
-}
-
 //On range des attributs et des fonctions generales dans une classe
 //La classe bib est une classe Bibliotheque, elle sert a manipuler les Mots
 
 class bib
 {
+  private:
+    //Contient la bilbiotheque
+    static std::vector<Mot> corpus_;
   public:
     bib();
     //Variables:
@@ -169,23 +160,37 @@ class bib
     static const string definis[];
     static const string indefinis[];
     //Fonctions:
+    //Initialise la librairie a partir du fichier mylib
+    static void initlib(string mylib);
+
+    // -- --------  -- - - 
+    //Fonctions utlisateur:
+    // -- --------  -- - - 
     static bool check_phonetique(string);
     static bool check_grammar(string);
-    static vector<Mot> return_grammar_liste(vector<Mot>&,string);
-    static vector<Mot> return_last_phon_liste(vector<Mot>&,string);
+
+    //Fonctions globales ( travaillent a partir de coprus_ par defaut)
+    //Le dernier argument est la liste de Mots sur laquelle on travaille, si elle n'est pas précisée on travaille directement sur corpus_(ensemble)
     static Mot randomMot(vector<Mot>&);
-    static string returnArticle(Mot&,string);
-    static string returnPartitif(Mot&);
-    static string return_adjectif(vector<Mot>& adj, string genre, string nombre);
-    static vector<Mot> return_theme_liste(vector<Mot>&,string);
+    static vector<Mot> return_grammar_liste(string, vector<Mot>&);
+    static vector<Mot> return_last_phon_liste(string, vector<Mot>&);
+    static vector<Mot> return_theme_liste(string, vector<Mot>& );
+
     //Fonction qui renvoie un vecteur de Mots de type grammaticl GRAM et d un theme THEME
     //On utilisera des parametres par defaut: vide pour GRAM et vide pour THEME veut dire "n'impote lesquels"
-    static vector<Mot> return_words(vector<Mot>&,string GRAM, string THEME);
+    static vector<Mot> return_words(string GRAM, string THEME, vector<Mot>& );
+    static string return_adjectif(string genre, string nombre,vector<Mot>&);
+    static string returnArticle(Mot&,string);
+    static string returnPartitif(Mot&);
+
     //Renvoie un vecteur de Mots contenant les synonymes de Mot qui ont une entree dans la bibliotheque
     //Il analyse le vecteur string de syn du Mot(cree au constructeur par lecture bib)
     //Ne prend que les syn qui ont également une entree dans bib
     static vector<Mot> return_synonymes(Mot&);
 };
+
+
+vector<Mot> bib::corpus_;
 
 //Attributs constants de la bilbliotheque:
 const string bib::phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
@@ -200,6 +205,21 @@ const string bib::voyelles[]= {"a","e","i","o","u","y"};
 const string bib::VOYELLES[]= {"A","E","I","O","U","Y"};
 const string bib::consonnes[]= {"z","r","t","p","q","s","d","f","g","h","j","k","l","m","w","x","v","b","n"};
 const string bib::CONSONNES[]= {"Z","R","T","P","Q","S","D","F","G","H","J","K","L","M","W","X","V","B","N"};
+
+
+//Constructeur lib
+void bib::initlib(string filelib){
+  //Lecture de la librairie et construction du corpus
+  ifstream mylib(filelib);
+  while(true){
+    string entree;
+    getline(mylib,entree);
+    if (mylib.eof() ) break;
+    //Chaque entree (entree) de la librairie est contenue dans entree
+    Mot mot = Mot(entree);
+    corpus_.push_back(mot); };
+}
+
 
 //Renvoie un vecteur de Mots contenant les synonymes AYANT UNE ENTREE DANS LA BIB du Mot M passé en argument
 vector<Mot> bib::return_synonymes(Mot& M){
@@ -237,22 +257,22 @@ bool bib::check_grammar(string grammar){
 
 //Fonction qui renvoie un vecteur de mots qui se terminent par la phoneme phoneme
 //Si la dernier phoneme est "e" il y a un porbleme, il faut aussi l'avant derniere
-vector<Mot> bib::return_last_phon_liste(vector<Mot>& corpus, string phoneme)
+vector<Mot> bib::return_last_phon_liste(string phoneme, vector<Mot>& mots = corpus_)
 {
   vector<Mot> liste;
   if( !bib::check_phonetique(phoneme) ) return liste;
-  for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
+  for(vector<Mot>::iterator it = mots.begin(); it != mots.end() ; it++){
     if( it->getlastphoneme() == phoneme) liste.push_back(*it);
   }
   return liste;
 }
 
 //Renvoie les mots d'une classe grammaticale donnee
-vector<Mot> bib::return_grammar_liste(vector<Mot>& corpus, string grammar)
+vector<Mot> bib::return_grammar_liste(string grammar,vector<Mot>& mots = corpus_)
 {
   vector<Mot> liste;
   if( !bib::check_grammar(grammar) ) return liste;
-  for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
+  for(vector<Mot>::iterator it = mots.begin(); it != mots.end() ; it++){
     //Recupere vector grammar
     vector<string> vgrammar = it->getgrammar();
     for(vector<string>::const_iterator it2 = vgrammar.begin() ; it2 != vgrammar.end(); it2++){
@@ -264,11 +284,12 @@ vector<Mot> bib::return_grammar_liste(vector<Mot>& corpus, string grammar)
   }
   return liste;
 }
+
 //Renvoie les mots correspondant a un theme donne en argument
-vector<Mot> bib::return_theme_liste(vector<Mot>& corpus, string theme)
+vector<Mot> bib::return_theme_liste(string theme,vector<Mot>& mots = corpus_)
 {
   vector<Mot> liste;
-  for(vector<Mot>::iterator it = corpus.begin(); it != corpus.end() ; it++){
+  for(vector<Mot>::iterator it = mots.begin(); it != mots.end() ; it++){
     //Recupere vector grammar
     vector<string> themes = it->getthemes();
     for(vector<string>::const_iterator it2 = themes.begin() ; it2 != themes.end(); it2++){
@@ -281,24 +302,23 @@ vector<Mot> bib::return_theme_liste(vector<Mot>& corpus, string theme)
   return liste;
 }
 
-
 //Renvoie un vecteur de mots correspondant a GRAM (pour l'instant a specifier par utilisateur) et au themes theme(option)
 //Plus tard on fera une fonction qui prend GRAM aussi en defaut (si les deux en defaut, tous les mots)
 //Juste du test pour le moment
-vector<Mot> bib::return_words(vector<Mot>& corpus, string gram , string theme = "")
+vector<Mot> bib::return_words(string gram , string theme = "",vector<Mot>& mots= corpus_)
 {
-  vector<Mot> liste = bib::return_grammar_liste(corpus,gram);
-  liste = bib::return_theme_liste(liste,theme);
+  vector<Mot> liste = bib::return_grammar_liste(gram,mots);
+  liste = bib::return_theme_liste(theme,mots);
   return liste;
 }
 
 //Renvoie un adjectif au hasard accordé en genre et nombre
 //Si le genre n'est pas précisé (genre="") alors c'est masculin ET feminin (ex: aristocratique)
-string bib::return_adjectif(vector<Mot>& adj, string genre, string nombre)
+string bib::return_adjectif(string genre, string nombre, vector<Mot>& mots = corpus_ )
 {
   vector<Mot> A_adj;
   //Fais la liste des adj respectant la consigne
-  for(vector<Mot>::iterator it = adj.begin(); it != adj.end() ; it++){
+  for(vector<Mot>::iterator it = mots.begin(); it != mots.end() ; it++){
     if( (it->getgenre() == genre || (it->getgenre()).empty()) && (it->getnombre()==nombre)){
       A_adj.push_back(*it);
     }
@@ -408,6 +428,15 @@ string bib::returnPartitif(Mot& mot)
   }
 }
 
+//Fonction qui renvoie vrai si le mot commence par une voyelle
+bool Mot::startVoyelle(){
+  string firstLetter(1,mot_[0]);
+  for(unsigned int i = 0 ; i != 7 ; i++){
+    if( firstLetter == bib::voyelles[i]) { return true ; break ;}
+  }
+  return false;
+}
+
 
 //   % % %               %              %         %
 
@@ -420,57 +449,48 @@ int main(){
   srand (time(NULL));
 
   cout<<"Bonjour poésie."<<endl;
-  std::vector<Mot> corpus;
-  ifstream mylib(mylibrary);
+  //Initialisation mylib:
+  bib::initlib(mylibrary);
 
-
-  //Lecture de la librairie et construction du corpus
-  while(true){
-    string entree;
-    getline(mylib,entree);
-    if (mylib.eof() ) break;
-    //Chaque entree (entree) de la librairie est contenue dans entree
-    Mot mot = Mot(entree);
-    corpus.push_back(mot); };
 
   //Tests:
-  vector<Mot> liste_ver = bib::return_grammar_liste(corpus,"VER");
+  vector<Mot> liste_ver = bib::return_grammar_liste("VER");
   //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
-  vector<Mot> liste_nom = bib::return_words(corpus,"NOM");
-  vector<Mot> liste_adj = bib::return_words(corpus,"ADJ");
+  vector<Mot> liste_nom = bib::return_words("NOM");
+  vector<Mot> liste_adj = bib::return_words("ADJ");
   //affiche_mots(liste);
   //affiche_mots(liste_phon);
 
 
   //Pour les mots se terminant en "s" il faut regarder les 2 dernieres phonemes pour voir une rime
   //ex: ambiance / colosse non clairvoyance / distance oui
-  liste_nom = bib::return_last_phon_liste(liste_nom,"e");
-  liste_adj = bib::return_last_phon_liste(liste_adj,"5");
+  liste_nom = bib::return_last_phon_liste("e",liste_nom);
+  liste_adj = bib::return_last_phon_liste("5",liste_adj);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   for(unsigned int i = 0 ; i < 10 ; i++){
 
-  Mot nom1 = bib::randomMot(liste_nom);
-  Mot nom2 = bib::randomMot(liste_nom);
+    Mot nom1 = bib::randomMot(liste_nom);
+    Mot nom2 = bib::randomMot(liste_nom);
 
-  //string adj1 = bib::return_adjectif(liste_adj, nom1.getgenre(), nom1.getnombre());
-  //string adj2 = bib::return_adjectif(liste_adj, nom2.getgenre(), nom2.getnombre());
+    //string adj1 = bib::return_adjectif(liste_adj, nom1.getgenre(), nom1.getnombre());
+    //string adj2 = bib::return_adjectif(liste_adj, nom2.getgenre(), nom2.getnombre());
 
-  string adj1 = bib::return_adjectif(liste_adj, "m", "s");
-  string adj2 = bib::return_adjectif(liste_adj, "m", "s");
+    string adj1 = bib::return_adjectif("m", "s", liste_adj);
+    string adj2 = bib::return_adjectif("m", "s", liste_adj);
 
-  string s1 = bib::returnArticle(nom1,"def") + nom1.getmot() ;
-  string s2 = bib::returnArticle(nom2,"def") + nom2.getmot() ;
+    string s1 = bib::returnArticle(nom1,"def") + nom1.getmot() ;
+    string s2 = bib::returnArticle(nom2,"def") + nom2.getmot() ;
 
-  //cout<<"        -        "<<endl;
-  //cout<<"Qui n'a jamais vu "<<s1<<","<<endl;
-  //cout<<"Jamais ne sera "<<adj1<<","<<endl;
-  //cout<<"Qui n'a jamais vu "<<s2<<","<<endl;
-  //cout<<"Jamais ne sera "<<adj2<<"."<<endl;
-  //cout<<"        -        "<<endl;
-  cout<<s1<<" et "<<s2<<""<<endl;
+    //cout<<"        -        "<<endl;
+    //cout<<"Qui n'a jamais vu "<<s1<<","<<endl;
+    //cout<<"Jamais ne sera "<<adj1<<","<<endl;
+    //cout<<"Qui n'a jamais vu "<<s2<<","<<endl;
+    //cout<<"Jamais ne sera "<<adj2<<"."<<endl;
+    //cout<<"        -        "<<endl;
+    cout<<s1<<" et "<<s2<<""<<endl;
 
   }
 
