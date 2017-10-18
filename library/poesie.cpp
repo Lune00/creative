@@ -72,7 +72,7 @@ class Mot{
     Mot();
     Mot(string);
     ~Mot();
-    string getmot() {return mot_;}
+    string getmot() const {return mot_;}
     string getgenre() {return genre_;}
     bool isNOM();
     bool startVoyelle();
@@ -196,6 +196,9 @@ class bib
     //Il analyse le vecteur string de syn du Mot(cree au constructeur par lecture bib)
     //Ne prend que les syn qui ont également une entree dans bib
     static vector<Mot> return_synonymes(Mot&);
+
+    //Renvoie vrai si le mot_ existe comme entree dans la librairie
+    static bool findentry(string mot_);
 };
 
 vector<Mot> bib::corpus_;
@@ -227,6 +230,16 @@ void bib::initlib(string filelib){
     corpus_.push_back(mot); };
 }
 
+//Renvoie vrai si le mot mot est une entree de la bilbiotheque
+bool bib::findentry(string mot){
+  for(vector<Mot>::const_iterator it = corpus_.begin() ; it != corpus_.end(); it++){
+    //Comment gerer les homonymes sans classe grammaticale? effet indésirible a surveiller
+    if(mot == it->getmot()){
+      return  true;
+    }
+  }
+  return false;
+}
 
 //TODO
 //Renvoie un vecteur de Mots contenant les synonymes AYANT UNE ENTREE DANS LA BIB du Mot M passé en argument
@@ -235,7 +248,9 @@ vector<Mot> bib::return_synonymes(Mot& M){
   vector<string> synonymes = M.getsynonymes();
   if( synonymes.size() == 0 ) return Synonymes;
   for(std::vector<string>::const_iterator it = synonymes.begin(); it != synonymes.end(); it++){
-
+    for(std::vector<Mot>::const_iterator itcorp = corpus_.begin() ; itcorp != corpus_.end(); itcorp++){
+      if( (*it)  == itcorp->getmot()) Synonymes.push_back(*itcorp);
+    }
   }
   return Synonymes;
 }
@@ -338,7 +353,7 @@ string bib::return_adjectif(string genre, string nombre, vector<Mot>& mots = cor
 }
 
 //Affiche sur la sortie standard les mots d'un vecteur de mots
-void affiche_mots(vector<Mot>& liste){
+void affiche_mots(vector<Mot> liste){
   for(vector<Mot>::iterator it = liste.begin(); it != liste.end() ; it++){
     cout<<it->getmot()<<endl;
   }
@@ -460,16 +475,11 @@ int main(){
   //Initialisation mylib:
   bib::initlib(mylibrary);
 
-
   //Tests:
   vector<Mot> liste_ver = bib::return_grammar_liste("VER");
-  //vector<Mot> liste_phon = bib::return_last_phon_liste(liste_nom,"a");
 
   vector<Mot> liste_nom = bib::return_words("NOM");
   vector<Mot> liste_adj = bib::return_words("ADJ");
-  //affiche_mots(liste);
-  //affiche_mots(liste_phon);
-
 
   //Pour les mots se terminant en "s" il faut regarder les 2 dernieres phonemes pour voir une rime
   //ex: ambiance / colosse non clairvoyance / distance oui
@@ -483,8 +493,8 @@ int main(){
     Mot nom1 = bib::randomMot(liste_nom);
     Mot nom2 = bib::randomMot(liste_nom);
 
-    //string adj1 = bib::return_adjectif(liste_adj, nom1.getgenre(), nom1.getnombre());
-    //string adj2 = bib::return_adjectif(liste_adj, nom2.getgenre(), nom2.getnombre());
+    cout<<"Synonymes de "<<nom1.getmot()<<endl;
+    affiche_mots(bib::return_synonymes(nom1));
 
     string adj1 = bib::return_adjectif("m", "s", liste_adj);
     string adj2 = bib::return_adjectif("m", "s", liste_adj);
@@ -498,7 +508,6 @@ int main(){
     //cout<<"Qui n'a jamais vu "<<s2<<","<<endl;
     //cout<<"Jamais ne sera "<<adj2<<"."<<endl;
     //cout<<"        -        "<<endl;
-    cout<<s1<<" et "<<s2<<""<<endl;
 
   }
 
