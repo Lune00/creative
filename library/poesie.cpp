@@ -77,6 +77,7 @@ class Mot{
     bool isNOM();
     bool startVoyelle();
     bool start(string);
+    bool startAccent(); // Provisoire: si commence par accent, cast en int est negatif
     string getnombre() {return nombre_;}
     vector<string> getgrammar() { return grammar_;}
     vector<string> getthemes() { return themes_;}
@@ -131,6 +132,14 @@ bool Mot::start(string lettre)
   else
     return false;
 }
+
+bool Mot::startAccent()
+{
+  if( (int)mot_[0]<0 ) return true;
+  else
+    return false;
+}
+
 //Fonction qui renvoie vrai si le mot est un NOM
 bool Mot::isNOM(){
   for(vector<string>::const_iterator it = grammar_.begin(); it != grammar_.end(); it++)
@@ -189,7 +198,6 @@ class bib
     static vector<Mot> return_synonymes(Mot&);
 };
 
-
 vector<Mot> bib::corpus_;
 
 //Attributs constants de la bilbliotheque:
@@ -206,10 +214,9 @@ const string bib::VOYELLES[]= {"A","E","I","O","U","Y"};
 const string bib::consonnes[]= {"z","r","t","p","q","s","d","f","g","h","j","k","l","m","w","x","v","b","n"};
 const string bib::CONSONNES[]= {"Z","R","T","P","Q","S","D","F","G","H","J","K","L","M","W","X","V","B","N"};
 
-
-//Constructeur lib
+//Constructeur de la librairie (initialise corpus_)
 void bib::initlib(string filelib){
-  //Lecture de la librairie et construction du corpus
+  //Lecture de la librairie et construction du corpus_
   ifstream mylib(filelib);
   while(true){
     string entree;
@@ -221,6 +228,7 @@ void bib::initlib(string filelib){
 }
 
 
+//TODO
 //Renvoie un vecteur de Mots contenant les synonymes AYANT UNE ENTREE DANS LA BIB du Mot M passé en argument
 vector<Mot> bib::return_synonymes(Mot& M){
   vector<Mot> Synonymes;
@@ -403,8 +411,8 @@ string bib::returnArticle(Mot& mot, string type){
       }
     }
     article+=" ";
-    //Gerer l'elision: voyelle (h a faire)
-    if( (nombre == "s" || nombre == "") && (mot.startVoyelle() || mot.getfirstletter()=="h") && type == "def" )
+    //Gerer l'elision: voyelle (h a faire), le dernier cast en int check si accent (donc voyelle)
+    if( (nombre == "s" || nombre == "") && (mot.startVoyelle() || mot.getfirstletter()=="h" || mot.startAccent()) && type == "def" )
     {
       //le/la en l'
       article = "l'";
