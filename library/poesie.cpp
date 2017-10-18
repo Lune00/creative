@@ -23,11 +23,8 @@ using namespace std;
 //Ne pas oublier de partir du titre (un nom + un adjectif + un registre + un theme)
 //Chercher synonymes, lies, et random
 
-
-
 // Global functions
 vector<std::string> parsestring(string, string);
-
 vector<std::string> parsestring(string stringtoparse, string delimiter)
 {
   vector<std::string> tokens;
@@ -84,6 +81,7 @@ class Mot{
     string getnombre() {return nombre_;}
     vector<string> getgrammar() { return grammar_;}
     vector<string> getthemes() { return themes_;}
+    vector<string> getsynonymes() { return syn_;}
     string getlastphoneme() { return string (1,phon_.back());}
     string getfirstletter() { return string (1,mot_[0]);}
 };
@@ -136,8 +134,27 @@ bool Mot::start(string lettre)
   else
     return false;
 }
-//Articles definition: ms fs mfp
-//On va ranger des attributs et des fonctions generales dans une classe
+//Fonction qui renvoie vrai si le mot est un NOM
+bool Mot::isNOM(){
+  for(vector<string>::const_iterator it = grammar_.begin(); it != grammar_.end(); it++)
+  {
+    if (*it == "NOM") { return true ; break ;}
+  }
+  return false;
+}
+
+//Fonction qui renvoie vrai si le mot commence par une voyelle
+bool Mot::startVoyelle(){
+  string firstLetter(1,mot_[0]);
+  for(unsigned int i = 0 ; i != 7 ; i++){
+    if( firstLetter == bib::voyelles[i]) { return true ; break ;}
+  }
+  return false;
+}
+
+//On range des attributs et des fonctions generales dans une classe
+//La classe bib est une classe Bibliotheque, elle sert a manipuler les Mots
+
 class bib
 {
   public:
@@ -164,16 +181,18 @@ class bib
     //Fonction qui renvoie un vecteur de Mots de type grammaticl GRAM et d un theme THEME
     //On utilisera des parametres par defaut: vide pour GRAM et vide pour THEME veut dire "n'impote lesquels"
     static vector<Mot> return_words(vector<Mot>&,string GRAM, string THEME);
+    //Renvoie un vecteur de Mots contenant les synonymes de Mot qui ont une entree dans la bibliotheque
+    //Il analyse le vecteur string de syn du Mot(cree au constructeur par lecture bib)
+    //Ne prend que les syn qui ont également une entree dans bib
+    static vector<Mot> return_synonymes(Mot&);
 };
 
+//Attributs constants de la bilbliotheque:
 const string bib::phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
-
 const string bib::grammar_table[]={"NOM","VER","ADJ"};
-
-//0 masculin singulier/ 1 feminin singulier / 2 pluriel
+//Code(format): 0 masculin singulier/ 1 feminin singulier / 2 pluriel
 const string bib::definis[]= {"le","la","les"};
 const string bib::indefinis[]= {"un","une","des"};
-
 //Toutes les fonctions relatives consonnes/voyelles fonctionneront sur le fait que les éléments sont dans le meme ordre
 //Relfechir a comment gerer les accents dans les comparaisons, les opérations.
 //IL va falloir Unicode, une syntaxe.
@@ -182,6 +201,18 @@ const string bib::VOYELLES[]= {"A","E","I","O","U","Y"};
 const string bib::consonnes[]= {"z","r","t","p","q","s","d","f","g","h","j","k","l","m","w","x","v","b","n"};
 const string bib::CONSONNES[]= {"Z","R","T","P","Q","S","D","F","G","H","J","K","L","M","W","X","V","B","N"};
 
+//Renvoie un vecteur de Mots contenant les synonymes AYANT UNE ENTREE DANS LA BIB du Mot M passé en argument
+vector<Mot> bib::return_synonymes(Mot& M){
+  vector<Mot> Synonymes;
+  vector<string> synonymes = M.getsynonymes();
+  if( synonymes.size() == 0 ) return Synonymes;
+  for(std::vector<string>::const_iterator it = synonymes.begin(); it != synonymes.end(); it++){
+
+  }
+  return Synonymes;
+}
+
+//Cette fonction sert juste a verifier la phoneme mise en input par l'utilisateur
 //Checker la phonetique pour une phoneme donee (la phonetique de la librairie est deja checkee par la librairie)
 //en comparant a phon_table (39 phonemes, a verifier)
 bool bib::check_phonetique(string phoneme){
@@ -193,6 +224,7 @@ bool bib::check_phonetique(string phoneme){
   return isfound;
 }
 
+//Verifie input utilisateur quand il interroge bib
 //Check classe grammaticale
 bool bib::check_grammar(string grammar){
   bool isfound = false;
@@ -204,6 +236,7 @@ bool bib::check_grammar(string grammar){
 }
 
 //Fonction qui renvoie un vecteur de mots qui se terminent par la phoneme phoneme
+//Si la dernier phoneme est "e" il y a un porbleme, il faut aussi l'avant derniere
 vector<Mot> bib::return_last_phon_liste(vector<Mot>& corpus, string phoneme)
 {
   vector<Mot> liste;
@@ -259,9 +292,8 @@ vector<Mot> bib::return_words(vector<Mot>& corpus, string gram , string theme = 
   return liste;
 }
 
-
 //Renvoie un adjectif au hasard accordé en genre et nombre
-//Si le genre n'est pas précisé (genre="") alors c'est masculin et feminin
+//Si le genre n'est pas précisé (genre="") alors c'est masculin ET feminin (ex: aristocratique)
 string bib::return_adjectif(vector<Mot>& adj, string genre, string nombre)
 {
   vector<Mot> A_adj;
@@ -277,39 +309,18 @@ string bib::return_adjectif(vector<Mot>& adj, string genre, string nombre)
   return (A_adj[randomIndex]).getmot();
 }
 
-
-
 //Affiche sur la sortie standard les mots d'un vecteur de mots
 void affiche_mots(vector<Mot>& liste){
   for(vector<Mot>::iterator it = liste.begin(); it != liste.end() ; it++){
     cout<<it->getmot()<<endl;
   }
 }
-
 //Renvoie un mot au hasard dans un vecteur de mot
 //WARNING pas un bon hasard (provisoire)
 Mot bib::randomMot(vector<Mot>& liste){
   if(liste.size()==0) return Mot();
   int randomIndex = rand () % liste.size() ;
   return liste[randomIndex];
-}
-
-//Fonction qui renvoie vrai si le mot est un NOM
-bool Mot::isNOM(){
-  for(vector<string>::const_iterator it = grammar_.begin(); it != grammar_.end(); it++)
-  {
-    if (*it == "NOM") { return true ; break ;}
-  }
-  return false;
-}
-
-//Fonction qui renvoie vrai si le mot commence par une voyelle
-bool Mot::startVoyelle(){
-  string firstLetter(1,mot_[0]);
-  for(unsigned int i = 0 ; i != 7 ; i++){
-    if( firstLetter == bib::voyelles[i]) { return true ; break ;}
-  }
-  return false;
 }
 
 //Prend le mot et le type (défini, indéfini, partitif, démonstratif...)
@@ -396,6 +407,12 @@ string bib::returnPartitif(Mot& mot)
     return "du";
   }
 }
+
+
+//   % % %               %              %         %
+
+// ESSAIS
+
 // MAIN
 
 int main(){
@@ -454,7 +471,6 @@ int main(){
   //cout<<"Jamais ne sera "<<adj2<<"."<<endl;
   //cout<<"        -        "<<endl;
   cout<<s1<<" et "<<s2<<""<<endl;
-
 
   }
 
