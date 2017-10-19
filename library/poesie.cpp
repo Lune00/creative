@@ -96,7 +96,7 @@ Mot::Mot(string entree)
   vector<string> tokens = parsestring(entree,"\t");
 
   if( tokens.size() < 12 ) {
-    cerr<<"Entrée ne contient pas 12 champs!"<<endl;
+    cerr<<"Entrée -"<<entree<<"- ne contient pas 12 champs!"<<endl;
     return;
   }
   mot_  = tokens[0];
@@ -188,7 +188,7 @@ class bib
     //Fonction qui renvoie un vecteur de Mots de type grammaticl GRAM et d un theme THEME
     //On utilisera des parametres par defaut: vide pour GRAM et vide pour THEME veut dire "n'impote lesquels"
     static vector<Mot> return_words(string GRAM, string THEME, vector<Mot>& );
-    static string return_adjectif(string genre, string nombre,vector<Mot>&);
+    static string return_adjectif(Mot,vector<Mot>&);
     static string returnArticle(Mot&,string);
     static string returnPartitif(Mot&);
 
@@ -331,14 +331,16 @@ vector<Mot> bib::return_theme_liste(string theme,vector<Mot>& mots = corpus_)
 vector<Mot> bib::return_words(string gram , string theme = "",vector<Mot>& mots= corpus_)
 {
   vector<Mot> liste = bib::return_grammar_liste(gram,mots);
-  liste = bib::return_theme_liste(theme,mots);
+  liste = bib::return_theme_liste(theme,liste);
   return liste;
 }
 
 //Renvoie un adjectif au hasard accordé en genre et nombre
 //Si le genre n'est pas précisé (genre="") alors c'est masculin ET feminin (ex: aristocratique)
-string bib::return_adjectif(string genre, string nombre, vector<Mot>& mots = corpus_ )
+string bib::return_adjectif(Mot mot, vector<Mot>& mots = corpus_ )
 {
+  string genre = mot.getgenre();
+  string nombre = mot.getnombre();
   vector<Mot> A_adj;
   //Fais la liste des adj respectant la consigne
   for(vector<Mot>::iterator it = mots.begin(); it != mots.end() ; it++){
@@ -476,31 +478,44 @@ int main(){
   bib::initlib(mylibrary);
 
   //Tests:
-  vector<Mot> liste_ver = bib::return_grammar_liste("VER");
-
-  vector<Mot> liste_nom = bib::return_words("NOM");
-  vector<Mot> liste_adj = bib::return_words("ADJ");
+  //vector<Mot> liste_ver = bib::return_grammar_liste("VER");
+  //IL faudrait pouvoir donner plusieurs themes
+  vector<Mot> liste_nom = bib::return_words("NOM","navigation");
+  vector<Mot> liste_adj = bib::return_words("ADJ","navigation");
+  cout<<liste_nom.size()<<endl;
+  cout<<liste_adj.size()<<endl;
+  Mot nom1 = bib::randomMot(liste_nom);
+  cout<<"*"<<endl;
+  Mot adj = bib::return_adjectif(nom1,liste_adj);
+  cout<<"*"<<endl;
 
   //Pour les mots se terminant en "s" il faut regarder les 2 dernieres phonemes pour voir une rime
   //ex: ambiance / colosse non clairvoyance / distance oui
-  liste_nom = bib::return_last_phon_liste("e",liste_nom);
-  liste_adj = bib::return_last_phon_liste("5",liste_adj);
+  //liste_nom = bib::return_last_phon_liste("e",liste_nom);
+  //liste_adj = bib::return_last_phon_liste("5",liste_adj);
 
   //Faire une classe qui gere les articles (fem/mas/demonstratifs/L' au lieu de l'...)
   //IL prend en entree la Mot (genre, le nombre et premiere lettre) et la nature(défini par l'utilisateur)
   for(unsigned int i = 0 ; i < 10 ; i++){
 
-    Mot nom1 = bib::randomMot(liste_nom);
-    Mot nom2 = bib::randomMot(liste_nom);
+    Mot nom1, nom2, adj ;
 
-    cout<<"Synonymes de "<<nom1.getmot()<<endl;
-    affiche_mots(bib::return_synonymes(nom1));
+    while( nom1.getmot() == nom2.getmot()){
+    nom1 = bib::randomMot(liste_nom);
+    nom2 = bib::randomMot(liste_nom);
+    }    
+    cout<<bib::returnArticle(nom1,"def")+ nom1.getmot() +" et "+bib::returnArticle(nom2,"def") + nom2.getmot()<<endl;
+    cout<<bib::returnArticle(nom1,"def")+ nom1.getmot()<< " "<<adj.getmot()<<endl;
+    //cout<<bib::returnArticle(nom1,"def")+ nom1.getmot() +" dans "+bib::returnArticle(nom2,"def") + nom2.getmot()<<endl;
 
-    string adj1 = bib::return_adjectif("m", "s", liste_adj);
-    string adj2 = bib::return_adjectif("m", "s", liste_adj);
+    //cout<<"Synonymes de "<<nom1.getmot()<<endl;
+    //affiche_mots(bib::return_synonymes(nom1));
 
-    string s1 = bib::returnArticle(nom1,"def") + nom1.getmot() ;
-    string s2 = bib::returnArticle(nom2,"def") + nom2.getmot() ;
+    //string adj1 = bib::return_adjectif("m", "s", liste_adj);
+    //string adj2 = bib::return_adjectif("m", "s", liste_adj);
+
+    //string s1 = bib::returnArticle(nom1,"def") + nom1.getmot() ;
+    //string s2 = bib::returnArticle(nom2,"def") + nom2.getmot() ;
 
     //cout<<"        -        "<<endl;
     //cout<<"Qui n'a jamais vu "<<s1<<","<<endl;
