@@ -32,6 +32,7 @@ void Archiviste::importLibrary()
     }
     if (tokens.size() == 0 ) continue;
     //From tokens build lists
+    addEntry(tokens);
   }
   cout<<"Importation de la librairie...done"<<endl;
 }
@@ -60,4 +61,52 @@ vector<string> Archiviste::parseEntry(string stringtoparse, string delimiter ){
 
   return tokens;
 
+}
+
+
+
+void Archiviste::addEntry(const vector<string>& entree){
+
+  //for(int i = 0; i < entree.size();i++){
+  //  cout<<entree[i]<<endl;
+  //}
+  //L'ordre des champs est defini par la librairie (libconfig.sh)
+  //TODO
+  //Rajouter les champs suivants ensuite
+  string mot = entree[0];
+  string phon = entree[2];
+  string genre = entree[5];
+  string nombre = entree[6];
+  int nsyll = stoi(entree[7]);
+
+  //NomC, Adjectif, Verbe ... ?
+  string nature = entree[3];
+
+  if( nature == "NOM") {
+    NomC a(mot,phon,nsyll,genre[0],nombre[0]);
+    nomsC_.push_back(a);
+  }
+  else if ( nature == "ADJ"){
+    Adjectif a(mot,phon,nsyll,genre[0],nombre[0]);
+    adjectifs_.push_back(a);
+  }
+  else if (nature == "VER"){
+    Verbe a(mot,phon,nsyll);
+    verbes_.push_back(a);
+  }
+  else{
+    cerr<<"L'Archiviste ne connait pas la catégorie "<<nature<<" du mot "<<mot<<". Entree écartée."<<endl;
+    return ;
+  }
+
+}
+
+void Archiviste::afficher() const{
+
+  cout<<"Liste des ajectifs:"<<endl;
+  cout<<"Nombre:"<<adjectifs_.size()<<endl;
+  for(vector<Adjectif>::const_iterator it = adjectifs_.begin(); it!= adjectifs_.end();it++){
+    cout<<it->getmot()<<" ";
+  }
+  cout<<endl;
 }

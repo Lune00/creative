@@ -16,6 +16,7 @@ class Adjectif: public Mot{
   public:
     Adjectif(std::string,std::string,int,char,char);
     ~Adjectif();
+    virtual int nature() const { return ADJ_; }
 };
 
 

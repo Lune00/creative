@@ -26,6 +26,8 @@ class Archiviste{
     Archiviste();
     ~Archiviste();
     void importLibrary();
+    void afficher() const;
+    void addEntry(const std::vector<string>&);
     //Parse a string into a vec according to a delimiter
     std::vector<std::string> parseEntry(std::string toparse, std::string delimiter);
 

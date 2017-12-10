@@ -13,6 +13,7 @@ int main()
 {
 
   Archiviste archiviste;
+  archiviste.afficher();
 
   cout<<"Les portes de la bilbiotheque sont ouvertes"<<endl;
 
