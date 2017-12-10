@@ -29,3 +29,5 @@ reactiondiffusion/grillePoint.txt
 reactiondiffusion/grilleT.txtlearnbash/tests/toto.txt
 reactiondiffusion/grilleT.txt
 src/accord.o src/adjectif.o src/categorie.o src/verbe.o
+inprogress/langage/lib/*
+inprogress/langage/lib
