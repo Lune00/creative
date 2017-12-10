@@ -3,20 +3,18 @@
 
 #include<map>
 #include<string>
+#include"Mot.hpp"
 
 using namespace std;
 
-//Mots qui s'accordent: adjectifs et noms communs
-class NomC{
+//Classe de nom communs (herite de Mot)
+class NomC: public Mot{
   private:
-    string mot_;
-    //Le genre (auto?)
-    char g_;
+    char genre_;
+    char nombre_;
   public:
-    NomC(){mot_ =""; g_='m';}
-    NomC(string mot,char g) : mot_(mot), g_(g) {} ;
-    ~NomC(){};
-    const string& getmot() const {return mot_;}
+    NomC(std::string,std::string,int,char,char);
+    ~NomC();
     string accorder(string article); // renvoie le bon accord avec l'aricle determinant
 };
 
@@ -25,6 +23,7 @@ class NomC{
 struct Exception_NC{
 
   static map<string,string> makeNPC(){
+    std::cout<<"Liste exceptions noms communs..."<<std::endl;
     map<string,string> m;
     //En -al
     m["aval"] = "avals";
