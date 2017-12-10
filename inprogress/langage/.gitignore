@@ -1,2 +1,7 @@
 exec/bibliotheque.o
-exec/bibliotheque_bk.cpp include/.NomC.hpp.swp src/.NomC.cpp.swp src/Mot.o src/NomC.cpp src/NomC.o
+exec/bibliotheque_bk.cpp
+include/.NomC.hpp.swp
+src/.NomC.cpp.swp
+src/Mot.o
+src/NomC.cpp 
+src/NomC.o
