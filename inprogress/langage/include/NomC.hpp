@@ -5,7 +5,6 @@
 #include<string>
 #include"Mot.hpp"
 
-using namespace std;
 
 //Classe de nom communs (herite de Mot)
 class NomC: public Mot{
@@ -15,16 +14,18 @@ class NomC: public Mot{
   public:
     NomC(std::string,std::string,int,char,char);
     ~NomC();
-    string accorder(string article); // renvoie le bon accord avec l'aricle determinant
+    std::string accorder(std::string article); // renvoie le bon accord avec l'aricle determinant
+    virtual int nature() const { return NOMC_ ; }
+
 };
 
 //Exceptions des Noms Communs (NC): forme plurielle (NCP)
 //A completer
 struct Exception_NC{
 
-  static map<string,string> makeNPC(){
+  static std::map<std::string,std::string> makeNPC(){
     std::cout<<"Liste exceptions noms communs..."<<std::endl;
-    map<string,string> m;
+    std::map<std::string,std::string> m;
     //En -al
     m["aval"] = "avals";
     m["bal"] = "bals";
@@ -45,7 +46,7 @@ struct Exception_NC{
     m["ciel"] = "cieux";
     return m;
   }
-  static const map<string,string> NCP;
+  static const std::map<std::string,std::string> NCP;
 }; 
 
 #endif

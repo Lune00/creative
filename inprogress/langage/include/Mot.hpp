@@ -5,6 +5,11 @@
 #include<string>
 #include<vector>
 
+
+#define NOMC_ 0
+#define ADJ_  1
+#define VER_  2
+
 class Mot{
 
   //Private mais accessible aux classes filles
@@ -25,7 +30,7 @@ class Mot{
     //Resolution dynamique: fonction virtuelle uniquement dans la declaration de la fonction
     virtual void affiche() const { std::cout<<"Le lemme du mot est "<<lemme_;}
     //Methode virtuelle pure: la classe Mot est a present virtuelle
-    virtual std::string nature() const = 0 ;
+    virtual int nature() const = 0 ;
 
     std::string getlastphoneme() { return std::string (1,phon_.back());}
     std::string getfirstletter() { return std::string (1,lemme_[0]);}
