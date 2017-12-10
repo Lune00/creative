@@ -17,8 +17,8 @@ int main()
   std::vector<Mot*> lib;
   lib.push_back(new NomC("chocolat","Sokola",3,'m','s'));
   for(vector<Mot*>::iterator it = lib.begin() ; it != lib.end(); it++){
-    cout<<(*it)->nature()<<endl;
-  }
+    if(NomC* p = dynamic_cast<NomC*>(*it)) p->accorder("le");
+  }   
 
   return 0;
 }

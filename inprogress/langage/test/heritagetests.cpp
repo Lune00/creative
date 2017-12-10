@@ -45,6 +45,8 @@ class Adjectif: public Mot{
     virtual void affiche() const {Mot::affiche(); cout<<": c'est un "<<nature()<<"."<<endl;}
     virtual std::string nature() const { return  "adjectif" ; }
 
+    void accorder() const {cout<<"Je suis un adjectif donc je peux m'accorder"<<endl;}
+
 
 };
 
@@ -60,6 +62,7 @@ class Verbe: public Mot{
     void accorder();
     virtual void affiche() const {Mot::affiche(); cout<<": c'est un "<<nature()<<"."<<endl;}
     virtual std::string nature() const { return  "verbe" ; }
+    void conjuguer () const { cout<<"Je suis un verbe donc je peux me conjuguer"<<endl;}
 };
 
 void presenter(const Mot* m){
@@ -78,6 +81,9 @@ int main(){
   for(vector<Mot*>::const_iterator it = liste.begin(); it != liste.end(); it++){
     presenter(*it);
     (*it)->affiche();
+    //Downcast pointer to derived class to call derived type function
+    if(Adjectif* p = dynamic_cast<Adjectif*>(*it)) p->accorder();
+    if(Verbe* p = dynamic_cast<Verbe*>(*it)) p->conjuguer();
     delete *it;
   }
 
