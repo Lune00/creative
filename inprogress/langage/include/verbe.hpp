@@ -21,18 +21,21 @@ using namespace std;
 
 class Verbe: public Mot{
   private:
+
   public:
     Verbe(std::string,std::string,int);
     virtual ~Verbe();
     const string& getInfinitif() const { return lemme_;}
     string getTerminaison();
+    virtual int nature() const {return VER_;}
+
+    //Conjugaison:
     int groupe();
     string conjuguer(string,int);
     string conjuguerpremier(string,int);
     string conjuguerdeuxieme(string,int);
     string conjuguertroisieme(string,int);
     string troisiemepresent(string,string);
-    virtual int nature() const {return VER_;}
 };
 
 //Liste des verbes irreguliers (troisieme groupe)
