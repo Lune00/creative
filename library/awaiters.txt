@@ -700,3 +700,8 @@ montagneux
 relief
 montagnes
 géologie
+affable
+obséquieux
+manières
+courtoisie
+politesse
