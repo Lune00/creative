@@ -21,4 +21,7 @@ cd ..
 mkdir -p test
 cp exec/bibliotheque test/bibliotheque
 
+#La librairie est pour l'instant dans son dossier propre
+#Update library si mise a jour
+
 echo "Compilation terminee."
