@@ -5,3 +5,6 @@ src/.NomC.cpp.swp
 src/Mot.o
 src/NomC.cpp 
 src/NomC.o
+src/*.o
+src/*.swp
+include/*.swp
