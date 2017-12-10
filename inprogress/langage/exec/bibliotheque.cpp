@@ -5,14 +5,15 @@
 #include<vector>
 #include<map>
 
-#include"Mot.hpp"
-#include"NomC.hpp"
-#include"Verbe.hpp"
+#include"Archiviste.hpp"
 
 using namespace std;
 
 int main()
 {
+
+  Archiviste archiviste;
+
   cout<<"Les portes de la bilbiotheque sont ouvertes"<<endl;
 
   std::vector<Mot*> lib;

@@ -2,7 +2,7 @@ INC_PATH = ../include
 LIB_PATH = ../lib
 CC = g++
 CFLAGS = -w -Wall -I$(INC_PATH)
-SRC = NomC.cpp Mot.cpp Verbe.cpp Adjectif.cpp
+SRC = NomC.cpp Mot.cpp Verbe.cpp Adjectif.cpp Archiviste.cpp
 OBJS = $(subst .cpp,.o,$(SRC))
 .SUFFIXES: .cpp
 .cpp.o:

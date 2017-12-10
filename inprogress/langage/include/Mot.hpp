@@ -13,8 +13,10 @@ class Mot{
 
   //Private mais accessible aux classes filles
   protected:
-    //base du mot
-    std::string lemme_;
+    //base du mot: a voir si utilité par la suite
+    //std::string lemme_;
+    //le mot lui meme
+    std::string mot_;
     //phonetique
     std::string phon_;
     //Nombre syllabes
@@ -25,14 +27,14 @@ class Mot{
     //Un destructeur est toujours virtuel
     virtual ~Mot();
 
-    std::string getlemme() const { return lemme_;} 
+    std::string getmot() const { return mot_;} 
     //Resolution dynamique: fonction virtuelle uniquement dans la declaration de la fonction
-    virtual void affiche() const { std::cout<<"Le lemme du mot est "<<lemme_;}
+    virtual void affiche() const { std::cout<<"Le mot est "<<mot_;}
     //Methode virtuelle pure: la classe Mot est a present virtuelle
     virtual int nature() const = 0 ;
 
     std::string getlastphoneme() const { return std::string (1,phon_.back());}
-    std::string getfirstletter() const { return std::string (1,lemme_[0]);}
+    std::string getfirstletter() const { return std::string (1,mot_[0]);}
 
 };
 

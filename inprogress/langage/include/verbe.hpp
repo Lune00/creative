@@ -25,7 +25,7 @@ class Verbe: public Mot{
   public:
     Verbe(std::string,std::string,int);
     virtual ~Verbe();
-    const string& getInfinitif() const { return lemme_;}
+    const string& getInfinitif() const { return mot_;}
     string getTerminaison();
     virtual int nature() const {return VER_;}
 

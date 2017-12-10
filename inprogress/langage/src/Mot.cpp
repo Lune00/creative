@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Mot::Mot(std::string lemme,std::string phon, int nsyll): lemme_(lemme), phon_(phon), nsyll_(nsyll)
+Mot::Mot(std::string mot,std::string phon, int nsyll): mot_(mot), phon_(phon), nsyll_(nsyll)
 {
 
 }
