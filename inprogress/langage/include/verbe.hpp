@@ -5,6 +5,7 @@
 #include<list>
 #include<map>
 #include<iostream>
+#include"Mot.hpp"
 
 //Temps:
 #define present 0
@@ -18,14 +19,12 @@
 
 using namespace std;
 
-class Verbe{
+class Verbe: public Mot{
   private:
-    string infinitif_;
   public:
-    Verbe();
-    Verbe(string infinitif) : infinitif_(infinitif) {} ;
-    ~Verbe();
-    const string& getInfinitif() const { return infinitif_;}
+    Verbe(std::string,std::string,int);
+    virtual ~Verbe();
+    const string& getInfinitif() const { return lemme_;}
     string getTerminaison();
     int groupe();
     string conjuguer(string,int);
@@ -33,6 +32,7 @@ class Verbe{
     string conjuguerdeuxieme(string,int);
     string conjuguertroisieme(string,int);
     string troisiemepresent(string,string);
+    virtual int nature() const {return VER_;}
 };
 
 //Liste des verbes irreguliers (troisieme groupe)

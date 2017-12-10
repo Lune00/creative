@@ -5,7 +5,6 @@
 #include<string>
 #include<vector>
 
-
 #define NOMC_ 0
 #define ADJ_  1
 #define VER_  2
@@ -32,8 +31,8 @@ class Mot{
     //Methode virtuelle pure: la classe Mot est a present virtuelle
     virtual int nature() const = 0 ;
 
-    std::string getlastphoneme() { return std::string (1,phon_.back());}
-    std::string getfirstletter() { return std::string (1,lemme_[0]);}
+    std::string getlastphoneme() const { return std::string (1,phon_.back());}
+    std::string getfirstletter() const { return std::string (1,lemme_[0]);}
 
 };
 

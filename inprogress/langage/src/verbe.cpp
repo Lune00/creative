@@ -12,8 +12,8 @@ const map<string,string> ConjTroisieme::present_defaut = ConjTroisieme::makePres
 
 const list<string> ListeIrr::irreguliers = ListeIrr::makeliste();
 
-Verbe::Verbe(){
-  string infinitif_ = " ";
+Verbe::Verbe(string lemme, string phon, int nsyll): Mot(lemme, phon, nsyll)
+{
 }
 
 Verbe::~Verbe(){
@@ -23,7 +23,7 @@ Verbe::~Verbe(){
 //Recupere la terminaison (deux dernieres lettres) de l'infinitif 
 string Verbe::getTerminaison(){
 
-  if( ! this->getInfinitif().empty() )
+  if( ! getInfinitif().empty() )
   {
     std::string::size_type size = this->getInfinitif().size();
     std::size_t pos = size - 2 ;
@@ -120,7 +120,6 @@ string Verbe::troisiemepresent(string mot, string pronom){
   string c, term ;
   if(mot.size() <= 3 ) cerr<<"@attention 3e groupe inf a 3 lettres"<<endl;
 
-  string last_one= mot.substr(mot.size()-2);
   string last_two= mot.substr(mot.size()-2);
   string last_three= mot.substr(mot.size()-3);
   string last_four= mot.substr(mot.size()-4);
