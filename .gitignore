@@ -13,3 +13,17 @@ inprogress/langage/accord.o
 inprogress/langage/adjectif.o
 inprogress/langage/categorie.o
 inprogress/langage/ressources/.DS_Store
+.DS_Store
+inprogress/pathfinding/plotpath.gnu
+learnbash/doublons.txt
+learnc++/a.out
+learnsed/tmp2.txt
+library/a.out
+library/addawaiters.sh_bk
+library/bk_awaiters.txt
+library/bk_mylibrary.txt
+mapgeneration/
+reactiondiffusion/data.txt
+reactiondiffusion/fit.log
+reactiondiffusion/grillePoint.txt
+reactiondiffusion/grilleT.txt
