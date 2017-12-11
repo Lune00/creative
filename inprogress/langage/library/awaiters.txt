@@ -24,7 +24,6 @@ poids
 battre
 victoire
 antique
-relique
 sagesse
 vieux
 sage
@@ -705,3 +704,9 @@ obséquieux
 manières
 courtoisie
 politesse
+reste
+fétiche
+vieille
+ancienne
+objet
+valeur

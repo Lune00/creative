@@ -1,5 +1,6 @@
 #include"Archiviste.hpp"
 
+
 using namespace std;
 
 
@@ -7,6 +8,7 @@ Archiviste::Archiviste()
 {
   mylibrary_ = "../library/mylibrary.txt";
   importLibrary();
+  buildlinks();
 }
 
 Archiviste::~Archiviste()
@@ -38,7 +40,7 @@ void Archiviste::importLibrary()
 }
 
 
-vector<string> Archiviste::parseEntry(string stringtoparse, string delimiter ){
+vector<string> Archiviste::parseEntry(string stringtoparse, const string delimiter ){
 
   vector<std::string> tokens;
   size_t pos = 0 ;
@@ -73,6 +75,7 @@ void Archiviste::addEntry(const vector<string>& entree){
   //L'ordre des champs est defini par la librairie (libconfig.sh)
   //TODO
   //Rajouter les champs suivants ensuite
+  //Synonymes et related
   string mot = entree[0];
   string phon = entree[2];
   string genre = entree[5];
@@ -103,10 +106,57 @@ void Archiviste::addEntry(const vector<string>& entree){
 
 void Archiviste::afficher() const{
 
-  cout<<"Liste des ajectifs:"<<endl;
-  cout<<"Nombre:"<<adjectifs_.size()<<endl;
-  for(vector<Adjectif>::const_iterator it = adjectifs_.begin(); it!= adjectifs_.end();it++){
-    cout<<it->getmot()<<" ";
+  cout<<"Nombre d'adjectifs:"<<getNadjectifs()<<endl;
+  cout<<"Nombre de noms communs:"<<getNnomsC()<<endl;
+  cout<<"Nombre de verbes:"<<getNverbes()<<endl;
+}
+
+//Une fois les entrees chargees, on cree des liens entre
+//les mots et leurs synonymes et related. Seuls les
+//references ayant aussi une entree sont comptés.
+//Pour cela on fait en deux temps. D'abord on a chargé
+//Les entrées, maintenant on peut facilement checker
+//si le synonymes/related sont aussi en tant qu'entée.
+void Archiviste::buildlinks(){
+
+  cout<<"Création des liens entres mots..."<<endl;
+  ifstream mylib(mylibrary_);
+  while(true){
+    string entree;
+    vector<string> tokens;
+    getline(mylib,entree);
+    if (mylib.eof() ) break;
+    tokens = parseEntry(entree,"\t");
+    //Check tokens: ils doivent avoir 12 champs definis par mylibrary.txt
+    if( tokens.size() < 12) {
+      cerr<<"L'entree \""<<tokens[0]<<"\" ne contient pas 12 champs requis."<<endl;
+      continue;
+    }
+    if (tokens.size() == 0 ) continue;
+    //From tokens build links
+    link(tokens);
   }
-  cout<<endl;
+  cout<<"Création des liens entre mots...done"<<endl;
+
+}
+
+void Archiviste::link(vector<string>& tokens){
+
+  string mot = tokens[0];
+  string nature = tokens[3];
+  string delimiter = ";";
+  //On recupere les synonymes indiques
+  vector<string> syn = parseEntry(tokens[9],delimiter);
+  vector<string> associes = parseEntry(tokens[10],delimiter);
+
+  //On parcourt les synonymes du mot mot:
+  for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
+
+    //On le cherche dans chaque liste:
+    //Overload == de Mot (egal si mot et nature egal)
+    vector<Mot>::iterator itM;
+    //itM = find(adjectifs_.begin(),adjectifs_.end(),mot);
+
+  }
+
 }

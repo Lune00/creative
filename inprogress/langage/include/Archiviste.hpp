@@ -5,6 +5,7 @@
 #include"Verbe.hpp"
 #include"NomC.hpp"
 
+#include<algorithm>
 #include<fstream>
 #include<iostream>
 
@@ -26,10 +27,15 @@ class Archiviste{
     Archiviste();
     ~Archiviste();
     void importLibrary();
+    void buildlinks();
+    void link(std::vector<std::string>&);
     void afficher() const;
     void addEntry(const std::vector<string>&);
     //Parse a string into a vec according to a delimiter
-    std::vector<std::string> parseEntry(std::string toparse, std::string delimiter);
+    std::vector<std::string> parseEntry(std::string toparse, const std::string delimiter);
+    int getNadjectifs() const { return adjectifs_.size();}
+    int getNnomsC() const { return nomsC_.size();}
+    int getNverbes() const { return verbes_.size();}
 
 };
 

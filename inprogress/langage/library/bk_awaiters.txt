@@ -24,7 +24,6 @@ poids
 battre
 victoire
 antique
-relique
 sagesse
 vieux
 sage
@@ -700,3 +699,8 @@ montagneux
 relief
 montagnes
 géologie
+affable
+obséquieux
+manières
+courtoisie
+politesse

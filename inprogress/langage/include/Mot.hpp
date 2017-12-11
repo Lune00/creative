@@ -21,6 +21,10 @@ class Mot{
     std::string phon_;
     //Nombre syllabes
     int nsyll_;
+    //Synonymes:
+    std::vector<Mot*> synonymes_;
+    //Related:
+    std::vector<Mot*> associés_;
 
   public:
     Mot(std::string, std::string, int);
