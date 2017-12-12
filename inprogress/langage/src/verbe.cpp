@@ -14,6 +14,7 @@ const list<string> ListeIrr::irreguliers = ListeIrr::makeliste();
 
 Verbe::Verbe(string lemme, string phon, int nsyll): Mot(lemme, phon, nsyll)
 {
+  nature_ = VER_ ;
 }
 
 Verbe::~Verbe(){

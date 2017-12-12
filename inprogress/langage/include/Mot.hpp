@@ -24,7 +24,9 @@ class Mot{
     //Synonymes:
     std::vector<Mot*> synonymes_;
     //Related:
-    std::vector<Mot*> associés_;
+    std::vector<Mot*> associes_;
+    //Really needed? Tho useful...
+    int nature_;
 
   public:
     Mot(std::string, std::string, int);
@@ -40,6 +42,10 @@ class Mot{
     std::string getlastphoneme() const { return std::string (1,phon_.back());}
     std::string getfirstletter() const { return std::string (1,mot_[0]);}
 
+
+    friend bool operator==(const Mot&,const Mot&);
+
 };
+
 
 #endif

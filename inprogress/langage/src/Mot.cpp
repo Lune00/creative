@@ -11,3 +11,8 @@ Mot::Mot(std::string mot,std::string phon, int nsyll): mot_(mot), phon_(phon), n
 Mot::~Mot(){
 
 }
+
+bool operator==(const Mot& a, const Mot& b){
+  return ( a.mot_ == b.mot_);
+}
+

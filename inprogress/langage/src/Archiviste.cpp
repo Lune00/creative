@@ -1,6 +1,5 @@
 #include"Archiviste.hpp"
 
-
 using namespace std;
 
 
@@ -142,6 +141,7 @@ void Archiviste::buildlinks(){
 
 void Archiviste::link(vector<string>& tokens){
 
+  //Mot auquel on va rattacher syn et associes
   string mot = tokens[0];
   string nature = tokens[3];
   string delimiter = ";";
@@ -150,13 +150,49 @@ void Archiviste::link(vector<string>& tokens){
   vector<string> associes = parseEntry(tokens[10],delimiter);
 
   //On parcourt les synonymes du mot mot:
-  for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
+  //On le cherche dans chaque liste:
 
-    //On le cherche dans chaque liste:
-    //Overload == de Mot (egal si mot et nature egal)
-    vector<Mot>::iterator itM;
-    //itM = find(adjectifs_.begin(),adjectifs_.end(),mot);
+  //Overload == de Mot (egal si mot et nature egal)
+  //En fait on peut pas connaitre la classe grammaticale
+  //du mot synonnymes ou associe a partir de la librairie
+  //Mais bon c'est un petit side effect pas forcement
+  //indesirable. 
+  //Pour le moment on prend tous les mots si on les
+  //trouve, peu importe leur nature_
+  //Utiliser find demanderait de creer un Mot
+  //or Mot est une classe abstraite...
+  //A voir si ca pose des pbs plus tard...
+
+  for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
+    //Ces boucles devront etre repetees pour mot associes -> a mettre dans une fonction
+    for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+
+    }
+    //Meme chose pour verbe et NomC
+    for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+
+    }
+    for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+
+    }
 
   }
-
 }
