@@ -35,13 +35,15 @@ class Mot{
 
     std::string getmot() const { return mot_;} 
     //Resolution dynamique: fonction virtuelle uniquement dans la declaration de la fonction
-    virtual void affiche() const { std::cout<<"Le mot est "<<mot_<<std::endl;}
+    virtual void affiche() const ;// { std::cout<<"Le mot est "<<mot_<<std::endl;}
     //Methode virtuelle pure: la classe Mot est a present virtuelle
     virtual int nature() const = 0 ;
 
     std::string getlastphoneme() const { return std::string (1,phon_.back());}
     std::string getfirstletter() const { return std::string (1,mot_[0]);}
 
+    void linksynonymes(Mot*);
+    void linkassocies(Mot*);
     friend bool operator==(const Mot&,const Mot&);
 
 };

@@ -139,6 +139,11 @@ void Archiviste::buildlinks(){
 
 }
 
+
+//Cree les liens entre les entrees de la bibliotheque
+//Pour chaque entree on regarde ses synonymes/associes
+//puis si ils sont trouves comme entree également
+//on stocke pour l'entree un pointeur sur eux
 void Archiviste::link(vector<string>& tokens){
 
   //Mot auquel on va rattacher syn et associes
@@ -149,7 +154,15 @@ void Archiviste::link(vector<string>& tokens){
   vector<string> syn = parseEntry(tokens[9],delimiter);
   vector<string> associes = parseEntry(tokens[10],delimiter);
 
-  //On parcourt les synonymes du mot mot:
+  //On recupere le mot que l'on va linker au synonymes/associes
+  Mot * m = findword(mot,nature);
+
+  if( m == NULL){
+    cerr<<"Archiviste::link : Le mot "<<mot<<" n'a pas été chargé dans la librairie"<<endl;
+    return ;
+  }
+
+  //On parcourt les synonymes du mot m:
   //On le cherche dans chaque liste:
 
   //Overload == de Mot (egal si mot et nature egal)
@@ -159,45 +172,104 @@ void Archiviste::link(vector<string>& tokens){
   //indesirable. 
   //Pour le moment on prend tous les mots si on les
   //trouve, peu importe leur nature_
+
+  //Repetition de ce qu'il y a au dessus...
+  //Pour le moment on doit prendre tous les synonymes car on ne sait
+  //pas si le synonymes est un nom, un adj...
+  //ex: Si l'entree a "droit" comme synonyme ca peut etre 'droit l'adjectif' ou 'droit le nom'
+  //on les ajoute tous les deux
+
   //Utiliser find demanderait de creer un Mot
   //or Mot est une classe abstraite...
   //A voir si ca pose des pbs plus tard...
 
-  for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
-    //Ces boucles devront etre repetees pour mot associes -> a mettre dans une fonction
-    for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+  //Ne vaudrait il mieux pas pour chaque groupe gram (adjectif, nomC, verbe)
+  //boucler sur tous les synonymes et tous les associes (inverser les boucles)
+
+  //ADJ
+  for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+    //Synonymes:
+    for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
       if( *it == ita->getmot() ) {
 	//On l'associe:
-
-
-
+	//On cree un pointeur qui pointe sur ita
+	//On l'ajoute dans les synonymes de m
+	Mot * linked = &(*ita);
+	m->linksynonymes(linked);
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
-
     }
-    //Meme chose pour verbe et NomC
-    for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+
+    //Associes:
+    for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
       if( *it == ita->getmot() ) {
 	//On l'associe:
-
+	//On cree un pointeur qui pointe sur ita
+	//On l'ajoute dans les synonymes de m
+	Mot * linked = &(*ita);
+	m->linkassocies(linked);
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
-
     }
-    for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+  }
+
+  //VER
+  for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+    //Synonymes:
+    for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
       if( *it == ita->getmot() ) {
 	//On l'associe:
-
+	Mot * linked = &(*ita);
+	m->linksynonymes(linked);
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
-
     }
+    //Associes:
+    for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+	//On cree un pointeur qui pointe sur ita
+	//On l'ajoute dans les synonymes de m
+	Mot * linked = &(*ita);
+	m->linkassocies(linked);
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+    }
+  }
 
+  //NOMC
+  for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+    //Synonymes:
+    for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+	Mot * linked = &(*ita);
+	m->linksynonymes(linked);
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+    }
+    //Associes:
+    for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+	//On cree un pointeur qui pointe sur ita
+	//On l'ajoute dans les synonymes de m
+	Mot * linked = &(*ita);
+	m->linkassocies(linked);
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+    }
   }
 }
+
+
+
 
 
 //Renvoie un pointeur sur un mot correspondant au couple (unique) "mot+nature" dans la bibliotheque
@@ -224,36 +296,36 @@ Mot * Archiviste::findword(const string& mot, const string& nature) {
 
 //Search and return a pointer to an adjective (can be modified) present in the loaded library
 Mot * Archiviste::findADJ(const string& mot){
-    for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
-      if(mot == ita->getmot()){
-	Mot * m = &(*ita);
-	return m;
-	break;
-      }
+  for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+    if(mot == ita->getmot()){
+      Mot * m = &(*ita);
+      return m;
+      break;
     }
-    return NULL;
+  }
+  return NULL;
 }
 
 //Search and return a pointer to a verb (can be modified) present in the loaded library
 Mot * Archiviste::findVER(const string& mot){
-    for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
-      if(mot == ita->getmot()){
-	Mot * m = &(*ita);
-	return m;
-	break;
-      }
+  for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+    if(mot == ita->getmot()){
+      Mot * m = &(*ita);
+      return m;
+      break;
     }
-    return NULL;
+  }
+  return NULL;
 }
 
 //Search and return a pointer to a nomC (can be modified) present in the loaded library
 Mot * Archiviste::findNOMC(const string& mot){
-    for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
-      if(mot == ita->getmot()){
-	Mot * m = &(*ita);
-	return m;
-	break;
-      }
+  for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+    if(mot == ita->getmot()){
+      Mot * m = &(*ita);
+      return m;
+      break;
     }
-    return NULL;
+  }
+  return NULL;
 }
