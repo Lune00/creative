@@ -67,14 +67,7 @@ vector<string> Archiviste::parseEntry(string stringtoparse, const string delimit
 
 
 void Archiviste::addEntry(const vector<string>& entree){
-
-  //for(int i = 0; i < entree.size();i++){
-  //  cout<<entree[i]<<endl;
-  //}
   //L'ordre des champs est defini par la librairie (libconfig.sh)
-  //TODO
-  //Rajouter les champs suivants ensuite
-  //Synonymes et related
   string mot = entree[0];
   string phon = entree[2];
   string genre = entree[5];
@@ -104,7 +97,6 @@ void Archiviste::addEntry(const vector<string>& entree){
 }
 
 void Archiviste::afficher() const{
-
   cout<<"Nombre d'adjectifs:"<<getNadjectifs()<<endl;
   cout<<"Nombre de noms communs:"<<getNnomsC()<<endl;
   cout<<"Nombre de verbes:"<<getNverbes()<<endl;
@@ -115,11 +107,12 @@ void Archiviste::afficher() const{
 //references ayant aussi une entree sont comptés.
 //Pour cela on fait en deux temps. D'abord on a chargé
 //Les entrées, maintenant on peut facilement checker
-//si le synonymes/related sont aussi en tant qu'entée.
+//si le synonymes/related sont aussi en tant qu'entrée.
 void Archiviste::buildlinks(){
 
   cout<<"Création des liens entres mots..."<<endl;
   ifstream mylib(mylibrary_);
+
   while(true){
     string entree;
     vector<string> tokens;
@@ -131,12 +124,12 @@ void Archiviste::buildlinks(){
       cerr<<"L'entree \""<<tokens[0]<<"\" ne contient pas 12 champs requis."<<endl;
       continue;
     }
-    if (tokens.size() == 0 ) continue;
+    if(tokens.size() == 0 ) continue;
     //From tokens build links
     link(tokens);
   }
-  cout<<"Création des liens entre mots...done"<<endl;
 
+  cout<<"Création des liens entre mots...done"<<endl;
 }
 
 
@@ -165,7 +158,6 @@ void Archiviste::link(vector<string>& tokens){
   //On parcourt les synonymes du mot m:
   //On le cherche dans chaque liste:
 
-  //Overload == de Mot (egal si mot et nature egal)
   //En fait on peut pas connaitre la classe grammaticale
   //du mot synonnymes ou associe a partir de la librairie
   //Mais bon c'est un petit side effect pas forcement
@@ -182,9 +174,6 @@ void Archiviste::link(vector<string>& tokens){
   //Utiliser find demanderait de creer un Mot
   //or Mot est une classe abstraite...
   //A voir si ca pose des pbs plus tard...
-
-  //Ne vaudrait il mieux pas pour chaque groupe gram (adjectif, nomC, verbe)
-  //boucler sur tous les synonymes et tous les associes (inverser les boucles)
 
   //ADJ
   for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
@@ -268,10 +257,6 @@ void Archiviste::link(vector<string>& tokens){
   }
 }
 
-
-
-
-
 //Renvoie un pointeur sur un mot correspondant au couple (unique) "mot+nature" dans la bibliotheque
 //pointeur utilise pour modifier le mot
 Mot * Archiviste::findword(const string& mot, const string& nature) {
@@ -292,7 +277,6 @@ Mot * Archiviste::findword(const string& mot, const string& nature) {
     return NULL;
   }
 }
-
 
 //Search and return a pointer to an adjective (can be modified) present in the loaded library
 Mot * Archiviste::findADJ(const string& mot){
