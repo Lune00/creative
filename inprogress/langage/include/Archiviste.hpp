@@ -18,7 +18,7 @@ class Archiviste{
   private:
     //Chemin d'acces a la librairie
     std::string mylibrary_;
-    //Listes de mots stockées apres lecture:
+    //Listes de mots importés apres lecture:
     std::vector<Adjectif> adjectifs_;
     std::vector<NomC> nomsC_;
     std::vector<Verbe> verbes_;
@@ -36,6 +36,15 @@ class Archiviste{
     int getNadjectifs() const { return adjectifs_.size();}
     int getNnomsC() const { return nomsC_.size();}
     int getNverbes() const { return verbes_.size();}
+
+    //Return a word (defined as mot and nature)
+    //This pointer can be used to modify the word
+    Mot * findword(const std::string&, const std::string&) ;
+
+    Mot * findADJ(const std::string&);
+    Mot * findNOMC(const std::string&);
+    Mot * findVER(const std::string&);
+
 
 };
 

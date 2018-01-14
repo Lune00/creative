@@ -169,6 +169,8 @@ void Archiviste::link(vector<string>& tokens){
       if( *it == ita->getmot() ) {
 	//On l'associe:
 
+
+
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
@@ -195,4 +197,63 @@ void Archiviste::link(vector<string>& tokens){
     }
 
   }
+}
+
+
+//Renvoie un pointeur sur un mot correspondant au couple (unique) "mot+nature" dans la bibliotheque
+//pointeur utilise pour modifier le mot
+Mot * Archiviste::findword(const string& mot, const string& nature) {
+
+  if( nature == "ADJ" ){
+    return findADJ(mot);
+  }
+
+  else if( nature == "NOM" ){
+    return findNOMC(mot);
+  }
+
+  else if ( nature == "VER" ){
+    return findVER(mot);
+  }
+  else{
+    cerr<<"Mot "<<mot<<" nature: "<<nature<<" introuvable."<<endl;
+    return NULL;
+  }
+}
+
+
+//Search and return a pointer to an adjective (can be modified) present in the loaded library
+Mot * Archiviste::findADJ(const string& mot){
+    for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+      if(mot == ita->getmot()){
+	Mot * m = &(*ita);
+	return m;
+	break;
+      }
+    }
+    return NULL;
+}
+
+//Search and return a pointer to a verb (can be modified) present in the loaded library
+Mot * Archiviste::findVER(const string& mot){
+    for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+      if(mot == ita->getmot()){
+	Mot * m = &(*ita);
+	return m;
+	break;
+      }
+    }
+    return NULL;
+}
+
+//Search and return a pointer to a nomC (can be modified) present in the loaded library
+Mot * Archiviste::findNOMC(const string& mot){
+    for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+      if(mot == ita->getmot()){
+	Mot * m = &(*ita);
+	return m;
+	break;
+      }
+    }
+    return NULL;
 }
