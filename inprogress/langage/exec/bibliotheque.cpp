@@ -32,5 +32,8 @@ int main()
   m = archiviste.findword("géant","ADJ");
   m->affiche();
 
+  const Mot * mot = archiviste.randomword();
+  mot->affiche();
+
   return 0;
 }

@@ -14,8 +14,7 @@ using namespace std;
 class Categorie{
   private:
   string nom_ ;
-  vector<Verbe> verbes_;
-  vector<NomC> nomsC_;
+  vector<Mot*> mots_;
   public:
   Categorie(){nom_ =" ";}
   Categorie(string nom) : nom_(nom) {};

@@ -5,16 +5,14 @@ using namespace std;
 
 Archiviste::Archiviste()
 {
+//seed_ = std::chrono::system_clock::now().time_since_epoch().count();
+  seed_ = 10 ;
   mylibrary_ = "../library/mylibrary.txt";
   importLibrary();
   buildlinks();
 }
 
-Archiviste::~Archiviste()
-{
-
-
-}
+Archiviste::~Archiviste(){}
 
 void Archiviste::importLibrary()
 {
@@ -61,11 +59,10 @@ vector<string> Archiviste::parseEntry(string stringtoparse, const string delimit
   }
 
   return tokens;
-
 }
 
 
-
+//TODO: le theme et le registre
 void Archiviste::addEntry(const vector<string>& entree){
   //L'ordre des champs est defini par la librairie (libconfig.sh)
   string mot = entree[0];
@@ -90,7 +87,7 @@ void Archiviste::addEntry(const vector<string>& entree){
     verbes_.push_back(a);
   }
   else{
-    cerr<<"L'Archiviste ne connait pas la catégorie "<<nature<<" du mot "<<mot<<". Entree écartée."<<endl;
+    cerr<<"L'Archiviste ne connait pas la nature "<<nature<<" du mot "<<mot<<". Entree écartée."<<endl;
     return ;
   }
 
@@ -312,4 +309,18 @@ Mot * Archiviste::findNOMC(const string& mot){
     }
   }
   return NULL;
+}
+
+//WIP, to be moved in proper class, or a general struct accessible everywhere
+int Archiviste::randomIndex(int size) const{
+  std::default_random_engine generator(seed_);
+  std::uniform_int_distribution<int> distribution(0,size);
+  return distribution(generator);
+}
+
+//To be completed
+const Mot * Archiviste::randomword() const{
+  int i = randomIndex(getNadjectifs());
+  const Mot * m = &adjectifs_[i];
+  return m;
 }
