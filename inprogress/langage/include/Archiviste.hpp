@@ -13,6 +13,9 @@
 //Archiviste est la classe qui sert d'interface entre le programme et la librairie formatée de mots
 //C'est elle qui lit la librairie, parse les entrees, et cree la bibliotheque utilisée dans le programme
 //C'est la classe Config quoi
+
+class Collectionneur;
+
 class Archiviste{
 
   private:
@@ -25,15 +28,24 @@ class Archiviste{
     std::vector<NomC> nomsC_;
     std::vector<Verbe> verbes_;
 
+    //Acces to Collectionneur
+    Collectionneur * collectionneur_;
+
   public:
 
     Archiviste();
     ~Archiviste();
+    //Run at initialisation: plug to Collectionneur
+    void plugtoCollectionneur(Collectionneur&);
+
+    //Called in constructor
     void importLibrary();
     void buildlinks();
+    
     void link(std::vector<std::string>&);
     void afficher() const;
     void addEntry(const std::vector<string>&);
+
 
     //Parse a string into a vec according to a delimiter
     std::vector<std::string> parseEntry(std::string toparse, const std::string delimiter);

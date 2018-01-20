@@ -5,7 +5,9 @@
 #include<list>
 #include<map>
 #include<iostream>
+
 #include"Mot.hpp"
+#include"Irreguliers.hpp"
 
 //Temps:
 #define present 0
@@ -38,18 +40,7 @@ class Verbe: public Mot{
     string troisiemepresent(string,string);
 };
 
-//Liste des verbes irreguliers (troisieme groupe)
-struct ListeIrr{
-  static list<string> makeliste()
-  {
-    list<string> l;
-    l.push_back("partir");
-    l.push_back("courir");
-    l.push_back("mourir");
-    return l;
-  }
-  static const list<string> irreguliers;
-};
+//TODO: move this in a proper place
 
 //Stocke les conjugaisons des verbes du troisieme groupe( quand regles)
 struct ConjTroisieme{
@@ -147,4 +138,5 @@ struct ConjDeuxieme{
   static const map<string,string> present_;
   static const map<string,string> futur_;
 };
+
 #endif

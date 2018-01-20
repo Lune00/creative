@@ -1,4 +1,5 @@
 #include"Archiviste.hpp"
+#include"Collectionneur.hpp"
 
 using namespace std;
 
@@ -7,12 +8,20 @@ Archiviste::Archiviste()
 {
 //seed_ = std::chrono::system_clock::now().time_since_epoch().count();
   seed_ = 10 ;
+  collectionneur_ = NULL ;
   mylibrary_ = "../library/mylibrary.txt";
   importLibrary();
   buildlinks();
 }
 
 Archiviste::~Archiviste(){}
+
+
+void Archiviste::plugtoCollectionneur(Collectionneur& c){
+
+  collectionneur_ = &c;
+
+}
 
 void Archiviste::importLibrary()
 {
@@ -70,6 +79,15 @@ void Archiviste::addEntry(const vector<string>& entree){
   string genre = entree[5];
   string nombre = entree[6];
   int nsyll = stoi(entree[7]);
+  
+  //TMP
+  //string themes = entree[11];
+
+  //On parse les themes
+  vector<string> themes = parseEntry(entree[11],";");
+  //On en fait une collection
+  
+
 
   //NomC, Adjectif, Verbe ... ?
   string nature = entree[3];
@@ -318,9 +336,22 @@ int Archiviste::randomIndex(int size) const{
   return distribution(generator);
 }
 
-//To be completed
+//Return a pointer to a random const word, can not be used to modify entry
 const Mot * Archiviste::randomword() const{
-  int i = randomIndex(getNadjectifs());
-  const Mot * m = &adjectifs_[i];
+  //Random between 0 and 2 to determin ADJ,NOM VER.
+  int k = randomIndex(2);
+  const Mot * m = NULL ;
+  if(k == 0){
+    int i = randomIndex(getNadjectifs());
+    m = &adjectifs_[i];
+  }
+  else if (k == 1){
+    int i = randomIndex(getNnomsC());
+    m = &nomsC_[i];
+  }
+  else if (k == 2){
+    int i = randomIndex(getNverbes());
+    m = &verbes_[i];
+  }
   return m;
 }

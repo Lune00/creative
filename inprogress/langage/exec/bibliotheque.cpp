@@ -6,13 +6,27 @@
 #include<map>
 
 #include"Archiviste.hpp"
+#include"Collectionneur.hpp"
 
 using namespace std;
+
+
+
+void initialise(Archiviste& a, Collectionneur& c){
+  a.plugtoCollectionneur(c);
+  c.plugtoArchiviste(a);
+}
+
+
 
 int main()
 {
 
+  //Initiatlisation:
   Archiviste archiviste;
+  Collectionneur collectionneur;
+  initialise(archiviste,collectionneur);
+
   archiviste.afficher();
 
   cout<<"Les portes de la bilbiotheque sont ouvertes."<<endl;
@@ -26,11 +40,11 @@ int main()
   }   
 
   //Test finds:
-  Mot * m = archiviste.findword("baleine","NOM");
-  m->affiche();
+  //Mot * m = archiviste.findword("baleine","NOM");
+  //m->affiche();
 
-  m = archiviste.findword("géant","ADJ");
-  m->affiche();
+  //m = archiviste.findword("géant","ADJ");
+  //m->affiche();
 
   const Mot * mot = archiviste.randomword();
   mot->affiche();
