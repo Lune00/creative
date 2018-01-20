@@ -17,7 +17,7 @@ class Collection{
     std::string nom_ ;
     vector<Mot*> mots_;
   public:
-    Collection(){nom_ =std::string();}
+    Collection(){nom_ = std::string();}
     Collection(std::string nom) : nom_(nom) {};
     ~Collection(){};
     int size () const { return mots_.size(); }

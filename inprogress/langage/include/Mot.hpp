@@ -25,6 +25,11 @@ class Mot{
     std::vector<Mot*> synonymes_;
     //Related:
     std::vector<Mot*> associes_;
+    //Themes (belong to)
+    std::vector<std::string> themes_;
+    //Registres (belong to)
+    std::vector<std::string> registres_;
+
     //Really needed? Tho useful...
     int nature_;
 
@@ -35,7 +40,7 @@ class Mot{
 
     std::string getmot() const { return mot_;} 
     //Resolution dynamique: fonction virtuelle uniquement dans la declaration de la fonction
-    virtual void affiche() const ;// { std::cout<<"Le mot est "<<mot_<<std::endl;}
+    virtual void affiche() const ;
     //Methode virtuelle pure: la classe Mot est a present virtuelle
     virtual int nature() const = 0 ;
 
@@ -44,6 +49,10 @@ class Mot{
 
     void linksynonymes(Mot*);
     void linkassocies(Mot*);
+    void setThemes(std::vector<std::string> themes) { themes_ = themes ; }
+    //Aucun registre correspond a vide ou "neutre"
+    void setRegistres(std::vector<std::string> registres) { registres_ = registres ; }
+
     friend bool operator==(const Mot&,const Mot&);
 
 };
