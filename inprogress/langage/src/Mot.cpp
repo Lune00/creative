@@ -7,7 +7,6 @@ Mot::Mot(std::string mot,std::string phon, int nsyll): mot_(mot), phon_(phon), n
 
 }
 
-
 Mot::~Mot(){
 
 }
