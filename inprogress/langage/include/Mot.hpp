@@ -34,6 +34,7 @@ class Mot{
     int nature_;
 
   public:
+
     Mot(std::string, std::string, int);
     //Un destructeur est toujours virtuel
     virtual ~Mot();
@@ -54,6 +55,12 @@ class Mot{
     void setRegistres(std::vector<std::string> registres) { registres_ = registres ; }
 
     friend bool operator==(const Mot&,const Mot&);
+
+
+    //Accesseurs:
+
+    //Return a copy of the themes vector
+    std::vector<std::string> getThemes() const { return themes_;}
 
 };
 

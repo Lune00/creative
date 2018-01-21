@@ -22,7 +22,10 @@ class Collectionneur{
 
     bool isCollection(const std::string& name) const;
     void addCollection(const std::string& name);
-    void addToCollection(Mot& m, const std::string& name);
+    void addToCollection(Mot& m);
+    void addToCollection(Mot& m, const std::string name);
+
+    void print() const;
 
 };
 

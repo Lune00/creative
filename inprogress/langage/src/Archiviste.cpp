@@ -69,8 +69,6 @@ vector<string> Archiviste::parseEntry(string stringtoparse, const string delimit
 }
 
 
-//TODO: le theme et le registre
-//On devrait quand meme attacher le theme et le registre au mot. Si on perd cette info, et qu'on la reserve qu'aux Collections on perd en flex...
 void Archiviste::addEntry(const vector<string>& entree){
   //L'ordre des champs est defini par la librairie (libconfig.sh)
   string mot = entree[0];
@@ -78,21 +76,11 @@ void Archiviste::addEntry(const vector<string>& entree){
   string genre = entree[5];
   string nombre = entree[6];
   int nsyll = stoi(entree[7]);
-  //TMP WIP
   //On parse les themes
   vector<string> themes = parseEntry(entree[11],";");
   //On parse les restires
-vector<string> registres = parseEntry(entree[8],";");
+  vector<string> registres = parseEntry(entree[8],";");
 
-  //On en fait une collection (Ailleurs)
-//  vector<string>::iterator it = themes.begin();
-//  while(it!=themes.end()){
-//
-//    if(!collectionneur_->isCollection(*it)){
-//
-//    }
-//
-//  }
 
   //NomC, Adjectif, Verbe ... ?
   string nature = entree[3];
@@ -365,4 +353,20 @@ const Mot * Archiviste::randomword() const{
     m = &verbes_[i];
   }
   return m;
+}
+
+//Build collections from themes
+void Archiviste::buildThemesCollections(){
+
+  for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+    collectionneur_->addToCollection(*ita);
+  }
+  for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+    collectionneur_->addToCollection(*ita);
+  }
+  for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+    collectionneur_->addToCollection(*ita);
+  }
+
+  return ;
 }

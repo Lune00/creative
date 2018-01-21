@@ -11,10 +11,10 @@
 using namespace std;
 
 
-
 void initialise(Archiviste& a, Collectionneur& c){
   a.plugtoCollectionneur(c);
   c.plugtoArchiviste(a);
+  a.buildThemesCollections();
 }
 
 
@@ -28,6 +28,7 @@ int main()
   initialise(archiviste,collectionneur);
 
   archiviste.afficher();
+  collectionneur.print();
 
   cout<<"Les portes de la bilbiotheque sont ouvertes."<<endl;
 

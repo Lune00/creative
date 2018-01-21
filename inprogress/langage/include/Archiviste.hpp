@@ -43,6 +43,9 @@ class Archiviste{
     void buildlinks();
     
     void link(std::vector<std::string>&);
+    //Built theme collections:
+    void buildThemesCollections();
+
     void afficher() const;
     void addEntry(const std::vector<string>&);
 
@@ -63,12 +66,15 @@ class Archiviste{
     Mot * findNOMC(const std::string&);
     Mot * findVER(const std::string&);
 
-    //TODO
-    //To be moved to another class Random
-    //only made for this (on aura un pointeur dessus) 
     //Random word from entire library
     const Mot * randomword() const;
     //Return a random integer with value uniformly distributed between 0 and size, useful for random access in vector
+
+
+
+    //TODO
+    //To be moved to another class Random
+    //only made for this (on aura un pointeur dessus) 
     int randomIndex(const int size) const;
 
 };

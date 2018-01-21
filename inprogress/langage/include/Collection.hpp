@@ -12,6 +12,8 @@
 //Collection est un conteneur repere par un nom(nom de la categorie) et possedant un conteneur de mots
 //Ex: par theme, par mode
 
+//On ne se servirait pas de ca plutot pour faire les vecteurs d'adjectifs, verbes, noms? Y reflechir par l'usage...
+
 class Collection{
   private:
     std::string nom_ ;
@@ -22,6 +24,7 @@ class Collection{
     ~Collection(){};
     int size () const { return mots_.size(); }
     std::string name() const { return nom_;}
+    void addWord(Mot *);
 };
 
 
