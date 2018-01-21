@@ -92,3 +92,17 @@ void Collectionneur::print() const {
   }
 
 }
+
+Collection Collectionneur::askCollection(const string name) const{
+
+  std::vector<Collection>::const_iterator it = collections_.begin();
+  while(it!=collections_.end()){
+    if(name == it->name()){
+      return *it ;
+      break;
+    }
+    it++;
+  }
+  return Collection();
+
+}

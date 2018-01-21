@@ -25,6 +25,7 @@ class Collection{
     int size () const { return mots_.size(); }
     std::string name() const { return nom_;}
     void addWord(Mot *);
+    void print() const;
 };
 
 

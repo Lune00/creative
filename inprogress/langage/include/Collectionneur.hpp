@@ -26,6 +26,7 @@ class Collectionneur{
     void addToCollection(Mot& m, const std::string name);
 
     void print() const;
+    Collection askCollection(const std::string name) const;
 
 };
 
