@@ -7,7 +7,9 @@
 
 class Texte{
 
+  private:
 
+  public:
 
 
 

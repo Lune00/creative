@@ -4,6 +4,7 @@
 #include"Adjectif.hpp"
 #include"Verbe.hpp"
 #include"NomC.hpp"
+#include"Langue.hpp"
 
 #include<algorithm>
 #include<fstream>

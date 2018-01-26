@@ -1,0 +1,7 @@
+#Essais sur les templates
+
+{Là où il y a _partitif+nom_, il y a _partitif+nom_.}
+{_defini+nom_, c'est la plus _adjectif_ des choses.}
+{_verbe(P/1S)_ _partitif_nom_ _CCT_.}
+
+
