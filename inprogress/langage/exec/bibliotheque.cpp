@@ -7,6 +7,7 @@
 
 #include"Archiviste.hpp"
 #include"Collectionneur.hpp"
+#include"Texte.hpp"
 
 using namespace std;
 
@@ -26,6 +27,9 @@ int main()
   Archiviste archiviste;
   Collectionneur collectionneur;
   initialise(archiviste,collectionneur);
+
+  //TMP
+  Texte texte;
 
   //archiviste.afficher();
   //collectionneur.print();

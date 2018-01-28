@@ -17,7 +17,7 @@ namespace phonetique{
 namespace lettres{
   //Voyelles:
   const std::string voyelles[]= {"a","e","i","o","u","y"};
-  const string Voyelles[]= {"A","E","I","O","U","Y"};
+  const std::string Voyelles[]= {"A","E","I","O","U","Y"};
 
   //Consonnes:
   const std::string consonnes[]= {"z","r","t","p","q","s","d","f","g","h","j","k","l","m","w","x","v","b","n"};
@@ -26,7 +26,6 @@ namespace lettres{
 }
 
 namespace articles{
-
 //Voir en pratique le meilleur moyen de gerer l'elision
 //Elements ranges : 0 masculin 1 feminin 2 pluriel 3 elisé (m/f)
 const std::string definis[]= {"le","la","les","l'"};
@@ -35,6 +34,12 @@ const std::string partitif[]= {"du","de la","de l'"};
 
 }
 
+namespace grammaire{
+
+  //Les classes interpretables par le programme donnees dans le template
+  const std::string classes[] = {"nom","verbe","adjectif","partitif","defini","indefini","CCT"};
+
+}
 
 
 #endif
