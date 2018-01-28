@@ -151,6 +151,9 @@ void Archiviste::buildlinks(){
 //Pour chaque entree on regarde ses synonymes/associes
 //puis si ils sont trouves comme entree également
 //on stocke pour l'entree un pointeur sur eux
+
+//TODO: les liens doivent fonctionner dans les deux sens non? Si chocolat est synonyme de cacao alors cacao doit etre synonyme de chocolat sans forcement que ce soit redondant dans la library. Ca a le potentiel de creer des doublons dans les synonymes (mais ca on veut toujours les enlever ensuite en appliquant un filtre aux synonymes). Faire un cas test pour voir si ca marche le TODO suivant
+
 void Archiviste::link(vector<string>& tokens){
 
   //Mot auquel on va rattacher syn et associes
@@ -199,6 +202,9 @@ void Archiviste::link(vector<string>& tokens){
 	//On l'ajoute dans les synonymes de m
 	Mot * linked = &(*ita);
 	m->linksynonymes(linked);
+	//TODO:
+	//ita->linksynonymes(m); on cree le lien dans les deux sens
+
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
