@@ -58,7 +58,6 @@ class Archiviste{
     void afficher() const;
     void addEntry(const std::vector<string>&);
 
-
     //Parse a string into a vec according to a delimiter
     std::vector<std::string> parseEntry(std::string toparse, const std::string delimiter);
 
@@ -69,7 +68,7 @@ class Archiviste{
 
     //Return a word (defined as mot and nature)
     //This pointer can be used to modify the word
-    Mot * findword(const std::string&, const std::string&) ;
+    Mot * findword(const std::string& lemme, const std::string& nature) ;
 
     Mot * findADJ(const std::string&);
     Mot * findNOMC(const std::string&);

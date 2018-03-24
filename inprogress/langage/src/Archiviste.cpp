@@ -300,6 +300,15 @@ void Archiviste::link_to_ver(Mot * const m,vector<string>& syn, vector<string>& 
 //Plus, he does not have to explicitly wirte synonyms in both way for two words he wants to put in the library
 void Archiviste::cleanlinks(){
 
+	for(vector<Adjectif>::iterator it = adjectifs_.begin(); it != adjectifs_.end();it++){
+		it->cleanlinks();
+	}
+	for(vector<NomC>::iterator it = nomsC_.begin(); it != nomsC_.end();it++){
+		it->cleanlinks();
+	}
+	for(vector<Verbe>::iterator it = verbes_.begin(); it != verbes_.end();it++){
+		it->cleanlinks();
+	}
 	return ;
 }
 
