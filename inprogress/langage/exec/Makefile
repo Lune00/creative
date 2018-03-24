@@ -1,9 +1,9 @@
-APP = bibliotheque
+APP=bibliotheque
 CC = g++
 INC_PATH = ../include
 LIB_PATH = ../lib
 
-CFLAGS = -w -Wall -I$(INC_PATH)
+CFLAGS = -w -Wall -I$(INC_PATH) -std=c++11
 OBJS = $(APP).o $(LIB_PATH)/*.o
 
 all: $(APP) 

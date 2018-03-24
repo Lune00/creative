@@ -6,13 +6,11 @@
 //Ainsi que les regles pour les manipuler
 //Seule la conjugaison est laisee a verbe ( y reflechir)
 
-
 namespace phonetique{
   //Table phonetique
   const std::string phon_table[]={ "a","i","y","u","o","O","e","E","°","2","9","5","1","@","§","3","j","8","w","p","b","t","d","k","g","f","v","s","z","Z","m","n","N","I","R","x","G","S","l"};
 
 }
-
 
 namespace lettres{
   //Voyelles:
@@ -29,14 +27,15 @@ namespace articles{
 //Voir en pratique le meilleur moyen de gerer l'elision
 //Elements ranges : 0 masculin 1 feminin 2 pluriel 3 elisé (m/f)
 const std::string definis[]= {"le","la","les","l'"};
-const std::string indefinis[]= {"un","une","des"};
+const std::string indefinis[]= {"un","une","des",""};
 const std::string partitif[]= {"du","de la","de l'"};
 
 }
 
 namespace grammaire{
-
   //Les classes interpretables par le programme donnees dans le template
+
+  //CCT: Complement Circonstanciel de Temps
   const std::string classes[] = {"nom","verbe","adjectif","partitif","defini","indefini","CCT"};
 
 }

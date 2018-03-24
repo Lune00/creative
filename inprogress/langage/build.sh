@@ -1,6 +1,8 @@
 #Recompile tout le projet
 #Il faut faire un script qui recompile que ce qui a ete modifie a l'avenir pour gagner du temps
 
+mkdir -p lib
+
 #clen lib
 rm lib/*.o
 

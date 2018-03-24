@@ -2,14 +2,12 @@
 #define H_adjectif_H
 
 #include"Mot.hpp"
-
 #include<string>
 
 using namespace std;
 
 class Adjectif: public Mot{
   private:
-
     char genre_;
     char nombre_;
 

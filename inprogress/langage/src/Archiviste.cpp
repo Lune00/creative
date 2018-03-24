@@ -193,7 +193,7 @@ void Archiviste::link(vector<string>& tokens){
   //A voir si ca pose des pbs plus tard...
 
   //ADJ
-  for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+  for(vector<Adjectif>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
     //Synonymes:
     for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
       if( *it == ita->getmot() ) {
@@ -225,7 +225,7 @@ void Archiviste::link(vector<string>& tokens){
   }
 
   //VER
-  for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+  for(vector<Verbe>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
     //Synonymes:
     for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
       if( *it == ita->getmot() ) {
@@ -252,7 +252,7 @@ void Archiviste::link(vector<string>& tokens){
   }
 
   //NOMC
-  for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+  for(vector<NomC>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
     //Synonymes:
     for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
       if( *it == ita->getmot() ) {
@@ -302,7 +302,7 @@ Mot * Archiviste::findword(const string& mot, const string& nature) {
 
 //Search and return a pointer to an adjective (can be modified) present in the loaded library
 Mot * Archiviste::findADJ(const string& mot){
-  for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+  for(vector<Adjectif>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
     if(mot == ita->getmot()){
       Mot * m = &(*ita);
       return m;
@@ -314,7 +314,7 @@ Mot * Archiviste::findADJ(const string& mot){
 
 //Search and return a pointer to a verb (can be modified) present in the loaded library
 Mot * Archiviste::findVER(const string& mot){
-  for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+  for(vector<Verbe>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
     if(mot == ita->getmot()){
       Mot * m = &(*ita);
       return m;
@@ -326,7 +326,7 @@ Mot * Archiviste::findVER(const string& mot){
 
 //Search and return a pointer to a nomC (can be modified) present in the loaded library
 Mot * Archiviste::findNOMC(const string& mot){
-  for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+  for(vector<NomC>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
     if(mot == ita->getmot()){
       Mot * m = &(*ita);
       return m;
@@ -366,13 +366,13 @@ const Mot * Archiviste::randomword() const{
 //Build collections from themes
 void Archiviste::buildThemesCollections(){
 
-  for(vector<Mot>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
+  for(vector<Adjectif>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
     collectionneur_->addToCollection(*ita);
   }
-  for(vector<Mot>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+  for(vector<NomC>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
     collectionneur_->addToCollection(*ita);
   }
-  for(vector<Mot>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
+  for(vector<Verbe>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
     collectionneur_->addToCollection(*ita);
   }
 

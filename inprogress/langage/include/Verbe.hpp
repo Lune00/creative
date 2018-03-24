@@ -5,6 +5,7 @@
 #include<list>
 #include<map>
 #include<iostream>
+#include<algorithm>
 
 #include"Mot.hpp"
 #include"Irreguliers.hpp"
@@ -33,11 +34,11 @@ class Verbe: public Mot{
 
     //Conjugaison:
     int groupe();
-    string conjuguer(string,int);
-    string conjuguerpremier(string,int);
-    string conjuguerdeuxieme(string,int);
-    string conjuguertroisieme(string,int);
-    string troisiemepresent(string,string);
+    //string conjuguer(string,int);
+    //string conjuguerpremier(string,int);
+    //string conjuguerdeuxieme(string,int);
+    //string conjuguertroisieme(string,int);
+    //string troisiemepresent(string,string);
 };
 
 //TODO: move this in a proper place

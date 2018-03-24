@@ -74,13 +74,18 @@ void Texte::parseTemplate(){
 
   for(vector<string>::iterator it = template_.begin(); it!= template_.end();it++){
 
+  }
+
+  return ;
 
 }
 
 
 vector<Mot*> Texte::askwords() const {
 
+	vector<Mot*> vm;
 
+	return vm;
 
 }
 
