@@ -26,20 +26,20 @@ void Mot::affiche()const{
 
   cout<<"mot : "<<mot_<<endl;
 
-  cout<<"- synonymes : "<< synonymes_.size()<<endl;
+  cout<<"=>synonymes : "<< synonymes_.size()<<endl;
   for(std::vector<Mot*>::const_iterator it = synonymes_.begin(); it != synonymes_.end();it++){
     cout<<(*it)->getmot()<<" "<<(*it)->nature()<<endl;
   }
-  cout<<"- associes : "<<associes_.size()<<endl;
+  cout<<"=>associes : "<<associes_.size()<<endl;
   for(std::vector<Mot*>::const_iterator it = associes_.begin(); it != associes_.end();it++){
     cout<<(*it)->getmot()<<" "<<(*it)->nature()<<endl;
   }
-  cout<<"- themes : ";
+  cout<<"=>themes : ";
   for(std::vector<string>::const_iterator it = themes_.begin(); it != themes_.end();it++){
     cout<<(*it)<<" ";
   }
   cout<<endl;
-  cout<<"- registres : ";
+  cout<<"=>registres : ";
   for(std::vector<string>::const_iterator it = registres_.begin(); it != registres_.end();it++){
     cout<<(*it)<<" ";
   }

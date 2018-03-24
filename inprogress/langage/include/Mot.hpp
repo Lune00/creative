@@ -49,6 +49,7 @@ class Mot{
 
     void linksynonymes(Mot*);
     void linkassocies(Mot*);
+
     void setThemes(std::vector<std::string> themes) { themes_ = themes ; }
     //Aucun registre correspond a vide ou "neutre"
     void setRegistres(std::vector<std::string> registres) { registres_ = registres ; }

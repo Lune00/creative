@@ -46,8 +46,8 @@ int main()
   //}   
 
   //Test finds:
-  //Mot * m = archiviste.findword("baleine","NOM");
-  //m->affiche();
+  Mot * m = archiviste.findword("cétacé","NOM");
+  m->affiche();
 
   //m = archiviste.findword("géant","ADJ");
   //m->affiche();

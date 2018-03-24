@@ -11,6 +11,7 @@
 #include<iostream>
 #include<random>
 
+
 //Archiviste est la classe qui sert d'interface entre le programme et la librairie formatée de mots
 //C'est elle qui lit la librairie, parse les entrees, et cree la bibliotheque utilisée dans le programme
 //C'est la classe Config quoi
@@ -42,8 +43,15 @@ class Archiviste{
     //Called in constructor
     void importLibrary();
     void buildlinks();
+    //Remove doublons if they exist in the links for each word
+    void cleanlinks();
     
     void link(std::vector<std::string>&);
+    //Called by link:
+    void link_to_adj(Mot* const,std::vector<std::string>&,std::vector<std::string>&);
+    void link_to_ver(Mot* const,std::vector<std::string>&,std::vector<std::string>&);
+    void link_to_noC(Mot* const,std::vector<std::string>&,std::vector<std::string>&);
+
     //Built theme collections:
     void buildThemesCollections();
 
