@@ -8,7 +8,7 @@
 
 
 #Choisir entre _et_ et [et], la 2e est plus chiante a taper mais me semble plus lissible
-#Bien penser a mettre un espace entre les parentheses { et le template }, sinon il faut ecrire un peu plus de code pour decouper
+#Bien penser a mettre un espace entre les parentheses et le template , sinon il faut ecrire un peu plus de code pour decouper
 #Gestion de la poncutation: soit collee a un mot donnee, dans ce cas ca ne pose pas de probleme. soit collee a un mot a interpreter (comme dans l'ex) et il faut le detecter et le placer dans un string a part et le mettre dans le bon ordre dans le vecteur.@
 
 { Là où il y a [partitif->nom], il y a [partitif->nom]. } 

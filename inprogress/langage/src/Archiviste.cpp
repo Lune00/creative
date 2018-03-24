@@ -236,6 +236,7 @@ void Archiviste::link(vector<string>& tokens){
 	// de meme nature_
       }
     }
+
     //Associes:
     for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
       if( *it == ita->getmot() ) {
@@ -262,6 +263,7 @@ void Archiviste::link(vector<string>& tokens){
 	// de meme nature_
       }
     }
+
     //Associes:
     for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
       if( *it == ita->getmot() ) {

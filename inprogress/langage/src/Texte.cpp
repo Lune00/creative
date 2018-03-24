@@ -23,6 +23,7 @@ void Texte::loadTemplates(){
     return ;
   }
 
+  //
   string token;
   is >> token;
 
@@ -47,9 +48,7 @@ void Texte::loadTemplates(){
 }
 
 void Texte::readTemplate(ifstream& is){
-
   string token;
-
   //vector<string> Template;
   while(is){
     is >> token;
@@ -57,15 +56,32 @@ void Texte::readTemplate(ifstream& is){
     //Template.push_back(token);
     template_.push_back(token);
   }
-
-
-  //TMP:
-  for(vector<string>::iterator it = template_.begin(); it!= template_.end();it++){
-
-    cout<<*it<<endl;
-
-  }
-
   return ;
 
 }
+
+void Texte::printTemplate() const{
+  for(vector<string>::const_iterator it = template_.begin(); it!= template_.end();it++){
+    cout<<*it<<endl;
+  }
+}
+
+//Hache le template en mots donnes et mots a remplir de manière formatee, en ecartant tous les biais/erreurs du template
+
+void Texte::parseTemplate(){
+
+  //On separe bien les entrees
+
+  for(vector<string>::iterator it = template_.begin(); it!= template_.end();it++){
+
+
+}
+
+
+vector<Mot*> Texte::askwords() const {
+
+
+
+}
+
+

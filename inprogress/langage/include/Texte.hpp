@@ -1,10 +1,14 @@
 #ifndef H_TEXTE_H
 #define H_TEXTE_H
 
-#include"Langue.hpp"
 #include<fstream>
 #include<iostream>
 #include<vector>
+
+#include"Langue.hpp"
+#include"Adjectif.hpp"
+#include"Verbe.hpp"
+#include"NomC.hpp"
 
 //Cette classe lit les templates de texte ecrit a la main en interpretant leur grammaire
 //Elle devra renvoyer le template sous une forme canonique interpretable par la compositeur
@@ -23,9 +27,6 @@
 
 //Regle 1: les balises _mot_ indiquent qu'on doit y glisser un mot
 
-
-
-
 class Texte{
 
   private:
@@ -36,8 +37,12 @@ class Texte{
   public:
     Texte();
     ~Texte();
+    //TMP: apres gestion des differents templates
     void loadTemplates();
     void readTemplate(std::ifstream&);
+    void parseTemplate();
+    void printTemplate() const;
+    std::vector<Mot*> askwords() const;
 
 };
 

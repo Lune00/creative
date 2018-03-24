@@ -29,7 +29,6 @@ class Mot{
     std::vector<std::string> themes_;
     //Registres (belong to)
     std::vector<std::string> registres_;
-
     //Really needed? Tho useful...
     int nature_;
 
