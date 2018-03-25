@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 
 #Quand on construit les awaiters on doit supprimer de la liste ceux deja présent dans la base
@@ -21,14 +21,16 @@ echo ""
 #Nombres d'entrees en NOM et ADJ
 echo ".Occurences par classe grammaticale:"
 echo ""
-awk 'BEGIN{FS="\t"}/NOM/{b=b+1} END{print "Nombre de NOM: " b}' $formatedlib
-awk 'BEGIN{FS="\t"}/ADJ/{a=a+1} END{print "Nomnbe de ADJ: "a}' $formatedlib
-awk 'BEGIN{FS="\t"}/VER/{a=a+1} END{print "Nomnbe de VER: "a}' $formatedlib
+
+awk 'BEGIN{FS="\t"}/NOM/{b=b+1} END{printf("Total noms communs (NOM): %-5d %.0f%\n",b,(b*100)/NR)}' $formatedlib
+awk 'BEGIN{FS="\t"}/ADJ/{b=b+1} END{printf("Total adjectifs (ADJ)   : %-5d %.0f%\n",b,(b*100)/NR)}' $formatedlib
+awk 'BEGIN{FS="\t"}/VER/{b=b+1} END{printf("Total verbes (VER)      : %-5d %.0f%\n",b,(b*100)/NR)}' $formatedlib
 
 themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
 themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $themes)
 declare -A asar
 for i in ${themes}; do asar[$i]=$(( ${asar[$i]}+1 )); done
+#Solution un peu crado avec quelques mois de recul: facon d'eliminer les doublons
 themes=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{ if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$themes")
 echo -e "\n.Liste des thèmes présents:\n"
 for i in ${themes}
@@ -37,6 +39,8 @@ do
 done
 
 echo ""
+
+echo "Construction de la liste des mots en attente d'une entrée..."
 
 #Maj related et synonmes demandant une entree
 #Un probleme sur la séparation etnre rsyn et related!!!
@@ -76,29 +80,30 @@ add="${add%?}"
 add_table=($add)
 #echo -e ".Mots en attente ajoutés depuis le dernier rapport (${green}${#add_table[@]}${reset}):\n$add"
 
+echo "Construction de la liste des mots en attente d'une entrée...done"
 
 #Last phoneme table occurence
 
-#Recuperer toutes les phonetiques des entresse
-phonetiques=$(awk 'BEGIN{FS="\t";} {print $3}' $formatedlib)
-#Recuperer le dernier caractere
-last_phon=()
-for i in ${phonetiques}
-do
-  lp="${i: -1}"
-  last_phon+=("$lp")
-done
-
-#Compter avec une associative arrau
-declare -A asar_lp
-for i in ${last_phon[@]}; do asar_lp[$i]=$(( ${asar_lp[$i]}+1 )); done
-echo -e "\n.Occurences par phonème:\n"
-for i in ${phon_table[@]}
-do
-  printf "${yellow}%-10s${reset}\tNombre d'entrées: ${green}%3s${reset}\n" "$i" "${asar_lp[$i]}"
-done
-
-echo ""
+##Recuperer toutes les phonetiques des entresse
+#phonetiques=$(awk 'BEGIN{FS="\t";} {print $3}' $formatedlib)
+##Recuperer le dernier caractere
+#last_phon=()
+#for i in ${phonetiques}
+#do
+#  lp="${i: -1}"
+#  last_phon+=("$lp")
+#done
+#
+##Compter avec une associative arrau
+#declare -A asar_lp
+#for i in ${last_phon[@]}; do asar_lp[$i]=$(( ${asar_lp[$i]}+1 )); done
+#echo -e "\n.Occurences par phonème:\n"
+#for i in ${phon_table[@]}
+#do
+#  printf "${yellow}%-10s${reset}\tNombre d'entrées: ${green}%3s${reset}\n" "$i" "${asar_lp[$i]}"
+#done
+#
+#echo ""
 
 
 echo ""
