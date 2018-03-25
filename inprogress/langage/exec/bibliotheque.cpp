@@ -46,7 +46,7 @@ int main()
   //}   
 
   //Test finds:
-  Mot * m = archiviste.findword("géant","ADJ");
+  Mot * m = archiviste.findword("vaisseau","NOM");
   m->affiche();
 
   //m = archiviste.findword("géant","ADJ");
@@ -54,7 +54,7 @@ int main()
 
   //const Mot * mot = archiviste.randomword();
   //mot->affiche();
-  Collection c = collectionneur.askCollection("morale");
+  Collection c = collectionneur.askCollection("navigation");
   c.print();
   
 
