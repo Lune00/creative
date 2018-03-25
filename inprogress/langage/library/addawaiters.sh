@@ -19,6 +19,7 @@ done < "$waitlib"
 
 
 #shuffle for entertainment
+mots=($(shuf -e "${mots[@]}"))
 
 #Process chaque mot
 echo "liste des mots à ajouter:"
