@@ -1,0 +1,30 @@
+Rajouter un script qui permet de modifier les entrees existantes, par exemple si on veut modifier/rajouter des synonymes, associes, themes
+On ne touchera pas a toutes les autres categories qui doivent etre par defintion correcte (d'apres la base source)
+
+
+nom suggeree : modifyentry.sh
+
+Le programme demandera quel mot entree veut on modifier
+
+On cherchera les occurences des mots et on demandera de choisir lequel avec un petit menu
+
+1) ce mot (verbe)
+2) ce mot (adjectif)
+
+Ensuite on demandera ce que l'on veut modifier
+
+while(on a fini)
+{
+	1)synonymes
+	2)associés
+	3)themes
+	
+	Ensuite on demandera si on veut:
+	
+	1)ajouter 
+	2)retirer (plus compliqué)
+	3)reset et tout ré écrire
+}
+
+
+Avec ce script on aura un ensemble complet de scripts pour gerer la bibliotheque sans jamais intervenir a la main dessus
