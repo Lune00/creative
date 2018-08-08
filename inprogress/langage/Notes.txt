@@ -1,0 +1,25 @@
+Rappel sur l'architecture qui se construit pour la génération:
+
+Pour le moment "le produit final" est encore incertain tellement il peut revetir differentes formes. Le but visé pour le moment est de produire des courts textes ( de quelques lignes), des extraits en fait, d'un type d'ouvrage: recueil de poesie, article scientifique, histoire, traité, essai philosophique, recits biographiques, carnets de voyages, roman, piece de theatre, aphorisme et proverbe....
+
+L'oeuvre aura un auteur, une date et un lieu, et un nombre de pages ET UN TITRE. Eventuellement une appréciation et un commentaire, mais pas pour le moment (juger de sa qualité). On pourra lui adjoindre un petit résumé du type DF "Cet ouvrage parle de ..." Vu les skills de l'auteur etc.
+
+Donc chaque sortie sera: un résumé de 2 lignes sur la nature de l'ouvrage: le theme, la qualité etc... suivi d'un extrait, et des infos sur la parution (auteur,lieu,date,nb de pages)
+
+Pour cela on a une base de données de mots (librairie) qui est pilotée externement au programme a l'aide de scripts en bashs.
+
+Pour rendre plus intuitive l'architecture du programme j'ai voulu imager les differentes classes par une sorte de series d'acteurs qui, a partir des mots, produisent le resultat escompté.
+
+Le premier pilier du programme est l'Archiviste. C'est lui qui lit la bibliotheque et construit la base de mots avec laquelle on pourra travailler. Il les classe par nature, etablit les liens entre eux (les synonymes et associés), leur donne une consistence et une mécanique. C'est le gardien des mots.
+
+Ensuite vient le Collectionneur. Il vient voir l'archiviste et lui son role c'est de creer des collections de mots, partageant par exemple un trait communs. Il va consituer des collections (par genre, par theme, par phoneme...).
+
+Puis le TemplateManager (ou Texte pour l'instant). Lui il va lire les templates pré-écrits a la main. Ce sont des petits bouts de texte a trous, correspondant à la forme littéraire choisie. Ici on mélange du fabriqué main avec de la génération procédurale. Car on est loins de faire un joli truc si on laisse tout aux méthodes procédurales. Il y a un petit travail d'écriture assez sympa à faire ici. Le TemplateManager gere les plans. On lui demande un plan de poésie, c'est lui qui va chercher une structure de base, et déterminer exactement ce qu'il faut pour completer les espaces manquants. 
+
+Entre le Compositeur. Sa tache sera de trouver les mots et d'écrire le texte final. Il aura un plan du TemplateManager, des collections de mots du Collectionneur. Il remplit les trous avec inspiration. Il écrira peut etre aussi le résumé.
+
+
+Voilà un peu pour l'instant comment je vois les choses.
+
+Se concentrer sur les aphorismes et la poésié pour le moment, c'était les buts initiaux. Imaginer comment faire un extrait d'un roman ou d'un article scientifique.
+Theme + registre + rythmique (a a b b) (a b a b) etc...

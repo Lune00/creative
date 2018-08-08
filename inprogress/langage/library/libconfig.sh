@@ -1,14 +1,12 @@
 #!/bin/bash
 
 
-#Pour simplifier peut etre que dans synonymes et related il faut laisser que des mots de la meme classe grammatical (pour ne pas etre oblige de leur donner une entree)
-#Oublier d'ecrire le nombre
-
 #Pour le moment on ne prend que la forme au singulier (pas de pluriel) et que des verbes a l'infinitif
 #On pourra accorder et conjuguer grace aux fonctions deja crees dans le dossier langage
 
 red=`tput setaf 1`
-green=`tput setaf 2` yellow=`tput setaf 3`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
 blue=`tput setaf 4`
 magenta=`tput setaf 5`
 bold=`tput bold`

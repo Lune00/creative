@@ -46,15 +46,14 @@ int main()
   //}   
 
   //Test finds:
-  //Mot * m = archiviste.findword("baleine","NOM");
-  //m->affiche();
+  Mot * m = archiviste.findword("vaisseau","NOM");
+  m->affiche();
 
   //m = archiviste.findword("géant","ADJ");
   //m->affiche();
 
   //const Mot * mot = archiviste.randomword();
   //mot->affiche();
-  Collection c = collectionneur.return_collection_by_name("morale");
   c.print();
   
 

@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 
 #Il faut themes: philosophie medecine mecanique naturaliste geologue politique 
@@ -16,6 +16,10 @@ while read -r mot || [[ -n "$mot" ]]
 do
   mots+=($mot)
 done < "$waitlib"
+
+
+#shuffle for entertainment
+mots=($(shuf -e "${mots[@]}"))
 
 #Process chaque mot
 echo "liste des mots à ajouter:"
