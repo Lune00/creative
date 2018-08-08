@@ -34,8 +34,6 @@ int main()
   //archiviste.afficher();
   //collectionneur.print();
 
-  cout<<"Les portes de la bilbiotheque sont ouvertes."<<endl;
-
   //Tests downcast (a partir pointeur Mot(classe mere), je peux acceder a la partie classe fille):
 
   //std::vector<Mot*> lib;
@@ -46,14 +44,15 @@ int main()
   //}   
 
   //Test finds:
-  Mot * m = archiviste.findword("vaisseau","NOM");
-  m->affiche();
+  //Mot * m = archiviste.findword("vaisseau","NOM");
+  //m->affiche();
 
   //m = archiviste.findword("géant","ADJ");
   //m->affiche();
 
   //const Mot * mot = archiviste.randomword();
   //mot->affiche();
+  Collection c = collectionneur.return_collection_by_name ( "navigation") ;
   c.print();
   
 
