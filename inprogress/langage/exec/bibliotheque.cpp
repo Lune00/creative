@@ -54,7 +54,7 @@ int main()
 
   //const Mot * mot = archiviste.randomword();
   //mot->affiche();
-  Collection c = collectionneur.askCollection("morale");
+  Collection c = collectionneur.return_collection_by_name("morale");
   c.print();
   
 
