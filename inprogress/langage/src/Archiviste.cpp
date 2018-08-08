@@ -124,7 +124,7 @@ void Archiviste::afficher() const{
 //si le synonymes/related sont aussi en tant qu'entrée.
 void Archiviste::buildlinks(){
 
-  cout<<"Création des liens entre mots..."<<endl;
+  cout<<"Création des liens entres mots..."<<endl;
   ifstream mylib(mylibrary_);
 
   while(true){
@@ -144,11 +144,6 @@ void Archiviste::buildlinks(){
   }
 
   cout<<"Création des liens entre mots...done"<<endl;
-
-  cleanlinks();
-
-  cout<<"Suppression des doublons dans les associations...done"<<endl;
-
 }
 
 
@@ -159,7 +154,6 @@ void Archiviste::buildlinks(){
 
 //TODO: les liens doivent fonctionner dans les deux sens non? Si chocolat est synonyme de cacao alors cacao doit etre synonyme de chocolat sans forcement que ce soit redondant dans la library. Ca a le potentiel de creer des doublons dans les synonymes (mais ca on veut toujours les enlever ensuite en appliquant un filtre aux synonymes). Faire un cas test pour voir si ca marche le TODO suivant
 
-//Pour le moment on fait l'association dans les deux sens seulement pour les synonymes et non pour les mots associes, sinon on perd beaucoup de l'interet de lier certains mots en particulier. Pour les synonymes, le sens est proche alors ca marche mais pour des mots associés dans les deux sens on affaiblit l'association.
 void Archiviste::link(vector<string>& tokens){
 
   //Mot auquel on va rattacher syn et associes
@@ -177,7 +171,10 @@ void Archiviste::link(vector<string>& tokens){
     cerr<<"Archiviste::link : Le mot "<<mot<<" n'a pas été chargé dans la librairie"<<endl;
     return ;
   }
-  
+
+  //On parcourt les synonymes du mot m:
+  //On le cherche dans chaque liste:
+
   //En fait on peut pas connaitre la classe grammaticale
   //du mot synonnymes ou associe a partir de la librairie
   //Mais bon c'est un petit side effect pas forcement
@@ -195,16 +192,7 @@ void Archiviste::link(vector<string>& tokens){
   //or Mot est une classe abstraite...
   //A voir si ca pose des pbs plus tard...
 
-  //On parcourt les synonymes du mot m:
-  //On le cherche dans chaque liste:
-
-  link_to_adj(m,syn,associes);
-  link_to_noC(m,syn,associes);
-  link_to_ver(m,syn,associes);
-}
-
-//Link synonymes & related to Mot m if they are adjectives
-void Archiviste::link_to_adj(Mot* const m,vector<string>& syn, vector<string>& associes){
+  //ADJ
   for(vector<Adjectif>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
     //Synonymes:
     for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
@@ -214,34 +202,9 @@ void Archiviste::link_to_adj(Mot* const m,vector<string>& syn, vector<string>& a
 	//On l'ajoute dans les synonymes de m
 	Mot * linked = &(*ita);
 	m->linksynonymes(linked);
-	//double sens association mot <=> synonyme
-	ita->linksynonymes(m); //on cree le lien dans les deux sens
-	break ; // il ne peut y avoir 2 mots identiques
-	// de meme nature_
-      }
-    }
-    //Associes:
-    for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
-      if( *it == ita->getmot() ) {
-	Mot * linked = &(*ita);
-	m->linkassocies(linked);
-	break ; // il ne peut y avoir 2 mots identiques
-	// de meme nature_
-      }
-    }
-  }
-  return ;
-}
+	//TODO:
+	//ita->linksynonymes(m); on cree le lien dans les deux sens
 
-void Archiviste::link_to_noC(Mot * const m,vector<string>& syn, vector<string>& associes){
-  for(vector<NomC>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
-    //Synonymes:
-    for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
-      if( *it == ita->getmot() ) {
-	//On l'associe:
-	Mot * linked = &(*ita);
-	m->linksynonymes(linked);
-	ita->linksynonymes(m); //on cree le lien dans les deux sens
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
@@ -261,11 +224,7 @@ void Archiviste::link_to_noC(Mot * const m,vector<string>& syn, vector<string>& 
     }
   }
 
-	return;
-}
-
-void Archiviste::link_to_ver(Mot * const m,vector<string>& syn, vector<string>& associes){
-
+  //VER
   for(vector<Verbe>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
     //Synonymes:
     for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
@@ -273,7 +232,6 @@ void Archiviste::link_to_ver(Mot * const m,vector<string>& syn, vector<string>& 
 	//On l'associe:
 	Mot * linked = &(*ita);
 	m->linksynonymes(linked);
-	ita->linksynonymes(m); //on cree le lien dans les deux sens
 	break ; // il ne peut y avoir 2 mots identiques
 	// de meme nature_
       }
@@ -292,24 +250,33 @@ void Archiviste::link_to_ver(Mot * const m,vector<string>& syn, vector<string>& 
       }
     }
   }
-	return;
-}
 
-//Erase doublons after the linking phase (the association of synonymes in both ways can lead to doublons if the synonym is core-written in the library already
-//The user of the library do not have to worry about that.
-//Plus, he does not have to explicitly wirte synonyms in both way for two words he wants to put in the library
-void Archiviste::cleanlinks(){
+  //NOMC
+  for(vector<NomC>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
+    //Synonymes:
+    for(vector<string>::iterator it = syn.begin();it!=syn.end();it++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+	Mot * linked = &(*ita);
+	m->linksynonymes(linked);
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+    }
 
-	for(vector<Adjectif>::iterator it = adjectifs_.begin(); it != adjectifs_.end();it++){
-		it->cleanlinks();
-	}
-	for(vector<NomC>::iterator it = nomsC_.begin(); it != nomsC_.end();it++){
-		it->cleanlinks();
-	}
-	for(vector<Verbe>::iterator it = verbes_.begin(); it != verbes_.end();it++){
-		it->cleanlinks();
-	}
-	return ;
+    //Associes:
+    for(vector<string>::iterator it = associes.begin();it!=associes.end();it++){
+      if( *it == ita->getmot() ) {
+	//On l'associe:
+	//On cree un pointeur qui pointe sur ita
+	//On l'ajoute dans les synonymes de m
+	Mot * linked = &(*ita);
+	m->linkassocies(linked);
+	break ; // il ne peut y avoir 2 mots identiques
+	// de meme nature_
+      }
+    }
+  }
 }
 
 //Renvoie un pointeur sur un mot correspondant au couple (unique) "mot+nature" dans la bibliotheque
@@ -400,15 +367,14 @@ const Mot * Archiviste::randomword() const{
 void Archiviste::buildThemesCollections(){
 
   for(vector<Adjectif>::iterator ita = adjectifs_.begin();ita!=adjectifs_.end();ita++){
-    collectionneur_->addToCollection(*ita);
+    collectionneur_->put_word_into_collections_by_theme(*ita);
   }
   for(vector<NomC>::iterator ita = nomsC_.begin();ita!=nomsC_.end();ita++){
-    collectionneur_->addToCollection(*ita);
+    collectionneur_->put_word_into_collections_by_theme(*ita);
   }
   for(vector<Verbe>::iterator ita = verbes_.begin();ita!=verbes_.end();ita++){
-    collectionneur_->addToCollection(*ita);
+    collectionneur_->put_word_into_collections_by_theme(*ita);
   }
 
   return ;
 }
-

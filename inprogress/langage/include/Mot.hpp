@@ -4,8 +4,6 @@
 #include<iostream>
 #include<string>
 #include<vector>
-#include<algorithm>
-#include<set>
 
 #define NOMC_ 0
 #define ADJ_  1
@@ -51,14 +49,12 @@ class Mot{
 
     void linksynonymes(Mot*);
     void linkassocies(Mot*);
-    //Erase doublons in synonymes only
-    void cleanlinks();
-
     void setThemes(std::vector<std::string> themes) { themes_ = themes ; }
     //Aucun registre correspond a vide ou "neutre"
     void setRegistres(std::vector<std::string> registres) { registres_ = registres ; }
 
     friend bool operator==(const Mot&,const Mot&);
+
 
     //Accesseurs:
 

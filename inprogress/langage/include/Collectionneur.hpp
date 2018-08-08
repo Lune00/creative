@@ -7,6 +7,7 @@
 class Archiviste;
 
 //Collectionneur demande des mots a archiviste pour creer des collecions de mots
+
 //Collection de mots par: theme, phonetique etc... possible grâce à a la bibliotheque
 
 class Collectionneur{
@@ -18,15 +19,17 @@ class Collectionneur{
   public:
     Collectionneur(){};
     ~Collectionneur(){};
+
     void plugtoArchiviste(Archiviste& a) { archiviste_ = &a;}
 
-    bool isCollection(const std::string& name) const;
-    void addCollection(const std::string& name);
-    void addToCollection(Mot& m);
-    void addToCollection(Mot& m, const std::string name);
+    bool exist_collection_by_name(const std::string& name) const;
+    void create_collection(const std::string& name);
+
+    void put_word_into_collections_by_theme(Mot& m);
+    void add_word_to_collection(Mot& m, const std::string name);
 
     void print() const;
-    Collection askCollection(const std::string name) const;
+    Collection return_collection_by_name(const std::string name) const;
 
 };
 

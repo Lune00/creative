@@ -16,6 +16,7 @@
 
 #define _aphorisme_ 0
 
+
 //Lit un template
 
 //Transforme une entre _mot_ en objet mot a appeler

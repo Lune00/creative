@@ -11,7 +11,6 @@
 #include<iostream>
 #include<random>
 
-
 //Archiviste est la classe qui sert d'interface entre le programme et la librairie formatée de mots
 //C'est elle qui lit la librairie, parse les entrees, et cree la bibliotheque utilisée dans le programme
 //C'est la classe Config quoi
@@ -43,20 +42,14 @@ class Archiviste{
     //Called in constructor
     void importLibrary();
     void buildlinks();
-    //Remove doublons if they exist in the links for each word
-    void cleanlinks();
     
     void link(std::vector<std::string>&);
-    //Called by link:
-    void link_to_adj(Mot* const,std::vector<std::string>&,std::vector<std::string>&);
-    void link_to_ver(Mot* const,std::vector<std::string>&,std::vector<std::string>&);
-    void link_to_noC(Mot* const,std::vector<std::string>&,std::vector<std::string>&);
-
     //Built theme collections:
     void buildThemesCollections();
 
     void afficher() const;
     void addEntry(const std::vector<string>&);
+
 
     //Parse a string into a vec according to a delimiter
     std::vector<std::string> parseEntry(std::string toparse, const std::string delimiter);
@@ -68,7 +61,7 @@ class Archiviste{
 
     //Return a word (defined as mot and nature)
     //This pointer can be used to modify the word
-    Mot * findword(const std::string& lemme, const std::string& nature) ;
+    Mot * findword(const std::string&, const std::string&) ;
 
     Mot * findADJ(const std::string&);
     Mot * findNOMC(const std::string&);
