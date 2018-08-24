@@ -64,7 +64,6 @@ nature
 indomptable
 expédition
 périple
-vaisseau
 colère
 cyclone
 cataclysme
@@ -710,3 +709,6 @@ vieille
 ancienne
 objet
 valeur
+navire
+naviguer
+marins

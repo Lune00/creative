@@ -22,14 +22,17 @@ echo ""
 echo ".Occurences par classe grammaticale:"
 echo ""
 
-awk 'BEGIN{FS="\t"}/NOM/{b=b+1} END{printf("Total noms communs (NOM): %-5d %.0f%\n",b,(b*100)/NR)}' $formatedlib
-awk 'BEGIN{FS="\t"}/ADJ/{b=b+1} END{printf("Total adjectifs (ADJ)   : %-5d %.0f%\n",b,(b*100)/NR)}' $formatedlib
-awk 'BEGIN{FS="\t"}/VER/{b=b+1} END{printf("Total verbes (VER)      : %-5d %.0f%\n",b,(b*100)/NR)}' $formatedlib
+#    @BUG:
+#awk 'BEGIN{FS="\t"}/NOM/{b=b+1} END{printf("Total noms communs (NOM): %-5d %.0f%\n" , b , (b*100)/NR)}' $formatedlib
+#awk 'BEGIN{FS="\t"}/ADJ/{b=b+1} END{printf("Total adjectifs (ADJ)   : %-5d %.0f%\n" , b , (b*100)/NR)}' $formatedlib
+#awk 'BEGIN{FS="\t"}/VER/{b=b+1} END{printf("Total verbes (VER)      : %-5d %.0f%\n" , b , (b*100)/NR)}' $formatedlib
 
 themes=$(awk 'BEGIN{FS="\t";} {print $12}' $formatedlib)
 themes=$(gawk 'BEGIN{ RS=";|\\s" ; ORS=" "}{ print $0}' <<< $themes)
+
 declare -A asar
 for i in ${themes}; do asar[$i]=$(( ${asar[$i]}+1 )); done
+
 #Solution un peu crado avec quelques mois de recul: facon d'eliminer les doublons
 themes=$(gawk 'BEGIN{RS="\\s" ; ORS=" "}{ if(var[$0]==0){var[$0]+=1; print $0}}' <<< "$themes")
 echo -e "\n.Liste des thèmes présents:\n"

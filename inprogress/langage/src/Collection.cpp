@@ -7,6 +7,7 @@ void Collection::addWord(Mot * pm){
 }
 
 void Collection::print()const{
+  cout<<"Collection : "<<nom_<<endl;
   for(vector<Mot*>::const_iterator it = mots_.begin(); it != mots_.end(); it++){
     //(*it)->affiche(); too exhaustive for test
     cout<<(*it)->getmot()<<" ";

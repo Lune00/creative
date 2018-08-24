@@ -102,7 +102,6 @@ Collection Collectionneur::return_collection_by_name(const string name) const{
   while(it!=collections_.end()){
     if(name == it->name()){
       return *it ;
-      break;
     }
     it++;
   }
