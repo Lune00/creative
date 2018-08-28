@@ -5,21 +5,21 @@ using namespace std;
 Texte::Texte(){
   ftemplates_ = "../ressources/templates.txt";
   //TMP
-  loadTemplates();
+  read_templates_datafile();
 }
 
 Texte::~Texte(){}
 
 //TMP: pour le moment lit tout
 //A definir, randomiser par type de templates etc..
-void Texte::loadTemplates(){
+void Texte::read_templates_datafile(){
 
-  cerr<<"LoadTemplate"<<endl;
+  cerr<<"load template : no preferences"<<endl;
 
   ifstream is(ftemplates_);
 
   if(!is){
-    cerr<<"Texte::readTemplate : cannot open file."<<endl;
+    cerr<<"Texte::load_templates : cannot open file."<<endl;
     return ;
   }
 
@@ -36,7 +36,7 @@ void Texte::loadTemplates(){
     }
 
     if(token.at(0)=='{'){
-      readTemplate(is);
+      load_template(is);
       //TMP
       break;
     }
@@ -47,20 +47,18 @@ void Texte::loadTemplates(){
   return ;
 }
 
-void Texte::readTemplate(ifstream& is){
+void Texte::load_template(ifstream& is){
   string token;
-  //vector<string> Template;
   while(is){
     is >> token;
     if(token.back()=='}') break;
-    //Template.push_back(token);
     template_.push_back(token);
   }
   return ;
-
 }
 
-void Texte::printTemplate() const{
+void Texte::print_template() const{
+  cout<<"Template choisi: ";
   for(vector<string>::const_iterator it = template_.begin(); it!= template_.end();it++){
     cout<<*it<<endl;
   }
@@ -68,10 +66,9 @@ void Texte::printTemplate() const{
 
 //Hache le template en mots donnes et mots a remplir de manière formatee, en ecartant tous les biais/erreurs du template
 
-void Texte::parseTemplate(){
+void Texte::fill_template(){
 
   //On separe bien les entrees
-
   for(vector<string>::iterator it = template_.begin(); it!= template_.end();it++){
 
   }

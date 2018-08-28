@@ -38,10 +38,10 @@ class Texte{
     Texte();
     ~Texte();
     //TMP: apres gestion des differents templates
-    void loadTemplates();
-    void readTemplate(std::ifstream&);
-    void parseTemplate();
-    void printTemplate() const;
+    void read_templates_datafile();
+    void load_template(std::ifstream&);
+    void fill_template();
+    void print_template() const;
     std::vector<Mot*> askwords() const;
 
 };
