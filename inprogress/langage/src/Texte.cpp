@@ -2,8 +2,10 @@
 
 using namespace std;
 
+std::string Texte::ftemplates_ = "../ressources/templates.txt";
+
+
 Texte::Texte(){
-  ftemplates_ = "../ressources/templates.txt";
   //TMP
   read_templates_datafile();
 }
@@ -23,7 +25,6 @@ void Texte::read_templates_datafile(){
     return ;
   }
 
-  //
   string token;
   is >> token;
 
@@ -36,14 +37,14 @@ void Texte::read_templates_datafile(){
     }
 
     if(token.at(0)=='{'){
-      load_template(is);
       //TMP
+      load_template(is);
       break;
     }
 
     is >> token;
-
   }
+
   return ;
 }
 
@@ -60,8 +61,9 @@ void Texte::load_template(ifstream& is){
 void Texte::print_template() const{
   cout<<"Template choisi: ";
   for(vector<string>::const_iterator it = template_.begin(); it!= template_.end();it++){
-    cout<<*it<<endl;
+    cout<<*it<<" ";
   }
+  cout<<endl;
 }
 
 //Hache le template en mots donnes et mots a remplir de manière formatee, en ecartant tous les biais/erreurs du template

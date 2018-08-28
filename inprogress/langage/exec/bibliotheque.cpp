@@ -30,6 +30,7 @@ int main()
 
   //TMP
   Texte texte;
+  texte.print_template();
 
   //archiviste.afficher();
   //collectionneur.print();
