@@ -9,12 +9,11 @@
 
 using namespace std;
 
-
 namespace cal{
 
   int an = 0 ;
-  int jour = 29;
-  int mois = 1;
+  int jour = 30;
+  int mois = 12;
   //Nombre de jours par mois:
   int mois_size = 30 ;
   //Nombre de mois par an:
@@ -55,6 +54,7 @@ namespace cal{
   //Calcule la date apres un increment de njour,nmois et nans (nmois et nans optionnels)
   void changeDate(const int njour,const int nmois = 0, const int nans = 0){
 
+    //Petit malin, as tu déja entendu parler de la fleche du temps?
     if(njour<0 || nmois<0 || nans <0) return ;
 
     int inc_jours = njour + nmois * mois_size;
@@ -74,10 +74,42 @@ namespace cal{
     return;
   }
 
-  //avance et recule de njour, nmois, nans
+  //Methode sans boucle:
   void changeDate2(const int njour,const int nmois = 0, const int nans = 0){
 
+    //Petit malin, as tu déja entendu parler de la fleche du temps?
+    if( njour<0 || nmois<0 || nans<0 ) return ;
 
+    //inc_jours: nombre de jours a avancer
+    //inc_mois: nombre de mois a avancer
+    int inc_jours = njour + nmois * mois_size;
+    int inc_mois = (int) inc_jours / mois_size ;
+    inc_jours = inc_jours % mois_size;
+
+    //Apport des jours a l'increment en mois:
+    inc_mois += (int)(jour + inc_jours)/ mois_size ;
+
+    an += (int) (mois + inc_mois - 1)/ an_size + nans ;
+    jour = (jour + inc_jours - 1 ) % mois_size + 1 ;
+    mois = (mois + inc_mois - 1) % an_size + 1 ;
+
+    afficheDate();
+    return;
+
+  }
+
+  void setDate(const int j, const int m, const int a){
+
+    jour = j;
+    mois = m;
+    an = a;
+
+    if( jour < 1 || jour > mois_size) jour = 1;
+    if( mois < 1 || mois > an_size)   mois = 1;
+    if( an < 0 ) an = 1;
+
+
+    return;
 
   }
 
@@ -86,10 +118,25 @@ namespace cal{
 
 int main(){
 
-  cal::changeDate(1);
-  cal::changeDate(1);
-  cal::changeDate(1,1,1);
+  //Tests : comparaisons entre les 2 méthodes:
+  cal::afficheDate();
 
+
+  cout<<endl;
+
+  //Test 1:
+  cal::setDate(30,12,0);
+  cal::changeDate2(31);
+  cal::setDate(30,12,0);
+  cal::changeDate(31);
+
+  cout<<endl;
+
+  //Test 2:
+  cal::setDate(3,1,10);
+  cal::changeDate2(913);
+  cal::setDate(3,1,10);
+  cal::changeDate(913);
 
   return 0 ; 
 
