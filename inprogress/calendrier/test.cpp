@@ -74,20 +74,41 @@ namespace cal{
     return;
   }
 
-  //Methode sans boucle:
+  ////Methode sans boucle:
+  //void changeDate2(const int njour,const int nmois = 0, const int nans = 0){
+
+  //  //Petit malin, as tu déja entendu parler de la fleche du temps?
+  //  if( njour<0 || nmois<0 || nans<0 ) return ;
+
+  //  //inc_jours: nombre de jours a avancer
+  //  //inc_mois: nombre de mois a avancer
+  //  int inc_jours = njour + nmois * mois_size;
+  //  int inc_mois = (int) inc_jours / mois_size ;
+  //  inc_jours = inc_jours % mois_size;
+
+  //  //Apport des jours a l'increment en mois:
+  //  inc_mois += (int)(jour + inc_jours)/ mois_size ;
+
+  //  an += (int) (mois + inc_mois - 1)/ an_size + nans ;
+  //  jour = (jour + inc_jours - 1 ) % mois_size + 1 ;
+  //  mois = (mois + inc_mois - 1) % an_size + 1 ;
+
+  //  afficheDate();
+  //  return;
+
+  //}
+
+  //Methode sans boucle: version condensée
+  //L'utilisateur peut donner nimporte quel valeur en entree positive, ex : (600,3,10), (800), (3,14,3)
   void changeDate2(const int njour,const int nmois = 0, const int nans = 0){
 
     //Petit malin, as tu déja entendu parler de la fleche du temps?
     if( njour<0 || nmois<0 || nans<0 ) return ;
 
-    //inc_jours: nombre de jours a avancer
-    //inc_mois: nombre de mois a avancer
-    int inc_jours = njour + nmois * mois_size;
-    int inc_mois = (int) inc_jours / mois_size ;
-    inc_jours = inc_jours % mois_size;
+    int inc_jours = (njour + nmois * mois_size) % mois_size;
 
-    //Apport des jours a l'increment en mois:
-    inc_mois += (int)(jour + inc_jours)/ mois_size ;
+    //             apport des jours         apport des jours qui font changer de mois   mois   
+    int inc_mois = (int) njour / mois_size + (int)(jour + inc_jours)/mois_size + nmois;
 
     an += (int) (mois + inc_mois - 1)/ an_size + nans ;
     jour = (jour + inc_jours - 1 ) % mois_size + 1 ;
@@ -97,7 +118,6 @@ namespace cal{
     return;
 
   }
-
   void setDate(const int j, const int m, const int a){
 
     jour = j;
@@ -108,9 +128,7 @@ namespace cal{
     if( mois < 1 || mois > an_size)   mois = 1;
     if( an < 0 ) an = 1;
 
-
     return;
-
   }
 
 }
@@ -126,9 +144,9 @@ int main(){
 
   //Test 1:
   cal::setDate(30,12,0);
-  cal::changeDate2(31);
+  cal::changeDate2(1);
   cal::setDate(30,12,0);
-  cal::changeDate(31);
+  cal::changeDate(1);
 
   cout<<endl;
 
