@@ -13,7 +13,7 @@ using namespace std;
 namespace cal{
 
   int an = 0 ;
-  int jour = 1;
+  int jour = 29;
   int mois = 1;
   //Nombre de jours par mois:
   int mois_size = 30 ;
@@ -55,21 +55,20 @@ namespace cal{
   //Calcule la date apres un increment de njour,nmois et nans (nmois et nans optionnels)
   void changeDate(const int njour,const int nmois = 0, const int nans = 0){
 
-    int inc_jours = njour %  mois_size ;
-    int inc_mois = (int)njour/mois_size + nmois;
-
-    if(inc_mois !=0) {
-      for(unsigned int i = 0 ; i < inc_mois ; i++){
+    int inc_jours = njour + nmois * mois_size;
+    for(unsigned int i = 0 ; i < inc_jours; i++){
+      jour++;
+      if(jour>mois_size){
 	mois++;
-	if(mois>an_size){
-	  an++;
-	  mois=1;
-	}
+	jour=1;
+      }
+      if(mois>an_size){
+	an++;
+	mois=1;
       }
     }
-
     an += nans;
-    jour += inc_jours;
+    afficheDate();
     return;
   }
 
@@ -79,11 +78,9 @@ namespace cal{
 
 int main(){
 
-  cal::afficheDate();
-  cal::changeDate(0,10,0);
-  cal::afficheDate();
-  cal::changeDate(47,1,10);
-  cal::afficheDate();
+  cal::changeDate(1);
+  cal::changeDate(1);
+  cal::changeDate(1,1,1);
 
 
   return 0 ; 
