@@ -55,6 +55,8 @@ namespace cal{
   //Calcule la date apres un increment de njour,nmois et nans (nmois et nans optionnels)
   void changeDate(const int njour,const int nmois = 0, const int nans = 0){
 
+    if(njour<0 || nmois<0 || nans <0) return ;
+
     int inc_jours = njour + nmois * mois_size;
     for(unsigned int i = 0 ; i < inc_jours; i++){
       jour++;
@@ -72,6 +74,12 @@ namespace cal{
     return;
   }
 
+  //avance et recule de njour, nmois, nans
+  void changeDate2(const int njour,const int nmois = 0, const int nans = 0){
+
+
+
+  }
 
 }
 
