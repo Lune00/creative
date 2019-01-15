@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  15 JAN 2019 15:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  15 JAN 2019 17:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1418,7 +1418,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip128
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 22.
+Package hyperref Info: Option `colorlinks' set `true' on input line 16.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2016/04/30 v4.23 (NLCT)
@@ -1601,13 +1601,7 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 ty
 Package: glossary-tree 2016/04/30 v4.23 (NLCT)
 \glstreeindent=\skip144
-))
-\glswrite=\write7
-\glo@main@file=\write8
-\openout8 = `main.glo'.
-
-Package glossaries Info: Writing glossary file main.glo on input line 27.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+)) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang2.sty
@@ -1637,6 +1631,12 @@ File: lstlang3.sty 2015/06/04 1.6 listings language file
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
+\glswrite=\write7
+\glo@main@file=\write8
+\openout8 = `main.glo'.
+
+Package glossaries Info: Writing glossary file main.glo on input line 28.
+
 (./glossaire.tex) (./lib/dndstrings-captions.sty)
 
 LaTeX Warning: Unused global option(s):
@@ -1645,27 +1645,27 @@ LaTeX Warning: Unused global option(s):
 (./main.aux (./TeX_files/chapter01.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Try loading font information for T1+pbk on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Try loading font information for T1+pbk on input line 59.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pbk.fd
 File: t1pbk.fd 2001/06/04 font definitions for T1/pbk.
 )
 LaTeX Font Info:    Font shape `T1/pbk/m/n' in size <10> not available
-(Font)              Font shape `T1/pbk/l/n' tried instead on input line 67.
+(Font)              Font shape `T1/pbk/l/n' tried instead on input line 59.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1732,7 +1732,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 67.
+LaTeX Info: Redefining \microtypecontext on input line 59.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1748,19 +1748,19 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 67.
-LaTeX Info: Redefining \degres on input line 67.
-LaTeX Info: Redefining \dots on input line 67.
+LaTeX Info: Redefining \selectfont on input line 59.
+LaTeX Info: Redefining \degres on input line 59.
+LaTeX Info: Redefining \dots on input line 59.
 Package frenchb.ldf Info: Setting StandardItemizeEnv=true for
 (frenchb.ldf)             compatibility with enumitem package,
-(frenchb.ldf)              on input line 67.
+(frenchb.ldf)              on input line 59.
 Package frenchb.ldf Info: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)             compatibility with enumitem package,
-(frenchb.ldf)              on input line 67.
-LaTeX Info: Redefining \up on input line 67.
+(frenchb.ldf)              on input line 59.
+LaTeX Info: Redefining \up on input line 59.
 \c@lstlisting=\count315
 \AtBeginShipoutBox=\box103
-Package hyperref Info: Link coloring ON on input line 67.
+Package hyperref Info: Link coloring ON on input line 59.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1770,16 +1770,16 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count316
 )
-LaTeX Info: Redefining \ref on input line 67.
-LaTeX Info: Redefining \pageref on input line 67.
-LaTeX Info: Redefining \nameref on input line 67.
+LaTeX Info: Redefining \ref on input line 59.
+LaTeX Info: Redefining \pageref on input line 59.
+LaTeX Info: Redefining \nameref on input line 59.
 
 (./main.out) (./main.out)
 \@outlinefile=\write9
 \openout9 = `main.out'.
 
 LaTeX Font Info:    Font shape `T1/pbk/m/n' in size <14> not available
-(Font)              Font shape `T1/pbk/l/n' tried instead on input line 70.
+(Font)              Font shape `T1/pbk/l/n' tried instead on input line 63.
 \openout2 = `./TeX_files/chapter01.aux'.
 
  (./TeX_files/chapter01.tex
@@ -1805,26 +1805,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <img/paper.jpg, id=26, 614.295pt x 794.97pt>
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 84.
+Package pdftex.def Info: img/paper.jpg used on input line 77.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 84.
+Package pdftex.def Info: img/paper.jpg used on input line 77.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 84.
+Package pdftex.def Info: img/paper.jpg used on input line 77.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 
 <img/footerscroll.pdf, id=27, 596.2275pt x 42.15584pt>
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 84.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 77.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
 LaTeX Font Info:    Font shape `T1/pbk/m/sc' in size <10> not available
-(Font)              Font shape `T1/pbk/l/sc' tried instead on input line 84.
+(Font)              Font shape `T1/pbk/l/sc' tried instead on input line 77.
  [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 \openout7 = `main.ist'.
@@ -1839,24 +1839,24 @@ LaTeX Font Info:    Font shape `T1/pbk/bx/n' in size <14> not available
 LaTeX Font Info:    Font shape `T1/pbk/b/n' in size <14> not available
 (Font)              Font shape `T1/pbk/db/n' tried instead on input line 5.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 92.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 87.
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
+Package pdftex.def Info: img/paper.jpg used on input line 87.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
+Package pdftex.def Info: img/paper.jpg used on input line 87.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
+Package pdftex.def Info: img/paper.jpg used on input line 87.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 92.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 87.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [2
 
@@ -1864,17 +1864,17 @@ Package pdftex.def Info: img/footerscroll.pdf used on input line 92.
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 92.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 87.
  (./main.aux (./TeX_files/chapter01.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 92.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 92.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 87.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 87.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 033CF7D1CE9D495BCACFF99EFA453A55;123.
+(rerunfilecheck)             Checksum: 12F51E41063467E96623CB6127013DB0;116.
  ) 
 Here is how much of TeX's memory you used:
  37110 strings out of 493014
  699221 string characters out of 6133352
- 1029182 words of memory out of 5000000
+ 1030189 words of memory out of 5000000
  39977 multiletter control sequences out of 15000+600000
  17945 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1882,7 +1882,7 @@ Here is how much of TeX's memory you used:
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/urw/bookman/ubkd8a.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/urw/bookman/ubkl8a.pfb>
-Output written on main.pdf (2 pages, 1644127 bytes).
+Output written on main.pdf (2 pages, 1644134 bytes).
 PDF statistics:
  64 PDF objects out of 1000 (max. 8388607)
  55 compressed objects within 1 object stream

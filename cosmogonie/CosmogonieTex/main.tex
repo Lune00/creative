@@ -1,7 +1,6 @@
 %\documentclass[a4paper,14pt]{book}
 \documentclass[letterpaper,14pt,twocolumn,openany]{dndbook}
 
-
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[T1]{fontenc}
@@ -10,38 +9,27 @@
 \usepackage{hang}
 \usepackage{lipsum}
 \usepackage{listings}
-
 \usepackage{hyperref}
-
-
 \hypersetup{
 	colorlinks=true,
-	linkcolor=blue,
-	filecolor=magenta,      
-	urlcolor=cyan,
+	linkcolor=brown,
 }
-
 \usepackage[sanitize=none]{glossaries}
-
-
-\makeglossaries
-
 
 \lstset{%
 	basicstyle=\ttfamily,
 	language=[LaTeX]{TeX},
 }
 
+%Permet de mettre en italic dans le texte
+%\defglsentryfmt[main]{\textit{\glsgenentryfmt}}
+
+
 \makeglossaries
 
 
-%A utiliser dans le fichier noms Propres: cree une variable #1 pour le string #2 et une entree au glossaire
-% #1: Nom commande pour appeler dans le texte (ex: Dieu) #2 : Nom de l'entité qui apparaitra dans le texte #3: label qui sera en entrée du Glossaire #4: Description dans le glossaire
-%   
-
-
-% commande Omus Ômus description
-
+% ENTITES (Glossaire main, principal)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fait une entree au glossaire en assignant automatiquement le nom au label (#1)
 % Argument #2 est la description
 \newcommand{\newentry}[3]
@@ -52,6 +40,9 @@
 	}
 }
 
+%A utiliser dans le fichier noms Propres: cree une variable #1 pour le string #2 et une entree au glossaire
+% #1: Nom commande pour appeler dans le texte (ex: Dieu) #2 : Nom de l'entité qui apparaitra dans le texte #3: label qui sera en entrée du Glossaire #4: Description dans le glossaire
+%   
 \newcommand{\newEntity}[4]
 {
 	% #1 doit etre utilise pour fabriquer une commande \#1
@@ -59,12 +50,14 @@
 	\expandafter\newcommand\csname #1\endcsname {\gls{#2}\xspace}
 	\newentry{#2}{#3}{#4}
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\newEntity{Cind}{Cindara}{Un des deux êtres divins}
 
 \loadglsentries{glossaire}
 
+
 \begin{document}
+	
 
 %Change la taille de la font doc
 \fontsize{14}{17} \selectfont
@@ -80,13 +73,15 @@
 
 \mainmatter
 
-
+ 
 \include{./TeX_files/chapter01}
 %\include{./TeX_files/chapter02}
 
 \backmatter
 % bibliography, glossary and index would go here.
 
-\printglossary[title=Noms propres, toctitle=Lieux et Entités]
+%TODO: Changer le style glossaire, plusieurs glossaires pour differentes catégories (Divinités,Lieux,Hommes,Monstres,Artefacts...), un code couleur pour chaque catégorie de glossaire
+
+\printglossary[title=Entités]
 
 \end{document}
