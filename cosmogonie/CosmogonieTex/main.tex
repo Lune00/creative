@@ -21,7 +21,7 @@
 	urlcolor=cyan,
 }
 
-\usepackage{glossaries}
+\usepackage[sanitize=none]{glossaries}
 
 
 \makeglossaries
@@ -34,25 +34,30 @@
 
 \makeglossaries
 
+
+%A utiliser dans le fichier noms Propres: cree une variable #1 pour le string #2 et une entree au glossaire
+% #1: Nom commande pour appeler dans le texte (ex: Dieu) #2 : Nom de l'entité qui apparaitra dans le texte #3: label qui sera en entrée du Glossaire #4: Description dans le glossaire
+%   
+
+
+% commande Omus Ômus description
+
 % Fait une entree au glossaire en assignant automatiquement le nom au label (#1)
 % Argument #2 est la description
-\newcommand{\newentry}[2]
+\newcommand{\newentry}[3]
 {
 	\newglossaryentry{#1}{
-		name = {#1},
-		description={#2}
+		name = {#2},
+		description={#3}
 	}
 }
 
-%A utiliser dans le fichier noms Propres: cree une variable #1 pour le string #2 et une entree au glossaire
-% #1: Nom commande pour appeler dans le texte (ex: Dieu) #2 : Nom de l'entité qui apparaitra dans le texte (et sera également en entrée du Glossaire) #3: Description dans le glossaire
-%   
-\newcommand{\newEntity}[3]
+\newcommand{\newEntity}[4]
 {
 	% #1 doit etre utilise pour fabriquer une commande \#1
-	%\newcommand{\@namedef{##1}}{\gls{#2}\xspace}
+	%\expandafter\newcommand\csname #1\endcsname {\gls{#2}\xspace}
 	\expandafter\newcommand\csname #1\endcsname {\gls{#2}\xspace}
-	\newentry{#2}{#3}
+	\newentry{#2}{#3}{#4}
 }
 
 %\newEntity{Cind}{Cindara}{Un des deux êtres divins}
