@@ -1,27 +1,87 @@
-\documentclass[a4paper,14pt]{book}
+%\documentclass[a4paper,14pt]{book}
+\documentclass[letterpaper,14pt,twocolumn,openany]{dndbook}
+
+
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage{xspace}
+\usepackage{hang}
+\usepackage{lipsum}
+\usepackage{listings}
+
+\usepackage{hyperref}
+
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\usepackage{glossaries}
+
+
+\makeglossaries
+
+
+\lstset{%
+	basicstyle=\ttfamily,
+	language=[LaTeX]{TeX},
+}
+
+\makeglossaries
+
+% Fait une entree au glossaire en assignant automatiquement le nom au label (#1)
+% Argument #2 est la description
+\newcommand{\newentry}[2]
+{
+	\newglossaryentry{#1}{
+		name = {#1},
+		description={#2}
+	}
+}
+
+%A utiliser dans le fichier noms Propres: cree une variable #1 pour le string #2 et une entree au glossaire
+% #1: Nom commande pour appeler dans le texte (ex: Dieu) #2 : Nom de l'entité qui apparaitra dans le texte (et sera également en entrée du Glossaire) #3: Description dans le glossaire
+%   
+\newcommand{\newEntity}[3]
+{
+	% #1 doit etre utilise pour fabriquer une commande \#1
+	%\newcommand{\@namedef{##1}}{\gls{#2}\xspace}
+	\expandafter\newcommand\csname #1\endcsname {\gls{#2}\xspace}
+	\newentry{#2}{#3}
+}
+
+%\newEntity{Cind}{Cindara}{Un des deux êtres divins}
+
+\loadglsentries{glossaire}
 
 \begin{document}
 
-\author{Paul Schuhmacher}
+%Change la taille de la font doc
+\fontsize{14}{17} \selectfont
+
+\author{P. Schuhmacher}
 \title{Cosmogonie}
 \date{}
  
-
+ 
 \frontmatter
-\maketitle
-\tableofcontents
+%\maketitle
+%\tableofcontents
 
 \mainmatter
-\include{./TeX_files/nomsPropres}
+
+
 \include{./TeX_files/chapter01}
-\include{./TeX_files/chapter02}
+%\include{./TeX_files/chapter02}
 
 \backmatter
 % bibliography, glossary and index would go here.
+
+\printglossary[title=Noms propres, toctitle=Lieux et Entités]
 
 \end{document}
