@@ -14,7 +14,13 @@
 	colorlinks=true,
 	linkcolor=brown,
 }
-\usepackage[sanitize=none]{glossaries}
+%\usepackage[sanitize=none]{glossaries}
+
+\usepackage{glossaries}
+
+%\newglossary[tlg]{lieux}{tld}{tdn}{Lieux}
+%Glossaire domain
+%\newglossaryentry{lieux:caverne}{type=lieux, name=caverne enchantée, description={Caverne perdue dans les montagnes}}
 
 \lstset{%
 	basicstyle=\ttfamily,
@@ -23,7 +29,6 @@
 
 %Permet de mettre en italic dans le texte
 %\defglsentryfmt[main]{\textit{\glsgenentryfmt}}
-
 
 \makeglossaries
 
@@ -56,6 +61,9 @@
 \loadglsentries{glossaire}
 
 
+
+
+
 \begin{document}
 	
 
@@ -73,6 +81,7 @@
 
 \mainmatter
 
+%\gls{lieux:caverne}
  
 \include{./TeX_files/chapter01}
 %\include{./TeX_files/chapter02}
@@ -80,8 +89,10 @@
 \backmatter
 % bibliography, glossary and index would go here.
 
+
 %TODO: Changer le style glossaire, plusieurs glossaires pour differentes catégories (Divinités,Lieux,Hommes,Monstres,Artefacts...), un code couleur pour chaque catégorie de glossaire
 
-\printglossary[title=Entités]
+%\printglossary[title=Entités]
+\printglossaries
 
 \end{document}
