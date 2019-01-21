@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  17 JAN 2019 15:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  21 JAN 2019 14:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1831,36 +1831,58 @@ LaTeX Font Info:    Font shape `T1/pbk/m/sc' in size <10> not available
 
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/p
-aper.jpg> <./img/footerscroll.pdf>])
+aper.jpg> <./img/footerscroll.pdf>]
+Overfull \hbox (9.01173pt too wide) in paragraph at lines 14--16
+\T1/pbk/l/n/14 dé-rou-laient des tem-pêtes et il conser-vait en lui le chaos or
+i-gi-nel, in-dompté 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+File: img/paper.jpg Graphic file (type jpg)
+
+<use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 16.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 16.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 16.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/footerscroll.pdf Graphic file (type pdf)
+
+<use img/footerscroll.pdf>
+Package pdftex.def Info: img/footerscroll.pdf used on input line 16.
+(pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
+ [2])
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 86.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 86.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
 Package pdftex.def Info: img/paper.jpg used on input line 86.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 86.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 86.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
-
-<use img/footerscroll.pdf>
+ <use img/footerscroll.pdf>
 Package pdftex.def Info: img/footerscroll.pdf used on input line 86.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [2] (./main.gls
+ [3] (./main.gls
 LaTeX Font Info:    Font shape `T1/pbk/bx/n' in size <14> not available
 (Font)              Font shape `T1/pbk/b/n' tried instead on input line 5.
 LaTeX Font Info:    Font shape `T1/pbk/b/n' in size <14> not available
 (Font)              Font shape `T1/pbk/db/n' tried instead on input line 5.
 )
 File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 98.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
 Package pdftex.def Info: img/paper.jpg used on input line 98.
@@ -1869,11 +1891,16 @@ File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
 Package pdftex.def Info: img/paper.jpg used on input line 98.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 98.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
- <use img/footerscroll.pdf>
+
+<use img/footerscroll.pdf>
 Package pdftex.def Info: img/footerscroll.pdf used on input line 98.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [3
+ [4
 
 
 
@@ -1881,28 +1908,27 @@ Package pdftex.def Info: img/footerscroll.pdf used on input line 98.
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
-
-(./main.aux (./TeX_files/chapter01.aux))
+ (./main.aux (./TeX_files/chapter01.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 98.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 98.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 12F51E41063467E96623CB6127013DB0;116.
  ) 
 Here is how much of TeX's memory you used:
- 37278 strings out of 493014
- 701767 string characters out of 6133352
- 1030269 words of memory out of 5000000
- 40139 multiletter control sequences out of 15000+600000
+ 37287 strings out of 493014
+ 701945 string characters out of 6133352
+ 1032269 words of memory out of 5000000
+ 40147 multiletter control sequences out of 15000+600000
  17945 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,17n,122p,10485b,894s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/urw/bookman/ubkd8a.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/urw/bookman/ubkl8a.pfb>
-Output written on main.pdf (3 pages, 1650653 bytes).
+Output written on main.pdf (4 pages, 1654914 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 16 named destinations out of 1000 (max. 500000)
+ 152 PDF objects out of 1000 (max. 8388607)
+ 140 compressed objects within 2 object streams
+ 17 named destinations out of 1000 (max. 500000)
  7207 words of extra memory for PDF output out of 10000 (max. 10000000)
 
