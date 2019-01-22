@@ -10,6 +10,7 @@ class Animal{
     Animal(){taille_ = petit; cout<<"Animal apparait: ";}
     virtual ~Animal(){};
     void virtual sayHello() = 0 ;
+    //void virtual sayHello() {cout<<"Euh..."<<endl;}
     void virtual boire(){cout<<"*boit*"<<endl;}
   protected:
     //Accesible directement par les classes filles
@@ -47,6 +48,7 @@ class Chien : public Animal{
 
 
 void makeSayJello(Animal * a){
+
   a->sayHello();
   a->boire();
 
@@ -88,7 +90,9 @@ int main(){
   Animal * animal2 = new Chien();
   makeSayJello(animal2);
 
-  delete animal;
+  //Si on rend animal pas class virtuelle, on peut faire ce test
+  //Animal * animal3 = new Animal();
+  //makeSayJello(animal3);
 
 
   return 0;
