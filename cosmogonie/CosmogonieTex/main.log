@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  13 FEB 2019 23:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  13 FEB 2019 23:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1978,26 +1978,26 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 File: img/paper.jpg Graphic file (type jpg)
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 15.
+Package pdftex.def Info: img/paper.jpg used on input line 17.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 15.
+Package pdftex.def Info: img/paper.jpg used on input line 17.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 15.
+Package pdftex.def Info: img/paper.jpg used on input line 17.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 15.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 17.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [7]
 LaTeX Font Info:    Font shape `T1/pbk/m/it' in size <14> not available
-(Font)              Font shape `T1/pbk/l/it' tried instead on input line 22.
+(Font)              Font shape `T1/pbk/l/it' tried instead on input line 24.
 
-Overfull \hbox (7.14928pt too wide) in paragraph at lines 26--27
+Overfull \hbox (7.14928pt too wide) in paragraph at lines 28--29
 \T1/pbk/l/n/14 mais il m'ap-par-tient dé-sor-mais de choi-sir ce qui est en pro
 ie aux flammes.  
  []
@@ -2008,23 +2008,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 33.
+Package pdftex.def Info: img/paper.jpg used on input line 35.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 33.
+Package pdftex.def Info: img/paper.jpg used on input line 35.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 33.
+Package pdftex.def Info: img/paper.jpg used on input line 35.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 33.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 35.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [8]
-Overfull \hbox (11.56352pt too wide) in paragraph at lines 34--35
+Overfull \hbox (11.56352pt too wide) in paragraph at lines 36--37
 []\T1/pbk/l/n/14 --- La pré-ten-tion qui t'ha-bite a le double ef-fet de m'exas
 -pé-rer et de m'exal- 
  []
@@ -2035,23 +2035,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 43.
+Package pdftex.def Info: img/paper.jpg used on input line 45.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 43.
+Package pdftex.def Info: img/paper.jpg used on input line 45.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 43.
+Package pdftex.def Info: img/paper.jpg used on input line 45.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 43.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 45.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [9]
-Overfull \hbox (2.01195pt too wide) in paragraph at lines 55--56
+Overfull \hbox (2.01195pt too wide) in paragraph at lines 57--58
 \T1/pbk/l/n/14 deuxième gé-né-ra-tion d'étoiles inonda l'es-pace de cou-leurs p
 lus pro-fondes 
  []
@@ -2062,42 +2062,42 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 56.
+Package pdftex.def Info: img/paper.jpg used on input line 58.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 56.
+Package pdftex.def Info: img/paper.jpg used on input line 58.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 56.
+Package pdftex.def Info: img/paper.jpg used on input line 58.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 56.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 58.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\gls' on input line 63.
+(hyperref)                removing `\gls' on input line 65.
 
 File: img/paper.jpg Graphic file (type jpg)
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 66.
+Package pdftex.def Info: img/paper.jpg used on input line 68.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 66.
+Package pdftex.def Info: img/paper.jpg used on input line 68.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 66.
+Package pdftex.def Info: img/paper.jpg used on input line 68.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 66.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 68.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [11])
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2226,10 +2226,10 @@ eplaced by a fixed one
 live/2016/texmf-dist/fonts/type1/urw/bookman/ubkd8a.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/urw/bookman/ubkl8a.pfb></usr/local/texlive/2016/texmf-
 dist/fonts/type1/urw/bookman/ubkli8a.pfb>
-Output written on main.pdf (15 pages, 1700343 bytes).
+Output written on main.pdf (15 pages, 1700412 bytes).
 PDF statistics:
- 515 PDF objects out of 1000 (max. 8388607)
- 488 compressed objects within 5 object streams
+ 516 PDF objects out of 1000 (max. 8388607)
+ 489 compressed objects within 5 object streams
  45 named destinations out of 1000 (max. 500000)
  8303 words of extra memory for PDF output out of 10000 (max. 10000000)
 
