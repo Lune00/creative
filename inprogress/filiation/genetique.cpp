@@ -116,7 +116,9 @@ class Paire_chromosomes{
     Paire_chromosomes();
     ~Paire_chromosomes();
 
-    void affiche_genome_exprime();
+    //Calcul l'expression du genome et le phenotype resultant associé
+    //Arguments? Retourne quoi? Interface avec Individu?
+    void traduction_genome_en_phenotype(double& O, double& C, double& E, double& A, double& N);
 
   private:
     //Chaque gene a une coordonée. ex: "O1" est le gene 0(le 1er) sur le chromosome 1(celui du pere)
@@ -137,7 +139,7 @@ Paire_chromosomes::~Paire_chromosomes(){}
 //2) Les deux sont recessifs -> caractere est la moyenne de chaque caractere
 
 //Verifier que ca fonctionne bien sur un exemple ou on affiche le geneome brut et le genome exprime
-void Paire_chromosomes::affiche_genome_exprime(){
+void Paire_chromosomes::traduction_genome_en_phenotype(double& O, double& C, double& E, double& A, double& N){
 
   for(unsigned int i = 0 ; i < 5 ; i++){
 
@@ -179,14 +181,16 @@ class Individu{
   void afficheIdentite() const { std::cout<<prenom_ <<" "<<nom_<<endl; }
 
   private:
+  //tmp
   RandomGenerator rng_;
+
   string nom_ ;
   string prenom_;
   Sexe sexe_;
   Parents parents_;
   Paire_chromosomes paire_chromosomes;
   
-  //Traits phénotypes pours lesquel codent les genes: O C E A N (calculé par l'expression des genes != potentiel genetique)
+  //Traits phénotypes pours lesquel codent les genes, la paire de chromosomes: O C E A N (calculé par l'expression des genes != potentiel genetique)
   double Ouverture_ ;         // -> expression des genes_[0]
   double Conscienciosité_ ;   // -> expression des genes_[1]
   double Extraversion_ ;      // -> expression des genes_[2]
@@ -248,9 +252,14 @@ Individu::Individu(): rng_()
 
   //Initialise un genome par defaut (implicite)
 
+  //Calcule l'expression de son genome et initialise son phénotype (arguments passés par reference pour etre modifié directement)
+  paire_chromosomes.traduction_genome_en_phenotype(Ouverture_ , Conscienciosité_, Extraversion_, Agréabilité_, Neuroticisme_);
+
+  //Individu défini. Pret a transmettre son genome.
+  return ;
 }
 
-
+//Constructeur pour generation ayant des parents (toutes sauf la premiere lors de l'initialisation de la population)
 Individu::Individu(Parents& parents) : rng_()
 {
 
