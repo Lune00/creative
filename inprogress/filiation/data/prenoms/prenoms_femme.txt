@@ -1,5 +1,4 @@
 Luthien
-Rose
 Agafya
 Agata
 Aglaya
@@ -20,6 +19,7 @@ Blanche
 Batari
 Eka
 Ki
+Rose
 Sang
 Eko
 Wook
@@ -119,3 +119,6 @@ Asha
 Myrsa
 Fanny
 Perséphone
+Galadriel
+Olwena
+Dhana
