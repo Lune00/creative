@@ -17,28 +17,26 @@ class RandomGenerator{
     double unifRand(int,int);
     int unifRandInt(int,int);
   private:
+    std::default_random_engine generator_;
 
 };
 
-RandomGenerator::RandomGenerator(){
-  cout<<"Seed not init"<<endl;
-  //init seed
+RandomGenerator::RandomGenerator(): generator_((std::random_device())()) 
+{
+
 }
 
 double RandomGenerator::unifRand(){
-  std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.,1.);
-  return distribution(generator);
+  return distribution(generator_);
 }
 double RandomGenerator::unifRand(int a, int b){
-  std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(a,b);
-  return distribution(generator);
+  return distribution(generator_);
 }
 int RandomGenerator::unifRandInt(int a, int b){
-  std::default_random_engine generator;
-  std::uniform_real_distribution<int> distribution(a,b);
-  return distribution(generator);
+  std::uniform_int_distribution<int> distribution(a,b);
+  return distribution(generator_);
 }
 
 
@@ -49,7 +47,6 @@ class NAMEGEN
 
   private:
   RandomGenerator rng_;
-
 
   //Nom total final:
   std::string m_prenom;
@@ -126,8 +123,11 @@ p_CoV: proba de prendre une voyelle apres consonne et vice versa, gere l'alterna
   std::string giveTerminaison(char c);
   std::string CapitalFirst(std::string Name);	
 
-  std::string completeName();
+  void generateName();
+  std::string getCompleteName() const;
   void pickprenomM();
+  string getPrenom() const { return m_prenom ; }
+  string getName() const { return m_nom ; }
   void pickprenomF();
   void clearall();
 
@@ -180,14 +180,13 @@ void NAMEGEN::initconsonnerules()
 //PARAMETRES GLOBAUX:
 void NAMEGEN::initparameters()
 {
-
   m_MAXSYLLABE=4;
-  m_MINSYLLABE=2;
+  m_MINSYLLABE=1;
 
   p_CoV=0.8;
-  p_modifylong=0.8;
-  p_terminology=0.5;
-  p_addsyll=0.7;
+  p_modifylong=0.6;
+  p_terminology=0.3;
+  p_addsyll=0.3;
 }
 
 
@@ -206,7 +205,6 @@ char NAMEGEN::randomVoyelle()
   float test;
   int pickup;
   test=rng_.unifRand();
-
   do
   {
     pickup = ( rand() % m_min_voyelles.size());
@@ -363,11 +361,7 @@ char NAMEGEN::consonnesRules(char c,bool firstOne)
 
 }
 
-
-
-
 // Donne la voyelle suivant l'a lettre c selon certaines hypotheses, firstOne : vrai si c est la première lettre du nom (ou d une partie du nom)
-
 char NAMEGEN::voyellesRules(char c,bool firstOne)
 {
 
@@ -778,9 +772,6 @@ bool NAMEGEN::followingLettersBEG(char a,char b)
 // Renvoie un nom généré procéduralement, MAXSYLLABE ET MINSYLLABE définissent le nombre de syllabes qui composent le nom
 void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
 {
-
-  cout<<"random name generation.."<<endl;
-
   MINSYLLABE=m_MINSYLLABE;
   MAXSYLLABE=m_MAXSYLLABE;	
   int nbreSyllabe,nbreFIN;
@@ -792,9 +783,7 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
   bool bool2,bool3,redo,boolcheck,boolgrammar,boolgrammarsplit;
   bool partBok;
   float randomize;
-
   nbreSyllabe = rng_.unifRandInt(MINSYLLABE,MAXSYLLABE);
-
   do
   {
     nbreFIN=0;
@@ -802,40 +791,30 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
 
     for (int t=0;t<nbreSyllabe;t++)
     {
-
       randomize=rng_.unifRand();
-
-      //Si premiere syllabe:
+      //Premiere syllabe:
       if(t==0)
       {
-
 	if(rng_.unifRand() < 0.5)
 	{ 
-
 	  firstLetter=randomConsonne();
-
 	  do
 	  {
 	    nextLetter=consonnesRules(firstLetter,true);
 	  }while(not followingLettersBEG(firstLetter,nextLetter));	      
 	}
-
 	else 
 	{
-
 	  firstLetter=randomVoyelle();
-
 	  do
 	  {
 	    nextLetter=voyellesRules(firstLetter,true);
 	  }while(not followingLettersBEG(firstLetter,nextLetter));
 	}
-
       }
-      //sinon, autre syllabe    
+      // Syllabe differente de la premiere:    
       else
       {
-
 	if(rng_.unifRand() < 0.5)
 	{ 
 	  //Continuite entre voyelles
@@ -851,26 +830,17 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
 
 	  }while(not followingLetters(firstLetter,nextLetter));	      
 	}
-
 	else 
 	{
 	  do{
 	    firstLetter=randomVoyelle();
 	  }while(not followingLetters(firstLetter,temp));
-
-
 	  do
 	  {
 	    nextLetter=voyellesRules(firstLetter,false);
 	  }while(not followingLetters(firstLetter,nextLetter));
 	}
-
-
-
       }
-      //Fin syllabes construction
-      cout<<"random name generation..1"<<endl;
-
       ostringstream os;
       os<<firstLetter<<nextLetter;
       syll=os.str();
@@ -878,10 +848,8 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
 
       if( (rng_.unifRand()<p_addsyll) && (t!=0) && (t!=nbreSyllabe-1))
       {
-
 	syll= syll.substr(0,syll.length()-1);
 	syllADD=giveSyllabe(nextLetter);
-	cout<<"random name giveSyllabe(nextLetter)"<<endl;
 	Name+=syll; 
 	Name+=syllADD;
 	temp=returnlast(syllADD);
@@ -901,31 +869,17 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
       {
 	Name+=syll;
       }
-
-
       count++;
-      //test=threeConsecutives(Name);
     }//Fin for loop
 
-  cout<<"random name generation..2"<<endl;
 
     //Check validite nom selon regles imposees
-
     bool3=threeConsecutives(Name);
     bool2=checktwoletters(Name);
     boolcheck=checkAny(Name);
-    /*
-       cout<<" "<<endl;
-       cout<<"Nom:"<<Name<<endl;
-       cout<<"2 letters:"<<bool2<<endl;
-       cout<<"3 cons:"<<bool3<<endl;
-       cout<<"check:"<<boolcheck<<endl;
-       cout<<" "<<endl;
-     */
 
     //si on modifie apres le nom, verifier que les parties repsectent les regles de debut!!
     //nbreFIN+=nbreSyllabe;
-
 
     nbreFIN=int(Name.size())/2+1;
 
@@ -966,11 +920,8 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
 
   }while(redo);
 
-
-  cout<<"random name generation..2"<<endl;
   //Nom composé si plus de 5 syllabes:
   // soit tirets, soit particules, soit laisse long
-
 
   // Si assez de syllabes et random: on coupe en deux
   if( ( (randomize<p_modifylong) && (nbreFIN>4)) | (nbreFIN>=6)    ) 
@@ -993,12 +944,8 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
     minA=partA;
     minB=partB;
 
-
-
-
-
     //Trait d'union, nom composé juste pour les grands noms
-    if( nbreFIN>=6) 
+    if( nbreFIN>=8) 
     {
       liant="-";
       partA=CapitalFirst(partA);
@@ -1010,43 +957,33 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
     //Soit au debut, soit au milieu, soit les deux
     //depend de la premiere lettre de partA et/ou de partB
 
-
-    //debut particule, si nom est compris entre deux tailles
+    //Debut particule, si nom est compris entre deux tailles
     else if(nbreFIN<6)
     {
 
       float random=rng_.unifRand();
       //Au debut
-
-      if(random<0.7)
+      if(random<0.8)
       {
-
 	partA=CapitalFirst(partA);
-
 	char first;
 	first=letterType(minA[0]);
 	//Si voyelle:
 	if(first)
 	{
-
-
 	  int alea=rand()%NBREPARTC_V;
 	  liant=particulesV[alea];
 	  Name=liant+partA+partB;
 	}
-
 	else
 	{
 	  int alea=rand()%NBREPARTC_C;
 	  liant=particulesC[alea];
 	  Name=liant+partA+partB;
-
-
 	}
       }
-
       //Au milieu
-      else if( (random<0.9) && (random>0.7))
+      else if( (random<0.95) && (random>0.8))
       {
 
 	char first;
@@ -1066,8 +1003,9 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
 	{
 	  int alea=rand()%NBREPARTC_C;
 	  liant=particulesC[alea];
+	  partA=CapitalFirst(partA);
+	  partB=CapitalFirst(partB);
 	  Name=partA+" "+liant+partB;
-
 
 	}
 
@@ -1120,6 +1058,9 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
     }//Fin particules
 
     // cout<<"Nom modifié:"<<Name<<endl;
+
+    //Check final:
+    Name = CapitalFirst(Name);
     m_nom=Name;
 
 
@@ -1134,8 +1075,7 @@ void NAMEGEN::randomName(int MINSYLLABE,int MAXSYLLABE)
     Name=CapitalFirst(Name);
     m_nom=Name;
   }
-  
-  cout<<"random name generation..done"<<endl;
+
 
 }
 
@@ -1244,16 +1184,16 @@ std::string NAMEGEN::giveSyllabe(char c)
       if(line == balise_end ) inside = false ;
       if(inside) lines.push_back(line);
       if(line == balise_called) inside = true ;
-      }
+    }
     myfile.close();
   }
+  if(lines.size() == 0 ) return string();
   int random_index = rng_.unifRandInt(0,lines.size()-1);
   return lines[random_index];
 }
 
 std::string NAMEGEN::giveTerminaison(char c)
 {
-
   string letter_called;
   letter_called.push_back(c);
 
@@ -1269,9 +1209,10 @@ std::string NAMEGEN::giveTerminaison(char c)
       if(line == balise_end ) inside = false ;
       if(inside) lines.push_back(line);
       if(line == balise_called) inside = true ;
-      }
+    }
     myfile.close();
   }
+  if(lines.size() == 0 ) return string();
   int random_index = rng_.unifRandInt(0,lines.size()-1);
   return lines[random_index];
 }
@@ -1480,6 +1421,7 @@ void NAMEGEN::pickprenomM()
     }
     myfile.close();
   }
+
   int random_index = rng_.unifRandInt(0,lines.size()-1);
   m_prenom = lines[random_index];
   return ;
@@ -1501,12 +1443,16 @@ void NAMEGEN::pickprenomF()
   return;
 }
 
-std::string NAMEGEN::completeName()
+std::string NAMEGEN::getCompleteName() const
+{
+  return (m_prenom+" "+m_nom);
+}
+
+void NAMEGEN::generateName()
 {
   clearall();
   randomName(m_MINSYLLABE,m_MAXSYLLABE);
   pickprenomM();
-  return (m_prenom+" "+m_nom);
 }
 
 
@@ -1522,12 +1468,12 @@ void NAMEGEN::clearall()
 
 int main(){
 
-  cout<<"Generation aleatoire de noms"<<endl;
-
-
+  int n = 100 ;
   NAMEGEN namegen;
-  cout<<namegen.completeName()<<endl;
-
+  for(unsigned int i = 0; i < n ; i++){
+    namegen.generateName();
+    cout<<namegen.getName()<<endl;
+  }
 
   return 0;
 }

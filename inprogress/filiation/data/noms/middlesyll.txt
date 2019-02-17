@@ -61,7 +61,7 @@ elt
 @END
 
 
-@END@START:f#/*
+@START:f#/*
 flick
 fluk
 frast
@@ -74,7 +74,7 @@ goth
 gard
 @END
 
-@END@START:h#/*
+@START:h#/*
 hilk
 hill
 hul
@@ -84,7 +84,7 @@ hurt
 höst
 @END
 
-@END@START:i#/*
+@START:i#/*
 iano
 ialdi
 ivan
@@ -93,13 +93,13 @@ istr
 imno
 @END
 
-@END@START:j#/*
+@START:j#/*
 jull
 joule
 jun
 @END
 
-@END@START:k#/*
+@START:k#/*
 krak
 küll
 krin
@@ -107,7 +107,7 @@ kran
 kloug
 @END
 
-@END@START:l#/*
+@START:l#/*
 lust
 loom
 laar
@@ -117,7 +117,7 @@ lars
 less
 @END
 
-@END@START:m#/*
+@START:m#/*
 mont
 mac
 mhor
@@ -129,13 +129,13 @@ mass
 masc
 @END
 
-@END@START:n#/*
+@START:n#/*
 nan
 niou
 nônk
 @END
 
-@END@START:o#/*
+@START:o#/*
 oberli
 ober
 obli
@@ -151,7 +151,7 @@ oska
 osko
 @END
 
-@END@START:p#/*
+@START:p#/*
 plast
 plan
 part
@@ -162,7 +162,7 @@ pall
 pill
 @END
 
-@END@START:q#/*
+@START:q#/*
 que
 qui
 qurst
@@ -170,7 +170,7 @@ qha
 quo
 @END
 
-@END@START:r#/*
+@START:r#/*
 ried
 riel
 rart
@@ -186,7 +186,7 @@ rür
 rüll
 @END
 
-@END@START:s#/*
+@START:s#/*
 schuh
 sgardt
 stritch
@@ -204,7 +204,7 @@ spak
 spac
 @END
 
-@END@START:t#/*
+@START:t#/*
 tron
 tran
 tull
@@ -216,19 +216,19 @@ tör
 trill
 @END
 
-@END@START:u#/*
+@START:u#/*
 uth
 umm
 ust
 @END
 
-@END@START:v#/*
+@START:v#/*
 vav
 voll
 van
 @END
 
-@END@START:w#/*
+@START:w#/*
 wax
 wall
 waste
@@ -238,7 +238,7 @@ wim
 wan
 @END
 
-@END@START:x#/*
+@START:x#/*
 xad
 xou
 xorst
@@ -248,13 +248,13 @@ xerk
 xarst
 @END
 
-@END@START:y#/*
+@START:y#/*
 yell
 yosk
 yoch
 @END
 
-@END@START:z#/*
+@START:z#/*
 zoom
 zool
 züll
