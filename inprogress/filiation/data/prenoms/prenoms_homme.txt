@@ -1,6 +1,5 @@
 Beddy
 Bernardin
-Clet
 Fleuret
 Juan
 Quanton
@@ -12,15 +11,16 @@ Tatien
 Xénophon
 Bernward
 Earwin
+Edwin
+Balthazar
+Gandalf
 Evan
 Jimmy
 Lyobart
 Morisse
 Pereg
 Sabin
-Anséric
 Attila
-Blaisian
 Donald
 Freddy
 Henry
@@ -43,6 +43,7 @@ Jim
 Adonis
 Apollos
 Astrik
+Orphé
 Eole
 Hercule
 Hermès
@@ -51,7 +52,6 @@ Bartimée
 Caleb
 Ismael
 Jaïre
-Josse
 Saul
 Saül
 Zacharie
@@ -81,6 +81,8 @@ Jonas
 Michel
 Pierre
 Ruben
+Rubens
+Paul
 Dietrich
 Erika
 Niels
@@ -92,7 +94,7 @@ Sigmund
 Vaast
 Walder
 Enric
-Erika
+Elric
 Harold
 Manfred
 Odon
@@ -104,7 +106,6 @@ Walter
 Dieter
 Emmeran
 Enrick
-Erika
 Ottfried
 Siegfried
 Waast
@@ -254,10 +255,13 @@ Gloin
 Glorfindel
 Gorbag
 Gothmog
+Gil-Galad
+Feanor
 Grima
 Guilin
 Gwindor
 Olwë
+Manwë
 Orgol
 Orodreth
 Oropher

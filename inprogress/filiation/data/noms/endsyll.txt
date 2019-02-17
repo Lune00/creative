@@ -7,6 +7,7 @@ arieti
 ard
 alto
 ambi
+ara
 @END
 
 @START:b#/*
@@ -66,6 +67,7 @@ ert
 ers
 elios
 ellich
+el
 @END
 
 @START:f#/*
@@ -99,6 +101,7 @@ glick
 gluk
 glop
 glok
+gala
 @END
 
 @START:h#/*
@@ -117,6 +120,8 @@ ian
 iart
 ian
 in
+iel
+ial
 @END
 
 @START:j#/*
@@ -131,9 +136,6 @@ jorak
 jaber
 janka
 janko
-jong
-jun
-jab
 @END
 
 @START:k#/*
@@ -149,7 +151,7 @@ lord
 loon
 lan
 lars
-lomez
+lome
 loop
 loot
 luth
@@ -166,20 +168,22 @@ maltas
 malrok
 malrick
 maltazar
+moïr
+mose
+mor
 @END
 
 @START:n#/*
 nain
 norst
-nurst
 nant
 niel
-num
+néor
 net
-nson
-nsen
 nin
-net
+nil
+nor
+nol
 @END
 
 @START:o#/*
