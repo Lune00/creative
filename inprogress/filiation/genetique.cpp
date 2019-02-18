@@ -14,8 +14,13 @@
 //La transmission se fait comme un processus de meyose ordinaire
 //---------------------------  BUT DU PROGRAMME --------------------------------
 
-//Modele 0: l'ensemble des genes sera sur un seul chromosome
-//          Un meme gene (par exemple O) peut exister sous la forme dominat ou recessif
+//Modele 0: l'ensemble des genes sera sur un seul chromosome. Relation de dominance entre alelles
+
+// Modele 0.a: un meme trait phénotypique (O) peut etre codé par 3 genes (avec chacun leur allele) : Oa(allele Oa1 Oa2...) Ob Oc
+// Trait = (1-coeffDominance)*effet allele A(gene1) + coeffDImance*effet allele B(gene1)  
+//       + (1-coeffDominance)*effet allele A(gene2) + coeffDImance*effet allele B(gene2)
+//       / par nombre de genes impliques
+// -> Approche de distribution + continue
 
 //Modele 1: introduire des mutations
 
@@ -51,6 +56,13 @@ int RandomGenerator::unifRandInt(int a, int b){
 
 //--------------
 class Gene{
+  // Il faut que chaque allele ait un effet fixe (rapport de domination avec l'autre)
+  // Attribuer a chaque allele un coefficient de dominance vis a vis d'un autre (allele C1 face a C2 peut se comporter autrement)
+  // L'expression d'un gene ne serait plus "dominant" ou "recessif" (un booleen) mais une valeur flottante comprise entre [0:1]
+  // Si un trait est codé par un gene et 
+  // une relation de dominance entre allele A et B : Trait(valeur) = (1 -coeff dominance)* Effet allele A + (Coeff dominance)* Effet allele B
+  // Faire une table de coeff dominance. Ex gene C: allele C1 C2 C3 CoeffDominance(C1,C2)=0 -> C1 domine C2 completement. CoeffDominance(C1,C3)=1 -> C3 domine C1 completement
+
   enum Expression { dominant, recessif};
   //Le caractere est defini seulement par la position dans genes_ du Chromosome
   //donc nous n'avons pas besoin de l'explicité seulement de faire une correspondance
