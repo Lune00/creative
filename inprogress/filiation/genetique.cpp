@@ -65,8 +65,7 @@ int RandomGenerator::unifRandInt(int a, int b){
 
 
 class Gene{
-
-  //Le caractere est defini seulement par la position dans genes_ du Chromosome
+  //Le caractere est defini seulement par la position dans le vecteur de genes "genes_" de l'objet Chromosome
   //donc nous n'avons pas besoin de l'explicité seulement de faire une correspondance
   //               0  1  2  3  4
   enum Caractere { O, C, E, A, N } ;
@@ -74,11 +73,13 @@ class Gene{
 
   public:
 
-  Gene();
+  Gene(int);
   ~Gene();
 
-  private:
+  //debug: affiche juste un entier
+  Caractere lire_caractere() const { return caractere_ ; }
 
+  private:
   //Version du gene
   Caractere caractere_;
   Allele allele_;
@@ -91,11 +92,12 @@ class Gene{
 };
 
 //Constructeur par defaut (seulement appelé a l'initiation de la premiere generation)
-Gene::Gene() : rng_()
+Gene::Gene(int i) : rng_()
 {
   //expression_ =  Expression( rng_.unifRandInt(0,1) ) ;
   trait_ = rng_.unifRand(-1.,1.);
-  //Caractere -> implicite -> la position dans le chromosome
+  //Caractere -> implicite -> la position dans le chromosome/ On l'appuie en initialisant avec la position i du gene dans le chromosome
+  caractere_ = Caractere ( i ) ;
 }
 
 Gene::~Gene(){}
@@ -103,10 +105,11 @@ Gene::~Gene(){}
 class Chromosome{
 
   public:
-    Chromosome();
+    Chromosome(int);
     ~Chromosome();
     //dupliquer
     Gene lire_gene(unsigned int i) const { return genes_[i]; } 
+    void afficheContenu() const;
 
   private:
     std::vector<Gene> genes_;
@@ -114,9 +117,9 @@ class Chromosome{
 };
 
 //Constructeur par defaut (seulement appelé a l'initiation de la premiere generation)
-Chromosome::Chromosome(){
-  for(unsigned int i = 0 ; i < 5 ; i++){
-    Gene gene;
+Chromosome::Chromosome(int nbre_genes){
+  for(unsigned int i = 0 ; i < nbre_genes ; i++){
+    Gene gene(i);
     genes_.push_back(gene);
   }
 }
@@ -125,7 +128,11 @@ Chromosome::~Chromosome(){
   genes_.clear();
 }
 
-
+void Chromosome::afficheContenu() const{
+  for(vector<Gene>::const_iterator it = genes_.begin() ; it != genes_.end() ; it++){
+    cout<<it->lire_caractere()<<endl;
+  }
+}
 
 class Individu{
 
@@ -134,25 +141,18 @@ class Individu{
     Individu * mere ;
   };
 
-  struct Paire_Chromosomes {
-
-    Chromosome chromosome_pere; // chromosome 1
-    Chromosome chromosome_mere; // chromosome 2
-
-  };
-
   enum Sexe { masculin , feminin };
 
   public:
-  Individu();
-  Individu(Parents&);
+  Individu(int nbre_genes);
+  //Individu(Parents&);
 
   //acces au donnees externes:
   std::string recevoir_nom_au_hasard(Sexe);
   std::string recevoir_prenom_au_hasard(Sexe);
 
-  Chromosome lire_chromosome_pere() const { return paire_chromosomes_.chromosome_pere ; } 
-  Chromosome lire_chromosome_mere() const { return paire_chromosomes_.chromosome_mere ; } 
+  Chromosome lire_chromosome_A() const { return chromosome_A_ ; } 
+  Chromosome lire_chromosome_B() const { return chromosome_B_ ; } 
   void afficheIdentite() const { std::cout<<prenom_ <<" "<<nom_<<endl; }
 
   private:
@@ -164,9 +164,10 @@ class Individu{
   Sexe sexe_;
 
   Parents parents_;
-  //Genome
-  Paire_Chromosomes paire_chromosomes_;
-  
+  //Genome: pour l'instant diploide
+  Chromosome chromosome_A_ ;
+  Chromosome chromosome_B_ ;
+
   //Traits phénotypes pours lesquel codent les genes, la paire de chromosomes: O C E A N (calculé par l'expression des genes != potentiel genetique)
   double Ouverture_ ;         // -> expression des genes_[0]
   double Conscienciosité_ ;   // -> expression des genes_[1]
@@ -217,7 +218,7 @@ std::string Individu::recevoir_prenom_au_hasard(Sexe s){
 }
 
 //Constructeur par defaut, appelé uniquement a la premiere generation : appel constructeur par defaut de Gene et Chromosome
-Individu::Individu(): rng_()
+Individu::Individu(int nbre_genes): rng_(), chromosome_A_(nbre_genes), chromosome_B_(nbre_genes)
 {
 
   //Assigne un sexe:
@@ -236,40 +237,42 @@ Individu::Individu(): rng_()
 }
 
 //Constructeur pour generation ayant des parents (toutes sauf la premiere lors de l'initialisation de la population)
-Individu::Individu(Parents& parents) : rng_()
-{
-
-  // Met un pointeur sur le pere et la mere
-
-  //Assigne un sexe au hasard
-
-  //Prends le nom du pere et assigne un nouveau prenom en fonction de son sexe
-
-}
+//Individu::Individu(Parents& parents) : rng_()
+//{
+//
+//  // Met un pointeur sur le pere et la mere
+//
+//  //Assigne un sexe au hasard
+//
+//  //Prends le nom du pere et assigne un nouveau prenom en fonction de son sexe
+//
+//}
 
 //class INTERFACE
 //Classe statique qui contient: la banque d'alleles pour chaque gene a introduire dans la population
 //                              les tables de dominance entre alleles
 //                              le calcul de l'expression du phenotype
-class Genetique{
+class Geneticien{
 
   public:
     //Calcul l'expression du genome et le phenotype resultant associé
     //Arguments? Retourne quoi? Interface avec Individu?
     void traduction_genome_en_phenotype(Individu&);
+    static int nbre_genes() {return nbre_genes_ ; }
   private:
+    static const int nbre_genes_;;
 
 };
 
+const int Geneticien::nbre_genes_  = 5 ;
 
 //Verifier que ca fonctionne bien sur un exemple ou on affiche le geneome brut et le genome exprime
-void Genetique::traduction_genome_en_phenotype(Individu& individu){
+void Geneticien::traduction_genome_en_phenotype(Individu& individu){
 
   for(unsigned int i = 0 ; i < 5 ; i++){
-
     //Recupere les 2 genes du meme caractere:
-    Gene i1 = individu.lire_chromosome_pere().lire_gene(i);
-    Gene i2 = individu.lire_chromosome_mere().lire_gene(i);
+    Gene i1 = individu.lire_chromosome_A().lire_gene(i);
+    Gene i2 = individu.lire_chromosome_B().lire_gene(i);
 
   }
 
@@ -277,9 +280,14 @@ void Genetique::traduction_genome_en_phenotype(Individu& individu){
 
 int main(){
 
+  const int n = Geneticien::nbre_genes() ;
+
   cout<<"Genetique."<<endl;
-  Individu individu;
+  Individu individu(n);
   individu.afficheIdentite();
+
+  Chromosome chromosome(n);
+  chromosome.afficheContenu();
 
   return 0;
 }
