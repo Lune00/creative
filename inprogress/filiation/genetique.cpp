@@ -78,8 +78,8 @@ class Gene{
   //Pour l'instant chaque gene a les memes alleles (le caractere est automatiquement assigné?)
   Gene( char allele , double trait);
 
-  char lire_allele() const { return allele_ ;}
-  double lire_trait_() const { return trait_;}
+  char allele() const { return allele_ ;}
+  double trait() const { return trait_;}
   void afficheContenu() const;
 
   private:
@@ -154,6 +154,7 @@ class Individu{
 
   public:
   Individu(int nbre_genes, const vector<Gene>& population);
+  Individu(int sexe, int nbre_genes, const vector<Gene>& population);
   //Individu(Parents&);
 
   //acces au donnees externes:
@@ -163,11 +164,14 @@ class Individu{
   Chromosome lire_chromosome_A() const { return chromosome_A_ ; } 
   Chromosome lire_chromosome_B() const { return chromosome_B_ ; } 
 
+  void initialisation_phenotype() ;
+
   //Affichage:
   void affiche_etat_civil() const { std::cout<<"Nom: "<<prenom_ <<" "<<nom_<<endl; }
   void affiche_genome() const ;
-  void affiche_phenotype() const {} ;
-  void affiche_identite_complete() const { affiche_etat_civil() ; affiche_genome() ; affiche_phenotype();}
+  void affiche_genome_schema() const;
+  void affiche_phenotype() const ;
+  void affiche_identite_complete() const { affiche_etat_civil() ; affiche_genome_schema() ; affiche_phenotype();}
 
   private:
   //tmp (a mettre en static)
@@ -186,9 +190,18 @@ class Individu{
   double Ouverture_ ;         // -> expression des genes_[0]
   double Conscienciosité_ ;   // -> expression des genes_[1]
   double Extraversion_ ;      // -> expression des genes_[2]
-  double Agréabilité_;        // -> expression des genes_[3]    
+  double Agreabilité_;        // -> expression des genes_[3]    
   double Neuroticisme_ ;      // -> expression des genes_[4]
 };
+
+
+void Individu::affiche_phenotype() const {
+  cout<<"Ouverture : "<<Ouverture_<<endl;
+  cout<<"Conscienciosité : "<<Conscienciosité_<<endl;
+  cout<<"Extraversion : "<<Extraversion_<<endl;
+  cout<<"Agréabilité : "<<Agreabilité_<<endl;
+  cout<<"Neuroticisme : "<<Neuroticisme_<<endl;
+}
 
 void Individu::affiche_genome() const 
 { 
@@ -198,6 +211,13 @@ void Individu::affiche_genome() const
   cout<<"Chromosome B : "<<endl ;
   chromosome_B_.afficheContenu() ;
   cout<<"----------------------"<<endl;
+}
+
+void Individu::affiche_genome_schema() const
+{
+  for(int i = 0 ; i < 5 ; i++){
+    cout<<chromosome_A_.lire_gene(i).allele()<<" - "<<chromosome_B_.lire_gene(i).allele()<<endl;
+  }
 }
 
 std::string Individu::recevoir_nom_au_hasard(Sexe s){
@@ -260,21 +280,18 @@ std::string Individu::recevoir_prenom_au_hasard(Sexe s){
 class Geneticien{
 
   public:
-    //Calcul l'expression du genome et le phenotype resultant associé
-    //Arguments? Retourne quoi? Interface avec Individu?
-    void traduction_genome_en_phenotype(Individu&);
     static int nbre_genes() {return nbre_genes_ ; }
     static vector<Gene> population_genes() { return population_genes_ ; }
     static vector<Gene> creer_population();
 
     //Renvoie le nom du gene en fonction de sa position sur le genome (pour l'utilisateur humain)
     static string nom_gene(int);
- 
+    static double coefficient_codominance(char alleleA, char alleleB);
+
   private:
     static const int nbre_genes_;
     static const vector<Gene> population_genes_; 
     //Table de codominance entre les elements de la population, tmp
-    double coefficient_codominance(char alleleA, char alleleB);
 
 };
 
@@ -296,15 +313,21 @@ vector<Gene> Geneticien::creer_population(){
   return population;
 }
 
+//A mettre dans un tableau pour gagner en compacité:
 //Renvoie le coefficient de codominance (% expression chaque allele) entre 2 alleles
 double Geneticien::coefficient_codominance(char alleleA, char alleleB){
-
+  //Le coefficient de codominance est commutable => c(a,b)=c(b,a)
+  double a_b = 0.3 ;
+  double a_c = 1.0 ;
+  double b_c = 0.5 ;
   if( alleleA == alleleB ) return 1. ;
-  else if ( (alleleA ==  'a' && alleleB == 'b') || (alleleA == 'b' && alleleB == 'a') ) return 0.3 ;
-  else if ( (alleleA ==  'a' && alleleB == 'c') || (alleleA == 'c' && alleleB == 'a') ) return 1.0 ;
-  else if ( (alleleA ==  'b' && alleleB == 'c') || (alleleA == 'c' && alleleB == 'b') ) return 0.5 ;
+  else if  (alleleA == 'a' && alleleB == 'b') return a_b ;
+  else if  (alleleA == 'b' && alleleB == 'a') return ( 1. - a_b ) ;
+  else if  (alleleA == 'a' && alleleB == 'c') return a_c ;
+  else if  (alleleA == 'c' && alleleB == 'a') return ( 1. - a_c ) ;
+  else if  (alleleA == 'b' && alleleB == 'c') return b_c ;
+  else if  (alleleA == 'c' && alleleB == 'b') return ( 1. - b_c ) ;
   else return 0. ;
-
 }
 
 //Attribue un nom aux genes par rapport a leur position sur le chromosome (for human and readability)
@@ -333,21 +356,25 @@ void Chromosome::afficheContenu() const{
   }
 }
 
-  //expression_ =  Expression( rng_.unifRandInt(0,1) ) ;
-  //trait_ = rng_.unifRand( -1. , 1. );
-
 const vector<Gene> Geneticien::population_genes_ = Geneticien::creer_population() ;
 
-//Verifier que ca fonctionne bien sur un exemple ou on affiche le geneome brut et le genome exprime
-void Geneticien::traduction_genome_en_phenotype(Individu& individu){
-
-  for(unsigned int i = 0 ; i < nbre_genes_ ; i++){
+void Individu::initialisation_phenotype(){
+  vector<double> traits;
+  for(unsigned int i = 0 ; i < Geneticien::nbre_genes() ; i++){
     //Recupere les 2 genes du meme caractere:
-    Gene i1 = individu.lire_chromosome_A().lire_gene(i);
-    Gene i2 = individu.lire_chromosome_B().lire_gene(i);
-    i1.afficheContenu();
+    Gene i1 = lire_chromosome_A().lire_gene(i);
+    Gene i2 = lire_chromosome_B().lire_gene(i);
+    double c = Geneticien::coefficient_codominance( i1.allele(), i2.allele() );
+    //cout<<i1.allele()<<" "<<i2.allele()<<" coeff: "<<c<<endl;
+    double trait = ( 1. - c ) * i1.trait() + c * i2.trait() ;
+    traits.push_back(trait);
   }
-
+  //Eventuellement mettre les traits sous la forme d'un vecteur comme les genes pour une correspondance implicite
+  Ouverture_ = traits[0] ;
+  Conscienciosité_ = traits[1] ;
+  Extraversion_ = traits[2] ;
+  Agreabilité_ = traits[3] ;
+  Neuroticisme_ = traits[4] ; 
 }
 
 //Constructeur par defaut, appelé uniquement a la premiere generation :
@@ -359,20 +386,37 @@ Individu::Individu(int nbre_genes, const vector<Gene>& population): rng_(), chro
   nom_ = recevoir_nom_au_hasard(sexe_);
   prenom_ = recevoir_prenom_au_hasard(sexe_);
   //Calcule l'expression de son genome et initialise son phénotype:
-
+  initialisation_phenotype() ;
+  //Individu défini. Pret a transmettre son genome.
+  return ;
+}
+//tmp, Constructeur par defaut, appelé uniquement a la premiere generation :
+Individu::Individu(int s, int nbre_genes, const vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
+{
+  //Assigne un sexe:
+  sexe_ = Sexe ( s ) ;
+  //Assigne un prenom et un nom si pas de parent
+  nom_ = recevoir_nom_au_hasard(sexe_);
+  prenom_ = recevoir_prenom_au_hasard(sexe_);
+  //Calcule l'expression de son genome et initialise son phénotype:
+  initialisation_phenotype() ;
   //Individu défini. Pret a transmettre son genome.
   return ;
 }
 
-int main(){
 
-  cout<<"Genetique."<<endl;
+int main(){
 
   const int n = Geneticien::nbre_genes() ;
   const vector<Gene> population = Geneticien::population_genes() ;
 
-  Individu individu( n, population );
-  individu.affiche_identite_complete();
+  //Creation de 2 individus de sexe opposés
+  Individu individu1(0, n, population );
+  Individu individu2(1, n, population );
+
+  //Reflechir a generer des descendances et filiations (parents/enfants)
+  individu1.affiche_identite_complete();
+  individu2.affiche_identite_complete();
 
   return 0;
 }
