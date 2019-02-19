@@ -163,7 +163,11 @@ class Individu{
   Chromosome lire_chromosome_A() const { return chromosome_A_ ; } 
   Chromosome lire_chromosome_B() const { return chromosome_B_ ; } 
 
-  void afficheIdentite() const { std::cout<<prenom_ <<" "<<nom_<<endl; }
+  //Affichage:
+  void affiche_etat_civil() const { std::cout<<"Nom: "<<prenom_ <<" "<<nom_<<endl; }
+  void affiche_genome() const ;
+  void affiche_phenotype() const {} ;
+  void affiche_identite_complete() const { affiche_etat_civil() ; affiche_genome() ; affiche_phenotype();}
 
   private:
   //tmp (a mettre en static)
@@ -186,6 +190,15 @@ class Individu{
   double Neuroticisme_ ;      // -> expression des genes_[4]
 };
 
+void Individu::affiche_genome() const 
+{ 
+  cout<<"----------------------"<<endl;
+  cout<<"Chromosome A : "<<endl ;
+  chromosome_A_.afficheContenu() ;
+  cout<<"Chromosome B : "<<endl ;
+  chromosome_B_.afficheContenu() ;
+  cout<<"----------------------"<<endl;
+}
 
 std::string Individu::recevoir_nom_au_hasard(Sexe s){
 
@@ -271,7 +284,10 @@ class Geneticien{
     void traduction_genome_en_phenotype(Individu&);
     static int nbre_genes() {return nbre_genes_ ; }
     static vector<Gene> population_genes() { return population_genes_ ; }
+
+    //Renvoie le nom du gene en fonction de sa position sur le genome (pour l'utilisateur humain)
     static string translate(int);
+ 
   private:
     static const int nbre_genes_;;
     static const vector<Gene> population_genes_; 
@@ -280,7 +296,6 @@ class Geneticien{
 };
 
 const int Geneticien::nbre_genes_  = 5 ;
-
 
 //Creation de la base de genes initiaux:
 vector<Gene> Geneticien::creer_population(){
@@ -300,9 +315,7 @@ vector<Gene> Geneticien::creer_population(){
 
 //Attribue un nom aux genes par rapport a leur position sur le chromosome (for human and readability)
 string Geneticien::translate(int position){
-
   switch(position){
-
     case 0 : return string("0");
 	     break;
     case 1 : return string("C");
@@ -350,10 +363,7 @@ int main(){
   const vector<Gene> population = Geneticien::population_genes() ;
 
   Individu individu( n, population );
-  individu.afficheIdentite();
-
-  Chromosome chromosome( n, population );
-  chromosome.afficheContenu();
+  individu.affiche_identite_complete();
 
   return 0;
 }
