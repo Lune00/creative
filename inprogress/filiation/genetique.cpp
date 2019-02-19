@@ -240,24 +240,6 @@ std::string Individu::recevoir_prenom_au_hasard(Sexe s){
   return lines[random_index];
 }
 
-//Constructeur par defaut, appelé uniquement a la premiere generation : appel constructeur par defaut de Gene et Chromosome
-Individu::Individu(int nbre_genes, const vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
-{
-
-  //Assigne un sexe:
-  sexe_ = Sexe ( rng_.unifRandInt(0,1) ) ;
-
-  //Assigne un prenom et un nom si pas de parent
-  nom_ = recevoir_nom_au_hasard(sexe_);
-  prenom_ = recevoir_prenom_au_hasard(sexe_);
-
-  //Initialise un genome par defaut (implicite)
-
-  //Calcule l'expression de son genome et initialise son phénotype (arguments passés par reference pour etre modifié directement)
-
-  //Individu défini. Pret a transmettre son genome.
-  return ;
-}
 
 //Constructeur pour generation ayant des parents (toutes sauf la premiere lors de l'initialisation de la population)
 //Individu::Individu(Parents& parents) : rng_()
@@ -277,21 +259,22 @@ Individu::Individu(int nbre_genes, const vector<Gene>& population): rng_(), chro
 //                              le calcul de l'expression du phenotype
 class Geneticien{
 
-  
   public:
     //Calcul l'expression du genome et le phenotype resultant associé
     //Arguments? Retourne quoi? Interface avec Individu?
     void traduction_genome_en_phenotype(Individu&);
     static int nbre_genes() {return nbre_genes_ ; }
     static vector<Gene> population_genes() { return population_genes_ ; }
+    static vector<Gene> creer_population();
 
     //Renvoie le nom du gene en fonction de sa position sur le genome (pour l'utilisateur humain)
-    static string translate(int);
+    static string nom_gene(int);
  
   private:
-    static const int nbre_genes_;;
+    static const int nbre_genes_;
     static const vector<Gene> population_genes_; 
-    static vector<Gene> creer_population();
+    //Table de codominance entre les elements de la population, tmp
+    double coefficient_codominance(char alleleA, char alleleB);
 
 };
 
@@ -313,8 +296,19 @@ vector<Gene> Geneticien::creer_population(){
   return population;
 }
 
+//Renvoie le coefficient de codominance (% expression chaque allele) entre 2 alleles
+double Geneticien::coefficient_codominance(char alleleA, char alleleB){
+
+  if( alleleA == alleleB ) return 1. ;
+  else if ( (alleleA ==  'a' && alleleB == 'b') || (alleleA == 'b' && alleleB == 'a') ) return 0.3 ;
+  else if ( (alleleA ==  'a' && alleleB == 'c') || (alleleA == 'c' && alleleB == 'a') ) return 1.0 ;
+  else if ( (alleleA ==  'b' && alleleB == 'c') || (alleleA == 'c' && alleleB == 'b') ) return 0.5 ;
+  else return 0. ;
+
+}
+
 //Attribue un nom aux genes par rapport a leur position sur le chromosome (for human and readability)
-string Geneticien::translate(int position){
+string Geneticien::nom_gene(int position){
   switch(position){
     case 0 : return string("0");
 	     break;
@@ -333,7 +327,7 @@ string Geneticien::translate(int position){
 void Chromosome::afficheContenu() const{
   for(vector<Gene>::const_iterator it = genes_.begin() ; it != genes_.end() ; it++){
     int position = it - genes_.begin() ;
-    string nom_gene = Geneticien::translate (position ) ;
+    string nom_gene = Geneticien::nom_gene (position ) ;
     cout<<"Gene : "<< nom_gene<<" ";
     it->afficheContenu();
   }
@@ -351,8 +345,23 @@ void Geneticien::traduction_genome_en_phenotype(Individu& individu){
     //Recupere les 2 genes du meme caractere:
     Gene i1 = individu.lire_chromosome_A().lire_gene(i);
     Gene i2 = individu.lire_chromosome_B().lire_gene(i);
+    i1.afficheContenu();
   }
 
+}
+
+//Constructeur par defaut, appelé uniquement a la premiere generation :
+Individu::Individu(int nbre_genes, const vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
+{
+  //Assigne un sexe:
+  sexe_ = Sexe ( rng_.unifRandInt(0,1) ) ;
+  //Assigne un prenom et un nom si pas de parent
+  nom_ = recevoir_nom_au_hasard(sexe_);
+  prenom_ = recevoir_prenom_au_hasard(sexe_);
+  //Calcule l'expression de son genome et initialise son phénotype:
+
+  //Individu défini. Pret a transmettre son genome.
+  return ;
 }
 
 int main(){
