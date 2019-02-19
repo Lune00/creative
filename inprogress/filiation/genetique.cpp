@@ -66,10 +66,16 @@ int RandomGenerator::unifRandInt(int a, int b){
 
 class Gene{
   //Le caractere est defini seulement par la position dans le vecteur de genes "genes_" de l'objet Chromosome
-  //donc nous n'avons pas besoin de l'explicité seulement de faire une correspondance
   //               0  1  2  3  4
   enum Caractere { O, C, E, A, N } ;
-  enum Allele { a , b , c };
+
+  //Reflechir comment initialiser ca proprement...TODO
+  //Une allele attribue une valeur au trait_ et le coefficient de codominance dans une table (initialisé par Geneticien)
+  //attribue un entier (coordonne dans table de codominance) et une valeur flottante au trait_
+  struct Allele {
+    int allele_version_;
+    double trait_;
+  };
 
   public:
 
@@ -80,11 +86,9 @@ class Gene{
   Caractere lire_caractere() const { return caractere_ ; }
 
   private:
-  //Version du gene
+  //Seul des genes de meme caractere peuvent etre mis en rapport
   Caractere caractere_;
   Allele allele_;
-  //Valeur du trait pour lequel le gene code
-  double trait_;
 
   //tmp solution
   RandomGenerator rng_;
@@ -95,7 +99,7 @@ class Gene{
 Gene::Gene(int i) : rng_()
 {
   //expression_ =  Expression( rng_.unifRandInt(0,1) ) ;
-  trait_ = rng_.unifRand(-1.,1.);
+  //trait_ = rng_.unifRand( -1. , 1. );
   //Caractere -> implicite -> la position dans le chromosome/ On l'appuie en initialisant avec la position i du gene dans le chromosome
   caractere_ = Caractere ( i ) ;
 }
@@ -105,9 +109,8 @@ Gene::~Gene(){}
 class Chromosome{
 
   public:
-    Chromosome(int);
+    Chromosome(int nbre_genes);
     ~Chromosome();
-    //dupliquer
     Gene lire_gene(unsigned int i) const { return genes_[i]; } 
     void afficheContenu() const;
 
@@ -153,10 +156,11 @@ class Individu{
 
   Chromosome lire_chromosome_A() const { return chromosome_A_ ; } 
   Chromosome lire_chromosome_B() const { return chromosome_B_ ; } 
+
   void afficheIdentite() const { std::cout<<prenom_ <<" "<<nom_<<endl; }
 
   private:
-  //tmp
+  //tmp (a mettre en static)
   RandomGenerator rng_;
 
   string nom_ ;
@@ -269,7 +273,7 @@ const int Geneticien::nbre_genes_  = 5 ;
 //Verifier que ca fonctionne bien sur un exemple ou on affiche le geneome brut et le genome exprime
 void Geneticien::traduction_genome_en_phenotype(Individu& individu){
 
-  for(unsigned int i = 0 ; i < 5 ; i++){
+  for(unsigned int i = 0 ; i < nbre_genes_ ; i++){
     //Recupere les 2 genes du meme caractere:
     Gene i1 = individu.lire_chromosome_A().lire_gene(i);
     Gene i2 = individu.lire_chromosome_B().lire_gene(i);
@@ -280,13 +284,14 @@ void Geneticien::traduction_genome_en_phenotype(Individu& individu){
 
 int main(){
 
+  cout<<"Genetique."<<endl;
+
   const int n = Geneticien::nbre_genes() ;
 
-  cout<<"Genetique."<<endl;
-  Individu individu(n);
+  Individu individu( n );
   individu.afficheIdentite();
 
-  Chromosome chromosome(n);
+  Chromosome chromosome( n );
   chromosome.afficheContenu();
 
   return 0;
