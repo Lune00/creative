@@ -55,7 +55,6 @@ int RandomGenerator::unifRandInt(int a, int b){
 }
 
 //--------------
-class Gene{
   // Il faut que chaque allele ait un effet fixe (rapport de domination avec l'autre)
   // Attribuer a chaque allele un coefficient de dominance vis a vis d'un autre (allele C1 face a C2 peut se comporter autrement)
   // L'expression d'un gene ne serait plus "dominant" ou "recessif" (un booleen) mais une valeur flottante comprise entre [0:1]
@@ -63,24 +62,29 @@ class Gene{
   // une relation de dominance entre allele A et B : Trait(valeur) = (1 -coeff dominance)* Effet allele A + (Coeff dominance)* Effet allele B
   // Faire une table de coeff dominance. Ex gene C: allele C1 C2 C3 CoeffDominance(C1,C2)=0 -> C1 domine C2 completement. CoeffDominance(C1,C3)=1 -> C3 domine C1 completement
 
-  enum Expression { dominant, recessif};
+
+
+class Gene{
+
   //Le caractere est defini seulement par la position dans genes_ du Chromosome
   //donc nous n'avons pas besoin de l'explicité seulement de faire une correspondance
   //               0  1  2  3  4
   enum Caractere { O, C, E, A, N } ;
+  enum Allele { a , b , c };
 
   public:
 
   Gene();
   ~Gene();
 
-  bool est_dominant() const { return  expression_ ; }
-  //mutation
-
   private:
-  Expression expression_;
+
+  //Version du gene
   Caractere caractere_;
+  Allele allele_;
+  //Valeur du trait pour lequel le gene code
   double trait_;
+
   //tmp solution
   RandomGenerator rng_;
 
@@ -89,7 +93,7 @@ class Gene{
 //Constructeur par defaut (seulement appelé a l'initiation de la premiere generation)
 Gene::Gene() : rng_()
 {
-  expression_ =  Expression( rng_.unifRandInt(0,1) ) ;
+  //expression_ =  Expression( rng_.unifRandInt(0,1) ) ;
   trait_ = rng_.unifRand(-1.,1.);
   //Caractere -> implicite -> la position dans le chromosome
 }
@@ -122,65 +126,22 @@ Chromosome::~Chromosome(){
 }
 
 
-class Paire_chromosomes{
-
-  public:
-    Paire_chromosomes();
-    ~Paire_chromosomes();
-
-    //Calcul l'expression du genome et le phenotype resultant associé
-    //Arguments? Retourne quoi? Interface avec Individu?
-    void traduction_genome_en_phenotype(double& O, double& C, double& E, double& A, double& N);
-
-  private:
-    //Chaque gene a une coordonée. ex: "O1" est le gene 0(le 1er) sur le chromosome 1(celui du pere)
-    Chromosome chromosome_pere; // chromosome 1
-    Chromosome chromosome_mere; // chromosome 2
-
-};
-
-Paire_chromosomes::Paire_chromosomes(){}
-Paire_chromosomes::~Paire_chromosomes(){}
-
-
-//Regles genetiques en lecture:
-
-//Test dominant/recessif: plusieurs cas
-//1) Un seul est dominant -> il donne sa valeur au caractere encodé
-//2) Les deux sont dominants -> caractere est la moyenne de chaque caractere
-//2) Les deux sont recessifs -> caractere est la moyenne de chaque caractere
-
-//Verifier que ca fonctionne bien sur un exemple ou on affiche le geneome brut et le genome exprime
-void Paire_chromosomes::traduction_genome_en_phenotype(double& O, double& C, double& E, double& A, double& N){
-
-  for(unsigned int i = 0 ; i < 5 ; i++){
-
-    //Recupere les 2 genes du meme caractere:
-    Gene i1 = chromosome_pere.lire_gene(i);
-    Gene i2 = chromosome_mere.lire_gene(i);
-
-    if(i1.est_dominant() && !i2.est_dominant() ){
-
-    }
-    else if(!i1.est_dominant() && i2.est_dominant() ){
-
-    }
-    else{
-      //i1 est recessif et i2 est recessif ou i1 est dominant et i2 est dominant
-    }
-
-  }
-
-}
 
 class Individu{
-
-  enum Sexe { masculin , feminin };
 
   struct Parents {
     Individu * pere ;
     Individu * mere ;
   };
+
+  struct Paire_Chromosomes {
+
+    Chromosome chromosome_pere; // chromosome 1
+    Chromosome chromosome_mere; // chromosome 2
+
+  };
+
+  enum Sexe { masculin , feminin };
 
   public:
   Individu();
@@ -190,6 +151,8 @@ class Individu{
   std::string recevoir_nom_au_hasard(Sexe);
   std::string recevoir_prenom_au_hasard(Sexe);
 
+  Chromosome lire_chromosome_pere() const { return paire_chromosomes_.chromosome_pere ; } 
+  Chromosome lire_chromosome_mere() const { return paire_chromosomes_.chromosome_mere ; } 
   void afficheIdentite() const { std::cout<<prenom_ <<" "<<nom_<<endl; }
 
   private:
@@ -199,8 +162,10 @@ class Individu{
   string nom_ ;
   string prenom_;
   Sexe sexe_;
+
   Parents parents_;
-  Paire_chromosomes paire_chromosomes;
+  //Genome
+  Paire_Chromosomes paire_chromosomes_;
   
   //Traits phénotypes pours lesquel codent les genes, la paire de chromosomes: O C E A N (calculé par l'expression des genes != potentiel genetique)
   double Ouverture_ ;         // -> expression des genes_[0]
@@ -265,7 +230,6 @@ Individu::Individu(): rng_()
   //Initialise un genome par defaut (implicite)
 
   //Calcule l'expression de son genome et initialise son phénotype (arguments passés par reference pour etre modifié directement)
-  paire_chromosomes.traduction_genome_en_phenotype(Ouverture_ , Conscienciosité_, Extraversion_, Agréabilité_, Neuroticisme_);
 
   //Individu défini. Pret a transmettre son genome.
   return ;
@@ -280,6 +244,34 @@ Individu::Individu(Parents& parents) : rng_()
   //Assigne un sexe au hasard
 
   //Prends le nom du pere et assigne un nouveau prenom en fonction de son sexe
+
+}
+
+//class INTERFACE
+//Classe statique qui contient: la banque d'alleles pour chaque gene a introduire dans la population
+//                              les tables de dominance entre alleles
+//                              le calcul de l'expression du phenotype
+class Genetique{
+
+  public:
+    //Calcul l'expression du genome et le phenotype resultant associé
+    //Arguments? Retourne quoi? Interface avec Individu?
+    void traduction_genome_en_phenotype(Individu&);
+  private:
+
+};
+
+
+//Verifier que ca fonctionne bien sur un exemple ou on affiche le geneome brut et le genome exprime
+void Genetique::traduction_genome_en_phenotype(Individu& individu){
+
+  for(unsigned int i = 0 ; i < 5 ; i++){
+
+    //Recupere les 2 genes du meme caractere:
+    Gene i1 = individu.lire_chromosome_pere().lire_gene(i);
+    Gene i2 = individu.lire_chromosome_mere().lire_gene(i);
+
+  }
 
 }
 
