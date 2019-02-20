@@ -1,4 +1,27 @@
----------------------------  BUT DU PROGRAMME --------------------------------
+# GENETIK
+
+## Objectifs
+
+Le but de ce code est de fournir une bilbliotheque minimal pour mettre en place des mécanismes génétiques, a savoir la transmission, de generation en generation de "traits", un phénotype, a partir d'un materiel génétique.
+
+Les **individus** ont un génome qui se compose de deux **chromosomes**, ils sont diploides. Sur chaque chromosome il existe un certain nombre de genes qui peuvent avoir des alleles différentes. Chaque trait phénotypique est codé par un gène qui existe sous la forme de deux alleles (un sur chaque chromosome). Des règles de codominance viennent pondérer l'expression des gènes correspondant au même trait. 
+
+Il est possible de choisir le nombre de gènes et le nombre de traits. Il faut seulement écrire les regles de codominance correspondantes. 
+
+Le phénotype est ensuite calculé selon les regles de codominance (expression du genome). Ce génome est ensuite transmis lorsque deux individus de sexe opposé procreent. Comme dans un processus de [méiose](https://fr.wikipedia.org/wiki/Méiose)la moitié du génome (un chromosome au hasard sur les deux) est transmis par chaque parent a l'individu enfant. Ainsi celui-ci est unique et conserve un héritage de ses parents dans son génome.
+
+A l'avenir une classe **Vivant** sera créee qui contiendra toute l'information génétique, qui sera héritée par une classe qu'un utilisateur veut voir etre dotée d'un systeme génétique.
+
+Le programme se compose des classes suivantes:
+
+- ** Gene ** : un gene est défini par sa position sur le **Chromsome**. Il a une valeur *allele* qui correspond à sa version et un *trait* qui correspond à la valeur qu'il attribue s'il domine au trait phénotypique associé. 
+
+
+
+
+
+
+
 
 Heritage de traits personnels encodés par des genes Un couple de personnages donnera naissance a des enfants qui heriteront de leurs genes.  Pour definir les traits on utilisera le modele OCEAN (5 traits de personalité) => 5 genes
 
