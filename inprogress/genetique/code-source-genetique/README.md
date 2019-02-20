@@ -6,15 +6,19 @@ Le but de ce code est de fournir une bilbliotheque minimal pour mettre en place 
 
 Les **individus** ont un génome qui se compose de deux **chromosomes**, ils sont diploides. Sur chaque chromosome il existe un certain nombre de genes qui peuvent avoir des alleles différentes. Chaque trait phénotypique est codé par un gène qui existe sous la forme de deux alleles (un sur chaque chromosome). Des règles de codominance viennent pondérer l'expression des gènes correspondant au même trait. 
 
-Il est possible de choisir le nombre de gènes et le nombre de traits. Il faut seulement écrire les regles de codominance correspondantes. 
+Il est possible de choisir le nombre de gènes et le nombre de traits. Il faut seulement écrire les regles de codominance correspondantes. Une base d'alleles pour chaque gène est initialisée au début du programme. La population de genes est initialement écrite puis elle sera transmise.
 
-Le phénotype est ensuite calculé selon les regles de codominance (expression du genome). Ce génome est ensuite transmis lorsque deux individus de sexe opposé procreent. Comme dans un processus de [méiose](https://fr.wikipedia.org/wiki/Méiose)la moitié du génome (un chromosome au hasard sur les deux) est transmis par chaque parent a l'individu enfant. Ainsi celui-ci est unique et conserve un héritage de ses parents dans son génome.
+Le phénotype est ensuite calculé selon les regles de codominance (expression du genome). Ce génome est ensuite transmis lorsque deux individus de sexe opposé procreent. Comme dans un processus de [méiose](https://fr.wikipedia.org/wiki/Méiose) la moitié du génome (un chromosome au hasard sur les deux) est transmis par chaque parent a l'individu enfant. L'enfant dispose d'un genome hérité de ses parents et peut le transmettre à son tour.
 
 A l'avenir une classe **Vivant** sera créee qui contiendra toute l'information génétique, qui sera héritée par une classe qu'un utilisateur veut voir etre dotée d'un systeme génétique.
 
 Le programme se compose des classes suivantes:
 
-- ** Gene ** : un gene est défini par sa position sur le **Chromsome**. Il a une valeur *allele* qui correspond à sa version et un *trait* qui correspond à la valeur qu'il attribue s'il domine au trait phénotypique associé. 
+- **Gene** : un gene est défini par sa position sur le **Chromsome**. Il a une valeur *allele* qui correspond à sa version et un *trait* qui correspond à la valeur qu'il attribue, s'il domine (coefficient de codomination de 1) au trait phénotypique associé. 
+- **Chromosome**: un chromosome est un conteneur de gènes. La position de chaque gènes sur le chromosome determine pour quel trait phénotypique il code.
+- **Geneticien**: contient la population de genes (leurs version, ou alleles) ainsi que les regles de codominance entre alleles (qui doivent etre spécifiées). Le Geneticien fixe le nombre de gene. C'est une classe interface où les regles de la génétique sont regroupées.
+- **Individu**: les etres diploides (possedent deux chromosomes). Ils héritent d'un génome, qui determine leur phénotype,peuvent le transmettre et avoir une filiation. Ils ont un sexe. Ils ont un nom et un prénom tirés au hasard dans des fichiers textes présents dans le dossier **data**. Ils seront remplacés par une classe générique **Vivant** par la suite dont l'utilisateur pourra hériter pour faire des invidius *génétisés* comme bon lui semble)
+- **rng** : un simple générateur aléatoire de nombres entier et flottants.
 
 
 
