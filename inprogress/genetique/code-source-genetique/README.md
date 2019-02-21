@@ -26,9 +26,10 @@ Il serait inutile de complexifier le modèle avec l'ajout de mécanismes trop sp
 - Chaque trait sera codé par un ensemble de gènes (pouvant etre égal à 1 jusqu'à 50).
 - Chaque chromosome a la même taille et peut contenir 10 gènes.
 - Les ensembles de genes codant pour un trait seront placés aléatoirement sur les chromosomes. Le nombre de chromosomes doit être égal ou inférieur au nombre total de gènes (de sorte qu'il y ait au moins un gène par chromosome).
-- L'utilisateur pourra écrire un ensemble d'allèles pour l'ensemble des traits ou alors spécifier des allèles pour un trait seulement.
+- L'utilisateur pourra écrire un ensemble d'allèles pour l'ensemble des traits ou alors spécifier des allèles pour un trait seulement, ou spécifier des allèles pour un gène seulement (a mediter)
 - le crossing-over pourra être désactivé ou activé (si désactivé réduit la meiose a une recombinaison des chromatides)
 
+Un programme (avec interface graphique) sera fourni pour générer les propriétés de la base génétique dans un fichier .gnm
 
 ## Contenu / classes
 Le programme se compose des classes suivantes:
