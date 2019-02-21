@@ -1,7 +1,6 @@
 #ifndef INDIVIDU_H
 #define INDIVIDU_H
 
-
 class Individu{
 
   struct Parents {
@@ -12,9 +11,10 @@ class Individu{
   enum Sexe { masculin , feminin };
 
   public:
+  
   Individu(int nbre_genes, const vector<Gene>& population);
   Individu(int sexe, int nbre_genes, const vector<Gene>& population);
-  //Individu(Parents&);
+  //Individu(Parents&)
 
   //acces au donnees externes:
   std::string recevoir_nom_au_hasard(Sexe);
