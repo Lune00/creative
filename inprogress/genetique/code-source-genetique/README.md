@@ -8,7 +8,7 @@ Le **genome** peut-être hérité par une classe qui disposer d'un matériel gé
 
 La librairie modelise les caractères rudimentaires et simplifiés de la génétique: population initiale de genes ( et d'alleles), régles de codominance entre allèles d'un meme gene, transmission par méiose. 
 
-Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation d'une autre classe pourvu qu'ils partagent le même génome. La reproduction peut etre définie sexuée ou non. Le nombre de chromosomes peut etre défini par l'utilsateur: haploide (n chromosomes), diploide (2n chromosomes), triploides (3n chromosomes) etc...
+Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation d'une autre classe pourvu qu'ils partagent le même génome. La reproduction peut etre définie sexuée ou non. Le nombre n de chromosomes peut etre défini par l'utilsateur. La ploïdie peut être choisie entre trois types: haploide (n chromosomes), diploide (2n chromosomes), triploides (3n chromosomes).
 
 Chaque trait du phénotype peut-être codé par un ou plusieurs gènes. Chaque gène peut posséder un ou plusieurs allèles.
 
