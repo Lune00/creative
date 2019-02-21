@@ -1,0 +1,17 @@
+CC=g++
+CFLAGS=-W -Wall -ansi -pedantic
+LDFLAGS=
+EXEC=maison
+
+all:: $(EXEC)
+
+maison: maison.o main.o
+	$(CC) -o $(EXEC) $^ $(LDFLAGS)
+maison.o: maison.cpp
+	$(CC) -o $@ -c $< $(CFLAGS)
+main.o: main.cpp 
+	$(CC) -o $@ -c $^ $(CFLAGS)
+clean:
+	rm -rf *.o
+mrproper: clean
+	rm -rf $(EXEC)

@@ -1,6 +1,13 @@
 #include "individu.h"
+#include "gene.h"
+#include "geneticien.h"
 
-using namespace std;
+#include<iostream>
+#include<fstream>
+
+using std::cout;
+using std::endl;
+using std::ifstream;
 
 void Individu::affiche_phenotype() const {
   cout<<"Ouverture : "<<Ouverture_<<endl;
@@ -18,6 +25,10 @@ void Individu::affiche_genome() const
   cout<<"Chromosome B : "<<endl ;
   chromosome_B_.afficheContenu() ;
   cout<<"----------------------"<<endl;
+}
+
+void Individu::affiche_etat_civil() const {
+  std::cout<<"Nom: "<<prenom_<<" "<<nom_<<std::endl ;
 }
 
 void Individu::affiche_genome_schema() const
@@ -68,7 +79,7 @@ std::string Individu::recevoir_prenom_au_hasard(Sexe s){
 }
 
 void Individu::initialisation_phenotype(){
-  vector<double> traits;
+  std::vector<double> traits;
   for(unsigned int i = 0 ; i < Geneticien::nbre_genes() ; i++){
     //Recupere les 2 genes du meme caractere:
     Gene i1 = lire_chromosome_A().lire_gene(i);
@@ -87,7 +98,7 @@ void Individu::initialisation_phenotype(){
 }
 
 //Constructeur par defaut, appelé uniquement a la premiere generation :
-Individu::Individu(int nbre_genes, const vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
+Individu::Individu(int nbre_genes, const std::vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
 {
   //Assigne un sexe:
   sexe_ = Sexe ( rng_.unifRandInt(0,1) ) ;
@@ -101,7 +112,7 @@ Individu::Individu(int nbre_genes, const vector<Gene>& population): rng_(), chro
 }
 
 //tmp, Constructeur par defaut, appelé uniquement a la premiere generation :
-Individu::Individu(int s, int nbre_genes, const vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
+Individu::Individu(int s, int nbre_genes, const std::vector<Gene>& population): rng_(), chromosome_A_(nbre_genes, population), chromosome_B_(nbre_genes, population)
 {
   //Assigne un sexe:
   sexe_ = Sexe ( s ) ;

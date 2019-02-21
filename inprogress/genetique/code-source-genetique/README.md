@@ -5,16 +5,15 @@
 
 **Ce projet n'a pas pour but de simuler les mécanismes génétiques mais de les modéliser**, en reproduisant les mécanismes généraux ayant lieu lors de la reproduction afin d'obtenir une variété de phénotypes satisfaisante.
 
-Le but de ce projet est de fournir une bilbliotheque minimale pour mettre en place un génome transmissible et ses mécanismes génétiques associés: transmission d'un matériel génétique, de generation en generation, s'exprimant en "traits" ou phénotype.
-
-
-## Description
+Le but de ce projet est de fournir une bilbliotheque minimale pour mettre en place un génome [diploïde](https://fr.wikipedia.org/wiki/Diploïde) transmissible et ses mécanismes génétiques associés: transmission d'un matériel génétique, de generation en generation, s'exprimant en "traits" ou phénotype.
 
 Le **genome** peut-être hérité par une classe qui disposer d'un matériel génétique avec des regles d'expression définies par l'utilisateur. 
 
+## Description
+
 La librairie modelise les caractères rudimentaires et simplifiés de la génétique: population initiale de genes ( et d'alleles), régles de codominance entre allèles d'un meme gene, transmission par méiose. 
 
-Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation d'une autre classe pourvu qu'ils partagent le même génome. La reproduction peut etre définie sexuée ou non. Le nombre n de chromosomes peut etre défini par l'utilsateur. La ploïdie peut être choisie entre trois types: haploide (n chromosomes), diploide (2n chromosomes), triploides (3n chromosomes).
+Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation d'une autre classe. La reproduction peut se réaliser avec un partenaire (sexuée ou non), par clonage ou par auto-fécondation (certaines plantes). 
 
 Chaque trait du phénotype peut-être codé par un ou plusieurs gènes. Chaque gène peut posséder un ou plusieurs allèles.
 
@@ -29,7 +28,7 @@ Il serait inutile de complexifier le modèle avec l'ajout de mécanismes trop sp
 - Chaque trait sera codé par un ensemble de gènes (pouvant etre égal à 1 jusqu'à 50).
 - Chaque chromosome a la même taille et peut contenir 10 gènes.
 - Les ensembles de genes codant pour un trait seront placés aléatoirement sur les chromosomes. Le nombre de chromosomes doit être égal ou inférieur au nombre total de gènes (de sorte qu'il y ait au moins un gène par chromosome).
-- L'utilisateur pourra écrire un ensemble d'allèles pour l'ensemble des traits ou alors spécifier des allèles pour un trait seulement, ou spécifier des allèles pour un gène seulement (a mediter)
+- L'utilisateur pourra écrire un ensemble d'allèles pour l'ensemble des traits ou alors spécifier des allèles pour un trait seulement.
 - le crossing-over pourra être désactivé ou activé (si désactivé réduit la meiose a une recombinaison des chromatides)
 
 Un programme (avec interface graphique) sera fourni pour générer les propriétés de la base génétique dans un fichier .gnm
@@ -43,11 +42,6 @@ trait = (1-c(a,b)) * effet allèle a + c(a,b) * effet allèle b
 
 où c(a,b) est le coefficient de codominance entre a et b. Quand c est égal à 0, a est dominant et b est récessif. Dans le cas où plusieurs gènes contribuent à un seul trait leurs contributions sont sommées.
 
-### Haploïde
-
-### Diploïde
-
-### Triploïde
 
 ## Diversité phénotypique : lois d'échelle et considérations statistiques
 

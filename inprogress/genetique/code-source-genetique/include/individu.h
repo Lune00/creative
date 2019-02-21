@@ -1,6 +1,13 @@
 #ifndef INDIVIDU_H
 #define INDIVIDU_H
 
+#include<vector>
+#include<string>
+#include"rng.h"
+#include"chromosome.h"
+
+class Gene;
+
 class Individu{
 
   struct Parents {
@@ -12,8 +19,8 @@ class Individu{
 
   public:
   
-  Individu(int nbre_genes, const vector<Gene>& population);
-  Individu(int sexe, int nbre_genes, const vector<Gene>& population);
+  Individu(int nbre_genes, const std::vector<Gene>& population);
+  Individu(int sexe, int nbre_genes, const std::vector<Gene>& population);
   //Individu(Parents&)
 
   //acces au donnees externes:
@@ -26,7 +33,7 @@ class Individu{
   void initialisation_phenotype() ;
 
   //Affichage:
-  void affiche_etat_civil() const { std::cout<<"Nom: "<<prenom_ <<" "<<nom_<<endl; }
+  void affiche_etat_civil() const ;
   void affiche_genome() const ;
   void affiche_genome_schema() const;
   void affiche_phenotype() const ;
@@ -36,8 +43,8 @@ class Individu{
   //tmp (a mettre en static)
   RandomGenerator rng_;
 
-  string nom_ ;
-  string prenom_;
+  std::string nom_ ;
+  std::string prenom_;
   Sexe sexe_;
 
   Parents parents_;

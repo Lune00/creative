@@ -1,13 +1,13 @@
 #include "geneticien.h"
-
-using namespace std;
+#include "gene.h"
 
 const int Geneticien::nbre_genes_  = 5 ;
-const vector<Gene> Geneticien::population_genes_ = Geneticien::creer_population() ;
+
+const std::vector<Gene> Geneticien::population_genes_ = Geneticien::creer_population() ;
 
 //Creation de la base de genes initiaux:
-vector<Gene> Geneticien::creer_population(){
-  vector<Gene> population;
+std::vector<Gene> Geneticien::creer_population(){
+  std::vector<Gene> population;
 
   //Chaque gene a les memes alleles pour le moment
   Gene gene1( 'a' , -1. );
@@ -39,19 +39,19 @@ double Geneticien::coefficient_codominance(char alleleA, char alleleB){
 }
 
 //Attribue un nom aux genes par rapport a leur position sur le chromosome (for human and readability)
-string Geneticien::nom_gene(int position){
+std::string Geneticien::nom_gene(int position){
   switch(position){
-    case 0 : return string("0");
+    case 0 : return std::string("0");
 	     break;
-    case 1 : return string("C");
+    case 1 : return std::string("C");
 	     break;
-    case 2 : return string("E");
+    case 2 : return std::string("E");
 	     break;
-    case 3 : return string("A");
+    case 3 : return std::string("A");
 	     break;
-    case 4 : return string("N");
+    case 4 : return std::string("N");
 	     break;
-    default : return string("Error!"); 
+    default : return std::string("Error!"); 
   }
 }
 

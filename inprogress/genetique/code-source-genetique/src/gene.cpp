@@ -1,7 +1,5 @@
 #include "gene.h"
-#include "rng.h"
-
-using namespace std;
+#include<iostream>
 
 //Un gene ne peut etre construit que par copie (transmission du gene), une copie de la base du Geneticien.
 Gene::Gene(const Gene& gene) : rng_()
@@ -17,7 +15,7 @@ Gene::Gene( char allele, double trait)
 }
 
 void Gene::afficheContenu() const{
-  cout<<"Allele : "<<allele_<<" Trait : "<<trait_<<endl;
+  std::cout<<"Allele : "<<allele_<<" Trait : "<<trait_<<std::endl;
 }
 
 Gene::~Gene(){}

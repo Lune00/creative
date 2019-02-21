@@ -1,0 +1,40 @@
+#Variables
+CC=g++
+CFLAGS=-W -Wall -ansi -pedantic
+LDFLAGS=
+EXEC=maison
+
+#cible: dependances
+#	commandes
+#Si dépendance est plus recente que cible alors commandes sont executées
+
+#Pour chaque regle:
+# $@ -> nom de la cible
+# $^ -> nom premiere dépendance
+# $< -> liste despendances
+# $? -> liste dep plus recentes que cible
+# $* -> nom fichier sans suffixe
+
+all:: $(EXEC)
+
+maison: maison.o main.o
+	$(CC) -o $(EXEC) $^ $(LDFLAGS)
+
+#Si maison.h plus récente que main.o (header modifié) main.o sera reconstruit
+#je pense que quand la liste de commandes est vide, par defaut la commande est d'aller a la meme cible suivante
+#En tout cas ce qu'il faut retenir c'est que là on précise une dépendance séparement des regles d'inferences
+#On rajoute une dépendance a la regle d'inference %.o: %.cpp pour main.o
+
+main.o: maison.h
+
+#regle generique (% un peu comme * en ligne de commande)
+%.o: %.cpp
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+
+.PHONY: clean mrproper
+
+clean:
+	rm -rf *.o
+mrproper: clean
+	rm -rf $(EXEC)
