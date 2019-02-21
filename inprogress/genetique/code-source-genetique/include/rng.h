@@ -9,7 +9,6 @@ class RandomGenerator{
     int unifRandInt(int,int);
   private:
   std::default_random_engine generator_;
-
 };
 
 #endif // RNG_H

@@ -3,6 +3,7 @@
 
 #include<vector>
 #include<string>
+
 #include"rng.h"
 #include"chromosome.h"
 

@@ -12,7 +12,7 @@ class Gene ;
 class Geneticien{
 
   public:
-    static int nbre_genes() {return nbre_genes_ ; }
+    static unsigned int nbre_genes() {return nbre_genes_ ; }
     static std::vector<Gene> population_genes() { return population_genes_ ; }
     static std::vector<Gene> creer_population();
 
@@ -21,7 +21,7 @@ class Geneticien{
     static double coefficient_codominance(char alleleA, char alleleB);
 
   private:
-    static const int nbre_genes_;
+    static const unsigned int nbre_genes_;
     static const std::vector<Gene> population_genes_; 
     //Table de codominance entre les elements de la population, tmp
 

@@ -1,7 +1,7 @@
 #include "geneticien.h"
 #include "gene.h"
 
-const int Geneticien::nbre_genes_  = 5 ;
+const unsigned int Geneticien::nbre_genes_  = 5 ;
 
 const std::vector<Gene> Geneticien::population_genes_ = Geneticien::creer_population() ;
 
