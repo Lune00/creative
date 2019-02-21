@@ -39,5 +39,5 @@ où c(a,b) est le coefficient de codominance entre a et b. Quand c est égal à 
 
 # Diversité phénotypique : lois d'échelle
 
-La diversité phénotypique (nombre de combinaisons possibles) varie propoprtionnellement au nombre d'allèles par gene, en puissance avec le nombre de chromosomes et en puissance avec le nombre de gènes pour un trait phénotypique. Pour augmenter rapidement le spectre d'un trait, et approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait. Un billet de blog sera bientôt disponible dans lequel ces effets seront discutés.
+La diversité phénotypique (nombre de combinaisons possibles) varie proportionnellement au nombre d'allèles par gene, en puissance avec la ploidie et en puissance avec le nombre de gènes pour un trait phénotypique. Le nombre de chromosomes sur lesquels sont répartis les genes n'augmente pas directement le nombre de combinaisons possibles de phénotype mais permet d'accélerer l'exploration des combinaisons d'une génération à l'autre. Pour augmenter rapidement le spectre des valeurs prises par un trait, et s'approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait. Un billet de blog sera bientôt disponible dans lequel ces effets seront discutés.
 
