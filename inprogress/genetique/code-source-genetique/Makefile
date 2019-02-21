@@ -19,7 +19,6 @@ all: $(EXEC)
 
 #J'aimerais bien découpler le main (le placer a la racine) des autres sources, pour cela il faut ecrire une depandace speciale
 
-
 #Linkage:
 $(EXEC): $(OBJ) $(SOURCE_USER).o
 	$(CXX) $^ -o $@ 

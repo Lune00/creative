@@ -1,0 +1,12 @@
+class Diploide{
+
+
+
+  public:
+
+  private:
+
+
+
+
+};

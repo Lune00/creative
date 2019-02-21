@@ -9,6 +9,30 @@
 
 class Gene;
 
+//class Cariotype{
+//
+//  enum Sexe { masculin , feminin, neutre };
+//
+//  //Peut etre un ou deux
+//  std::vector<Cariotype> Parents_;
+//  //Peut prendre n'importe quelle valeur a priori
+//  std::vector<Cariotype> Enfants_;
+//
+//  Sexe sexe_;
+//  std::vector<Chromosome> Chromosomes_ ; // plutot des struct de paire de chromosomes (diploides toujours)
+//  std::vector<Trait> Traits_;
+//
+//};
+
+//class Trait{
+//
+//  std::string nom_;
+//  double valeur_;
+//  std::vector<Gene> genes_codants_;
+//
+//};
+
+
 class Individu{
 
   struct Parents {

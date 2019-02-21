@@ -11,4 +11,5 @@ class RandomGenerator{
   std::default_random_engine generator_;
 };
 
+
 #endif // RNG_H
