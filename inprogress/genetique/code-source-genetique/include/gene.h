@@ -1,22 +1,27 @@
 #ifndef GENE_H
 #define GENE_H
 
+#include<string>
+
 class Gene{
+
   public:
   //Constructeur par copie ( a partir de la base du Geneticien)
-  Gene(const Gene&);
+  Gene( const Gene& );
   ~Gene();
-  //Pour l'instant chaque gene a les memes alleles (le caractere est automatiquement assigné?)
-  Gene( char allele , double trait);
+  Gene( std::string version , double expression );
 
-  char allele() const { return allele_ ;}
-  double trait() const { return trait_;}
-  void afficheContenu() const;
+  std::string version() const { return version_ ; }
+  double expression() const { return expression_; }
+
+  //Debug:
+  void affiche_sortie_standard() const;
 
   private:
-  //attribue un entier (coordonne dans table de codominance) et une valeur flottante au trait_
-  char allele_;
-  double trait_;
+  //La version == allele
+  //L'expression => contribution a la valeur du trait selon regle de codominance
+  std::string version_;
+  double expression_;
 };
 
 #endif // GENE_H

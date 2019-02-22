@@ -19,7 +19,7 @@ class Geneticien{
 
     //Renvoie le nom du gene en fonction de sa position sur le genome (pour l'utilisateur humain)
     static std::string nom_gene(int);
-    static double coefficient_codominance(char alleleA, char alleleB);
+    static double coefficient_codominance(std::string alleleA, std::string alleleB);
 
   private:
     static const unsigned int nbre_genes_;

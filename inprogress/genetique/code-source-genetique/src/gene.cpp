@@ -4,18 +4,18 @@
 //Un gene ne peut etre construit que par copie (transmission du gene), une copie de la base du Geneticien.
 Gene::Gene(const Gene& gene)
 {
-  allele_ = gene.allele_ ;
-  trait_ = gene.trait_ ;
+  version_ = gene.version_ ;
+  expression_ = gene.expression_ ;
 }
 
-Gene::Gene( char allele, double trait)
+Gene::Gene( std::string allele, double trait)
 {
-  allele_ = allele;
-  trait_ = trait ;
+  version_ = allele;
+  expression_ = trait ;
 }
 
-void Gene::afficheContenu() const{
-  std::cout<<"Allele : "<<allele_<<" Trait : "<<trait_<<std::endl;
+void Gene::affiche_sortie_standard() const{
+  std::cout<<" version : "<<version_<<" valeur d'expression : "<<expression_<<std::endl;
 }
 
 Gene::~Gene(){}

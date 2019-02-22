@@ -31,6 +31,6 @@ void Chromosome::afficheContenu() const{
     unsigned int position = it - genes_.begin() ;
     std::string nom_gene = Geneticien::nom_gene (position ) ;
     std::cout<<"Gene : "<< nom_gene<<" ";
-    it->afficheContenu();
+    it->affiche_sortie_standard();
   }
 }

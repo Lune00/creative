@@ -10,9 +10,9 @@ std::vector<Gene> Geneticien::creer_population(){
   std::vector<Gene> population;
 
   //Chaque gene a les memes alleles pour le moment
-  Gene gene1( 'a' , -1. );
-  Gene gene2( 'b' , 0. );
-  Gene gene3( 'c' , 1. );
+  Gene gene1( "a" , -1. );
+  Gene gene2( "b" , 0. );
+  Gene gene3( "c" , 1. );
 
   population.push_back(gene1);
   population.push_back(gene2);
@@ -23,18 +23,19 @@ std::vector<Gene> Geneticien::creer_population(){
 
 //A mettre dans un tableau pour gagner en compacité:
 //Renvoie le coefficient de codominance (% expression chaque allele) entre 2 alleles
-double Geneticien::coefficient_codominance(char alleleA, char alleleB){
+double Geneticien::coefficient_codominance(std::string alleleA, std::string  alleleB){
   //Le coefficient de codominance est commutable => c(a,b)=c(b,a)
   double a_b = 0.3 ;
   double a_c = 1.0 ;
   double b_c = 0.5 ;
+
   if( alleleA == alleleB ) return 1. ;
-  else if  (alleleA == 'a' && alleleB == 'b') return a_b ;
-  else if  (alleleA == 'b' && alleleB == 'a') return ( 1. - a_b ) ;
-  else if  (alleleA == 'a' && alleleB == 'c') return a_c ;
-  else if  (alleleA == 'c' && alleleB == 'a') return ( 1. - a_c ) ;
-  else if  (alleleA == 'b' && alleleB == 'c') return b_c ;
-  else if  (alleleA == 'c' && alleleB == 'b') return ( 1. - b_c ) ;
+  else if  (alleleA == "a" && alleleB == "b") return a_b ;
+  else if  (alleleA == "b" && alleleB == "a") return ( 1. - a_b ) ;
+  else if  (alleleA == "a" && alleleB == "c") return a_c ;
+  else if  (alleleA == "c" && alleleB == "a") return ( 1. - a_c ) ;
+  else if  (alleleA == "b" && alleleB == "c") return b_c ;
+  else if  (alleleA == "c" && alleleB == "b") return ( 1. - b_c ) ;
   else return 0. ;
 }
 
