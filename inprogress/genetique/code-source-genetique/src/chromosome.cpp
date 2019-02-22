@@ -1,8 +1,10 @@
 #include "chromosome.h"
 #include "gene.h"
 #include "geneticien.h"
+
 #include<string>
 #include<iostream>
+#include"rng.h"
 
 Gene Chromosome::lire_gene(unsigned int i ) const
 {
@@ -10,11 +12,11 @@ Gene Chromosome::lire_gene(unsigned int i ) const
 }
 
 //Constructeur par defaut (seulement appelé a l'initiation de la premiere generation)
-Chromosome::Chromosome(unsigned int nbre_genes,const std::vector<Gene>& population): rng_()
+Chromosome::Chromosome(unsigned int nbre_genes,const std::vector<Gene>& population)
 {
   for(unsigned int i = 0 ; i < nbre_genes ; i++){
     //Pour chaque gene on donne une allele au hasard issue de la population: 
-    unsigned int random_index = rng_.unifRandInt(0,population.size()-1);
+    unsigned int random_index = rng::unif_rand_int(0,population.size()-1);
     Gene gene = population[random_index] ;
     genes_.push_back(gene);
   }

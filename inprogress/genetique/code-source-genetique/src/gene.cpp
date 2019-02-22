@@ -2,7 +2,7 @@
 #include<iostream>
 
 //Un gene ne peut etre construit que par copie (transmission du gene), une copie de la base du Geneticien.
-Gene::Gene(const Gene& gene) : rng_()
+Gene::Gene(const Gene& gene)
 {
   allele_ = gene.allele_ ;
   trait_ = gene.trait_ ;

@@ -1,8 +1,6 @@
 #ifndef CHROMOSOME_H
 #define CHROMOSOME_H
 
-//tmp
-#include"rng.h"
 #include<vector>
 
 class Gene;
@@ -17,8 +15,6 @@ class Chromosome{
 
   private:
     std::vector<Gene> genes_;
-  //tmp solution
-  RandomGenerator rng_;
 
 };
 

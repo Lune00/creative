@@ -1,8 +1,6 @@
 #ifndef GENE_H
 #define GENE_H
 
-#include"rng.h"
-
 class Gene{
   public:
   //Constructeur par copie ( a partir de la base du Geneticien)
@@ -19,10 +17,6 @@ class Gene{
   //attribue un entier (coordonne dans table de codominance) et une valeur flottante au trait_
   char allele_;
   double trait_;
-
-  //tmp solution : mettre static TODO
-  RandomGenerator rng_;
-
 };
 
 #endif // GENE_H

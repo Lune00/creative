@@ -2,6 +2,7 @@
 #define GENETICIEN_H
 
 #include<vector>
+#include<string>
 
 //Classe statique qui contient: - la banque d'alleles pour chaque gene a introduire dans la population
 //                              - les tables de dominance entre alleles
