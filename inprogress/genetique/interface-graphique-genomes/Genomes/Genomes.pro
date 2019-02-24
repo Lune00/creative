@@ -28,13 +28,17 @@ SOURCES += \
         mainwindow.cpp \
     options.cpp \
     genomebank.cpp \
-    genome.cpp
+    genome.cpp \
+    genomewidget.cpp \
+    adddialog.cpp
 
 HEADERS += \
         mainwindow.h \
     options.h \
     genomebank.h \
-    genome.h
+    genome.h \
+    genomewidget.h \
+    adddialog.h
 
 FORMS +=
 

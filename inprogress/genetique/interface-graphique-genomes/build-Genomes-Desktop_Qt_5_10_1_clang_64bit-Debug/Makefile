@@ -54,19 +54,27 @@ SOURCES       = ../Genomes/main.cpp \
 		../Genomes/mainwindow.cpp \
 		../Genomes/options.cpp \
 		../Genomes/genomebank.cpp \
-		../Genomes/genome.cpp qrc_application.cpp \
+		../Genomes/genome.cpp \
+		../Genomes/genomewidget.cpp \
+		../Genomes/adddialog.cpp qrc_application.cpp \
 		moc_mainwindow.cpp \
 		moc_options.cpp \
-		moc_genomebank.cpp
+		moc_genomebank.cpp \
+		moc_genomewidget.cpp \
+		moc_adddialog.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		options.o \
 		genomebank.o \
 		genome.o \
+		genomewidget.o \
+		adddialog.o \
 		qrc_application.o \
 		moc_mainwindow.o \
 		moc_options.o \
-		moc_genomebank.o
+		moc_genomebank.o \
+		moc_genomewidget.o \
+		moc_adddialog.o
 DIST          = ../Genomes/widget.qss \
 		/Users/paul/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/paul/Qt/5.10.1/clang_64/mkspecs/qdevice.pri \
@@ -234,11 +242,15 @@ DIST          = ../Genomes/widget.qss \
 		../Genomes/Genomes.pro ../Genomes/mainwindow.h \
 		../Genomes/options.h \
 		../Genomes/genomebank.h \
-		../Genomes/genome.h ../Genomes/main.cpp \
+		../Genomes/genome.h \
+		../Genomes/genomewidget.h \
+		../Genomes/adddialog.h ../Genomes/main.cpp \
 		../Genomes/mainwindow.cpp \
 		../Genomes/options.cpp \
 		../Genomes/genomebank.cpp \
-		../Genomes/genome.cpp
+		../Genomes/genome.cpp \
+		../Genomes/genomewidget.cpp \
+		../Genomes/adddialog.cpp
 QMAKE_TARGET  = Genomes
 DESTDIR       = 
 TARGET        = Genomes.app/Contents/MacOS/Genomes
@@ -624,8 +636,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Genomes/application.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/paul/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Genomes/mainwindow.h ../Genomes/options.h ../Genomes/genomebank.h ../Genomes/genome.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Genomes/main.cpp ../Genomes/mainwindow.cpp ../Genomes/options.cpp ../Genomes/genomebank.cpp ../Genomes/genome.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Genomes/mainwindow.h ../Genomes/options.h ../Genomes/genomebank.h ../Genomes/genome.h ../Genomes/genomewidget.h ../Genomes/adddialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Genomes/main.cpp ../Genomes/mainwindow.cpp ../Genomes/options.cpp ../Genomes/genomebank.cpp ../Genomes/genome.cpp ../Genomes/genomewidget.cpp ../Genomes/adddialog.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -671,9 +683,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/paul/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h /Users/paul/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_options.cpp moc_genomebank.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_options.cpp moc_genomebank.cpp moc_genomewidget.cpp moc_adddialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_options.cpp moc_genomebank.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_options.cpp moc_genomebank.cpp moc_genomewidget.cpp moc_adddialog.cpp
 moc_mainwindow.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../Genomes/mainwindow.h \
@@ -696,10 +708,39 @@ moc_options.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/
 
 moc_genomebank.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QModelIndex \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../Genomes/genomebank.h \
 		moc_predefs.h \
 		/Users/paul/Qt/5.10.1/clang_64/bin/moc
 	/Users/paul/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/paul/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/paul/tmp_game_mechanics/game/inprogress/genetique/interface-graphique-genomes/Genomes -I/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/paul/Qt/5.10.1/clang_64/lib ../Genomes/genomebank.h -o moc_genomebank.cpp
+
+moc_genomewidget.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		../Genomes/genomewidget.h \
+		moc_predefs.h \
+		/Users/paul/Qt/5.10.1/clang_64/bin/moc
+	/Users/paul/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/paul/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/paul/tmp_game_mechanics/game/inprogress/genetique/interface-graphique-genomes/Genomes -I/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/paul/Qt/5.10.1/clang_64/lib ../Genomes/genomewidget.h -o moc_genomewidget.cpp
+
+moc_adddialog.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../Genomes/adddialog.h \
+		moc_predefs.h \
+		/Users/paul/Qt/5.10.1/clang_64/bin/moc
+	/Users/paul/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/paul/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/paul/tmp_game_mechanics/game/inprogress/genetique/interface-graphique-genomes/Genomes -I/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/paul/Qt/5.10.1/clang_64/lib ../Genomes/adddialog.h -o moc_adddialog.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -741,6 +782,11 @@ mainwindow.o: ../Genomes/mainwindow.cpp ../Genomes/mainwindow.h \
 		../Genomes/genomebank.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QModelIndex \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QAction \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
@@ -773,20 +819,60 @@ options.o: ../Genomes/options.cpp ../Genomes/options.h \
 genomebank.o: ../Genomes/genomebank.cpp ../Genomes/genomebank.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QModelIndex \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../Genomes/genome.h \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h
+		../Genomes/genome.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o genomebank.o ../Genomes/genomebank.cpp
 
 genome.o: ../Genomes/genome.cpp ../Genomes/genome.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o genome.o ../Genomes/genome.cpp
+
+genomewidget.o: ../Genomes/genomewidget.cpp ../Genomes/genomewidget.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		../Genomes/genomebank.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QModelIndex \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QHeaderView \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qheaderview.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QTableView \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qtableview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o genomewidget.o ../Genomes/genomewidget.cpp
+
+adddialog.o: ../Genomes/adddialog.cpp ../Genomes/adddialog.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adddialog.o ../Genomes/adddialog.cpp
 
 qrc_application.o: qrc_application.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_application.o qrc_application.cpp
@@ -799,6 +885,12 @@ moc_options.o: moc_options.cpp
 
 moc_genomebank.o: moc_genomebank.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_genomebank.o moc_genomebank.cpp
+
+moc_genomewidget.o: moc_genomewidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_genomewidget.o moc_genomewidget.cpp
+
+moc_adddialog.o: moc_adddialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_adddialog.o moc_adddialog.cpp
 
 ####### Install
 

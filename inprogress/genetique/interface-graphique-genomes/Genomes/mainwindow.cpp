@@ -26,9 +26,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::createActions()
 {
-    create_genome_ = new QAction( QIcon(":/icons/Add.png"),"&Creer un genome",this);
-    remove_genome_ = new QAction(QIcon(":/icons/Remove.png"),"&Supprimer un genome",this);
+    create_genome_ = new QAction( QIcon(":/icons/Add.png"),"&Ajouter un génome",this);
+    //Ajoute un Genome vide juste avec un nom (verifie qu'il existe pas deja)
+    remove_genome_ = new QAction(QIcon(":/icons/Remove.png"),"&Supprimer le ou les génomes sélectionés",this);
     options_ = new QAction(QIcon(":/icons/ADN.png"),"&Paramètres génétiques",this);
+
+    //Ajouter un bouton "Editer genome selectioné" (un seul à la fois) (equivalant a double clicker dessus)
 
     new_file_ = new QAction("Nouveau fichier",this);
     load_file_ = new QAction("Ouvrir un fichier",this);

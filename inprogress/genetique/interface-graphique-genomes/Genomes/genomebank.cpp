@@ -26,6 +26,9 @@ int GenomeBank::columnCount(const QModelIndex& parent) const{
     return 2;
 }
 
+// A REVOIR A LA FIN TOUT CE QUI EST Lié a data (comment ça marche en édition)
+
+
 //Renvoie une donné membre du "model index" spécifié (ici nom, *Genome etc...)
 QVariant GenomeBank::data(const QModelIndex& index, int role) const
 {
@@ -36,9 +39,9 @@ QVariant GenomeBank::data(const QModelIndex& index, int role) const
     if(role == Qt::DisplayRole){
         const GenomeEntry& entry = entries.at(index.row());
         if(index.column() == 0)
-            return entry.name;
+            return entry.genome->name();
         else if (index.column() == 1)
-            return entry.nbTraits;
+            return entry.genome->nbTraits();
     }
     return QVariant();
 }
@@ -114,9 +117,10 @@ bool GenomeBank::setData(const QModelIndex& index, const QVariant& value,int rol
         GenomeEntry entry = entries.value(row);
         //On modifie selon la colonne (quel attribut de l'entree est modifiee)
         if(index.column() == 0)
-            entry.name = value.toString();
-        else if(index.column() == 1)
-            entry.nbTraits = value.toInt();
+            entry.genome->setname( value.toString() );
+        //else if(index.column() == 1)
+            //Ici c'est affiché, c'est pas connu a l'avance TODO
+            //entry.genome->set_i = value.toInt();
         else
             return false;
         //On remplace l'entree dans la QList avec la nouvelle entree
