@@ -7,23 +7,6 @@
 
 #include "genome.h"
 
-
-//Enfait ca sert a rien Genome entry je pourrai mettre directement
-//des Genome* dans la QList !
-//On modifiera ca plus tard...
-
-//On affiche le nom du genome (ie nom espece) / nbre de traits ds le genome
-struct GenomeEntry
-{
-    //On pourra laisser seulement le pointeur apres
-    //Edit: On pourra surtout virer GenomeEntry et mettre direct QList<Genome*>
-    Genome* genome;
-
-    bool operator==(const GenomeEntry& other) const{
-        return genome->name() == other.genome->name();
-    }
-};
-
 //TableModel: notre modele(base) de données
 class GenomeBank : public QAbstractTableModel
 {
@@ -41,14 +24,16 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
     Qt::ItemFlags flags(const QModelIndex& index)const override;
 
-    QList<GenomeEntry> getGenomes() const { return entries ;}
+    //Données:
+    QList<Genome*> getGenomes() const { return entries ;}
 
+    bool contains(QString name);
 
 signals:
 
 public slots:
 private:
-    QList<GenomeEntry> entries;
+    QList<Genome*> entries;
 
 };
 

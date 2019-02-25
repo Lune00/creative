@@ -2,7 +2,8 @@
 
 Genome::Genome()
 {
-
+    name_ = QString();
+    nbTraits_ = 0 ;
 }
 void Genome::setname(QString name)
 {

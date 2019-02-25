@@ -1,22 +1,27 @@
 #include "mainwindow.h"
 #include "options.h"
-#include "genomebank.h"
 
 #include <QAction>
 #include <QToolBar>
 #include <QMenuBar>
 #include <QMenu>
 
+#include"genomewidget.h"
+
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)
 {
+    genomeWidget_ = new GenomeWidget(parent);
+
     createActions();
+    connectActions();
     createToolbar();
     createMenu();
 
-    //Solution pour ne pas pouvoir masquer la toolbar (solution tmp)
-    setContextMenuPolicy(Qt::PreventContextMenu);
+    setCentralWidget(genomeWidget_);
 
-    //setCentralWidget(new GenomeBank);
+    //Solution pour ne pas pouvoir masquer la toolbar (solution tmp)
+    //setContextMenuPolicy(Qt::PreventContextMenu);
+    setWindowTitle("Bibliothèque de Génomes");
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +41,12 @@ void MainWindow::createActions()
     new_file_ = new QAction("Nouveau fichier",this);
     load_file_ = new QAction("Ouvrir un fichier",this);
     save_file_ = new QAction("Sauvegarder [nom fichier en cours]",this);
+
+}
+
+void MainWindow::connectActions(){
+
+    connect(create_genome_,&QAction::triggered,genomeWidget_,&GenomeWidget::showAddEntryDialog);
 
 }
 
@@ -63,4 +74,17 @@ void MainWindow::createMenu()
     GenomeMenu->addAction(remove_genome_);
     GenomeMenu->addAction(options_);
     //QMenu *HelpMenu = menuBar()->addMenu(tr("&Aide"));
+}
+
+void MainWindow::updateActions(const QItemSelection& selection){
+
+
+}
+
+void MainWindow::openFile(){
+
+}
+
+void MainWindow::saveFile(){
+
 }

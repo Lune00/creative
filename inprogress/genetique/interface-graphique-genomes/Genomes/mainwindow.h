@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QItemSelection>
+
+class GenomeWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -14,9 +17,14 @@ public:
     void createActions();
     void createToolbar();
     void createMenu();
+    void connectActions();
+
+private slots:
+    void updateActions(const QItemSelection& selection);
+    void openFile();
+    void saveFile();
 
 private:
-
     QAction* create_genome_;
     QAction* remove_genome_;
     QAction* options_;
@@ -24,6 +32,8 @@ private:
     QAction* new_file_;
     QAction* load_file_;
     QAction* save_file_;
+
+    GenomeWidget* genomeWidget_;
 
 };
 
