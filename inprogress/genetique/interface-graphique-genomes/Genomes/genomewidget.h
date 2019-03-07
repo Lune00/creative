@@ -24,6 +24,7 @@ public:
     //Input/Output / TODO it later avec serialisation?
     void writeToFile(const QString& filename);
     void readFromFile(const QString& filename);
+    QTableView * tableView() const { return tableView_ ;}
 
 public slots:
     void showAddEntryDialog();

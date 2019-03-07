@@ -22,24 +22,31 @@ void GenomeWidget::setup()
 void GenomeWidget::setup_view()
 {
     tableView_ = new QTableView;
+
     //Connecte a QAbstractModel (base de données)
     tableView_->setModel(genomeBank_);
+
     //On selection les données vues par ligne (la ligne entiere)
     tableView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     //La derniere section prend la place restante (false par defaut)
     tableView_->horizontalHeader()->setStretchLastSection(true);
+
     //Masque les headers horizontaux (vues a double entree)
     tableView_->verticalHeader()->hide();
+
     //Donne les regles d'edition des items representees par la tableView
     //Par exemple si on doubleclick sur un item pour l'editer...
     //TODO: pour le moment je mets noEdit mais apres on pourra editer
     //en double-clickant
     tableView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     //Donne comportement de selection possible:
     //Juste un click-> 1 item, si Shift enfoncé on peut selectionner
     //plusieurs items contigus, si Cmd plusieurs pas contigus etc...
     //Ici (pour le moment) on veut SingleSlection, un seul selectionné a la fois
     tableView_->setSelectionMode(QAbstractItemView::SingleSelection);
+
     //Active l'ordonancement par colonne (pour ranger par nom une colonne par ex)
     tableView_->setSortingEnabled(true);
 
@@ -53,7 +60,7 @@ void GenomeWidget::setup_view()
             &QItemSelectionModel::selectionChanged,
             this, &GenomeWidget::selectionChanged);
 
-
+    //tableView_->show();
 }
 
 //Slot connecté a MainWindow "Ajouter un genome" action. La fonction cree un objet une QDialog très simple qui demande juste le nom du génome a ajouter

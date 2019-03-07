@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)
     //Solution pour ne pas pouvoir masquer la toolbar (solution tmp)
     //setContextMenuPolicy(Qt::PreventContextMenu);
     setWindowTitle("Bibliothèque de Génomes");
+
+    //genomeWidget_->tableView_->show();
 }
 
 MainWindow::~MainWindow()

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  15 FEB 2019 12:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  7 MAR 2019 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1800,42 +1800,44 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\gls' on input line 7.
 
 
-Overfull \hbox (1.36691pt too wide) in paragraph at lines 9--10
-\T1/pbk/l/n/14 rou-geoyants, d'autres, im-menses cou-rants de flammes bleues et
- sourdes, 
+Overfull \hbox (1.81926pt too wide) in paragraph at lines 12--13
+[]\T1/pbk/l/n/14 A un tel chaos [][][]Mey-dra[][] au-rait fini par suc-com-ber 
+tant il agi-tait ses rêves 
  []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\gls' on input line 13.
+Overfull \hbox (2.59892pt too wide) in paragraph at lines 12--13
+\T1/pbk/l/n/14 leur propre in-di-vi-dua-lité : cer-tains d'entre eux étaient vi
+fs et rou-geoyants, 
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-<img/paper.jpg, id=74, 614.295pt x 794.97pt>
+<img/paper.jpg, id=62, 614.295pt x 794.97pt>
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 16.
+Package pdftex.def Info: img/paper.jpg used on input line 17.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 16.
+Package pdftex.def Info: img/paper.jpg used on input line 17.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 16.
+Package pdftex.def Info: img/paper.jpg used on input line 17.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 
-<img/footerscroll.pdf, id=75, 596.2275pt x 42.15584pt>
+<img/footerscroll.pdf, id=63, 596.2275pt x 42.15584pt>
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 16.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 17.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
 LaTeX Font Info:    Font shape `T1/pbk/m/sc' in size <10> not available
-(Font)              Font shape `T1/pbk/l/sc' tried instead on input line 16.
+(Font)              Font shape `T1/pbk/l/sc' tried instead on input line 17.
  [1
 
 \openout7 = `main.ist'.
@@ -1846,62 +1848,35 @@ LaTeX Font Info:    Font shape `T1/pbk/m/sc' in size <10> not available
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/p
 aper.jpg> <./img/footerscroll.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\gls' on input line 17.
 
 File: img/paper.jpg Graphic file (type jpg)
-
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 21.
+Package pdftex.def Info: img/paper.jpg used on input line 22.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 21.
+Package pdftex.def Info: img/paper.jpg used on input line 22.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 21.
+Package pdftex.def Info: img/paper.jpg used on input line 22.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 21.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 22.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\gls' on input line 24.
+(hyperref)                removing `\gls' on input line 27.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\gls' on input line 26.
-
-File: img/paper.jpg Graphic file (type jpg)
-<use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 31.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 31.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 31.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/footerscroll.pdf Graphic file (type pdf)
-
-<use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 31.
-(pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [3]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\gls' on input line 33.
-
-
-Overfull \hbox (4.32094pt too wide) in paragraph at lines 35--36
-\T1/pbk/l/n/14 ses in-ten-tions. [][][]Mey-dra[][], l'être unique, las de son é
-ter-nité, quitta sa propre 
- []
+(hyperref)                removing `\gls' on input line 29.
 
 File: img/paper.jpg Graphic file (type jpg)
 <use img/paper.jpg>
@@ -1920,22 +1895,54 @@ File: img/footerscroll.pdf Graphic file (type pdf)
 <use img/footerscroll.pdf>
 Package pdftex.def Info: img/footerscroll.pdf used on input line 36.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [4])
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 90.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 90.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+ [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 36.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 36.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 36.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/footerscroll.pdf Graphic file (type pdf)
+
+<use img/footerscroll.pdf>
+Package pdftex.def Info: img/footerscroll.pdf used on input line 36.
+(pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
+ [4]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\gls' on input line 38.
+
+
+Overfull \hbox (4.32094pt too wide) in paragraph at lines 40--41
+\T1/pbk/l/n/14 ses in-ten-tions. [][][]Mey-dra[][], l'être unique, las de son é
+ter-nité, quitta sa propre 
+ []
+
+)
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 90.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 90.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
 Package pdftex.def Info: img/paper.jpg used on input line 90.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
- <use img/footerscroll.pdf>
+
+<use img/footerscroll.pdf>
 Package pdftex.def Info: img/footerscroll.pdf used on input line 90.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [5]
@@ -2218,7 +2225,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  37719 strings out of 493014
  708986 string characters out of 6133352
- 1034269 words of memory out of 5000000
+ 1036269 words of memory out of 5000000
  40539 multiletter control sequences out of 15000+600000
  22157 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2230,10 +2237,10 @@ eplaced by a fixed one
 live/2016/texmf-dist/fonts/type1/urw/bookman/ubkd8a.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/urw/bookman/ubkl8a.pfb></usr/local/texlive/2016/texmf-
 dist/fonts/type1/urw/bookman/ubkli8a.pfb>
-Output written on main.pdf (15 pages, 1700412 bytes).
+Output written on main.pdf (15 pages, 1701595 bytes).
 PDF statistics:
- 516 PDF objects out of 1000 (max. 8388607)
- 489 compressed objects within 5 object streams
+ 520 PDF objects out of 1000 (max. 8388607)
+ 493 compressed objects within 5 object streams
  45 named destinations out of 1000 (max. 500000)
  8303 words of extra memory for PDF output out of 10000 (max. 10000000)
 

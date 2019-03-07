@@ -105,7 +105,6 @@ bool GenomeBank::insertRows(int position, int rows, const QModelIndex& index)
 
     for(int row = 0 ; row < rows ; row++)
     {
-        qDebug()<<"row : "<<row<<" entries size : "<<entries.size();
         Genome* g = new Genome() ;
         entries.insert(position, g);
     }
