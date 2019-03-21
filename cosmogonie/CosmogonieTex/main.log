@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  21 MAR 2019 01:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.6.3)  21 MAR 2019 14:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2175,95 +2175,185 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\gls' on input line 3.
 
 
-Overfull \hbox (10.77956pt too wide) in paragraph at lines 7--8
-[][][][]\T1/pbk/l/n/14 Naos[][] couva le frag-ment de [][][]Drisst[][], et len-
-te-ment ce-lui se consuma. L'étoile 
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\gls' on input line 9.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: img/paper.jpg Graphic file (type jpg)
+
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 15.
+Package pdftex.def Info: img/paper.jpg used on input line 10.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 15.
+Package pdftex.def Info: img/paper.jpg used on input line 10.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 15.
+Package pdftex.def Info: img/paper.jpg used on input line 10.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 15.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 10.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
  [14
 
 
 
-])
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
-File: img/paper.jpg Graphic file (type jpg)
- <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
-(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+]
+Overfull \hbox (2.93544pt too wide) in paragraph at lines 15--16
+\T1/pbk/l/n/14 re-pré-sen-ta-tions chez les Hommes, ils va-rient d'une culture,
+ d'une époque 
+ []
+
+
+Overfull \hbox (0.2472pt too wide) in paragraph at lines 15--16
+\T1/pbk/l/n/14 à l'autre. Ainsi [][][]Oros[][] est sou-vent re-pré-senté comme 
+un homme de grande 
+ []
+
+
+Overfull \hbox (12.49713pt too wide) in paragraph at lines 15--16
+\T1/pbk/l/n/14 tom-bât éper-du-ment amou-reux et qu'il épousa, pour son mal-heu
+r. D'autres 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 16.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 16.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 16.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/footerscroll.pdf Graphic file (type pdf)
+
+<use img/footerscroll.pdf>
+Package pdftex.def Info: img/footerscroll.pdf used on input line 16.
+(pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
+ [15]
+LaTeX Font Info:    Try loading font information for T1+fosj on input line 17.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/opensans/t1fosj.fd
+File: t1fosj.fd 2011/11/11 Fontinst v1.927 font definitions for T1/fosj.
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `fosj' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/fosj/bx/n' in size <14> not available
+(Font)              Font shape `T1/fosj/b/n' tried instead on input line 17.
+LaTeX Font Info:    Font shape `T1/fosj/bx/sc' in size <14> not available
+(Font)              Font shape `T1/fosj/b/sc' tried instead on input line 17.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 17.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 17.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/lm/t1lmss.fd
+File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `lmss' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\gls' on input line 23.
+
+File: img/paper.jpg Graphic file (type jpg)
+<use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 31.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 31.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 31.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/footerscroll.pdf Graphic file (type pdf)
+
+<use img/footerscroll.pdf>
+Package pdftex.def Info: img/footerscroll.pdf used on input line 31.
+(pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
+ [16]
+Overfull \hbox (3.13124pt too wide) in paragraph at lines 31--32
+\T1/pbk/l/n/14 lieu de beau-tés, car l'es-pace est achevé par les étoiles. [][]
+[]Oros[][] ac-cepte d'em- 
+ []
+
+)
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 92.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
+Package pdftex.def Info: img/paper.jpg used on input line 92.
+(pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
+File: img/paper.jpg Graphic file (type jpg)
+ <use img/paper.jpg>
 Package pdftex.def Info: img/paper.jpg used on input line 92.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
- <use img/footerscroll.pdf>
+
+<use img/footerscroll.pdf>
 Package pdftex.def Info: img/footerscroll.pdf used on input line 92.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [15] (./main.gls
+ [17] (./main.gls
 LaTeX Font Info:    Font shape `T1/pbk/bx/n' in size <14> not available
 (Font)              Font shape `T1/pbk/b/n' tried instead on input line 7.
 LaTeX Font Info:    Font shape `T1/pbk/b/n' in size <14> not available
 (Font)              Font shape `T1/pbk/db/n' tried instead on input line 7.
 
-Overfull \hbox (5.35799pt too wide) in paragraph at lines 15--15
-\T1/pbk/l/n/14 eux, il conti-nua à pa-ci-fier le chaos sans re-lâche. Pré-sen-t
-ant l'[][][]Extinction[][] 
- []
-
-
-Overfull \hbox (8.24326pt too wide) in paragraph at lines 19--25
+Overfull \hbox (8.24326pt too wide) in paragraph at lines 21--28
 []\T1/pbk/l/n/14 : crée par [][][]Cin-dara[][], il est le dieu des étoiles et s
 culp-teur du chaos. 
  []
 
 
-Overfull \hbox (11.18376pt too wide) in paragraph at lines 29--34
+Overfull \hbox (11.18376pt too wide) in paragraph at lines 32--37
 []\T1/pbk/l/n/14 : nom donné par [][][]Cin-dara[][] à l'uni-vers de [][][]Mey-d
 ra[][] après l'[][][]Extinction[][]. 
  []
 
+
+Overfull \hbox (0.30315pt too wide) in paragraph at lines 51--51
+\T1/pbk/l/n/14 consu-mer le der-nier frag-ment de [][][]Drisst[][]. Ils sont au
+ nombre de 3: [][][]Oros[][], 
+ []
+
 File: img/paper.jpg Graphic file (type jpg)
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 58.
+Package pdftex.def Info: img/paper.jpg used on input line 60.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 58.
+Package pdftex.def Info: img/paper.jpg used on input line 60.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 58.
+Package pdftex.def Info: img/paper.jpg used on input line 60.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
 
 <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 58.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 60.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [16
+ [18
 
 
 
@@ -2271,22 +2361,22 @@ Package pdftex.def Info: img/footerscroll.pdf used on input line 58.
 ]
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
+Package pdftex.def Info: img/paper.jpg used on input line 95.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
+Package pdftex.def Info: img/paper.jpg used on input line 95.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/paper.jpg Graphic file (type jpg)
 
 <use img/paper.jpg>
-Package pdftex.def Info: img/paper.jpg used on input line 92.
+Package pdftex.def Info: img/paper.jpg used on input line 95.
 (pdftex.def)             Requested size: 614.33098pt x 794.99231pt.
 File: img/footerscroll.pdf Graphic file (type pdf)
  <use img/footerscroll.pdf>
-Package pdftex.def Info: img/footerscroll.pdf used on input line 92.
+Package pdftex.def Info: img/footerscroll.pdf used on input line 95.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [17])
+ [19])
 File: img/paper.jpg Graphic file (type jpg)
  <use img/paper.jpg>
 Package pdftex.def Info: img/paper.jpg used on input line 103.
@@ -2304,7 +2394,7 @@ File: img/footerscroll.pdf Graphic file (type pdf)
  <use img/footerscroll.pdf>
 Package pdftex.def Info: img/footerscroll.pdf used on input line 103.
 (pdftex.def)             Requested size: 614.33043pt x 43.00287pt.
- [18]
+ [20]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 103.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 103.
 
@@ -2314,23 +2404,29 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 103.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 103.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 9F2897E02C9F8FDA831333F77C2856D6;853.
- ) 
+ )
+(\end occurred when \ifnum on line 92 was incomplete) 
 Here is how much of TeX's memory you used:
- 37985 strings out of 493014
- 713143 string characters out of 6133352
- 1036268 words of memory out of 5000000
- 40784 multiletter control sequences out of 15000+600000
- 22157 words of font info for 39 fonts, out of 8000000 for 9000
+ 38339 strings out of 493014
+ 720405 string characters out of 6133352
+ 1036269 words of memory out of 5000000
+ 41104 multiletter control sequences out of 15000+600000
+ 41573 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,17n,122p,10485b,1370s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2016/texmf-dist/fonts/type1/urw/bookman/ubkd8a.pfb></usr/local/texlive/2
-016/texmf-dist/fonts/type1/urw/bookman/ubkl8a.pfb></usr/local/texlive/2016/texm
-f-dist/fonts/type1/urw/bookman/ubkli8a.pfb>
-Output written on main.pdf (18 pages, 1710997 bytes).
+ 66i,18n,122p,10485b,1369s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/t
+exmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts
+/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/ope
+nsans/opensans-04.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/opens
+ans/opensans-01.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/open
+sans/OpenSans-Bold.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/l
+m/lmss12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/bookman/ubkd8a
+.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/bookman/ubkl8a.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/urw/bookman/ubkli8a.pfb>
+Output written on main.pdf (20 pages, 1749943 bytes).
 PDF statistics:
- 623 PDF objects out of 1000 (max. 8388607)
- 592 compressed objects within 6 object streams
- 59 named destinations out of 1000 (max. 500000)
- 8327 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 692 PDF objects out of 1000 (max. 8388607)
+ 656 compressed objects within 7 object streams
+ 61 named destinations out of 1000 (max. 500000)
+ 11911 words of extra memory for PDF output out of 12000 (max. 10000000)
 
