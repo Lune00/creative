@@ -1,3 +1,21 @@
+= Contents =
+  - [[#Orba, légendes imcomplètes|Orba, légendes imcomplètes]]
+    - [[#Orba, légendes imcomplètes#Chronologie|Chronologie]]
+      - [[#Orba, légendes imcomplètes#Chronologie#Le grand rêve|Le grand rêve]]
+      - [[#Orba, légendes imcomplètes#Chronologie#L''âge du chaos|L''âge du chaos]]
+      - [[#Orba, légendes imcomplètes#Chronologie#L''extinction|L''extinction]]
+      - [[#Orba, légendes imcomplètes#Chronologie#L''âge des étoiles|L''âge des étoiles]]
+      - [[#Orba, légendes imcomplètes#Chronologie#La naissance d''[[Orba]] et la venue des [[Eä]]|La naissance d''[[Orba]] et la venue des [[Eä]]]]
+    - [[#Orba, légendes imcomplètes#Lieux d''importance|Lieux d''importance]]
+    - [[#Orba, légendes imcomplètes#Etoiles notables|Etoiles notables]]
+    - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]|Géographie d''[[Orba]]]]
+    - [[#Orba, légendes imcomplètes#Sujets|Sujets]]
+    - [[#Orba, légendes imcomplètes#Animaux de légende|Animaux de légende]]
+    - [[#Orba, légendes imcomplètes#Humains notables|Humains notables]]
+    - [[#Orba, légendes imcomplètes#Concepts|Concepts]]
+    - [[#Orba, légendes imcomplètes#Cultes et Serments|Cultes et Serments]]
+    - [[#Orba, légendes imcomplètes#Peuples|Peuples]]
+
 == Contents ==
   - [[#Orba, légendes imcomplètes|Orba, légendes imcomplètes]]
     - [[#Orba, légendes imcomplètes#Chronologie|Chronologie]]
@@ -52,20 +70,20 @@
     - Les [[Ömus]] 
     - Les [[Dörmus]] 
     - [[Caracor]]
-3. Humains
+3. [[Humains]]
 5. Animaux
 
-== Animaux légendaires ==
+== Animaux de légende ==
 
-== Humains légendaires ==
+== Humains notables ==
 
 == Concepts ==
 1. [[Réel]] et [[imaginaire]]
 2. [[Imagination]]
-3. Faire par l'imagination
+3. Faire par l'imagination: trouver un mot
 4. Façonner
 5. Sommeil
-6. Rêves et rôle du rêve
+6. [[Rêves]] et rôle du rêve
 7. Cauchemars
 8. [[Êtres imaginants]]
 
