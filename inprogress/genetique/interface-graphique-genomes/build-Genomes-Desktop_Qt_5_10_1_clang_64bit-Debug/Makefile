@@ -688,6 +688,8 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_options.cpp moc_genomebank.cpp moc_genomewidget.cpp moc_adddialog.cpp
 moc_mainwindow.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QItemSelection \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
 		../Genomes/mainwindow.h \
 		moc_predefs.h \
 		/Users/paul/Qt/5.10.1/clang_64/bin/moc
@@ -713,6 +715,7 @@ moc_genomebank.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Genomes/genome.h \
 		../Genomes/genomebank.h \
 		moc_predefs.h \
 		/Users/paul/Qt/5.10.1/clang_64/bin/moc
@@ -720,8 +723,10 @@ moc_genomebank.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/
 
 moc_genomewidget.cpp: /Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QItemSelection \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../Genomes/genomewidget.h \
 		moc_predefs.h \
 		/Users/paul/Qt/5.10.1/clang_64/bin/moc
@@ -763,6 +768,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 main.o: ../Genomes/main.cpp ../Genomes/mainwindow.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QItemSelection \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Genomes/main.cpp
@@ -770,6 +777,8 @@ main.o: ../Genomes/main.cpp ../Genomes/mainwindow.h \
 mainwindow.o: ../Genomes/mainwindow.cpp ../Genomes/mainwindow.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QItemSelection \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
 		../Genomes/options.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -779,14 +788,6 @@ mainwindow.o: ../Genomes/mainwindow.cpp ../Genomes/mainwindow.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../Genomes/genomebank.h \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QModelIndex \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/QList \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QAction \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
@@ -794,7 +795,10 @@ mainwindow.o: ../Genomes/mainwindow.cpp ../Genomes/mainwindow.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMenuBar \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMenu \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmenu.h
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
+		../Genomes/genomewidget.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Genomes/mainwindow.cpp
 
 options.o: ../Genomes/options.cpp ../Genomes/options.h \
@@ -824,12 +828,14 @@ genomebank.o: ../Genomes/genomebank.cpp ../Genomes/genomebank.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Genomes/genome.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../Genomes/genome.h
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o genomebank.o ../Genomes/genomebank.cpp
 
 genome.o: ../Genomes/genome.cpp ../Genomes/genome.h \
@@ -840,8 +846,10 @@ genome.o: ../Genomes/genome.cpp ../Genomes/genome.h \
 genomewidget.o: ../Genomes/genomewidget.cpp ../Genomes/genomewidget.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QItemSelection \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../Genomes/genomebank.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
@@ -850,10 +858,26 @@ genomewidget.o: ../Genomes/genomewidget.cpp ../Genomes/genomewidget.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Genomes/genome.h \
+		../Genomes/adddialog.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QHeaderView \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qheaderview.h \
 		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QTableView \
-		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qtableview.h
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qtableview.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QStringList \
+		/Users/paul/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringlist.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o genomewidget.o ../Genomes/genomewidget.cpp
 
 adddialog.o: ../Genomes/adddialog.cpp ../Genomes/adddialog.h \
