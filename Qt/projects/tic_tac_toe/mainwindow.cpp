@@ -63,6 +63,10 @@ void MainWindow::resetNamesScores(){
     //Scores:
     nRoundsWonP1_ = 0 ;
     nRoundsWonP2_ = 0 ;
+    ui->player1Score->setText(QString::number(nRoundsWonP1_));
+    ui->player2Score->setText(QString::number(nRoundsWonP2_));
+    ui->player1->clear();
+    ui->player2->clear();
 
     ui->statusbar->showMessage(" ");
 
@@ -147,9 +151,11 @@ void MainWindow::handleGameOver(TicTacToe::Player winner){
     switch (winner) {
     case TicTacToe::Player1:
         nRoundsWonP1_++;
+        ui->player1Score->setText(QString::number(nRoundsWonP1_));
         break;
     case TicTacToe::Player2:
         nRoundsWonP2_++;
+        ui->player2Score->setText(QString::number(nRoundsWonP2_));
         break;
     case TicTacToe::Draw:
         break;

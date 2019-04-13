@@ -23,6 +23,7 @@ public slots:
     //Continue with names and scores
     void startNewRound(TicTacToe::Player);
     void handleGameOver(TicTacToe::Player);
+
 private slots:
     void updateNameLabels();
 
