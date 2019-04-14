@@ -35,12 +35,7 @@ void TicTacToe::setupBoard()
         for (int col = 0 ; col < 3 ; col++){
             QPushButton* button = new QPushButton;
             button->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Minimum);
-
-            //Debug
-            // QString button_text = QString::number(row) + QString::number(col);
-            // button->setText(button_text);
             button->setText(" ");
-
             gridLayout->addWidget(button,row,col);
             Board_.append(button);
             connect(button, &QPushButton::clicked,this,&TicTacToe::handleButtonClick);

@@ -2,6 +2,7 @@
 #define TICTACTOE_H
 
 #include <QWidget>
+#include "settings.h"
 
 class QPushButton;
 
@@ -18,6 +19,7 @@ public:
     enum Player{
         Invalid, Player1, Player2, Draw
     };
+
 
     TicTacToe(QWidget *parent = 0);
     ~TicTacToe();

@@ -35,7 +35,8 @@ HEADERS += \
         tictactoe.h \
     configurationdialog.h \
     mainwindow.h \
-    gameoverdialog.h
+    gameoverdialog.h \
+    settings.h
 
 FORMS += \
     configurationdialog.ui \

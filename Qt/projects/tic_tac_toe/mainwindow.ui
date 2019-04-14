@@ -166,6 +166,7 @@
     <addaction name="actionNew_Game"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menu_File"/>
   </widget>

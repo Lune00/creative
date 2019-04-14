@@ -6,58 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
-    <height>151</height>
+    <width>483</width>
+    <height>282</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Setup the game</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Rounds :</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Player &amp;1 Name : </string>
-     </property>
-     <property name="buddy">
-      <cstring>player1Name</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Player &amp;2 Name :</string>
-     </property>
-     <property name="buddy">
-      <cstring>player2Name</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="player1Name"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="player2Name"/>
-   </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
+   <item row="5" column="1">
     <widget class="QComboBox" name="numberRounds">
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose the number of rounds to win a game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -70,12 +27,87 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="player1Name"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="gameType"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="player2Name"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Rounds </string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Player &amp;1 name </string>
+     </property>
+     <property name="buddy">
+      <cstring>player1Name</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Player &amp;2 name</string>
+     </property>
+     <property name="buddy">
+      <cstring>player2Name</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="3">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Game type </string>
+     </property>
+     <property name="buddy">
+      <cstring>gameType</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="sizeBoard">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select the size of the board (n x n)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="minimum">
+      <number>3</number>
+     </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Board size </string>
+     </property>
+     <property name="buddy">
+      <cstring>sizeBoard</cstring>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>player1Name</tabstop>
-  <tabstop>player2Name</tabstop>
- </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -86,11 +118,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>231</x>
-     <y>232</y>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
-     <y>274</y>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
@@ -102,11 +134,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>295</x>
-     <y>236</y>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
-     <y>274</y>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
@@ -118,7 +150,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>164</x>
-     <y>72</y>
+     <y>29</y>
     </hint>
     <hint type="destinationlabel">
      <x>98</x>
@@ -134,7 +166,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>252</x>
-     <y>143</y>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
      <x>209</x>
@@ -142,8 +174,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>gameType</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>ConfigurationDialog</receiver>
+   <slot>updateBoardSizeSpinBox()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>395</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>65</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>updateOkButtonState()</slot>
+  <slot>updateBoardSizeSpinBox()</slot>
  </slots>
 </ui>

@@ -2,6 +2,7 @@
 #define CONFIGURATIONDIALOG_H
 
 #include <QDialog>
+#include <settings.h>
 
 namespace Ui {
 class ConfigurationDialog;
@@ -28,11 +29,17 @@ public:
     QString player1Name() const;
     QString player2Name() const;
     int numberOfRounds() const ;
+    unsigned int boardSize() const { return boardSize_;}
+
 public slots:
+    void updateBoardSizeSpinBox();
     void updateOkButtonState();
+
 private:
     void setupNombreRounds();
+    void setupGameType();
     Ui::ConfigurationDialog *ui;
+    unsigned int boardSize_;
 };
 
 #endif // CONFIGURATIONDIALOG_H
