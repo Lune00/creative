@@ -1,0 +1,32 @@
+ %date
+ = Titre = 
+Olol
+%%date: ca a pas l'air de marcher
+[[diary:21-04-2018]]
+
+%%anchors: pas encore pigé. Mais normalement l'entree TodoList doit s'ouvrir sur l'anchor Tomorrow dans le fichier
+[[TodoList#Tomorrow|Tasks for tomorrow]]
+
+%%included into the html output (avec un chemin relatif a l'emplacement de l'iamge)
+{{file:image.jpg}}
+
+%%definition list
+Term 1:: Definition du Term 1
+
+%%Todo lists: listes où l'on peut check ou unc1heck des entrees: le symbole dans la tache mere d'une liste
+%% indique le pourcentage de taches effectuees. Il faut taper "Ctrl + space" pour check un uncheck la liste
+= Taches a faire =
+* [ ] Changer la liste de on à off  
+      * [ ] premier truc
+      * [ ] deuxieme truc
+      * [ ] troisiemen truc
+      * [ ] quatrieme truc
+* [X] Une autre liste de choses à faire
+* [X] Encore une autre liste de choses à faire
+
+%% Exemple de journal avec les dates
+= Diary =
+== 2011 ==
+=== Decembre ===
+%% L'entree (le fichier) sera 21-04-2018 mais on verra dans le doc HTML Une description
+* [[diary:21-04-2018|Une description]]
