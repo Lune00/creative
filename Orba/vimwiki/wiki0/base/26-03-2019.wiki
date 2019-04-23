@@ -1,9 +1,0 @@
-%%yyyy-mm-dd : il faudra modifier le template html pour par exemple integrer %date% dans le fichier html genere
-%% on peut creer d'autres templates pour ça on indique le template en haut de la page %nom-du-template
-%% Ou sont stockés les templates? voir vimwiki-option-template_path
-
-%template custom
-
-%date 2019-05-06
-  = L'image d'une montagne: liens entre image, langage et réel =
-Les images précèdent le langage. Le langage permet de les faire exister.
