@@ -1,0 +1,17 @@
+body{
+  background-color: rgb(104,112,119);
+}
+
+.content{
+  font-size: 1.2em;
+}
+
+h1{
+  border: 1px black double;
+  text-align: center;
+}
+
+p[class="date"]{
+  text-align: center;
+  font-size: 0.8em;
+}
