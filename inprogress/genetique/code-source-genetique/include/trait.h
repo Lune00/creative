@@ -1,27 +1,26 @@
+// Phenotype trait
 #ifndef TRAIT_H
 #define TRAIT_H
-
 #include<string>
 #include<vector>
-
-class Gene;
 
 class Trait{
 
   public:
-    Trait();
-    ~Trait();
-
-    std::string nom() const { return nom_ ; }
-    double valeur() const { return valeur_ ; }
+  // D : Discrete (ex : color of the eyes) C : Continuous value of the trait (ex : height)
+  enum Nature { D = 0 ; C = 1 } ;
 
   private:
-    //Label du trait
-    std::string nom_;
-    //Valeur codée par des genes
-    double valeur_;
-    //Pointeur sur chaque gene qui code pour lui
-    std::vector<Gene*> genes_codant_;
+
+    std::string name_;
+    Nature nature_ ;
+    //Raw phenotype value lies in the interval [-1:1]. Have to be rescaled my min/max to represents a quantity with a meaning and unit.
+    double value_;
+    //The value of the phenotype must lie in the interval [valueMin_:valueMax_]
+    double valueMin_;
+    double valueMax_;
+    //Number of genes to code for the trait
+    unsigned int nGenes_;
 };
 
 

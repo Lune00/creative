@@ -1,5 +1,5 @@
-#include "geneticien.h"
 #include "gene.h"
+#include<iostream>
 
 //TEST du code source
 
@@ -7,12 +7,6 @@ using namespace std;
 
 int main(){
 
-  //const unsigned int n = Geneticien::nbre_genes() ;
-  //const vector<Gene> population_genes = Geneticien::population_genes() ;
-
-  ////Creation de 2 individus de sexe opposés
- // Individu individu1(0, n, population_genes );
- // individu1.affiche_identite_complete();
-
+  cout<<"Librairie genetique - test "<<endl;
   return 0;
 }
