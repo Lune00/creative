@@ -19,8 +19,11 @@ class Trait{
     //The value of the phenotype must lie in the interval [valueMin_:valueMax_]
     double valueMin_;
     double valueMax_;
-    //Number of genes to code for the trait
+    //Number of genes to code for the trait (by default 1 if nature_ = 0 )
     unsigned int nGenes_;
+    unsigned int nPhenotypes_;
+    double codominanceTable_[20][20];
+
 };
 
 

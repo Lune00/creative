@@ -2,7 +2,7 @@
 ---------------------- Selecteurs:
 
 balise1,balise2{ propriété:valeur ; } 
-.class_balse,#id_balise{ propriété:valeur ;}
+.class_balise,#id_balise{ propriété:valeur ;}
 Ci-dessus ce sont deux types de "sélecteurs", il y en a beaucoup, pour préciser quelles balises atteindre par nos regles
 Par exemple : 
 	.class{), .id{ } , A,B{ } vues au dessus
@@ -83,6 +83,9 @@ p[class*="intro"]{
   font-style: oblique;
   font-weight:bold;
   text-align: left;
+  border: 3px blue double;
+  border-left: 1px  black solid;
+  border-radius: 10px;
 } 
 /*Par defaut p ne selectionne pas ce qui est selectionné avant, c'est cool.*/
 p{
@@ -90,6 +93,11 @@ p{
   font-size:3.2ex;
   font-style: normal;
   text-align: left;
+}
+p:hover{
+  color : red ;
+  font-style : italic;
+  text-decoration: underline;
 }
 
 .imageFlottante{
@@ -104,4 +112,7 @@ p{
 mark{
   background-color:red;
   color:white;
+}
+mark:focus{
+  background-color : #FFCC66;
 }

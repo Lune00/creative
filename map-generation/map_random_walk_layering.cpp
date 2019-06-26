@@ -23,7 +23,6 @@
 
 //En choisissant un increment dh aleatoire uniforme(gaussienne) a faire c'est pas mal
 
-
 //Il faut ensuite peut etre convolue (adoucir avec un noyau gaussien)
 
 //Appliquer d'autres methodes: fault, erosion par l'eau pour riviere

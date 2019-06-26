@@ -2,5 +2,3 @@
 #include"gene.h"
 
 
-Trait::Trait(){}
-Trait::~Trait(){}
