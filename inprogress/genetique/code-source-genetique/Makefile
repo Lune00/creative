@@ -1,14 +1,15 @@
 #Options
-CXX=g++
+CXX=g++ -std=c++11
 INC_PATH=include
 SRC_PATH=src
 OBJ_PATH=obj
 
 CXXFLAGS=-W -Wall -ansi -pedantic -I$(INC_PATH)
 
-#En attendant que ce soit une librairie USERF est le fichier main de l'utilisateur
+#En attendant que ce soit une librairie SOURCE_USER est le fichier main de l'utilisateur
 SOURCE_USER=main
 EXEC=test
+LIBS=-lconfig++
 
 #Liste des fichiers sources:
 SRC=$(wildcard $(SRC_PATH)/*.cpp)
@@ -17,18 +18,16 @@ OBJ = $(SRC:$(SRC_PATH)/%.cpp=$(OBJ_PATH)/%.o)
 
 all: $(EXEC)
 
-#J'aimerais bien découpler le main (le placer a la racine) des autres sources, pour cela il faut ecrire une depandace speciale
-
 #Linkage:
 $(EXEC): $(OBJ) $(SOURCE_USER).o
-	$(CXX) $^ -o $@ 
+	$(CXX) $^ -o $@ $(LIBS)
 
 #Pas encore dependance automatique (refabrication du .o si dependance header modifié)
 #Dependances manuelles:
-$(OBJ_PATH)/main.o : $(INC_PATH)/rng.h
-$(OBJ_PATH)/chromosome.o : $(INC_PATH)/gene.h
-$(OBJ_PATH)/geneticien.o : $(INC_PATH)/gene.h
-$(OBJ_PATH)/geneticien.o : $(INC_PATH)/chromosome.h
+main.o : $(INC_PATH)/rng.h
+main.o : $(INC_PATH)/config.h
+$(OBJ_PATH)/chromosomes.o : $(INC_PATH)/gene.h
+$(OBJ_PATH)/chromosomes.o : $(INC_PATH)/gene.h
 
 #Compilation:
 
