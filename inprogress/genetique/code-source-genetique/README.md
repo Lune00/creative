@@ -51,8 +51,9 @@ La diversité d'un trait (nombre de combinaisons possibles) varie proportionnell
 ## Contenu / classes
 Le programme se compose des classes suivantes:
 
-- **Gene** : un gene est défini par sa position sur le **Chromsome**. Il a une valeur *allele* qui correspond à sa version et un *trait* qui correspond à la valeur qu'il attribue (compris entre -1. et 1.), s'il domine (coefficient de codomination de 1) au trait phénotypique associé. 
+- **Gene** : un gene code pour un trait(_feature_). Il a une valeur *allele* qui correspond à la somme de ses bases nucleiques. Cette somme donne sa valeur de contribution au trait pour lequel il code et correspond à la valeur qu'il lui attribue s'il est dominant (compris entre -1. et 1.).
+- **Config**:
+- **Feature**: trait macroscopique "observable" pour lequel codent un ou plusieurs gènes.
 - **Chromosome**: un chromosome est un conteneur de gènes. La position de chaque gène sur le chromosome determine pour quel trait phénotypique il code.
-- **Geneticien**: contient le nombre de chromosomes dans le génome, la population de genes (leurs version, ou alleles) ainsi que les regles de codominance entre alleles (qui **doivent** etre spécifiées).
 - **Genome** : le genome peut-être instancié en soi, il fonctionne comme un *sac à gênes* indépendant. Il contient l'ensemble des chromosomes, un sexe, des informations sur les parents et descendants, et un phénotype. 
 - **rng** : un simple générateur aléatoire de nombres entier et flottants.
