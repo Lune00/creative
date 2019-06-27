@@ -11,10 +11,15 @@ class Feature {
   public :
 
     // D : Discrete (ex : color of the eyes) C : Continuous value of the trait (ex : height)
-    enum Nature { D = 0 , C = 1 } ;
-    void setName( std::string name ) { name_ = name ; }
-    void print() { std::cerr << "Name : " << name_ << std::endl ; }
+    enum Nature { D = 0 , C = 1, Undefined = 2 } ;
+    Nature stringToEnum( std::string ) ; 
+    std::string enumToString( Nature ) ; 
 
+    void print_debug() ;
+
+    void setName( std::string name ) { name_ = name ; }
+    void setNature( std::string nature ) { nature_ = stringToEnum( nature ) ; }
+    bool setNumGenes( int nGenes ) ;
   private :
 
     std::string name_ ;

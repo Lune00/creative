@@ -2,6 +2,7 @@
 #include "feature.h"
 
 int fact( int n ) {
+
   if( n < 0 ) { cerr << "integer n is not positive \n" ; return 1 ; }
   if ( n == 0 || n == 1 ) return 1 ;
   else return n * fact ( n-1 ) ;
@@ -12,21 +13,27 @@ namespace featuresIO {
   std::vector<Feature*> features(0) ;
 
   bool checkNumberOfCombinations( int nalleles, int nCotableRules ) {
+
     int ncombinations = fact( nalleles ) / (fact( nalleles - 2 ) * 2) ;
+
     return ( ncombinations == nCotableRules );
   }
 
   //Check that featuresFile exists and no libconfig syntax issues in it
   bool isFeaturesFilesAndCorrectSyntax() {
+
     Config cfg ;
+
     try{
       cfg.readFile( featuresFile.c_str() );
       cout << featuresFile << " loaded \n" ;
     }
+
     catch( const FileIOException &fioex ) {
       std::cerr << "I/O error while reading file " << std::endl;
       return( EXIT_FAILURE );
     }
+
     catch( const ParseException &pex ) {
       std::cerr << "Parse error at " << pex.getFile() << ":" << pex.getLine()
 	<< " - " << pex.getError() << std::endl;
@@ -37,7 +44,9 @@ namespace featuresIO {
   }
 
   bool loadFeatures() {
+
     if( !isFeaturesFilesAndCorrectSyntax() ) return false;
+
     else return parseFeatures( ) ;
   }
 
@@ -73,27 +82,56 @@ namespace featuresIO {
     return true ;
   }
 
-  // Parse a single feature of features
+  // Parse each feature of features
   void  parseFeature( const Setting& settingFeature ) {
 
     Feature * feature = new Feature() ;
 
+    //Load settings : 
     readName( settingFeature, feature ) ;
+    readNature( settingFeature , feature ) ;
+    readNumGenes( settingFeature , feature ) ;
 
-    feature->print() ;
+    feature->print_debug() ;
 
     features.push_back( feature ) ;
   }
 
   // Load name of the feature
   bool readName(const Setting& settingFeature, Feature* feature ) {
+
     try {
-      std::string name = settingFeature.lookup( "name" ) ;
       feature->setName( settingFeature.lookup( "name" ) ) ;
     }
-    catch( const SettingNotFoundException &nfex )
-    {
+
+    catch( const SettingNotFoundException &nfex ) {
       cerr << "No 'name' setting in "<< featuresFile << endl ;
+      return( EXIT_FAILURE ) ;
+    }
+  }
+  
+  // Load nature of the feature
+  bool readNature(const Setting& settingFeature, Feature* feature ) {
+
+    try {
+      feature->setNature( settingFeature.lookup( "nature" ) ) ;
+    }
+
+    catch( const SettingNotFoundException &nfex ) {
+      cerr << "No 'nature' setting in "<< featuresFile << endl ;
+      return( EXIT_FAILURE ) ;
+    }
+  }
+  // Load nature of the feature
+  bool readNumGenes(const Setting& settingFeature, Feature* feature ) {
+
+    try {
+      int numGenes = settingFeature.lookup( "nGenes" ) ;
+      feature->setNumGenes( numGenes ) ;
+    }
+
+    catch( const SettingNotFoundException &nfex ) {
+      cerr << "No 'nGenes' setting in "<< featuresFile << endl ;
       return( EXIT_FAILURE ) ;
     }
   }

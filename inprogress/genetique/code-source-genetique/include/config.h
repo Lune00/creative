@@ -32,6 +32,8 @@ namespace featuresIO {
   void parseFeature( const Setting& ) ;
 
   //Read features settings 
-  bool readName( const Setting&, Feature* feature );
+  bool readName( const Setting&, Feature* feature ) ;
+  bool readNature( const Setting&, Feature* feature ) ;
+  bool readNumGenes( const Setting&, Feature* feature ) ;
 }
 #endif
