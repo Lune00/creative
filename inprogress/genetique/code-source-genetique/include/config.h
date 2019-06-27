@@ -4,21 +4,34 @@
 
 #include<string>
 #include<iostream>
+#include<vector>
 #include<libconfig.h++>
 
+class Feature ;
+
 using namespace libconfig ;
-using  std::cerr;
-using  std::cout;
-using  std::endl;
+using  std::cerr ;
+using  std::cout ;
+using  std::endl ;
 
 //To be moved elsewhere another time:
 //Return factorial of the positive integer n
-int fact(int n) ;
+int fact( int n) ;
 
-// Manage Input/Output from configuration files
-namespace cfgIO{
+// Manage Input/Output of features configuration file
+namespace featuresIO {
+
   const std::string featuresFile = "features.glib" ;
-  bool checkNumberOfCombinations(int nalleles, int nCotableRules);
-  bool readFeaturesFile();
+  //Features loaded from the file and in the genetic base
+  extern std::vector<Feature*> features ;
+
+  bool checkNumberOfCombinations( int numAlleles, int numCotableRules );
+  bool loadFeatures() ;
+  bool isFeaturesFilesAndCorrectSyntax() ;
+  bool parseFeatures() ;
+  void parseFeature( const Setting& ) ;
+
+  //Read features settings 
+  bool readName( const Setting&, Feature* feature );
 }
 #endif

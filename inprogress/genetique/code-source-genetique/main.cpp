@@ -9,7 +9,7 @@ int main(){
 
   cout << "Librairie genetique - test \n";
 
-  cfgIO::readFeaturesFile() ;
+  featuresIO::loadFeatures() ;
 
   return 0;
 }
