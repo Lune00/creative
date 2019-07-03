@@ -14,7 +14,6 @@ LIBS=-lconfig++
 SRC=$(wildcard $(SRC_PATH)/*.cpp)
 #Liste des fichiers objets correspondants:
 OBJ = $(SRC:$(SRC_PATH)/%.cpp=$(OBJ_PATH)/%.o)
-
 all: $(EXEC)
 
 #Linkage:
@@ -43,7 +42,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp
 .PHONY: clean allclean
 
 clean:
-	@rm -rf $(OBJ_PATH)/*.o
+	@rm -rf $(OBJ_PATH)/*.o main.o test
 
 allclean: clean
 	@rm -rf $(EXEC)
