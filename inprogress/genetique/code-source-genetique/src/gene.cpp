@@ -1,3 +1,6 @@
 #include "gene.h"
-#include<iostream>
+
+Gene::Gene() {
+  int * nucleicSequence_ = new int [ geneticParameters::geneSize ] ;
+}
 

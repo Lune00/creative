@@ -3,18 +3,20 @@
 
 #include<string>
 #include<vector>
+#include"config.h"
 
 class Trait;
 
 class Gene{
 
   public:
+    Gene() ;
 
   private:
     std::string name_;
-    //Sequence nucleique
-    int basesNucleiques_[10];
-    //Trait pour lequel il code
+    // Nucleic sequence ( size == geneticParameters::geneSize )
+    int * nucleicSequence_ ;
+    // Point to the feature for which it codes
     Trait * trait_ ;
 };
 

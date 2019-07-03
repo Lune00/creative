@@ -1,5 +1,7 @@
 #include "config.h"
 #include "feature.h"
+#include<stdlib.h>
+#include<stdexcept>
 
 int fact( int n ) {
 
@@ -8,9 +10,28 @@ int fact( int n ) {
   else return n * fact ( n-1 ) ;
 }
 
+
+namespace exceptions {
+  const char * writeMsg( std::ostringstream& os ) {
+    std::string Msg = os.str() ;
+    return Msg.c_str() ;
+  }
+}
+
+namespace geneticParameters {
+  const int geneSize = 10 ;
+  const double nucleicContribution = 0.1 ;
+}
+
+
 namespace featuresIO {
 
   std::vector<Feature*> features(0) ;
+
+  void loadFeatures() {
+    isFeaturesFilesAndCorrectSyntax() ;
+    parseFeatures() ;
+  }
 
   bool checkNumberOfCombinations( int nalleles, int nCotableRules ) {
 
@@ -20,39 +41,13 @@ namespace featuresIO {
   }
 
   //Check that featuresFile exists and no libconfig syntax issues in it
-  bool isFeaturesFilesAndCorrectSyntax() {
-
+  void isFeaturesFilesAndCorrectSyntax() {
     Config cfg ;
-
-    try{
-      cfg.readFile( featuresFile.c_str() );
-      cout << featuresFile << " loaded \n" ;
-    }
-
-    catch( const FileIOException &fioex ) {
-      std::cerr << "I/O error while reading file " << std::endl;
-      return( EXIT_FAILURE );
-    }
-
-    catch( const ParseException &pex ) {
-      std::cerr << "Parse error at " << pex.getFile() << ":" << pex.getLine()
-	<< " - " << pex.getError() << std::endl;
-      return( EXIT_FAILURE ) ;
-    }
-
-    return true ;
+    cfg.readFile( featuresFile.c_str() );
   }
 
-  bool loadFeatures() {
-
-    if( !isFeaturesFilesAndCorrectSyntax() ) return false;
-
-    else return parseFeatures( ) ;
-  }
-
-  //Check that group 'features' exists, if true parse them and
-  //add them to the features library
-  bool parseFeatures() {
+  // Parse features add them to the features library. Throw exception
+  void parseFeatures() {
 
     Config cfg ;
 
@@ -60,26 +55,15 @@ namespace featuresIO {
 
     const Setting& root = cfg.getRoot() ;
 
-    try{
-      const Setting &settingFeatures = root["features"] ;
+    const Setting &settingFeatures = root["features"] ;
 
-      int nfeatures = settingFeatures.getLength() ;
+    int nfeatures = settingFeatures.getLength() ;
 
-      for ( int i = 0 ;i != nfeatures; i++ ) {
-	const Setting& settingFeature = settingFeatures[ i ] ;
-	parseFeature( settingFeature ); 
-      }
-
+    for ( int i = 0 ;i != nfeatures; i++ ) {
+      const Setting& settingFeature = settingFeatures[ i ] ;
+      parseFeature( settingFeature ); 
     }
-    catch( const SettingNotFoundException &nfex ) {
-      cerr << " No 'features' group in configuration file " << endl;
-
-      return( EXIT_FAILURE );
-    }
-
     cerr << "Number of features loaded : " << features.size() << endl ;
-
-    return true ;
   }
 
   // Parse each feature of features
@@ -87,60 +71,39 @@ namespace featuresIO {
 
     Feature * feature = new Feature() ;
 
-    //Load settings : 
     readName( settingFeature, feature ) ;
     readNature( settingFeature , feature ) ;
     readNumGenes( settingFeature , feature ) ;
-
-    feature->print_debug() ;
+    readAlleles( settingFeature , feature ) ;
 
     features.push_back( feature ) ;
   }
 
-  // Load name of the feature
-  bool readName(const Setting& settingFeature, Feature* feature ) {
+  // Load name of the feature - mandatory
+  void readName(const Setting& settingFeature, Feature* feature ) {
 
-    try {
       feature->setName( settingFeature.lookup( "name" ) ) ;
-    }
-
-    catch( const SettingNotFoundException &nfex ) {
-      cerr << "No 'name' setting in "<< featuresFile << endl ;
-      return( EXIT_FAILURE ) ;
-    }
   }
-  
-  // Load nature of the feature
-  bool readNature(const Setting& settingFeature, Feature* feature ) {
 
-    try {
+  // Load nature of the feature - mandatory
+  void readNature(const Setting& settingFeature, Feature* feature ) {
+
       feature->setNature( settingFeature.lookup( "nature" ) ) ;
-    }
-
-    catch( const SettingNotFoundException &nfex ) {
-      cerr << "No 'nature' setting in "<< featuresFile << endl ;
-      return( EXIT_FAILURE ) ;
-    }
   }
-  // Load nature of the feature
-  bool readNumGenes(const Setting& settingFeature, Feature* feature ) {
+  // Load nature of the feature - mandatory
+  void readNumGenes(const Setting& settingFeature, Feature* feature ) {
 
-    try {
       int numGenes = settingFeature.lookup( "nGenes" ) ;
       feature->setNumGenes( numGenes ) ;
-    }
-
-    catch( const SettingNotFoundException &nfex ) {
-      cerr << "No 'nGenes' setting in "<< featuresFile << endl ;
-      return( EXIT_FAILURE ) ;
-    }
   }
 
 
-  bool readAlleles(const Setting& settingFeature, Feature* feature ) {
+  // Load alleles of the genes - optional parameter
+  void readAlleles(const Setting& settingFeature, Feature* feature ) {
 
     std::vector<int> vector_alleles ;
 
+    //Local catch because 'alleles' is optional
     try {
       const Setting& settingAlleles = settingFeature.lookup( "alleles" ) ;
 
@@ -151,16 +114,15 @@ namespace featuresIO {
       feature->setAlleles( vector_alleles ) ;
       feature->setAllelesDefinedManually ( true ) ;
 
-      return true ;
     }
 
+    //If 'alleles' not found it is ok, default parameters
+    //The absence of 'allele' here do not need to emit error end the program
     catch(const SettingNotFoundException &nfex)
     {
-      cerr << "Default 'allele pool' applied for this feature" <<endl;
       // Default behavior : all alleles included (10) 
       feature->setAllelesDefinedManually ( false ) ;
-
-      return true ;
+      feature->setAllelesDefault( ) ;
     }
 
   }

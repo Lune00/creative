@@ -16,14 +16,19 @@ class Feature {
     std::string enumToString( Nature ) ; 
 
     void print_debug() ;
+    std::string name() const { return name_ ; }
 
+    // Initialisition from the features file configuration
     void setName( std::string name ) { name_ = name ; }
     void setNature( std::string nature ) { nature_ = stringToEnum( nature ) ; }
-    bool setNumGenes( int nGenes ) ;
+    void setNumGenes( int nGenes ) ;
     void setAllelesDefinedManually( bool ) ;
     void setAlleles( const std::vector<int>& ) ;
+    void setAllelesDefault( ) ;
+
   private :
 
+    //Alleles parameters : number and value for each nu
     std::string name_ ;
 
     Nature nature_  ;
