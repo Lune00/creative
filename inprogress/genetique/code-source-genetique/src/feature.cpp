@@ -24,14 +24,22 @@ void Feature::print_debug( ) {
 
   std::cerr << "Name : " << name_ << std::endl ;
   std::cerr << "Nature : " << enumToString( nature_ ) << std::endl ; 
-  std::cerr << "Number of genes : " << nGenes_ << std::endl ; 
+  std::cerr << "Number of genes : " << numGenes_ << std::endl ; 
 }
 
-bool Feature::setNumGenes( int nGenes ) {
+bool Feature::setNumGenes( int numGenes ) {
 
-  if( nGenes < 0 || nGenes == 0 ) {
+  if( numGenes < 0 || numGenes == 0 ) {
     cerr << "Number of Genes must be greater than or equal to 1 " << endl ;
     return( EXIT_FAILURE ) ;
   }
-  else nGenes_ = nGenes ; 
+  else numGenes_ = numGenes ; 
+}
+
+void Feature::setAllelesDefinedManually ( bool AllelesDefinedManually ) {
+  AllelesDefinedManually_ = AllelesDefinedManually ; 
+}
+
+void Feature::setAlleles( const std::vector<int>& alleles ) {
+  alleles_ =  alleles ;
 }

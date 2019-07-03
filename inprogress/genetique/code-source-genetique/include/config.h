@@ -35,5 +35,6 @@ namespace featuresIO {
   bool readName( const Setting&, Feature* feature ) ;
   bool readNature( const Setting&, Feature* feature ) ;
   bool readNumGenes( const Setting&, Feature* feature ) ;
+  bool readAlleles( const Setting&, Feature* feature ) ;
 }
 #endif

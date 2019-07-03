@@ -1,10 +1,9 @@
 #Options
-CXX=g++ -std=c++11
+CXX=clang++ -std=c++11 -stdlib=libc++
 INC_PATH=include
 SRC_PATH=src
 OBJ_PATH=obj
-
-CXXFLAGS=-W -Wall -ansi -pedantic -I$(INC_PATH)
+CXXFLAGS= -W -Wall -pedantic -Wno-c++98-compat -I$(INC_PATH)
 
 #En attendant que ce soit une librairie SOURCE_USER est le fichier main de l'utilisateur
 SOURCE_USER=main
@@ -26,6 +25,7 @@ $(EXEC): $(OBJ) $(SOURCE_USER).o
 #Dependances manuelles:
 main.o : $(INC_PATH)/rng.h
 main.o : $(INC_PATH)/config.h
+main.o : $(INC_PATH)/feature.h
 $(OBJ_PATH)/chromosomes.o : $(INC_PATH)/gene.h
 $(OBJ_PATH)/chromosomes.o : $(INC_PATH)/gene.h
 

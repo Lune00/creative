@@ -12,7 +12,8 @@ class Gene{
 
   private:
     std::string name_;
-    int baseNucleique_[20];
+    //Sequence nucleique
+    int basesNucleiques_[10];
     //Trait pour lequel il code
     Trait * trait_ ;
 };

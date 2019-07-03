@@ -135,4 +135,33 @@ namespace featuresIO {
       return( EXIT_FAILURE ) ;
     }
   }
+
+
+  bool readAlleles(const Setting& settingFeature, Feature* feature ) {
+
+    std::vector<int> vector_alleles ;
+
+    try {
+      const Setting& settingAlleles = settingFeature.lookup( "alleles" ) ;
+
+      for( int j = 0 ; j != settingAlleles.getLength() ; j++ ) {
+	vector_alleles.push_back( settingAlleles[j] ) ;
+      }
+
+      feature->setAlleles( vector_alleles ) ;
+      feature->setAllelesDefinedManually ( true ) ;
+
+      return true ;
+    }
+
+    catch(const SettingNotFoundException &nfex)
+    {
+      cerr << "Default 'allele pool' applied for this feature" <<endl;
+      // Default behavior : all alleles included (10) 
+      feature->setAllelesDefinedManually ( false ) ;
+
+      return true ;
+    }
+
+  }
 }

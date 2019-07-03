@@ -20,19 +20,31 @@ class Feature {
     void setName( std::string name ) { name_ = name ; }
     void setNature( std::string nature ) { nature_ = stringToEnum( nature ) ; }
     bool setNumGenes( int nGenes ) ;
+    void setAllelesDefinedManually( bool ) ;
+    void setAlleles( const std::vector<int>& ) ;
   private :
 
     std::string name_ ;
+
     Nature nature_  ;
+
+    bool AllelesDefinedManually_ ; 
+
     //Raw phenotype value lies in the interval [-1:1]. Have to be rescaled my min/max to represents a quantity with a meaning and unit.
     double value_ ;
+
     //The value of the phenotype must lie in the interval [valueMin_:valueMax_]
     double valueMin_ ;
     double valueMax_ ;
+
     //Number of genes to code for the trait (by default 1 if nature_ = 0 )
-    unsigned int nGenes_ ;
-    unsigned int nAlleles_ ;
-    double codominanceTable_[ 20 ][ 20 ] ;
+    unsigned int numGenes_ ;
+
+    //Alleles available for each gene
+    std::vector<int> alleles_ ;
+
+    //Codominance factor between each Allele of the same gene
+    double codominanceTable_[ 10 ][ 10 ] ;
 } ;
 
 

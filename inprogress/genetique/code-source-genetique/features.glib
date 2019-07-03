@@ -2,7 +2,7 @@
 #Tous les types de traits sont ici représentés:
 
 features=(
-//Trait continu avec nombre d'alleles (20) maximal par défaut, et coefficients de codominance aléatoires
+//Trait continu avec nombre d'alleles (10) maximal par défaut, et coefficients de codominance aléatoires
     { name = "body-size" ;
      nature = "C" ;
      nGenes = 1 ;
@@ -19,8 +19,8 @@ features=(
      #vmin = "30" ;
      #vmax = "52" ;
      #unit="";
-     alleles = (0,10,20);
-     cotable = ("0-10:0.1", "0-20:0.9", "10-20:0.3",);
+     alleles = (0,3,9);
+     cotable = ("0-9:0.1", "0-3:0.9", "3-9:0.3",);
     },
 //Trait discret avec 3 allelles et regles de codominance définies par l'utilisateur (dctable)
     {
