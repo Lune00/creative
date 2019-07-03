@@ -31,3 +31,6 @@ reactiondiffusion/grilleT.txt
 src/accord.o src/adjectif.o src/categorie.o src/verbe.o
 inprogress/langage/lib/*
 inprogress/langage/lib
+inprogress/genetique/code-source-genetique/main.o
+inprogress/genetique/code-source-genetique/lib/*
+inprogress/genetique/code-source-genetique/lib/*.swo

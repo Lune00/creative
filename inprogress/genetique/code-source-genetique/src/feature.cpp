@@ -5,6 +5,14 @@
 
 using namespace std ; 
 
+
+Feature::Feature() {
+
+  // [ ni lignes * nj colonnes ] Element[i][j] = i * nj + j , 0 < j < nj and 0 < i < ni
+  double * codominanceTable_ = new double [ geneticParameters::geneSize * geneticParameters::geneSize ] ;
+
+}
+
 Feature::Nature Feature::stringToEnum( std::string nature ) {
 
   if( nature == "C" || nature == "Continuous" ) return Feature::Nature::C ;

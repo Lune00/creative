@@ -10,6 +10,8 @@ class Feature {
 
   public :
 
+    Feature() ;
+
     // D : Discrete (ex : color of the eyes) C : Continuous value of the trait (ex : height)
     enum Nature { D = 0 , C = 1, Undefined = 2 } ;
     Nature stringToEnum( std::string ) ; 
@@ -49,7 +51,7 @@ class Feature {
     std::vector<int> alleles_ ;
 
     //Codominance factor between each Allele of the same gene
-    double codominanceTable_[ 10 ][ 10 ] ;
+    double * codominanceTable_ ;
 } ;
 
 
