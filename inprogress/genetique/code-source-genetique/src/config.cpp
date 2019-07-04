@@ -75,6 +75,7 @@ namespace featuresIO {
     readNature( settingFeature , feature ) ;
     readNumGenes( settingFeature , feature ) ;
     readAlleles( settingFeature , feature ) ;
+    readCodominanceCoefficients( settingFeature , feature  ) ;
 
     features.push_back( feature ) ;
   }
@@ -126,4 +127,42 @@ namespace featuresIO {
     }
 
   }
+
+  void readCodominanceCoefficients(const Setting& settingFeature, Feature* feature ){
+
+    std::vector<std::string> vector_codominance_coefficients ;
+
+    try {
+
+      const Setting& settingCodominanceCoefficients = settingFeature.lookup( "codcoeff" ) ;
+
+      for( int j = 0 ; j != settingCodominanceCoefficients.getLength() ; j++ ) {
+
+	vector_codominance_coefficients.push_back( settingCodominanceCoefficients[j] ) ;
+
+      }
+    }
+
+    catch(const SettingNotFoundException &nfex )
+    {
+      // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
+      // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
+      switch ( feature->nature() ) {
+
+	case Feature::D : 
+	  cout << "D\n";
+	  break ;
+
+	case Feature::C : 
+	  cout << "C\n" ;
+	  break ;
+
+	case Feature::Undefined : 
+	  cout<< "Undefined\n" ;
+      }
+    }
+  }
 }
+
+
+

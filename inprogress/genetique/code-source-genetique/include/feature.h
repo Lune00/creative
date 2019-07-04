@@ -19,6 +19,7 @@ class Feature {
 
     void print_debug() ;
     std::string name() const { return name_ ; }
+    Nature nature() const { return nature_ ; }
 
     // Initialisition from the features file configuration
     void setName( std::string name ) { name_ = name ; }

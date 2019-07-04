@@ -65,5 +65,6 @@ namespace featuresIO {
   void readNature( const Setting&, Feature* feature ) ;
   void readNumGenes( const Setting&, Feature* feature ) ;
   void readAlleles( const Setting&, Feature* feature ) ;
+  void readCodominanceCoefficients( const Setting&, Feature* feature ) ;
 }
 #endif
