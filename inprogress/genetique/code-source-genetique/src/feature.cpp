@@ -9,7 +9,7 @@ using namespace std ;
 Feature::Feature() {
 
   // [ ni lignes * nj colonnes ] Element[i][j] = i * nj + j , 0 < j < nj and 0 < i < ni
-  double * codominanceTable_ = new double [ geneticParameters::geneSize * geneticParameters::geneSize ] ;
+  //double * codominanceTable_ = new double [ geneticParameters::geneSize * geneticParameters::geneSize ] ;
 
 }
 
@@ -61,7 +61,7 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
 
     if ( a >= geneticParameters::geneSize || a < 0 ) {
       ostringstream oss ;
-      oss << "Feature : " << this->name() << " " << a << " is not an accepted value. Must lie in the range [0:" << geneticParameters::geneSize <<"] " ;
+      oss << "Feature : " << this->name() << " " << a << " is not an accepted value. Must lie in the range [0:" << geneticParameters::geneSize - 1 <<"] " ;
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
     }
 
@@ -77,4 +77,9 @@ void Feature::setAllelesDefault( ) {
   for ( int j = 0 ; j != geneticParameters::geneSize ; j++ ) {
     alleles_.push_back( j ) ;
   }
+}
+
+void Feature::setCodominanceCoefficients( const std::vector<std::string>& vectorCodominanceCoefficientsString ) {
+
+
 }

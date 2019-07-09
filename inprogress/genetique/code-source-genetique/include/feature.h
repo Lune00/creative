@@ -5,8 +5,13 @@
 #include<string>
 #include<vector>
 #include<iostream>
+#include<map>
 
 class Feature {
+
+
+  typedef std::pair < int , int > pair_alleles ;
+
 
   public :
 
@@ -28,6 +33,7 @@ class Feature {
     void setAllelesDefinedManually( bool ) ;
     void setAlleles( const std::vector<int>& ) ;
     void setAllelesDefault( ) ;
+    void setCodominanceCoefficients(const std::vector< std::string > & ) ;
 
   private :
 
@@ -52,7 +58,7 @@ class Feature {
     std::vector<int> alleles_ ;
 
     //Codominance factor between each Allele of the same gene
-    double * codominanceTable_ ;
+    std::map< pair_alleles , double  >  codominanceCoefficient_ ;
 } ;
 
 

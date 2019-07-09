@@ -130,7 +130,7 @@ namespace featuresIO {
 
   void readCodominanceCoefficients(const Setting& settingFeature, Feature* feature ){
 
-    std::vector<std::string> vector_codominance_coefficients ;
+    std::vector<std::string> vectorCodominanceCoefficientsString ;
 
     try {
 
@@ -138,9 +138,11 @@ namespace featuresIO {
 
       for( int j = 0 ; j != settingCodominanceCoefficients.getLength() ; j++ ) {
 
-	vector_codominance_coefficients.push_back( settingCodominanceCoefficients[j] ) ;
+	vectorCodominanceCoefficientsString.push_back( settingCodominanceCoefficients[j] ) ;
 
       }
+	//A la feature de constuire en interne le reste, et non au read
+	feature->setCodominanceCoefficients ( vectorCodominanceCoefficientsString ) ;
     }
 
     catch(const SettingNotFoundException &nfex )
