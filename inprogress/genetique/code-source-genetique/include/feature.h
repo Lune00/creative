@@ -12,6 +12,12 @@ class Feature {
 
   typedef std::pair < int , int > pair_alleles ;
 
+  struct allelesAndCoeff {
+    int alleleA ;
+    int alleleB ;
+    double coeffCodominance ;
+  };
+
 
   public :
 
@@ -34,6 +40,7 @@ class Feature {
     void setAlleles( const std::vector<int>& ) ;
     void setAllelesDefault( ) ;
     void setCodominanceCoefficients(const std::vector< std::string > & ) ;
+    allelesAndCoeff splitCodominanceRuleIntoAllelesAndCoeff( const std::string& ) ;
 
   private :
 

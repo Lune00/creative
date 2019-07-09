@@ -81,5 +81,22 @@ void Feature::setAllelesDefault( ) {
 
 void Feature::setCodominanceCoefficients( const std::vector<std::string>& vectorCodominanceCoefficientsString ) {
 
+  //Check that each int (allele id) match alleles stored in alleles_ 
+  //Check that every combination have been covered : 
+  // at this time we know that each int is an allele stored in alleles_ 
+  // Add same allele id the value 1 for codominance between them 
+  for (unsigned int i = 0 ; i != vectorCodominanceCoefficientsString.size() ; i ++ ) {
+
+    std::string CodominanceRule = vectorCodominanceCoefficientsString[ i ] ;
+    //Split string into two int (alleles) and a double (coefficient) (possible use of regex here)
+    Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRule ) ; 
+  }
+
+}
+
+//No REGEX yet, we assume the format is %d-%d:%f (int-int:double)
+Feature::allelesAndCoeff Feature::splitCodominanceRuleIntoAllelesAndCoeff( const std::string & CodominanceRule ) {
+
+  //Split : 
 
 }
