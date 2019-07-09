@@ -94,9 +94,13 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
 
 }
 
-//No REGEX yet, we assume the format is %d-%d:%f (int-int:double)
 Feature::allelesAndCoeff Feature::splitCodominanceRuleIntoAllelesAndCoeff( const std::string & CodominanceRule ) {
 
-  //Split : 
+  // 1) On enleve tous les espaces
+  // 2) REGEX a la regle entiere: [0-9]*-[0-9]*=(0\.?[0-9]+|1\.[0]*$|1$)
+  // Accepte tous format des entiers, et seulement des doubles sans signe et inferieures a 1.000000(autant de 0) 
+  // Au pire on peut le voir apres
+  // 3) Split en 2 entiers et un double
+  // 4) Normalement on a pas besoin de verifier que c'est bien convertible en nombre grace au REGEX de depart
 
 }

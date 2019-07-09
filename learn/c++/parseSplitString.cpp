@@ -3,6 +3,10 @@
 #include<algorithm>
 #include<regex>
 
+
+
+// REGEX I need : pour regle de codominance : match entier-entier=double (peu importe format)
+//
 using namespace std;
 
 //Envoie tous les caracteres non 'espace' au debut string et tous les whitespace a la fin
