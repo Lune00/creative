@@ -7,7 +7,7 @@ Java bytecode is then executed by the same JVM process already running clojure.j
 Clojure source code --- text --- > clojure.jar (compiler/Reader) ---> JVM bytecode -----> JVM (execute)
 
 ## Creatre new Clojure project using leiningen
-$ lein new app project-name
+`lein new app project-name`
 
 
 # clojure-noob
