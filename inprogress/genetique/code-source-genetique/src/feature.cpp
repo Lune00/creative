@@ -81,26 +81,61 @@ void Feature::setAllelesDefault( ) {
 
 void Feature::setCodominanceCoefficients( const std::vector<std::string>& vectorCodominanceCoefficientsString ) {
 
+  for (unsigned int i = 0 ; i != vectorCodominanceCoefficientsString.size() ; i ++ ) {
+
+    std::string CodominanceRule = vectorCodominanceCoefficientsString[ i ] ;
+
+    //Check the Rule (correct expression)
+    if( ! checkRegexForCodominanceRule( featuresIO::removeWhiteSpacesFromString( CodominanceRule ) ) ) {
+
+      //Throw exception : 
+      return ;
+
+    }
+    else 
+      //Split string into two int (alleles) and a double (coefficient) 
+      Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRule ) ; 
+      //Store
+  }
+
+  //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
+
   //Check that each int (allele id) match alleles stored in alleles_ 
   //Check that every combination have been covered : 
   // at this time we know that each int is an allele stored in alleles_ 
   // Add same allele id the value 1 for codominance between them 
-  for (unsigned int i = 0 ; i != vectorCodominanceCoefficientsString.size() ; i ++ ) {
-
-    std::string CodominanceRule = vectorCodominanceCoefficientsString[ i ] ;
-    //Split string into two int (alleles) and a double (coefficient) (possible use of regex here)
-    Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRule ) ; 
-  }
 
 }
 
+//Check the Rule expression read from user file, check Regex depending on the nature of the feature
+bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
+
+  switch ( this->nature() ) { 
+
+    case C : 
+      //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
+      if( std::regex_match ( Rule , std::regex(featuresIO::regexContinuousFeature)) ) 
+	return true ;
+      else
+	return false; 
+      //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
+    case D : 
+
+      if( std::regex_match ( Rule , std::regex(featuresIO::regexDiscreteFeature)) )
+	return true ;
+      else
+	return false; 
+
+    case Undefined :
+
+      return false;
+  }
+}
+
+
+//This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
+//is SYNTAXICALLY correct (type, number) and we can process it without any further tests
 Feature::allelesAndCoeff Feature::splitCodominanceRuleIntoAllelesAndCoeff( const std::string & CodominanceRule ) {
 
-  // 1) On enleve tous les espaces
-  // 2) REGEX a la regle entiere: [0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)
-  // Accepte tous format des entiers, et seulement des doubles sans signe et inferieures a 1.000000(autant de 0) 
-  // Au pire on peut le voir apres
-  // 3) Split en 2 entiers et un double
-  // 4) Normalement on a pas besoin de verifier que c'est bien convertible en nombre grace au REGEX de depart
-
 }
+

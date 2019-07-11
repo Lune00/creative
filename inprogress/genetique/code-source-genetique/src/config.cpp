@@ -164,6 +164,18 @@ namespace featuresIO {
       }
     }
   }
+
+
+  std::string removeWhiteSpacesFromString( std::string string) {
+
+  std::string::iterator end_pos = std::remove( string.begin() , string.end() , ' ') ;
+  string.erase( end_pos , string.end() ) ;
+  return string ;
+
+  }
+
+
+
 }
 
 

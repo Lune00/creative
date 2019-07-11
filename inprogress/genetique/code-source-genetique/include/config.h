@@ -5,9 +5,11 @@
 #include<string>
 #include<iostream>
 #include<vector>
-#include<libconfig.h++>
 #include<exception>
 #include<sstream>
+#include<regex>
+#include<algorithm>
+#include<libconfig.h++>
 
 class Feature ;
 
@@ -49,6 +51,7 @@ namespace featuresIO {
 
   //File storing the features to be loaded
   const std::string featuresFile = "features.glib" ;
+  const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
   //Features loaded from the file and in the genetic base
   extern std::vector<Feature*> features ;
 
@@ -66,5 +69,8 @@ namespace featuresIO {
   void readNumGenes( const Setting&, Feature* feature ) ;
   void readAlleles( const Setting&, Feature* feature ) ;
   void readCodominanceCoefficients( const Setting&, Feature* feature ) ;
+
+  //String parsing for entry
+  std::string removeWhiteSpacesFromString( std::string ) ;
 }
 #endif

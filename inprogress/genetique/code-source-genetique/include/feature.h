@@ -41,6 +41,7 @@ class Feature {
     void setAllelesDefault( ) ;
     void setCodominanceCoefficients(const std::vector< std::string > & ) ;
     allelesAndCoeff splitCodominanceRuleIntoAllelesAndCoeff( const std::string& ) ;
+    bool checkRegexForCodominanceRule(const std::string& ) ;
 
   private :
 
