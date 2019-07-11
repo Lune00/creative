@@ -11,7 +11,7 @@ abstractFeatures=(
     nature = "C" ;
     nGenes = 1 ;
     alleles = (0,3,9);
-    codcoeff = ("00000-900=0.1 ", "0-3=0.9", "3-9=0.3",);
+    codcoeff = ("00-0900=0.1 ", "0-3=0.9", "3-9=0.3",);
     },
     {
     label = "eye-color";

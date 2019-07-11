@@ -137,40 +137,40 @@ namespace featuresIO {
       const Setting& settingCodominanceCoefficients = settingFeature.lookup( "codcoeff" ) ;
 
       for( int j = 0 ; j != settingCodominanceCoefficients.getLength() ; j++ ) {
-
 	vectorCodominanceCoefficientsString.push_back( settingCodominanceCoefficients[j] ) ;
-
       }
-	//A la feature de constuire en interne le reste, et non au read
-	abstractFeature->setCodominanceCoefficients ( vectorCodominanceCoefficientsString ) ;
+
     }
 
     catch(const SettingNotFoundException &nfex )
     {
+      //TODO
       // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
       // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
       switch ( abstractFeature->nature() ) {
 
 	case Feature::D : 
-	  cout << "Feature : "<< abstractFeature->label()<< " codominance coefficients set according default parameters\n";
+	  cout << "Feature '"<< abstractFeature->label()<< "' codominance coefficients are set according to default parameters\n";
 	  break ;
 
 	case Feature::C : 
-	  cout << "Feature : "<< abstractFeature->label()<< " codominance coefficients set according default parameters\n";
+	  cout << "Feature '"<< abstractFeature->label()<< "' codominance coefficients are set according to default parameters\n";
 	  break ;
 
 	case Feature::Undefined : 
 	  cout<< "Undefined\n" ;
       }
     }
-  }
 
+
+    abstractFeature->setCodominanceCoefficients ( vectorCodominanceCoefficientsString ) ;
+  }
 
   std::string removeWhiteSpacesFromString( std::string string) {
 
-  std::string::iterator end_pos = std::remove( string.begin() , string.end() , ' ') ;
-  string.erase( end_pos , string.end() ) ;
-  return string ;
+    std::string::iterator end_pos = std::remove( string.begin() , string.end() , ' ') ;
+    string.erase( end_pos , string.end() ) ;
+    return string ;
 
   }
 

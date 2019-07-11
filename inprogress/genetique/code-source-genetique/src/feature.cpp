@@ -99,20 +99,25 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
   for (unsigned int i = 0 ; i != vectorCodominanceCoefficientsString.size() ; i ++ ) {
 
     std::string CodominanceRule = vectorCodominanceCoefficientsString[ i ] ;
+    std::string CodominanceRuleWithouSpaces  = featuresIO::removeWhiteSpacesFromString( CodominanceRule ) ;
 
     //Check the Rule (correct expression)
-    if( ! checkRegexForCodominanceRule( featuresIO::removeWhiteSpacesFromString( CodominanceRule ) ) ) {
+    if( ! checkRegexForCodominanceRule( CodominanceRuleWithouSpaces ) )  {
 
       //Throw exception : 
+      ostringstream oss ;
+      oss << "Feature : " << this->label() << " has invalid 'codcoeff' syntax." ;
+      throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
       return ;
 
     }
     else 
       //Split string into two int (alleles) and a double (coefficient) 
-      Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRule ) ; 
+      Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRuleWithouSpaces ) ; 
     //Store
   }
 
+  //ANOTHER FUNCTION HERE
   //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
 
   //Check that each int (allele id) match alleles stored in alleles_ 
@@ -147,7 +152,13 @@ bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
 
 //This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
 //is SYNTAXICALLY correct (type, number) and we can process it without any further tests
-Feature::allelesAndCoeff Feature::splitCodominanceRuleIntoAllelesAndCoeff( const std::string & CodominanceRule ) {
+Feature::allelesAndCoeff Feature::splitCodominanceRuleIntoAllelesAndCoeff( const std::string & CodominanceRuleWithouSpaces ) {
+
+  size_t pos = 0 ;
+  pos = CodominanceRuleWithouSpaces.find( featuresIO::delimiterAllele ) ;
+  std::string token = CodominanceRuleWithouSpaces.substr( 0 , pos ) ;
+  int allele1 = std::stoi( token ) ;
+
 
 }
 
