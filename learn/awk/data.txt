@@ -1,9 +1,0 @@
-anthony	rouge
-
-john	vert
-
-rubens	noir
-
-clement	bleu
-
-paul	jaune

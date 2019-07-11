@@ -1,4 +1,0 @@
-#Se connecter avec utilisateur -u 'student' -p password securisé et encodage de caracter en utf8
-#pour apprendre mon nom utilsateur est 'student' et le mot de passe 'mysql'
-
-mysql -u student -p --default-character-set=utf8

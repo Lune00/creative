@@ -1,5 +1,0 @@
-books=(
-	{title = "Ocean Mer"},
-	{title = "SDA"}
-	);
-      
