@@ -26,11 +26,11 @@ namespace geneticParameters {
 
 namespace featuresIO {
 
-  std::vector<Feature*> features(0) ;
+  std::vector<Feature*> abstractFeatures(0) ;
 
-  void loadFeatures() {
-    isFeaturesFilesAndCorrectSyntax() ;
-    parseFeatures() ;
+  void loadAbstractFeatures() {
+    isAbstractFeaturesFileAndCorrectSyntax() ;
+    parseAbstractFeatures() ;
   }
 
   bool checkNumberOfCombinations( int nalleles, int nCotableRules ) {
@@ -41,66 +41,66 @@ namespace featuresIO {
   }
 
   //Check that featuresFile exists and no libconfig syntax issues in it
-  void isFeaturesFilesAndCorrectSyntax() {
+  void isAbstractFeaturesFileAndCorrectSyntax() {
     Config cfg ;
-    cfg.readFile( featuresFile.c_str() );
+    cfg.readFile( abstractFeaturesFile.c_str() );
   }
 
   // Parse features add them to the features library. Throw exception
-  void parseFeatures() {
+  void parseAbstractFeatures() {
 
     Config cfg ;
 
-    cfg.readFile( featuresFile.c_str() );
+    cfg.readFile( abstractFeaturesFile.c_str() );
 
     const Setting& root = cfg.getRoot() ;
 
-    const Setting &settingFeatures = root["features"] ;
+    const Setting &settingFeatures = root["abstractFeatures"] ;
 
     int nfeatures = settingFeatures.getLength() ;
 
     for ( int i = 0 ;i != nfeatures; i++ ) {
       const Setting& settingFeature = settingFeatures[ i ] ;
-      parseFeature( settingFeature ); 
+      parseAbstractFeature( settingFeature ); 
     }
-    cerr << "Number of features loaded : " << features.size() << endl ;
+    cerr << "Number of features loaded : " << abstractFeatures.size() << endl ;
   }
 
   // Parse each feature of features
-  void  parseFeature( const Setting& settingFeature ) {
+  void  parseAbstractFeature( const Setting& settingFeature ) {
 
-    Feature * feature = new Feature() ;
+    Feature * abstractFeature = new Feature() ;
 
-    readName( settingFeature, feature ) ;
-    readNature( settingFeature , feature ) ;
-    readNumGenes( settingFeature , feature ) ;
-    readAlleles( settingFeature , feature ) ;
-    readCodominanceCoefficients( settingFeature , feature  ) ;
+    readLabel( settingFeature, abstractFeature ) ;
+    readNature( settingFeature , abstractFeature ) ;
+    readNumGenes( settingFeature , abstractFeature ) ;
+    readAlleles( settingFeature , abstractFeature ) ;
+    readCodominanceCoefficients( settingFeature , abstractFeature  ) ;
 
-    features.push_back( feature ) ;
+    abstractFeatures.push_back( abstractFeature ) ;
   }
 
   // Load name of the feature - mandatory
-  void readName(const Setting& settingFeature, Feature* feature ) {
+  void readLabel(const Setting& settingFeature, Feature* abstractFeature ) {
 
-      feature->setName( settingFeature.lookup( "name" ) ) ;
+      abstractFeature->setLabel( settingFeature.lookup( "label" ) ) ;
   }
 
   // Load nature of the feature - mandatory
-  void readNature(const Setting& settingFeature, Feature* feature ) {
+  void readNature(const Setting& settingFeature, Feature* abstractFeature ) {
 
-      feature->setNature( settingFeature.lookup( "nature" ) ) ;
+      abstractFeature->setNature( settingFeature.lookup( "nature" ) ) ;
   }
   // Load nature of the feature - mandatory
-  void readNumGenes(const Setting& settingFeature, Feature* feature ) {
+  void readNumGenes(const Setting& settingFeature, Feature* abstractFeature ) {
 
       int numGenes = settingFeature.lookup( "nGenes" ) ;
-      feature->setNumGenes( numGenes ) ;
+      abstractFeature->setNumGenes( numGenes ) ;
   }
 
 
   // Load alleles of the genes - optional parameter
-  void readAlleles(const Setting& settingFeature, Feature* feature ) {
+  void readAlleles(const Setting& settingFeature, Feature* abstractFeature ) {
 
     std::vector<int> vector_alleles ;
 
@@ -112,8 +112,8 @@ namespace featuresIO {
 	vector_alleles.push_back( settingAlleles[j] ) ;
       }
 
-      feature->setAlleles( vector_alleles ) ;
-      feature->setAllelesDefinedManually ( true ) ;
+      abstractFeature->setAlleles( vector_alleles ) ;
+      abstractFeature->setAllelesDefinedManually ( true ) ;
 
     }
 
@@ -122,13 +122,13 @@ namespace featuresIO {
     catch(const SettingNotFoundException &nfex)
     {
       // Default behavior : all alleles included (10) 
-      feature->setAllelesDefinedManually ( false ) ;
-      feature->setAllelesDefault( ) ;
+      abstractFeature->setAllelesDefinedManually ( false ) ;
+      abstractFeature->setAllelesDefault( ) ;
     }
 
   }
 
-  void readCodominanceCoefficients(const Setting& settingFeature, Feature* feature ){
+  void readCodominanceCoefficients(const Setting& settingFeature, Feature* abstractFeature ){
 
     std::vector<std::string> vectorCodominanceCoefficientsString ;
 
@@ -142,14 +142,14 @@ namespace featuresIO {
 
       }
 	//A la feature de constuire en interne le reste, et non au read
-	feature->setCodominanceCoefficients ( vectorCodominanceCoefficientsString ) ;
+	abstractFeature->setCodominanceCoefficients ( vectorCodominanceCoefficientsString ) ;
     }
 
     catch(const SettingNotFoundException &nfex )
     {
       // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
       // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
-      switch ( feature->nature() ) {
+      switch ( abstractFeature->nature() ) {
 
 	case Feature::D : 
 	  cout << "D\n";

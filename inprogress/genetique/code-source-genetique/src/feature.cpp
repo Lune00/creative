@@ -32,7 +32,7 @@ string Feature::enumToString( Feature::Nature nature ) {
 
 void Feature::print_debug( ) {
 
-  std::cerr << "Name : " << name_ << std::endl ;
+  std::cerr << "Label : " << label_ << std::endl ;
   std::cerr << "Nature : " << enumToString( nature_ ) << std::endl ; 
   std::cerr << "Number of genes : " << numGenes_ << std::endl ; 
   std::cerr << "Number of alleles : " << alleles_.size() << std::endl ; 
@@ -42,7 +42,7 @@ void Feature::setNumGenes( int numGenes ) {
 
   if( numGenes < 0 || numGenes == 0 ) {
       ostringstream oss ;
-      oss << "Feature : " << this->name() << " - Number of Genes [numGenes] should be greater than 0 " ;
+      oss << "Feature : " << this->label() << " - Number of Genes [numGenes] should be greater than 0 " ;
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
   }
   else numGenes_ = numGenes ; 
@@ -61,7 +61,7 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
 
     if ( a >= geneticParameters::geneSize || a < 0 ) {
       ostringstream oss ;
-      oss << "Feature : " << this->name() << " " << a << " is not an accepted value. Must lie in the range [0:" << geneticParameters::geneSize - 1 <<"] " ;
+      oss << "Feature : " << this->label() << " " << a << " is not an accepted value. Must lie in the range [0:" << geneticParameters::geneSize - 1 <<"] " ;
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
     }
 

@@ -11,11 +11,11 @@ int main(){
 
   //load configurations files :
   try {
-    featuresIO::loadFeatures() ;
+    featuresIO::loadAbstractFeatures() ;
   }
   //File not found
   catch( const FileIOException &fioex ) {
-    std::cerr << "Configuration file '"<<featuresIO::featuresFile <<"' not found. " << std::endl;
+    std::cerr << "Configuration file '"<<featuresIO::abstractFeaturesFile <<"' not found. " << std::endl;
     return EXIT_FAILURE ;
   }
   //Syntaxic error in the libconfig format
@@ -25,7 +25,7 @@ int main(){
     return EXIT_FAILURE  ;
   }
   catch( const SettingNotFoundException &nfex ) {
-    std::cerr << nfex.getPath() <<" group/setting not found in " <<featuresIO::featuresFile << endl;
+    std::cerr << nfex.getPath() <<" group/setting not found in " <<featuresIO::abstractFeaturesFile << endl;
     return EXIT_FAILURE ;
   }
   catch( const exceptions::MyStandardException& ex) {

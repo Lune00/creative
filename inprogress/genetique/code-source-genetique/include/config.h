@@ -50,21 +50,22 @@ namespace geneticParameters {
 namespace featuresIO {
 
   //File storing the features to be loaded
-  const std::string featuresFile = "features.glib" ;
+  const std::string abstractFeaturesFile = "abstractFeatures.glib" ;
   const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
+  const std::string regexDiscreteFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
   //Features loaded from the file and in the genetic base
-  extern std::vector<Feature*> features ;
+  extern std::vector<Feature*> abstractFeatures ;
 
   //Loading file functions - main function : 
-  void loadFeatures() ;
+  void loadAbstractFeatures() ;
 
   bool checkNumberOfCombinations( int numAlleles, int numCotableRules );
-  void isFeaturesFilesAndCorrectSyntax() ;
-  void parseFeatures() ;
-  void parseFeature( const Setting& ) ;
+  void isAbstractFeaturesFileAndCorrectSyntax() ;
+  void parseAbstractFeatures() ;
+  void parseAbstractFeature( const Setting& ) ;
 
   //Read features settings 
-  void readName( const Setting&, Feature* feature ) ;
+  void readLabel( const Setting&, Feature* feature ) ;
   void readNature( const Setting&, Feature* feature ) ;
   void readNumGenes( const Setting&, Feature* feature ) ;
   void readAlleles( const Setting&, Feature* feature ) ;

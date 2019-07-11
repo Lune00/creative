@@ -30,9 +30,11 @@ class Feature {
 
     void print_debug() ;
     std::string name() const { return name_ ; }
+    std::string label() const { return label_ ; }
     Nature nature() const { return nature_ ; }
 
     // Initialisition from the features file configuration
+    void setLabel( std::string label) { label_ = label ; }
     void setName( std::string name ) { name_ = name ; }
     void setNature( std::string nature ) { nature_ = stringToEnum( nature ) ; }
     void setNumGenes( int nGenes ) ;
@@ -46,8 +48,8 @@ class Feature {
   private :
 
     //Alleles parameters : number and value for each nu
+    std::string label_ ;
     std::string name_ ;
-
     Nature nature_  ;
 
     bool AllelesDefinedManually_ ; 
