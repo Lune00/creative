@@ -111,10 +111,13 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
       return ;
 
     }
-    else 
+    else {
       //Split string into two int (alleles) and a double (coefficient) 
-      Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRuleWithouSpaces ) ; 
-    //Store
+      Feature::pairAllelesCoefficient pAC = splitCodominanceRuleIntoPairAllelesCoefficient ( CodominanceRuleWithouSpaces ) ; 
+    //Store into set
+    //codCoeff_.insert( pAC ) ;
+    }
+
   }
 
   //ANOTHER FUNCTION HERE
@@ -152,13 +155,31 @@ bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
 
 //This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
 //is SYNTAXICALLY correct (type, number) and we can process it without any further tests
-Feature::allelesAndCoeff Feature::splitCodominanceRuleIntoAllelesAndCoeff( const std::string & CodominanceRuleWithouSpaces ) {
+Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoefficient( const std::string & CodominanceRuleWithouSpaces ) {
 
   size_t pos = 0 ;
+
+  //Get allele1 (int)
   pos = CodominanceRuleWithouSpaces.find( featuresIO::delimiterAllele ) ;
   std::string token = CodominanceRuleWithouSpaces.substr( 0 , pos ) ;
   int allele1 = std::stoi( token ) ;
 
+  CodominanceRuleWithouSpaces.substr( pos + featuresIO::delimiterAllele.length() ) ;
+
+  //Get allele2 (int)
+  pos = CodominanceRuleWithouSpaces.find( featuresIO::delimiterCoefficient ) ;
+  token = CodominanceRuleWithouSpaces.substr( 0 , pos ) ;
+  int allele2 = std::stoi( token ) ;
+
+  //Get coefficient (int/double depending on Nature of the Feature)
+  std::string stringCoefficient = CodominanceRuleWithouSpaces.substr( 0 , pos ) ; 
+
+  switch( this->nature() ){
+    case C : 
+      return pairAllelesCoefficient(allele1, allele2, std::stod( stringCoefficient ), 0 ) ; 
+    case D :
+      return pairAllelesCoefficient(allele1, allele2, 0. , std::stoi( stringCoefficient ) ) ; 
+  }
 
 }
 

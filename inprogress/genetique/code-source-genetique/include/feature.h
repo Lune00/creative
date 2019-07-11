@@ -5,17 +5,23 @@
 #include<string>
 #include<vector>
 #include<iostream>
-#include<map>
+#include<unordered_set>
 
 class Feature {
 
 
-  typedef std::pair < int , int > pair_alleles ;
+  typedef std::pair < int , int > pairAlleles ;
 
-  struct allelesAndCoeff {
-    int alleleA ;
-    int alleleB ;
-    double coeffCodominance ;
+  struct pairAllelesCoefficient {
+
+    pairAlleles pairAlleles_ ; 
+    double coeffCodominance_ ; // Only use for Continuous
+    int dominantAllele_ ; // Only use for Discrete
+
+    pairAllelesCoefficient(int allele1, int allele2, double coeffCodominance, int dominantAllele ) :
+      pairAlleles_( allele1, allele2), coeffCodominance_(coeffCodominance), dominantAllele_(dominantAllele)  
+    {
+    }
   };
 
 
@@ -42,7 +48,7 @@ class Feature {
     void setAlleles( const std::vector<int>& ) ;
     void setAllelesDefault( ) ;
     void setCodominanceCoefficients(const std::vector< std::string > & ) ;
-    allelesAndCoeff splitCodominanceRuleIntoAllelesAndCoeff( const std::string& ) ;
+    pairAllelesCoefficient splitCodominanceRuleIntoPairAllelesCoefficient( const std::string& ) ;
     bool checkRegexForCodominanceRule(const std::string& ) ;
 
   private :
@@ -68,7 +74,7 @@ class Feature {
     std::vector<int> alleles_ ;
 
     //Codominance factor between each Allele of the same gene
-    std::map< pair_alleles , double  >  codominanceCoefficient_ ;
+    //std::unordered_set< pairAllelesCoefficient >  codCoeff_ ;
 } ;
 
 
