@@ -46,7 +46,7 @@ namespace featuresIO {
     cfg.readFile( abstractFeaturesFile.c_str() );
   }
 
-  // Parse features add them to the features library. Throw exception
+  // Parse abstractFeatures add them to the features library. Throw exception if not found the setting
   void parseAbstractFeatures() {
 
     Config cfg ;
@@ -67,7 +67,7 @@ namespace featuresIO {
     debugPrintAllAbstractFeaturesToStandardOutput() ;
   }
 
-  // Parse each feature of features
+  // Parse each abstractFeature of abstractFeatures
   void  parseAbstractFeature( const Setting& settingFeature ) {
 
     Feature * abstractFeature = new Feature() ;
@@ -132,6 +132,7 @@ namespace featuresIO {
   //Read the 'codRules' (aka codominanceRule) codominance coefficient between two alleles as a codominanceRule from
   //the config file as strings and load them in a struct pairAllelesCoefficient ( a struct of Feature)
   //Check are performed here for the correct syntax of the Rule (eg number and delimiter)
+  //After being read into a vector (if exist) abstractFeature read the vector and process them into pairAllelesCoefficient
   void readCodominanceRules(const Setting& settingFeature, Feature* abstractFeature ){
 
     std::vector<std::string> vectorCodominanceRules ;

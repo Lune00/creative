@@ -215,6 +215,7 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
 // at this time we know that each int is an allele stored in alleles_ 
 // Add same allele id the value 1 for codominance between them 
 
+//TODO: rename checkSetPairAllelesCoefficientConsistency
 void Feature::checkPairAllelesCoeffcientConsistency() {
 
 
@@ -235,6 +236,7 @@ void Feature::debugPrintToStandardOutput() {
   cout << alleles_[i] << " ";
   }
   cout <<endl ;
+
   cout << setPairAllelesCoefficient_.size() << " rules : " << endl ;
   std::unordered_set<pairAllelesCoefficient, pairAllelesCoefficientHasher >::const_iterator it = setPairAllelesCoefficient_.begin() ;
   while(it != setPairAllelesCoefficient_.end() ){
