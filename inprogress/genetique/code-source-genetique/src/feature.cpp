@@ -113,24 +113,29 @@ void Feature::loadPairAllelesCoefficient( const std::vector<std::string>& vector
       return ;
     }
     else {
-      //Split string into two int (alleles) and a double (coefficient) 
+      //Split string into two int (alleles) and a double(continuous) / int(discrete) 
+      //We pass from codRules to codCoeff_
       Feature::pairAllelesCoefficient pAC = splitCodominanceRuleIntoPairAllelesCoefficient ( CodominanceRuleWithouSpaces ) ; 
-      //Store into set
-      codCoeff_.insert( pAC ) ;
+      //Store into set codCoeff_ (maybe a better name... )
+      //TODO: if insert (a,b) insert also (a,a) and (b,b)
+      addToSetPairAllelesCoefficientRecursive( pAC ) ;
     }
 
   }
 
-
 }
 
-  //ANOTHER FUNCTION HERE
-  //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
+void Feature::addToSetPairAllelesCoefficientRecursive( Feature::pairAllelesCoefficient pAC ) {
 
-  //Check that each int (allele id) match alleles stored in alleles_ 
-  //Check that every combination have been covered : 
-  // at this time we know that each int is an allele stored in alleles_ 
-  // Add same allele id the value 1 for codominance between them 
+  //add to the set also (a,a) and (b,b) with default coeff 1
+  pairAllelesCoefficient pACFirst ( pAC.pairAlleles_.first ) ;
+  pairAllelesCoefficient pACSecond ( pAC.pairAlleles_.second ) ;
+
+  setPairAllelesCoefficient_.insert( pACFirst ) ;
+  setPairAllelesCoefficient_.insert( pACSecond ) ;
+  setPairAllelesCoefficient_.insert( pAC ) ; 
+}
+
 
   //TODO
   // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
@@ -202,6 +207,14 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
 
 }
 
+
+//TODO
+//Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
+//Check that each int (allele id) match alleles stored in alleles_ 
+//Check that every combination have been covered : 
+// at this time we know that each int is an allele stored in alleles_ 
+// Add same allele id the value 1 for codominance between them 
+
 void Feature::checkPairAllelesCoeffcientConsistency() {
 
 
@@ -212,3 +225,24 @@ void Feature::checkPairAllelesCoeffcientCompletness() {
 
 }
 
+void Feature::debugPrintToStandardOutput() {
+
+  cout << label_ << endl ;
+  cout << "nature : " <<enumToString( nature_ ) << endl ;
+  cout << "number of genes : " <<numGenes_ << endl ;
+  cout << "alleles : " ;
+  for(unsigned int i = 0 ; i != alleles_.size() ; i++){ 
+  cout << alleles_[i] << " ";
+  }
+  cout <<endl ;
+  cout << setPairAllelesCoefficient_.size() << " rules : " << endl ;
+  std::unordered_set<pairAllelesCoefficient, pairAllelesCoefficientHasher >::const_iterator it = setPairAllelesCoefficient_.begin() ;
+  while(it != setPairAllelesCoefficient_.end() ){
+    cout << it->pairAlleles_.first << " " << it->pairAlleles_.second << " " ;
+    if( nature_ == D ) cout << it->dominantAllele_ ;
+    else cout << it->coeffCodominance_ ;
+    it++;
+  }
+  cout << "\n\n" ; 
+
+}

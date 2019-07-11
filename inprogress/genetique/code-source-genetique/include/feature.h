@@ -30,6 +30,14 @@ class Feature {
 	pairAlleles_ = std::make_pair( allele2 , allele1 ) ;
     }
 
+    //Works properly whatever the nature 
+    pairAllelesCoefficient( int allele ) {
+      pairAlleles_ = std::make_pair ( allele, allele ) ;
+      coeffCodominance_ = 1. ;
+      //Dominant allele is itself 
+      dominantAllele_ = allele ;
+    }
+
     //Equality based on pairAlleles_
     bool operator==(const pairAllelesCoefficient& p ) const {
       if ( pairAlleles_ == p.pairAlleles_ )
@@ -73,13 +81,18 @@ class Feature {
   void setAllelesDefault( ) ;
 
   void loadPairAllelesCoefficient(const std::vector< std::string > & vectorCodominanceRules ) ;
+  void addToSetPairAllelesCoefficientRecursive(Feature::pairAllelesCoefficient ) ;
   void buildDefaultPairAllelesCoefficient( ) ;
+
   //'CodominanceRule' refers to the string given by the user in the config file
   pairAllelesCoefficient splitCodominanceRuleIntoPairAllelesCoefficient( const std::string& ) ;
   bool checkRegexForCodominanceRule(const std::string& ) ;
 
   void checkPairAllelesCoeffcientConsistency( ) ;
   void checkPairAllelesCoeffcientCompletness( ) ;
+
+  //Debug:
+  void debugPrintToStandardOutput() ;
 
   private :
 
@@ -105,7 +118,7 @@ class Feature {
   //CodominanceRule for each alleles (tmp struct)
 
   //Codominance factor between each Allele of the same gene
-  std::unordered_set< pairAllelesCoefficient, pairAllelesCoefficientHasher >  codCoeff_ ;
+  std::unordered_set< pairAllelesCoefficient, pairAllelesCoefficientHasher >  setPairAllelesCoefficient_ ;
 } ;
 
 

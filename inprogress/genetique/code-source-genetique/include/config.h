@@ -77,5 +77,8 @@ namespace featuresIO {
 
   //String parsing for entry
   std::string removeWhiteSpacesFromString( std::string ) ;
+
+  //Debug :
+  void debugPrintAllAbstractFeaturesToStandardOutput( ) ;
 }
 #endif
