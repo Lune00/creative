@@ -52,9 +52,24 @@ void Feature::setAllelesDefinedManually ( bool AllelesDefinedManually ) {
   AllelesDefinedManually_ = AllelesDefinedManually ; 
 }
 
+void Feature::setNature( std::string stringNature ) {
+
+  Feature::Nature nature = stringToEnum( stringNature ) ;
+
+  if ( nature == Nature::Undefined ) {
+    ostringstream oss ;
+    oss << "Feature : " << this->label() << " has undefined nature. Must be (D)iscrete or (C)ontinuous" ;
+    throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
+    return ;
+  }
+
+  else
+    nature_ = nature ;
+}
+
 //Check the validity of alleles and add them from the configuration file
 void Feature::setAlleles( const std::vector<int>& alleles ) {
-  
+
   std::vector<int>::const_iterator it = alleles.begin( ) ;
   while ( it != alleles.end() ){
     int a = *it ;
@@ -95,7 +110,7 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
     else 
       //Split string into two int (alleles) and a double (coefficient) 
       Feature::allelesAndCoeff alCo = splitCodominanceRuleIntoAllelesAndCoeff ( CodominanceRule ) ; 
-      //Store
+    //Store
   }
 
   //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
@@ -111,7 +126,6 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
 bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
 
   switch ( this->nature() ) { 
-
     case C : 
       //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
       if( std::regex_match ( Rule , std::regex(featuresIO::regexContinuousFeature)) ) 
@@ -125,10 +139,8 @@ bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
 	return true ;
       else
 	return false; 
-
     case Undefined :
-
-      return false;
+      return false ;
   }
 }
 

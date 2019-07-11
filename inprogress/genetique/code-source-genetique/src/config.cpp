@@ -152,11 +152,11 @@ namespace featuresIO {
       switch ( abstractFeature->nature() ) {
 
 	case Feature::D : 
-	  cout << "D\n";
+	  cout << "Feature : "<< abstractFeature->label()<< " codominance coefficients set according default parameters\n";
 	  break ;
 
 	case Feature::C : 
-	  cout << "C\n" ;
+	  cout << "Feature : "<< abstractFeature->label()<< " codominance coefficients set according default parameters\n";
 	  break ;
 
 	case Feature::Undefined : 

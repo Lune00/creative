@@ -36,7 +36,7 @@ class Feature {
     // Initialisition from the features file configuration
     void setLabel( std::string label) { label_ = label ; }
     void setName( std::string name ) { name_ = name ; }
-    void setNature( std::string nature ) { nature_ = stringToEnum( nature ) ; }
+    void setNature( std::string nature ) ;  
     void setNumGenes( int nGenes ) ;
     void setAllelesDefinedManually( bool ) ;
     void setAlleles( const std::vector<int>& ) ;

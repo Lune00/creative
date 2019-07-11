@@ -3,7 +3,7 @@
 
 abstractFeatures=(
     { label = "body-size" ;
-    nature = "C" ;
+    nature = "Discrete" ;
     nGenes = 1 ;
     },
     { 
