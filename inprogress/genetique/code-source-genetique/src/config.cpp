@@ -75,7 +75,7 @@ namespace featuresIO {
     readNature( settingFeature , abstractFeature ) ;
     readNumGenes( settingFeature , abstractFeature ) ;
     readAlleles( settingFeature , abstractFeature ) ;
-    readCodominanceCoefficients( settingFeature , abstractFeature  ) ;
+    readCodominanceRules( settingFeature , abstractFeature  ) ;
 
     abstractFeatures.push_back( abstractFeature ) ;
   }
@@ -128,53 +128,37 @@ namespace featuresIO {
 
   }
 
-  void readCodominanceCoefficients(const Setting& settingFeature, Feature* abstractFeature ){
+  //Read the 'codRules' (aka codominanceRule) codominance coefficient between two alleles as a codominanceRule from
+  //the config file as strings and load them in a struct pairAllelesCoefficient ( a struct of Feature)
+  //Check are performed here for the correct syntax of the Rule (eg number and delimiter)
+  void readCodominanceRules(const Setting& settingFeature, Feature* abstractFeature ){
 
-    std::vector<std::string> vectorCodominanceCoefficientsString ;
+    std::vector<std::string> vectorCodominanceRules ;
 
     try {
-
-      const Setting& settingCodominanceCoefficients = settingFeature.lookup( "codcoeff" ) ;
-
-      for( int j = 0 ; j != settingCodominanceCoefficients.getLength() ; j++ ) {
-	vectorCodominanceCoefficientsString.push_back( settingCodominanceCoefficients[j] ) ;
+      const Setting& settingCodominanceRules = settingFeature.lookup( "codRules" ) ;
+      for( int j = 0 ; j != settingCodominanceRules.getLength() ; j++ ) {
+	vectorCodominanceRules.push_back( settingCodominanceRules[j] ) ;
       }
-
     }
-
     catch(const SettingNotFoundException &nfex )
     {
-      //TODO
-      // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
-      // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
-      switch ( abstractFeature->nature() ) {
-
-	case Feature::D : 
-	  cout << "Feature '"<< abstractFeature->label()<< "' codominance coefficients are set according to default parameters\n";
-	  break ;
-
-	case Feature::C : 
-	  cout << "Feature '"<< abstractFeature->label()<< "' codominance coefficients are set according to default parameters\n";
-	  break ;
-
-	case Feature::Undefined : 
-	  cout<< "Undefined\n" ;
-      }
+      abstractFeature->buildDefaultPairAllelesCoefficient( )  ;
     }
 
+    abstractFeature->loadPairAllelesCoefficient ( vectorCodominanceRules ) ;
 
-    abstractFeature->setCodominanceCoefficients ( vectorCodominanceCoefficientsString ) ;
+    //Check completness and consistency of the rules , throw exception if not
+    abstractFeature->checkPairAllelesCoeffcientCompletness( ) ;
+    abstractFeature->checkPairAllelesCoeffcientConsistency( ) ;
   }
 
-  std::string removeWhiteSpacesFromString( std::string string) {
 
+  std::string removeWhiteSpacesFromString( std::string string) {
     std::string::iterator end_pos = std::remove( string.begin() , string.end() , ' ') ;
     string.erase( end_pos , string.end() ) ;
     return string ;
-
   }
-
-
 
 }
 

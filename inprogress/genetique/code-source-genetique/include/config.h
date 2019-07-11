@@ -51,10 +51,12 @@ namespace featuresIO {
 
   //File storing the features to be loaded
   const std::string abstractFeaturesFile = "abstractFeatures.glib" ;
+  //Syntax of the codRules
   const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
   const std::string regexDiscreteFeature = "[0-9]*-[0-9]*=[0-9]*$" ;
   const std::string delimiterAllele = "-" ;
   const std::string delimiterCoefficient = "=" ;
+
   //Features loaded from the file and in the genetic base
   extern std::vector<Feature*> abstractFeatures ;
 
@@ -71,7 +73,7 @@ namespace featuresIO {
   void readNature( const Setting&, Feature* feature ) ;
   void readNumGenes( const Setting&, Feature* feature ) ;
   void readAlleles( const Setting&, Feature* feature ) ;
-  void readCodominanceCoefficients( const Setting&, Feature* feature ) ;
+  void readCodominanceRules( const Setting&, Feature* feature ) ;
 
   //String parsing for entry
   std::string removeWhiteSpacesFromString( std::string ) ;

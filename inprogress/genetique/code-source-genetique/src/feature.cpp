@@ -94,11 +94,13 @@ void Feature::setAllelesDefault( ) {
   }
 }
 
-void Feature::setCodominanceCoefficients( const std::vector<std::string>& vectorCodominanceCoefficientsString ) {
+//CodominanceRule refers to the string defining codominance coefficient between two alleles
+// ex : "1-3=0.8" : alleles 1 and 3, coefficient 0.8 such that alleles 1 dominates by 0.8 allele 3
+void Feature::loadPairAllelesCoefficient( const std::vector<std::string>& vectorCodominanceRules ) {
 
-  for (unsigned int i = 0 ; i != vectorCodominanceCoefficientsString.size() ; i ++ ) {
+  for (unsigned int i = 0 ; i != vectorCodominanceRules.size() ; i ++ ) {
 
-    std::string CodominanceRule = vectorCodominanceCoefficientsString[ i ] ;
+    std::string CodominanceRule = vectorCodominanceRules[ i ] ;
     std::string CodominanceRuleWithouSpaces  = featuresIO::removeWhiteSpacesFromString( CodominanceRule ) ;
 
     //Check the Rule (correct expression)
@@ -109,16 +111,18 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
       oss << "Feature : " << this->label() << " has invalid 'codcoeff' syntax." ;
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
       return ;
-
     }
     else {
       //Split string into two int (alleles) and a double (coefficient) 
       Feature::pairAllelesCoefficient pAC = splitCodominanceRuleIntoPairAllelesCoefficient ( CodominanceRuleWithouSpaces ) ; 
-    //Store into set
-    //codCoeff_.insert( pAC ) ;
+      //Store into set
+      codCoeff_.insert( pAC ) ;
     }
 
   }
+
+
+}
 
   //ANOTHER FUNCTION HERE
   //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
@@ -128,6 +132,21 @@ void Feature::setCodominanceCoefficients( const std::vector<std::string>& vector
   // at this time we know that each int is an allele stored in alleles_ 
   // Add same allele id the value 1 for codominance between them 
 
+  //TODO
+  // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
+  // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
+void Feature::buildDefaultPairAllelesCoefficient() {
+
+  switch ( this->nature() ) {
+    case Feature::D : 
+      cout << "Feature '"<< this->label()<< "' codominance coefficients are set according to default parameters\n";
+      break ;
+    case Feature::C : 
+      cout << "Feature '"<< this->label()<< "' codominance coefficients are set according to default parameters\n";
+      break ;
+    case Feature::Undefined : 
+      cout<< "Undefined\n" ;
+  }
 }
 
 //Check the Rule expression read from user file, check Regex depending on the nature of the feature
@@ -180,6 +199,16 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
     case D :
       return pairAllelesCoefficient(allele1, allele2, 0. , std::stoi( stringCoefficient ) ) ; 
   }
+
+}
+
+void Feature::checkPairAllelesCoeffcientConsistency() {
+
+
+}
+
+void Feature::checkPairAllelesCoeffcientCompletness() {
+
 
 }
 
