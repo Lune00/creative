@@ -215,11 +215,8 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
 //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
 //Check that each int (allele id) match alleles stored in alleles_ 
 //Check that every combination have been covered : 
-// at this time we know that each int is an allele stored in alleles_ 
-// Add same allele id the value 1 for codominance between them 
 
 //TODO: rename checkSetPairAllelesCoefficientConsistency
-//Check that no coefficient is equal to zero
 void Feature::checkPairAllelesCoeffcientConsistency() {
 
 
@@ -230,6 +227,7 @@ void Feature::checkPairAllelesCoeffcientCompletness() {
 
 }
 
+//Just use for debug : 
 void Feature::debugPrintToStandardOutput() {
 
   cout << label_ << endl ;

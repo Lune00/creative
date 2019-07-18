@@ -16,11 +16,15 @@ class Feature {
 
     std::pair < int , int > pairAlleles_ ;
 
-    double coeffCodominance_ ; // Only use for Continuous
+    double coeffCodominance_ ;// Only use for Continuous
 
     int dominantAllele_ ; // Only use for Discrete
 
-    //Alleles always stored as a pair(a,b) with a < b
+    //TODO: think about proper implementation
+    //Default : How do we discriminate between use of probability or not. I think we need something more elaborate
+    //double probability_ ; // Only use for Discrete
+
+    //Alleles always stored as a pair(a,b) with a <= b
     pairAllelesCoefficient(int allele1, int allele2, double coeffCodominance, int dominantAllele ) :
       coeffCodominance_(coeffCodominance), dominantAllele_(dominantAllele)  
     {

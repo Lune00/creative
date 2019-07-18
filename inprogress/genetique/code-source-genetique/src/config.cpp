@@ -64,7 +64,7 @@ namespace featuresIO {
       parseAbstractFeature( settingFeature ); 
     }
     cerr << "Number of features loaded : " << abstractFeatures.size() << endl ;
-    //debug::debugPrintAllAbstractFeaturesToStandardOutput() ;
+    debug::debugPrintAllAbstractFeaturesToStandardOutput() ;
   }
 
   // Parse each abstractFeature of abstractFeatures
