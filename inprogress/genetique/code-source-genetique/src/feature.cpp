@@ -181,13 +181,11 @@ bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
 Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoefficient( const std::string & CodominanceRuleWithouSpaces ) {
 
   size_t pos = 0 ;
-
   string RuleToBeSplit = CodominanceRuleWithouSpaces ;
   
   //Get allele1 (int)
   pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
   std::string token = RuleToBeSplit.substr( 0 , pos ) ;
-
   int allele1 = std::stoi( token ) ;
 
   RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterAllele.length() ) ;
@@ -195,12 +193,10 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
   //Get allele2 (int)
   pos = RuleToBeSplit.find( featuresIO::delimiterCoefficient ) ;
   token = RuleToBeSplit.substr( 0 , pos ) ;
-
   int allele2 = std::stoi( token ) ;
 
   //Get coefficient (int/double depending on Nature of the Feature)
   RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
-
   std::string stringCoefficient = RuleToBeSplit ; 
 
   switch( this->nature() ){
@@ -208,6 +204,8 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
       return pairAllelesCoefficient(allele1, allele2, std::stod( stringCoefficient ), 0 ) ; 
     case D :
       return pairAllelesCoefficient(allele1, allele2, 0. , std::stoi( stringCoefficient ) ) ; 
+      //TODO DESIGN: if we put a double coefficient stating for the probability of an allele dominating the other
+      //For the moment we assume it is always 1 ex : '3-2=3' -> 3 dominates. But we could have '3-2=0.5' -> 3 dominates hwith a probability 0.5. We need further test....
   }
 
 }
