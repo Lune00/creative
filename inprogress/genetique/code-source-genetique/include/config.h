@@ -46,13 +46,21 @@ namespace geneticParameters {
   extern const double nucleicContribution ; 
 }
 
+namespace debug {
+
+  void debugPrintAllAbstractFeaturesToStandardOutput( ) ;
+  void debugPrint(const std::string&) ;
+
+}
+
 // Manage Input/Output of features configuration file
 namespace featuresIO {
 
   //File storing the features to be loaded
   const std::string abstractFeaturesFile = "abstractFeatures.glib" ;
   //Syntax of the codRules
-  const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
+  //const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
+  const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\\.?[0-9]*|1\\.[0]*$|1$)" ;
   const std::string regexDiscreteFeature = "[0-9]*-[0-9]*=[0-9]*$" ;
   const std::string delimiterAllele = "-" ;
   const std::string delimiterCoefficient = "=" ;
@@ -78,7 +86,5 @@ namespace featuresIO {
   //String parsing for entry
   std::string removeWhiteSpacesFromString( std::string ) ;
 
-  //Debug :
-  void debugPrintAllAbstractFeaturesToStandardOutput( ) ;
 }
 #endif

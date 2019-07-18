@@ -108,7 +108,7 @@ void Feature::loadPairAllelesCoefficient( const std::vector<std::string>& vector
 
       //Throw exception : 
       ostringstream oss ;
-      oss << "Feature : " << this->label() << " has invalid 'codcoeff' syntax." ;
+      oss << "Feature : " << this->label() << " has one or several invalid 'codRule' syntax "<<endl ;
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
       return ;
     }
@@ -116,8 +116,7 @@ void Feature::loadPairAllelesCoefficient( const std::vector<std::string>& vector
       //Split string into two int (alleles) and a double(continuous) / int(discrete) 
       //We pass from codRules to codCoeff_
       Feature::pairAllelesCoefficient pAC = splitCodominanceRuleIntoPairAllelesCoefficient ( CodominanceRuleWithouSpaces ) ; 
-      //Store into set codCoeff_ (maybe a better name... )
-      //TODO: if insert (a,b) insert also (a,a) and (b,b)
+      //Store into set
       addToSetPairAllelesCoefficientRecursive( pAC ) ;
     }
 
@@ -138,7 +137,7 @@ void Feature::addToSetPairAllelesCoefficientRecursive( Feature::pairAllelesCoeff
 
 
   //TODO
-  // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer)
+  // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer) OR probability !!!
   // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
 void Feature::buildDefaultPairAllelesCoefficient() {
 
@@ -183,20 +182,26 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
 
   size_t pos = 0 ;
 
+  string RuleToBeSplit = CodominanceRuleWithouSpaces ;
+  
   //Get allele1 (int)
-  pos = CodominanceRuleWithouSpaces.find( featuresIO::delimiterAllele ) ;
-  std::string token = CodominanceRuleWithouSpaces.substr( 0 , pos ) ;
+  pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
+  std::string token = RuleToBeSplit.substr( 0 , pos ) ;
+
   int allele1 = std::stoi( token ) ;
 
-  CodominanceRuleWithouSpaces.substr( pos + featuresIO::delimiterAllele.length() ) ;
+  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterAllele.length() ) ;
 
   //Get allele2 (int)
-  pos = CodominanceRuleWithouSpaces.find( featuresIO::delimiterCoefficient ) ;
-  token = CodominanceRuleWithouSpaces.substr( 0 , pos ) ;
+  pos = RuleToBeSplit.find( featuresIO::delimiterCoefficient ) ;
+  token = RuleToBeSplit.substr( 0 , pos ) ;
+
   int allele2 = std::stoi( token ) ;
 
   //Get coefficient (int/double depending on Nature of the Feature)
-  std::string stringCoefficient = CodominanceRuleWithouSpaces.substr( 0 , pos ) ; 
+  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
+
+  std::string stringCoefficient = RuleToBeSplit ; 
 
   switch( this->nature() ){
     case C : 
@@ -216,6 +221,7 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
 // Add same allele id the value 1 for codominance between them 
 
 //TODO: rename checkSetPairAllelesCoefficientConsistency
+//Check that no coefficient is equal to zero
 void Feature::checkPairAllelesCoeffcientConsistency() {
 
 
@@ -240,9 +246,10 @@ void Feature::debugPrintToStandardOutput() {
   cout << setPairAllelesCoefficient_.size() << " rules : " << endl ;
   std::unordered_set<pairAllelesCoefficient, pairAllelesCoefficientHasher >::const_iterator it = setPairAllelesCoefficient_.begin() ;
   while(it != setPairAllelesCoefficient_.end() ){
-    cout << it->pairAlleles_.first << " " << it->pairAlleles_.second << " " ;
+    cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " ;
     if( nature_ == D ) cout << it->dominantAllele_ ;
     else cout << it->coeffCodominance_ ;
+  cout << "\n" ; 
     it++;
   }
   cout << "\n\n" ; 

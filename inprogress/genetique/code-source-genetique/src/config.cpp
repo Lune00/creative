@@ -64,7 +64,7 @@ namespace featuresIO {
       parseAbstractFeature( settingFeature ); 
     }
     cerr << "Number of features loaded : " << abstractFeatures.size() << endl ;
-    debugPrintAllAbstractFeaturesToStandardOutput() ;
+    //debug::debugPrintAllAbstractFeaturesToStandardOutput() ;
   }
 
   // Parse each abstractFeature of abstractFeatures
@@ -162,13 +162,19 @@ namespace featuresIO {
     return string ;
   }
 
+}
+
+namespace debug {
+
   void debugPrintAllAbstractFeaturesToStandardOutput() {
     cout << "Library of features contains : " << endl ;
-    for( std::vector<Feature*>::const_iterator it = abstractFeatures.begin() ; it != abstractFeatures.end() ; it++ ) {
+    for( std::vector<Feature*>::const_iterator it = featuresIO::abstractFeatures.begin() ; it != featuresIO::abstractFeatures.end() ; it++ ) {
       (*it)->debugPrintToStandardOutput();
     }
   }
+  void debugPrintToStandardOutput(const std::string string ) {
+    std::cout << string << std::endl ;
+  }
 }
-
 
 
