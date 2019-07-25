@@ -111,7 +111,9 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
     else {
       //Split string into two int (alleles) and a double(continuous) / int(discrete) 
       //We pass from codRules to codCoeff_
-      Feature::Rule rule = splitStringRuleIntoRule ( stringRuleWithouSpaces ) ; 
+      Feature::Rule tmp_rule = splitStringRuleIntoRule ( stringRuleWithouSpaces ) ; 
+      Feature::Rule rule = buildRule (tmp_rule ) ;
+
       //Store into set
       addToRules( rule ) ;
     }
@@ -195,20 +197,24 @@ Feature::Rule Feature::splitStringRuleIntoRule( const std::string & stringRuleWi
   RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
   std::string stringCoefficient = RuleToBeSplit ; 
 
-  //Check if allele1 <= allele2 : if the case, coefficient = 1 - coefficient ; 
   double domination = std::stod( stringCoefficient ) ;
 
-  //TODO : to be moved to another function. This function must only split the stringRule into a structRule
-  if ( allele2  < allele1 )
-    domination = 1. - domination ;
+  //Constructor of Rule puts automatically 
+  return Rule ( allele1, allele2 , domination ) ;
 
-  //Basé sur la nature : 
+}
+
+//Handle the discrete Case with probability : do a last check of the value of dominance_
+Feature::Rule Feature::buildRule( const Rule& rule ) {
 
   switch( this->nature() ){
+
     case C : 
-      return Rule(allele1, allele2, domination ) ; 
+      return rule ; 
+
     case D :
-      return Rule(allele1, allele2, domination ) ; 
+      return rule ;
+
     case Undefined : 
       //Never reached, exception throwed before in setNature
       return Rule( 0 ) ; 
@@ -216,7 +222,6 @@ Feature::Rule Feature::splitStringRuleIntoRule( const std::string & stringRuleWi
   }
 
 }
-
 
 //TODO
 //Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 

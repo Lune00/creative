@@ -10,11 +10,14 @@
 
 class Feature {
 
-  //For managing codominance rules between alleles
+  //Rule between each pair of alleles of one gene
   struct Rule {
 
     std::pair < int , int > pairAlleles_ ;
 
+    //domination_ : signification in both cases :
+      //In discrete case : probability of expression of allele1 on allele2
+      //In continuous case : % of expression of allele1 and 1-% of expression of allele2 
     double domination_ ; 
 
     //If the rule is for a discrete feature with a probability expression of the gene = presence of 'p' in the rule
@@ -27,12 +30,16 @@ class Feature {
 
     //Alleles always stored as a pair(a,b) with a <= b
     Rule(int allele1, int allele2, double domination, bool discreteCaseWithProbability = false ) :
-      domination_ ( domination ), discreteCaseWithProbability_(discreteCaseWithProbability)
+      discreteCaseWithProbability_(discreteCaseWithProbability)
     {
-      if ( allele1 < allele2 ) 
+      if ( allele1 < allele2 ) { 
 	pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
-      else
+	domination_ = domination ; 
+      }
+      else {
 	pairAlleles_ = std::make_pair( allele2 , allele1 ) ;
+	domination_ = 1. - domination ;
+      }
     }
 
     //Works properly whatever the nature 
@@ -88,8 +95,11 @@ class Feature {
   void addToRules(Feature::Rule ) ;
   void buildDefaultRules( ) ;
 
-  //'CodominanceRule' refers to the string given by the user in the config file
+  //Split string Rule (from file) into a struct temp Rule
   Rule splitStringRuleIntoRule( const std::string& ) ;
+  //Get the Rule from splitStringRuleIntoRule and build new one (the true one) with correct behavior 
+  Rule buildRule( const Feature::Rule& ) ;
+
   bool checkRegexForRule(const std::string& ) ;
 
   void checkRulesConsistency( ) ;
@@ -100,14 +110,20 @@ class Feature {
 
   private :
 
-  //Alleles parameters : number and value for each nu
+  //Abstract Feature :
+  
+  //label (abstract name, id in the config file. Different features can be built from the same abstract feature identified by its label)
   std::string label_ ;
+  //name (real name in the program) 
   std::string name_ ;
+  //nature (Discrete Or Continuous)
   Nature nature_  ;
 
+  //If alleles have been defined or not by the user (config file)
   bool AllelesDefinedManually_ ; 
 
-  //Raw phenotype value lies in the interval [-1:1]. Have to be rescaled my min/max to represents a quantity with a meaning and unit.
+  //Abstract phenotype value. Lies in the interval [-1:1].
+  //Have to be rescaled my min/max to represents a quantity with a meaning and unit.
   double value_ ;
 
   //The value of the phenotype must lie in the interval [valueMin_:valueMax_]
@@ -117,11 +133,10 @@ class Feature {
   //Number of genes to code for the trait (by default 1 if nature_ = 0 )
   unsigned int numGenes_ ;
 
-  //Alleles available for each gene
+  //Alleles available for this feature for all its genes
   std::vector<int> alleles_ ;
-  //CodominanceRule for each alleles (tmp struct)
 
-  //Store Rules between each Allele of the same gene
+  //Store Rules between each Allele for the same gene
   std::unordered_set< Rule, RuleHasher >  setOfRules_ ;
 } ;
 
