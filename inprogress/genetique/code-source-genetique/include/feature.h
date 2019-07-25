@@ -10,7 +10,6 @@
 
 class Feature {
 
-
   //For managing codominance rules between alleles
   //TODO: change it. Change the name to Relation or Rule (maybe Rule to be consistent with the rest of the code)
   struct pairAllelesCoefficient {
@@ -18,19 +17,15 @@ class Feature {
     std::pair < int , int > pairAlleles_ ;
 
     //TODO : change to domination : how allele1 dominate allele 2
-    //double domination_ ;
     //In the case of Continuous : contribution of each allele in % to the continuous value of the feature
     //In the case of Discrete : probability of expression.
     //Interface in the config file. For discrete we could say : '3-6=3' dominance = 1. (3 domine 6 always), or '3-6=p0.5' 3 domine 6 with a probability 0.5. We should add the p to avoid complication in the regex verification (or not)
     //We should also have a check that in the first expression the domination operant (3 here) is found on the left operand.
-    double coeffCodominance_ ;// Only use for Continuous
-
-    //TODO : remove this. 
-    int dominantAllele_ ; // Only use for Discrete
+    double domination_ ; 
 
     //Alleles always stored as a pair(a,b) with a <= b
-    pairAllelesCoefficient(int allele1, int allele2, double coeffCodominance, int dominantAllele ) :
-      coeffCodominance_(coeffCodominance), dominantAllele_(dominantAllele)  
+    pairAllelesCoefficient(int allele1, int allele2, double domination ) :
+      domination_ ( domination )  
     {
       if ( allele1 < allele2 ) 
 	pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
@@ -41,12 +36,10 @@ class Feature {
     //Works properly whatever the nature 
     pairAllelesCoefficient( int allele ) {
       pairAlleles_ = std::make_pair ( allele, allele ) ;
-      coeffCodominance_ = 1. ;
-      //Dominant allele is itself 
-      dominantAllele_ = allele ;
+      domination_ = 1. ;
     }
 
-    //Equality based on pairAlleles_
+    //Equality 
     bool operator==(const pairAllelesCoefficient& p ) const {
       if ( pairAlleles_ == p.pairAlleles_ )
 	return true;

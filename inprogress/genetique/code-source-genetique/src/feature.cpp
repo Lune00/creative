@@ -5,12 +5,9 @@
 
 using namespace std ; 
 
-
 Feature::Feature() {
-
   // [ ni lignes * nj colonnes ] Element[i][j] = i * nj + j , 0 < j < nj and 0 < i < ni
   //double * codominanceTable_ = new double [ geneticParameters::geneSize * geneticParameters::geneSize ] ;
-
 }
 
 Feature::Nature Feature::stringToEnum( std::string nature ) {
@@ -199,13 +196,21 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
   RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
   std::string stringCoefficient = RuleToBeSplit ; 
 
+  //Check if allele1 <= allele2 : if the case, coefficient = 1 - coefficient ; 
+  double domination = std::stod( stringCoefficient ) ;
+
+  if ( allele2  < allele1 )
+    domination = 1. - domination ;
+
   switch( this->nature() ){
     case C : 
-      return pairAllelesCoefficient(allele1, allele2, std::stod( stringCoefficient ), 0 ) ; 
+      return pairAllelesCoefficient(allele1, allele2, domination ) ; 
     case D :
-      return pairAllelesCoefficient(allele1, allele2, 0. , std::stoi( stringCoefficient ) ) ; 
-      //TODO DESIGN: if we put a double coefficient stating for the probability of an allele dominating the other
-      //For the moment we assume it is always 1 ex : '3-2=3' -> 3 dominates. But we could have '3-2=0.5' -> 3 dominates hwith a probability 0.5. We need further test....
+      return pairAllelesCoefficient(allele1, allele2, domination ) ; 
+    case Undefined : 
+      //Never reached, exception throwed before in setNature
+      return pairAllelesCoefficient( 0 ) ; 
+      ;
   }
 
 }
@@ -242,9 +247,7 @@ void Feature::debugPrintToStandardOutput() {
   cout << setPairAllelesCoefficient_.size() << " rules : " << endl ;
   std::unordered_set<pairAllelesCoefficient, pairAllelesCoefficientHasher >::const_iterator it = setPairAllelesCoefficient_.begin() ;
   while(it != setPairAllelesCoefficient_.end() ){
-    cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " ;
-    if( nature_ == D ) cout << it->dominantAllele_ ;
-    else cout << it->coeffCodominance_ ;
+    cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
   cout << "\n" ; 
     it++;
   }
