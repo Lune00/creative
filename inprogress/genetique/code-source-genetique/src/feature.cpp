@@ -91,7 +91,94 @@ void Feature::setAllelesDefault( ) {
   }
 }
 
-// ex : "1-3=0.8" : alleles 1 and 3, coefficient 0.8 such that alleles 1 dominates by 0.8 allele 3
+
+//Different split according to nature (different syntaxes for the rules)
+Feature::Rule Feature::splitStringRuleIntoRule(const std::string& stringRuleWithouSpaces ) {
+
+      switch( nature_ ) {
+	case C :
+	  return splitStringRuleIntoRuleContinuous( stringRuleWithouSpaces ) ;
+
+	case D :
+	  return splitStringRuleIntoRuleDiscrete( stringRuleWithouSpaces ) ;
+
+	case Undefined :
+	  return Rule( false ) ;
+      }
+}
+
+Feature::Rule Feature::splitStringRuleIntoRuleDiscrete( const std::string& stringRuleWithouSpaces ) {
+
+  std::size_t pos = 0 ;
+  string RuleToBeSplit = stringRuleWithouSpaces ;
+
+  //Get allele1 (int)
+  pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
+  std::string token = RuleToBeSplit.substr( 0 , pos ) ;
+  int allele1 = std::stoi( token ) ;
+
+  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterAllele.length() ) ;
+
+  //Get allele2 (int)
+  pos = RuleToBeSplit.find( featuresIO::delimiterCoefficient ) ;
+  token = RuleToBeSplit.substr( 0 , pos ) ;
+  int allele2 = std::stoi( token ) ;
+
+  //Get coefficient (int/double depending on Nature of the Feature)
+  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
+
+  //There is a flag indicating probability? 
+  std::size_t foundFlag = RuleToBeSplit.find( featuresIO::flagProbability ) ;
+
+  //In the case of absence of flag
+  if( foundFlag == std::string::npos ) {
+    int dominant_allele = std::stoi( RuleToBeSplit ) ;
+
+    //Check that in syntax a-b=c c is equal to a or b
+    if( dominant_allele != allele1 && dominant_allele != allele2 ) return Rule( allele1, allele2 , false ) ; 
+    if( dominant_allele == allele1 && allele1 < allele2 ) return Rule( allele1, allele2 , 1. ) ; 
+    else if( dominant_allele == allele1 && allele1 > allele2 ) return Rule( allele2, allele1 , 0. ) ;
+    else if( dominant_allele == allele2 && allele1 < allele2 ) return Rule( allele1, allele2 , 0. ) ;
+    else if( dominant_allele == allele2 && allele1 > allele2 ) return Rule( allele2, allele1 , 1. ) ;
+
+  }
+  else {
+
+    cout << "p flag " << endl ;
+
+  }
+}
+
+//This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
+//is SYNTAXICALLY correct (type, number) and we can process it without any further tests
+Feature::Rule Feature::splitStringRuleIntoRuleContinuous( const std::string & stringRuleWithouSpaces ) {
+
+  size_t pos = 0 ;
+  string RuleToBeSplit = stringRuleWithouSpaces ;
+
+  //Get allele1 (int)
+  pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
+  std::string token = RuleToBeSplit.substr( 0 , pos ) ;
+  int allele1 = std::stoi( token ) ;
+
+  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterAllele.length() ) ;
+
+  //Get allele2 (int)
+  pos = RuleToBeSplit.find( featuresIO::delimiterCoefficient ) ;
+  token = RuleToBeSplit.substr( 0 , pos ) ;
+  int allele2 = std::stoi( token ) ;
+
+  //Get coefficient (int/double depending on Nature of the Feature)
+  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
+  std::string stringCoefficient = RuleToBeSplit ; 
+
+  double domination = std::stod( stringCoefficient ) ;
+
+  //Constructor of Rule puts automatically 
+  return Rule ( allele1, allele2 , domination ) ;
+
+}
+
 void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules ) {
 
   for (unsigned int i = 0 ; i != vectorCodominanceRules.size() ; i ++ ) {
@@ -110,15 +197,13 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
     }
 
     else {
-      //Split string into a Rule (pair<int,int> and double)
-      Feature::Rule tmp_rule = splitStringRuleIntoRule ( stringRuleWithouSpaces ) ; 
 
-      //TODO : manage discrete syntaxes : transform 1:2=2 into 1:2=p0.
+      Feature::Rule tmp_rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
 
       //Check the Rule Validity (intern logic): alleles exist in the vec alleles_ , domination belongs to [0 :1]
       if ( isRuleValid ( tmp_rule ) ) {
-	Feature::Rule rule = buildRule (tmp_rule ) ;
-	//Store into set
+	Feature::Rule rule = buildRule ( tmp_rule ) ;
+	//Store
 	addToRules( rule ) ;
       }
       else {
@@ -135,6 +220,7 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 
 bool Feature::isRuleValid(const Feature::Rule& rule ) {
 
+  if( !rule.isCorrect_ ) return false ; 
   //Check that pairAlleles_ contain alleles in the vector alleles_
   int allele1 = rule.pairAlleles_.first ;
   int allele2 = rule.pairAlleles_.second ;
@@ -196,7 +282,7 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
       //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
     case D : 
 
-      if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeature)) )
+      if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
 	return true ;
       else
 	return false; 
@@ -206,35 +292,6 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
 }
 
 
-//This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
-//is SYNTAXICALLY correct (type, number) and we can process it without any further tests
-Feature::Rule Feature::splitStringRuleIntoRule( const std::string & stringRuleWithouSpaces ) {
-
-  size_t pos = 0 ;
-  string RuleToBeSplit = stringRuleWithouSpaces ;
-
-  //Get allele1 (int)
-  pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
-  std::string token = RuleToBeSplit.substr( 0 , pos ) ;
-  int allele1 = std::stoi( token ) ;
-
-  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterAllele.length() ) ;
-
-  //Get allele2 (int)
-  pos = RuleToBeSplit.find( featuresIO::delimiterCoefficient ) ;
-  token = RuleToBeSplit.substr( 0 , pos ) ;
-  int allele2 = std::stoi( token ) ;
-
-  //Get coefficient (int/double depending on Nature of the Feature)
-  RuleToBeSplit = RuleToBeSplit.substr( pos + featuresIO::delimiterCoefficient.length() ) ;
-  std::string stringCoefficient = RuleToBeSplit ; 
-
-  double domination = std::stod( stringCoefficient ) ;
-
-  //Constructor of Rule puts automatically 
-  return Rule ( allele1, allele2 , domination ) ;
-
-}
 
 //Handle the discrete Case with syntaxes
 Feature::Rule Feature::buildRule( const Rule& rule ) {
@@ -250,7 +307,7 @@ Feature::Rule Feature::buildRule( const Rule& rule ) {
 
     case Undefined : 
       //Never reached, exception throwed before in setNature
-      return Rule( 0 ) ; 
+      return Rule( false ) ; 
       ;
   }
 

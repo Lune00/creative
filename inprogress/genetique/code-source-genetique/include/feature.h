@@ -58,6 +58,11 @@ class Feature {
       domination_ = 1. ;
       discreteCaseWithProbability_ = false ;
     }
+    Rule(int allele1, int allele2 , bool isCorrect) : isCorrect_(isCorrect) {
+      pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
+      domination_ = 1. ;
+      discreteCaseWithProbability_ = false ;
+    }
 
     //Equality 
     bool operator==(const Rule& r ) const {
@@ -107,6 +112,8 @@ class Feature {
 
   //Split string Rule (from file) into a struct temp Rule
   Rule splitStringRuleIntoRule( const std::string& ) ;
+  Rule splitStringRuleIntoRuleContinuous( const std::string& ) ;
+  Rule splitStringRuleIntoRuleDiscrete( const std::string& ) ;
   //Get the Rule from splitStringRuleIntoRule and build new one (the true one) with correct behavior 
   Rule buildRule( const Feature::Rule& ) ;
   //Check the validity of a Rule

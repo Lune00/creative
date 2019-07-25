@@ -70,6 +70,7 @@ namespace featuresIO {
   const std::string regexDiscreteFeatureBothSyntaxes = "[0-9]*-[0-9]*=([0-9]*$|p(0\\.?[0-9]*|1\\.[0]*$))" ;
   const std::string delimiterAllele = "-" ;
   const std::string delimiterCoefficient = "=" ;
+  const std::string flagProbability = "p" ;
 
   //Features loaded from the file and in the genetic base
   extern std::vector<Feature*> abstractFeatures ;

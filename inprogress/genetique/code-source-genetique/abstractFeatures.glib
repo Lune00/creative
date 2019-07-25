@@ -11,7 +11,7 @@ abstractFeatures=(
     nature = "D" ;
     nGenes = 1 ;
     alleles = (1 , 2 , 3 );
-    codRules = ( "1-2=1", "1-3=3", "2-3=3");
+    codRules = ( "2-1=1", "3-1=1", "3-2=3");
     },
     { 
     label = "foot-size" ;
