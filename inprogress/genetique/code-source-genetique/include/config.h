@@ -58,10 +58,15 @@ namespace featuresIO {
 
   //File storing the features to be loaded
   const std::string abstractFeaturesFile = "abstractFeatures.glib" ;
+
   //Syntax of the codRules
   //const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
   const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\\.?[0-9]*|1\\.[0]*$|1$)" ;
   const std::string regexDiscreteFeature = "[0-9]*-[0-9]*=[0-9]*$" ;
+  //Match 2 syntaxes : 
+  // 'a-b=a' (where a always dominate b (equiv a-b=p1.) or
+  // 'a-b=p0.3' (where a dominates b with probability p=0.3) 
+  const std::string regexDiscreteFeatureBothSyntaxes = "[0-9]*-[0-9]*=([0-9]*$|p(0\\.?[0-9]*|1\\.[0]*$))" ;
   const std::string delimiterAllele = "-" ;
   const std::string delimiterCoefficient = "=" ;
 

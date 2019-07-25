@@ -108,23 +108,40 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
       return ;
     }
+
     else {
-      //Split string into two int (alleles) and a double(continuous) / int(discrete) 
-      //We pass from codRules to codCoeff_
+      //Split string into a Rule (pair<int,int> and double)
       Feature::Rule tmp_rule = splitStringRuleIntoRule ( stringRuleWithouSpaces ) ; 
-      Feature::Rule rule = buildRule (tmp_rule ) ;
 
-      //Store into set
-      addToRules( rule ) ;
-    }
+      //Check that alleles exist in the alleles_ , and domination belongs to [0 :1]
+      if ( isRuleValid ( tmp_rule ) ) {
+	Feature::Rule rule = buildRule (tmp_rule ) ;
+	//Store into set
+	addToRules( rule ) ;
+      }
+      else {
 
-  }
+	//Throw exception : 
+	ostringstream oss ;
+	oss << "Feature : " << this->label() << " has invalid rule.  " ;
+	oss << tmp_rule.pairAlleles_.first << "-"<< tmp_rule.pairAlleles_.second << endl ;
+	throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
+	return ;
+
+      } } }
+
+}
+
+
+bool Feature::isRuleValid(const Feature::Rule& rule ) {
+
+  return true ;
 
 }
 
 void Feature::addToRules( Feature::Rule rule ) {
 
-  //add to the set also (a,a) and (b,b) with default coeff 1
+  //add to the set also (a,a) and (b,b) with default domination 1
   Rule first_first ( rule.pairAlleles_.first ) ;
   Rule second_second ( rule.pairAlleles_.second ) ;
 
@@ -134,17 +151,17 @@ void Feature::addToRules( Feature::Rule rule ) {
 }
 
 
-  //TODO
-  // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer) OR probability !!!
-  // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
+//TODO
+// If feature is Discrete : random codominance coefficients are either 0 or 1 (integer) OR probability !!!
+// If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
 void Feature::buildDefaultRules() {
 
   switch ( this->nature() ) {
     case Feature::D : 
-      cout << "Feature '"<< this->label()<< "' codominance coefficients are set according to default parameters\n";
+      cout << "Feature '"<< this->label()<< "' Rules are set according to default parameters\n";
       break ;
     case Feature::C : 
-      cout << "Feature '"<< this->label()<< "' codominance coefficients are set according to default parameters\n";
+      cout << "Feature '"<< this->label()<< "' Rules are set according to default parameters\n";
       break ;
     case Feature::Undefined : 
       cout<< "Undefined\n" ;
@@ -180,7 +197,7 @@ Feature::Rule Feature::splitStringRuleIntoRule( const std::string & stringRuleWi
 
   size_t pos = 0 ;
   string RuleToBeSplit = stringRuleWithouSpaces ;
-  
+
   //Get allele1 (int)
   pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
   std::string token = RuleToBeSplit.substr( 0 , pos ) ;
@@ -204,11 +221,12 @@ Feature::Rule Feature::splitStringRuleIntoRule( const std::string & stringRuleWi
 
 }
 
-//Handle the discrete Case with probability : do a last check of the value of dominance_
+//Handle the discrete Case with syntaxes
 Feature::Rule Feature::buildRule( const Rule& rule ) {
 
   switch( this->nature() ){
 
+    //Nothing to do
     case C : 
       return rule ; 
 
@@ -247,7 +265,7 @@ void Feature::debugPrintToStandardOutput() {
   cout << "number of genes : " <<numGenes_ << endl ;
   cout << "alleles : " ;
   for(unsigned int i = 0 ; i != alleles_.size() ; i++){ 
-  cout << alleles_[i] << " ";
+    cout << alleles_[i] << " ";
   }
   cout <<endl ;
 
@@ -255,7 +273,7 @@ void Feature::debugPrintToStandardOutput() {
   std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
   while(it != setOfRules_.end() ){
     cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
-  cout << "\n" ; 
+    cout << "\n" ; 
     it++;
   }
   cout << "\n\n" ; 
