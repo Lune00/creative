@@ -30,7 +30,8 @@ namespace exceptions {
     public : 
       MyStandardException( const char * Msg, int Line ) {
 	std::ostringstream oss ;
-	oss << "Error lign " << Line << " --- " << Msg  ; 
+	//oss << "Error thrown at lign " << Line << " in the sourcecode - " << Msg ; 
+	oss << Msg << " line " << Line  ; 
 	this->msg = oss.str() ;
       }
       virtual const char * what() const throw () { return this->msg.c_str() ; }

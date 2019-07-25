@@ -99,7 +99,7 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
     std::string stringRule = vectorCodominanceRules[ i ] ;
     std::string stringRuleWithouSpaces  = featuresIO::removeWhiteSpacesFromString( stringRule ) ;
 
-    //Check the Rule (correct expression)
+    //Check the Rule Syntax
     if( ! checkRegexForRule( stringRuleWithouSpaces ) )  {
 
       //Throw exception : 
@@ -113,18 +113,19 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
       //Split string into a Rule (pair<int,int> and double)
       Feature::Rule tmp_rule = splitStringRuleIntoRule ( stringRuleWithouSpaces ) ; 
 
-      //Check that alleles exist in the alleles_ , and domination belongs to [0 :1]
+      //TODO : manage discrete syntaxes : transform 1:2=2 into 1:2=p0.
+
+      //Check the Rule Validity (intern logic): alleles exist in the vec alleles_ , domination belongs to [0 :1]
       if ( isRuleValid ( tmp_rule ) ) {
 	Feature::Rule rule = buildRule (tmp_rule ) ;
 	//Store into set
 	addToRules( rule ) ;
       }
       else {
-
 	//Throw exception : 
 	ostringstream oss ;
-	oss << "Feature : " << this->label() << " has invalid rule.  " ;
-	oss << tmp_rule.pairAlleles_.first << "-"<< tmp_rule.pairAlleles_.second << endl ;
+	oss << "Feature : " << this->label() << " has invalid rule. Rule : " ;
+	oss << tmp_rule.pairAlleles_.first << "-"<< tmp_rule.pairAlleles_.second ;
 	throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
 	return ;
 
@@ -132,10 +133,24 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 
 }
 
-
 bool Feature::isRuleValid(const Feature::Rule& rule ) {
 
-  return true ;
+  //Check that pairAlleles_ contain alleles in the vector alleles_
+  int allele1 = rule.pairAlleles_.first ;
+  int allele2 = rule.pairAlleles_.second ;
+
+  bool allele1Found = false ;
+  bool allele2Found = false ;
+
+  std::vector<int>::const_iterator it = std::find( alleles_.begin(), alleles_.end() , allele1 ) ;
+  if( it != alleles_.end() ) allele1Found = true ; 
+  it = std::find( alleles_.begin(), alleles_.end() , allele2 ) ;
+  if( it != alleles_.end() ) allele2Found = true ; 
+
+  //Check that domination is between 0. and 1.
+  bool dominationIsValid = ( rule.domination_ >= 0. ) && ( rule.domination_ <= 1. ) ;
+
+  return ( allele1Found && allele2Found && dominationIsValid ) ;
 
 }
 

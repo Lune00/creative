@@ -20,11 +20,7 @@ all: $(EXEC)
 $(EXEC): $(OBJ) $(SOURCE_USER).o
 	$(CXX) $^ -o $@ $(LIBS)
 
-#Pas encore dependance automatique (refabrication du .o si dependance header modifié)
-#Dependances manuelles:
-main.o : $(INC_PATH)/rng.h
-main.o : $(INC_PATH)/config.h
-main.o : $(INC_PATH)/feature.h
+
 $(OBJ_PATH)/chromosomes.o : $(INC_PATH)/gene.h
 $(OBJ_PATH)/chromosomes.o : $(INC_PATH)/gene.h
 
@@ -37,6 +33,12 @@ $(SOURCE_USER).o: $(SOURCE_USER).cpp
 #2) sources de la bibliotheque
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp
 	$(CXX) -o $@ -c $< $(CXXFLAGS)
+
+#Pas encore dependance automatique (refabrication du .o si dependance header modifié)
+#Dependances manuelles:
+main.o : $(INC_PATH)/rng.h
+main.o : $(INC_PATH)/config.h
+main.o : $(INC_PATH)/feature.h
 
 #Pas encore tres clair pour moi PHONY...
 .PHONY: clean allclean
