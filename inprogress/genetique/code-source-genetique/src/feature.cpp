@@ -344,8 +344,11 @@ void Feature::debugPrintToStandardOutput() {
   cout << setOfRules_.size() << " rules : " << endl ;
   std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
   while(it != setOfRules_.end() ){
+    //Do not print a-a relation (for clarity)
+    if( it->pairAlleles_.first != it->pairAlleles_.second ){
     cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
     cout << "\n" ; 
+    }
     it++;
   }
   cout << "\n\n" ; 
