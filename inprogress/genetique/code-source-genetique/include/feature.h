@@ -11,21 +11,23 @@
 class Feature {
 
   //For managing codominance rules between alleles
-  //TODO: change it. Change the name to Relation or Rule (maybe Rule to be consistent with the rest of the code)
-  struct pairAllelesCoefficient {
+  struct Rule {
 
     std::pair < int , int > pairAlleles_ ;
 
-    //TODO : change to domination : how allele1 dominate allele 2
-    //In the case of Continuous : contribution of each allele in % to the continuous value of the feature
-    //In the case of Discrete : probability of expression.
-    //Interface in the config file. For discrete we could say : '3-6=3' dominance = 1. (3 domine 6 always), or '3-6=p0.5' 3 domine 6 with a probability 0.5. We should add the p to avoid complication in the regex verification (or not)
-    //We should also have a check that in the first expression the domination operant (3 here) is found on the left operand.
     double domination_ ; 
 
+    //If the rule is for a discrete feature with a probability expression of the gene = presence of 'p' in the rule
+    //ex : 1-0=p0.5 -> allele 1 dominates allele 0 with probability p = 0.5 
+    //ex : 0-1=p1 or 0-1=p1. -> allele 0 dominates allele 1 with p=1. (always)
+    //ex : 0-1=1 -> allele 1 dominates allele 0 with p=1. (always)
+    //
+    //False by default
+    bool discreteCaseWithProbability_ ;
+
     //Alleles always stored as a pair(a,b) with a <= b
-    pairAllelesCoefficient(int allele1, int allele2, double domination ) :
-      domination_ ( domination )  
+    Rule(int allele1, int allele2, double domination, bool discreteCaseWithProbability = false ) :
+      domination_ ( domination ), discreteCaseWithProbability_(discreteCaseWithProbability)
     {
       if ( allele1 < allele2 ) 
 	pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
@@ -34,14 +36,15 @@ class Feature {
     }
 
     //Works properly whatever the nature 
-    pairAllelesCoefficient( int allele ) {
+    Rule( int allele ) {
       pairAlleles_ = std::make_pair ( allele, allele ) ;
       domination_ = 1. ;
+      discreteCaseWithProbability_ = false ;
     }
 
     //Equality 
-    bool operator==(const pairAllelesCoefficient& p ) const {
-      if ( pairAlleles_ == p.pairAlleles_ )
+    bool operator==(const Rule& r ) const {
+      if ( pairAlleles_ == r.pairAlleles_ )
 	return true;
       else
 	return false;
@@ -49,10 +52,10 @@ class Feature {
 
   };
   //Hash function baserd on pairAlleles_
-  struct pairAllelesCoefficientHasher
+  struct RuleHasher
   {
     size_t
-      operator()(const pairAllelesCoefficient & obj) const
+      operator()(const Rule & obj) const
       {
 	return boost::hash<std::pair <int, int > >()(obj.pairAlleles_) ;
       }
@@ -81,16 +84,16 @@ class Feature {
   void setAlleles( const std::vector<int>& ) ;
   void setAllelesDefault( ) ;
 
-  void loadPairAllelesCoefficient(const std::vector< std::string > & vectorCodominanceRules ) ;
-  void addToSetPairAllelesCoefficientRecursive(Feature::pairAllelesCoefficient ) ;
-  void buildDefaultPairAllelesCoefficient( ) ;
+  void loadRules(const std::vector< std::string > & vectorCodominanceRules ) ;
+  void addToRules(Feature::Rule ) ;
+  void buildDefaultRules( ) ;
 
   //'CodominanceRule' refers to the string given by the user in the config file
-  pairAllelesCoefficient splitCodominanceRuleIntoPairAllelesCoefficient( const std::string& ) ;
-  bool checkRegexForCodominanceRule(const std::string& ) ;
+  Rule splitStringRuleIntoRule( const std::string& ) ;
+  bool checkRegexForRule(const std::string& ) ;
 
-  void checkPairAllelesCoeffcientConsistency( ) ;
-  void checkPairAllelesCoeffcientCompletness( ) ;
+  void checkRulesConsistency( ) ;
+  void checkRulesCompletness( ) ;
 
   //Debug:
   void debugPrintToStandardOutput() ;
@@ -118,8 +121,8 @@ class Feature {
   std::vector<int> alleles_ ;
   //CodominanceRule for each alleles (tmp struct)
 
-  //Codominance factor between each Allele of the same gene
-  std::unordered_set< pairAllelesCoefficient, pairAllelesCoefficientHasher >  setPairAllelesCoefficient_ ;
+  //Store Rules between each Allele of the same gene
+  std::unordered_set< Rule, RuleHasher >  setOfRules_ ;
 } ;
 
 

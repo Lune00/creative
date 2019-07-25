@@ -91,17 +91,16 @@ void Feature::setAllelesDefault( ) {
   }
 }
 
-//CodominanceRule refers to the string defining codominance coefficient between two alleles
 // ex : "1-3=0.8" : alleles 1 and 3, coefficient 0.8 such that alleles 1 dominates by 0.8 allele 3
-void Feature::loadPairAllelesCoefficient( const std::vector<std::string>& vectorCodominanceRules ) {
+void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules ) {
 
   for (unsigned int i = 0 ; i != vectorCodominanceRules.size() ; i ++ ) {
 
-    std::string CodominanceRule = vectorCodominanceRules[ i ] ;
-    std::string CodominanceRuleWithouSpaces  = featuresIO::removeWhiteSpacesFromString( CodominanceRule ) ;
+    std::string stringRule = vectorCodominanceRules[ i ] ;
+    std::string stringRuleWithouSpaces  = featuresIO::removeWhiteSpacesFromString( stringRule ) ;
 
     //Check the Rule (correct expression)
-    if( ! checkRegexForCodominanceRule( CodominanceRuleWithouSpaces ) )  {
+    if( ! checkRegexForRule( stringRuleWithouSpaces ) )  {
 
       //Throw exception : 
       ostringstream oss ;
@@ -112,31 +111,31 @@ void Feature::loadPairAllelesCoefficient( const std::vector<std::string>& vector
     else {
       //Split string into two int (alleles) and a double(continuous) / int(discrete) 
       //We pass from codRules to codCoeff_
-      Feature::pairAllelesCoefficient pAC = splitCodominanceRuleIntoPairAllelesCoefficient ( CodominanceRuleWithouSpaces ) ; 
+      Feature::Rule rule = splitStringRuleIntoRule ( stringRuleWithouSpaces ) ; 
       //Store into set
-      addToSetPairAllelesCoefficientRecursive( pAC ) ;
+      addToRules( rule ) ;
     }
 
   }
 
 }
 
-void Feature::addToSetPairAllelesCoefficientRecursive( Feature::pairAllelesCoefficient pAC ) {
+void Feature::addToRules( Feature::Rule rule ) {
 
   //add to the set also (a,a) and (b,b) with default coeff 1
-  pairAllelesCoefficient pACFirst ( pAC.pairAlleles_.first ) ;
-  pairAllelesCoefficient pACSecond ( pAC.pairAlleles_.second ) ;
+  Rule first_first ( rule.pairAlleles_.first ) ;
+  Rule second_second ( rule.pairAlleles_.second ) ;
 
-  setPairAllelesCoefficient_.insert( pACFirst ) ;
-  setPairAllelesCoefficient_.insert( pACSecond ) ;
-  setPairAllelesCoefficient_.insert( pAC ) ; 
+  setOfRules_.insert( first_first ) ;
+  setOfRules_.insert( second_second ) ;
+  setOfRules_.insert( rule ) ; 
 }
 
 
   //TODO
   // If feature is Discrete : random codominance coefficients are either 0 or 1 (integer) OR probability !!!
   // If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
-void Feature::buildDefaultPairAllelesCoefficient() {
+void Feature::buildDefaultRules() {
 
   switch ( this->nature() ) {
     case Feature::D : 
@@ -151,19 +150,19 @@ void Feature::buildDefaultPairAllelesCoefficient() {
 }
 
 //Check the Rule expression read from user file, check Regex depending on the nature of the feature
-bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
+bool Feature::checkRegexForRule( const std::string& stringRule ) {
 
   switch ( this->nature() ) { 
     case C : 
       //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
-      if( std::regex_match ( Rule , std::regex(featuresIO::regexContinuousFeature)) ) 
+      if( std::regex_match ( stringRule , std::regex(featuresIO::regexContinuousFeature)) ) 
 	return true ;
       else
 	return false; 
       //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
     case D : 
 
-      if( std::regex_match ( Rule , std::regex(featuresIO::regexDiscreteFeature)) )
+      if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeature)) )
 	return true ;
       else
 	return false; 
@@ -175,10 +174,10 @@ bool Feature::checkRegexForCodominanceRule( const std::string& Rule ) {
 
 //This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
 //is SYNTAXICALLY correct (type, number) and we can process it without any further tests
-Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoefficient( const std::string & CodominanceRuleWithouSpaces ) {
+Feature::Rule Feature::splitStringRuleIntoRule( const std::string & stringRuleWithouSpaces ) {
 
   size_t pos = 0 ;
-  string RuleToBeSplit = CodominanceRuleWithouSpaces ;
+  string RuleToBeSplit = stringRuleWithouSpaces ;
   
   //Get allele1 (int)
   pos = RuleToBeSplit.find( featuresIO::delimiterAllele ) ;
@@ -199,17 +198,20 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
   //Check if allele1 <= allele2 : if the case, coefficient = 1 - coefficient ; 
   double domination = std::stod( stringCoefficient ) ;
 
+  //TODO : to be moved to another function. This function must only split the stringRule into a structRule
   if ( allele2  < allele1 )
     domination = 1. - domination ;
 
+  //Basé sur la nature : 
+
   switch( this->nature() ){
     case C : 
-      return pairAllelesCoefficient(allele1, allele2, domination ) ; 
+      return Rule(allele1, allele2, domination ) ; 
     case D :
-      return pairAllelesCoefficient(allele1, allele2, domination ) ; 
+      return Rule(allele1, allele2, domination ) ; 
     case Undefined : 
       //Never reached, exception throwed before in setNature
-      return pairAllelesCoefficient( 0 ) ; 
+      return Rule( 0 ) ; 
       ;
   }
 
@@ -222,12 +224,12 @@ Feature::pairAllelesCoefficient Feature::splitCodominanceRuleIntoPairAllelesCoef
 //Check that every combination have been covered : 
 
 //TODO: rename checkSetPairAllelesCoefficientConsistency
-void Feature::checkPairAllelesCoeffcientConsistency() {
+void Feature::checkRulesConsistency() {
 
 
 }
 
-void Feature::checkPairAllelesCoeffcientCompletness() {
+void Feature::checkRulesCompletness() {
 
 
 }
@@ -244,9 +246,9 @@ void Feature::debugPrintToStandardOutput() {
   }
   cout <<endl ;
 
-  cout << setPairAllelesCoefficient_.size() << " rules : " << endl ;
-  std::unordered_set<pairAllelesCoefficient, pairAllelesCoefficientHasher >::const_iterator it = setPairAllelesCoefficient_.begin() ;
-  while(it != setPairAllelesCoefficient_.end() ){
+  cout << setOfRules_.size() << " rules : " << endl ;
+  std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
+  while(it != setOfRules_.end() ){
     cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
   cout << "\n" ; 
     it++;

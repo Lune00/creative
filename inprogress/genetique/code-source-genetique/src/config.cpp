@@ -145,14 +145,14 @@ namespace featuresIO {
     }
     catch(const SettingNotFoundException &nfex )
     {
-      abstractFeature->buildDefaultPairAllelesCoefficient( )  ;
+      abstractFeature->buildDefaultRules( )  ;
     }
 
-    abstractFeature->loadPairAllelesCoefficient ( vectorCodominanceRules ) ;
+    abstractFeature->loadRules ( vectorCodominanceRules ) ;
 
     //Check completness and consistency of the rules , throw exception if not
-    abstractFeature->checkPairAllelesCoeffcientCompletness( ) ;
-    abstractFeature->checkPairAllelesCoeffcientConsistency( ) ;
+    abstractFeature->checkRulesCompletness( ) ;
+    abstractFeature->checkRulesConsistency( ) ;
   }
 
 
