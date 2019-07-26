@@ -129,10 +129,9 @@ namespace featuresIO {
 
   }
 
-  //Read the 'codRules' (aka codominanceRule) codominance coefficient between two alleles as a codominanceRule from
-  //the config file as strings and load them in a struct pairAllelesCoefficient ( a struct of Feature)
-  //Check are performed here for the correct syntax of the Rule (eg number and delimiter)
-  //After being read into a vector (if exist) abstractFeature read the vector and process them into pairAllelesCoefficient
+  //Read the 'codRules' (aka Rules) or codominance coefficient between two alleles as from
+  //the config file as strings and load them in a struct 'Rule' ( a struct of Feature)
+  //Check are performed here for the correct syntax of the Rule (eg number and delimiter), logic and completness
   void readCodominanceRules(const Setting& settingFeature, Feature* abstractFeature ){
 
     std::vector<std::string> vectorCodominanceRules ;
@@ -149,10 +148,8 @@ namespace featuresIO {
     }
 
     abstractFeature->loadRules ( vectorCodominanceRules ) ;
-
     //Check completness and consistency of the rules , throw exception if not
     abstractFeature->checkRulesCompletness( ) ;
-    abstractFeature->checkRulesConsistency( ) ;
   }
 
 

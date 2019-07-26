@@ -58,6 +58,7 @@ class Feature {
       domination_ = 1. ;
       discreteCaseWithProbability_ = false ;
     }
+
     Rule(int allele1, int allele2 , bool isCorrect) : isCorrect_(isCorrect) {
       pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
       domination_ = 1. ;
@@ -114,15 +115,12 @@ class Feature {
   Rule splitStringRuleIntoRule( const std::string& ) ;
   Rule splitStringRuleIntoRuleContinuous( const std::string& ) ;
   Rule splitStringRuleIntoRuleDiscrete( const std::string& ) ;
-  //Get the Rule from splitStringRuleIntoRule and build new one (the true one) with correct behavior 
-  Rule buildRule( const Feature::Rule& ) ;
   //Check the validity of a Rule
   bool isRuleValid( const Feature::Rule& ) ;
   //Check the syntax of a Rule (from file)
   bool checkRegexForRule(const std::string& ) ;
 
   //Check over the set of Rules
-  void checkRulesConsistency( ) ;
   void checkRulesCompletness( ) ;
 
   //Debug:

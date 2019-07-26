@@ -196,19 +196,17 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 
     else {
 
-      Feature::Rule tmp_rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
+      Feature::Rule rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
 
       //Check the Rule Validity (intern logic): alleles exist in the vec alleles_ , domination belongs to [0 :1]
-      if ( isRuleValid ( tmp_rule ) ) {
-	Feature::Rule rule = buildRule ( tmp_rule ) ;
-	//Store
+      if ( isRuleValid ( rule ) ) {
 	addToRules( rule ) ;
       }
       else {
 	//Throw exception : 
 	ostringstream oss ;
 	oss << "Feature : " << this->label() << " has invalid rule. Rule : " ;
-	oss << tmp_rule.pairAlleles_.first << "-"<< tmp_rule.pairAlleles_.second ;
+	oss << rule.pairAlleles_.first << "-"<< rule.pairAlleles_.second ;
 	throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
 	return ;
 
@@ -289,38 +287,8 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
   }
 }
 
-
-
-//Handle the discrete Case with syntaxes
-Feature::Rule Feature::buildRule( const Rule& rule ) {
-
-  switch( this->nature() ){
-
-    //Nothing to do
-    case C : 
-      return rule ; 
-
-    case D :
-      return rule ;
-
-    case Undefined : 
-      //Never reached, exception throwed before in setNature
-      return Rule( false ) ; 
-      ;
-  }
-
-}
-
 //TODO
-//Here we have a collection of syntaxcially correct alCo.  We then need to check the logical aspects: 
-//Check that each int (allele id) match alleles stored in alleles_ 
 //Check that every combination have been covered : 
-
-//TODO: rename checkSetPairAllelesCoefficientConsistency
-void Feature::checkRulesConsistency() {
-
-
-}
 
 void Feature::checkRulesCompletness() {
 
