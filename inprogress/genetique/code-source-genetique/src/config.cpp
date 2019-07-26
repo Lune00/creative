@@ -77,8 +77,6 @@ namespace featuresIO {
     readNumGenes( settingFeature , abstractFeature ) ;
     readAlleles( settingFeature , abstractFeature ) ;
     readCodominanceRules( settingFeature , abstractFeature  ) ;
-
-
     abstractFeatures.push_back( abstractFeature ) ;
   }
 

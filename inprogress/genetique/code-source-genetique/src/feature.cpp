@@ -177,6 +177,7 @@ Feature::Rule Feature::splitStringRuleIntoRuleContinuous( const std::string & st
 
 }
 
+//Load the Rules into the setOfRules_ . Check each Rule validiy (syntax & logic) and global validity (Completness)
 void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules ) {
 
   for (unsigned int i = 0 ; i != vectorCodominanceRules.size() ; i ++ ) {
@@ -246,6 +247,7 @@ bool Feature::isRuleValid(const Feature::Rule& rule ) {
 
 }
 
+//Add Rule to setOfRules_ . Add automatically identical alleles pair with domination 1.
 void Feature::addToRules( Feature::Rule rule ) {
 
   //add to the set also (a,a) and (b,b) with default domination 1
@@ -279,6 +281,7 @@ void Feature::buildDefaultRules() {
 bool Feature::checkRegexForRule( const std::string& stringRule ) {
 
   switch ( this->nature() ) { 
+
     case C : 
       //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexContinuousFeature)) ) 
@@ -286,12 +289,14 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
       else
 	return false; 
       //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
+      //or 1-2=p0.5
+      
     case D : 
-
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
 	return true ;
       else
 	return false; 
+
     case Undefined :
       return false ;
   }
