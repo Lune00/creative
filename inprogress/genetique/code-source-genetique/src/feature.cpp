@@ -133,7 +133,6 @@ Feature::Rule Feature::splitStringRuleIntoRuleDiscrete( const std::string& strin
   //In the case of absence of flag
   if( foundFlag == std::string::npos ) {
     int dominant_allele = std::stoi( RuleToBeSplit ) ;
-
     //Check that in syntax a-b=c c is equal to a or b
     if( dominant_allele != allele1 && dominant_allele != allele2 ) return Rule( allele1, allele2 , false ) ; 
     if( dominant_allele == allele1 && allele1 < allele2 ) return Rule( allele1, allele2 , 1. ) ; 
@@ -143,9 +142,8 @@ Feature::Rule Feature::splitStringRuleIntoRuleDiscrete( const std::string& strin
 
   }
   else {
-
-    cout << "p flag " << endl ;
-
+    std::string domination = RuleToBeSplit.substr( RuleToBeSplit.find( featuresIO::flagProbability ) + 1 ) ;
+    return Rule( allele1 , allele2 , std::stod( domination ) ) ;
   }
 }
 
