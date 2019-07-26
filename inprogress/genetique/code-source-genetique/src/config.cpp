@@ -78,6 +78,7 @@ namespace featuresIO {
     readAlleles( settingFeature , abstractFeature ) ;
     readCodominanceRules( settingFeature , abstractFeature  ) ;
 
+
     abstractFeatures.push_back( abstractFeature ) ;
   }
 
@@ -148,10 +149,8 @@ namespace featuresIO {
     }
 
     abstractFeature->loadRules ( vectorCodominanceRules ) ;
-    //Check completness and consistency of the rules , throw exception if not
-    abstractFeature->checkRulesCompletness( ) ;
-  }
 
+  }
 
   std::string removeWhiteSpacesFromString( std::string string) {
     std::string::iterator end_pos = std::remove( string.begin() , string.end() , ' ') ;

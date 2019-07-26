@@ -121,7 +121,7 @@ class Feature {
   bool checkRegexForRule(const std::string& ) ;
 
   //Check over the set of Rules
-  void checkRulesCompletness( ) ;
+  bool checkRulesCompletness( ) ;
 
   //Debug:
   void debugPrintToStandardOutput() ;

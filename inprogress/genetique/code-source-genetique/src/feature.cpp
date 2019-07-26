@@ -212,8 +212,18 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 
       } } }
 
+  //Check completness and consistency of the rules , throw exception if not
+  if ( !checkRulesCompletness( ) ) {
+    //Throw exception : 
+    ostringstream oss ;
+    oss << "Feature : " << this->label() << " has incomplete set of Rules "<<endl ;
+    throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
+    return ;
+  }
+
 }
 
+//Check if a Rule is internally valid
 bool Feature::isRuleValid(const Feature::Rule& rule ) {
 
   if( !rule.isCorrect_ ) return false ; 
@@ -287,11 +297,16 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
   }
 }
 
-//TODO
-//Check that every combination have been covered : 
+//Check that the complete set of Rules cover all possible alleles combination. Global check on Rules 
+bool Feature::checkRulesCompletness() {
 
-void Feature::checkRulesCompletness() {
+  for( int i = 0 ; i < alleles_.size()  ; i++ ) {
+    for( int j = i + 1  ; j < alleles_.size()  ; j++ ) {
 
+      //Find (i,j) if not return false ;
+
+    }
+  }
 
 }
 
@@ -312,8 +327,8 @@ void Feature::debugPrintToStandardOutput() {
   while(it != setOfRules_.end() ){
     //Do not print a-a relation (for clarity)
     if( it->pairAlleles_.first != it->pairAlleles_.second ){
-    cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
-    cout << "\n" ; 
+      cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
+      cout << "\n" ; 
     }
     it++;
   }
