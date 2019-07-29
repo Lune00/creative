@@ -18,10 +18,6 @@ using  std::cerr ;
 using  std::cout ;
 using  std::endl ;
 
-//To be moved elsewhere another time:
-//Return factorial of the positive integer n
-int fact( int n) ;
-
 namespace exceptions {
 
   const char * writeMsg( std::ostringstream& os ) ;
@@ -38,6 +34,16 @@ namespace exceptions {
     private : 
       std::string msg ;
   } ;
+
+}
+
+
+namespace globalFunctions {
+
+//Return factorial of the positive integer n
+int fact( int n) ;
+
+
 
 }
 

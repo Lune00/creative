@@ -310,6 +310,7 @@ bool Feature::checkRulesCompletness() {
 
       //Find (i,j) if not return false ;
 
+
     }
   }
 
