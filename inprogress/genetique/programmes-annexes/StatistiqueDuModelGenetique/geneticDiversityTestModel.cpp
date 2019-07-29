@@ -7,6 +7,7 @@
 
 using namespace std;
 
+//Statistics functions - Self Explain
 
 double mean(const std::vector<double>& values ) {
   if(values.size() == 0 ) return 0. ;
@@ -50,6 +51,7 @@ double max(const std::vector<double>& values) {
   return maxVal ;
 }
 
+//Compute and write to file PDF of a vector of double values
 void writePdf(const std::vector<double>& values) {
 
   if(values.size() == 0 ) return ;
@@ -83,14 +85,14 @@ void writePdf(const std::vector<double>& values) {
   output.close() ;
 }
 
-
-
+//An int with an associated weight
 struct weightedNumber {
   unsigned int number_ ;
   unsigned int w_ ;
   weightedNumber(int number, int w) : number_(number), w_(w) {} ;
 };
 
+//return the sum of the weights of a vector of weightNumber
 int sumWeights( const std::vector<weightedNumber>& wn ) {
   int sum = 0 ;
   for(int i= 0; i!= wn.size() ; i++){
@@ -99,27 +101,26 @@ int sumWeights( const std::vector<weightedNumber>& wn ) {
   return sum ;
 }
 
+//return an int with a probability proprotional to is weight within the vector of weightedNumbers
+//aka ALIAS method
 int weightedRandomChoice( const std::vector<weightedNumber>& alleles ) {
 
-  //1) Generate a random number between 0 and 1 :
   double r = (random() / (double)RAND_MAX) ;
   r *= sumWeights( alleles ) ;
   for(int i = 0 ; i!= alleles.size() ; i++ ) {
     r -= alleles[i].w_ ;
     if ( r < 0. ) return alleles[i].number_ ;
   }
-
 }
 
 
-//Generate genes expression with weighted random choice of alleles.
-//Really nice resulsts. Allow to control the distribution
+//Generate genes expression with weighted random pair of alleles.
+//Really nice resulsts. Allow to control the distribution mean and variance.
 void generateSampleWithRandomCombinaisonWeightedAllelesDistribution( ) {
 
-  //// Weighted alleles test :
   std::vector<weightedNumber> alleles ;
 
-  //Pool of initially present alleles with weigh. Modelise the initial population
+  //Pool of initially present alleles with weight. Modelise the initial population and initial abundance
   alleles.push_back(weightedNumber( 0 , 1)) ;
   alleles.push_back(weightedNumber( 1 , 1)) ;
   alleles.push_back(weightedNumber( 2 , 1)) ;
@@ -145,7 +146,7 @@ void generateSampleWithRandomCombinaisonWeightedAllelesDistribution( ) {
       double coeff = (random() / (double)RAND_MAX) ;
       v += coeff * a + ( 1 - coeff) * b ;
     }
-    //Expression of the feature
+    //Expression of the feature (v is an average over ngenes -> Central Limit Theorem -> Gaussian)
     v /= (double)nGenes ;
     data.push_back( v ) ;
   }
@@ -156,7 +157,6 @@ void generateSampleWithRandomCombinaisonWeightedAllelesDistribution( ) {
   return ;
 
 }
-
 
 // Generate sample with random combinaisons of alleles : choose n( =ngenes) random pairs among N(nAlleles)
 // with n genes expressions for each final value of the feature v
