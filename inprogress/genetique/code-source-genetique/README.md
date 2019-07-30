@@ -36,7 +36,7 @@ Chaque caractère héréditaire, ou _feature_ est codée par un ou plusieurs gè
 
 Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un nombre flottant ( caractère continu comme la taille) ou par un entier (caractère discret comme l'absence de plumes), c'est sa _valeur_ . Cette _valeur_ est ensuite interprétable par l'utilisateur de la librairie.
 
-## Déclaration des _features_
+## Déclaration et fonctionnement des _features_
 
 Une _feature_ est un trait phénotypique qui est codé par un ensemble de gènes (couleur des ailes, taille, absence ou non d'un organe etc.. ).
 Deux natures de trait sont disponibles: continu (sa valeur est continue, elle peut prendre n'importe quelle valeur entre -1 et 1, comme la taille) et discret ( sa valeur est discrete et entiere, elle ne peut prendre que certaines valeurs spécifiques). Dans le cas d'une nature discrete l'expression des gènes contribuant à la feature renvoie un entier correspondant au numéro de l'allèle ( de 0 à 9 ) . Dans le cas d'une nature continue, l'expression des gènes contribuant à la feature renvoie un nombre flottant compris entre -1 et 1. 
@@ -92,7 +92,7 @@ Une règle s'écrit de la forme `alleleA-alleleB=?`où `?`est une syntaxe propre
 
 **Les règles de co-dominance, si elles sont écrites par l'utilisateur, doivent couvrir l'ensemble des combinaisons d'allèles possibles sinon un message d'erreur sera affiché et l'execution du programme arrêtée.**
 
-##### Cas d'une feature Discrete
+#### Cas d'une feature Discrete
 Dans le cas d'une feature discrete deux syntaxes sont possibles : 
 ``` 
 alleleA-alleleB=alleleA
@@ -105,7 +105,7 @@ où `p0.3`signifie que `alleleA` domine `alleleB`dans 30% des cas, c'est à dire
 
 **Remarque** : la syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. 
 
-##### Cas d'une feature Continue
+#### Cas d'une feature Continue
 Dans le cas d'une feature continue une seule syntaxe est possible : 
 ```
 a-b=c(a,b)
@@ -114,7 +114,7 @@ où `c(a,b)`est un nombre flottant **strictement compris entre 0 et 1.**
 Par exemple `1-3=0.3`indique que l'allèle `1` contribue à 30% à l'expression de la feature, et que l' allèle`3` contribue à 70%.
 
 
-#### Contribution des allèles et calcul de l'expression d'une _feature_
+## Contribution des allèles et calcul de l'expression d'une _feature_
 
 Chaque allèle, un entier compris entre 0 et 9, contribue de manière égale à leur propre valeur.
 
@@ -133,12 +133,12 @@ Lorsqu'une feature est codée sur plusieurs gènes, la `valeur`de la feature s'e
 TODO : WRITE EQUATION Latex???
 
 
-### Structure des gènes
+## Structure des gènes
 
 Chaque gène est un tableau d'entiers de dix bases nucléiques en binaire. La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 ou 0 a la contribution totale). Par exemple l'allèle `6` peut être représentée sous la forme d'une séquence `1110110010`, où la position des `1`et des `0` est aléatoire. La contribution d'une allèle a l'expression d'une paire de gènes est donc égale à la somme des bases nucléiques qui composent le gène.
 
 
-### Paramètres de la population initiale d'allèles  TODO
+## Paramètres de la population initiale d'allèles  TODO
 
 Notes : Controle de la gaullienne vers des valeurs extremes, poids associé a chaque allele (rareté, abondance)
 
