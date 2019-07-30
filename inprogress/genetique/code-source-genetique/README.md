@@ -130,6 +130,8 @@ Par exemple, pour une feature codée uniquement sur un gene, et celui ci n'ayant
 
 Lorsqu'une feature est codée sur plusieurs gènes, la `valeur`de la feature s'exprime sous la forme
 
+TODO : WRITE EQUATION Latex???
+
 
 ### Structure des gènes
 
@@ -153,6 +155,4 @@ La diversité d'un trait (nombre de combinaisons possibles) varie proportionnell
 TODO : arrivée au théorème central limit (nombre de genes par feature)
 
 ## Description des classes
-
-Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation de sa propre classe ou une instanciation d'une classe héritant du meme genome.
 
