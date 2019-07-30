@@ -2,11 +2,11 @@
 
 ## Objectifs
 
-*Genomlib* est une librairie C++, qui utilise libconfig.
+*Genomlib* est une librairie C++. Elle utilise elle même la libraire libconfig pour l'interface avec le fichier de configuration.
 
 **Ce projet n'a pas pour but de simuler les mécanismes génétiques mais de les modéliser**, en reproduisant les mécanismes généraux ayant lieu lors de la reproduction afin d'obtenir une variété de phénotypes satisfaisante.
 
-Le but de ce projet est de fournir une bilbliotheque minimale pour mettre en place un génome [diploïde](https://fr.wikipedia.org/wiki/Diploïde) transmissible et ses mécanismes génétiques associés: transmission d'un matériel génétique, de generation en generation, s'exprimant en "traits" (_features_) ou phénotype.
+Le but de ce projet est de fournir une bilbliotheque minimale pour mettre en place un génome [diploïde](https://fr.wikipedia.org/wiki/Diploïde) transmissible et ses mécanismes génétiques associés: transmission d'un matériel génétique, et donc de caractères héréditaires, de generation en generation, s'exprimant macroscopiquement sous la forme de 'traits' (_features_) ou phénotype.
 
 Le **genome** peut-être hérité par une classe qui disposer d'un matériel génétique avec des regles d'expression définies par l'utilisateur. 
 
@@ -27,10 +27,6 @@ Pas d'épigénétique pour le moment (rétroaction des traits ou de l'environnem
 Il serait inutile de complexifier le modèle avec l'ajout de mécanismes trop spécifiques alors que des mécanismes essentiels dans l'expression du génome ne sont pas pris en compte. Aussi nous restreindrons le modèle aux propositions suivantes. L'auteur de la libraire en juge la complexité suffisante pour obtenir un brassage génétique qui permette à la fois d'explorer la variabilité des phénotypes, de ressentir l'hérédité d'une génération à l'autre, et d'instaurer des mécanismes de sélection intéressants:
 
 - Chaque trait est codé macroscopiquement par une valeur dans un intervalle [-1:1]. Une valeur min et max seront définies par l'utilisateur, une grandeur (avec une unité associée ) comme une longeur, temps ... pourra également etre atribuée, pour remettre à l'échelle cette valeur et lui donner une interprétation en fonction du contexte voulu par l'utilisateur.
-- Deux natures de trait sont disponibles: continu (sa valeur est continue, elle peut prendre n'importe quelle valeur entre -1 et 1, comme la taille) et discret ( sa valeur est discrete et entiere, elle ne peut prendre que certaines valeurs spécifiques)
-- Chaque trait sera codé par un ensemble de gènes (pouvant etre égal à 1 jusqu'à 20).
-- Les ensembles de genes codant pour un trait seront placés aléatoirement sur les chromosomes. Le nombre de chromosomes doit être égal ou inférieur au nombre total de gènes (de sorte qu'il y ait au moins un gène par chromosome).
-- Chaque gène est un tableau de 10 bases nucléiques binaires (0 ou 1). La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 a la contribution totale). Ensuite une remise à l'échelle est appliquée pour obtenir une contribution au trait macroscopique dans l'intervalle [-1:1] 
 - le crossing-over pourra être désactivé ou activé (si désactivé réduit la meiose a une recombinaison des chromatides)
 - a compléter
 
@@ -45,18 +41,29 @@ Chaque caractère héréditaire, ou _feature_ est codé par un ou plusieurs gèn
 
 ## Déclaration des _features_
 
-Une _feature_ est un trait phénotypique qui est codé par un ensemble de gènes (couleur des ailes, taille, absence ou non d'un organe etc.. ) Dans le modèle de la librairie chaque _feature_ résulte d'une pondération des expressions de paires de gènes. C
+Une _feature_ est un trait phénotypique qui est codé par un ensemble de gènes (couleur des ailes, taille, absence ou non d'un organe etc.. ).
+Deux natures de trait sont disponibles: continu (sa valeur est continue, elle peut prendre n'importe quelle valeur entre -1 et 1, comme la taille) et discret ( sa valeur est discrete et entiere, elle ne peut prendre que certaines valeurs spécifiques). Dans le cas d'une nature discrete l'expression des gènes contribuant à la feature renvoie un entier correspondant au numéro de l'allèle ( de 0 à 9 ) . Dans le cas d'une nature continue, l'expression des gènes contribuant à la feature renvoie un nombre flottant compris entre -1 et 1. Ensuite l'utilisateur à la charge de créer l'interface pour donner un sens à ces nombres dans le cadre de son programme.
 
 ### Fichier de configuration
 
-Le fonctionnement de la librairie nécessite le chargement d'un fichier de config (par défaut nommé _abstractFeatures.glib_ ) qui contient plusieurs champs. La lecture du fichier de configuration utilise la bibliothèque [libconfig](https://github.com/hyperrealm/libconfig). Le _setting_ *abstractFeatures* est obligatoire et permet de charger les _features_ définies par l'utilisateur. Une feature se déclare avec plusieurs champs :
-- Label [obligatoire] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
-- nature [obligatoire] : une feature peut etre discrète ('Discrete' ou 'D' ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue ('Continuous' ou 'C' ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max.
-- nGenes [obligatoire] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
-- alleles [optionnel] : 
+Le fonctionnement de la librairie nécessite le chargement d'un fichier de config (par défaut nommé _abstractFeatures.glib_ ) qui contient plusieurs champs. La lecture du fichier de configuration utilise la bibliothèque [libconfig](https://github.com/hyperrealm/libconfig). 
 
+#### Features abstraites 
 
-### Fonctionnement des genes et regles d'expression:
+Le _setting_ *abstractFeatures* est obligatoire et permet de charger les _features_ définies par l'utilisateur. Le terme 'abstrait' se rapporte au fait que les features écrites par l'utilisateur sont des templates de feature. Chaque feature abstraite peut être utilisée pour différentes feature. Une feature abstraite se déclare à l'aide de plusieurs champs :
+
+- **label** [obligatoire] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
+- **nature** [obligatoire] : une feature peut etre discrète ('Discrete' ou 'D' ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue ('Continuous' ou 'C' ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max.
+- **nGenes** [obligatoire] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
+- **alleles** [optionnel] : énumération des allèles disponibles pour la feature. Les allèles sont des entiers allant de 0 à 9 (inclus). Par exemple
+> alleles = (0,3,9) ;
+indique que chaque gène codant pour la feature pourra être une allèle 0, 3 ou 9.
+
+### Structure des gènes
+
+- Chaque gène est un tableau de 10 bases nucléiques binaires (0 ou 1). La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 a la contribution totale). Ensuite une remise à l'échelle est appliquée pour obtenir une contribution au trait macroscopique dans l'intervalle [-1:1] 
+
+### Calcul de l'expression d'une feature 
 
 Chaque **trait** (phénotypique) a une valeur comprise entre -1 et +1. Chaque allèle a une contribution au trait, un effet, compris entre -1. et 1. Les coefficients de codominance sont obligatoirement compris entre 0 et 1. Par exemple, pour un gene ayant 2 allèles *a* et *b*, le trait est donné par
 
