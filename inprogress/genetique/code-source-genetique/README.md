@@ -36,12 +36,24 @@ Il serait inutile de complexifier le modèle avec l'ajout de mécanismes trop sp
 
 Un programme (avec interface graphique) sera fourni pour générer les propriétés de la base génétique dans un fichier .gnm
 
+## Modélisation du matériel génétique
+
+Une classe héritant de la classe _Genome_ hérite du matériel génétique. Le matériel génétique est un ensemble de paires de chromosomes qui sont des collections de matériel codant (gènes) et non codants (séquences aléatoires pouvant servir à produire des mutations). Les chromosomes sont le support  des informations génétiques qui interviennent dans la détermination et la transmission des caractères héréditaires ou _features_. Les gènes sont une portion du chromosome et sont situés à un emplacement précis. Un gène existe en deux exemplaires occupant la même position sur chacun des deux chromosomes d'une même paire. Un même gène peut exister sous différentes formes appelées _allèles_. Pour un même gène donné les deux chromosomes d'une même paire peuvent porter deux allèles identiques ou différentes. Les allèles peuvent être codominantes (expression des deux allèles de manière pondérée ), un seul des deux peut s'exprimer (dominant et récessif). 
+
+Chaque caractère héréditaire, ou _feature_ est codé par un ou plusieurs gènes présents en deux exemplaires sur la paire de chromosome (un sur chaque chromosome). Chaque gène existe sous la forme d'_allèles_ représentés dans la librairie par un *entier allant de 0 à 9*. 
+
 
 ## Déclaration des _features_
 
+Une _feature_ est un trait phénotypique qui est codé par un ensemble de gènes (couleur des ailes, taille, absence ou non d'un organe etc.. ) Dans le modèle de la librairie chaque _feature_ résulte d'une pondération des expressions de paires de gènes. C
+
 ### Fichier de configuration
 
-Le fonctionnement de la librairie nécessite le chargement d'un fichier de config (par défaut nommé _abstractFeatures.glib_ ) qui contient plusieurs champs. La lecture du fichier de configuration utilise la bibliothèque [libconfig](https://github.com/hyperrealm/libconfig). Le _setting_ *abstractFeatures* est obligatoire et permet de charger les _features_ définies par l'utilisateur.
+Le fonctionnement de la librairie nécessite le chargement d'un fichier de config (par défaut nommé _abstractFeatures.glib_ ) qui contient plusieurs champs. La lecture du fichier de configuration utilise la bibliothèque [libconfig](https://github.com/hyperrealm/libconfig). Le _setting_ *abstractFeatures* est obligatoire et permet de charger les _features_ définies par l'utilisateur. Une feature se déclare avec plusieurs champs :
+- Label [obligatoire] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
+- nature [obligatoire] : une feature peut etre discrète ('Discrete' ou 'D' ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue ('Continuous' ou 'C' ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max.
+- nGenes [obligatoire] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
+- alleles [optionnel] : 
 
 
 ### Fonctionnement des genes et regles d'expression:
