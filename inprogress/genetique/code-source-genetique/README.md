@@ -24,9 +24,15 @@ Un programme ( avec interface graphique ) sera développé en parallèle pour é
 
 ## Modélisation du matériel génétique
 
-Une classe héritant de la classe _Genome_ hérite du matériel génétique. Le matériel génétique est un ensemble de paires de chromosomes qui sont des collections de matériel codant (gènes) et non codants (séquences aléatoires pouvant servir à produire des mutations). Les chromosomes sont le support  des informations génétiques qui interviennent dans la détermination et la transmission des caractères héréditaires ou _features_. Les gènes sont une portion du chromosome et sont situés à un emplacement précis. Un gène existe en deux exemplaires occupant la même position sur chacun des deux chromosomes d'une même paire. Un même gène peut exister sous différentes formes appelées _allèles_. Pour un même gène donné les deux chromosomes d'une même paire peuvent porter deux allèles identiques ou différentes. Les allèles peuvent être codominantes (expression des deux allèles de manière pondérée ), un seul des deux peut s'exprimer (dominant et récessif). 
+### Généralités
+Le matériel génétique est un ensemble de paires de chromosomes qui sont des collections de matériel codant (gènes) et non codants (séquences aléatoires pouvant servir à produire des mutations). Les chromosomes sont le support  des informations génétiques qui interviennent dans la détermination et la transmission des caractères héréditaires ou _features_. Les gènes sont une portion du chromosome et sont situés à un emplacement précis. Ce sont eux qui codent pour la _feature_, ou le phénotype ( résultat `macroscopique` de l'expression des gènes ). Un gène existe en deux exemplaires occupant la même position sur chacun des deux chromosomes d'une même paire. 
 
-Chaque caractère héréditaire, ou _feature_ est codé par un ou plusieurs gènes présents en deux exemplaires sur la paire de chromosome (un sur chaque chromosome). Chaque gène existe sous la forme d'_allèles_ représentés dans la librairie par un *entier allant de 0 à 9*. 
+Un même gène peut exister sous différentes formes appelées _allèles_. Pour un même gène donné les deux chromosomes d'une même paire peuvent porter deux allèles identiques ou différentes. Les allèles peuvent être codominantes (expression des deux allèles de manière pondérée ), ou un seul des deux peut s'exprimer (dominant et récessif). 
+
+### Dans la librairie
+Chaque caractère héréditaire, ou _feature_ est codée par un ou plusieurs gènes présents en deux exemplaires sur la paire de chromosome (un sur chaque chromosome).  Chaque _gène_ existe sous la forme d'_allèles_ représentés par un *entier compris entre 0 et 9*.
+
+Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un nombre flottant ( caractère continu comme la taille) ou par un entier (caractère discret comme l'absence de plumes), c'est sa _valeur_ . Cette _valeur_ est ensuite interprétable par l'utilisateur de la librairie.
 
 ## Déclaration des _features_
 
