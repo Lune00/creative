@@ -6,9 +6,11 @@
 
 **Ce projet n'a pas pour but de simuler les mécanismes génétiques mais de les modéliser**, en reproduisant les mécanismes généraux ayant lieu lors de la reproduction afin d'obtenir une variété de phénotypes satisfaisante.
 
-Le but de ce projet est de fournir une bilbliotheque minimale pour mettre en place un génome [diploïde](https://fr.wikipedia.org/wiki/Diploïde) transmissible et ses mécanismes génétiques associés : transmission d'un matériel génétique ( reproduction, méiose, crossing-over ... ) et donc de caractères héréditaires, de génération en génération, s'exprimant macroscopiquement sous la forme de traits ( _features_ ) ou phénotype. 
+Le but de ce projet est de fournir une bilbliotheque minimale pour mettre en place un génome [diploïde](https://fr.wikipedia.org/wiki/Diploïde) transmissible et ses mécanismes génétiques associés : transmission d'un matériel génétique ( reproduction, méiose, crossing-over ... ) et donc de caractères héréditaires, de génération en génération, s'exprimant macroscopiquement sous la forme de traits ( _features_ ) ou phénotype. Lla reproduction peut se réaliser avec un partenaire (sexuée ou non), par clonage ou par auto-fécondation (comme certaines plantes).
 
-Il serait inutile de complexifier le modèle avec l'ajout de mécanismes trop spécifiques alors que des mécanismes essentiels dans l'expression du génome ne sont pas pris en compte. Aussi nous restreindrons le modèle. L'auteur de la libraire en juge la complexité suffisante pour obtenir un brassage génétique qui permette à la fois d'explorer la variabilité des phénotypes, de ressentir l'hérédité d'une génération à l'autre, et d'instaurer des mécanismes de sélection intéressants.
+Il serait inutile de complexifier le modèle avec l'ajout de mécanismes trop spécifiques alors que des mécanismes essentiels dans l'expression du génome ne sont pas pris en compte. L'auteur de la libraire en juge la complexité suffisante pour obtenir un brassage génétique qui permette à la fois d'explorer la variabilité des phénotypes, de _ressentir_ l'hérédité d'une génération à l'autre, et d'instaurer des mécanismes de sélection intéressants.
+
+Le but est de fournir également une bibliothèque intéressante pour faire de la génération procédurale d'espèces et narrative ( via les mécanismes de descendance et de selection, ici _naturelles_, sans avoir recours a des méthodes aléatoires mal controlées ) .
 
 ## Description générale
 
@@ -152,5 +154,5 @@ TODO : arrivée au théorème central limit (nombre de genes par feature)
 
 ## Description des classes
 
-Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation de sa propre classe ou une instanciation d'une classe héritant du meme genome. La reproduction peut se réaliser avec un partenaire (sexuée ou non), par clonage ou par auto-fécondation (comme certaines plantes). 
+Toute instanciation d'une classe héritant de *genome* peut se reproduire avec une instanciation de sa propre classe ou une instanciation d'une classe héritant du meme genome.
 
