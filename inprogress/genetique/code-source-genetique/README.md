@@ -120,24 +120,29 @@ Par exemple, pour une feature codée uniquement sur un gene, et celui ci n'ayant
 
  Si l'on reprend l'exemple précédent d'une feature continue codée sur un gène avec deux allèles `1`et `3`ayant pour règle de co-dominance `1-3=0.3` , la `valeur` de la _feature_ est donnée par `valeur = 0.3 * 1 + (1 - 0.3) * 3 = 2.4` . Cette valeur est comprise entre 0 et 9, elle est ensuite normalisée pour être comprise entre -1 et 1.
 
-Lorsqu'une feature est codée sur plusieurs gènes
+Lorsqu'une feature est codée sur plusieurs gènes, la `valeur`de la feature s'exprime sous la forme
 
 
 ### Structure des gènes
 
-Chaque gène est un tableau de 10 bases nucléiques binaires (0 ou 1). La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 a la contribution totale). Ensuite une remise à l'échelle est appliquée pour obtenir une contribution au trait macroscopique dans l'intervalle [-1:1] 
-
-## Fonctionnement de la librairie
-
-### Calcul de l'expression d'une feature 
+Chaque gène est un tableau d'entiers de dix bases nucléiques en binaire. La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 ou 0 a la contribution totale). Par exemple l'allèle `6` peut être représentée sous la forme d'une séquence `1110110010`, où la position des `1`et des `0` est aléatoire. La contribution d'une allèle a l'expression d'une paire de gènes est donc égale à la somme des bases nucléiques qui composent le gène.
 
 
+### Paramètres de la population initiale d'allèles  TODO
+
+Notes : Controle de la gaullienne vers des valeurs extremes, poids associé a chaque allele (rareté, abondance)
+
+## Fonctionnement global de la librairie
+
+## Utilisation de la librairie
 
 
 
-## Diversité phénotypique : lois d'échelle et considérations statistiques
+## Lois d'échelle et considérations statistiques du modèle génétique employé
 
 La diversité d'un trait (nombre de combinaisons possibles) varie proportionnellement au nombre d'allèles par gene, en puissance avec la ploidie et en puissance avec le nombre de gènes pour un trait phénotypique. Le nombre de chromosomes sur lesquels sont répartis les genes contribue au brassage génétique. Il permet a un nombre fixé de variations pour chaque trait d'augmenter le nombre de phénotypes (ensemble des traits) accessibles à la descendance. Enfin le crossing over ayant lieu durant la meiose augmente encore la portée du brassage génétique et de la diversité phénotypique pour un genome donné. Pour augmenter rapidement le spectre des valeurs prises par un trait, et s'approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait. Un billet de blog sera bientôt disponible dans lequel ces effets seront discutés.
+
+TODO : arrivée au théorème central limit (nombre de genes par feature)
 
 ## Description des classes
 
