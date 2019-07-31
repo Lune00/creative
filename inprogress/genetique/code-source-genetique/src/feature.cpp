@@ -81,6 +81,8 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
   }
 
   alleles_ =  alleles ;
+  //Store in increasing order :
+  sort(alleles_.begin() , alleles_.end() ) ;
 
 }
 
@@ -268,12 +270,15 @@ void Feature::buildDefaultRules() {
   switch ( this->nature() ) {
     case Feature::D : 
       cout << "Feature '"<< this->label()<< "' Rules are set according to default parameters\n";
+      buildDefaultDiscreteRules() ;
       break ;
     case Feature::C : 
       cout << "Feature '"<< this->label()<< "' Rules are set according to default parameters\n";
+      buildDefaultContinuousRules() ;
       break ;
     case Feature::Undefined : 
       cout<< "Undefined\n" ;
+      return ;
   }
 }
 
@@ -309,35 +314,44 @@ bool Feature::checkRulesCompletness() {
     for( int j = i + 1  ; j < alleles_.size()  ; j++ ) {
 
       //Find (i,j) if not return false ;
-
-
+      Rule rule( i , j, true ) ;
+      if( !findInSetOfRules( rule ) {
+	cout << "Not found " << endl ;
+	return false ;
+      }
     }
   }
 
+  return true ;
+}
+
+bool Feature::findInSetOfRules(const Rule& rule ) {
+if ( setOfRules_.find( rule ) != setOfRules_.end() ) return true ;
+else return false;
 }
 
 //Just use for debug : 
 void Feature::debugPrintToStandardOutput() {
 
-  cout << label_ << endl ;
-  cout << "nature : " <<enumToString( nature_ ) << endl ;
-  cout << "number of genes : " <<numGenes_ << endl ;
-  cout << "alleles : " ;
-  for(unsigned int i = 0 ; i != alleles_.size() ; i++){ 
-    cout << alleles_[i] << " ";
-  }
-  cout <<endl ;
+cout << label_ << endl ;
+cout << "nature : " <<enumToString( nature_ ) << endl ;
+cout << "number of genes : " <<numGenes_ << endl ;
+cout << "alleles : " ;
+for(unsigned int i = 0 ; i != alleles_.size() ; i++){ 
+  cout << alleles_[i] << " ";
+}
+cout <<endl ;
 
-  cout << setOfRules_.size() << " rules : " << endl ;
-  std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
-  while(it != setOfRules_.end() ){
-    //Do not print a-a relation (for clarity)
-    if( it->pairAlleles_.first != it->pairAlleles_.second ){
-      cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
-      cout << "\n" ; 
-    }
-    it++;
+cout << setOfRules_.size() << " rules : " << endl ;
+std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
+while(it != setOfRules_.end() ){
+  //Do not print a-a relation (for clarity)
+  if( it->pairAlleles_.first != it->pairAlleles_.second ){
+    cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
+    cout << "\n" ; 
   }
-  cout << "\n\n" ; 
+  it++;
+}
+cout << "\n\n" ; 
 
 }

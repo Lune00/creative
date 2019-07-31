@@ -42,9 +42,6 @@ namespace globalFunctions {
 
 //Return factorial of the positive integer n
 int fact( int n) ;
-
-
-
 }
 
 namespace geneticParameters {

@@ -14,20 +14,11 @@ class Feature {
   struct Rule {
 
     std::pair < int , int > pairAlleles_ ;
-
     //domination_ : signification in both cases :
       //In discrete case : probability of expression of allele1 on allele2
       //In continuous case : % of expression of allele1 and 1-% of expression of allele2 
     double domination_ ; 
-
-    //If the rule is for a discrete feature with a probability expression of the gene = presence of 'p' in the rule
-    //ex : 1-0=p0.5 -> allele 1 dominates allele 0 with probability p = 0.5 
-    //ex : 0-1=p1 or 0-1=p1. -> allele 0 dominates allele 1 with p=1. (always)
-    //ex : 0-1=1 -> allele 1 dominates allele 0 with p=1. (always)
-    //
-    //False by default
     bool discreteCaseWithProbability_ ;
-
     //State saying that the rule is correct and can be used :
     bool isCorrect_ ;
 
@@ -53,6 +44,7 @@ class Feature {
     }
 
     //Return if the Rule is not correct (allele pair or domination), use to manage errors
+    //DEPRECATED
     Rule(bool isCorrect) : isCorrect_(isCorrect) {
       pairAlleles_ = std::make_pair ( 999 , 999 ) ;
       domination_ = 1. ;
@@ -109,7 +101,11 @@ class Feature {
 
   void loadRules(const std::vector< std::string > & vectorCodominanceRules ) ;
   void addToRules(Feature::Rule ) ;
+
+  //Default Rules when not defined by user 
   void buildDefaultRules( ) ;
+  void buildDefaultDiscreteRules( ) ;
+  void buildDefaultContinuousRules( ) ;
 
   //Split string Rule (from file) into a struct temp Rule
   Rule splitStringRuleIntoRule( const std::string& ) ;
@@ -122,6 +118,7 @@ class Feature {
 
   //Check over the set of Rules
   bool checkRulesCompletness( ) ;
+  bool findInSetOfRules( const Feature::Rule& ) ;
 
   //Debug:
   void debugPrintToStandardOutput() ;
