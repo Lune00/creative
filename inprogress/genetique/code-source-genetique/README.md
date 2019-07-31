@@ -52,8 +52,8 @@ Le fonctionnement de la librairie nécessite le chargement d'un fichier de confi
 
 Le `setting` ( voir libconfig ) *abstractFeatures* est obligatoire et permet de charger les _features_ définies par l'utilisateur. Le terme _abstrait_ se rapporte au fait que les _features_ écrites par l'utilisateur sont des templates de feature. Chaque feature abstraite peut être utilisée pour créer différentes features. Une feature abstraite se déclare à l'aide de plusieurs champs :
 
-- `label` [obligatoire] [`string`] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
-- `nature` [obligatoire]  [`string`]: une feature peut etre discrète (`"Discrete"` ou `"D"` ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue (`"Continuous"` ou `"C"` ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max. Par exemple 
+- **`label`** [**obligatoire**] [`string`] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
+- **`nature`** [**obligatoire**]  [`string`]: une feature peut etre discrète (`"Discrete"` ou `"D"` ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue (`"Continuous"` ou `"C"` ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max. Par exemple 
 ```
 abstractFeatures=(
 { label = "color" ;
@@ -61,10 +61,10 @@ abstractFeatures=(
 }
 ```
 indique que l'on déclare une feature abstraite "color" qui ne peut prendre que des valeurs discretes.
-- `nGenes` [obligatoire][`int`] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
-- `alleles` [optionnel][`list int`] : énumération des allèles disponibles pour la feature. Les allèles sont des entiers allant de 0 à 9 (inclus). Par exemple `alleles = (0,3,9) ;` indique que chaque gène codant pour la feature pourra être une allèle 0, 3 ou 9.
-- `codRules` [optionnel][`list string`] : déclaration des règles de co-dominance entre allèles d'une même paire. Si elles ne sont pas spécifiées les règles seront générées selon soit par un comportement par défaut ( aléatoires ) soit suivant une option définie par l'utilisateur. Par exemple `3-1=3`déclare que l'allèle `3`domine toujours l'allèle `1`.
-- `options`[optionnel][`list string`] : TODO
+- **`nGenes`** [**obligatoire**][`int`] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
+- **`alleles`** [**optionnel**][`list int`] : énumération des allèles disponibles pour la feature. Les allèles sont des entiers allant de 0 à 9 (inclus). Par exemple `alleles = (0,3,9) ;` indique que chaque gène codant pour la feature pourra être une allèle 0, 3 ou 9.
+- **`codRules`** [**optionnel**][`list string`] : déclaration des règles de co-dominance entre allèles d'une même paire. Si elles ne sont pas spécifiées les règles seront générées selon soit par un comportement par défaut ( aléatoires ) soit suivant une option définie par l'utilisateur. Par exemple `3-1=3`déclare que l'allèle `3`domine toujours l'allèle `1`.
+- **`options`**[**optionnel**][`list string`] : TODO
 
 Voici un exemple complet d'un fichier de configuration avec trois features, deux discrètes et une continue : 
 ```
@@ -108,7 +108,7 @@ où `p0.3`signifie que `alleleA` domine `alleleB`dans 30% des cas, c'est à dire
 
 **Remarque** : la syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. 
 
-La première syntaxe permet une écriture plus intuitive des règles de domination entre allèles. Lorsque l'on écrit `alleleA-alleleB=alleleA` cela est ensuite traduit en `alleleA-alleleB=p1`. Chaque _Rule_ a un nombre flottant appelé _domination_ . Dans le cas d'une feature de nature discrete _domination_ est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue _domination_ est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, _domination_ est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
+La première syntaxe permet une écriture plus intuitive des règles de domination entre allèles. Lorsque l'on écrit `alleleA-alleleB=alleleA` cela est ensuite traduit en `alleleA-alleleB=p1`. Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
 
 #### Cas d'une feature Continue
 Dans le cas d'une feature continue une seule syntaxe est possible : 
@@ -125,9 +125,9 @@ Chaque allèle, un entier compris entre 0 et 9, contribue de manière égale à 
 
 Les coefficients de codominance sont obligatoirement compris entre 0 et 1. 
 
-Chaque _feature_ a une valeur (interprétée par l'utilisateur) comprise entre -1 et +1 si elle est continue, ou égale à un entier compris entre 0 et 9 si elle est discrète.
+Chaque _feature_ a une valeur (interprétée par l'utilisateur) , `value` comprise entre -1 et +1 si elle est continue, ou égale à un entier compris entre 0 et 9 si elle est discrète.
 
-Par exemple, pour une feature codée uniquement sur un gene, et celui ci n'ayant que deux allèles `a` et `b`, la valeur de la feature est donné par
+Par exemple, pour une feature codée uniquement sur un gène, et celui ci n'ayant que deux allèles `a` et `b`, la valeur de la feature est donné par
 
 ` value = (1-c(a,b)) * valeur_a + c(a,b) * valeur_b`
 
@@ -136,7 +136,6 @@ Par exemple, pour une feature codée uniquement sur un gene, et celui ci n'ayant
 Lorsqu'une feature est codée sur plusieurs gènes, la `value`de la feature s'exprime sous la forme
 
 TODO : WRITE EQUATION Latex???
-
 
 ## Structure des gènes
 
@@ -149,9 +148,9 @@ Notes : Controle de la gaussienne vers des valeurs extremes, poids associé a ch
 
 ## Fonctionnement global de la librairie
 
+### Description des classes
+
 ## Utilisation de la librairie
-
-
 
 ## Lois d'échelle et considérations statistiques du modèle génétique employé
 
@@ -159,5 +158,5 @@ La diversité d'un trait (nombre de combinaisons possibles) varie proportionnell
 
 TODO : arrivée au théorème central limit (nombre de genes par feature)
 
-## Description des classes
+
 
