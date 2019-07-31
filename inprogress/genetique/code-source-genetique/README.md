@@ -34,7 +34,7 @@ Un même gène peut exister sous différentes formes appelées _allèles_. Pour 
 ### Dans la librairie
 Chaque caractère héréditaire, ou _feature_ est codée par un ou plusieurs gènes présents en deux exemplaires sur la paire de chromosome (un sur chaque chromosome).  Chaque _gène_ existe sous la forme d'_allèles_ représentés par un *entier compris entre 0 et 9*.
 
-Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un nombre flottant ( caractère continu comme la taille) ou par un entier (caractère discret comme l'absence de plumes), c'est sa _valeur_ . Cette _valeur_ est ensuite interprétable par l'utilisateur de la librairie.
+Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un nombre flottant ( caractère continu comme la taille) ou par un entier (caractère discret comme l'absence de plumes), c'est sa valeur, ou _value_ . Cette _value_ est ensuite interprétable par l'utilisateur de la librairie.
 
 ## Déclaration et fonctionnement des _features_
 
@@ -55,11 +55,11 @@ Le setting ( voir libconfig ) *abstractFeatures* est obligatoire et permet de ch
 - **nature** [obligatoire]  [`string`]: une feature peut etre discrète ("Discrete" ou "D" ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue ("Continuous" ou "C" ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max. Par exemple 
 ```
 abstractFeatures=(
-{ label = "body-size" ;
+{ label = "color" ;
   nature = "Discrete" ;
 }
 ```
-indique que l'on déclare une feature abstraite codant pour la taille d'un individu.
+indique que l'on déclare une feature abstraite "color" qui ne peut prendre que des valeurs discretes.
 - **nGenes** [obligatoire][`int`] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
 - **alleles** [optionnel][`list int`] : énumération des allèles disponibles pour la feature. Les allèles sont des entiers allant de 0 à 9 (inclus). Par exemple `alleles = (0,3,9) ;` indique que chaque gène codant pour la feature pourra être une allèle 0, 3 ou 9.
 - **codRules** [optionnel][`list string`] : déclaration des règles de co-dominance entre allèles d'une même paire. Si elles ne sont pas spécifiées les règles seront générées selon soit par un comportement par défaut ( aléatoires ) soit suivant une option définie par l'utilisateur. Par exemple `3-1=3`déclare que l'allèle `3`domine toujours l'allèle `1`.
