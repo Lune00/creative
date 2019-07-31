@@ -39,6 +39,7 @@ Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un n
 ## Déclaration et fonctionnement des _features_
 
 Une _feature_ est un trait phénotypique qui est codé par un ensemble de gènes (couleur des ailes, taille, absence ou non d'un organe etc.. ).
+
 Deux natures de trait sont disponibles: continu (sa valeur est continue, elle peut prendre n'importe quelle valeur entre -1 et 1, comme la taille) et discret ( sa valeur est discrete et entiere, elle ne peut prendre que certaines valeurs spécifiques). Dans le cas d'une nature discrete l'expression des gènes contribuant à la feature renvoie un entier correspondant au numéro de l'allèle ( de 0 à 9 ) . Dans le cas d'une nature continue, l'expression des gènes contribuant à la feature renvoie un nombre flottant compris entre -1 et 1. 
 
 Ensuite l'utilisateur à la charge de créer l'interface pour donner un sens à ces nombres dans le cadre de son programme. Une grandeur ( avec une unité associée ) comme une longeur, un temps ... pourra également être attribuée, pour remettre à l'échelle cette valeur, et lui donner une interprétation en fonction du contexte voulu par l'utilisateur.
@@ -51,7 +52,7 @@ Le fonctionnement de la librairie nécessite le chargement d'un fichier de confi
 
 Le `setting` ( voir libconfig ) *abstractFeatures* est obligatoire et permet de charger les _features_ définies par l'utilisateur. Le terme _abstrait_ se rapporte au fait que les _features_ écrites par l'utilisateur sont des templates de feature. Chaque feature abstraite peut être utilisée pour créer différentes features. Une feature abstraite se déclare à l'aide de plusieurs champs :
 
-- `label` [obligatoire] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
+- `label` [obligatoire] [`string`] : nom abstrait associé à la feature. Il permet à l'utilisateur de désigner la feature dans le programme. Un nom sera ensuite défini dans un second temps lorsque la feature sera utilisée. Ainsi une feature abstraite avec un label peut servir de base pour plusieurs features. 
 - `nature` [obligatoire]  [`string`]: une feature peut etre discrète (`"Discrete"` ou `"D"` ), elle ne peut prendre que plusieurs valeurs définies par l'utilisateur, ou continue (`"Continuous"` ou `"C"` ), elle peut prendre n'importe qu'elle valeur sa valeur min et sa valeur max. Par exemple 
 ```
 abstractFeatures=(
@@ -144,7 +145,7 @@ Chaque gène est un tableau d'entiers de dix bases nucléiques en binaire. La co
 
 ## Paramètres de la population initiale d'allèles  TODO
 
-Notes : Controle de la gaullienne vers des valeurs extremes, poids associé a chaque allele (rareté, abondance)
+Notes : Controle de la gaussienne vers des valeurs extremes, poids associé a chaque allele (rareté, abondance)
 
 ## Fonctionnement global de la librairie
 
