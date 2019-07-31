@@ -106,9 +106,7 @@ alleleA-alleleB=p0.3
 ```
 où `p0.3`signifie que `alleleA` domine `alleleB`dans 30% des cas, c'est à dire dans 30% des cas où l'expression de la feature est évaluée, c'est une expression probabiliste. **La probabilité s'applique toujours a l'allèle déclarée en premier.**
 
-**Remarque** : la syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. 
-
-La première syntaxe permet une écriture plus intuitive des règles de domination entre allèles. Lorsque l'on écrit `alleleA-alleleB=alleleA` cela est ensuite traduit en `alleleA-alleleB=p1`. Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
+La première syntaxe permet une écriture plus intuitive des règles de domination entre allèles. Lorsque l'on écrit `alleleA-alleleB=alleleA` cela est ensuite traduit en `alleleA-alleleB=p1`. 
 
 #### Cas d'une feature Continue
 Dans le cas d'une feature continue une seule syntaxe est possible : 
@@ -118,6 +116,11 @@ a-b=c(a,b)
 où `c(a,b)`est un nombre flottant **strictement compris entre 0 et 1.** 
 Par exemple `1-3=0.3`indique que l'allèle `1` contribue à 30% à l'expression de la feature, et que l' allèle`3` contribue à 70%.
 
+#### Remarques
+
+Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
+
+**La syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. **
 
 ## Contribution des allèles et calcul de l'expression d'une _feature_
 
