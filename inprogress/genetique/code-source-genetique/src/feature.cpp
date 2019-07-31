@@ -270,11 +270,17 @@ void Feature::buildDefaultRules( geneticParameters::buildRulesOption option) {
 
 void Feature::buildDefaultDiscreteRules( geneticParameters::buildRulesOption option ) {
 
+  //build alleles
+  //build coefficients
+  //call addToRules
 
 }
 
 void Feature::buildDefaultContinuousRules( geneticParameters::buildRulesOption option ) {
 
+  //build alleles
+  //build coefficients
+  //call addToRules
 
 }
 
@@ -282,7 +288,6 @@ void Feature::buildDefaultContinuousRules( geneticParameters::buildRulesOption o
 bool Feature::checkRegexForRule( const std::string& stringRule ) {
 
   switch ( this->nature() ) { 
-
     case C : 
       //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexContinuousFeature)) ) 
@@ -291,26 +296,26 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
 	return false; 
       //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
       //or 1-2=p0.5
-
     case D : 
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
 	return true ;
       else
 	return false; 
-
     case Undefined :
       return false ;
   }
 }
 
-//TODO : To be tested
+//TODO : MAKE IT WORK PROPERLY
 //Check that the complete set of Rules cover all possible alleles combination. Global check on Rules 
 void Feature::checkRulesCompletness() {
 
   bool completness = true ;
+  if ( alleles_.size() == 0 ) completness = false ;
 
-  for( size_t i = 0 ; i < alleles_.size()  ; i++ ) {
-    for( size_t j = i + 1  ; j < alleles_.size()  ; j++ ) {
+  for( size_t i = 0 ; i != alleles_.size()  ; i++ ) {
+    for( size_t j = i   ; j != alleles_.size()  ; j++ ) {
+      cout << i << " " << j << endl ;
       //Find (i,j) if not return false ;
       Rule rule( i , j, true ) ;
       if( !findInSetOfRules( rule ) ) {
