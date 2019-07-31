@@ -48,6 +48,11 @@ namespace geneticParameters {
 
   extern const int geneSize ;
   extern const double nucleicContribution ; 
+
+  //Options
+  //Default Rules
+  enum BuildRules { 
+
 }
 
 namespace debug {
