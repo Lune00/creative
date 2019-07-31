@@ -315,7 +315,7 @@ bool Feature::checkRulesCompletness() {
 
       //Find (i,j) if not return false ;
       Rule rule( i , j, true ) ;
-      if( !findInSetOfRules( rule ) {
+      if( !findInSetOfRules( rule ) ) {
 	cout << "Not found " << endl ;
 	return false ;
       }
@@ -326,32 +326,32 @@ bool Feature::checkRulesCompletness() {
 }
 
 bool Feature::findInSetOfRules(const Rule& rule ) {
-if ( setOfRules_.find( rule ) != setOfRules_.end() ) return true ;
-else return false;
+  if ( setOfRules_.find( rule ) != setOfRules_.end() ) return true ;
+  else return false;
 }
 
 //Just use for debug : 
 void Feature::debugPrintToStandardOutput() {
 
-cout << label_ << endl ;
-cout << "nature : " <<enumToString( nature_ ) << endl ;
-cout << "number of genes : " <<numGenes_ << endl ;
-cout << "alleles : " ;
-for(unsigned int i = 0 ; i != alleles_.size() ; i++){ 
-  cout << alleles_[i] << " ";
-}
-cout <<endl ;
-
-cout << setOfRules_.size() << " rules : " << endl ;
-std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
-while(it != setOfRules_.end() ){
-  //Do not print a-a relation (for clarity)
-  if( it->pairAlleles_.first != it->pairAlleles_.second ){
-    cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
-    cout << "\n" ; 
+  cout << label_ << endl ;
+  cout << "nature : " <<enumToString( nature_ ) << endl ;
+  cout << "number of genes : " <<numGenes_ << endl ;
+  cout << "alleles : " ;
+  for(unsigned int i = 0 ; i != alleles_.size() ; i++){ 
+    cout << alleles_[i] << " ";
   }
-  it++;
-}
-cout << "\n\n" ; 
+  cout <<endl ;
+
+  cout << setOfRules_.size() << " rules : " << endl ;
+  std::unordered_set<Rule, RuleHasher >::const_iterator it = setOfRules_.begin() ;
+  while(it != setOfRules_.end() ){
+    //Do not print a-a relation (for clarity)
+    if( it->pairAlleles_.first != it->pairAlleles_.second ){
+      cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
+      cout << "\n" ; 
+    }
+    it++;
+  }
+  cout << "\n\n" ; 
 
 }

@@ -1,4 +1,4 @@
-// Geres les fichiers de config (les features, environement, parametre genetiques etc...) utilises pour initialiser la librairie genetique
+// Manage and load config files  ( abstractFeatures, environement ... ) and  genetic model parameters 
 #ifndef CONFIG_H
 #define CONFIG_H
 
@@ -38,20 +38,23 @@ namespace exceptions {
 }
 
 
+//Not used
 namespace globalFunctions {
-
 //Return factorial of the positive integer n
 int fact( int n) ;
 }
 
+
+//Options and const for the genetic model
 namespace geneticParameters {
 
   extern const int geneSize ;
   extern const double nucleicContribution ; 
 
-  //Options
-  //Default Rules
-  enum BuildRules { 
+  //Build default Rules options :
+  //Random (random number) , Increasing (greater coeff for high alleles) , Decreasing (greater coeff for low alleles )
+  enum DefaultRulesOptions { Random = 0 , Increasing = 1 , Decreasing = 2 } ;
+  DefaultRulesOptions stringToEnum(std::string) ;
 
 }
 

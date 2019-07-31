@@ -21,6 +21,12 @@ namespace exceptions {
 namespace geneticParameters {
   const int geneSize = 10 ;
   const double nucleicContribution = 0.1 ;
+  DefaultRulesOptions stringToEnum(std::string option) {
+
+
+
+  }
+
 }
 
 
