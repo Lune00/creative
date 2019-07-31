@@ -19,12 +19,50 @@ namespace exceptions {
 }
 
 namespace geneticParameters {
+
+  //Size of a gene , i.e number of alleles availables
   const int geneSize = 10 ;
-  const double nucleicContribution = 0.1 ;
-  DefaultRulesOptions stringToEnum(std::string option) {
 
+  buildRulesOption stringToEnum(std::string option) {
+    if( option == "random" || option.empty() ) 
+      return buildRulesOption::Random ;
+    else if( option == "increasing" ) 
+      return buildRulesOption::Increasing ;
+    else if( option == "decreasing" ) 
+      return buildRulesOption::Decreasing ;
+    else
+      return buildRulesOption::Undefined ;
+  }
 
+  std::string enumToString( buildRulesOption option ) {
+    switch( option ) {
+      case Random : return "random" ;
+      case Increasing : return "increasing" ;
+      case Decreasing : return "decreasing" ;
+      case Undefined : return "undefined" ;
+    }
+  }
 
+  //Return true if it detects the presence in the setting "codRules" of any building options for Rules
+  bool isBuildRulesOption(const std::vector<std::string>& Rules ) {
+    for( size_t i = 0 ; i != Rules.size() ; i++){
+      if( Rules[i] == "random" || Rules[i] == "increasing" || Rules[i] == "decreasing" ) 
+	return true ;
+    }
+    return false ;
+  }
+
+  buildRulesOption getBuildRulesOption( const std::vector<std::string>& Rules ) {
+
+    for( size_t i = 0 ; i != Rules.size() ; i++){
+      if( Rules[i] == "random" )
+	return buildRulesOption::Random ;
+      else if( Rules[i] == "increasing" )
+	return buildRulesOption::Increasing ;
+      else if ( Rules[i] == "decreasing" ) 
+	return buildRulesOption::Decreasing ;
+    }
+    return buildRulesOption::Undefined ;
   }
 
 }
@@ -89,19 +127,19 @@ namespace featuresIO {
   // Load name of the feature - mandatory
   void readLabel(const Setting& settingFeature, Feature* abstractFeature ) {
 
-      abstractFeature->setLabel( settingFeature.lookup( "label" ) ) ;
+    abstractFeature->setLabel( settingFeature.lookup( "label" ) ) ;
   }
 
   // Load nature of the feature - mandatory
   void readNature(const Setting& settingFeature, Feature* abstractFeature ) {
 
-      abstractFeature->setNature( settingFeature.lookup( "nature" ) ) ;
+    abstractFeature->setNature( settingFeature.lookup( "nature" ) ) ;
   }
   // Load nature of the feature - mandatory
   void readNumGenes(const Setting& settingFeature, Feature* abstractFeature ) {
 
-      int numGenes = settingFeature.lookup( "nGenes" ) ;
-      abstractFeature->setNumGenes( numGenes ) ;
+    int numGenes = settingFeature.lookup( "nGenes" ) ;
+    abstractFeature->setNumGenes( numGenes ) ;
   }
 
 
@@ -139,20 +177,34 @@ namespace featuresIO {
   //Check are performed here for the correct syntax of the Rule (eg number and delimiter), logic and completness
   void readCodominanceRules(const Setting& settingFeature, Feature* abstractFeature ){
 
-    std::vector<std::string> vectorCodominanceRules ;
+    std::vector<std::string> vectorStringRules ;
 
     try {
-      const Setting& settingCodominanceRules = settingFeature.lookup( "codRules" ) ;
-      for( int j = 0 ; j != settingCodominanceRules.getLength() ; j++ ) {
-	vectorCodominanceRules.push_back( settingCodominanceRules[j] ) ;
+
+      const Setting& settingRules = settingFeature.lookup( "codRules" ) ;
+
+      for( int j = 0 ; j != settingRules.getLength() ; j++ ) {
+	vectorStringRules.push_back( settingRules[j] ) ;
       }
+
     }
+    //If no "codRules" setting : defaultbuild for Rules is 'random' as a default behavior
     catch(const SettingNotFoundException &nfex )
     {
-      abstractFeature->buildDefaultRules( )  ;
+      abstractFeature->buildDefaultRules( geneticParameters::buildRulesOption::Random )  ;
     }
 
-    abstractFeature->loadRules ( vectorCodominanceRules ) ;
+    //Check for Default Rules options : random , increasing, decreasing detected. If found, has priority
+    if( geneticParameters::isBuildRulesOption( vectorStringRules ) ) {
+
+
+      cout << "option detected " << endl ;
+
+      geneticParameters::buildRulesOption option = geneticParameters::getBuildRulesOption( vectorStringRules ) ;
+      abstractFeature->buildDefaultRules( option ) ;
+    }
+    else 
+      abstractFeature->loadRules ( vectorStringRules ) ;
 
   }
 

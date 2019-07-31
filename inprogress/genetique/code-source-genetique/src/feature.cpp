@@ -261,25 +261,32 @@ void Feature::addToRules( Feature::Rule rule ) {
   setOfRules_.insert( rule ) ; 
 }
 
+//TODO : factorize code. I think we need here only one function 
+void Feature::buildDefaultRules( geneticParameters::buildRulesOption option) {
 
-//TODO
-// If feature is Discrete : random codominance coefficients are either 0 or 1 (integer) OR probability !!!
-// If feature is Continuous : random codominance coefficients are between 0 and 1 (floating)
-void Feature::buildDefaultRules() {
+  cout << "Feature '"<< this->label()<< "' building rules option : "<<geneticParameters::enumToString( option )<< "\n";
 
   switch ( this->nature() ) {
     case Feature::D : 
-      cout << "Feature '"<< this->label()<< "' Rules are set according to default parameters\n";
-      buildDefaultDiscreteRules() ;
+      buildDefaultDiscreteRules( option ) ;
       break ;
     case Feature::C : 
-      cout << "Feature '"<< this->label()<< "' Rules are set according to default parameters\n";
-      buildDefaultContinuousRules() ;
+      buildDefaultContinuousRules( option ) ;
       break ;
     case Feature::Undefined : 
-      cout<< "Undefined\n" ;
       return ;
   }
+}
+
+void Feature::buildDefaultDiscreteRules( geneticParameters::buildRulesOption option ) {
+
+
+
+}
+
+void Feature::buildDefaultContinuousRules( geneticParameters::buildRulesOption option ) {
+
+
 }
 
 //Check the Rule expression read from user file, check Regex depending on the nature of the feature
@@ -307,6 +314,7 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
   }
 }
 
+//TODO : To be tested
 //Check that the complete set of Rules cover all possible alleles combination. Global check on Rules 
 bool Feature::checkRulesCompletness() {
 

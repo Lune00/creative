@@ -7,6 +7,7 @@
 #include<iostream>
 #include<unordered_set>
 #include <boost/functional/hash.hpp>
+#include"config.h"
 
 class Feature {
 
@@ -103,9 +104,9 @@ class Feature {
   void addToRules(Feature::Rule ) ;
 
   //Default Rules when not defined by user 
-  void buildDefaultRules( ) ;
-  void buildDefaultDiscreteRules( ) ;
-  void buildDefaultContinuousRules( ) ;
+  void buildDefaultRules( geneticParameters::buildRulesOption ) ;
+  void buildDefaultDiscreteRules( geneticParameters::buildRulesOption) ;
+  void buildDefaultContinuousRules( geneticParameters::buildRulesOption ) ;
 
   //Split string Rule (from file) into a struct temp Rule
   Rule splitStringRuleIntoRule( const std::string& ) ;

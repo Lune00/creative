@@ -53,8 +53,12 @@ namespace geneticParameters {
 
   //Build default Rules options :
   //Random (random number) , Increasing (greater coeff for high alleles) , Decreasing (greater coeff for low alleles )
-  enum DefaultRulesOptions { Random = 0 , Increasing = 1 , Decreasing = 2 } ;
-  DefaultRulesOptions stringToEnum(std::string) ;
+  enum buildRulesOption { Random = 0 , Increasing = 1 , Decreasing = 2, Undefined = 3 } ;
+  buildRulesOption stringToEnum( std::string ) ;
+  std::string enumToString( buildRulesOption ) ;
+
+  bool isBuildRulesOption( const std::vector<std::string>& ) ;
+  buildRulesOption getBuildRulesOption( const std::vector<std::string>& ) ;
 
 }
 
