@@ -5,7 +5,7 @@ abstractFeatures=(
     { label = "body-size" ;
     nature = "Discrete" ;
     nGenes = 1 ;
-    codRules = "random" ;
+    codRules = ("random") ;
     },
     {
     label = "eye-color";

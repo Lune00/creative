@@ -118,7 +118,7 @@ class Feature {
   bool checkRegexForRule(const std::string& ) ;
 
   //Check over the set of Rules
-  bool checkRulesCompletness( ) ;
+  void checkRulesCompletness( ) ; //throw exception if not
   bool findInSetOfRules( const Feature::Rule& ) ;
 
   //Debug:

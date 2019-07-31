@@ -116,12 +116,16 @@ namespace featuresIO {
 
     Feature * abstractFeature = new Feature() ;
 
+    //Read from file
     readLabel( settingFeature, abstractFeature ) ;
     readNature( settingFeature , abstractFeature ) ;
     readNumGenes( settingFeature , abstractFeature ) ;
     readAlleles( settingFeature , abstractFeature ) ;
     readCodominanceRules( settingFeature , abstractFeature  ) ;
+    //Add to library
     abstractFeatures.push_back( abstractFeature ) ;
+
+    cout << "abstract feature loaded. " << endl ;
   }
 
   // Load name of the feature - mandatory
@@ -172,9 +176,9 @@ namespace featuresIO {
 
   }
 
-  //Read the 'codRules' (aka Rules) or codominance coefficient between two alleles as from
+  //Read the 'codRules' (aka Rules) or codominance coefficient between two alleles from
   //the config file as strings and load them in a struct 'Rule' ( a struct of Feature)
-  //Check are performed here for the correct syntax of the Rule (eg number and delimiter), logic and completness
+  //Check are performed here for the correct syntax of the Rule (eg number and delimiter) and logic
   void readCodominanceRules(const Setting& settingFeature, Feature* abstractFeature ){
 
     std::vector<std::string> vectorStringRules ;
@@ -197,15 +201,15 @@ namespace featuresIO {
     //Check for Default Rules options : random , increasing, decreasing detected. If found, has priority
     if( geneticParameters::isBuildRulesOption( vectorStringRules ) ) {
 
-
-      cout << "option detected " << endl ;
-
       geneticParameters::buildRulesOption option = geneticParameters::getBuildRulesOption( vectorStringRules ) ;
       abstractFeature->buildDefaultRules( option ) ;
     }
-    else 
+    else {
       abstractFeature->loadRules ( vectorStringRules ) ;
+    }
 
+    //Check completness for the Rules of the feature
+    abstractFeature->checkRulesCompletness( ) ;
   }
 
   std::string removeWhiteSpacesFromString( std::string string) {

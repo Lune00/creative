@@ -215,14 +215,6 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 
       } } }
 
-  //Check completness and consistency of the rules , throw exception if not
-  if ( !checkRulesCompletness( ) ) {
-    //Throw exception : 
-    ostringstream oss ;
-    oss << "Feature : " << this->label() << " has incomplete set of Rules "<<endl ;
-    throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
-    return ;
-  }
 
 }
 
@@ -262,9 +254,10 @@ void Feature::addToRules( Feature::Rule rule ) {
 }
 
 //TODO : factorize code. I think we need here only one function 
+// Build Rules , checkCompletness
 void Feature::buildDefaultRules( geneticParameters::buildRulesOption option) {
 
-  cout << "Feature '"<< this->label()<< "' building rules option : "<<geneticParameters::enumToString( option )<< "\n";
+  cout << "Feature '"<< this->label()<< "' - building Rules option : "<<geneticParameters::enumToString( option )<< "\n";
 
   switch ( this->nature() ) {
     case Feature::D : 
@@ -279,7 +272,6 @@ void Feature::buildDefaultRules( geneticParameters::buildRulesOption option) {
 }
 
 void Feature::buildDefaultDiscreteRules( geneticParameters::buildRulesOption option ) {
-
 
 
 }
@@ -316,21 +308,29 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
 
 //TODO : To be tested
 //Check that the complete set of Rules cover all possible alleles combination. Global check on Rules 
-bool Feature::checkRulesCompletness() {
+void Feature::checkRulesCompletness() {
 
-  for( int i = 0 ; i < alleles_.size()  ; i++ ) {
-    for( int j = i + 1  ; j < alleles_.size()  ; j++ ) {
+  bool completness = true ;
 
+  for( size_t i = 0 ; i < alleles_.size()  ; i++ ) {
+    for( size_t j = i + 1  ; j < alleles_.size()  ; j++ ) {
       //Find (i,j) if not return false ;
       Rule rule( i , j, true ) ;
       if( !findInSetOfRules( rule ) ) {
 	cout << "Not found " << endl ;
-	return false ;
+	completness = false ;
+	break ;
       }
     }
   }
-
-  return true ;
+  //Check completness and consistency of the rules , throw exception if not
+  if ( !completness ) {
+    //Throw exception : 
+    ostringstream oss ;
+    oss << "Feature : " << this->label() << " has incomplete set of Rules "<<endl ;
+    throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
+    return ;
+  }
 }
 
 bool Feature::findInSetOfRules(const Rule& rule ) {
