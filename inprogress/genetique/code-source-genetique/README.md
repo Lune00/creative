@@ -88,7 +88,9 @@ Plusieurs syntaxes se retrouvent dans l'écriture des règles de co-dominance d�
 
 #### Syntaxe des règles de codominance
 
-Une règle s'écrit de la forme `alleleA-alleleB=?`où `?`est une syntaxe propre à chaque nature de feature. A gauche les deux allèles pour lesquelles on écrit la règle sont reliées par un `-` , et après le caractère `=`est écrit le résultat de l'expression si ces deux allèles se retrouvent dans une même paire. 
+Une règle de codominance, ou _Rule_, détermine le rapport entre deux allèles du même gène lorsque celui-ci est évalué pour calculer la _value_ de la _feature_.
+
+Une _rule_ s'écrit de sous la forme `alleleA-alleleB=expression`où `expression`est une syntaxe propre à chaque nature de feature. Le terme de gauche correspond aux deux allèles pour lesquelles on déclare la règle, ils sont reliées par un caractère `-` . Le terme de droite donne le résultat de l'expression des deux allèles si elles se retrouvent dans une même paire. 
 
 **Les règles de co-dominance, si elles sont écrites par l'utilisateur, doivent couvrir l'ensemble des combinaisons d'allèles possibles sinon un message d'erreur sera affiché et l'execution du programme arrêtée.**
 
