@@ -105,6 +105,8 @@ où `p0.3`signifie que `alleleA` domine `alleleB`dans 30% des cas, c'est à dire
 
 **Remarque** : la syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. 
 
+La première syntaxe permet une écriture plus intuitive des règles de domination entre allèles. Lorsque l'on écrit `alleleA-alleleB=alleleA` cela est ensuite traduit en `alleleA-alleleB=p1`. Chaque _Rule_ a un nombre flottant appelé _domination_ . Dans le cas d'une feature de nature discrete _domination_ est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue _domination_ est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, _domination_ est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
+
 #### Cas d'une feature Continue
 Dans le cas d'une feature continue une seule syntaxe est possible : 
 ```
