@@ -179,32 +179,32 @@ Feature::Rule Feature::splitStringRuleIntoRuleContinuous( const std::string & st
 
 }
 
-//Load the Rules into the setOfRules_ . Check each Rule validiy (syntax & logic) and global validity (Completness)
+//Loop over Rules. Call loadRule for each rule if regex syntax is valid 
 void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules ) {
 
   for (unsigned int i = 0 ; i != vectorCodominanceRules.size() ; i ++ ) {
 
     std::string stringRule = vectorCodominanceRules[ i ] ;
     std::string stringRuleWithouSpaces  = featuresIO::removeWhiteSpacesFromString( stringRule ) ;
-
     //Check the Rule Syntax
     if( ! checkRegexForRule( stringRuleWithouSpaces ) )  {
-
-      //Throw exception : 
       ostringstream oss ;
       oss << "Feature : " << this->label() << " has one or several invalid 'codRule' syntax "<<endl ;
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
       return ;
     }
+    else 
+      loadRule( stringRuleWithouSpaces ) ;
+  }
+}
 
-    else {
+//Load a rule : check validity and add to Rules. If not valid, throw exception
+void Feature::loadRule(const std::string& stringRuleWithouSpaces ) {
 
       Feature::Rule rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
-
       //Check the Rule Validity (intern logic): alleles exist in the vec alleles_ , domination belongs to [0 :1]
-      if ( isRuleValid ( rule ) ) {
+      if ( isRuleValid ( rule ) ) 
 	addToRules( rule ) ;
-      }
       else {
 	//Throw exception : 
 	ostringstream oss ;
@@ -212,10 +212,7 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 	oss << rule.pairAlleles_.first << "-"<< rule.pairAlleles_.second ;
 	throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
 	return ;
-
-      } } }
-
-
+      }  
 }
 
 //Check if a Rule is internally valid
@@ -294,7 +291,7 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
 	return false; 
       //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
       //or 1-2=p0.5
-      
+
     case D : 
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
 	return true ;

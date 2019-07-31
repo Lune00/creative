@@ -101,6 +101,7 @@ class Feature {
   void setAllelesDefault( ) ;
 
   void loadRules(const std::vector< std::string > & vectorCodominanceRules ) ;
+  void loadRule(const std::string & Rule ) ;
   void addToRules(Feature::Rule ) ;
 
   //Default Rules when not defined by user 
