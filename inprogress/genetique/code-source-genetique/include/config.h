@@ -11,6 +11,7 @@
 #include<algorithm>
 #include<libconfig.h++>
 #include<unordered_set>
+#include <boost/functional/hash.hpp>
 
 class Feature ;
 
@@ -19,28 +20,76 @@ using  std::cerr ;
 using  std::cout ;
 using  std::endl ;
 
-namespace exceptions {
+namespace geneticParameters {
 
-  const char * writeMsg( std::ostringstream& os ) ;
+  extern const int geneSize ;
 
-  class MyStandardException : public std::exception { 
-    public : 
-      MyStandardException( const char * Msg, int Line ) {
-	std::ostringstream oss ;
-	//oss << "Error thrown at lign " << Line << " in the sourcecode - " << Msg ; 
-	oss << Msg << " line " << Line  ; 
-	this->msg = oss.str() ;
-      }
-      virtual const char * what() const throw () { return this->msg.c_str() ; }
-    private : 
-      std::string msg ;
-  } ;
-
+  // D : Discrete (ex : color of the eyes) C : Continuous value of the trait (ex : height)
+  enum Nature { D = 0 , C = 1, Undefined = 2 } ;
+  Nature stringToEnum( std::string ) ; 
+  std::string enumToString( Nature ) ; 
 }
+
 
 namespace configRules {
 
-  //Build default Rules options :
+  //Rule stating the relation between alleles of the same pair (of one gene)
+  struct Rule {
+
+    std::pair < int , int > pairAlleles_ ;
+    double domination_ ; 
+    bool discreteCaseWithProbability_ ;
+
+    //State saying that the rule is correct and can be used :
+    bool isCorrect_ ;
+
+    //Alleles always stored as a pair(a,b) with a <= b
+    Rule(int allele1, int allele2, double domination, bool discreteCaseWithProbability = false, bool isCorrect = true ) :
+      discreteCaseWithProbability_(discreteCaseWithProbability), isCorrect_(isCorrect)
+    {
+      if ( allele1 < allele2 ) { 
+	pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
+	domination_ = domination ; 
+      }
+      else {
+	pairAlleles_ = std::make_pair( allele2 , allele1 ) ;
+	domination_ = 1. - domination ;
+      }
+    }
+
+    //Works properly whatever the nature 
+    Rule( int allele ) {
+      pairAlleles_ = std::make_pair ( allele, allele ) ;
+      domination_ = 1. ;
+      discreteCaseWithProbability_ = false ;
+    }
+
+    Rule(int allele1, int allele2 , bool isCorrect) : isCorrect_(isCorrect) {
+      pairAlleles_ = std::make_pair( allele1 , allele2 ) ;
+      domination_ = 1. ;
+      discreteCaseWithProbability_ = false ;
+    }
+
+    //Equality 
+    bool operator==(const Rule& r ) const {
+      if ( pairAlleles_ == r.pairAlleles_ )
+	return true;
+      else
+	return false;
+    }
+
+  };
+
+  //Hash function based on pairAlleles_ only!
+  struct RuleHasher
+  {
+    size_t
+      operator()(const Rule & obj) const
+      {
+	return boost::hash<std::pair <int, int > >()(obj.pairAlleles_) ;
+      }
+  };
+
   //Random (random number) , Increasing (greater coeff for high alleles) , Decreasing (greater coeff for low alleles )
   enum buildRulesOption { Random = 0 , Increasing = 1 , Decreasing = 2, Undefined = 3 } ;
   buildRulesOption stringToEnum( std::string ) ;
@@ -49,16 +98,10 @@ namespace configRules {
   bool isBuildRulesOption( const std::vector<std::string>& ) ;
   buildRulesOption getBuildRulesOption( const std::vector<std::string>& ) ;
 
-  //std::unordered_set<Feature::Rule> buildRandomRules(const std::string& nature , const std::vector<int> alleles ) ;
-  //std::unordered_set buildIncreasingRules(const std::string& nature , const std::vector<int> alleles ) ;
-  //std::unordered_set buildDecreasingRules(const std::string& nature , const std::vector<int> alleles ) ;
+  std::unordered_set<Rule, RuleHasher> buildRandomRules( const geneticParameters::Nature& , const std::vector<int> alleles ) ;
+  std::unordered_set<Rule, RuleHasher> buildIncreasingRules( const geneticParameters::Nature& , const std::vector<int> alleles ) ;
+  std::unordered_set<Rule, RuleHasher> buildDecreasingRules( const geneticParameters::Nature& , const std::vector<int> alleles ) ;
 
-}
-
-//Options and const for the genetic model
-namespace geneticParameters {
-
-  extern const int geneSize ;
 }
 
 namespace debug {
@@ -106,4 +149,24 @@ namespace featuresIO {
   //Features loaded from the file and in the genetic base
   extern std::vector<Feature*> abstractFeatures ;
 }
+
+namespace exceptions {
+
+  const char * writeMsg( std::ostringstream& os ) ;
+
+  class MyStandardException : public std::exception { 
+    public : 
+      MyStandardException( const char * Msg, int Line ) {
+	std::ostringstream oss ;
+	//oss << "Error thrown at lign " << Line << " in the sourcecode - " << Msg ; 
+	oss << Msg << " line " << Line  ; 
+	this->msg = oss.str() ;
+      }
+      virtual const char * what() const throw () { return this->msg.c_str() ; }
+    private : 
+      std::string msg ;
+  } ;
+
+}
+
 #endif

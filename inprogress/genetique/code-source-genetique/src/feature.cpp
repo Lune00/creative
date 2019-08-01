@@ -4,31 +4,16 @@
 #include<sstream>
 
 using namespace std ; 
+using namespace configRules ;
 
 Feature::Feature() {
 }
 
-Feature::Nature Feature::stringToEnum( std::string nature ) {
-
-  if( nature == "C" || nature == "Continuous" ) return Feature::Nature::C ;
-  else if ( nature == "D" || nature == "Discrete" ) return Feature::Nature::D ;
-  else return  Feature::Nature::Undefined ;
-}
-
-
-string Feature::enumToString( Feature::Nature nature ) {
-
-  switch( nature ) {
-    case D : return "Discrete" ;
-    case C : return "Continuous" ;
-    case Undefined : return "Undefined" ;
-  }
-}
 
 void Feature::print_debug( ) {
 
   std::cerr << "Label : " << label_ << std::endl ;
-  std::cerr << "Nature : " << enumToString( nature_ ) << std::endl ; 
+  std::cerr << "Nature : " << geneticParameters::enumToString( nature_ ) << std::endl ; 
   std::cerr << "Number of genes : " << numGenes_ << std::endl ; 
   std::cerr << "Number of alleles : " << alleles_.size() << std::endl ; 
 }
@@ -49,9 +34,9 @@ void Feature::setAllelesDefinedManually ( bool AllelesDefinedManually ) {
 
 void Feature::setNature( std::string stringNature ) {
 
-  Feature::Nature nature = stringToEnum( stringNature ) ;
+  geneticParameters::Nature nature = geneticParameters::stringToEnum( stringNature ) ;
 
-  if ( nature == Nature::Undefined ) {
+  if ( nature == geneticParameters::Nature::Undefined ) {
     ostringstream oss ;
     oss << "Feature : " << this->label() << " has undefined nature. Must be (D)iscrete or (C)ontinuous" ;
     throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
@@ -84,7 +69,7 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
 
 }
 
-//Alleles sorted in increasing order
+//Alleles sorted in increasing order TO BE MOVED TO CONFIG
 void Feature::setAllelesDefault( ) {
   alleles_.clear() ;
   for ( int j = 0 ; j != geneticParameters::geneSize ; j++ ) {
@@ -94,21 +79,21 @@ void Feature::setAllelesDefault( ) {
 
 
 //Different split according to nature (different syntaxes for the rules)
-Feature::Rule Feature::splitStringRuleIntoRule(const std::string& stringRuleWithouSpaces ) {
+Rule Feature::splitStringRuleIntoRule(const std::string& stringRuleWithouSpaces ) {
 
       switch( nature_ ) {
-	case C :
+	case geneticParameters::Nature::C :
 	  return splitStringRuleIntoRuleContinuous( stringRuleWithouSpaces ) ;
 
-	case D :
+	case geneticParameters::Nature::D :
 	  return splitStringRuleIntoRuleDiscrete( stringRuleWithouSpaces ) ;
 
-	case Undefined :
+	case geneticParameters::Nature::Undefined :
 	  return Rule( false ) ;
       }
 }
 
-Feature::Rule Feature::splitStringRuleIntoRuleDiscrete( const std::string& stringRuleWithouSpaces ) {
+Rule Feature::splitStringRuleIntoRuleDiscrete( const std::string& stringRuleWithouSpaces ) {
 
   std::size_t pos = 0 ;
   string RuleToBeSplit = stringRuleWithouSpaces ;
@@ -150,7 +135,7 @@ Feature::Rule Feature::splitStringRuleIntoRuleDiscrete( const std::string& strin
 
 //This function is called after Regex Check on the rule provided by the user. So we KNOW that the rule
 //is SYNTAXICALLY correct (type, number) and we can process it without any further tests
-Feature::Rule Feature::splitStringRuleIntoRuleContinuous( const std::string & stringRuleWithouSpaces ) {
+Rule Feature::splitStringRuleIntoRuleContinuous( const std::string & stringRuleWithouSpaces ) {
 
   size_t pos = 0 ;
   string RuleToBeSplit = stringRuleWithouSpaces ;
@@ -200,7 +185,7 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
 //Load a rule : check validity and add to Rules. If not valid, throw exception
 void Feature::loadRule(const std::string& stringRuleWithouSpaces ) {
 
-      Feature::Rule rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
+      Rule rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
       //Check the Rule Validity (intern logic): alleles exist in the vec alleles_ , domination belongs to [0 :1]
       if ( isRuleValid ( rule ) ) 
 	addToRules( rule ) ;
@@ -215,7 +200,7 @@ void Feature::loadRule(const std::string& stringRuleWithouSpaces ) {
 }
 
 //Check if a Rule is internally valid
-bool Feature::isRuleValid(const Feature::Rule& rule ) {
+bool Feature::isRuleValid(const Rule& rule ) {
 
   if( !rule.isCorrect_ ) return false ; 
   //Check that pairAlleles_ contain alleles in the vector alleles_
@@ -238,7 +223,7 @@ bool Feature::isRuleValid(const Feature::Rule& rule ) {
 }
 
 //Add Rule to setOfRules_ . Add automatically identical alleles pair with domination 1.
-void Feature::addToRules( Feature::Rule rule ) {
+void Feature::addToRules( Rule rule ) {
 
   //add to the set also (a,a) and (b,b) with default domination 1
   Rule first_first ( rule.pairAlleles_.first ) ;
@@ -264,7 +249,7 @@ void Feature::buildDefaultRules( configRules::buildRulesOption option) {
       setOfRules_ = configRules::buildIncreasingRules( nature() , alleles_ ) ;
 
     case configRules::Decreasing : 
-      setOfRules_ = configRules::buildDecreasingRules( nature() , alleles_ ) ;
+      setOfRules_ = configRules::buildDecreasingRules( nature()  , alleles_ ) ;
 
     case configRules::Undefined : 
       return ;
@@ -279,7 +264,7 @@ void Feature::buildDefaultRules( configRules::buildRulesOption option) {
 bool Feature::checkRegexForRule( const std::string& stringRule ) {
 
   switch ( this->nature() ) { 
-    case C : 
+    case geneticParameters::Nature::C : 
       //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexContinuousFeature)) ) 
 	return true ;
@@ -287,12 +272,12 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
 	return false; 
       //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
       //or 1-2=p0.5
-    case D : 
+    case geneticParameters::Nature::D : 
       if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
 	return true ;
       else
 	return false; 
-    case Undefined :
+    case geneticParameters::Nature::Undefined :
       return false ;
   }
 }

@@ -1,5 +1,6 @@
 #include "config.h"
 #include "feature.h"
+#include "rng.h"
 #include<stdlib.h>
 #include<stdexcept>
 
@@ -54,12 +55,59 @@ namespace configRules {
     }
     return buildRulesOption::Undefined ;
   }
+
+  //Build random domination coefficient between alleles of the abstractFeature 
+  std::unordered_set<Rule, RuleHasher> buildRandomRules( geneticParameters::Nature nature , const std::vector<int> alleles ) {
+
+    std::unordered_set<Rule, RuleHasher > setOfRules ;
+
+    if (alleles.size() == 0 ) return setOfRules ;
+
+    for( size_t i = 0 ; i != alleles.size() ; i++ ) {
+      for( size_t j = i ; j!= alleles.size() ; j++ ) {
+
+	if( i == j ) {
+	  Rule rule( i , j , 1. ) ;
+	  setOfRules.insert( rule ) ;
+	}
+	else {
+	  double domination ;
+
+	  if( nature == geneticParameters::Nature::D ) 
+	    domination = rng::unif_rand_int( 0 , 1 );
+	  else
+	    domination = rng::unif_rand_double( 0 , 1 );
+
+	    Rule rule(i , j , domination ) ;
+	    setOfRules.insert( rule ) ;
+	}
+      }
+    }
+    return setOfRules ;
+  }
+
 }
 
 namespace geneticParameters {
 
   //Size of a gene , i.e number of alleles availables
   const int geneSize = 10 ;
+
+  Nature stringToEnum( std::string nature ) {
+    if( nature == "C" || nature == "Continuous" ) return Nature::C ;
+    else if ( nature == "D" || nature == "Discrete" ) return Nature::D ;
+    else return  Nature::Undefined ;
+  }
+
+
+  std::string enumToString( Nature nature ) {
+
+    switch( nature ) {
+      case D : return "Discrete" ;
+      case C : return "Continuous" ;
+      case Undefined : return "Undefined" ;
+    }
+  }
 
 }
 
