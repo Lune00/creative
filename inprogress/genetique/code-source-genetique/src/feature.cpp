@@ -63,20 +63,17 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
   alleles_ =  alleles ;
   //Store in increasing order :
   sort(alleles_.begin() , alleles_.end() ) ;
-
-  allelesDefinedManually_ = true ;
-
+  allelesDefinedByUser_ = true ;
 }
 
-//Alleles sorted in increasing order TO BE MOVED TO CONFIG
+//alleles_ filled sorted in increasing order
 void Feature::setAllelesDefault( ) {
   alleles_.clear() ;
   for ( int j = 0 ; j != geneticParameters::geneSize ; j++ ) {
     alleles_.push_back( j ) ;
   }
-  allelesDefinedManually_ = true ;
+  allelesDefinedByUser_ = false ;
 }
-
 
 //Different split according to nature (different syntaxes for the rules)
 Rule Feature::splitStringRuleIntoRule(const std::string& stringRuleWithouSpaces ) {
@@ -199,11 +196,11 @@ void Feature::loadRule(const std::string& stringRuleWithouSpaces ) {
       }  
 }
 
-//Check if a Rule is internally valid
+//Check if a Rule is valid : alleles of the pair present in alleles_ and 0<domination<1
 bool Feature::isRuleValid(const Rule& rule ) {
 
   if( !rule.isCorrect_ ) return false ; 
-  //Check that pairAlleles_ contain alleles in the vector alleles_
+
   int allele1 = rule.pairAlleles_.first ;
   int allele2 = rule.pairAlleles_.second ;
 
@@ -234,19 +231,39 @@ void Feature::addToRules( Rule rule ) {
   setOfRules_.insert( rule ) ; 
 }
 
-//TODO : factorize code. I think we need here only one function 
-// Build Rules , checkCompletness
+void Feature::buildRules( configRules::buildRulesOption option ) {
 
+  cout << "Feature '"<< this->label()<< "' - building Rules option : "<<configRules::enumToString( option )<< "\n";
+
+  switch ( option ) {
+    case configRules::Random : 
+      buildRandomRules() ;
+
+    case configRules::Increasing : 
+      return ;
+
+    case configRules::Decreasing : 
+      return ;
+
+    case configRules::Undefined : 
+      return ;
+
+    default :
+      return ;
+  }
+}
+
+// Build Rules , checkCompletness
 void Feature::buildRandomRules( ) {
 
-  if( allelesDefinedManually() ) return ; 
+  if( allelesDefinedByUser() ) return ; 
 
     for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
       for( size_t j = i ; j!= alleles_.size() ; j++ ) {
 
 	//Identity relation
-	if( i == j ) {
-	  Rule rule( i , j , 1. ) ;
+	if( alleles_[ i ] == alleles_[ j ] ) {
+	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
 	  setOfRules_.insert( rule ) ;
 	}
 	else {
@@ -255,34 +272,13 @@ void Feature::buildRandomRules( ) {
 	    domination = rng::unif_rand_int( 0 , 1 );
 	  else
 	    domination = rng::unif_rand_double( 0 , 1 );
-	    Rule rule(i , j , domination ) ;
+	    Rule rule(alleles_[ i ] , alleles_[ j ] , domination ) ;
 	    setOfRules_.insert( rule ) ;
 	}
 
       }
     }
     return ;
-}
-
-void Feature::buildRules( configRules::buildRulesOption option ) {
-
-  cout << "Feature '"<< this->label()<< "' - building Rules option : "<<configRules::enumToString( option )<< "\n";
-  cout << "Bulding rules " << endl ;
-
-  switch ( option ) {
-    case configRules::Random : 
-      buildRandomRules() ;
-
-    case configRules::Increasing : 
-
-    case configRules::Decreasing : 
-
-    case configRules::Undefined : 
-      return ;
-
-    default :
-      return ;
-  }
 }
 
 //Check the Rule expression read from user file, check Regex depending on the nature of the feature
@@ -307,22 +303,16 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
   }
 }
 
-//TODO : MAKE IT WORK PROPERLY
-//Check that the complete set of Rules cover all possible alleles combination. Global check on Rules 
-
 bool Feature::isSetOfRulesComplete() {
-
-  cout << "nb of alleles = " << alleles_.size() << endl ;
 
   if ( alleles_.size() == 0 ) return false ;
 
   for( size_t i = 0 ; i != alleles_.size()  ; i++ ) {
     for( size_t j = i   ; j != alleles_.size()  ; j++ ) {
-      cout << i << " " << j << endl ;
       //Find (i,j) if not return false ;
-      Rule rule( i , j, true ) ;
+      Rule rule( alleles_[ i ]  , alleles_[ j ] , true ) ;
       if( !findInSetOfRules( rule ) ) {
-	cout << "Not found " << endl ;
+	cout << alleles_[i] << "-"<<alleles_[ j ] <<" not found !" << endl ;
 	return false ;
       }
     }

@@ -77,7 +77,6 @@ namespace geneticParameters {
       case Undefined : return "Undefined" ;
     }
   }
-
 }
 
 
@@ -121,7 +120,6 @@ namespace featuresIO {
   void  parseAbstractFeature( const Setting& settingFeature ) {
 
     Feature * abstractFeature = new Feature() ;
-
     //Read from file
     readLabel( settingFeature, abstractFeature ) ;
     readNature( settingFeature , abstractFeature ) ;
@@ -130,8 +128,6 @@ namespace featuresIO {
     readCodominanceRules( settingFeature , abstractFeature  ) ;
     //Add to library
     abstractFeatures.push_back( abstractFeature ) ;
-
-    cout << "abstract feature loaded. " << endl ;
   }
 
   // Load name of the feature - mandatory

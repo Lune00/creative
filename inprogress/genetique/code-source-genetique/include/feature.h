@@ -19,7 +19,7 @@ class Feature {
   std::string name() const { return name_ ; }
   std::string label() const { return label_ ; }
   geneticParameters::Nature nature() const { return nature_ ; }
-  bool allelesDefinedManually( ) const { return allelesDefinedManually_ ; } ;
+  bool allelesDefinedByUser( ) const { return allelesDefinedByUser_ ; } ;
 
   // Initialisition from the features file configuration
   void setLabel( std::string label) { label_ = label ; }
@@ -28,7 +28,6 @@ class Feature {
   void setNumGenes( int nGenes ) ;
   void setAlleles( const std::vector<int>& ) ;
   void setAllelesDefault( ) ;
-  void setAllelesDefinedManually() { allelesDefinedManually_ = true ; }
 
   //Default Rules when not defined by user 
   void buildRules(configRules::buildRulesOption ) ;
@@ -68,7 +67,7 @@ class Feature {
   geneticParameters::Nature nature_  ;
 
   //If alleles have been defined or not by the user (config file)
-  bool allelesDefinedManually_ ; 
+  bool allelesDefinedByUser_ ; 
 
   //Abstract phenotype value. Lies in the interval [-1:1].
   //Have to be rescaled my min/max to represents a quantity with a meaning and unit.
