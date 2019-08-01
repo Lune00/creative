@@ -6,8 +6,6 @@
 using namespace std ; 
 
 Feature::Feature() {
-  // [ ni lignes * nj colonnes ] Element[i][j] = i * nj + j , 0 < j < nj and 0 < i < ni
-  //double * codominanceTable_ = new double [ geneticParameters::geneSize * geneticParameters::geneSize ] ;
 }
 
 Feature::Nature Feature::stringToEnum( std::string nature ) {
@@ -86,6 +84,7 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
 
 }
 
+//Alleles sorted in increasing order
 void Feature::setAllelesDefault( ) {
   alleles_.clear() ;
   for ( int j = 0 ; j != geneticParameters::geneSize ; j++ ) {
@@ -252,35 +251,27 @@ void Feature::addToRules( Feature::Rule rule ) {
 
 //TODO : factorize code. I think we need here only one function 
 // Build Rules , checkCompletness
-void Feature::buildDefaultRules( geneticParameters::buildRulesOption option) {
+void Feature::buildDefaultRules( configRules::buildRulesOption option) {
 
-  cout << "Feature '"<< this->label()<< "' - building Rules option : "<<geneticParameters::enumToString( option )<< "\n";
+  cout << "Feature '"<< this->label()<< "' - building Rules option : "<<configRules::enumToString( option )<< "\n";
+  cout << "Bulding rules " << endl ;
 
-  switch ( this->nature() ) {
-    case Feature::D : 
-      buildDefaultDiscreteRules( option ) ;
-      break ;
-    case Feature::C : 
-      buildDefaultContinuousRules( option ) ;
-      break ;
-    case Feature::Undefined : 
+  switch ( option ) {
+    case configRules::Random : 
+      setOfRules_ = configRules::buildRandomRules( nature() , alleles_ ) ;
+
+    case configRules::Increasing : 
+      setOfRules_ = configRules::buildIncreasingRules( nature() , alleles_ ) ;
+
+    case configRules::Decreasing : 
+      setOfRules_ = configRules::buildDecreasingRules( nature() , alleles_ ) ;
+
+    case configRules::Undefined : 
+      return ;
+
+    default :
       return ;
   }
-}
-
-void Feature::buildDefaultDiscreteRules( geneticParameters::buildRulesOption option ) {
-
-  //build alleles
-  //build coefficients
-  //call addToRules
-
-}
-
-void Feature::buildDefaultContinuousRules( geneticParameters::buildRulesOption option ) {
-
-  //build alleles
-  //build coefficients
-  //call addToRules
 
 }
 
@@ -308,10 +299,12 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
 
 //TODO : MAKE IT WORK PROPERLY
 //Check that the complete set of Rules cover all possible alleles combination. Global check on Rules 
-void Feature::checkRulesCompletness() {
 
-  bool completness = true ;
-  if ( alleles_.size() == 0 ) completness = false ;
+bool Feature::isSetOfRulesComplete() {
+
+  cout << "nb of alleles = " << alleles_.size() << endl ;
+
+  if ( alleles_.size() == 0 ) return false ;
 
   for( size_t i = 0 ; i != alleles_.size()  ; i++ ) {
     for( size_t j = i   ; j != alleles_.size()  ; j++ ) {
@@ -320,14 +313,16 @@ void Feature::checkRulesCompletness() {
       Rule rule( i , j, true ) ;
       if( !findInSetOfRules( rule ) ) {
 	cout << "Not found " << endl ;
-	completness = false ;
-	break ;
+	return false ;
       }
     }
   }
-  //Check completness and consistency of the rules , throw exception if not
-  if ( !completness ) {
-    //Throw exception : 
+  return true ;
+}
+
+//Check completness and consistency of the rules , throw exception if not
+void Feature::checkRulesCompletness() {
+  if ( !isSetOfRulesComplete() ) {
     ostringstream oss ;
     oss << "Feature : " << this->label() << " has incomplete set of Rules "<<endl ;
     throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;

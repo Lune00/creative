@@ -3,13 +3,6 @@
 #include<stdlib.h>
 #include<stdexcept>
 
-int fact( int n ) {
-
-  if( n < 0 ) { cerr << "integer n is not positive \n" ; return 1 ; }
-  if ( n == 0 || n == 1 ) return 1 ;
-  else return n * fact ( n-1 ) ;
-}
-
 
 namespace exceptions {
   const char * writeMsg( std::ostringstream& os ) {
@@ -18,10 +11,7 @@ namespace exceptions {
   }
 }
 
-namespace geneticParameters {
-
-  //Size of a gene , i.e number of alleles availables
-  const int geneSize = 10 ;
+namespace configRules {
 
   buildRulesOption stringToEnum(std::string option) {
     if( option == "random" || option.empty() ) 
@@ -64,6 +54,12 @@ namespace geneticParameters {
     }
     return buildRulesOption::Undefined ;
   }
+}
+
+namespace geneticParameters {
+
+  //Size of a gene , i.e number of alleles availables
+  const int geneSize = 10 ;
 
 }
 
@@ -75,13 +71,6 @@ namespace featuresIO {
   void loadAbstractFeatures() {
     isAbstractFeaturesFileAndCorrectSyntax() ;
     parseAbstractFeatures() ;
-  }
-
-  bool checkNumberOfCombinations( int nalleles, int nCotableRules ) {
-
-    int ncombinations = fact( nalleles ) / (fact( nalleles - 2 ) * 2) ;
-
-    return ( ncombinations == nCotableRules );
   }
 
   //Check that featuresFile exists and no libconfig syntax issues in it
@@ -195,13 +184,13 @@ namespace featuresIO {
     //If no "codRules" setting : defaultbuild for Rules is 'random' as a default behavior
     catch(const SettingNotFoundException &nfex )
     {
-      abstractFeature->buildDefaultRules( geneticParameters::buildRulesOption::Random )  ;
+      abstractFeature->buildDefaultRules( configRules::buildRulesOption::Random )  ;
     }
 
     //Check for Default Rules options : random , increasing, decreasing detected. If found, has priority
-    if( geneticParameters::isBuildRulesOption( vectorStringRules ) ) {
+    if( configRules::isBuildRulesOption( vectorStringRules ) ) {
 
-      geneticParameters::buildRulesOption option = geneticParameters::getBuildRulesOption( vectorStringRules ) ;
+      configRules::buildRulesOption option = configRules::getBuildRulesOption( vectorStringRules ) ;
       abstractFeature->buildDefaultRules( option ) ;
     }
     else {

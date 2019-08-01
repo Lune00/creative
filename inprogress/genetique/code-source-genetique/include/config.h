@@ -10,6 +10,7 @@
 #include<regex>
 #include<algorithm>
 #include<libconfig.h++>
+#include<unordered_set>
 
 class Feature ;
 
@@ -37,19 +38,7 @@ namespace exceptions {
 
 }
 
-
-//Not used
-namespace globalFunctions {
-//Return factorial of the positive integer n
-int fact( int n) ;
-}
-
-
-//Options and const for the genetic model
-namespace geneticParameters {
-
-  extern const int geneSize ;
-  extern const double nucleicContribution ; 
+namespace configRules {
 
   //Build default Rules options :
   //Random (random number) , Increasing (greater coeff for high alleles) , Decreasing (greater coeff for low alleles )
@@ -60,6 +49,16 @@ namespace geneticParameters {
   bool isBuildRulesOption( const std::vector<std::string>& ) ;
   buildRulesOption getBuildRulesOption( const std::vector<std::string>& ) ;
 
+  //std::unordered_set<Feature::Rule> buildRandomRules(const std::string& nature , const std::vector<int> alleles ) ;
+  //std::unordered_set buildIncreasingRules(const std::string& nature , const std::vector<int> alleles ) ;
+  //std::unordered_set buildDecreasingRules(const std::string& nature , const std::vector<int> alleles ) ;
+
+}
+
+//Options and const for the genetic model
+namespace geneticParameters {
+
+  extern const int geneSize ;
 }
 
 namespace debug {
@@ -76,8 +75,8 @@ namespace featuresIO {
   const std::string abstractFeaturesFile = "abstractFeatures.glib" ;
 
   //Syntax of the codRules
-  //const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\.?[0-9]*|1\.[0]*$|1$)" ;
   const std::string regexContinuousFeature = "[0-9]*-[0-9]*=(0\\.?[0-9]*|1\\.[0]*$|1$)" ;
+  //Deprecated
   const std::string regexDiscreteFeature = "[0-9]*-[0-9]*=[0-9]*$" ;
   //Match 2 syntaxes : 
   // 'a-b=a' (where a always dominate b (equiv a-b=p1.) or
@@ -87,13 +86,9 @@ namespace featuresIO {
   const std::string delimiterCoefficient = "=" ;
   const std::string flagProbability = "p" ;
 
-  //Features loaded from the file and in the genetic base
-  extern std::vector<Feature*> abstractFeatures ;
-
   //Loading file functions - main function : 
   void loadAbstractFeatures() ;
 
-  bool checkNumberOfCombinations( int numAlleles, int numCotableRules );
   void isAbstractFeaturesFileAndCorrectSyntax() ;
   void parseAbstractFeatures() ;
   void parseAbstractFeature( const Setting& ) ;
@@ -108,5 +103,7 @@ namespace featuresIO {
   //String parsing for entry
   std::string removeWhiteSpacesFromString( std::string ) ;
 
+  //Features loaded from the file and in the genetic base
+  extern std::vector<Feature*> abstractFeatures ;
 }
 #endif

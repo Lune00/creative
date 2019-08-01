@@ -105,9 +105,7 @@ class Feature {
   void addToRules(Feature::Rule ) ;
 
   //Default Rules when not defined by user 
-  void buildDefaultRules( geneticParameters::buildRulesOption ) ;
-  void buildDefaultDiscreteRules( geneticParameters::buildRulesOption) ;
-  void buildDefaultContinuousRules( geneticParameters::buildRulesOption ) ;
+  void buildDefaultRules( configRules::buildRulesOption ) ;
 
   //Split string Rule (from file) into a struct temp Rule
   Rule splitStringRuleIntoRule( const std::string& ) ;
@@ -120,6 +118,7 @@ class Feature {
 
   //Check over the set of Rules
   void checkRulesCompletness( ) ; //throw exception if not
+  bool isSetOfRulesComplete( ) ;
   bool findInSetOfRules( const Feature::Rule& ) ;
 
   //Debug:
