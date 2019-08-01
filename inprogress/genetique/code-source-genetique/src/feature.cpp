@@ -1,6 +1,7 @@
 #include"config.h"
 #include"feature.h"
 #include"gene.h"
+#include"rng.h"
 #include<sstream>
 
 using namespace std ; 
@@ -26,10 +27,6 @@ void Feature::setNumGenes( int numGenes ) {
       throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
   }
   else numGenes_ = numGenes ; 
-}
-
-void Feature::setAllelesDefinedManually ( bool AllelesDefinedManually ) {
-  AllelesDefinedManually_ = AllelesDefinedManually ; 
 }
 
 void Feature::setNature( std::string stringNature ) {
@@ -67,6 +64,8 @@ void Feature::setAlleles( const std::vector<int>& alleles ) {
   //Store in increasing order :
   sort(alleles_.begin() , alleles_.end() ) ;
 
+  allelesDefinedManually_ = true ;
+
 }
 
 //Alleles sorted in increasing order TO BE MOVED TO CONFIG
@@ -75,6 +74,7 @@ void Feature::setAllelesDefault( ) {
   for ( int j = 0 ; j != geneticParameters::geneSize ; j++ ) {
     alleles_.push_back( j ) ;
   }
+  allelesDefinedManually_ = true ;
 }
 
 
@@ -236,20 +236,46 @@ void Feature::addToRules( Rule rule ) {
 
 //TODO : factorize code. I think we need here only one function 
 // Build Rules , checkCompletness
-void Feature::buildDefaultRules( configRules::buildRulesOption option) {
+
+void Feature::buildRandomRules( ) {
+
+  if( allelesDefinedManually() ) return ; 
+
+    for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
+      for( size_t j = i ; j!= alleles_.size() ; j++ ) {
+
+	//Identity relation
+	if( i == j ) {
+	  Rule rule( i , j , 1. ) ;
+	  setOfRules_.insert( rule ) ;
+	}
+	else {
+	  double domination ;
+	  if( nature() == geneticParameters::Nature::D ) 
+	    domination = rng::unif_rand_int( 0 , 1 );
+	  else
+	    domination = rng::unif_rand_double( 0 , 1 );
+	    Rule rule(i , j , domination ) ;
+	    setOfRules_.insert( rule ) ;
+	}
+
+      }
+    }
+    return ;
+}
+
+void Feature::buildRules( configRules::buildRulesOption option ) {
 
   cout << "Feature '"<< this->label()<< "' - building Rules option : "<<configRules::enumToString( option )<< "\n";
   cout << "Bulding rules " << endl ;
 
   switch ( option ) {
     case configRules::Random : 
-      setOfRules_ = configRules::buildRandomRules( nature() , alleles_ ) ;
+      buildRandomRules() ;
 
     case configRules::Increasing : 
-      setOfRules_ = configRules::buildIncreasingRules( nature() , alleles_ ) ;
 
     case configRules::Decreasing : 
-      setOfRules_ = configRules::buildDecreasingRules( nature()  , alleles_ ) ;
 
     case configRules::Undefined : 
       return ;
@@ -257,7 +283,6 @@ void Feature::buildDefaultRules( configRules::buildRulesOption option) {
     default :
       return ;
   }
-
 }
 
 //Check the Rule expression read from user file, check Regex depending on the nature of the feature

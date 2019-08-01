@@ -16,31 +16,33 @@ class Feature {
   Feature() ;
 
 
-  void print_debug() ;
   std::string name() const { return name_ ; }
   std::string label() const { return label_ ; }
   geneticParameters::Nature nature() const { return nature_ ; }
+  bool allelesDefinedManually( ) const { return allelesDefinedManually_ ; } ;
 
   // Initialisition from the features file configuration
   void setLabel( std::string label) { label_ = label ; }
   void setName( std::string name ) { name_ = name ; }
   void setNature( std::string nature ) ;  
   void setNumGenes( int nGenes ) ;
-  void setAllelesDefinedManually( bool ) ;
   void setAlleles( const std::vector<int>& ) ;
   void setAllelesDefault( ) ;
+  void setAllelesDefinedManually() { allelesDefinedManually_ = true ; }
+
+  //Default Rules when not defined by user 
+  void buildRules(configRules::buildRulesOption ) ;
+  void buildRandomRules( ) ;
 
   void loadRules(const std::vector< std::string > & vectorCodominanceRules ) ;
   void loadRule(const std::string & Rule ) ;
   void addToRules( configRules::Rule ) ;
 
-  //Default Rules when not defined by user 
-  void buildDefaultRules( configRules::buildRulesOption ) ;
-
   //Split string Rule (from file) into a struct temp Rule
   configRules::Rule splitStringRuleIntoRule( const std::string& ) ;
   configRules::Rule splitStringRuleIntoRuleContinuous( const std::string& ) ;
   configRules::Rule splitStringRuleIntoRuleDiscrete( const std::string& ) ;
+
   //Check the validity of a Rule
   bool isRuleValid( const configRules::Rule& ) ;
   //Check the syntax of a Rule (from file)
@@ -49,15 +51,15 @@ class Feature {
   //Check over the set of Rules
   void checkRulesCompletness( ) ; //throw exception if not
   bool isSetOfRulesComplete( ) ;
+
   bool findInSetOfRules( const configRules::Rule& ) ;
 
   //Debug:
   void debugPrintToStandardOutput() ;
+  void print_debug() ;
 
   private :
 
-  //Abstract Feature :
-  
   //label (abstract name, id in the config file. Different features can be built from the same abstract feature identified by its label)
   std::string label_ ;
   //name (real name in the program) 
@@ -66,7 +68,7 @@ class Feature {
   geneticParameters::Nature nature_  ;
 
   //If alleles have been defined or not by the user (config file)
-  bool AllelesDefinedManually_ ; 
+  bool allelesDefinedManually_ ; 
 
   //Abstract phenotype value. Lies in the interval [-1:1].
   //Have to be rescaled my min/max to represents a quantity with a meaning and unit.

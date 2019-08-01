@@ -44,7 +44,6 @@ namespace configRules {
   }
 
   buildRulesOption getBuildRulesOption( const std::vector<std::string>& Rules ) {
-
     for( size_t i = 0 ; i != Rules.size() ; i++){
       if( Rules[i] == "random" )
 	return buildRulesOption::Random ;
@@ -54,36 +53,6 @@ namespace configRules {
 	return buildRulesOption::Decreasing ;
     }
     return buildRulesOption::Undefined ;
-  }
-
-  //Build random domination coefficient between alleles of the abstractFeature 
-  std::unordered_set<Rule, RuleHasher> buildRandomRules( geneticParameters::Nature nature , const std::vector<int> alleles ) {
-
-    std::unordered_set<Rule, RuleHasher > setOfRules ;
-
-    if (alleles.size() == 0 ) return setOfRules ;
-
-    for( size_t i = 0 ; i != alleles.size() ; i++ ) {
-      for( size_t j = i ; j!= alleles.size() ; j++ ) {
-
-	if( i == j ) {
-	  Rule rule( i , j , 1. ) ;
-	  setOfRules.insert( rule ) ;
-	}
-	else {
-	  double domination ;
-
-	  if( nature == geneticParameters::Nature::D ) 
-	    domination = rng::unif_rand_int( 0 , 1 );
-	  else
-	    domination = rng::unif_rand_double( 0 , 1 );
-
-	    Rule rule(i , j , domination ) ;
-	    setOfRules.insert( rule ) ;
-	}
-      }
-    }
-    return setOfRules ;
   }
 
 }
@@ -196,10 +165,7 @@ namespace featuresIO {
       for( int j = 0 ; j != settingAlleles.getLength() ; j++ ) {
 	vector_alleles.push_back( settingAlleles[j] ) ;
       }
-
       abstractFeature->setAlleles( vector_alleles ) ;
-      abstractFeature->setAllelesDefinedManually ( true ) ;
-
     }
 
     //If 'alleles' not found it is ok, default parameters
@@ -207,11 +173,11 @@ namespace featuresIO {
     catch(const SettingNotFoundException &nfex)
     {
       // Default behavior : all alleles included (10) 
-      abstractFeature->setAllelesDefinedManually ( false ) ;
       abstractFeature->setAllelesDefault( ) ;
     }
 
   }
+
 
   //Read the 'codRules' (aka Rules) or codominance coefficient between two alleles from
   //the config file as strings and load them in a struct 'Rule' ( a struct of Feature)
@@ -232,14 +198,14 @@ namespace featuresIO {
     //If no "codRules" setting : defaultbuild for Rules is 'random' as a default behavior
     catch(const SettingNotFoundException &nfex )
     {
-      abstractFeature->buildDefaultRules( configRules::buildRulesOption::Random )  ;
+      abstractFeature->buildRules( configRules::buildRulesOption::Random )  ;
     }
 
     //Check for Default Rules options : random , increasing, decreasing detected. If found, has priority
     if( configRules::isBuildRulesOption( vectorStringRules ) ) {
 
       configRules::buildRulesOption option = configRules::getBuildRulesOption( vectorStringRules ) ;
-      abstractFeature->buildDefaultRules( option ) ;
+      abstractFeature->buildRules( option ) ;
     }
     else {
       abstractFeature->loadRules ( vectorStringRules ) ;

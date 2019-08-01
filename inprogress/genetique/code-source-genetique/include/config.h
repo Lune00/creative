@@ -23,8 +23,6 @@ using  std::endl ;
 namespace geneticParameters {
 
   extern const int geneSize ;
-
-  // D : Discrete (ex : color of the eyes) C : Continuous value of the trait (ex : height)
   enum Nature { D = 0 , C = 1, Undefined = 2 } ;
   Nature stringToEnum( std::string ) ; 
   std::string enumToString( Nature ) ; 
@@ -35,7 +33,6 @@ namespace configRules {
 
   //Rule stating the relation between alleles of the same pair (of one gene)
   struct Rule {
-
     std::pair < int , int > pairAlleles_ ;
     double domination_ ; 
     bool discreteCaseWithProbability_ ;
@@ -97,10 +94,6 @@ namespace configRules {
 
   bool isBuildRulesOption( const std::vector<std::string>& ) ;
   buildRulesOption getBuildRulesOption( const std::vector<std::string>& ) ;
-
-  std::unordered_set<Rule, RuleHasher> buildRandomRules( const geneticParameters::Nature& , const std::vector<int> alleles ) ;
-  std::unordered_set<Rule, RuleHasher> buildIncreasingRules( const geneticParameters::Nature& , const std::vector<int> alleles ) ;
-  std::unordered_set<Rule, RuleHasher> buildDecreasingRules( const geneticParameters::Nature& , const std::vector<int> alleles ) ;
 
 }
 
