@@ -5,6 +5,7 @@ abstractFeatures=(
     { label = "body-size" ;
     nature = "C" ;
     nGenes = 1 ;
+    alleles = ( 1 , 2 , 3 ) ;
     codRules = ("decreasing") ;
     }
 );

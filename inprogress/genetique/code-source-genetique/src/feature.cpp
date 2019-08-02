@@ -259,14 +259,15 @@ void Feature::buildRules( configRules::buildRulesOption option ) {
 
   switch ( option ) {
     case configRules::Random : 
-      buildRandomRules() ;
+      buildRandomRules( ) ;
       break ;
 
     case configRules::Increasing : 
-      buildIncreasingRules() ;
+      buildIncreasingRules( ) ;
       break ;
 
     case configRules::Decreasing : 
+      buildDecreasingRules( ) ;
       break ;
 
     case configRules::Undefined : 
@@ -311,7 +312,8 @@ void Feature::buildRandomRules( ) {
 void Feature::buildIncreasingRules( ) {
 
   const double epsilon = 1e-5 ;
-  if( allelesDefinedByUser() ) return ; 
+
+  //if( allelesDefinedByUser() ) return ; 
 
     for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
 
@@ -346,14 +348,17 @@ void Feature::buildIncreasingRules( ) {
 
 void Feature::buildDecreasingRules( ) {
 
-  if( allelesDefinedByUser() ) return ; 
+  cout << "buildDecreasingRules " << endl ;
+
+  //if( allelesDefinedByUser() ) return ; 
 
     for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
 
-      double domination = 0. ;
+      double domination = 1. ;
 
       for( size_t j = i ; j!= alleles_.size() ; j++ ) {
 
+	cout << alleles_[ i ] << " " << alleles_ [ j ] << endl ;
 	//Identity relation
 	if( alleles_[ i ] == alleles_[ j ] ) {
 	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
@@ -369,7 +374,7 @@ void Feature::buildDecreasingRules( ) {
 	  else {
 	    Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
 	    setOfRules_.insert( rule ) ;
-	    domination += 0.1 ;
+	    domination -= 0.1 ;
 	  }
 	}
       }
