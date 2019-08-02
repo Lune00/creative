@@ -196,6 +196,28 @@ void Feature::loadRule(const std::string& stringRuleWithouSpaces ) {
       }  
 }
 
+//Check the Rule expression read from user file, check Regex depending on the nature of the feature
+bool Feature::checkRegexForRule( const std::string& stringRule ) {
+
+  switch ( this->nature() ) { 
+    case geneticParameters::Nature::C : 
+      //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
+      if( std::regex_match ( stringRule , std::regex(featuresIO::regexContinuousFeature)) ) 
+	return true ;
+      else
+	return false; 
+      //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
+      //or 1-2=p0.5
+    case geneticParameters::Nature::D : 
+      if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
+	return true ;
+      else
+	return false; 
+    case geneticParameters::Nature::Undefined :
+      return false ;
+  }
+}
+
 //Check if a Rule is valid : alleles of the pair present in alleles_ and 0<domination<1
 bool Feature::isRuleValid(const Rule& rule ) {
 
@@ -238,22 +260,24 @@ void Feature::buildRules( configRules::buildRulesOption option ) {
   switch ( option ) {
     case configRules::Random : 
       buildRandomRules() ;
+      break ;
 
     case configRules::Increasing : 
-      return ;
+      buildIncreasingRules() ;
+      break ;
 
     case configRules::Decreasing : 
-      return ;
+      break ;
 
     case configRules::Undefined : 
-      return ;
+      break;
 
     default :
       return ;
   }
+  return ;
 }
 
-// Build Rules , checkCompletness
 void Feature::buildRandomRules( ) {
 
   if( allelesDefinedByUser() ) return ; 
@@ -267,11 +291,14 @@ void Feature::buildRandomRules( ) {
 	  setOfRules_.insert( rule ) ;
 	}
 	else {
+
 	  double domination ;
+
 	  if( nature() == geneticParameters::Nature::D ) 
 	    domination = rng::unif_rand_int( 0 , 1 );
 	  else
 	    domination = rng::unif_rand_double( 0 , 1 );
+
 	    Rule rule(alleles_[ i ] , alleles_[ j ] , domination ) ;
 	    setOfRules_.insert( rule ) ;
 	}
@@ -281,27 +308,76 @@ void Feature::buildRandomRules( ) {
     return ;
 }
 
-//Check the Rule expression read from user file, check Regex depending on the nature of the feature
-bool Feature::checkRegexForRule( const std::string& stringRule ) {
+void Feature::buildIncreasingRules( ) {
 
-  switch ( this->nature() ) { 
-    case geneticParameters::Nature::C : 
-      //Regex for Continuous Feature : check that arguments are integer and double < 1.0 (ex : 1-2=0.5)
-      if( std::regex_match ( stringRule , std::regex(featuresIO::regexContinuousFeature)) ) 
-	return true ;
-      else
-	return false; 
-      //Regex for Discrete Feature : check that arguments are integer and integer (ex : 1-2=2 , 2 dominates 1)
-      //or 1-2=p0.5
-    case geneticParameters::Nature::D : 
-      if( std::regex_match ( stringRule , std::regex(featuresIO::regexDiscreteFeatureBothSyntaxes)) )
-	return true ;
-      else
-	return false; 
-    case geneticParameters::Nature::Undefined :
-      return false ;
-  }
+  const double epsilon = 1e-5 ;
+  if( allelesDefinedByUser() ) return ; 
+
+    for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
+
+      double domination = 0.8 ;
+
+      for( size_t j = i ; j!= alleles_.size() ; j++ ) {
+
+	//Identity relation
+	if( alleles_[ i ] == alleles_[ j ] ) {
+	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
+	  setOfRules_.insert( rule ) ;
+	}
+	else{
+	  //Discrete, a test
+	  if( nature() == geneticParameters::Nature::D )  {
+	    Rule rule( alleles_[ i ] , alleles_ [ j ] , (double)alleles_ [ j ] ) ;
+	    setOfRules_.insert( rule ) ;
+	  } 
+	  //Continuous
+	  else {
+	    if (domination < epsilon ) domination = 0. ;
+	    Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
+	    setOfRules_.insert( rule ) ;
+	    domination -= 0.1 ;
+	  }
+	}
+      }
+    }
+
+    return ;
 }
+
+void Feature::buildDecreasingRules( ) {
+
+  if( allelesDefinedByUser() ) return ; 
+
+    for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
+
+      double domination = 0. ;
+
+      for( size_t j = i ; j!= alleles_.size() ; j++ ) {
+
+	//Identity relation
+	if( alleles_[ i ] == alleles_[ j ] ) {
+	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
+	  setOfRules_.insert( rule ) ;
+	}
+	else{
+	  //Discrete, a test
+	  if( nature() == geneticParameters::Nature::D )  {
+	    Rule rule( alleles_[ i ] , alleles_ [ j ] , (double)alleles_ [ i ] ) ;
+	    setOfRules_.insert( rule ) ;
+	  } 
+	  //Continuous
+	  else {
+	    Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
+	    setOfRules_.insert( rule ) ;
+	    domination += 0.1 ;
+	  }
+	}
+      }
+    }
+
+    return ;
+}
+
 
 bool Feature::isSetOfRulesComplete() {
 
