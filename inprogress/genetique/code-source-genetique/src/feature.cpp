@@ -290,9 +290,11 @@ void Feature::buildRandomRules( ) {
   for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
     for( size_t j = i ; j!= alleles_.size() ; j++ ) {
 
-      //Identity relation : automatically added by addToRules( )
-      if( alleles_[ i ] == alleles_[ j ] )
-	continue ;
+      //Identity relation : manage case of one allele in alleles_
+      if( alleles_[ i ] == alleles_[ j ] ) {
+	Rule rule(alleles_[ i ] , alleles_[ j ] , 1. ) ;
+	addToRules( rule ) ;
+      }
       else {
 
 	double domination ;
@@ -323,8 +325,10 @@ void Feature::buildIncreasingRules( ) {
     for( size_t j = alleles_.size() - 1 ; j!= 0 ; j-- ) {
 
       //Identity relation
-      if( alleles_[ i ] == alleles_[ j ] )
-	continue;
+      if( alleles_[ i ] == alleles_[ j ] ) {
+	Rule rule(alleles_[ i ] , alleles_[ j ] , 1. ) ;
+	addToRules( rule ) ;
+      }
       else{
 	//Discrete, a test
 	if( nature() == geneticParameters::Nature::D )  {
@@ -354,8 +358,10 @@ void Feature::buildDecreasingRules( ) {
     for( size_t j = alleles_.size() - 1 ; j!= 0 ; j-- ) {
 
       //Identity relation
-      if( alleles_[ i ] == alleles_[ j ] )
-	continue ;
+      if( alleles_[ i ] == alleles_[ j ] ) {
+	Rule rule (alleles_[ i ] , alleles_[ j ] , 1. ) ;
+	addToRules( rule ) ;
+      }
       else{
 	//Discrete, a test
 	if( nature() == geneticParameters::Nature::D )  {

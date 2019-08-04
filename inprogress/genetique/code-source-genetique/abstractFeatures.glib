@@ -2,11 +2,11 @@
 #Tous les types de traits sont ici représentés:
 
 abstractFeatures=(
-    { label = "body-size" ;
+    { label = "size" ;
     nature = "C" ;
     nGenes = 1 ;
-    alleles = ( 1 , 2, 3 , 4 ) ;
-    codRules = ("decreasing");
+    alleles = ( 0 , 5 ,9 ) ;
+    codRules = ("increasing");
     }
 );
 
