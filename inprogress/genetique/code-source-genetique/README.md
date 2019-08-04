@@ -69,11 +69,15 @@ indique que l'on déclare une feature abstraite "color" qui ne peut prendre que 
      - `increasing:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=0`
      - `decreasing:progressive`: les allèles les plus faibles dominent toujours les allèles les plus élevées (voir tableaux ci-dessous)
      - `decreasing:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=1`
+     
+    
 Voici résumés sous forme de tableaux les valeurs des coefficients de codominance générés avec les options disponibles. Les tableaux sont générés pour une _feature_ continue avec les allèles `(1,2,3,4)`, avec la syntaxe 
 
 |   | `b` 
 | - | - |
  | `a` | `c(a,b)` |
+ 
+ et `c(a,b)=1-c(b,a)`par définition.
  
 Option : `codRules=("increasing:strict")`, ci-dessous
 
