@@ -17,10 +17,14 @@ namespace configRules {
   buildRulesOption stringToEnum(std::string option) {
     if( option == "random" || option.empty() ) 
       return buildRulesOption::Random ;
-    else if( option == "increasing" ) 
-      return buildRulesOption::Increasing ;
-    else if( option == "decreasing" ) 
-      return buildRulesOption::Decreasing ;
+    else if( option == "increase:gradual" ) 
+      return buildRulesOption::IncreaseGradual ;
+    else if( option == "increase:strict" ) 
+      return buildRulesOption::IncreaseStrict ;
+    else if( option == "decrease:strict" ) 
+      return buildRulesOption::DecreaseStrict ;
+    else if( option == "decrease:gradual" ) 
+      return buildRulesOption::DecreaseGradual ;
     else
       return buildRulesOption::Undefined ;
   }
@@ -28,8 +32,10 @@ namespace configRules {
   std::string enumToString( buildRulesOption option ) {
     switch( option ) {
       case Random : return "random" ;
-      case Increasing : return "increasing" ;
-      case Decreasing : return "decreasing" ;
+      case IncreaseGradual : return "increase:gradual" ;
+      case IncreaseStrict : return "increase:strict" ;
+      case DecreaseGradual : return "decrease:gradual" ;
+      case DecreaseStrict : return "decrease:strict" ;
       case Undefined : return "undefined" ;
     }
   }
@@ -37,7 +43,7 @@ namespace configRules {
   //Return true if it detects the presence in the setting "codRules" of any building options for Rules
   bool isBuildRulesOption(const std::vector<std::string>& Rules ) {
     for( size_t i = 0 ; i != Rules.size() ; i++){
-      if( Rules[i] == "random" || Rules[i] == "increasing" || Rules[i] == "decreasing" ) 
+      if( Rules[i] == "random" || Rules[i] == "increase:gradual" || Rules[i] == "increase:strict" || Rules[i] == "decrease:gradual" || Rules[i] == "decrease:strict" ) 
 	return true ;
     }
     return false ;
@@ -47,10 +53,14 @@ namespace configRules {
     for( size_t i = 0 ; i != Rules.size() ; i++){
       if( Rules[i] == "random" )
 	return buildRulesOption::Random ;
-      else if( Rules[i] == "increasing" )
-	return buildRulesOption::Increasing ;
-      else if ( Rules[i] == "decreasing" ) 
-	return buildRulesOption::Decreasing ;
+      else if( Rules[i] == "increase:gradual" )
+	return buildRulesOption::IncreaseGradual ;
+      else if( Rules[i] == "increase:strict" )
+	return buildRulesOption::IncreaseStrict ;
+      else if ( Rules[i] == "decrease:gradual" ) 
+	return buildRulesOption::DecreaseGradual ;
+      else if ( Rules[i] == "decrease:strict" ) 
+	return buildRulesOption::DecreaseStrict ;
     }
     return buildRulesOption::Undefined ;
   }

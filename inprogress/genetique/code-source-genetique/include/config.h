@@ -89,7 +89,7 @@ namespace configRules {
 
   //Random (random number) , Increasing (greater coeff for high alleles) , Decreasing (greater coeff for low alleles )
   //Two other options: progressive or strict
-  enum buildRulesOption { Random = 0 , Increasing = 1 , Decreasing = 2, Undefined = 3 } ;
+  enum buildRulesOption { Random = 0 , IncreaseStrict = 1 , IncreaseGradual = 2 , DecreaseStrict = 3, DecreaseGradual = 4,  Undefined = 5 } ;
   buildRulesOption stringToEnum( std::string ) ;
   std::string enumToString( buildRulesOption ) ;
 

@@ -256,6 +256,7 @@ void Feature::addToRules( Rule rule ) {
   }  
 }
 
+//Not be redo properly with two distinct enums later
 void Feature::buildRules( configRules::buildRulesOption option ) {
 
   cout << "Feature '"<< this->label()<< "' -rules generated -option : "<<configRules::enumToString( option )<< "\n";
@@ -265,12 +266,19 @@ void Feature::buildRules( configRules::buildRulesOption option ) {
       buildRandomRules( ) ;
       break ;
 
-    case configRules::Increasing : 
-      buildIncreasingRules( ) ;
+    case configRules::IncreaseGradual : 
+      buildIncreaseRules( option ) ;
+      break ;
+    case configRules::IncreaseStrict : 
+      buildIncreaseRules( option ) ;
       break ;
 
-    case configRules::Decreasing : 
-      buildDecreasingRules( ) ;
+    case configRules::DecreaseGradual : 
+      buildDecreaseRules( option ) ;
+      break ;
+
+    case configRules::DecreaseStrict : 
+      buildDecreaseRules( option ) ;
       break ;
 
     case configRules::Undefined : 
@@ -311,7 +319,7 @@ void Feature::buildRandomRules( ) {
 }
 
 //Higher alleles dominate lower ones
-void Feature::buildIncreasingRules( ) {
+void Feature::buildIncreaseRules( configRules::buildRulesOption option ) {
 
   const double epsilon = 1e-5 ;
 
@@ -327,7 +335,7 @@ void Feature::buildIncreasingRules( ) {
 	addToRules( rule ) ;
       }
       else{
-	//Discrete, a test
+	//Discrete
 	if( nature() == geneticParameters::Nature::D )  {
 	  Rule rule( alleles_[ i ] , alleles_ [ j ] , 0. ) ;
 	  addToRules( rule ) ;
@@ -337,7 +345,9 @@ void Feature::buildIncreasingRules( ) {
 	  if (domination < epsilon ) domination = 0. ;
 	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
 	  addToRules( rule ) ;
-	  domination += 0.1 ;
+
+	  if( option == configRules::buildRulesOption::IncreaseGradual ) 
+	    domination += 0.1 ;
 	}
       }
     }
@@ -346,7 +356,7 @@ void Feature::buildIncreasingRules( ) {
   return ;
 }
 //Lower alleles dominate higher ones
-void Feature::buildDecreasingRules( ) {
+void Feature::buildDecreaseRules(configRules::buildRulesOption option ) {
 
   for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
 
@@ -369,7 +379,9 @@ void Feature::buildDecreasingRules( ) {
 	else {
 	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
 	  addToRules( rule ) ;
-	  domination -= 0.1 ;
+
+	  if( option == configRules::buildRulesOption::IncreaseGradual ) 
+	    domination -= 0.1 ;
 	}
       }
     }

@@ -32,8 +32,8 @@ class Feature {
   //Default Rules when not defined by user 
   void buildRules(configRules::buildRulesOption ) ;
   void buildRandomRules( ) ;
-  void buildIncreasingRules( ) ;
-  void buildDecreasingRules( ) ;
+  void buildIncreaseRules( configRules::buildRulesOption ) ;
+  void buildDecreaseRules( configRules::buildRulesOption ) ;
 
   void loadRules(const std::vector< std::string > & vectorCodominanceRules ) ;
   void loadRule(const std::string & Rule ) ;

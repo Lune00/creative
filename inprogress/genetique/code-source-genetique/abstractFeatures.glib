@@ -5,8 +5,8 @@ abstractFeatures=(
     { label = "size" ;
     nature = "C" ;
     nGenes = 1 ;
-    alleles = ( 0 , 5 ,9 ) ;
-    codRules = ("increasing");
+    alleles = ( 0 , 1 , 2, 3  ) ;
+    codRules = ("increase:strict");
     }
 );
 
