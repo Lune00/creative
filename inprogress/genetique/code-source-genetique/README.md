@@ -171,11 +171,11 @@ Par exemple `1-3=0.3`indique que l'allèle `1` contribue à 30% à l'expression 
 
 Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
 
-**La syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. **
+**La syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise.**
 
 ## Contribution des allèles et calcul de l'expression d'une _feature_
 
-Chaque allèle, un entier compris entre 0 et 9, contribue de manière égale à leur propre valeur.
+Chaque allèle, un entier compris entre `0` et `9`, contribue de manière égale à leur propre valeur.
 
 Les coefficients de codominance sont obligatoirement compris entre 0 et 1. 
 
@@ -196,21 +196,27 @@ TODO : WRITE EQUATION Latex???
 Chaque gène est un tableau d'entiers de dix bases nucléiques en binaire. La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 ou 0 a la contribution totale). Par exemple l'allèle `6` peut être représentée sous la forme d'une séquence `1110110010`, où la position des `1`et des `0` est aléatoire. La contribution d'une allèle a l'expression d'une paire de gènes est donc égale à la somme des bases nucléiques qui composent le gène.
 
 
-## Paramètres de la population initiale d'allèles  TODO
+## Paramètres de contrôle de la population initiale d'allèles  TODO
 
 Notes : Controle de la gaussienne vers des valeurs extremes, poids associé a chaque allele (rareté, abondance)
 
-## Fonctionnement global de la librairie
+## Fonctionnement de la librairie TODO
 
-### Description des classes
+### Description des classes 
 
-## Utilisation de la librairie
+## Utilisation de la librairie : exemple TODO
 
-## Lois d'échelle et considérations statistiques du modèle génétique employé
+## Analyse du modèle génétique TODO
 
-La diversité d'un trait (nombre de combinaisons possibles) varie proportionnellement au nombre d'allèles par gene, en puissance avec la ploidie et en puissance avec le nombre de gènes pour un trait phénotypique. Le nombre de chromosomes sur lesquels sont répartis les genes contribue au brassage génétique. Il permet a un nombre fixé de variations pour chaque trait d'augmenter le nombre de phénotypes (ensemble des traits) accessibles à la descendance. Enfin le crossing over ayant lieu durant la meiose augmente encore la portée du brassage génétique et de la diversité phénotypique pour un genome donné. Pour augmenter rapidement le spectre des valeurs prises par un trait, et s'approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait. Un billet de blog sera bientôt disponible dans lequel ces effets seront discutés.
+### Lois d'échelle 
+La diversité d'un trait (nombre de combinaisons possibles) varie proportionnellement au nombre d'allèles par gene, en puissance avec la ploidie (ici seulement diploide), et en puissance avec le nombre de gènes pour un trait phénotypique. 
 
+Le nombre de chromosomes sur lesquels sont répartis les genes contribue au brassage génétique. Il permet a un nombre fixé de variations pour chaque trait d'augmenter le nombre de phénotypes (ensemble des traits) accessibles à la descendance.
+
+Enfin le crossing over ayant lieu durant la méïose augmente encore la portée du brassage génétique et de la diversité phénotypique pour un genome donné. Pour augmenter rapidement le spectre des valeurs prises par un trait, et s'approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait (voir paragraphe suivant)
+
+### Considérations statistiques
+#### Influence du nombre de gènes
 TODO : arrivée au théorème central limit (nombre de genes par feature)
-
-
+#### Influence du nombre d'allèles et des coefficients
 
