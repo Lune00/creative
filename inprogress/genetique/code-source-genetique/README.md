@@ -73,7 +73,8 @@ Voici résumés sous forme de tableaux les valeurs des coefficients de codominan
 
 |   | `b` 
 | - | - |
- | `a` | `c(a,b)`
+ | `a` | `c(a,b)` |
+ 
 Option : `codRules=("increasing:strict")`, ci-dessous
 
 |   | `1` | `2` | `3` | `4` |
@@ -92,22 +93,40 @@ Option : `codRules=("increasing:progressive")`, ci-dessous
 | **`3`** | - | - | 1 | 0 |
 | **`4`** | - | - | - | 1 |
 
+Option : `codRules=("decreasing:progressive")`, ci-dessous
+
+|   | `1` | `2` | `3` | `4` |
+| - | - | - | - | - | 
+| **`1`** | 1 | 0.8 | 0.9 | 1 |
+| **`2`** | - | 1 | 0.9 | 1 |
+| **`3`** | - | - | 1 | 1 |
+| **`4`** | - | - | - | 1 |
+
+Option : `codRules=("decreasing:strict")`, ci-dessous
+
+|   | `1` | `2` | `3` | `4` |
+| - | - | - | - | - | 
+| **`1`** | 1 | 1 | 1 | 1 |
+| **`2`** | - | 1 | 1 | 1 |
+| **`3`** | - | - | 1 | 1 |
+| **`4`** | - | - | - | 1 |
 
 
 Voici un exemple complet d'un fichier de configuration avec trois features, deux discrètes et une continue : 
 ```
 abstractFeatures=(
- { label = "body-size" ;
+ { label = "size" ;
    nature = "Discrete" ;
-   nGenes = 1 ; },
+   nGenes = 1 ; 
+   codRules = ("random") },
    
-{ label = "eye-color";
+{ label = "color";
   nature = "D" ;
   nGenes = 1 ;
   alleles = (1 , 2 , 3 );
   codRules = ( "2-1=p0.2", "1-3=3", "3-2=3"); },
 
-{ label = "foot-size" ;
+{ label = "plumage" ;
   nature = "C" ;
   nGenes = 1 ;
   alleles = (0,3,9);
