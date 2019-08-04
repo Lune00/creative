@@ -142,6 +142,8 @@ Plusieurs syntaxes se retrouvent dans l'écriture des règles de co-dominance d�
 
 Une règle de codominance, ou `Rule`, détermine le rapport entre deux allèles du même gène lorsque celui-ci est évalué pour calculer la `value` de la _feature_.
 
+Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
+
 Une `Rule` s'écrit de sous la forme `alleleA-alleleB=expression`où `expression`est une syntaxe propre à chaque nature de feature. Le terme de gauche correspond aux deux allèles pour lesquelles on déclare la règle, ils sont reliées par un caractère `-` . Le terme de droite donne le résultat de l'expression des deux allèles si elles se retrouvent dans une même paire. 
 
 **Les règles de co-dominance, si elles sont écrites par l'utilisateur, doivent couvrir l'ensemble des combinaisons d'allèles possibles sinon un message d'erreur sera affiché et l'execution du programme arrêtée.**
@@ -164,12 +166,10 @@ Dans le cas d'une feature continue une seule syntaxe est possible :
 ```
 a-b=c(a,b)
 ```
-où `c(a,b)`est un nombre flottant **strictement compris entre 0 et 1.** 
+où `c(a,b)`, ou `domination`, est un nombre flottant **strictement compris entre 0 et 1.** 
 Par exemple `1-3=0.3`indique que l'allèle `1` contribue à 30% à l'expression de la feature, et que l' allèle`3` contribue à 70%.
 
-#### Remarques
 
-Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
 
 **La syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise.**
 
@@ -177,11 +177,11 @@ Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une 
 
 Chaque allèle, un entier compris entre `0` et `9`, contribue de manière égale à leur propre valeur.
 
-Les coefficients de codominance sont obligatoirement compris entre 0 et 1. 
+Les coefficients de codominance, ou `domination` sont obligatoirement compris entre 0 et 1. 
 
 Chaque _feature_ a une valeur (interprétée par l'utilisateur) , `value` comprise entre -1 et +1 si elle est continue, ou égale à un entier compris entre 0 et 9 si elle est discrète.
 
-Par exemple, pour une feature codée uniquement sur un gène, et celui ci n'ayant que deux allèles `a` et `b`, la valeur de la feature est donné par
+Par exemple, pour une _feature_ continue codée uniquement sur un gène, et celui ci n'ayant que deux allèles `a` et `b`, la valeur de la feature est donné par
 
 ` value = (1-c(a,b)) * valeur_a + c(a,b) * valeur_b`
 
@@ -190,6 +190,9 @@ Par exemple, pour une feature codée uniquement sur un gène, et celui ci n'ayan
 Lorsqu'une feature est codée sur plusieurs gènes, la `value`de la feature s'exprime sous la forme
 
 TODO : WRITE EQUATION Latex???
+
+
+Pour le cas d'une _feature_ discrète ... TODO
 
 ## Structure des gènes
 
