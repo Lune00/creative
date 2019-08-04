@@ -179,21 +179,12 @@ void Feature::loadRules( const std::vector<std::string>& vectorCodominanceRules 
   }
 }
 
+
 //Load a rule : check validity and add to Rules. If not valid, throw exception
 void Feature::loadRule(const std::string& stringRuleWithouSpaces ) {
 
       Rule rule = splitStringRuleIntoRule( stringRuleWithouSpaces ) ;
-      //Check the Rule Validity (intern logic): alleles exist in the vec alleles_ , domination belongs to [0 :1]
-      if ( isRuleValid ( rule ) ) 
-	addToRules( rule ) ;
-      else {
-	//Throw exception : 
-	ostringstream oss ;
-	oss << "Feature : " << this->label() << " has invalid rule. Rule : " ;
-	oss << rule.pairAlleles_.first << "-"<< rule.pairAlleles_.second ;
-	throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
-	return ;
-      }  
+      addToRules ( rule ) ;
 }
 
 //Check the Rule expression read from user file, check Regex depending on the nature of the feature
@@ -218,7 +209,7 @@ bool Feature::checkRegexForRule( const std::string& stringRule ) {
   }
 }
 
-//Check if a Rule is valid : alleles of the pair present in alleles_ and 0<domination<1
+//Check if a Rule is valid : alleles of the pair exisy in the alleles_ vec and 0<domination<1
 bool Feature::isRuleValid(const Rule& rule ) {
 
   if( !rule.isCorrect_ ) return false ; 
@@ -241,21 +232,33 @@ bool Feature::isRuleValid(const Rule& rule ) {
 
 }
 
-//Add Rule to setOfRules_ . Add automatically identical alleles pair with domination 1.
+//Add Rule to setOfRules_ if rule is valid. Add automatically identical alleles pair with domination 1.
 void Feature::addToRules( Rule rule ) {
 
-  //add to the set also (a,a) and (b,b) with default domination 1
-  Rule first_first ( rule.pairAlleles_.first ) ;
-  Rule second_second ( rule.pairAlleles_.second ) ;
+  if ( isRuleValid ( rule ) )  {
+    //add to the set also (a,a) and (b,b) with default domination 1
+    Rule first_first ( rule.pairAlleles_.first ) ;
+    Rule second_second ( rule.pairAlleles_.second ) ;
 
-  setOfRules_.insert( first_first ) ;
-  setOfRules_.insert( second_second ) ;
-  setOfRules_.insert( rule ) ; 
+    setOfRules_.insert( first_first ) ;
+    setOfRules_.insert( second_second ) ;
+    setOfRules_.insert( rule ) ; 
+    return ;
+  }
+
+  else {
+    //Throw exception : 
+    ostringstream oss ;
+    oss << "Feature : " << this->label() << " has invalid rule. Rule : " ;
+    oss << rule.pairAlleles_.first << "-"<< rule.pairAlleles_.second ;
+    throw exceptions::MyStandardException( exceptions::writeMsg( oss ) , __LINE__ ) ;
+    return ;
+  }  
 }
 
 void Feature::buildRules( configRules::buildRulesOption option ) {
 
-  cout << "Feature '"<< this->label()<< "' - building Rules option : "<<configRules::enumToString( option )<< "\n";
+  cout << "Feature '"<< this->label()<< "' -rules generated -option : "<<configRules::enumToString( option )<< "\n";
 
   switch ( option ) {
     case configRules::Random : 
@@ -279,108 +282,96 @@ void Feature::buildRules( configRules::buildRulesOption option ) {
   return ;
 }
 
+
+
+
 void Feature::buildRandomRules( ) {
 
-  if( allelesDefinedByUser() ) return ; 
+  for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
+    for( size_t j = i ; j!= alleles_.size() ; j++ ) {
 
-    for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
-      for( size_t j = i ; j!= alleles_.size() ; j++ ) {
+      //Identity relation : automatically added by addToRules( )
+      if( alleles_[ i ] == alleles_[ j ] )
+	continue ;
+      else {
 
-	//Identity relation
-	if( alleles_[ i ] == alleles_[ j ] ) {
-	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
-	  setOfRules_.insert( rule ) ;
-	}
-	else {
+	double domination ;
 
-	  double domination ;
+	if( nature() == geneticParameters::Nature::D ) 
+	  domination = rng::unif_rand_int( 0 , 1 );
+	else
+	  domination = rng::unif_rand_double( 0 , 1 );
 
-	  if( nature() == geneticParameters::Nature::D ) 
-	    domination = rng::unif_rand_int( 0 , 1 );
-	  else
-	    domination = rng::unif_rand_double( 0 , 1 );
-
-	    Rule rule(alleles_[ i ] , alleles_[ j ] , domination ) ;
-	    setOfRules_.insert( rule ) ;
-	}
-
+	Rule rule(alleles_[ i ] , alleles_[ j ] , domination ) ;
+	addToRules( rule ) ;
       }
+
     }
-    return ;
+  }
+  return ;
 }
 
 void Feature::buildIncreasingRules( ) {
 
   const double epsilon = 1e-5 ;
 
-  //if( allelesDefinedByUser() ) return ; 
+  for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
 
-    for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
+    double domination = 0.8 ;
 
-      double domination = 0.8 ;
+    for( size_t j = i ; j!= alleles_.size() ; j++ ) {
 
-      for( size_t j = i ; j!= alleles_.size() ; j++ ) {
-
-	//Identity relation
-	if( alleles_[ i ] == alleles_[ j ] ) {
-	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
-	  setOfRules_.insert( rule ) ;
-	}
-	else{
-	  //Discrete, a test
-	  if( nature() == geneticParameters::Nature::D )  {
-	    Rule rule( alleles_[ i ] , alleles_ [ j ] , (double)alleles_ [ j ] ) ;
-	    setOfRules_.insert( rule ) ;
-	  } 
-	  //Continuous
-	  else {
-	    if (domination < epsilon ) domination = 0. ;
-	    Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
-	    setOfRules_.insert( rule ) ;
-	    domination -= 0.1 ;
-	  }
+      //Identity relation
+      if( alleles_[ i ] == alleles_[ j ] )
+	continue;
+      else{
+	//Discrete, a test
+	if( nature() == geneticParameters::Nature::D )  {
+	  Rule rule( alleles_[ i ] , alleles_ [ j ] , 0. ) ;
+	  addToRules( rule ) ;
+	} 
+	//Continuous
+	else {
+	  if (domination < epsilon ) domination = 0. ;
+	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
+	  addToRules( rule ) ;
+	  domination -= 0.1 ;
 	}
       }
     }
+  }
 
-    return ;
+  return ;
 }
 
 void Feature::buildDecreasingRules( ) {
 
-  cout << "buildDecreasingRules " << endl ;
+  for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
 
-  //if( allelesDefinedByUser() ) return ; 
+    double domination = 1. ;
 
-    for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
+    for( size_t j = i ; j!= alleles_.size() ; j++ ) {
 
-      double domination = 1. ;
-
-      for( size_t j = i ; j!= alleles_.size() ; j++ ) {
-
-	cout << alleles_[ i ] << " " << alleles_ [ j ] << endl ;
-	//Identity relation
-	if( alleles_[ i ] == alleles_[ j ] ) {
-	  Rule rule( alleles_[ i ] , alleles_[ j ] , 1. ) ;
-	  setOfRules_.insert( rule ) ;
-	}
-	else{
-	  //Discrete, a test
-	  if( nature() == geneticParameters::Nature::D )  {
-	    Rule rule( alleles_[ i ] , alleles_ [ j ] , (double)alleles_ [ i ] ) ;
-	    setOfRules_.insert( rule ) ;
-	  } 
-	  //Continuous
-	  else {
-	    Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
-	    setOfRules_.insert( rule ) ;
-	    domination -= 0.1 ;
-	  }
+      //Identity relation
+      if( alleles_[ i ] == alleles_[ j ] )
+	continue ;
+      else{
+	//Discrete, a test
+	if( nature() == geneticParameters::Nature::D )  {
+	  Rule rule( alleles_[ i ] , alleles_ [ j ] , 1. ) ;
+	  addToRules( rule ) ;
+	} 
+	//Continuous
+	else {
+	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
+	  addToRules( rule ) ;
+	  domination -= 0.1 ;
 	}
       }
     }
+  }
 
-    return ;
+  return ;
 }
 
 
@@ -433,7 +424,7 @@ void Feature::debugPrintToStandardOutput() {
   while(it != setOfRules_.end() ){
     //Do not print a-a relation (for clarity)
     if( it->pairAlleles_.first != it->pairAlleles_.second ){
-      cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff " << it->domination_ ;
+      cout << "allele " << it->pairAlleles_.first << " allele " << it->pairAlleles_.second << " coeff : " << it->domination_ ;
       cout << "\n" ; 
     }
     it++;

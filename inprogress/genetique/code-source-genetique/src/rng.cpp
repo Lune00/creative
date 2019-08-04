@@ -2,7 +2,7 @@
 
 namespace rng{
 
-  unsigned long seed = 4;
+  unsigned long seed = 1;
   std::default_random_engine generateur_(seed);
 
   double unif_rand_double(int a, int b){
