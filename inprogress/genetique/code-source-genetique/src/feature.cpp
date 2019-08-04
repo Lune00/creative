@@ -311,6 +311,7 @@ void Feature::buildRandomRules( ) {
   return ;
 }
 
+//Higher alleles dominate lower ones
 void Feature::buildIncreasingRules( ) {
 
   const double epsilon = 1e-5 ;
@@ -343,7 +344,7 @@ void Feature::buildIncreasingRules( ) {
 
   return ;
 }
-
+//Lower alleles dominate higher ones
 void Feature::buildDecreasingRules( ) {
 
   for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
