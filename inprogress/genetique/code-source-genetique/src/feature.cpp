@@ -335,24 +335,14 @@ void Feature::buildIncreaseRules( configRules::buildRulesOption option ) {
 	addToRules( rule ) ;
       }
       else{
-	//Discrete
-	if( nature() == geneticParameters::Nature::D )  {
-	  Rule rule( alleles_[ i ] , alleles_ [ j ] , 0. ) ;
-	  addToRules( rule ) ;
-	} 
-	//Continuous
-	else {
 	  if (domination < epsilon ) domination = 0. ;
 	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
 	  addToRules( rule ) ;
-
 	  if( option == configRules::buildRulesOption::IncreaseGradual ) 
 	    domination += 0.1 ;
 	}
       }
-    }
   }
-
   return ;
 }
 //Lower alleles dominate higher ones
@@ -370,23 +360,14 @@ void Feature::buildDecreaseRules(configRules::buildRulesOption option ) {
 	addToRules( rule ) ;
       }
       else{
-	//Discrete, a test
-	if( nature() == geneticParameters::Nature::D )  {
-	  Rule rule( alleles_[ i ] , alleles_ [ j ] , 1. ) ;
-	  addToRules( rule ) ;
-	} 
-	//Continuous
-	else {
 	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
 	  addToRules( rule ) ;
 
 	  if( option == configRules::buildRulesOption::IncreaseGradual ) 
 	    domination -= 0.1 ;
-	}
       }
     }
   }
-
   return ;
 }
 

@@ -3,10 +3,10 @@
 
 abstractFeatures=(
     { label = "size" ;
-    nature = "C" ;
+    nature = "D" ;
     nGenes = 1 ;
-    alleles = ( 0 , 1 , 2, 3  ) ;
-    codRules = ("increase:strict");
+    alleles = ( 0 , 1 , 2, 3 , 4 ) ;
+    codRules = ("increase:gradual");
     }
 );
 
