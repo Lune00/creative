@@ -3,10 +3,10 @@
 
 abstractFeatures=(
     { label = "body-size" ;
-    nature = "D" ;
+    nature = "C" ;
     nGenes = 1 ;
-    alleles = ( 1 , 2 ) ;
-    codRules = ("increasing");
+    alleles = ( 1 , 2, 3 , 4 ) ;
+    codRules = ("decreasing");
     }
 );
 

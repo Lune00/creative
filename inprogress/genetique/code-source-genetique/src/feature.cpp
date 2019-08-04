@@ -318,9 +318,9 @@ void Feature::buildIncreasingRules( ) {
 
   for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
 
-    double domination = 0.8 ;
+    double domination = 0 ;
 
-    for( size_t j = i ; j!= alleles_.size() ; j++ ) {
+    for( size_t j = alleles_.size() - 1 ; j!= 0 ; j-- ) {
 
       //Identity relation
       if( alleles_[ i ] == alleles_[ j ] )
@@ -336,7 +336,7 @@ void Feature::buildIncreasingRules( ) {
 	  if (domination < epsilon ) domination = 0. ;
 	  Rule rule( alleles_[ i ] , alleles_ [ j ] , domination ) ;
 	  addToRules( rule ) ;
-	  domination -= 0.1 ;
+	  domination += 0.1 ;
 	}
       }
     }
@@ -351,7 +351,7 @@ void Feature::buildDecreasingRules( ) {
 
     double domination = 1. ;
 
-    for( size_t j = i ; j!= alleles_.size() ; j++ ) {
+    for( size_t j = alleles_.size() - 1 ; j!= 0 ; j-- ) {
 
       //Identity relation
       if( alleles_[ i ] == alleles_[ j ] )
