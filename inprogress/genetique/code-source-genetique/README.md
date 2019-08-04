@@ -63,23 +63,74 @@ abstractFeatures=(
 indique que l'on déclare une feature abstraite "color" qui ne peut prendre que des valeurs discretes.
 - **`nGenes`** [**obligatoire**][`int`] : nombre de gènes sur lequel est codée la feature. Un minimum de trois gènes permet d'obtenir une bonne variété de phénotypes avec un jeu d'allèles réduit (ces points sont abordés dans la section Statistiques et analyse du modèle ).
 - **`alleles`** [**optionnel**][`list int`] : énumération des allèles disponibles pour la feature. Les allèles sont des entiers allant de 0 à 9 (inclus). Par exemple `alleles = (0,3,9) ;` indique que chaque gène codant pour la feature pourra être une allèle 0, 3 ou 9.
-- **`codRules`** [**optionnel**][`list string`] : déclaration des règles de co-dominance entre allèles d'une même paire. Si elles ne sont pas spécifiées les règles seront générées selon soit par un comportement par défaut ( aléatoires ) soit suivant une option définie par l'utilisateur. Par exemple `3-1=3`déclare que l'allèle `3`domine toujours l'allèle `1`.
-- **`options`**[**optionnel**][`list string`] : TODO
+- **`codRules`** [**optionnel**][`list string`] : déclaration des règles de co-dominance entre allèles d'une même paire. Si elles ne sont pas spécifiées les règles seront générées selon soit par un comportement par défaut ( aléatoire ) soit suivant une option définie par l'utilisateur. Par exemple `3-1=3`déclare que l'allèle `3`domine toujours l'allèle `1`. Cinq options existent pour définir les règles entre allèles de manière automatique : 
+     - `random` : tous les coefficients sont des tirages aléatoires dans une distribution uniforme dans l'intervalle [0:1]
+     - `increasing:progressive`: les allèles les plus élevées dominent toujours les allèles les plus faibles (voir tableaux ci-dessous)
+     - `increasing:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=0`
+     - `decreasing:progressive`: les allèles les plus faibles dominent toujours les allèles les plus élevées (voir tableaux ci-dessous)
+     - `decreasing:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=1`
+     
+    
+Voici résumés sous forme de tableaux les valeurs des coefficients de codominance générés avec les options disponibles. Les tableaux sont générés pour une _feature_ continue avec les allèles `(1,2,3,4)`, avec la syntaxe 
+
+|   | `b` 
+| - | - |
+ | `a` | `c(a,b)` |
+ 
+ et `c(a,b)=1-c(b,a)`par définition.
+ 
+Option : `codRules=("increasing:strict")`, ci-dessous
+
+|   | `1` | `2` | `3` | `4` |
+| - | - | - | - | - | 
+| **`1`** | 1 | 0 | 0 | 0 |
+| **`2`** | - | 1 | 0 | 0 |
+| **`3`** | - | - | 1 | 0 |
+| **`4`** | - | - | - | 1 |
+
+Option : `codRules=("increasing:progressive")`, ci-dessous
+
+|   | `1` | `2` | `3` | `4` |
+| - | - | - | - | - | 
+| **`1`** | 1 | 0.2 | 0.1 | 0 |
+| **`2`** | - | 1 | 0.1 | 0 |
+| **`3`** | - | - | 1 | 0 |
+| **`4`** | - | - | - | 1 |
+
+Option : `codRules=("decreasing:progressive")`, ci-dessous
+
+|   | `1` | `2` | `3` | `4` |
+| - | - | - | - | - | 
+| **`1`** | 1 | 0.8 | 0.9 | 1 |
+| **`2`** | - | 1 | 0.9 | 1 |
+| **`3`** | - | - | 1 | 1 |
+| **`4`** | - | - | - | 1 |
+
+Option : `codRules=("decreasing:strict")`, ci-dessous
+
+|   | `1` | `2` | `3` | `4` |
+| - | - | - | - | - | 
+| **`1`** | 1 | 1 | 1 | 1 |
+| **`2`** | - | 1 | 1 | 1 |
+| **`3`** | - | - | 1 | 1 |
+| **`4`** | - | - | - | 1 |
+
 
 Voici un exemple complet d'un fichier de configuration avec trois features, deux discrètes et une continue : 
 ```
 abstractFeatures=(
- { label = "body-size" ;
+ { label = "size" ;
    nature = "Discrete" ;
-   nGenes = 1 ; },
+   nGenes = 1 ; 
+   codRules = ("random") },
    
-{ label = "eye-color";
+{ label = "color";
   nature = "D" ;
   nGenes = 1 ;
   alleles = (1 , 2 , 3 );
   codRules = ( "2-1=p0.2", "1-3=3", "3-2=3"); },
 
-{ label = "foot-size" ;
+{ label = "plumage" ;
   nature = "C" ;
   nGenes = 1 ;
   alleles = (0,3,9);
@@ -120,11 +171,11 @@ Par exemple `1-3=0.3`indique que l'allèle `1` contribue à 30% à l'expression 
 
 Chaque `Rule` a un nombre flottant appelé **`domination`** . Dans le cas d'une feature de nature discrete `domination` est équivalent à _probabilité d'expression_ ,  dans le cas d'une feature de nature continue `domination` est équivalent à _contribution (en % ) a l'expression totale_. Dans les deux cas, `domination` est un nombre flottant strictement compris entre 0 et 1. Seule son interprétation est différente selon la nature. 
 
-**La syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise. **
+**La syntaxe n'est pas permissive. Si une règle est déclarée pour deux allèles qui ne sont pas présentes dans _alleles_ une erreur sera émise.**
 
 ## Contribution des allèles et calcul de l'expression d'une _feature_
 
-Chaque allèle, un entier compris entre 0 et 9, contribue de manière égale à leur propre valeur.
+Chaque allèle, un entier compris entre `0` et `9`, contribue de manière égale à leur propre valeur.
 
 Les coefficients de codominance sont obligatoirement compris entre 0 et 1. 
 
@@ -145,21 +196,27 @@ TODO : WRITE EQUATION Latex???
 Chaque gène est un tableau d'entiers de dix bases nucléiques en binaire. La contribution d'un gène a la valeur macroscopique est donnée par la somme de ces bases (chaque base apportant 1 ou 0 a la contribution totale). Par exemple l'allèle `6` peut être représentée sous la forme d'une séquence `1110110010`, où la position des `1`et des `0` est aléatoire. La contribution d'une allèle a l'expression d'une paire de gènes est donc égale à la somme des bases nucléiques qui composent le gène.
 
 
-## Paramètres de la population initiale d'allèles  TODO
+## Paramètres de contrôle de la population initiale d'allèles  TODO
 
 Notes : Controle de la gaussienne vers des valeurs extremes, poids associé a chaque allele (rareté, abondance)
 
-## Fonctionnement global de la librairie
+## Fonctionnement de la librairie TODO
 
-### Description des classes
+### Description des classes 
 
-## Utilisation de la librairie
+## Utilisation de la librairie : exemple TODO
 
-## Lois d'échelle et considérations statistiques du modèle génétique employé
+## Analyse du modèle génétique TODO
 
-La diversité d'un trait (nombre de combinaisons possibles) varie proportionnellement au nombre d'allèles par gene, en puissance avec la ploidie et en puissance avec le nombre de gènes pour un trait phénotypique. Le nombre de chromosomes sur lesquels sont répartis les genes contribue au brassage génétique. Il permet a un nombre fixé de variations pour chaque trait d'augmenter le nombre de phénotypes (ensemble des traits) accessibles à la descendance. Enfin le crossing over ayant lieu durant la meiose augmente encore la portée du brassage génétique et de la diversité phénotypique pour un genome donné. Pour augmenter rapidement le spectre des valeurs prises par un trait, et s'approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait. Un billet de blog sera bientôt disponible dans lequel ces effets seront discutés.
+### Lois d'échelle 
+La diversité d'un trait (nombre de combinaisons possibles) varie proportionnellement au nombre d'allèles par gene, en puissance avec la ploidie (ici seulement diploide), et en puissance avec le nombre de gènes pour un trait phénotypique. 
 
+Le nombre de chromosomes sur lesquels sont répartis les genes contribue au brassage génétique. Il permet a un nombre fixé de variations pour chaque trait d'augmenter le nombre de phénotypes (ensemble des traits) accessibles à la descendance.
+
+Enfin le crossing over ayant lieu durant la méïose augmente encore la portée du brassage génétique et de la diversité phénotypique pour un genome donné. Pour augmenter rapidement le spectre des valeurs prises par un trait, et s'approcher d'une distribution continue, il est recommandé d'associer plusieurs gènes à un trait (voir paragraphe suivant)
+
+### Considérations statistiques
+#### Influence du nombre de gènes
 TODO : arrivée au théorème central limit (nombre de genes par feature)
-
-
+#### Influence du nombre d'allèles et des coefficients
 
