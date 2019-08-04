@@ -282,9 +282,6 @@ void Feature::buildRules( configRules::buildRulesOption option ) {
   return ;
 }
 
-
-
-
 void Feature::buildRandomRules( ) {
 
   for( size_t i = 0 ; i != alleles_.size() ; i++ ) {
