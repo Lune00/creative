@@ -65,10 +65,10 @@ indique que l'on déclare une feature abstraite "color" qui ne peut prendre que 
 - **`alleles`** [**optionnel**][`list int`] : énumération des allèles disponibles pour la feature. Les allèles sont des entiers allant de 0 à 9 (inclus). Par exemple `alleles = (0,3,9) ;` indique que chaque gène codant pour la feature pourra être une allèle 0, 3 ou 9.
 - **`codRules`** [**optionnel**][`list string`] : déclaration des règles de co-dominance entre allèles d'une même paire. Si elles ne sont pas spécifiées les règles seront générées selon soit par un comportement par défaut ( aléatoire ) soit suivant une option définie par l'utilisateur. Par exemple `3-1=3`déclare que l'allèle `3`domine toujours l'allèle `1`. Cinq options existent pour définir les règles entre allèles de manière automatique : 
      - `random` : tous les coefficients sont des tirages aléatoires dans une distribution uniforme dans l'intervalle [0:1]
-     - `increasing:progressive`: les allèles les plus élevées dominent toujours les allèles les plus faibles (voir tableaux ci-dessous)
-     - `increasing:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=0`
-     - `decreasing:progressive`: les allèles les plus faibles dominent toujours les allèles les plus élevées (voir tableaux ci-dessous)
-     - `decreasing:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=1`
+     - `increase:gradual`: les allèles les plus élevées dominent toujours les allèles les plus faibles (voir tableaux ci-dessous)
+     - `increase:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=0`
+     - `decrease:gradual`: les allèles les plus faibles dominent toujours les allèles les plus élevées (voir tableaux ci-dessous)
+     - `decrease:strict`: les allèles les plus élevées dominent toujours les allèles les plus faibles de manière stricte, si `a<b`alors `c(a,b)=1`
      
     
 Voici résumés sous forme de tableaux les valeurs des coefficients de codominance générés avec les options disponibles. Les tableaux sont générés pour une _feature_ continue avec les allèles `(1,2,3,4)`, avec la syntaxe 
@@ -79,7 +79,7 @@ Voici résumés sous forme de tableaux les valeurs des coefficients de codominan
  
  et `c(a,b)=1-c(b,a)`par définition.
  
-Option : `codRules=("increasing:strict")`, ci-dessous
+Option : `codRules=("increae:strict")`, ci-dessous
 
 |   | `1` | `2` | `3` | `4` |
 | - | - | - | - | - | 
@@ -88,7 +88,7 @@ Option : `codRules=("increasing:strict")`, ci-dessous
 | **`3`** | - | - | 1 | 0 |
 | **`4`** | - | - | - | 1 |
 
-Option : `codRules=("increasing:progressive")`, ci-dessous
+Option : `codRules=("increase:gradual")`, ci-dessous
 
 |   | `1` | `2` | `3` | `4` |
 | - | - | - | - | - | 
@@ -97,7 +97,7 @@ Option : `codRules=("increasing:progressive")`, ci-dessous
 | **`3`** | - | - | 1 | 0 |
 | **`4`** | - | - | - | 1 |
 
-Option : `codRules=("decreasing:progressive")`, ci-dessous
+Option : `codRules=("decrease:gradual")`, ci-dessous
 
 |   | `1` | `2` | `3` | `4` |
 | - | - | - | - | - | 
@@ -106,7 +106,7 @@ Option : `codRules=("decreasing:progressive")`, ci-dessous
 | **`3`** | - | - | 1 | 1 |
 | **`4`** | - | - | - | 1 |
 
-Option : `codRules=("decreasing:strict")`, ci-dessous
+Option : `codRules=("decrease:strict")`, ci-dessous
 
 |   | `1` | `2` | `3` | `4` |
 | - | - | - | - | - | 
