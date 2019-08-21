@@ -27,14 +27,16 @@ Un programme ( avec interface graphique ) sera développé en parallèle pour é
 ## Modélisation du matériel génétique
 
 ### Généralités
-Le matériel génétique est un ensemble de paires de chromosomes qui sont des collections de matériel codant (gènes) et non codants (séquences aléatoires pouvant servir à produire des mutations). Les chromosomes sont le support  des informations génétiques qui interviennent dans la détermination et la transmission des caractères héréditaires ou _features_. Les gènes sont une portion du chromosome et sont situés à un emplacement précis. Ce sont eux qui codent pour la _feature_, ou le phénotype ( résultat _macroscopique_ de l'expression des gènes ). Un gène existe en deux exemplaires occupant la même position sur chacun des deux chromosomes d'une même paire. 
+Le matériel génétique est un ensemble de paires de chromosomes qui sont des collections de matériel codant (gènes) et non codants (séquences aléatoires pouvant servir à produire des mutations). Les chromosomes sont le support  des informations génétiques qui interviennent dans la détermination et la transmission des caractères héréditaires ou _features_. Les gènes sont une portion du chromosome et sont situés à un emplacement précis, le locus. Ce sont eux qui codent pour la _feature_, ou le phénotype ( résultat _macroscopique_ de l'expression des gènes ). Un gène existe en deux exemplaires occupant la même position sur chacun des deux chromosomes d'une même paire. 
 
 Un même gène peut exister sous différentes formes appelées _allèles_. Pour un même gène donné les deux chromosomes d'une même paire peuvent porter deux allèles identiques ou différentes. Les allèles peuvent être codominantes (expression des deux allèles de manière pondérée ), ou un seul des deux peut s'exprimer (dominant et récessif). 
 
 ### Dans la librairie
 Chaque caractère héréditaire, ou _feature_ est codée par un ou plusieurs gènes présents en deux exemplaires sur la paire de chromosome (un sur chaque chromosome).  Chaque _gène_ existe sous la forme d'allèles représentés par un *entier compris entre 0 et 9*.
 
-Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un nombre flottant ( caractère continu comme la taille) ou par un entier (caractère discret comme l'absence de plumes), c'est sa valeur, ou `value` . La `value` est ensuite interprétable par l'utilisateur de la librairie.
+Chaque paire de gènes (dont les versions ou allèles peuvent être différents) est évaluée au moment de la détermination de la valeur de la _feature_ pour laquelle elle code. La détermination de l'expression d'une paire de gènes nécessite l'adjonction d'une règle d'expression ou `Rule`. Elle spécifie la relation de domination (complète, partielle ou probabiliste) entre les deux allèles présents. Par exemple, si un gène a deux allèles `1`et `7`il faut spécifier une règle de co-domination entre elles: est ce que l'allèle `1` est dominante ou récessive ? Est ce que l'allèle `1` et `7` s'expriment toutes les deux ? Et si c'est le cas, dans quelles proportions ? La règle permet d'établir l'évaluation. C'est un nombre flottant appelé `domination`et donne la contribution de chaque gène (chaque paire d'allèles) a la _feature_. Dans cet exemple, on l'écrit sous la forme `c(1,7)=domination`.
+ 
+Chaque _feature_ est mesurée macroscopiquement (expression des gènes) par un nombre flottant (caractère continu comme la taille) ou par un entier (caractère discret comme l'absence de plumes), c'est sa valeur, ou `value` . La `value` est ensuite interprétable par l'utilisateur de la librairie.
 
 ## Déclaration et fonctionnement des _features_
 
