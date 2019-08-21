@@ -381,7 +381,7 @@ bool Feature::isSetOfRulesComplete() {
       //Find (i,j) if not return false ;
       Rule rule( alleles_[ i ]  , alleles_[ j ] , true ) ;
       if( !findInSetOfRules( rule ) ) {
-	cout << alleles_[i] << "-"<<alleles_[ j ] <<" not found !" << endl ;
+	cerr << alleles_[i] << "-"<<alleles_[ j ] <<" not found !" << endl ;
 	return false ;
       }
     }
