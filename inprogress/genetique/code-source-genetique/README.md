@@ -79,7 +79,7 @@ Voici résumés sous forme de tableaux les valeurs des coefficients de codominan
  
  et `c(a,b)=1-c(b,a)`par définition.
  
-Option : `codRules=("increae:strict")`, ci-dessous
+Option : `codRules=("increase:strict")`, ci-dessous
 
 |   | `1` | `2` | `3` | `4` |
 | - | - | - | - | - | 
@@ -116,26 +116,9 @@ Option : `codRules=("decrease:strict")`, ci-dessous
 | **`4`** | - | - | - | 1 |
 
 
-Voici un exemple complet d'un fichier de configuration avec trois features, deux discrètes et une continue : 
-```
-abstractFeatures=(
- { label = "size" ;
-   nature = "Discrete" ;
-   nGenes = 1 ; 
-   codRules = ("random") },
-   
-{ label = "color";
-  nature = "D" ;
-  nGenes = 1 ;
-  alleles = (1 , 2 , 3 );
-  codRules = ( "2-1=p0.2", "1-3=3", "3-2=3"); },
+Dans le cas d'une _feature_ discrète, les options `increase:gradual`et `decrease:gradual` fournissent des coefficients de co-domination à interpréter comme une probabilité de domination d'une allèle sur l'autre. Par exemple, dans l'exemple ci-dessus de `codRules=("decrease:gradual")` `c(1,2)=0.8`signifie que l'allèle `1` domine l'allèle `2`dans 80% des cas où l'évaluation est faite. 
 
-{ label = "plumage" ;
-  nature = "C" ;
-  nGenes = 1 ;
-  alleles = (0,3,9);
-  codRules = ("0-9=0. ", "3-0=0.9", "3-9=0.3",); } );
-```
+
 Plusieurs syntaxes se retrouvent dans l'écriture des règles de co-dominance détaillées dans le paragraphe suivant.
 
 #### Syntaxe des règles de codominance
@@ -193,6 +176,28 @@ TODO : WRITE EQUATION Latex???
 
 
 Pour le cas d'une _feature_ discrète ... TODO
+
+
+Voici un exemple complet d'un fichier de configuration avec trois features, deux discrètes et une continue : 
+```
+abstractFeatures=(
+ { label = "size" ;
+   nature = "Discrete" ;
+   nGenes = 1 ; 
+   codRules = ("random") },
+   
+{ label = "color";
+  nature = "D" ;
+  nGenes = 1 ;
+  alleles = (1 , 2 , 3 );
+  codRules = ( "2-1=p0.2", "1-3=3", "3-2=3"); },
+
+{ label = "plumage" ;
+  nature = "C" ;
+  nGenes = 1 ;
+  alleles = (0,3,9);
+  codRules = ("0-9=0. ", "3-0=0.9", "3-9=0.3",); } );
+```
 
 ## Structure des gènes
 
