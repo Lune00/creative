@@ -1,8 +1,8 @@
-# GENOMLIB
+# geneticsLib
 
 ## Objectifs
 
-*Genomlib* est une librairie C++. Elle utilise elle même la libraire libconfig pour l'interface avec le fichier de configuration.
+*geneticsLib* est une librairie C++. Elle utilise elle même la libraire libconfig pour l'interface avec le fichier de configuration.
 
 **Ce projet n'a pas pour but de simuler les mécanismes génétiques mais de les modéliser**, en reproduisant les mécanismes généraux ayant lieu lors de la reproduction afin d'obtenir une variété de phénotypes satisfaisante.
 
