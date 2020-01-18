@@ -1,42 +1,4 @@
-= Contents =
-  - [[#Orba, légendes imcomplètes|Orba, légendes imcomplètes]]
-    - [[#Orba, légendes imcomplètes#Chronologie|Chronologie]]
-      - [[#Orba, légendes imcomplètes#Chronologie#Le grand rêve|Le grand rêve]]
-      - [[#Orba, légendes imcomplètes#Chronologie#L''âge du chaos|L''âge du chaos]]
-      - [[#Orba, légendes imcomplètes#Chronologie#L''extinction|L''extinction]]
-      - [[#Orba, légendes imcomplètes#Chronologie#L''âge des étoiles|L''âge des étoiles]]
-      - [[#Orba, légendes imcomplètes#Chronologie#La naissance d''[[Orba]] et la venue des [[Eä]]|La naissance d''[[Orba]] et la venue des [[Eä]]]]
-    - [[#Orba, légendes imcomplètes#Lieux d''importance|Lieux d''importance]]
-    - [[#Orba, légendes imcomplètes#Etoiles notables|Etoiles notables]]
-    - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]|Géographie d''[[Orba]]]]
-    - [[#Orba, légendes imcomplètes#Sujets|Sujets]]
-    - [[#Orba, légendes imcomplètes#Animaux de légende|Animaux de légende]]
-    - [[#Orba, légendes imcomplètes#Humains notables|Humains notables]]
-    - [[#Orba, légendes imcomplètes#Concepts|Concepts]]
-    - [[#Orba, légendes imcomplètes#Cultes et Serments|Cultes et Serments]]
-    - [[#Orba, légendes imcomplètes#Peuples|Peuples]]
-
-== Contents ==
-  - [[#Orba, légendes imcomplètes|Orba, légendes imcomplètes]]
-    - [[#Orba, légendes imcomplètes#Chronologie|Chronologie]]
-      - [[#Orba, légendes imcomplètes#Chronologie#Le grand rêve|Le grand rêve]]
-      - [[#Orba, légendes imcomplètes#Chronologie#L''âge du chaos|L''âge du chaos]]
-      - [[#Orba, légendes imcomplètes#Chronologie#L''extinction|L''extinction]]
-      - [[#Orba, légendes imcomplètes#Chronologie#L''âge des étoiles|L''âge des étoiles]]
-      - [[#Orba, légendes imcomplètes#Chronologie#La naissance d''[[Orba]] et la venue des [[Eä]]|La naissance d''[[Orba]] et la venue des [[Eä]]]]
-    - [[#Orba, légendes imcomplètes#Lieux|Lieux]]
-    - [[#Orba, légendes imcomplètes#Etoiles|Etoiles]]
-    - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]|Géographie d''[[Orba]]]]
-      - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]#1. Géographie générale|1. Géographie générale]]
-      - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]#2. Iles et continents|2. Iles et continents]]
-      - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]#3. Rivières|3. Rivières]]
-      - [[#Orba, légendes imcomplètes#Géographie d''[[Orba]]#4. Forêts|4. Forêts]]
-    - [[#Orba, légendes imcomplètes#Sujets|Sujets]]
-    - [[#Orba, légendes imcomplètes#Animaux légendaires|Animaux légendaires]]
-    - [[#Orba, légendes imcomplètes#Humains légendaires|Humains légendaires]]
-    - [[#Orba, légendes imcomplètes#Concepts|Concepts]]
-
- = Orba, légendes imcomplètes =
+=Contes d'Orba =
 
 == Chronologie ==
 === Le grand rêve  ===
@@ -92,3 +54,5 @@
 == Cultes et Serments==
 
 == Peuples ==
+
+
