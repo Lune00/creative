@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Astarp5/.idea/Astarp5.iml" filepath="$PROJECT_DIR$/../Astarp5/.idea/Astarp5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/p5Astar.iml" filepath="$PROJECT_DIR$/.idea/p5Astar.iml" />
+    </modules>
+  </component>
+</project>

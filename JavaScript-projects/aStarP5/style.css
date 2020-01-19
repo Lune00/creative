@@ -1,0 +1,27 @@
+html, body {
+    background-color: rgb(166,162,162);
+    font-size:18px;
+    margin: 1em;
+}
+canvas {
+    display: block;
+}
+
+h1 {
+    font-size:44px;
+    font-style:normal;
+    text-align:left;
+}
+
+h1 em{
+    color: rgb(179,21,26)
+}
+
+p em{
+    color: black;
+}
+
+div {
+
+    margin-bottom: 15px;
+}

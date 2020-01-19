@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bcedb0a9-1357-4755-a732-fc2f918aed50" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1WZfrrlybor7LCSPZFn4H0jadmC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/p5Astar/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bcedb0a9-1357-4755-a732-fc2f918aed50" name="Default Changelist" comment="" />
+      <created>1579362238981</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579362238981</updated>
+      <workItem from="1579362241654" duration="248000" />
+      <workItem from="1579362502584" duration="3417000" />
+      <workItem from="1579366099484" duration="97000" />
+      <workItem from="1579366208260" duration="45000" />
+      <workItem from="1579366260711" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="692" y="313" width="526" height="440" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper" timestamp="1579365764872">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state x="692" y="313" width="526" height="440" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1920.1054@0.0.1920.1054" timestamp="1579365764872" />
+    <state x="693" y="277" width="526" height="506" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579365817938">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state x="693" y="277" width="526" height="506" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1054@0.0.1920.1054" timestamp="1579365817938" />
+    <state x="711" y="398" width="490" height="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1579364689665">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state x="711" y="398" width="490" height="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1054@0.0.1920.1054" timestamp="1579364689665" />
+    <state x="738" y="291" width="426" height="490" key="FileChooserDialogImpl" timestamp="1579365764299">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state x="738" y="291" width="426" height="490" key="FileChooserDialogImpl/0.0.1920.1054@0.0.1920.1054" timestamp="1579365764299" />
+    <state x="456" y="162" width="1007" height="736" key="SettingsEditor" timestamp="1579365871290">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state x="456" y="162" width="1007" height="736" key="SettingsEditor/0.0.1920.1054@0.0.1920.1054" timestamp="1579365871290" />
+    <state x="545" y="218" width="822" height="624" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1579364033077">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state x="545" y="218" width="822" height="624" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1054@0.0.1920.1054" timestamp="1579364033077" />
+  </component>
+</project>
