@@ -82,6 +82,13 @@ class Node{
         else
             this.colTemp = 255;
     };
+
+  highlight =() => {
+
+    console.log('highlight');
+
+  }
+
 }
 
 console.log("Node loaded");

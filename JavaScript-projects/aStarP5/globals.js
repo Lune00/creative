@@ -9,6 +9,7 @@ const parameters = {
         return this.canvasWidth / this.nodeSizePx;
     }
 };
+
 //2D grid representing the map (a 2D array of Node)
 let grid = [];
 console.log("Globals loaded");
