@@ -1,3 +1,13 @@
+const EnnemyParameters = {
+  sizeDefault: 100,
+  speedDefault: 100,
+  behaviorsOnLimits: {
+    bounce: 'bounce',
+    quit: 'quit',
+    periodic: 'periodic'
+  }
+}
+
 const EnnemyManager = {
  
   ennemies: [],
@@ -42,7 +52,7 @@ function getEnnemy(player, type){
   
   switch (type) {
     case 'default':
-      return new Ennemy(pos, vel, EnnemyParameters.sizeDefault, player, 'bouncing');
+      return new Ennemy(pos, vel, EnnemyParameters.sizeDefault, player, EnnemyParameters.behaviorsOnLimits.bounce);
     default:
       return getEnnemy(player, 'default');
   }

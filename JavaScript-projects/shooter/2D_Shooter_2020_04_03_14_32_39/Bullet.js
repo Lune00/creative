@@ -1,3 +1,8 @@
+const BulletParameters = {
+  sizeDefault: 10
+}
+
+
 class Bullet{
  
   constructor(pos, direction, speed, acceleration){

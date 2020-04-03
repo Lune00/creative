@@ -1,19 +1,24 @@
 class Player {
-  
+
   constructor() {
-    this.pos = createVector(PlayerParameters.startPlayerX, PlayerParameters.startPlayerY);
-    this.vel = createVector(0, 0);
+    this.pos = new p5.Vector(PlayerParameters.startPlayerX, PlayerParameters.startPlayerY);
+    this.vel = new p5.Vector(0, 0);
     this.d = PlayerParameters.size;
-    this.pointer = createVector(0, 0);
+    this.pointer = new p5.Vector(0, 0);
     this.weapon = getWeapon(this, 'default');
+
+    //State dashing:
+    this.dashing = false;
+    this.dashingDirection = 'undefined';
+    this.dashingTime = 0;
   }
 
   show() {
     push();
-     stroke(255);
+    stroke(255);
     fill(0);
     strokeWeight(4);
-   
+
     circle(this.pos.x, this.pos.y, this.d);
     pop();
     this.showDirection();
@@ -33,8 +38,31 @@ class Player {
     this.clock += dt;
     this.fire();
     this.weapon.update(dt);
-    this.updateDirection();
-    this.updateVelocity(dt);
+
+    //If dashing, do not update velocity with input or inertia
+    //but set velocity
+    if (this.dashing) {
+
+      this.dashingTime += dt;
+
+      //Dashing time
+      if (this.dashingTime < Dasher.dashingTimeSeconds) {
+        this.dash();
+        //Reset dashing, no dashing state
+      } else {
+        this.dashing = false;
+        this.dashingDirection = 'undefined';
+        this.dashingTime = 0;
+      }
+
+
+      //If not dashing, update with input or inertia
+    } else {
+      this.updateDirection();
+      this.updateVelocity(dt);
+    }
+
+    //Update position
     this.updatePosition(dt);
   }
 
@@ -47,7 +75,23 @@ class Player {
   updatePosition(dt) {
     this.pos.x += this.vel.x * dt;
     this.pos.y += this.vel.y * dt;
-    //this.pos.add(p5.Vector.mult(this.vel, dt));
+  }
+
+  dash() {
+    switch (this.dashingDirection) {
+      case 'up':
+        this.vel.y = -Physics.vmax * 2;
+        break;
+      case 'down':
+        this.vel.y = Physics.vmax * 2;
+        break;
+      case 'left':
+        this.vel.x = -Physics.vmax * 2;
+        break;
+      case 'right':
+        this.vel.x = Physics.vmax * 2;
+        break;
+    }
   }
 
   //Movement
@@ -58,7 +102,6 @@ class Player {
     } else if (keyIsDown(Controls.downCode)) {
       this.vel.y += Physics.acc;
     } else {
-
       this.vel.y -= Math.sign(this.vel.y) * Physics.acc / Physics.drag;
       //Decelerate in y direction
       if (Math.abs(this.vel.y) < Physics.vmin)

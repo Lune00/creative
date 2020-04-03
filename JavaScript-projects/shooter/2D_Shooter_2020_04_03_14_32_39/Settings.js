@@ -13,32 +13,16 @@ const Config = {
     return 600;
   },
   //Extra band width around visible screen => total screen
-  getBandWidth: function(){
+  getBandWidth: function() {
     return 200;
   },
-  getWidthTotalScreen: function(){
-   return this.getWidthVisibleScreen() + this.getBandWidth() ; 
+  getWidthTotalScreen: function() {
+    return this.getWidthVisibleScreen() + this.getBandWidth();
   },
-  
-  getHeightTotalScreen: function(){
-   return this.getHeightVisibleScreen() + this.getBandWidth() ; 
+
+  getHeightTotalScreen: function() {
+    return this.getHeightVisibleScreen() + this.getBandWidth();
   }
-}
-
-//Player parameters
-const PlayerParameters = {
-  startPlayerX: Config.getWidthVisibleScreen() / 2,
-  startPlayerY: Config.getHeightVisibleScreen() / 2,
-  size: 50,
-}
-
-const BulletParameters = {
-  sizeDefault: 10
-}
-
-const EnnemyParameters = {
-  sizeDefault: 100,
-  speedDefault: 100
 }
 
 
@@ -54,5 +38,10 @@ const Controls = {
   downCode: 83,
   leftCode: 81,
   rightCode: 68
-
 }
+
+
+// TODO : Idee: construire un array qui retient les inputs sur un horizon
+// de x secondes et leur temps. On peut s'en servir ensuite pour constuire
+// les dash, jouer avec etc au lieu de tous ces timers....
+
