@@ -1,0 +1,13 @@
+
+A faire
+
+=>Detection des collisions : pas de collisions entre ennemis, collision entre ennemi et bullet, player et ennemi. Implementation d'un quadTree pour detecter les collisions
+
+=>Ajouter des input html pour modifier les parametres (fireRate,...)
+
+=>Implementer une jauge (0 a 1) surchauffe de l'arme. Visuellement un cercle sur le player qui se remplit (en vert jusqu'a 0.5), en orange entre la moitié et presque la fin (0.5 a 0.9) . Une fois atteint il faut attendre un cooldown avant de pouvoir tirer a nouveau ( jauge < 0.5). Ajoute a weapon un etat (jauge), un taux de remplissage et un cooldown
+
+En cours
+
+
+Fait
