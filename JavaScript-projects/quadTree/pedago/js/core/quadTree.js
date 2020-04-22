@@ -1,3 +1,78 @@
+class Point {
+
+  constructor(x, y, data) {
+    this.x = x;
+    this.y = y;
+    this.data = data;
+  }
+
+
+  show() {
+    stroke(255);
+    strokeWeight(3);
+    point(this.x, this.y);
+  }
+
+  highlight(color) {
+    stroke(color);
+    strokeWeight(4);
+    point(this.x, this.y);
+  }
+
+}
+
+class Circle {
+
+  constructor(x, y, r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+  }
+
+  moveTo(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  show() {
+    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+      stroke('#5733FF');
+      strokeWeight(1.5);
+      noFill();
+      circle(this.x, this.y, 2 * this.r);
+    }
+  }
+
+  contains(point) {
+    return (this.x - point.x) * (this.x - point.x) + (this.y - point.y) * (this.y - point.y) <= this.r * this.r;
+  }
+
+
+  //Only for axis-aligned rectangle
+  intersects(rectangle) {
+
+    let dx = Math.abs(this.x - rectangle.x);
+    let dy = Math.abs(this.y - rectangle.y);
+    let w = rectangle.w;
+    let h = rectangle.h;
+    let r = this.r;
+
+    if (dx > w + r)
+      return false;
+    if (dy > h + r)
+      return false;
+
+    if (dx < w)
+      return true;
+    if (dy < h)
+      return true;
+
+    let cornerDistance = (dx - w) * (dx - w) + (dy - h) * (dy - h);
+    return cornerDistance <= r * r;
+  }
+
+}
+
 //Definitions:
 //Quadrant: space of the Node divided in 4 quadrants: [NW,NE,SW,SE] => [0,1,2,3]
 //Children: each Node has 4 children max. A child take cares of what happens
@@ -5,7 +80,7 @@
 
 class Node {
 
-  constructor(x, y, w, h, depth) {
+  constructor(x, y, w, h) {
 
     //Rectangular area : (x,y) position of the center, (w,h) : half width/height
     this.x = x;
@@ -14,19 +89,25 @@ class Node {
     this.h = h;
 
     //4 children max : either an array of points, either a Node
-    this.children = [];
+    this.children = [
+      [],
+      [],
+      [],
+      []
+    ];
 
     //NW
-    this.children[0] = [];
-    //NE
-    this.children[1] = [];
-    //SW
-    this.children[2] = [];
-    //SE
-    this.children[3] = [];
+    // this.children[0] = [];
+    // //NE
+    // this.children[1] = [];
+    // //SW
+    // this.children[2] = [];
+    // //SE
+    // this.children[3] = [];
 
     //Max children
     this.nChildrenMax = 4;
+
   }
 
 
@@ -101,19 +182,6 @@ class Node {
     return n;
   }
 
-  nbPoints() {
-
-    let n = 0;
-    for (let i = 0; i != this.children.length; i++) {
-      if (this.children[i] instanceof Node)
-        n += this.children[i].nbPoints();
-      else
-        n += this.children[i].length;
-    }
-
-    return n;
-  }
-
   hasReachedMaxCapacity() {
     return this.nbChildren() > this.nChildrenMax;
   }
@@ -154,27 +222,20 @@ class Node {
 
     if (!circleProbe.intersects(boundingBox))
       return;
-      
-      
-    this.children.forEach( child => {
-      
-      if( child instanceof Node)
+
+    this.children.forEach(child => {
+
+      if (child instanceof Node)
         child.query(circleProbe, points);
       else
-        child.forEach( p => {
-          if(circleProbe.contains(p))
+        child.forEach(p => {
+          if (circleProbe.contains(p))
             points.push(p);
         });
-      
-    });
-    
-    return points;
-  }
 
-  debug() {
-    //console.log('show', this.children);
-    console.log('nb of children =', this.nbChildren());
-    console.log('nb of points =', this.nbPoints());
+    });
+
+    return points;
   }
 
   show() {
@@ -182,28 +243,29 @@ class Node {
     this.showNodeContent();
   }
 
-
   showNode() {
     push();
     rectMode(CENTER);
+    noFill();
     stroke(150);
     strokeWeight(0.5);
-    noFill();
     rect(this.x, this.y, 2 * this.w, 2 * this.h);
     pop();
   }
 
   showNodeContent() {
 
-    this.children.forEach( child => {
+    this.children.forEach(child => {
       if (child instanceof Node)
         child.show();
       else
-        child.forEach( p => p.show());
+        child.forEach(p => p.show());
     });
 
   }
 
-
-
 }
+
+
+
+
