@@ -17,7 +17,7 @@ var insertMode = (function() {
   }
 
   insertMode.insertGaussian = function(rootNode, circularProbe) {
-    let nbPoints = getNbGaussianPointsUI();
+    let nbPoints = ui.getNbGaussianPoints();
     for (let i = 0; i != nbPoints; i++) {
       rootNode.insert(new Point(randomGaussian(circularProbe.x, circularProbe.r / 3), randomGaussian(circularProbe.y, circularProbe.r / 3)));
     }
@@ -41,20 +41,21 @@ let circularProbe;
 
 function setup() {
 
-  createCanvas(1024, 600);
+  canvasQuadTreedemo01 = createCanvas( 1024, 600 );
+  canvasQuadTreedemo01.parent('canvasQuadTreedemo01');
   //Init rooNode with screen dimensions
   rootNode = new NodePedagogic(width / 2, height / 2, width / 2, height / 2);
   //Init the circular probe to select points
-  circularProbe = new CircularProbe(width / 2, height / 2, getProbeSizeUI());
+  circularProbe = new CircularProbe(width / 2, height / 2, ui.getProbeSize());
 
-  initUI(rootNode,circularProbe,insertMode);
+  ui.init(rootNode, circularProbe, insertMode);
 }
 
 //Insert on click event
 function mousePressed() {
   if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
     insertMode.insert()(rootNode, circularProbe);
-    updateUI(rootNode, circularProbe);
+    ui.update(rootNode, circularProbe);
   }
 }
 
@@ -66,7 +67,7 @@ function draw() {
   //Move probe around
   circularProbe.moveTo(mouseX, mouseY);
 
-  updateUI(rootNode, circularProbe);
+  ui.update(rootNode, circularProbe);
 
   //For pedagogical reasons only
   rootNode.isIntersected(circularProbe);
@@ -77,15 +78,17 @@ function draw() {
   //Show probe
   circularProbe.show();
 
-  let points = rootNode.query(circularProbe);
-
-  //For pedagogical reasons only
+  //Candidates points => For pedagogical reasons only
   let looked = rootNode.queryLooked(circularProbe);
+
   if (looked !== undefined)
     for (let p of looked) {
       //Highlight looked points
       p.highlight(colors.colorPointLooked);
     }
+
+  //Selected points
+  let points = rootNode.query(circularProbe);
 
   if (points !== undefined) {
     for (let p of points) {

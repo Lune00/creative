@@ -1,4 +1,4 @@
-//Helper functions to add some informations about the quadtree on the web page
+//Derived class from Node to add some informations about the quadtree on the web page
 //author : Paul Schuhmacher
 
 console.log('pedagogic extension loaded');
@@ -11,13 +11,16 @@ class NodePedagogic extends Node {
     this.intersected = false;
   }
 
+  //TODO : compute number of nodes (branches)
+  nbNodes(n) {
+    if (!n)
+      n = 0;
 
-  nbNodes() {
-    let n = 0;
     for (let i = 0; i != this.children.length; i++) {
       if (this.children[i] instanceof Node) {
-        n += 1;
-        n += this.children[i].nbNodes();
+        n++;
+        this.children[i].nbNodes(n)
+        //  n += this.children[i].nbNodes();
       }
     }
     return n;
@@ -105,9 +108,8 @@ class NodePedagogic extends Node {
     pop();
   }
 
-
-    //Override getNewNode from Node
-    getNewNode(region) {
+  //Override getNewNode from Node
+  getNewNode(region) {
     if (region === 0)
       return new NodePedagogic(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
     else if (region === 1)
@@ -117,6 +119,5 @@ class NodePedagogic extends Node {
     else if (region === 3)
       return new NodePedagogic(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
   }
-
 
 }

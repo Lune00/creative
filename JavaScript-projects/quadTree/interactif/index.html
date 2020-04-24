@@ -1,75 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <script src="js/lib/p5.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <meta charset="utf-8">
-
 </head>
 
 <body>
 
-  <h1><em>QuadTree</em></h1>
+  <h1>QuadTree</h1>
+
+  <h2>Introduction</h2>
+
+  <h2>Définitions</h2>
+
+  <h2>Construire le quadTree</h2>
+
+  <h2>Interroger le quadTree</h2>
+
+  <h2>Notion de profondeur</h2>
+
+  <h2>Attacher des données aux feuilles</h2>
+
+  <h2>Utilisation d'un quadTree pour la détection de collisions</h2>
+
+  <div id="demo01">
 
 
-  <h4>Insertion</h4>
-  <div class="radioContainer">
+    <h4>Insertion</h4>
+    <div class="radioContainer">
 
-    <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
-    <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
+      <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
+      <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
 
-    <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
-    <label for="female"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
-    <label for="nbPointsGaussian">Nombre de points à insérer</label>
-    <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
-    <output id="nbPointsGaussianValue"></output>
-  </div>
-
-  <h4>Inspection</h4>
-  <div class="slideContainer">
-    <label for="sliderProbeSize">Taille zone d'inspection</label>
-    <input type="range" min="10" max="200" value="100" id="sliderProbeSize" name="sliderProbeSize">
-
-  </div>
-
-  <h4>Infos</h4>
-  <div class="infos">
-
-    <div>
-      <label for="nbChildren">Nombre total de nodes : </label>
-      <span id="nbChildren" name="nbChildren">1</span> nodes
+      <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
+      <label for="female"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
+      <label for="nbPointsGaussian">Nombre de points à insérer</label>
+      <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
+      <output id="nbPointsGaussianValue"></output>
     </div>
 
+    <h4>Inspection</h4>
+    <div class="slideContainer">
+      <label for="sliderProbeSize">Taille zone d'inspection</label>
+      <input type="range" min="10" max="200" value="100" id="sliderProbeSize" name="sliderProbeSize">
 
-    <div>
-      <label for="nbPointsTotal">Nombre total de points : </label>
-      <span id="nbPointsTotal" name="nbPointsTotal">0</span> points
     </div>
 
+    <h4>Infos</h4>
+    <div class="infos">
 
+      <div>
+        <label for="nbChildren">Nombre total de branches : </label>
+        <span id="nbChildren" name="nbChildren">1</span>
+      </div>
 
-    <div id="groupNbPoitnsEvaluated">
-      <label for="nbPoitnsEvaluated"><b>Points évalués (% Total)</b> : </label>
-      <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span>
+      <div>
+        <label for="nbPointsTotal">Nombre total de points : </label>
+        <span id="nbPointsTotal" name="nbPointsTotal">0</span> points
+      </div>
+
+      <div id="groupNbPoitnsEvaluated">
+        <label for="nbPoitnsEvaluated"><b>Points candidats (% Total)</b> : </label>
+        <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span>
+      </div>
+
+      <div id="groupNbPoitnsSelected">
+        <label for="nbPoitnsSelected"><b>Points inclus dans la zone d'inspection (% Total) : </b></label>
+        <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span>
+      </div>
+
     </div>
 
-    <div id="groupNbPoitnsSelected">
-      <label for="nbPoitnsSelected"><b>Points sélectionnés (% Total) : </b></label>
-      <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span>
+    <div class="resetButtonContainer">
+      <input type="button" value="reset" id="resetButton">
+    </div>
+
+    <div id="canvasQuadTreedemo01">
+
     </div>
 
   </div>
 
-  <div class="resetButtonContainer">
-    <input type="button" value="reset" id="resetButton">
-  </div>
 
   <script src="js/quadTree.js"></script>
   <script src="js/pedagogic_extension.js"></script>
-    <script src="ui.js"></script>
-  <script src="js/demoQuadTree1.js"></script>
-
+  <script src="js/uiQuadTreedemo01.js"></script>
+  <script src="js/canvasQuadTreedemo01.js"></script>
 
 </body>
 
