@@ -17,11 +17,10 @@ var insertMode = (function() {
   }
 
   insertMode.insertGaussian = function(rootNode, circularProbe) {
-    let nbPoints = parseInt(document.getElementById("nbPointsGaussian").value);
+    let nbPoints = getNbGaussianPointsUI();
     for (let i = 0; i != nbPoints; i++) {
       rootNode.insert(new Point(randomGaussian(circularProbe.x, circularProbe.r / 3), randomGaussian(circularProbe.y, circularProbe.r / 3)));
     }
-
   }
   insertMode.insert = function() {
     if (this.mode === 'normal')
@@ -34,17 +33,11 @@ var insertMode = (function() {
 
 })();
 
-
-
 //Global variables:
 //Starting node of the quadtree
 let rootNode;
 //Circular probe to inspect the quadtree
 let circularProbe;
-
-//Colors:
-let colorPointSelected = '#33FF57';
-let colorPointLooked = '#FF5733';
 
 function setup() {
 
@@ -52,44 +45,9 @@ function setup() {
   //Init rooNode with screen dimensions
   rootNode = new NodePedagogic(width / 2, height / 2, width / 2, height / 2);
   //Init the circular probe to select points
-  circularProbe = new CircularProbe(width / 2, height / 2, 100);
+  circularProbe = new CircularProbe(width / 2, height / 2, getProbeSizeUI());
 
-  //Event on slider
-  let sliderProbeSize = document.getElementById('sliderProbeSize');
-  sliderProbeSize.value = circularProbe.r;
-
-  sliderProbeSize.addEventListener('change', function() {
-    circularProbe.r = parseInt(this.value);
-  });
-
-  document.getElementById('resetButton').addEventListener('click', function() {
-    rootNode.clear();
-    updateUI(rootNode, circularProbe);
-  });
-
-  for (let radio of document.getElementsByName("insertionModeGroup")) {
-    if (radio.id === 'normal') {
-      radio.addEventListener('click', function() {
-        insertMode.mode = 'normal'
-        document.getElementById("nbPointsGaussian").disabled = true;
-        document.getElementById("nbPointsGaussianValue").value = "";
-      });
-    } else if (radio.id === 'gaussian') {
-      radio.addEventListener('click', function() {
-        insertMode.mode = 'gaussian'
-        document.getElementById("nbPointsGaussian").disabled = false;
-        document.getElementById("nbPointsGaussianValue").value = document.getElementById("nbPointsGaussian").value;
-      });
-    }
-  }
-
-  //Event listener to min/max nbPoints
-  document.getElementById('nbPointsGaussian').addEventListener('input', function() {
-    document.getElementById('nbPointsGaussianValue').value = this.value;
-  });
-
-  document.getElementById('groupNbPoitnsEvaluated').style.color = colorPointLooked;
-  document.getElementById('groupNbPoitnsSelected').style.color = colorPointSelected;
+  initUI(rootNode,circularProbe,insertMode);
 }
 
 //Insert on click event
@@ -111,7 +69,7 @@ function draw() {
   circularProbe.moveTo(mouseX, mouseY);
 
   //For pedagogical reasons only
-  rootNode.Intersected(circularProbe);
+  rootNode.isIntersected(circularProbe);
 
   //Show quadtree
   rootNode.show();
