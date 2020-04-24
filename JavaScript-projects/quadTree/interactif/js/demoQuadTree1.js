@@ -1,19 +1,46 @@
-//Quadtree implementation with selection exemple
-//Quadtree with four max children (node or point) 
+//Quadtree : demo insertion and inspection around a point within a circular range
 //source: https://jimkang.com/quadtreevis/
-//Author : paul schuhmacher
+//Author : Paul Schuhmacher
+
+console.log('sketch loaded');
 
 
-//TODO: show looked points (print nb/nbTotal %)
+var insertMode = (function() {
+
+  let insertMode = {};
+
+  insertMode.mode = 'normal';
+
+  insertMode.insertNormal = function(rootNode, circularProbe) {
+    rootNode.insert(new Point(circularProbe.x, circularProbe.y));
+
+  }
+
+  insertMode.insertGaussian = function(rootNode, circularProbe) {
+    let nbPoints = parseInt(document.getElementById("nbPointsGaussian").value);
+    for (let i = 0; i != nbPoints; i++) {
+      rootNode.insert(new Point(randomGaussian(circularProbe.x, circularProbe.r / 3), randomGaussian(circularProbe.y, circularProbe.r / 3)));
+    }
+
+  }
+  insertMode.insert = function() {
+    if (this.mode === 'normal')
+      return this.insertNormal;
+    else if (this.mode === 'gaussian')
+      return this.insertGaussian;
+  }
+
+  return insertMode;
+
+})();
+
+
 
 //Global variables:
 //Starting node of the quadtree
 let rootNode;
 //Circular probe to inspect the quadtree
 let circularProbe;
-
-//Insert function used depending on mode
-let insertFunction;
 
 //Colors:
 let colorPointSelected = '#33FF57';
@@ -22,12 +49,10 @@ let colorPointLooked = '#FF5733';
 function setup() {
 
   createCanvas(1024, 600);
-
   //Init rooNode with screen dimensions
   rootNode = new NodePedagogic(width / 2, height / 2, width / 2, height / 2);
-
   //Init the circular probe to select points
-  circularProbe = new Circle(width / 2, height / 2, 100);
+  circularProbe = new CircularProbe(width / 2, height / 2, 100);
 
   //Event on slider
   let sliderProbeSize = document.getElementById('sliderProbeSize');
@@ -38,19 +63,23 @@ function setup() {
   });
 
   document.getElementById('resetButton').addEventListener('click', function() {
-     rootNode.clear();
-     updateUI(rootNode, circularProbe);
+    rootNode.clear();
+    updateUI(rootNode, circularProbe);
   });
 
-  //Pointer vers la bonne fonction en fonction du mode (radio)
-  insertFunction = insertNormal;
-
   for (let radio of document.getElementsByName("insertionModeGroup")) {
-
     if (radio.id === 'normal') {
-      radio.addEventListener('click', setInsertToNormal);
+      radio.addEventListener('click', function() {
+        insertMode.mode = 'normal'
+        document.getElementById("nbPointsGaussian").disabled = true;
+        document.getElementById("nbPointsGaussianValue").value = "";
+      });
     } else if (radio.id === 'gaussian') {
-      radio.addEventListener('click', setInsertToRandomGaussianPoints);
+      radio.addEventListener('click', function() {
+        insertMode.mode = 'gaussian'
+        document.getElementById("nbPointsGaussian").disabled = false;
+        document.getElementById("nbPointsGaussianValue").value = document.getElementById("nbPointsGaussian").value;
+      });
     }
   }
 
@@ -61,6 +90,14 @@ function setup() {
 
   document.getElementById('groupNbPoitnsEvaluated').style.color = colorPointLooked;
   document.getElementById('groupNbPoitnsSelected').style.color = colorPointSelected;
+}
+
+//Insert on click event
+function mousePressed() {
+  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+    insertMode.insert()(rootNode, circularProbe);
+    updateUI(rootNode, circularProbe);
+  }
 }
 
 
@@ -100,35 +137,3 @@ function draw() {
   }
 
 }
-
-function insertNormal() {
-  rootNode.insert(new Point(mouseX, mouseY));
-}
-
-function insertRandomGaussianPoints() {
-  let nbPoints = parseInt(document.getElementById("nbPointsGaussian").value);
-  for (let i = 0; i != nbPoints; i++) {
-    rootNode.insert(new Point(randomGaussian(mouseX, circularProbe.r / 3), randomGaussian(mouseY, circularProbe.r / 3)));
-  }
-}
-
-function setInsertToNormal() {
-  insertFunction = insertNormal;
-  document.getElementById("nbPointsGaussian").disabled = true;
-  document.getElementById("nbPointsGaussianValue").value = "";
-}
-
-function setInsertToRandomGaussianPoints() {
-  insertFunction = insertRandomGaussianPoints;
-  document.getElementById("nbPointsGaussian").disabled = false;
-  document.getElementById("nbPointsGaussianValue").value = document.getElementById("nbPointsGaussian").value;
-}
-
-//Insert on click event
-function mousePressed() {
-  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-    insertFunction();
-    updateUI(rootNode, circularProbe);
-  }
-}
-

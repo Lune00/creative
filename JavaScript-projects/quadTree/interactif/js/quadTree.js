@@ -1,3 +1,5 @@
+console.log('quadTree loaded');
+
 class Point {
 
   constructor(x, y, data) {
@@ -5,7 +7,6 @@ class Point {
     this.y = y;
     this.data = data;
   }
-
 
   show() {
     stroke(255);
@@ -21,7 +22,7 @@ class Point {
 
 }
 
-class Circle {
+class CircularProbe {
 
   constructor(x, y, r) {
     this.x = x;
@@ -73,6 +74,8 @@ class Circle {
 
 }
 
+
+
 //Definitions:
 //Quadrant: space of the Node divided in 4 quadrants: [NW,NE,SW,SE] => [0,1,2,3]
 //Children: each Node has 4 children max. A child take cares of what happens
@@ -88,7 +91,7 @@ class Node {
     this.w = w;
     this.h = h;
 
-    //4 children max : either an array of points, either a Node
+    //4 children max - quadrants - : either an array of points, either a Node
     this.children = [
       [],
       [],
@@ -108,50 +111,46 @@ class Node {
     //Max children
     this.nChildrenMax = 4;
 
+    //Size HACK
+    this.length = 1;
+
   }
 
 
   insert(point) {
 
-    //If not in the node
     if (!this.contains(point))
       return;
 
-    //Determines in which quadrant of the node the point is
-    let region = this.getRegion(point);
+    let child = this.childContainingPoint(point);
 
-    //Si la region est deja une node enfant il faut inserer dans la node enfant
-    if (region instanceof Node) {
-      region.insert(point);
+    if (child instanceof Node) {
+      child.insert(point);
       return;
-    }
-    //Else, Add point to current node
-    else {
-      //Add the point to the region
-      region.push(point);
-
-      //Check if node has reached max capacity (accross all regions) (max nb of children)
+    } else {
+      child.push(point);
+      //Check if this node has reached max capacity (accross all children)
       if (this.hasReachedMaxCapacity())
-        this.split(region);
+        this.splitAndPush(child);
     }
   }
 
 
-  split(region) {
-    //We need to subdivise this region where the new point has arrived 
-    let childNode = this.getNewNode(this.children.indexOf(region));
+  splitAndPush(child) {
 
-    //Push points from current node to the child node   
-    for (let p of region) {
+    let childNode = this.getNewNode(this.children.indexOf(child));
+
+    //Push points from current node to the child node
+    for (let p of child) {
       childNode.insert(p);
     }
 
-    //Region point now to a children node
-    this.setRegionToNode(this.children.indexOf(region), childNode);
+    this.setChildToNode(child, childNode);
   }
 
-  setRegionToNode(index, children) {
-    this.children[index] = children;
+  setChildToNode(child, childNode) {
+    let index = this.children.indexOf(child);
+    this.children[index] = childNode;
   }
 
   contains(point) {
@@ -160,44 +159,35 @@ class Node {
   }
 
 
-  //Region: 
+  //Child:
   //NW = (0,0) == 0
   //NE = (1,0) == 1
   //SW = (0,1) == 2
   //SE = (1,1) == 3
-  getRegion(point) {
+  childContainingPoint(point) {
     let indexX = Math.floor((point.x - (this.x - this.w)) / this.w);
     let indexY = Math.floor((point.y - (this.y - this.h)) / this.h);
     return this.children[indexX + 2 * indexY];
   }
 
+  getNewNode(child) {
+    if (child === 0)
+      return new Node(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2);
+    else if (child === 1)
+      return new Node(this.x + this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2);
+    else if (child === 2)
+      return new Node(this.x - this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2);
+    else if (child === 3)
+      return new Node(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2);
+  }
+
   nbChildren() {
-    let n = 0;
-    for (let i = 0; i != this.children.length; i++) {
-      if (this.children[i] instanceof Node)
-        n += 1
-      else
-        n += this.children[i].length;
-    }
-    return n;
+    return this.children.reduce((acc, child) => acc + child.length, 0);
   }
 
   hasReachedMaxCapacity() {
     return this.nbChildren() > this.nChildrenMax;
   }
-
-
-  getNewNode(region) {
-    if (region === 0)
-      return new Node(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
-    else if (region === 1)
-      return new Node(this.x + this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
-    else if (region === 2)
-      return new Node(this.x - this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
-    else if (region === 3)
-      return new Node(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
-  }
-
 
   clear() {
     this.children.forEach((child, index) => {
@@ -206,7 +196,7 @@ class Node {
   }
 
 
-  //Returns all points contains in the circular probe
+  //Returns all points contained within the circular probe
   query(circleProbe, points) {
 
     if (!points) {
@@ -261,11 +251,5 @@ class Node {
       else
         child.forEach(p => p.show());
     });
-
   }
-
 }
-
-
-
-
