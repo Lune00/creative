@@ -63,10 +63,10 @@ function draw() {
 
   background(0);
 
-  updateUI(rootNode, circularProbe);
-
   //Move probe around
   circularProbe.moveTo(mouseX, mouseY);
+
+  updateUI(rootNode, circularProbe);
 
   //For pedagogical reasons only
   rootNode.isIntersected(circularProbe);
@@ -84,13 +84,13 @@ function draw() {
   if (looked !== undefined)
     for (let p of looked) {
       //Highlight looked points
-      p.highlight(colorPointLooked);
+      p.highlight(colors.colorPointLooked);
     }
 
   if (points !== undefined) {
     for (let p of points) {
       //Highlight selected points
-      p.highlight(colorPointSelected);
+      p.highlight(colors.colorPointSelected);
     }
   }
 

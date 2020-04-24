@@ -1,31 +1,49 @@
-function nbPointsSelected(rootNode, circularProbe) {
-  let points = rootNode.query(circularProbe);
-  return points === undefined ? 0 : points.length;
+var colors = {
+  colorPointSelected: '#33FF57',
+  colorPointLooked: '#FF5733'
 }
 
-function nbPointsLooked(rootNode, circleProbe) {
-  let looked = rootNode.queryLooked(circleProbe);
-  return looked === undefined ? 0 : looked.length;
+var myModel = {
+
+  totalNPoints: 0,
+  totalNPointsEvaluated: 0,
+  totalNPointsSelected: 0,
+  pourcentageEvaluated: 0,
+  pourcentageSelected: 0,
+
+  updateTotalNPoints: function(rootNode) {
+    let n = rootNode.nbPoints();
+    this.totalNPoints = n === undefined ? 0 : n;
+  },
+
+  updateTotalNPointsSelected: function(rootNode, circularProbe) {
+    let points = rootNode.query(circularProbe);
+    this.totalNPointsSelected = points === undefined ? 0 : points.length;
+  },
+
+  updateTotalNPointsEvaluated: function(rootNode, circularProbe) {
+    let looked = rootNode.queryLooked(circularProbe);
+    this.totalNPointsEvaluated = looked === undefined ? 0 : looked.length;
+  },
+
+  update: function(rootNode, circularProbe) {
+    this.updateTotalNPoints(rootNode);
+    this.updateTotalNPointsEvaluated(rootNode, circularProbe);
+    this.updateTotalNPointsSelected(rootNode, circularProbe);
+    this.pourcentageEvaluated =  this.totalNPoints === 0 ? 0 : (this.totalNPointsEvaluated / this.totalNPoints) * 100;
+    this.pourcentageSelected =  this.totalNPoints === 0 ? 0 : (this.totalNPointsSelected / this.totalNPoints) * 100;
+  }
 }
 
-function nbPointsTotal(rootNode) {
-  let n = rootNode.nbPoints();
-  return n === undefined ? 0 : n;
-}
 
 function getNbGaussianPointsUI() {
   return parseInt(document.getElementById("nbPointsGaussian").value);
 }
 
 function getProbeSizeUI() {
-  return document.getElementById('sliderProbeSize').value;
+  return parseInt(document.getElementById('sliderProbeSize').value);
 }
 
-
-var colors = {
-  colorPointSelected: '#33FF57',
-  colorPointLooked: '#FF5733'
-}
 
 function initUI(rootNode, circularProbe, insertMode) {
 
@@ -66,27 +84,12 @@ function initUI(rootNode, circularProbe, insertMode) {
 
 //A separer en deux fonctions
 function updateUI(rootNode, circularProbe) {
-
-  let totalNPoints = nbPointsTotal(rootNode);
-  let totalNPointsEvaluated = nbPointsLooked(rootNode, circularProbe);
-  let totalNPointsSelected = nbPointsSelected(rootNode, circularProbe);
-
-  let pourcentageEvaluated;
-  let pourcentageSelected;
-
-  if (totalNPoints === 0) {
-    pourcentageEvaluated = 0;
-    pourcentageSelected = 0;
-  } else {
-    pourcentageEvaluated = (totalNPointsEvaluated / totalNPoints) * 100;
-    pourcentageSelected = (totalNPointsSelected / totalNPoints) * 100;
-  }
-
-  //TODO : separer vue et donnees (model)
-
-  document.getElementById('nbPointsTotal').innerHTML = totalNPoints;
+  //Update model
+  myModel.update(rootNode, circularProbe);
+  //Update view
+  document.getElementById('nbPointsTotal').innerHTML = myModel.totalNPoints;
   document.getElementById('nbChildren').innerHTML = rootNode.nbNodes() + 1;
-  document.getElementById('nbPoitnsEvaluated').innerHTML = totalNPointsEvaluated + " (" + Number.parseFloat(pourcentageEvaluated).toPrecision(3) + "%)";
-  document.getElementById('nbPoitnsSelected').innerHTML = totalNPointsSelected + " (" + Number.parseFloat(pourcentageSelected).toPrecision(3) + "%)";
+  document.getElementById('nbPoitnsEvaluated').innerHTML = myModel.totalNPointsEvaluated + " (" + Number.parseFloat(myModel.pourcentageEvaluated).toPrecision(3) + "%)";
+  document.getElementById('nbPoitnsSelected').innerHTML = myModel.totalNPointsSelected + " (" + Number.parseFloat(myModel.pourcentageSelected).toPrecision(3) + "%)";
 
 }
