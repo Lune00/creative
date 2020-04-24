@@ -1,5 +1,7 @@
-console.log('quadTree loaded');
+//Quadtree source-code (point, probe, Node) including p5.js library functions and variables for visualisation
+//Author : Paul Schuhmacher
 
+//Point (leaf of the quadTree) : user data can be attached to it through the data property
 class Point {
 
   constructor(x, y, data) {
@@ -22,6 +24,8 @@ class Point {
 
 }
 
+
+//A circular probe used to inspects the quadtree
 class CircularProbe {
 
   constructor(x, y, r) {
@@ -49,7 +53,7 @@ class CircularProbe {
   }
 
 
-  //Only for axis-aligned rectangle
+  //Only for canvas axis-aligned rectangle
   intersects(rectangle) {
 
     let dx = Math.abs(this.x - rectangle.x);
@@ -74,46 +78,40 @@ class CircularProbe {
 
 }
 
-
-
-//Definitions:
-//Quadrant: space of the Node divided in 4 quadrants: [NW,NE,SW,SE] => [0,1,2,3]
-//Children: each Node has 4 children max. A child take cares of what happens
-//in the quadrant it operates on. Child can be an array of points or another Node
+//Node divided in 4 children: [NW,NE,SW,SE] => [0,1,2,3] : node is a branch of the quadtree
+//Children: each Node has 4 children (may be empty).
+//A child can be an array of points (leaves) or another Node (branch)
 
 class Node {
 
   constructor(x, y, w, h) {
 
-    //Rectangular area : (x,y) position of the center, (w,h) : half width/height
+    //Rectangular area : (x,y) position of the center, (w,h) half width/height
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
 
-    //4 children max - quadrants - : either an array of points, either a Node
+    //4 children : either an array of points, either a Node. Initalised with empty arrays
+    // NW
+    // this.children[0] = [];
+    // NE
+    // this.children[1] = [];
+    // SW
+    // this.children[2] = [];
+    // SE
+    // this.children[3] = [];
     this.children = [
       [],
       [],
       [],
       []
     ];
-
-    //NW
-    // this.children[0] = [];
-    // //NE
-    // this.children[1] = [];
-    // //SW
-    // this.children[2] = [];
-    // //SE
-    // this.children[3] = [];
-
     //Max children
     this.nChildrenMax = 4;
 
     //Size HACK
     this.length = 1;
-
   }
 
 
@@ -244,7 +242,6 @@ class Node {
   }
 
   showNodeContent() {
-
     this.children.forEach(child => {
       if (child instanceof Node)
         child.show();
