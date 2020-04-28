@@ -165,12 +165,6 @@ class Node {
     this.isBranch = true;
   }
 
-  setChildToNode(child, childNode) {
-    let index = this.children.indexOf(child);
-    this.children[index] = childNode;
-  }
-
-
 
   contains(point) {
     return point.x > this.x - this.w && point.x < this.x + this.w &&

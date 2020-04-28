@@ -12,30 +12,27 @@ class NodePedagogic extends Node {
   }
 
 
-  nbBranch(nBranch, nLeaf) {
+  nbBranch(tree) {
 
-    if (!nBranch && !nLeaf) {
-      nBranch = 0;
-      nLeaf = 0;
+    if (!tree) {
+      tree = {};
+      tree.nbBranch = 0;
+      tree.nbLeaf = 0;
     }
 
     if (this.isBranch)
-      nBranch++;
-    else{
-      nLeaf++;
+      tree.nbBranch++;
+    else {
+        tree.nbLeaf++;
     }
 
 
     for (let i = 0; i != this.children.length; i++) {
-       if (this.children[i] instanceof Node)
-        this.children[i].nbBranch(nBranch, nLeaf)
+      if (this.children[i] instanceof Node)
+        this.children[i].nbBranch(tree)
     }
 
-    let val = {
-      nbBranch: nBranch,
-      nbLeaf: nLeaf
-    };
-    return val;
+    return tree;
   }
 
 
