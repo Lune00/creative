@@ -11,19 +11,31 @@ class NodePedagogic extends Node {
     this.intersected = false;
   }
 
-  //TODO : compute number of nodes (branches)
-  nbNodes(n) {
-    if (!n)
-      n = 0;
+
+  nbBranch(nBranch, nLeaf) {
+
+    if (!nBranch && !nLeaf) {
+      nBranch = 0;
+      nLeaf = 0;
+    }
+
+    if (this.isBranch)
+      nBranch++;
+    else{
+      nLeaf++;
+    }
+
 
     for (let i = 0; i != this.children.length; i++) {
-      if (this.children[i] instanceof Node) {
-        n++;
-        this.children[i].nbNodes(n)
-        //  n += this.children[i].nbNodes();
-      }
+       if (this.children[i] instanceof Node)
+        this.children[i].nbBranch(nBranch, nLeaf)
     }
-    return n;
+
+    let val = {
+      nbBranch: nBranch,
+      nbLeaf: nLeaf
+    };
+    return val;
   }
 
 
@@ -49,11 +61,10 @@ class NodePedagogic extends Node {
       h: this.h
     };
 
-    if (!circleProbe.intersects(boundingBox))
-      this.intersected = false;
-    else
+    if (circleProbe.intersects(boundingBox) && !this.isBranch)
       this.intersected = true;
-
+    else
+      this.intersected = false;
 
     this.children.forEach(child => {
       if (child instanceof Node)

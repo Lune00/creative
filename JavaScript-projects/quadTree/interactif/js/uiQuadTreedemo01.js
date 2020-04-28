@@ -10,6 +10,8 @@ const modelDemoQuadTreeCreationInspection = {
   totalNPointsSelected: 0,
   pourcentageEvaluated: 0,
   pourcentageSelected: 0,
+  totalBranchs: 0,
+  totalLeafs: 0,
 
   updateTotalNPoints: function(rootNode) {
     let n = rootNode.nbPoints();
@@ -26,10 +28,17 @@ const modelDemoQuadTreeCreationInspection = {
     this.totalNPointsEvaluated = looked === undefined ? 0 : looked.length;
   },
 
+  updateBranchAndLeaf: function(rootNode){
+    let result = rootNode.nbBranch();
+    this.totalBranchs = result.nbBranch;
+    this.totalLeafs = result.nbLeaf;
+  },
+
   update: function(rootNode, circularProbe) {
     this.updateTotalNPoints(rootNode);
     this.updateTotalNPointsEvaluated(rootNode, circularProbe);
     this.updateTotalNPointsSelected(rootNode, circularProbe);
+    this.updateBranchAndLeaf(rootNode);
     this.pourcentageEvaluated = this.totalNPoints === 0 ? 0 : (this.totalNPointsEvaluated / this.totalNPoints) * 100;
     this.pourcentageSelected = this.totalNPoints === 0 ? 0 : (this.totalNPointsSelected / this.totalNPoints) * 100;
   }
@@ -54,7 +63,7 @@ const ui = {
 
     document.getElementById('resetButton').addEventListener('click', function() {
       rootNode.clear();
-      updateUI(rootNode, circularProbe);
+      ui.update(rootNode, circularProbe);
     });
 
     for (let radio of document.getElementsByName("insertionModeGroup")) {
@@ -85,7 +94,8 @@ const ui = {
 
     this.model.update(rootNode, circularProbe);
     document.getElementById('nbPointsTotal').innerHTML = this.model.totalNPoints;
-    document.getElementById('nbChildren').innerHTML = rootNode.nbNodes() + 1;
+    document.getElementById('nbBranch').innerHTML = this.model.totalBranchs;
+    document.getElementById('nbLeaf').innerHTML = this.model.totalLeafs;
     document.getElementById('nbPoitnsEvaluated').innerHTML = this.model.totalNPointsEvaluated + " (" + Number.parseFloat(this.model.pourcentageEvaluated).toPrecision(3) + "%)";
     document.getElementById('nbPoitnsSelected').innerHTML = this.model.totalNPointsSelected + " (" + Number.parseFloat(this.model.pourcentageSelected).toPrecision(3) + "%)";
   }

@@ -84,23 +84,15 @@ class CircularProbe {
 
 class Node {
 
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, type) {
 
     //Rectangular area : (x,y) position of the center, (w,h) half width/height
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.type = type;
 
-    //4 children : either an array of points, either a Node. Initalised with empty arrays
-    // NW
-    // this.children[0] = [];
-    // NE
-    // this.children[1] = [];
-    // SW
-    // this.children[2] = [];
-    // SE
-    // this.children[3] = [];
     this.children = [
       [],
       [],
@@ -113,8 +105,13 @@ class Node {
     //Size HACK
     this.length = 1;
 
-    this.isBranch = false;
+  }
 
+
+
+  setChildToNode(child, childNode) {
+    let index = this.children.indexOf(child);
+    this.children[index] = childNode;
   }
 
   insert(point) {
@@ -128,46 +125,24 @@ class Node {
       child.insert(point);
       return;
     } else {
-
-      //If it'as a branch, then it has been divised and we should turn this child into a node (leaf)
-      if (this.isBranch) {
-        let index = this.children.indexOf(child);
-        this.children[index] = this.getNewNode(index);
-        this.children[index].insert(point);
-        return;
-      }
-
-      //If it's not a branch then it's a leaf and we add attach the point to it
       child.push(point);
-
-      //Check if this leaf has reached max capacity, if it has, the leaf turns into a branch
+      //Check if this node has reached max capacity (accross all children)
       if (this.hasReachedMaxCapacity())
-        this.branch();
+        this.splitAndPush(child);
     }
   }
 
 
-  branch() {
+  splitAndPush(child) {
 
-    //On recupere tous les points présents et on les insere dans des feuilles
-    this.children.forEach((child, index) => {
-      let points = child;
+    let childNode = this.getNewNode(this.children.indexOf(child));
 
-      //Si y'a des points on cree des feuilles, sinon on laisse
-      if (points.length !== 0) {
-        this.children[index] = this.getNewNode(index);
-        for (let p of points)
-          this.children[index].insert(p);
-      }
+    //Push points from current node to the child node
+    for (let p of child) {
+      childNode.insert(p);
+    }
 
-    });
-
-    this.isBranch = true;
-  }
-
-  setChildToNode(child, childNode) {
-    let index = this.children.indexOf(child);
-    this.children[index] = childNode;
+    this.setChildToNode(child, childNode);
   }
 
 
@@ -209,7 +184,6 @@ class Node {
   }
 
   clear() {
-    this.isBranch = false;
     this.children.forEach((child, index) => {
       this.children[index] = [];
     });
