@@ -5,40 +5,45 @@ canvas {
 html, body {
   margin: 0;
   padding: 0;
-  font-size:18px;
+  font-size: 18px;
   margin: 1em;
+  line-height: 1.5em;
 }
+
 canvas {
   display: block;
 }
 
 h1 {
-  font-size:44px;
-  font-style:normal;
-  text-align:left;
+  font-size: 44px;
+  font-style: normal;
+  text-align: left;
 }
 
-h1 em{
-  color: rgb(179,21,26)
+h1 em {
+  color: rgb(179, 21, 26)
 }
 
-p em{
+p em {
   color: black;
 }
 
 dt {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 
 dd {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
-
-#groupNbPoitnsSelected{
- background-color: black;
+.togo {
+  background-color: gray;
 }
-#groupNbPoitnsEvaluated{
- background-color: black;
+
+#groupNbPoitnsSelected {
+  background-color: black;
+}
+
+#groupNbPoitnsEvaluated {
+  background-color: black;
 }

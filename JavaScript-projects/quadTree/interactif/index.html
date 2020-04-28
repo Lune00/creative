@@ -31,67 +31,66 @@
   </p>
 
   <p>
-    Imaginons que nous disposions d'un espace 2D (un écran, un sous-espace d'un espace plus grand, une scène où se déplacent des objets, une image etc...).
+    Pour nous servir des quadtrees nous avons besoin d'un espace à deux dimensions (un écran, un sous-espace d'un espace plus grand, une scène où se déplacent des objets, une image etc...)
     et que cet espace contienne des points. Ces points peuvent représenter n'importe quoi, la seule chose qui importe c'est que les <strong>coordonnées de ces points représentent
       quelque-chose</strong>. Par exemple ces points pourraient représenter des particules, les pixels d'une image, les villes d'un pays etc... Les coordonnées ont du sens : deux particules veulent savoir si elles sont en contact ou non, le sens
     d'une image est
-    contenu dans les positions relatives de ses pixels, les villes ne sont pas n'importe où ! Un quadtree s'avère utile lorsque nous disposons d'un espace en deux dimensions muni d'un système de
-    coordonnées. Ainsi, chaque point de cet espace, et par extension chaque objet qui s'y trouve, disposera de ses propres coordonnées.
-  </p>
-
-  <p>
+    contenu dans les positions relatives de ses pixels, les villes ne sont pas n'importe où !
     Par exemple, un sytème de coordonées peut être défini de sorte à ce qu'un axe représente la distance vers l'avant par rapport à
     l'origine choisie,
     et l'autre celle vers la gauche. La particule pourrait être représentée dans cet espace par un couple de deux valeurs mesurant la position du centre géometrique de la particule. Mais la distance mesurée entre deux points dans un système de coordonnées ne se restreint pas
     à
     la mesure d'une distance <i>strictement spatiale</i> : on pourrait tout aussi bien définir un espace avec un axe <i>proportion de voyelles</i> et y représenter des chaînes de caractère. Cet espace permettrait de définir une mesure de proximité entre des mots ou
-    des phrases par exemple. On pourrait également représenter des points dans un espace où une dimension mesure la position et l'autre le temps.
+    des phrases par exemple. On pourrait également représenter des points dans un espace où une dimension mesure la position et l'autre le temps etc.
   </p>
+
 
 
   <p>
 
+ Mais prenons l'exemple classique d'un espace à deux dimensions peuplé d'objets, représentés chacun par un point.
+
+ <p>
+   TODO : image points
+ </p>
+
+
+ Supposons que nous voulons interroger les propriétés de voisinage de ces objets. Par exemple, combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes? Quel est le point voisin le plus proche ? Qui sont les trois voisins les plus proches ? Combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun : elles trouvent leurs réponses dans les mesures des distances entre les points. Elles ont un caractère <i>géometrique</i>.
+  </p>
+
+
+  <p>
+    FIGURE 1 : image points + une zone rectangulaire rouge
   </p>
 
   <p>
-    Les objets présents dans cet espace, référencés par leurs coordonnées, sont généralement rangés dans une liste, ou un tableau, ordonnés ou non selon un critère laissé au choix de l'utilisateur. De nombreuses structures de données existent
-    permettant d'organiser les données dans le but de les traiter le plus facilement possible, ou le plus efficacement possible. Chaque structure de données possède des avantages et des inconvénients vis à vis de la nature du traitement que l'on
-    souhaite réaliser. La réduction de la complexité d'un programme en charge de la réalisation d'un traitement de données passe principalement par le choix d'une structure de donnée appropriée.
+    Reprenons l'une des questions précédentes sur le voisinage : quels sont les objets présents dans une zone bien délimitée de mon espace? Comme nous pouvons le voir sur la figure 2, nous retrouvons notre ensemble d'objets dans un espace bidimensionnel, où chaque objet est repéré par ses coordonnées et représenté par un point blanc, et nous voulons savoir quels sont les objets présents dans le rectangle rouge. Nous voulons, par exemple, sélectionner tous les points présents dans ce rectangle et leur appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils sont compris dans le domaine délimité par le rectangle rouge. Cette solution demanderait un temps d'execution propotionnel au nombre de points, on dit qu'elle est <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes"></a> <code>O(n)</code>, où <code>n</code> représente le nombre de points à parcourir.
   </p>
 
   <p>
-    Supposons que notre liste d'objets pour le moment ne présente pas de structure particulière. Supposons que nous voulons nous poser des questions sur les propriétés de voisinage de ces objets. Par exemple combien de voisins possède chaque point dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes du point considéré? Quel est le point voisin le plus proche ? Qui sont les trois voisins les plus proches ? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun : elles trouvent leurs réponses dans la métrique de l'espace. Elles ont un fondement <i>géometrique</i>.
+    Ici intervient la question de la structure de données utilisée pour stocker nos points. De nombreuses structures de données existent
+    permettant d'organiser les données dans le but de les traiter le plus facilement ou le plus efficacement possible. Chaque structure de données possède des avantages et des inconvénients vis à vis du traitement que l'on
+    souhaite réaliser. Réduire la complexité et augmenter les performances d'un programme en charge de la réalisation d'un traitement de données passe par le choix d'une structure de données adaptée.
   </p>
 
   <p>
-    Prenons une question sur le voisinage : quels sont les objets présents dans une zone bien délimitée de mon espace? Comme nous pouvons le voir sur la figure 1, nous avons un ensemble d'objets dans un espace en 2d, chaque objet est repéré par ses coordonnées et représenté par un point, et nous voulons savoir quels sont les objets présents dans le rectangle rouge? Nous voulons, par exemple, sélectionner tous les points présents dans ce rectangle et leur appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution naïve consisterait à parcourir tous les points et à tester s'ils sont compris dans le domaine délimité par le rectangle rouge. Cette solution demanderait
+    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau pour tester chaque point et calculer s'il est à l'interieur de la zone rectangulaire rouge. Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace. Il doit y avoir une meilleure solution. La question est : peut-on faire mieux? La réponse est oui, on peut faire mieux. En faisant le choix d'une structure de données adaptée à ce genre de problème : le quadtree.
   </p>
-
-  <p>
-    FIGURE 1 : points dans une zone?
-  </p>
-
-  TODO : les points sont une liste (ordre ou pas). Quadtree ranger ces points, les lier de manière à pouvoir les interroger sur leurs voisinages.
-
-  <p>
-    Un quadtree est une structure de données qui va découper cet espace de manière spécifique
-    afin de pouvoir réaliser des opérations de manière efficace sur le contenu de cet espace.
-  </p>
-
-
-  Nous allons définir un noeud, l'unité fondamentale du quadtree. Ce premier noeud sera la racine de notre quadtree. A ce noeud nous allons associer un domaine spatial,
-
-  <i>quad</i> qui signifie 4, et <i>tree</i> qui signifie arbre.
-
 
 
 <p>
-  Message to go : les quadtree sont des structures de données qui permettent d'interroger efficacement des données existant dans un espace à 2d. Ils sont particulièrement adaptés pour traiter des questions d'ordre géometrique où les opérations sur les données se basent sur leur tri en fonction de leur position ou des propriétés de leur voisinage.
+  Le quadtree est une structure de données, ou désigne une opération, qui consiste à décomposer l'espace en quatre sous-espaces égaux de manière récursive. C'est une structure qui a la forme d'un arbre d'où son nom <i>quad</i> qui signifie 4, et <i>tree</i> qui signifie arbre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du quadtree est d'organiser les données (nos points) afin de réduire le coût des opérations. Pour reprendre la question que nous nous posons - à savoir combien de points sont compris dans le rectangle - le problème vient du fait que nous interrogeons tout l'espace (tous les points). Le quadtree va nous permettre d'affiner notre requête et d'interroger seulement une partie de l'espace total. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
+</p>
+
+
+
+<p class="togo">
+  En résumé, ce qu'il faut retenir pour le moment c'est que les quadtrees sont des structures de données qui permettent de traiter efficacement des données existantes dans un espace bidimensionnel. L'utilisation d'un quadtree pour réaliser ces traitements offre un gain de performance considérable par rapport à l'approche <i>naïve</i>. Ce bénéfice provient du fait que le quadtree partitionne l'espace de manière récursive pour ré-organiser les données.
 </p>
 
   <h2>Définitions</h2>
 
-  <p>
+  <p >
     Mettons nous d'accord sur quelques définitions afin de ne laisser place à aucune ambiguité.
     Ces définitions vont nous aider à penser, créer et interroger notre quadTree.
   </p>
