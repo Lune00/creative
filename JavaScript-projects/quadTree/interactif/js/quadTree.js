@@ -257,7 +257,6 @@ class Node {
     pop();
   }
 
-  //Todo: could be optimise by removing the if
   showNodeContent() {
     this.children.forEach(child => {
       if (child instanceof Node)

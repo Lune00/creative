@@ -9,11 +9,118 @@
 
 <body>
 
-  <h1>QuadTree</h1>
+  <h1>Quadtree</h1>
 
   <h2>Introduction</h2>
 
+
+
+
+  <h3>Ce que nous allons aborder et ce dont nous ne parlerons pas</h3>
+  Les <a href="https://fr.wikipedia.org/wiki/Quadtree">quadtree</a> sont des structures de données qui peuvent être très utiles pour résoudre certains types de problèmes. Précisons d'emblée que cet article ne cherche pas à couvrir de manière
+  exhaustive tous les usages et les contextes d'application des quadtrees. Nous nous nous restreindrons à son usage principal, celui du partitionnement d'un espace à deux dimensions.
+  Au lieu de partir de considérations théoriques et générales nous allons plutôt aborder les quadtrees d'un point de vue pratique en tachant de répondre à ces questions : à quoi un quadtree peut-il servir ? Qu'est ce qu'un quadtree ? Comment le construire ? Comment l'interroger ? Comment s'en servir ?
+  Nous allons donc commencer par proposer une définition d'un quadtree. Puis, à l'aide de notre définition, nous allons le construire et l'implémenter (en JavaScript ici mais facilement
+  reproductible dans n'importe quel langage de programmation). Nous allons ensuite voir comment nous en servir pour manipuler ou interroger efficacement nos données.
+  Finalement, nous allons l'utiliser dans un cas pratique où le quadtree fait largement ses preuves : la détection de collisions.
+
+  <h3>Où les quadtree peuvent-ils être utiles?</h3>
+
+  <p>
+    Avant même de définir ce qu'est un quadtree, il paraît intéressant de voir à quoi peut-il peut servir et à quels types de questions il permet de répondre.
+  </p>
+
+  <p>
+    Imaginons que nous disposions d'un espace 2D (un écran, un sous-espace d'un espace plus grand, une scène où se déplacent des objets, une image etc...).
+    et que cet espace contienne des points. Ces points peuvent représenter n'importe quoi, la seule chose qui importe c'est que les <strong>coordonnées de ces points représentent
+      quelque-chose</strong>. Par exemple ces points pourraient représenter des particules, les pixels d'une image, les villes d'un pays etc... Les coordonnées ont du sens : deux particules veulent savoir si elles sont en contact ou non, le sens
+    d'une image est
+    contenu dans les positions relatives de ses pixels, les villes ne sont pas n'importe où ! Un quadtree s'avère utile lorsque nous disposons d'un espace en deux dimensions muni d'un système de
+    coordonnées. Ainsi, chaque point de cet espace, et par extension chaque objet qui s'y trouve, disposera de ses propres coordonnées.
+  </p>
+
+  <p>
+    Par exemple, un sytème de coordonées peut être défini de sorte à ce qu'un axe représente la distance vers l'avant par rapport à
+    l'origine choisie,
+    et l'autre celle vers la gauche. La particule pourrait être représentée dans cet espace par un couple de deux valeurs mesurant la position du centre géometrique de la particule. Mais la distance mesurée entre deux points dans un système de coordonnées ne se restreint pas
+    à
+    la mesure d'une distance <i>strictement spatiale</i> : on pourrait tout aussi bien définir un espace avec un axe <i>proportion de voyelles</i> et y représenter des chaînes de caractère. Cet espace permettrait de définir une mesure de proximité entre des mots ou
+    des phrases par exemple. On pourrait également représenter des points dans un espace où une dimension mesure la position et l'autre le temps.
+  </p>
+
+
+  <p>
+
+  </p>
+
+  <p>
+    Les objets présents dans cet espace, référencés par leurs coordonnées, sont généralement rangés dans une liste, ou un tableau, ordonnés ou non selon un critère laissé au choix de l'utilisateur. De nombreuses structures de données existent
+    permettant d'organiser les données dans le but de les traiter le plus facilement possible, ou le plus efficacement possible. Chaque structure de données possède des avantages et des inconvénients vis à vis de la nature du traitement que l'on
+    souhaite réaliser. La réduction de la complexité d'un programme en charge de la réalisation d'un traitement de données passe principalement par le choix d'une structure de donnée appropriée.
+  </p>
+
+  <p>
+    Supposons que notre liste d'objets pour le moment ne présente pas de structure particulière. Supposons que nous voulons nous poser des questions sur les propriétés de voisinage de ces objets. Par exemple combien de voisins possède chaque point dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes du point considéré? Quel est le point voisin le plus proche ? Qui sont les trois voisins les plus proches ? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun : elles trouvent leurs réponses dans la métrique de l'espace. Elles ont un fondement <i>géometrique</i>.
+  </p>
+
+  <p>
+    Prenons une question sur le voisinage : quels sont les objets présents dans une zone bien délimitée de mon espace? Comme nous pouvons le voir sur la figure 1, nous avons un ensemble d'objets dans un espace en 2d, chaque objet est repéré par ses coordonnées et représenté par un point, et nous voulons savoir quels sont les objets présents dans le rectangle rouge? Nous voulons, par exemple, sélectionner tous les points présents dans ce rectangle et leur appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution naïve consisterait à parcourir tous les points et à tester s'ils sont compris dans le domaine délimité par le rectangle rouge. Cette solution demanderait
+  </p>
+
+  <p>
+    FIGURE 1 : points dans une zone?
+  </p>
+
+  TODO : les points sont une liste (ordre ou pas). Quadtree ranger ces points, les lier de manière à pouvoir les interroger sur leurs voisinages.
+
+  <p>
+    Un quadtree est une structure de données qui va découper cet espace de manière spécifique
+    afin de pouvoir réaliser des opérations de manière efficace sur le contenu de cet espace.
+  </p>
+
+
+  Nous allons définir un noeud, l'unité fondamentale du quadtree. Ce premier noeud sera la racine de notre quadtree. A ce noeud nous allons associer un domaine spatial,
+
+  <i>quad</i> qui signifie 4, et <i>tree</i> qui signifie arbre.
+
+
+
+<p>
+  Message to go : les quadtree sont des structures de données qui permettent d'interroger efficacement des données existant dans un espace à 2d. Ils sont particulièrement adaptés pour traiter des questions d'ordre géometrique où les opérations sur les données se basent sur leur tri en fonction de leur position ou des propriétés de leur voisinage.
+</p>
+
   <h2>Définitions</h2>
+
+  <p>
+    Mettons nous d'accord sur quelques définitions afin de ne laisser place à aucune ambiguité.
+    Ces définitions vont nous aider à penser, créer et interroger notre quadTree.
+  </p>
+
+
+  <dl>
+    <dt>
+      Une node
+    </dt>
+    <dd>
+      une node est un noeud de l'arbre, c'est son unité fondamentale. Les points insérés dans un quadTree sont attachés aux nodes.
+      En pratique, à une node est associée une étendue spatiale bien définie (ici en 2D)
+    </dd>
+    <p>
+      Il existe deux types de nodes dans notre quadTree:
+    </p>
+    <dt>
+      Une branche
+    </dt>
+    <dd>
+      une node qui ne contient que des nodes, branche ou feuille.
+    </dd>
+    <dt>
+      Une feuille
+    </dt>
+    <dd>
+      une node qui ne contient que des points, jamais d'autres nodes.
+    </dd>
+  </dl>
 
   <h2>Construire le quadTree</h2>
 
@@ -24,6 +131,12 @@
   <h2>Attacher des données aux feuilles</h2>
 
   <h2>Utilisation d'un quadTree pour la détection de collisions</h2>
+
+
+  <h2>Sources : aller plus loin</h2>
+
+
+
 
   <div id="demo01">
 

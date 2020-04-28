@@ -26,6 +26,15 @@ p em{
   color: black;
 }
 
+dt {
+    font-weight: bold;
+}
+
+
+dd {
+    margin-bottom: 1em;
+}
+
 
 #groupNbPoitnsSelected{
  background-color: black;
