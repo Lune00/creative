@@ -4,7 +4,7 @@ canvas {
 
 html, body {
   margin: 0;
-  padding: 0;
+  padding: 30;
   font-size: 18px;
   margin: 1em;
   line-height: 1.5em;
@@ -12,20 +12,6 @@ html, body {
 
 canvas {
   display: block;
-}
-
-h1 {
-  font-size: 44px;
-  font-style: normal;
-  text-align: left;
-}
-
-h1 em {
-  color: rgb(179, 21, 26)
-}
-
-p em {
-  color: black;
 }
 
 dt {
@@ -37,7 +23,10 @@ dd {
 }
 
 .togo {
-  background-color: gray;
+  background-color: #5733FF;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 #groupNbPoitnsSelected {

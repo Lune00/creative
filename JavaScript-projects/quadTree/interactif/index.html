@@ -3,8 +3,12 @@
 
 <head>
   <script src="js/lib/p5.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+
   <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
@@ -13,18 +17,22 @@
 
   <h2>Introduction</h2>
 
-
-
-
   <h3>Ce que nous allons aborder et ce dont nous ne parlerons pas</h3>
-  Les <a href="https://fr.wikipedia.org/wiki/Quadtree">quadtree</a> sont des structures de données qui peuvent être très utiles pour résoudre certains types de problèmes. Précisons d'emblée que cet article ne cherche pas à couvrir de manière
-  exhaustive tous les usages et les contextes d'application des quadtrees. Nous nous nous restreindrons à son usage principal, celui du partitionnement d'un espace à deux dimensions.
-  Au lieu de partir de considérations théoriques et générales nous allons plutôt aborder les quadtrees d'un point de vue pratique en tachant de répondre à ces questions : à quoi un quadtree peut-il servir ? Qu'est ce qu'un quadtree ? Comment le construire ? Comment l'interroger ? Comment s'en servir ?
-  Nous allons donc commencer par proposer une définition d'un quadtree. Puis, à l'aide de notre définition, nous allons le construire et l'implémenter (en JavaScript ici mais facilement
-  reproductible dans n'importe quel langage de programmation). Nous allons ensuite voir comment nous en servir pour manipuler ou interroger efficacement nos données.
-  Finalement, nous allons l'utiliser dans un cas pratique où le quadtree fait largement ses preuves : la détection de collisions.
 
-  <h3>Où les quadtree peuvent-ils être utiles?</h3>
+  <p>
+    Les <a href="https://fr.wikipedia.org/wiki/Quadtree">quadtree</a> sont des structures de données qui peuvent être très utiles pour résoudre certains types de problèmes. Précisons d'emblée que cet article ne cherche pas à couvrir de manière
+    exhaustive tous les usages et les contextes d'application des quadtrees. Nous nous nous restreindrons à son usage principal, celui du partitionnement d'un espace à deux dimensions.
+    Au lieu de partir de considérations théoriques et générales nous allons plutôt aborder les quadtrees d'un point de vue pratique en tachant de répondre à ces questions : à quoi un quadtree peut-il servir ? Qu'est ce qu'un quadtree ? Comment le
+    construire ? Comment l'interroger ? Comment s'en servir ?
+    Nous allons donc commencer par proposer une définition d'un quadtree. Puis, à l'aide de notre définition, nous allons le construire et l'implémenter (en JavaScript ici mais facilement
+    reproductible dans n'importe quel langage de programmation). Nous allons ensuite voir comment nous en servir pour manipuler ou interroger efficacement nos données.
+    Finalement, nous allons l'utiliser dans un cas pratique où le quadtree fait largement ses preuves : la détection de collisions.
+
+  </p>
+
+
+
+  <h3>Dans quel cas les quadtrees sont-ils utiles?</h3>
 
   <p>
     Avant même de définir ce qu'est un quadtree, il paraît intéressant de voir à quoi peut-il peut servir et à quels types de questions il permet de répondre.
@@ -38,33 +46,46 @@
     contenu dans les positions relatives de ses pixels, les villes ne sont pas n'importe où !
     Par exemple, un sytème de coordonées peut être défini de sorte à ce qu'un axe représente la distance vers l'avant par rapport à
     l'origine choisie,
-    et l'autre celle vers la gauche. La particule pourrait être représentée dans cet espace par un couple de deux valeurs mesurant la position du centre géometrique de la particule. Mais la distance mesurée entre deux points dans un système de coordonnées ne se restreint pas
+    et l'autre celle vers la gauche. La particule pourrait être représentée dans cet espace par un couple de deux valeurs mesurant la position du centre géometrique de la particule. Mais la distance mesurée entre deux points dans un système de
+    coordonnées ne se restreint pas
     à
-    la mesure d'une distance <i>strictement spatiale</i> : on pourrait tout aussi bien définir un espace avec un axe <i>proportion de voyelles</i> et y représenter des chaînes de caractère. Cet espace permettrait de définir une mesure de proximité entre des mots ou
+    la mesure d'une distance <i>strictement spatiale</i> : on pourrait tout aussi bien définir un espace avec un axe <i>proportion de voyelles</i> et y représenter des chaînes de caractère. Cet espace permettrait de définir une mesure de proximité
+    entre des mots ou
     des phrases par exemple. On pourrait également représenter des points dans un espace où une dimension mesure la position et l'autre le temps etc.
   </p>
 
-
-
   <p>
+    Mais prenons l'exemple classique d'un espace à deux dimensions peuplé d'objets, représenté chacun par un point. Pour des raisons pratiques nous appelerons <strong>point</strong> la représentation de l'objet dans notre espace par ses coordonnées.
 
- Mais prenons l'exemple classique d'un espace à deux dimensions peuplé d'objets, représentés chacun par un point.
+  <div class="row justify-content-center">
+    <figure class="figure">
+      <img src="media/figure01.png" class="figure-img img-fluid rounded" alt="un espace bidimensionnel peuplé d'objets représentés par des points" title="un espace bidimensionnel peuplé d'objets représentés par des points" width="452" height="328" />
+      <figcaption class="figure-caption text-center">Figure 1 : un espace bidimensionnel peuplé d'objets</figcaption>
+    </figure>
+  </div>
 
- <p>
-   TODO : image points
- </p>
-
-
- Supposons que nous voulons interroger les propriétés de voisinage de ces objets. Par exemple, combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes? Quel est le point voisin le plus proche ? Qui sont les trois voisins les plus proches ? Combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun : elles trouvent leurs réponses dans les mesures des distances entre les points. Elles ont un caractère <i>géometrique</i>.
+  Supposons que nous voulons interroger les propriétés de voisinage de ces objets. Par exemple, combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes? Quel
+  est le point voisin le plus proche ? Qui sont les trois voisins les plus proches ? Combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun :
+  elles trouvent leurs réponses dans les mesures des distances entre les points. Elles ont un caractère <i>géometrique</i>.
   </p>
 
-
+  <div class="row justify-content-center" id="figure02">
+    <figure class="figure">
+      <img src="media/figure02.png" class="figure-img img-fluid rounded" alt="un espace bidimensionnel peuplé d'objets représentés par des points. Un cercle rouge défini un sous-espace"
+        title="Combien de points se trouvent dans le sous-espace défini par le cercle rouge?" width="452" height="328" />
+      <figcaption class="figure-caption text-center">Figure 2 : combien de points se trouvent dans <br />le sous-espace défini par le cercle rouge? </figcaption>
+    </figure>
+  </div>
   <p>
-    FIGURE 1 : image points + une zone rectangulaire rouge
-  </p>
-
-  <p>
-    Reprenons l'une des questions précédentes sur le voisinage : quels sont les objets présents dans une zone bien délimitée de mon espace? Comme nous pouvons le voir sur la figure 2, nous retrouvons notre ensemble d'objets dans un espace bidimensionnel, où chaque objet est repéré par ses coordonnées et représenté par un point blanc, et nous voulons savoir quels sont les objets présents dans le rectangle rouge. Nous voulons, par exemple, sélectionner tous les points présents dans ce rectangle et leur appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils sont compris dans le domaine délimité par le rectangle rouge. Cette solution demanderait un temps d'execution propotionnel au nombre de points, on dit qu'elle est <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes"></a> <code>O(n)</code>, où <code>n</code> représente le nombre de points à parcourir.
+    Reprenons l'une des questions précédentes sur le voisinage : quels sont les objets présents dans une zone bien délimitée de mon espace? Comme nous pouvons le voir sur la <a href="#figure02">figure 2</a>, nous retrouvons notre ensemble d'objets
+    dans
+    un espace
+    bidimensionnel, où chaque objet est repéré par ses coordonnées et représenté par un point blanc, et nous voulons savoir quels sont les objets présents à l'interieur du cercle rouge. Nous voulons, par exemple, sélectionner tous les points
+    présents
+    dans
+    ce cercle et leur appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils sont compris dans le domaine délimité par le cercle rouge. Cette
+    solution demanderait un temps d'execution propotionnel au nombre de points, on dit qu'elle est <code>O(n)</code>, où <code>n</code> représente le nombre de
+    points à parcourir. La <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes">complexité</a> d'un algorithme, ou d'une fonction, est une mesure de la quantité de ressources nécessaire à son éxecution.
   </p>
 
   <p>
@@ -74,50 +95,64 @@
   </p>
 
   <p>
-    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau pour tester chaque point et calculer s'il est à l'interieur de la zone rectangulaire rouge. Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace. Il doit y avoir une meilleure solution. La question est : peut-on faire mieux? La réponse est oui, on peut faire mieux. En faisant le choix d'une structure de données adaptée à ce genre de problème : le quadtree.
+    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau pour tester chaque point et calculer s'il est à l'interieur de la zone rectangulaire rouge.
+    Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace. Il doit y avoir une meilleure solution. La question est : peut-on faire mieux? La réponse est oui, on peut faire mieux. En faisant le choix d'une
+    structure de données adaptée à ce genre de problème : le quadtree.
   </p>
 
 
-<p>
-  Le quadtree est une structure de données, ou désigne une opération, qui consiste à décomposer l'espace en quatre sous-espaces égaux de manière récursive. C'est une structure qui a la forme d'un arbre d'où son nom <i>quad</i> qui signifie 4, et <i>tree</i> qui signifie arbre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du quadtree est d'organiser les données (nos points) afin de réduire le coût des opérations. Pour reprendre la question que nous nous posons - à savoir combien de points sont compris dans le rectangle - le problème vient du fait que nous interrogeons tout l'espace (tous les points). Le quadtree va nous permettre d'affiner notre requête et d'interroger seulement une partie de l'espace total. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
-</p>
-
-
-
-<p class="togo">
-  En résumé, ce qu'il faut retenir pour le moment c'est que les quadtrees sont des structures de données qui permettent de traiter efficacement des données existantes dans un espace bidimensionnel. L'utilisation d'un quadtree pour réaliser ces traitements offre un gain de performance considérable par rapport à l'approche <i>naïve</i>. Ce bénéfice provient du fait que le quadtree partitionne l'espace de manière récursive pour ré-organiser les données.
-</p>
-
-  <h2>Définitions</h2>
-
-  <p >
-    Mettons nous d'accord sur quelques définitions afin de ne laisser place à aucune ambiguité.
-    Ces définitions vont nous aider à penser, créer et interroger notre quadTree.
+  <p>
+    Le quadtree est une structure de données, ou désigne une opération, qui consiste à décomposer l'espace en quatre sous-espaces égaux de manière récursive. C'est une structure qui a la forme d'un arbre d'où son nom <i>quad</i> qui signifie 4, et
+    <i>tree</i> qui signifie arbre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du quadtree est d'organiser les données (nos points) afin de réduire le coût des opérations. Pour reprendre la
+    question que nous nous posons, à savoir combien de points sont compris dans le cercle, le problème vient du fait que nous interrogeons tout l'espace (tous les points). Le quadtree va nous permettre d'affiner notre requête et d'interroger
+    seulement une partie de l'espace total. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
   </p>
 
 
   <dl>
     <dt>
-      Une node
+      Ce qu'il faut retenir
     </dt>
     <dd>
-      une node est un noeud de l'arbre, c'est son unité fondamentale. Les points insérés dans un quadTree sont attachés aux nodes.
-      En pratique, à une node est associée une étendue spatiale bien définie (ici en 2D)
+      <p class="togo">
+        Les quadtrees sont des structures de données qui permettent de traiter efficacement des données existantes dans un espace bidimensionnel. L'utilisation d'un quadtree pour réaliser ces
+        traitements offre un gain de performance considérable par rapport à l'approche <i>naïve</i>. Ce bénéfice provient du fait que le quadtree partitionne l'espace de manière récursive pour ré-organiser les données.
+      </p>
+    </dd>
+  </dl>
+
+
+  <h2>Définitions</h2>
+
+  <p>
+    Mettons nous d'accord sur quelques définitions afin de ne laisser place à aucune ambiguité.
+  </p>
+
+  <p>
+
+  </p>
+
+  <dl>
+    <dt>
+      Un noeud
+    </dt>
+    <dd>
+      le noeud est le composant fondamental du quadtree. Le quadtree est une association de noeuds, et il commence toujours par un noeud initial, un noeud racine. Les points insérés dans un quadtree finissent toujours attachés à un et un seul noeud. Chaque noeud recouvre une portion bien définie de l'espace. Un noeud peut avoir jusqu'à 4 enfants. 
     </dd>
     <p>
-      Il existe deux types de nodes dans notre quadTree:
+      Il existe deux types de noeuds dans notre quadtree:
     </p>
     <dt>
       Une branche
     </dt>
     <dd>
-      une node qui ne contient que des nodes, branche ou feuille.
+      un noeud qui ne contient que des noeuds, branche ou feuille.
     </dd>
     <dt>
       Une feuille
     </dt>
     <dd>
-      une node qui ne contient que des points, jamais d'autres nodes.
+      une noeud qui ne contient que des points, jamais d'autres noeuds.
     </dd>
   </dl>
 
@@ -201,11 +236,18 @@
   </div>
 
 
-  <script src="js/quadTree.js"></script>
-  <script src="js/pedagogic_extension.js"></script>
-  <script src="js/uiQuadTreedemo01.js"></script>
-  <script src="js/canvasQuadTreedemo01.js"></script>
+
 
 </body>
+
+
+<script src="js/quadTree.js"></script>
+<script src="js/pedagogic_extension.js"></script>
+<script src="js/uiQuadTreedemo01.js"></script>
+<script src="js/canvasQuadTreedemo01.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </html>
