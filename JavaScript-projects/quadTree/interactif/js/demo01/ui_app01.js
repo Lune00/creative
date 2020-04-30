@@ -69,11 +69,11 @@ const uiApp01 = {
         p5demo01.insertGaussian(this.getNbGaussianPoints());
     });
 
-    document.getElementById('sliderProbeSize').addEventListener('change', function() {
-      p5demo01.changeCircularProbeSize(this.value);
+    document.getElementById('sliderProbeSize').addEventListener('change', () => {
+      p5demo01.changeCircularProbeSize(this.getProbeSize());
     });
 
-    document.getElementById('resetButton').addEventListener('click', function() {
+    document.getElementById('resetButton').addEventListener('click', () => {
       p5demo01.reset();
       this.update();
     });
