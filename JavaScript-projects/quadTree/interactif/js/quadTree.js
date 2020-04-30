@@ -214,3 +214,50 @@ class Node {
     return points;
   }
 }
+
+
+//Data representation
+class Particle {
+
+  constructor(x, y, r, tetha = 0) {
+
+    this.x = x;
+    this.y = y;
+    this.r = r;
+
+    this.vx = 1 * Math.cos(tetha);
+    this.vy = 1 * Math.sin(tetha);
+
+    this.overlap = false;
+
+  }
+
+  move(width, height) {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.bounce(width, height);
+  }
+
+  //TODO: refactor and move outside
+  bounce(width, height) {
+
+    let xright = this.x + this.r;
+    let xleft = this.x - this.r;
+    let ytop = this.y + this.r;
+    let ybottom = this.y - this.r;
+
+    if (xleft < 0 || xright > width)
+      this.vx *= -1;
+    if (ybottom < 0 || ytop > height)
+      this.vy *= -1;
+
+  }
+
+  highlight() {
+    this.overlap = true;
+  }
+
+  // isOverlaping(other) {
+  //   return dist(this.x, this.y, other.x, other.y) < this.r + other.r;
+  // }
+}

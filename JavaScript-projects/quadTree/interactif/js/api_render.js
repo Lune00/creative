@@ -8,6 +8,16 @@ const apiP5 = {
     sketch.point(point.x, point.y);
   },
 
+  showParticle: function(sketch, particle, color) {
+    sketch.stroke(color);
+    sketch.strokeWeight(1);
+    sketch.stroke(0);
+    sketch.fill(255);
+    if (particle.overlap)
+      sketch.fill('#33FF57');
+    sketch.circle(particle.x, particle.y, 2 * particle.r);
+  },
+
   showCircularProbe: function(sketch, circularProbe) {
     if (sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height) {
       sketch.stroke('#5733FF');
@@ -17,7 +27,7 @@ const apiP5 = {
     }
   },
 
-//TODO : refactor later these 2 functions
+  //TODO : refactor later these 2 functions
   showNode: function(sketch, node) {
     sketch.push();
     sketch.rectMode(sketch.CENTER);
@@ -56,4 +66,5 @@ const apiP5 = {
         child.forEach(p => this.showPoint(sketch, p, 'white'));
     });
   }
+
 }
