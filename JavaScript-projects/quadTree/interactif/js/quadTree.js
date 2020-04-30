@@ -92,15 +92,6 @@ class Node {
     this.w = w;
     this.h = h;
 
-    //4 children : either an array of points, either a Node. Initalised with empty arrays
-    // NW
-    // this.children[0] = [];
-    // NE
-    // this.children[1] = [];
-    // SW
-    // this.children[2] = [];
-    // SE
-    // this.children[3] = [];
     this.children = [
       [],
       [],
@@ -108,7 +99,7 @@ class Node {
       []
     ];
     //Max children
-    this.nChildrenMax = 4;
+    this.nChildrenMax = this.children.length;
 
     //Size HACK
     this.length = 1;
@@ -122,23 +113,22 @@ class Node {
     if (!this.contains(point))
       return;
 
-    let child = this.childContainingPoint(point);
+    let index = this.index(point);
 
-    if (child instanceof Node) {
-      child.insert(point);
+    if (this.children[index] instanceof Node) {
+      this.children[index].insert(point);
       return;
     } else {
 
       //If it'as a branch, then it has been divised and we should turn this child into a node (leaf)
       if (this.isBranch) {
-        let index = this.children.indexOf(child);
         this.children[index] = this.getNewNode(index);
         this.children[index].insert(point);
         return;
       }
 
       //If it's not a branch then it's a leaf and we add attach the point to it
-      child.push(point);
+      this.children[index].push(point);
 
       //Check if this leaf has reached max capacity, if it has, the leaf turns into a branch
       if (this.hasReachedMaxCapacity())
@@ -148,18 +138,15 @@ class Node {
 
 
   branch() {
-
-    //On recupere tous les points présents et on les insere dans des feuilles
-    this.children.forEach((child, index) => {
-      let points = child;
-
-      //Si y'a des points on cree des feuilles, sinon on laisse
+    //Because only a Leaf can branch, we are garantuee that children are arrays of points
+    //Get all points attached to the current node
+    this.children.forEach((points, index) => {
+      //If a child contains points turn it into a Leaf
       if (points.length !== 0) {
         this.children[index] = this.getNewNode(index);
         for (let p of points)
           this.children[index].insert(p);
       }
-
     });
 
     this.isBranch = true;
@@ -171,16 +158,21 @@ class Node {
       point.y > this.y - this.h && point.y < this.y + this.h;
   }
 
-
   //Child:
   //NW = (0,0) == 0
   //NE = (1,0) == 1
   //SW = (0,1) == 2
   //SE = (1,1) == 3
-  childContainingPoint(point) {
-    let indexX = Math.floor((point.x - (this.x - this.w)) / this.w);
-    let indexY = Math.floor((point.y - (this.y - this.h)) / this.h);
-    return this.children[indexX + 2 * indexY];
+  index(point) {
+    return this.index_horizontal(point.x) + 2 * this.index_vertical(point.y);
+  }
+
+  index_horizontal(x) {
+    return Math.floor((x - (this.x - this.w)) / this.w);
+  }
+
+  index_vertical(y) {
+    return Math.floor((y - (this.y - this.h)) / this.h);
   }
 
   getNewNode(child) {
