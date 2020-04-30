@@ -1,29 +1,13 @@
 //Quadtree source-code (point, probe, Node) including p5.js library functions and variables for visualisation
 //Author : Paul Schuhmacher
 
-//Point (leaf of the quadTree) : user data can be attached to it through the data property
 class Point {
-
   constructor(x, y, data) {
     this.x = x;
     this.y = y;
     this.data = data;
   }
-
-  show() {
-    stroke(255);
-    strokeWeight(3);
-    point(this.x, this.y);
-  }
-
-  highlight(color) {
-    stroke(color);
-    strokeWeight(4);
-    point(this.x, this.y);
-  }
-
 }
-
 
 //A circular probe used to inspects the quadtree
 class CircularProbe {
@@ -39,19 +23,9 @@ class CircularProbe {
     this.y = y;
   }
 
-  show() {
-    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-      stroke('#5733FF');
-      strokeWeight(1.5);
-      noFill();
-      circle(this.x, this.y, 2 * this.r);
-    }
-  }
-
   contains(point) {
     return (this.x - point.x) * (this.x - point.x) + (this.y - point.y) * (this.y - point.y) <= this.r * this.r;
   }
-
 
   //Only for canvas axis-aligned rectangle
   intersects(rectangle) {
@@ -84,7 +58,7 @@ class CircularProbe {
 
 class Node {
 
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, depth) {
 
     //Rectangular area : (x,y) position of the center, (w,h) half width/height
     this.x = x;
@@ -105,6 +79,12 @@ class Node {
     this.length = 1;
 
     this.isBranch = false;
+
+    //Depth:
+    if (!depth)
+      this.depth = 0;
+    else
+      this.depth = depth;
 
   }
 
@@ -160,7 +140,7 @@ class Node {
 
   //Child:
   //NW = (0,0) == 0
-  //NE = (1,0) == 1
+  //NE = (1,0) == 1return new N
   //SW = (0,1) == 2
   //SE = (1,1) == 3
   index(point) {
@@ -177,13 +157,13 @@ class Node {
 
   getNewNode(child) {
     if (child === 0)
-      return new Node(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2);
+      return new Node(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth);
     else if (child === 1)
-      return new Node(this.x + this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2);
+      return new Node(this.x + this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth);
     else if (child === 2)
-      return new Node(this.x - this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2);
+      return new Node(this.x - this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth);
     else if (child === 3)
-      return new Node(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2);
+      return new Node(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth);
   }
 
   nbChildren() {
@@ -232,29 +212,5 @@ class Node {
     });
 
     return points;
-  }
-
-  show() {
-    this.showNode();
-    this.showNodeContent();
-  }
-
-  showNode() {
-    push();
-    rectMode(CENTER);
-    noFill();
-    stroke(150);
-    strokeWeight(0.5);
-    rect(this.x, this.y, 2 * this.w, 2 * this.h);
-    pop();
-  }
-
-  showNodeContent() {
-    this.children.forEach(child => {
-      if (child instanceof Node)
-        child.show();
-      else
-        child.forEach(p => p.show());
-    });
   }
 }

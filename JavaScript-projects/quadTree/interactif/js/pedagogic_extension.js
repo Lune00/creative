@@ -23,7 +23,7 @@ class NodePedagogic extends Node {
     if (this.isBranch)
       tree.nbBranch++;
     else {
-        tree.nbLeaf++;
+      tree.nbLeaf++;
     }
 
 
@@ -99,21 +99,6 @@ class NodePedagogic extends Node {
     });
 
     return points;
-  }
-
-  showNode() {
-    push();
-    rectMode(CENTER);
-
-    if (this.intersected) {
-      fill(10);
-    } else {
-      fill(0);
-    }
-    stroke(150);
-    strokeWeight(0.5);
-    rect(this.x, this.y, 2 * this.w, 2 * this.h);
-    pop();
   }
 
   //Override getNewNode from Node

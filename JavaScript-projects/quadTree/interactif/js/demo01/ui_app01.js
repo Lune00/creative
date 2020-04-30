@@ -13,39 +13,36 @@ const modelDemoQuadTreeCreationInspection = {
   totalBranchs: 0,
   totalLeafs: 0,
 
-  updateTotalNPoints: function(rootNode) {
-    let n = rootNode.nbPoints();
-    this.totalNPoints = n === undefined ? 0 : n;
+  updateTotalNPoints: function() {
+    this.totalNPoints = p5demo01.numberOfPoints();
   },
 
-  updateTotalNPointsSelected: function(rootNode, circularProbe) {
-    let points = rootNode.query(circularProbe);
-    this.totalNPointsSelected = points === undefined ? 0 : points.length;
+  updateTotalNPointsSelected: function() {
+    this.totalNPointsSelected = p5demo01.numberOfPointsSelected();
   },
 
-  updateTotalNPointsEvaluated: function(rootNode, circularProbe) {
-    let looked = rootNode.queryLooked(circularProbe);
-    this.totalNPointsEvaluated = looked === undefined ? 0 : looked.length;
+  updateTotalNPointsEvaluated: function() {
+    this.totalNPointsEvaluated = p5demo01.numberOfCandidatesPoints();
   },
 
-  updateBranchAndLeaf: function(rootNode){
-    let result = rootNode.nbBranch();
+  updateBranchAndLeaf: function() {
+    let result = p5demo01.numberOfBranchsAndLeafs();
     this.totalBranchs = result.nbBranch;
     this.totalLeafs = result.nbLeaf;
   },
 
-  update: function(rootNode, circularProbe) {
-    this.updateTotalNPoints(rootNode);
-    this.updateTotalNPointsEvaluated(rootNode, circularProbe);
-    this.updateTotalNPointsSelected(rootNode, circularProbe);
-    this.updateBranchAndLeaf(rootNode);
+  update: function() {
+    this.updateTotalNPoints();
+    this.updateTotalNPointsEvaluated();
+    this.updateTotalNPointsSelected();
+    this.updateBranchAndLeaf();
     this.pourcentageEvaluated = this.totalNPoints === 0 ? 0 : (this.totalNPointsEvaluated / this.totalNPoints) * 100;
     this.pourcentageSelected = this.totalNPoints === 0 ? 0 : (this.totalNPointsSelected / this.totalNPoints) * 100;
   }
 }
 
 
-const ui = {
+const uiApp01 = {
 
   model: modelDemoQuadTreeCreationInspection,
 
@@ -56,26 +53,39 @@ const ui = {
     return parseInt(document.getElementById('sliderProbeSize').value);
   },
 
+  getInsertionMode: function() {
+    if (document.getElementById('normal').checked) {
+      return 'normal';
+    } else
+      return 'gaussian';
+  },
+
   init: function() {
+
+    document.getElementById('canvas-demo01-insert-querry').addEventListener('click', () => {
+      if (document.getElementById('normal').checked) {
+        p5demo01.insertNormal();
+      } else
+        p5demo01.insertGaussian(this.getNbGaussianPoints());
+    });
+
     document.getElementById('sliderProbeSize').addEventListener('change', function() {
-      circularProbe.r = parseInt(this.value);
+      p5demo01.changeCircularProbeSize(this.value);
     });
 
     document.getElementById('resetButton').addEventListener('click', function() {
-      rootNode.clear();
-      ui.update(rootNode, circularProbe);
+      p5demo01.reset();
+      this.update();
     });
 
     for (let radio of document.getElementsByName("insertionModeGroup")) {
       if (radio.id === 'normal') {
         radio.addEventListener('click', function() {
-          insertMode.mode = 'normal'
           document.getElementById("nbPointsGaussian").disabled = true;
           document.getElementById("nbPointsGaussianValue").value = "";
         });
       } else if (radio.id === 'gaussian') {
         radio.addEventListener('click', function() {
-          insertMode.mode = 'gaussian'
           document.getElementById("nbPointsGaussian").disabled = false;
           document.getElementById("nbPointsGaussianValue").value = document.getElementById("nbPointsGaussian").value;
         });
@@ -90,9 +100,9 @@ const ui = {
     document.getElementById('groupNbPoitnsSelected').style.color = colors.colorPointSelected;
   },
 
-  update: function(rootNode, circularProbe) {
+  update: function() {
 
-    this.model.update(rootNode, circularProbe);
+    this.model.update();
     document.getElementById('nbPointsTotal').innerHTML = this.model.totalNPoints;
     document.getElementById('nbBranch').innerHTML = this.model.totalBranchs;
     document.getElementById('nbLeaf').innerHTML = this.model.totalLeafs;
