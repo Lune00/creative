@@ -78,6 +78,16 @@ const uiApp01 = {
       this.update();
     });
 
+
+    (function() {
+      $('#loop').change(function() {
+        if (this.checked)
+          p5demo01.loop();
+        else
+          p5demo01.noLoop();
+      })
+    })();
+
     for (let radio of document.getElementsByName("insertionModeGroup")) {
       if (radio.id === 'normal') {
         radio.addEventListener('click', function() {

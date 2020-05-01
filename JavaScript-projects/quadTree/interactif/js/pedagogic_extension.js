@@ -11,7 +11,6 @@ class NodePedagogic extends Node {
     this.intersected = false;
   }
 
-
   nbBranch(tree) {
 
     if (!tree) {
