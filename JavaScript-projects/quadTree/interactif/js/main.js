@@ -2,7 +2,17 @@
 const main = (() => {
   console.log('start app');
   let main = {};
+
+  //Map canvas to switch
+  main.map_switch_canvas = (() => {
+    let map = new Map();
+    map.set('defaultCanvas0', 'switch-demo01');
+    map.set('defaultCanvas1', 'switch-demo02');
+    return map;
+  })();
+
   //Start demo01 and init its UI
+  // main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
   main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
   uiApp01.init();
 
@@ -21,6 +31,17 @@ const main = (() => {
       activateDemo(this.id);
     } else {
       desactivateDemo(this.id);
+    }
+  })
+})();
+
+//Auto activation/desactivation with mouse click demo
+(function() {
+  $('.myCanvas').on('click', (event) => {
+    // //Activer le switch correspondant
+    const mapingSwitch = main.map_switch_canvas.get(event.target.id);
+    if (mapingSwitch) {
+      $('#' + mapingSwitch).bootstrapToggle('on');
     }
   })
 })();
