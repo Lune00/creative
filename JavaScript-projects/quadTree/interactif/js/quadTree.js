@@ -52,14 +52,12 @@ class CircularProbe {
 
 }
 
-//Node divided in 4 children: [NW,NE,SW,SE] => [0,1,2,3] : node is a branch of the quadtree
-//Children: each Node has 4 children (may be empty).
-//A child can be an array of points (leaves) or another Node (branch)
+//Node is divided in 4 children: [NW,NE,SW,SE] => [0,1,2,3]
+//A node can contains only points (it is a leaf) or only nodes (it is a branch)
 
 class Node {
 
   constructor(x, y, w, h, depth) {
-
     //Rectangular area : (x,y) position of the center, (w,h) half width/height
     this.x = x;
     this.y = y;
@@ -74,12 +72,8 @@ class Node {
     ];
     //Max children
     this.nChildrenMax = this.children.length;
-
-    //Size HACK
     this.length = 1;
-
     this.isBranch = false;
-
     //Depth:
     if (!depth)
       this.depth = 0;
@@ -100,7 +94,7 @@ class Node {
       return;
     } else {
 
-      //If it'as a branch, then it has been divised and we should turn this child into a node (leaf)
+      //If it's a branch, then it has already been divided and we should turn this child into a leaf
       if (this.isBranch) {
         this.children[index] = this.getNewNode(index);
         this.children[index].insert(point);
@@ -140,7 +134,7 @@ class Node {
 
   //Child:
   //NW = (0,0) == 0
-  //NE = (1,0) == 1return new N
+  //NE = (1,0) == 1
   //SW = (0,1) == 2
   //SE = (1,1) == 3
   index(point) {
@@ -157,13 +151,13 @@ class Node {
 
   getNewNode(child) {
     if (child === 0)
-      return new Node(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth);
+      return new Node(this.x - this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
     else if (child === 1)
-      return new Node(this.x + this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth);
+      return new Node(this.x + this.w / 2, this.y - this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
     else if (child === 2)
-      return new Node(this.x - this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth);
+      return new Node(this.x - this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
     else if (child === 3)
-      return new Node(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth);
+      return new Node(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
   }
 
   nbChildren() {
@@ -217,6 +211,7 @@ class Node {
 
 
 //Data representation
+//TODO: refactor
 class Particle {
 
   constructor(x, y, r, tetha = 0) {

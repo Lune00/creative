@@ -34,6 +34,22 @@ class NodePedagogic extends Node {
     return tree;
   }
 
+  //TODO : write
+  depthUnderCursor(circularProbe) {
+
+    let boundingBox = {
+      x: this.x,
+      y: this.y,
+      w: this.w,
+      h: this.h
+    };
+
+    if (circleProbe.intersects(boundingBox)) {
+
+    }
+
+  }
+
 
   nbPoints() {
 
