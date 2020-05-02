@@ -25,26 +25,23 @@ const uiApp02 = {
       this.update();
     });
 
-    for (let radio of document.getElementsByName("insertionModeGroup")) {
-      if (radio.id === 'normal') {
+    for (let radio of document.getElementsByName("insertionModeGroup-demo02")) {
+      if (radio.id === 'normal-demo02') {
         radio.addEventListener('click', function() {
-          document.getElementById("nbPointsGaussian").disabled = true;
-          document.getElementById("nbPointsGaussianValue").value = "";
+          document.getElementById("nbPointsGaussian-demo02").disabled = true;
+          document.getElementById("nbPointsGaussianValue-demo02").value = "";
         });
-      } else if (radio.id === 'gaussian') {
+      } else if (radio.id === 'gaussian-demo02') {
         radio.addEventListener('click', function() {
-          document.getElementById("nbPointsGaussian").disabled = false;
-          document.getElementById("nbPointsGaussianValue").value = document.getElementById("nbPointsGaussian").value;
+          document.getElementById("nbPointsGaussian-demo02").disabled = false;
+          document.getElementById("nbPointsGaussianValue-demo02").value = document.getElementById("nbPointsGaussian-demo02").value;
         });
       }
     }
 
-    document.getElementById('nbPointsGaussian').addEventListener('input', function() {
-      document.getElementById('nbPointsGaussianValue').value = this.value;
+    document.getElementById('nbPointsGaussian-demo02').addEventListener('input', function() {
+      document.getElementById('nbPointsGaussianValue-demo02').value = this.value;
     });
-
-    document.getElementById('groupNbPoitnsEvaluated').style.color = colors.colorPointLooked;
-    document.getElementById('groupNbPoitnsSelected').style.color = colors.colorPointSelected;
   },
 
   update: function() {},

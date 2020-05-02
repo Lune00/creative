@@ -14,13 +14,14 @@ const demo02 = (sketch) => {
     sketch.background(0);
 
     rootNode = new NodePedagogic(sketch.width / 2, sketch.height / 2, sketch.width / 2, sketch.height / 2);
-
-    circularProbe = new CircularProbe(sketch.width / 2, sketch.height / 2, uiApp01.getProbeSize());
+    circularProbe = new CircularProbe(sketch.width / 2, sketch.height / 2, 250);
   }
 
   sketch.draw = function() {
-
-
+    sketch.background(0);
+    circularProbe.moveTo(sketch.mouseX, sketch.mouseY);
+    //apiP5.showPoint(sketch, circularProbe, 'white' );
+    apiP5.showNode(sketch,rootNode);
   }
 
   //Interace with UI
@@ -33,11 +34,6 @@ const demo02 = (sketch) => {
     for (let i = 0; i != nbPoints; i++) {
       rootNode.insert(new Point(sketch.randomGaussian(circularProbe.x, circularProbe.r / 3), sketch.randomGaussian(circularProbe.y, circularProbe.r / 3)));
     }
-  }
-
-  sketch.changeCircularProbeSize = function(r) {
-    console.log('change', r);
-    circularProbe.r = r;
   }
 
   sketch.reset = function() {

@@ -1,28 +1,3 @@
-//Main
-const main = (() => {
-  console.log('start app');
-  let main = {};
-
-  //Map canvas to switch
-  main.map_switch_canvas = (() => {
-    let map = new Map();
-    map.set('defaultCanvas0', 'switch-demo01');
-    map.set('defaultCanvas1', 'switch-demo02');
-    return map;
-  })();
-
-  //Start demo01 and init its UI
-  // main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
-  main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
-  uiApp01.init();
-
-  main.p5demo02 = new p5(demo02, 'canvas-demo02-depth');
-  uiApp02.init();
-
-  return main;
-})();
-
-
 //Manage activation/desactivation of demos (only one demo active at a time)
 (function() {
   $('.switch-demo').change(function() {
@@ -49,9 +24,15 @@ const main = (() => {
 const activateDemo = id => {
   if (id === 'switch-demo01') {
     document.getElementById('resetButton').disabled = false;
-    main.p5demo01.loop();
+    if (!main.p5demo01._loop) {
+      main.p5demo01.loop();
+    }
+
   } else if (id === 'switch-demo02') {
     document.getElementById('resetButton-demo02').disabled = false;
+    if (!main.p5demo02._loop) {
+      main.p5demo02.loop();
+    }
   }
 };
 
@@ -65,3 +46,31 @@ const desactivateDemo = id => {
   }
 
 };
+
+
+//Main
+const main = (() => {
+  console.log('start app');
+  let main = {};
+
+  //Map canvas to switch
+  main.map_switch_canvas = (() => {
+    let map = new Map();
+    map.set('defaultCanvas0', 'switch-demo01');
+    map.set('defaultCanvas1', 'switch-demo02');
+    return map;
+  })();
+
+  //Start demo01 and init its UI
+  // main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
+  main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
+  uiApp01.init();
+
+  main.p5demo02 = new p5(demo02, 'canvas-demo02-depth');
+  uiApp02.init();
+
+  //init with p5demo01
+  $('.switch-demo01').bootstrapToggle('on');
+
+  return main;
+})();
