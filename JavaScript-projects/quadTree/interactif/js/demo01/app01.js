@@ -66,7 +66,6 @@ const demo01 = (sketch) => {
   }
 
   sketch.changeCircularProbeSize = function(r) {
-    console.log('change', r);
     circularProbe.r = r;
   }
 

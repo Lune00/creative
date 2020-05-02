@@ -163,16 +163,16 @@
 
   <h2>Interroger le quadTree</h2>
 
-
   <div id="demo01">
-    <h4>Insertion</h4>
-    <div class="radioContainer">
 
+    <h4>Insertion</h4>
+
+    <div class="radioContainer">
       <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
       <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
 
       <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
-      <label for="female"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
+      <label for="gaussian"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
 
       <label for="nbPointsGaussian">Nombre de points à insérer</label>
       <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
@@ -187,7 +187,6 @@
 
     <h4>Infos</h4>
     <div class="infos">
-
       <div>
         <label for="nbBranch">Nombre total de branches : </label>
         <span id="nbBranch" name="nbBranch"></span>
@@ -217,8 +216,8 @@
 
     <div class="resetButtonContainer">
       <!-- <input type="button" value="reset"> -->
-      <button type="button" class="btn btn-primary" id="resetButton">Réinitialiser</button>
-      <input id="loop" type="checkbox" data-toggle="toggle" checked  data-on="Actif" data-off="En Pause" data-onstyle="success" data-offstyle="warning">
+      <button type="button" class="btn btn-primary btn-sm" id="resetButton">Réinitialiser</button>
+      <input id="switch-demo01" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
     </div>
 
     <div id="canvas-demo01-insert-querry">
@@ -232,20 +231,46 @@
 
   <h2>Notion de profondeur</h2>
 
-  <div class="highlightContainer">
-    <div name="depth_current"></div>
-    <label for="depth_current" <acronym title="Profondeur du noeud sous la souris">Profondeur </label>
-    <div name="depth_max"></div>
-    <label for="depth_max" <acronym title="Profondeur maximale observée dans le quadtree">Profondeur maximale </label>
+  <h4>Insertion</h4>
+
+  <div id="demo02">
+    <div id="radioContainer-demo02">
+
+      <input type="radio" id="normal-demo02" name="insertionModeGroup-demo02" value="point" checked="checked">
+      <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
+
+      <input type="radio" id="gaussian-demo02" name="insertionModeGroup-demo02" value="gaussian">
+      <label for="gaussian"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
+
+      <label for="nbPointsGaussian-demo02">Nombre de points à insérer</label>
+      <input type="range" id="nbPointsGaussian-demo02" name="nbPointsGaussian-demo02" value="100" min="10" max="250" disabled="">
+      <output id="nbPointsGaussianValue"></output>
+    </div>
+
+    <h4>Infos</h4>
+    <div class="highlightContainer">
+      <div name="depth_current"></div>
+      <label for="depth_current" <acronym title="Profondeur du noeud sous la souris">Profondeur </label>
+      <div name="depth_max"></div>
+      <label for="depth_max" <acronym title="Profondeur maximale observée dans le quadtree">Profondeur maximale </label>
+    </div>
+    <div class="resetButtonContainer_demo02">
+      <!-- <input type="button" value="reset"> -->
+      <button type="button" class="btn btn-primary btn-sm" id="resetButton-demo02" disabled>Réinitialiser</button>
+      <input id="switch-demo02" type="checkbox" data-toggle="toggle" data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
+    </div>
+
+    <div id="canvas-demo02-depth">
+
+    </div>
+
   </div>
 
-  <div id="canvas-demo02-depth">
-
-  </div>
 
   <h2>Attacher des données aux feuilles</h2>
 
   <h2>Utilisation d'un quadTree pour la détection de collisions</h2>
+  
   <div id="canvas-demo03-collisions">
 
   </div>
@@ -267,13 +292,15 @@
 <script src="js/quadTree.js"></script>
 <script src="js/pedagogic_extension.js"></script>
 <script src="js/api_render.js"></script>
+
 <script src="js/demo01/ui_app01.js"></script>
 <script src="js/demo01/app01.js"></script>
 
-<!-- <script src="js/demo02/app02.js"></script>
-<script src="js/demo02/ui_app02.js"></script> -->
-<script src="js/demo03/ui_app03.js"></script>
-<script src="js/demo03/app03.js"></script>
+<script src="js/demo02/app02.js"></script>
+<script src="js/demo02/ui_app02.js"></script>
+
+<!-- <script src="js/demo03/ui_app03.js"></script>
+<script src="js/demo03/app03.js"></script> -->
 
 <script src="js/main.js"></script>
 

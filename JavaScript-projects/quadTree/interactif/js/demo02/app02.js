@@ -1,69 +1,48 @@
-//Quadtree : demo insertion and inspection around a point within a circular range and show depth
-//source: https://jimkang.com/quadtreevis/
+//Quadtree : demo insertion and inspection of the depth
 //Author : Paul Schuhmacher
 
-//Global variables:
-const app02 = {
-  rootNode: undefined,
-  circularProbe: undefined
-}
+const demo02 = (sketch) => {
 
-function setup() {
-console.log('setup demo02');
-  canvasQuadTreedemo02 = createCanvas( 1024, 600 );
-  canvasQuadTreedemo02.parent('canvas-demo02-depth');
-  //Init rooNode with screen dimensions
-  app02.rootNode = new NodePedagogic(width / 2, height / 2, width / 2, height / 2);
-  //Init the circular probe to select points
-  app02.circularProbe = new CircularProbe(width / 2, height / 2, uiApp02.getProbeSize());
+  let rootNode;
+  let circularProbe;
 
-  uiApp02.init(app02.rootNode, app02.circularProbe, insertMode);
-}
+  sketch.setup = function() {
 
-//Insert on click event
-function mousePressed() {
-  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-    insertMode.insert()(app02.rootNode, app02.circularProbe);
-    uiApp02.update(app02.rootNode, app02.circularProbe);
+    console.log('setup demo02');
+
+    sketch.createCanvas(1024, 600);
+    sketch.background(0);
+
+    rootNode = new NodePedagogic(sketch.width / 2, sketch.height / 2, sketch.width / 2, sketch.height / 2);
+
+    circularProbe = new CircularProbe(sketch.width / 2, sketch.height / 2, uiApp01.getProbeSize());
   }
-}
+
+  sketch.draw = function() {
 
 
-function draw() {
+  }
 
-  background(0);
+  //Interace with UI
 
-  //Move probe around
-  app02.circularProbe.moveTo(mouseX, mouseY);
+  sketch.insertNormal = function() {
+    rootNode.insert(new Point(circularProbe.x, circularProbe.y));
+  }
 
-  uiApp02.update(app02.rootNode, app02.circularProbe);
-
-  //For pedagogical reasons only
-  app02.rootNode.isIntersected(app02.circularProbe);
-
-  //Show quadtree
-  app02.rootNode.show();
-
-  //Show probe
-  app02.circularProbe.show();
-
-  //Candidates points => For pedagogical reasons only
-  let looked = app02.rootNode.queryLooked(app02.circularProbe);
-
-  if (looked !== undefined)
-    for (let p of looked) {
-      //Highlight looked points
-      p.highlight(colors.colorPointLooked);
+  sketch.insertGaussian = function(nbPoints) {
+    for (let i = 0; i != nbPoints; i++) {
+      rootNode.insert(new Point(sketch.randomGaussian(circularProbe.x, circularProbe.r / 3), sketch.randomGaussian(circularProbe.y, circularProbe.r / 3)));
     }
+  }
 
-  //Selected points
-  let points = app02.rootNode.query(app02.circularProbe);
+  sketch.changeCircularProbeSize = function(r) {
+    console.log('change', r);
+    circularProbe.r = r;
+  }
 
-  if (points !== undefined) {
-    for (let p of points) {
-      //Highlight selected points
-      p.highlight(colors.colorPointSelected);
-    }
+  sketch.reset = function() {
+    if (rootNode)
+      rootNode.clear();
   }
 
 }

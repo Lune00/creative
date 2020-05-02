@@ -14,19 +14,19 @@ const modelDemoQuadTreeCreationInspection = {
   totalLeafs: 0,
 
   updateTotalNPoints: function() {
-    this.totalNPoints = p5demo01.numberOfPoints();
+    this.totalNPoints = main.p5demo01.numberOfPoints();
   },
 
   updateTotalNPointsSelected: function() {
-    this.totalNPointsSelected = p5demo01.numberOfPointsSelected();
+    this.totalNPointsSelected = main.p5demo01.numberOfPointsSelected();
   },
 
   updateTotalNPointsEvaluated: function() {
-    this.totalNPointsEvaluated = p5demo01.numberOfCandidatesPoints();
+    this.totalNPointsEvaluated = main.p5demo01.numberOfCandidatesPoints();
   },
 
   updateBranchAndLeaf: function() {
-    let result = p5demo01.numberOfBranchsAndLeafs();
+    let result = main.p5demo01.numberOfBranchsAndLeafs();
     this.totalBranchs = result.nbBranch;
     this.totalLeafs = result.nbLeaf;
   },
@@ -53,40 +53,22 @@ const uiApp01 = {
     return parseInt(document.getElementById('sliderProbeSize').value);
   },
 
-  getInsertionMode: function() {
-    if (document.getElementById('normal').checked) {
-      return 'normal';
-    } else
-      return 'gaussian';
-  },
-
   init: function() {
 
     document.getElementById('canvas-demo01-insert-querry').addEventListener('click', () => {
       if (document.getElementById('normal').checked) {
-        p5demo01.insertNormal();
+        main.p5demo01.insertNormal();
       } else
-        p5demo01.insertGaussian(this.getNbGaussianPoints());
+        main.p5demo01.insertGaussian(this.getNbGaussianPoints());
     });
 
     document.getElementById('sliderProbeSize').addEventListener('change', () => {
-      p5demo01.changeCircularProbeSize(this.getProbeSize());
+      main.p5demo01.changeCircularProbeSize(this.getProbeSize());
     });
 
     document.getElementById('resetButton').addEventListener('click', () => {
-      p5demo01.reset();
-      this.update();
+      main.p5demo01.reset();
     });
-
-
-    (function() {
-      $('#loop').change(function() {
-        if (this.checked)
-          p5demo01.loop();
-        else
-          p5demo01.noLoop();
-      })
-    })();
 
     for (let radio of document.getElementsByName("insertionModeGroup")) {
       if (radio.id === 'normal') {
@@ -118,6 +100,6 @@ const uiApp01 = {
     document.getElementById('nbLeaf').innerHTML = this.model.totalLeafs;
     document.getElementById('nbPoitnsEvaluated').innerHTML = this.model.totalNPointsEvaluated + " (" + Number.parseFloat(this.model.pourcentageEvaluated).toPrecision(3) + "%)";
     document.getElementById('nbPoitnsSelected').innerHTML = this.model.totalNPointsSelected + " (" + Number.parseFloat(this.model.pourcentageSelected).toPrecision(3) + "%)";
-  }
+  },
 
 }
