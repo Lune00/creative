@@ -66,8 +66,8 @@
     </figure>
   </div>
 
-  Supposons que nous voulons interroger les propriétés de voisinage de ces objets. Par exemple, combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes? Quel
-  est le point voisin le plus proche ? Qui sont les trois voisins les plus proches ? Combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun :
+  Supposons que nous voulions interroger les propriétés de voisinage de ces objets. Par exemple, nous aimerions savoir combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes? Quel
+  est le voisin le plus proche de chaque point ? Ou non finalement, qui sont les trois voisins les plus proches ? Ou, tout simplement, combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun :
   elles trouvent leurs réponses dans les mesures des distances entre les points. Elles ont un caractère <i>géometrique</i>.
   </p>
 
@@ -84,37 +84,34 @@
     un espace
     bidimensionnel, où chaque objet est repéré par ses coordonnées et représenté par un point blanc. Nous voulons savoir quels sont les objets présents à l'interieur du cercle rouge. Nous voulons, par exemple, sélectionner ces points et leur
     appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils se trouvent à l'intérieur du domaine délimité par le cercle rouge. Cette
-    solution demanderait un temps d'execution propotionnel au nombre de points, on dit qu'elle est <code>O(n)</code>, où <code>n</code> représente le nombre de
+    solution demanderait un temps d'execution propotionnel au nombre de points à traiter, on dit qu'elle est <code>O(n)</code>, où <code>n</code> représente le nombre de
     points à parcourir. La <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes">complexité</a> d'un algorithme, ou d'une fonction, est une mesure de la quantité de ressources (temps ou mémoire) nécessaire à son
     éxecution. Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en sélectionner que deux !
   </p>
   <p>
-    Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le voisin le plus proche de chaque point. Nous prenons un point, nous cherchons parmi les autres points lequel est le plus proche, et
-    nous faisons ça pour tous les points. Pour chaque point nous devrions regarder tous les points, mesurer la distance entre eux et garder le point pour lequel la distance est la plus courte. Nous devrions regarder toutes les paires de points, c'est
-    à dire que le coût de cette étude serait de <code>n * n</code> opérations, ou d'une complexité <code>0(n2)</code>. A présent si nous avons un million de points il faudrait faire un billion d'opérations pour obtenir notre résultat ! Ce n'est pas sérieux. La complexité
-    <code>0(n2)</code> est une complexité qu'il faut éviter à chaque fois que cela est possible, sa mise à l'échelle avec la taille de l'échantillon est trop coûteuse, et elle indique souvent qu'il y'a <i>un autre chemin</i>.
+    Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le point le plus proche de chaque point.  Pour y arriver nous devrions, pour chaque point, regarder les n - 1 points restants, mesurer la distance entre les deux et garder le point pour lequel la distance est la plus courte. Et nous devrions répeter cette opération n fois, pour chaque point. Cela veut dire qu'il faudrait n * (n -1) opérations pour obtenir notre résultat. Il serait possible de réduire le coût en ne considérant les paires qu'une fois. Comme chaque paire compte double dans le décompte précédent il est encore possible de diviser par 2 le nombre d'opérations, pour le ramener à n(n-1)/2. Néanmoins, on voit toujours apparaitre un facteur n*n. La complexité de notre calcul est donc ici en <code>0(n2)</code>. Si nous avions un million de points il faudrait faire un billion (1 000 000 000 000) d'opérations pour obtenir notre résultat ! Ce n'est pas sérieux. La complexité
+    <code>0(n2)</code> est une complexité qu'il faut éviter à chaque fois que cela est possible, sa mise à l'échelle avec la taille de l'échantillon est trop vertigineuse, et elle indique souvent qu'il y'a <i>un autre chemin</i>.
   </p>
 
   <p>
-    Pou réduire cette complexité l'une des premières choses à envisager est celle de la structure de données utilisée, celle dans laquelle sont rangés nos points. De nombreuses structures de données existent
+    Pou réduire cette complexité l'une des premières choses à faire est de repenser notre structure de données, celle dans laquelle sont rangés nos points. De nombreuses structures de données existent
     et permettent d'organiser les données de manière à faciliter leur traitement. Chaque structure de données possède des avantages et des inconvénients vis à vis du traitement que l'on
     souhaite réaliser. Réduire la complexité et augmenter les performances d'un programme en charge de la réalisation d'un traitement de données passe d'abord par le choix d'une structure de données adaptée.
   </p>
 
   <p>
-    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau pour tester chaque point et calculer s'il est à l'interieur de la zone circulaire rouge.
-    Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace. Il doit y avoir une meilleure solution. Pouvons-nous mieux faire? Oui, nous pouvons mieux faire ! Et pour mieux faire nous avons besoin d'une
+    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau de points et tester  pour chacun d'entre eux s'il est à l'interieur de la zone circulaire rouge.
+    Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace, loin, si loin de notre zone. Il doit y avoir une meilleure solution. Pouvons-nous mieux faire? Oui, nous pouvons mieux faire ! Et pour mieux faire nous avons besoin d'une
     structure de données adaptée à ce genre de problème : le quadtree.
   </p>
 
 
   <p>
-    Le quadtree est une structure de données où l'on va ranger les points dans des petites boîtes. Ces boîtes seront définies en appliquant une décomposition de l'espace en quatre sous-espaces égaux de manière récursive. C'est son aspect récursif qui
+    Le quadtree est une structure de données où l'on va ranger les points dans des petites boîtes. Ces boîtes seront définies en appliquant une décomposition de l'espace en quatre sous-espaces égaux de manière <a href="https://fr.wikipedia.org/wiki/R%C3%A9cursivit%C3%A9">récursive</a>. C'est son aspect récursif qui
     lui donne la forme d'un arbre (<i>tree</i>). Le <i>quad</i> vient lui du fait qu'on découpe l'espace toujours en quatre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du quadtree est d'organiser
     autrement les points (sans toucher à leur coordonnées bien entendu) pour optimiser drastiquement le coût de nos investigations. Pour reprendre la
-    question que nous nous posons, à savoir combien de points sont compris dans le cercle rouge, le problème de la solution naïve vient du fait que nous interrogeons tout l'espace (et donc tous les points !). Le quadtree va nous permettre d'affiner
-    notre requête et d'interroger
-    seulement des parties de l'espace total. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
+    question que nous nous posons, à savoir combien de points sont compris dans le cercle rouge, le problème de la solution naïve vient du fait qu'elle nous force à interroger tout l'espace (et donc tous les points !). Le quadtree va nous permettre d'affiner
+    notre requête et d'interroger une partie de l'espace. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
   </p>
 
 
@@ -185,11 +182,18 @@
   </p>
 
 
-  <h2>Construire le quadTree</h2>
+  <h2>Construction</h2>
 
 
+  <div class="row justify-content-center" id="figure04">
+    <figure class="figure">
+      <img src="media/construction.svg" class="figure-img img-fluid rounded" alt="" title="" width="1000" />
+      <figcaption class="figure-caption text-center">Figure 4 : Etapes de construction d'un quadtree par insertions successives de points. A l'étape f) la feuille originale porte 5 enfants.<br /> Ayant dépassé sa capacité de 4, elle se transforme en branche et pousse les points sur leurs feuilles respectives. <br />Le prochain point sera porté par l'une des feuilles de profondeur 1 et le processus se répètera.</figcaption>
+    </figure>
+  </div>
 
-  <h2>Interroger le quadTree</h2>
+
+  <h2>Interroger le quadtree</h2>
 
   <div id="demo01">
 
