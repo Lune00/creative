@@ -66,8 +66,10 @@
     </figure>
   </div>
 
-  Supposons que nous voulions interroger les propriétés de voisinage de ces objets. Par exemple, nous aimerions savoir combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés analogues ou différentes? Quel
-  est le voisin le plus proche de chaque point ? Ou non finalement, qui sont les trois voisins les plus proches ? Ou, tout simplement, combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas exhaustive, mais toutes ces questions ont ceci en commun :
+  Supposons que nous voulions interroger les propriétés de voisinage de ces objets. Par exemple, nous aimerions savoir combien de voisins possède chaque objet dans une zone définie autour de celui-ci? Ces voisins possèdent-ils des propriétés
+  analogues ou différentes? Quel
+  est le voisin le plus proche de chaque point ? Ou non finalement, qui sont les trois voisins les plus proches ? Ou, tout simplement, combien y'a-t-il d'objets présents dans une zone définie autour d'un point quelconque? La liste n'est pas
+  exhaustive, mais toutes ces questions ont ceci en commun :
   elles trouvent leurs réponses dans les mesures des distances entre les points. Elles ont un caractère <i>géometrique</i>.
   </p>
 
@@ -89,7 +91,11 @@
     éxecution. Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en sélectionner que deux !
   </p>
   <p>
-    Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le point le plus proche de chaque point.  Pour y arriver nous devrions, pour chaque point, regarder les n - 1 points restants, mesurer la distance entre les deux et garder le point pour lequel la distance est la plus courte. Et nous devrions répeter cette opération n fois, pour chaque point. Cela veut dire qu'il faudrait n * (n -1) opérations pour obtenir notre résultat. Il serait possible de réduire le coût en ne considérant les paires qu'une fois. Comme chaque paire compte double dans le décompte précédent il est encore possible de diviser par 2 le nombre d'opérations, pour le ramener à n(n-1)/2. Néanmoins, on voit toujours apparaitre un facteur n*n. La complexité de notre calcul est donc ici en <code>0(n2)</code>. Si nous avions un million de points il faudrait faire un billion (1 000 000 000 000) d'opérations pour obtenir notre résultat ! Ce n'est pas sérieux. La complexité
+    Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le point le plus proche de chaque point. Pour y arriver nous devrions, pour chaque point, regarder les n - 1 points restants, mesurer
+    la distance entre les deux et garder le point pour lequel la distance est la plus courte. Et nous devrions répeter cette opération n fois, pour chaque point. Cela veut dire qu'il faudrait n * (n -1) opérations pour obtenir notre résultat. Il
+    serait possible de réduire le coût en ne considérant les paires qu'une fois. Comme chaque paire compte double dans le décompte précédent il est encore possible de diviser par 2 le nombre d'opérations, pour le ramener à n(n-1)/2. Néanmoins, on
+    voit toujours apparaitre un facteur n*n. La complexité de notre calcul est donc ici en <code>0(n2)</code>. Si nous avions un million de points il faudrait faire un billion (1 000 000 000 000) d'opérations pour obtenir notre résultat ! Ce n'est
+    pas sérieux. La complexité
     <code>0(n2)</code> est une complexité qu'il faut éviter à chaque fois que cela est possible, sa mise à l'échelle avec la taille de l'échantillon est trop vertigineuse, et elle indique souvent qu'il y'a <i>un autre chemin</i>.
   </p>
 
@@ -100,17 +106,20 @@
   </p>
 
   <p>
-    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau de points et tester  pour chacun d'entre eux s'il est à l'interieur de la zone circulaire rouge.
-    Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace, loin, si loin de notre zone. Il doit y avoir une meilleure solution. Pouvons-nous mieux faire? Oui, nous pouvons mieux faire ! Et pour mieux faire nous avons besoin d'une
+    Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau de points et tester pour chacun d'entre eux s'il est à l'interieur de la zone circulaire rouge.
+    Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace, loin, si loin de notre zone. Il doit y avoir une meilleure solution. Pouvons-nous mieux faire? Oui, nous pouvons mieux faire ! Et pour mieux faire
+    nous avons besoin d'une
     structure de données adaptée à ce genre de problème : le quadtree.
   </p>
 
 
   <p>
-    Le quadtree est une structure de données où l'on va ranger les points dans des petites boîtes. Ces boîtes seront définies en appliquant une décomposition de l'espace en quatre sous-espaces égaux de manière <a href="https://fr.wikipedia.org/wiki/R%C3%A9cursivit%C3%A9">récursive</a>. C'est son aspect récursif qui
+    Le quadtree est une structure de données où l'on va ranger les points dans des petites boîtes. Ces boîtes seront définies en appliquant une décomposition de l'espace en quatre sous-espaces égaux de manière <a
+      href="https://fr.wikipedia.org/wiki/R%C3%A9cursivit%C3%A9">récursive</a>. L'espace sera ainsi divisé <i>sur lui même</i> jusqu'à ce qu'aucune boite ne contienne plus de quatre points. C'est son aspect récursif qui
     lui donne la forme d'un arbre (<i>tree</i>). Le <i>quad</i> vient lui du fait qu'on découpe l'espace toujours en quatre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du quadtree est d'organiser
     autrement les points (sans toucher à leur coordonnées bien entendu) pour optimiser drastiquement le coût de nos investigations. Pour reprendre la
-    question que nous nous posons, à savoir combien de points sont compris dans le cercle rouge, le problème de la solution naïve vient du fait qu'elle nous force à interroger tout l'espace (et donc tous les points !). Le quadtree va nous permettre d'affiner
+    question que nous nous posons, à savoir combien de points sont compris dans le cercle rouge, le problème de la solution naïve vient du fait qu'elle nous force à interroger tout l'espace (et donc tous les points !). Le quadtree va nous permettre
+    d'affiner
     notre requête et d'interroger une partie de l'espace. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
   </p>
 
@@ -131,7 +140,9 @@
   <h2>Définitions</h2>
 
   <p>
-    Mettons nous d'accord sur le vocabulaire et quelques définitions afin de ne laisser place à aucune ambiguité lorsque nous parlerons du quadtree.
+    Mettons nous d'accord sur le vocabulaire et quelques définitions afin de ne laisser place à aucune ambiguité. En effet, il n'y a pas de définition standard du quadtree, plusieurs implémentations existent et ont chacune leur intérêt et leur
+    défaut. Il existe plusieurs stratégies pour le construire et la structure possède plusieurs paramètres (capacité, profondeur...) ajustables par l'utilisateur en fonction de ses besoins. Néanmoins, tous les quadtrees partagent une définition
+    commune : ce sont des structures de type arbre (récursives) dans laquelle chaque noeud à quatre enfants. La suite de cet article s'appuiera sur l'ensemble des défintions suivantes.
   </p>
 
   <p>
@@ -140,32 +151,48 @@
 
   <dl>
     <dt>
-      Un noeud
+      Noeud
     </dt>
     <dd>
       le noeud est le composant fondamental du quadtree. Le quadtree est une association de noeuds, et il commence toujours par un noeud initial, un noeud racine. Les points insérés dans un quadtree finissent toujours attachés à un et un seul noeud.
       Un noeud peut avoir jusqu'à 4 enfants. Le quadtree possède deux types de noeuds : les branches et les feuilles.
     </dd>
     <dt>
-      Une branche
+      Branche
     </dt>
     <dd>
       un noeud qui ne peut porter (avoir pour enfant direct) que des noeuds, branche ou feuille, mais jamais de points.
     </dd>
     <dt>
-      Une feuille
+      Feuille
     </dt>
     <dd>
-      un noeud qui ne peut porter que des points, mais jamais d'autres noeuds.
+      un noeud qui ne peut porter que des points, mais jamais d'autres noeuds. Lorsque la capacité de la feuille est excédée elle se transforme en branche.
     </dd>
     <dt>
-      Un enfant
+      Enfant
     </dt>
     <dd>
       un enfant est un élément du quadtree qui est porté par son noeud parent. Un enfant peut-être un noeud ou un point. Seul un noeud peut être parent. Par exemple, sur la <a href="#figure3"> figure 3</a>, la feuille <i>b</i> est l'enfant de la
       branche <i>a</i>. On dit que <i>a</i> porte <i>b</i>. De même, le point <i>c</i> est l'enfant de la feuille <i>b</i>, mais <i>c</i> n'est pas l'enfant de <i>a</i>, car <i>a</i> ne porte pas directement <i>b</i>.
     </dd>
+    <dt>
+      Capacité
+    </dt>
+    <dd>
+      le nombre maximal d'enfants qu'une feuille peut porter. Par défaut la capacité est de quatre. Ainsi on conserve une certaine homogénéité dans notre définition : une branche a la même capacité qu'une feuille. Si la capacité d'une branche est par
+      définition de 4 (<i>quad</i>tree) la capacité d'une feuille pourrait être supérieure ou inférieure (chaque feuille ne pourrait porter qu'un point par exemple).
+    </dd>
+    <dt>
+      Profondeur
+    </dt>
+    <dd>
+      le niveau auquel se trouve un noeud. La racine a une profondeur de référence arbitraire p définie par l'utilisateur. Les enfants auront une profondeur p + 1. Ici on a défini la profondeur de la racine à 0.
+    </dd>
   </dl>
+
+
+
 
   <div class="row justify-content-center" id="figure03">
     <figure class="figure">
@@ -181,17 +208,76 @@
     et en feuilles.
   </p>
 
+  <p>
+
+  </p>
+
 
   <h2>Construction</h2>
 
+  <p>
+    Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données quadtree à partir de nos points. Nous allons insister ici sur les principes de construction, plutôt que sur les détails de l'implémentation.
+    L'objectif est d'abord d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>.
+  </p>
+
+
+  <h3>Initialisation de l'arbre</h3>
+  <p>
+    Nous allons commencer par définir la racine de notre quadtree, le premier noeud. La racine n'a pas de noeud parent par définition et c'est une feuille. A présent il faut faire la connexion entre notre arbre et
+    l'espace géometrique : <strong>chaque noeud aura la responsabilité d'une région de l'espace. La région de la racine sera
+      l'intégralité de notre espace</strong>. Elle sera
+    responsable de tout ce
+    qu'il se trouvera à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir. Notre arbre est à présent initialisé.
+  </p>
+
+  <h3>Insérer des points</h3>
+
+  <p>
+    Nous allons insérer nos points un à un dans l'arbre. Pour chaque point allons interroger la racine de l'arbre :
+  <ul style="list-style-type: '&mdash; '">
+    <li>
+      Est-ce que ce point se trouve dans ta région ?
+    </li>
+    <li>
+      Bien sûr, par définition, tous les points se trouvent dans ma région !
+    </li>
+  </ul>
+  En effet, la racine recouvre tout l'espace disponible. Le point est donc
+  attaché à la racine. Nous allons continuer ainsi jusqu'à ce que le noeud racine porte quatre points, comme nous pouvons le voir sur les images <i>b)</i> à <i>e)</i> de la <a href="#figure04">figure 4</a>.
+  </p>
 
   <div class="row justify-content-center" id="figure04">
     <figure class="figure">
       <img src="media/construction.svg" class="figure-img img-fluid rounded" alt="" title="" width="1000" />
-      <figcaption class="figure-caption text-center">Figure 4 : Etapes de construction d'un quadtree par insertions successives de points. A l'étape f) la feuille originale porte 5 enfants.<br /> Ayant dépassé sa capacité de 4, elle se transforme en branche et pousse les points sur leurs feuilles respectives. <br />Le prochain point sera porté par l'une des feuilles de profondeur 1 et le processus se répètera.</figcaption>
+      <figcaption class="figure-caption text-center">Figure 4 : Etapes de construction d'un quadtree par insertions successives de points. A l'étape f) la feuille originale porte 5 enfants.<br /> Ayant dépassé sa capacité de 4, elle se transforme en
+        branche et pousse les points sur leurs feuilles respectives. <br />Le prochain point sera porté par l'une des feuilles de profondeur 1 et le processus se répètera.</figcaption>
     </figure>
   </div>
 
+  <h3>Division</h3>
+
+  <p>
+    Le noeud racine porte à présent 4 enfants et nous insérons un nouveau point de notre collection. La feuille se retrouve à présent en surcapacité, elle a un point de trop : elle se transforme en branche. D'après notre définition, une branche ne
+    peut avoir pour enfant que d'autres noeuds. Elle divise donc la région dont elle a la responsabilité en quatre sous-régions égales. Ces sous-régions sont chacune mises sous la responsabilité de nouveaux enfants, des feuilles. Chaque feuille prend
+    la charge des points qui se trouvent dans sa région. Chaque point, originellement porté par la branche, se trouve alors poussé sur sa feuille et la structure est de nouveau à l'équilibre. Sur la <a href="figure04">figure 4f</a> on peut voir que 3
+    feuilles ont poussé sur l'arbre. Elles contiennent les 5 points insérés. Chacune d'entre elle porte les points qui se trouvent dans la région dont elle est responsable. Enfin, la racine est à présent une branche et elle n'a pour enfant que des
+    feuilles.
+  </p>
+
+  <p>
+    Afin de couvrir l'intégralité du processus de division, il nous reste à discuter de deux cas possibles à la prochaine insertion. Supposons que nous voudrions insérer un point dans le quadrant nord-est de notre arbre. Demandons à la racine :
+    <ul style="list-style-type: '&mdash; '">
+      <li>
+        Est-ce que ce point se trouve dans ta région ?
+      </li>
+      <li>
+        Bien sûr, par définition, tous les points se trouvent dans ma région ! Cela dit, celui-ci se trouve peut-être dans la région de l'un de mes enfants, c'est donc à lui que revient la responsabilité de s'en occuper. Moi je suis une branche, je ne m'occupe plus des points, ce n'est plus mon problème.
+      </li>
+    </ul>
+  </p>
+
+
+  <h2 id="implementation">Implémentation</h2>
 
   <h2>Interroger le quadtree</h2>
 
