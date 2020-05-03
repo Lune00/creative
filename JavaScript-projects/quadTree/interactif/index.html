@@ -223,16 +223,16 @@
   </p>
 
 
-  <h3>Initialisation de l'arbre</h3>
+  <h3>Le point de départ de l'arbre : la racine</h3>
   <p>
     Nous allons commencer par définir la racine de notre quadtree, le premier noeud. La racine n'a pas de noeud parent par définition et c'est une feuille. A présent il faut faire la connexion entre notre arbre et
     l'espace géometrique : <strong>chaque noeud aura la responsabilité d'une région de l'espace. La région de la racine sera
       l'intégralité de notre espace</strong>. Elle sera
     responsable de tout ce
-    qu'il se trouvera à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir. Notre arbre est à présent initialisé.
+    qu'il se trouvera à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir.
   </p>
 
-  <h3>Insérer des points</h3>
+  <h3>Insérer des points dans le quadtree</h3>
 
   <p>
     Nous allons insérer nos points un à un dans l'arbre. Pour chaque point allons interroger la racine de l'arbre :
@@ -283,7 +283,7 @@
       Est-ce que ce point se trouve dans ta région ?
     </li>
     <li>
-      Oui, cette région m'appartient désormais, donnez moi votre point, je me charge.
+      Oui, cette région m'appartient désormais, donnez moi votre point, je m'en charge.
     </li>
   </ul>
 
@@ -324,13 +324,13 @@
   <h3>Pseudo-code</h3>
 
   <p>
-    Maintenant que nous avons bien défini le comportement de notre arbre et de ses composants, nous pouvons écrire un pseudo-code de l'algorithme de construction de notre arbre. La construction n'est rien d'autre qu'une suite d'insertions successives
+    Maintenant que nous avons bien défini le comportement de notre arbre et de ses composants, nous pouvons écrire un pseudo-code de l'algorithme de construction de notre arbre. La construction n'est rien d'autre qu'une succession d'insertion
     de point au niveau de
     la racine. Voici à quoi le pseudo-code de la fonction d'insertion pourrait ressembler:
   </p>
-  <p>
 
-  <pre>
+  <div class="row justify-content-center" id="pseudocode">
+    <pre>
       <span class="variable">racine</span>.<span class="function">inserer</span>(point){
 
       <span class="if-else">if</span> <span class="statement">le point n'est pas dans mon domaine</span>
@@ -353,13 +353,41 @@
           <span class="variable">mes_enfants</span>.<span class="function">inserer</span>(mes_points)
       }
     </pre>
+  </div>
+
+
+
+  <h2 id="implementation">Implémentation</h2>
+
+  <p>
+    Cette partie portera sur l'implémentation (en javascript) d'un quadtree. Nous allons implémenter le composant <i>noeud</i> et la fonctionalité d'insertion. Tous les détails de l'implémentation ne sont pas mentionnés, notamment le code concernant
+    les fonctions auxiliaires. Il est cependant accessible dans le <a href="#">code-source</a>.
   </p>
 
 
-  <h2 id="implementation">Implémentation d'un noeud :  <code class="language-javascript">class Node</code></h2>
+  <h3>Implémentation du noeud : <code class="language-javascript">class Node</code> </h3>
+
+  <p>
+    Un noeud est la structure fondamentale de l'arbre. Elle possède une région, un espace géometrique, dont elle a la responsabilité. Cette région est rectangulaire et est entièrement définie par les variables <code
+      class="language-javascript">x,y,w,h</code> où <code class="language-javascript">(x,y)</code> représentent <strong>le centre</strong> du rectangle et <code class="language-javascript">(w,h)</code> sa <strong>demi-largeur et
+      demi-longueur</strong>.
+
+  </p>
+  <p>
+    Un noeud pouvont a en pratique toujours 4 enfants, donc <code class="language-javascript">children</code> est un tableau de 4 éléments, un pour chaque enfant. Les enfants sont initialisés sous la forme d'un tableau vide. Chaque indice du tableau
+    <code class="language-javascript">children</code> correspond à une sous-région de l'espace détenu par le noeud, comme représenté sur <a href="figure04">la figure 4</a>. On peut voir que l'espace est virtuellement pré-découpé en 4 sous-regions
+    par des traits pointillés blancs. L'indice, allant de 0 à 3 sert d'identité à chaque sous-région. Ainsi <code class="language-javascript">children[0]</code> retourne soit l'ensemble des points contenus dans la sous-région <code
+      class="language-javascript">0</code> du noeud si le noeud est une feuille, soit une feuille enfant si le noeud est une branche.
+  </p>
+
+  <p>
+    Un attribut <code class="language-javascript">capacity</code> définit la capacité de chaque feuille, égale par convention au nombre d'enfants max, soit 4. Un noeud nouvellement crée est par défaut une feuille, et sa profondeur est initialisée à
+    celle de son parent, où à 0 dans le cas de la racine.
+  </p>
 
 
-  <pre class="language-javascript line-numbers">
+  <div class="row justify-content-center" id="snpippet-node">
+    <pre>
     <code class="language-javascript">
       class Node {
 
@@ -376,8 +404,8 @@
 
           this.isBranch = false;
 
-          //Nombre d'enfants max === capacité
-          this.nChildrenMax = this.children.length;
+          //Capacité
+          this.capacity = this.children.length;
 
           //taille
           this.length = 1;
@@ -395,9 +423,47 @@
     </code>
   </pre>
 
-<h2 id="implementation">Implémentation de la construction du quadtree :  <code class="language-javascript">insert(point)</code></h2>
+  </div>
 
-  <pre class="language-javascript line-numbers">
+  Pour initialiser la racine il suffira de l'instancier dans notre programme avec <code class="language-javascript">let racine = new Node(x,y,w,h)</code>, où x,y,w,h sont les données géometriques de l'espace où se trouvent vos points, typiquement les
+  propriétés de votre écran.
+
+  <h2 id="implementation">Implémentation de l'insertion : <code class="language-javascript">insert(point)</code></h2>
+
+  <p>
+    Maintenant que nous avons initialisé notre arbre il faut pouvoir y insérer nos points. C'est le but de la méthode <code class="language-javascript">insert(point)</code>. Tout d'abord nous vérifions si le point est contenu dans la région contrôlée
+    par le noeud. Si ce n'est pas le cas alors on ne l'insert pas, tout simplement. Un point généré en dehors de votre écran n'intéresse pas le quadtree.
+  </p>
+  <p>
+    Si le noeud contient le point, la méthode <code class="language-javascript">index(point)</code> se charge de récupérer l'index de la sous-région dans laquelle il se trouve. Cet index, allant de 0 à 3 est celui représenté sur <a href="figure04">la
+      figure 4</a>. Il permet d'accèder à l'enfant en charge du sous-espace. Nous pouvons ensuite interroger l'enfant <code class="language-javascript">children[index]</code> :
+
+  <ul>
+    <li>
+      si l'enfant un noeud alors le noeud parent lui délegue le travail et la méthode <code class="language-javascript">insert(point)</code> est appelée récursivement sur l'enfant. Le travail est terminé pour le noeud parent.
+    </li>
+    <li>
+      si l'enfant n'est pas un noeud, mais encore un tableau alors deux cas se présentent :
+      <ul>
+        <li>
+          soit le noeud en cours est une branche qui n'a pas encore fait poussé de feuille dans cette sous-région. Dans ce cas on fait pointer l'enfant sur une nouvelle feuille : <code class="language-javascript">children[index] =
+            getNewNode(index)</code>. Puis on lui demande de s'occuper du point. La méthode <code class="language-javascript">getNewNode(index)</code> prend en paramètre l'index de la sous-région sur laquelle il doit pointer et renvoie une feuille
+          toute fraiche ayant la charge de cette sous-région. Mais, et si <code class="language-javascript">children[index]</code> contenait des points, alors nous pourrions les perdre dans cette opération, non? Non, car le noeud est une branche ! Et
+          par définition, une branche ne porte jamais de points.
+        </li>
+        <li>
+          soit c'est une feuille et dans ce cas il garde tout simplement le point.
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+
+  Il reste une dernière étape avant de terminer cette fonction. Il faut implémenter la transformation en branche d'une feuille lorsque celle-ci est en surcapacité. C'est le rôle de la dernière évaluation.
+
+  </p>
+  <div class="row justify-content-center" id="snpippet-node">
+    <pre class="language-javascript line-numbers">
     <code class="language-javascript">
       insert(point) {
 
@@ -428,8 +494,23 @@
       }
     </code>
   </pre>
+  </div>
 
-  <pre class="language-javascript line-numbers">
+  <p>
+    Le code de la méthode <code class="language-javascript">branch()</code> est montré ci-dessous. Rappelons nous : lorsqu'une feuille porte plus de 4 points, elle est en sur-capacité et se change en branche. Elle doit alors instancier de nouvelles
+    feuilles
+    et pousser ses points dessus. A la fin, la branche ne doit avoir que des feuilles pour enfant.
+  </p>
+
+  <p>
+    Nous parcourons alors tous les enfants de la feuille. Ces enfants, par définition, <strong>sont garantis d'être des tableaux de points</strong>. C'est pour cela que dans la boucle <code
+      class="language-javascript">children.forEach((points,index))</code> la référence vers chaque enfant est nommée <code class="language-javascript">points</code>, et non child. Nous ne voulons pas instancier plus de feuilles que nécessaire, c'est
+    pourquoi nous instancions une feuille que lorsqu'un enfant porte des points. Une fois l'enfant transformé en feuille, nous insérons les <code class="language-javascript">points</code> dedans. Finalement, nous n'oublions pas d'indiquer que notre
+    noeud est à présent une branche : <code class="language-javascript">this.isBranch = true</code>.
+  </p>
+
+  <div class="row justify-content-center" id="snpippet-node">
+    <pre class="language-javascript line-numbers">
     <code class="language-javascript">
       branch() {
         //Seule une feuille peut devenir une branche, ses enfants sont nécessairement des tableaux de points
@@ -447,9 +528,88 @@
       }
     </code>
   </pre>
+  </div>
 
 
-  <h2>Interroger le quadtree</h2>
+  <h2>Démo interactive</h2>
+
+  <p>
+    Ci-dessous vous trouverez une démo interactive de cette implémentation. Vous pouvez insérer des points par un simple click sur le canvas. Vous pouvez insérer point par point pour bien suivre l'évolution du nombre de branches et de feuilles, soit
+    par nuages de points. Une zone d'inspection, qui suit le mouvement du curseur, est également à disposition pour inspecter le quadtree. Vous pouvez régler sa taille. Elle détecte les points contenus à l'intérieur du cercle. Le nombre de
+    points candidats montre combien de points il a fallu interroger pour obtenir ce résulat. Vous pouvez observer qu'il est possible de selectionner les points à l'intérieur du cercle sont évaluer tous les points présents (sauf s'ils y sont tous bien sûr). Les lignes blanches marquent les frontières des neuds. Un noeud en surbrillance indique une feuille intérogée par la zone d'inspection. Nous verrons dans la prochaine partie comment inspecter et nous servir du quadtree. N'hésitez pas alors à revenir expérimenter avec cette démo.
+  </p>
+
+
+  <div class="row justify-content-center" id="demo01">
+
+
+    <h4>Insertion</h4>
+    <div class="radioContainer">
+      <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
+      <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
+
+      <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
+      <label for="gaussian"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
+
+      <label for="nbPointsGaussian">Nombre de points à insérer</label>
+      <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
+      <output id="nbPointsGaussianValue"></output>
+    </div>
+
+    <h4>Inspection</h4>
+    <div class="slideContainer">
+      <label for="sliderProbeSize">Taille zone d'inspection</label>
+      <input type="range" min="10" max="200" value="100" id="sliderProbeSize" name="sliderProbeSize">
+    </div>
+
+    <h4>Infos</h4>
+    <div class="infos">
+      <div>
+        <label for="nbBranch">Nombre de branches : </label>
+        <span id="nbBranch" name="nbBranch"></span>
+      </div>
+
+      <div>
+        <label for="nbLeaf">Nombre de feuilles : </label>
+        <span id="nbLeaf" name="nbLeaf"></span>
+      </div>
+
+      <div>
+        <label for="nbPointsTotal">Nombre de points : </label>
+        <span id="nbPointsTotal" name="nbPointsTotal">0</span> points
+      </div>
+
+      <div id="groupNbPoitnsEvaluated">
+        <label for="nbPoitnsEvaluated"><b>Points candidats (% Total)</b> : </label>
+        <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span>
+      </div>
+
+      <div id="groupNbPoitnsSelected">
+        <label for="nbPoitnsSelected"><b>Points inclus dans la zone d'inspection (% Total) : </b></label>
+        <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span>
+      </div>
+
+    </div>
+
+    <div class="resetButtonContainer">
+      <!-- <input type="button" value="reset"> -->
+      <button type="button" class="btn btn-primary btn-sm" id="resetButton">Réinitialiser</button>
+      <input id="switch-demo01" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
+    </div>
+
+    <div id="canvas-demo01-insert-querry" class="myCanvas">
+
+    </div>
+  </div>
+
+<br />
+  <p>
+    Nous avons à présent construit notre quadtree. Notre structure de données est enfin prête. La partie intéressante peut commencer, nous allons à présent nous servir de notre quadtree pour obtenir des réponses aux questions que nous nous posions !
+  </p>
+
+  <h2>Se servir (enfin) du quadtree</h2>
+
+
 
 
   <h2 id="implementation">Implémentation de l'interrogation du quadtree : <code class="language-javascript">query()</code></h2>
@@ -489,69 +649,6 @@
     </code>
   </pre>
 
-  <div id="demo01">
-
-    <h4>Insertion</h4>
-
-    <div class="radioContainer">
-      <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
-      <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
-
-      <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
-      <label for="gaussian"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
-
-      <label for="nbPointsGaussian">Nombre de points à insérer</label>
-      <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
-      <output id="nbPointsGaussianValue"></output>
-    </div>
-
-    <h4>Inspection</h4>
-    <div class="slideContainer">
-      <label for="sliderProbeSize">Taille zone d'inspection</label>
-      <input type="range" min="10" max="200" value="100" id="sliderProbeSize" name="sliderProbeSize">
-    </div>
-
-    <h4>Infos</h4>
-    <div class="infos">
-      <div>
-        <label for="nbBranch">Nombre total de branches : </label>
-        <span id="nbBranch" name="nbBranch"></span>
-      </div>
-
-      <div>
-        <label for="nbLeaf">Nombre total de feuilles : </label>
-        <span id="nbLeaf" name="nbLeaf"></span>
-      </div>
-
-      <div>
-        <label for="nbPointsTotal">Nombre total de points : </label>
-        <span id="nbPointsTotal" name="nbPointsTotal">0</span> points
-      </div>
-
-      <div id="groupNbPoitnsEvaluated">
-        <label for="nbPoitnsEvaluated"><b>Points candidats (% Total)</b> : </label>
-        <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span>
-      </div>
-
-      <div id="groupNbPoitnsSelected">
-        <label for="nbPoitnsSelected"><b>Points inclus dans la zone d'inspection (% Total) : </b></label>
-        <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span>
-      </div>
-
-    </div>
-
-    <div class="resetButtonContainer">
-      <!-- <input type="button" value="reset"> -->
-      <button type="button" class="btn btn-primary btn-sm" id="resetButton">Réinitialiser</button>
-      <input id="switch-demo01" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
-    </div>
-
-    <div id="canvas-demo01-insert-querry" class="myCanvas">
-
-    </div>
-
-
-  </div>
 
 
 

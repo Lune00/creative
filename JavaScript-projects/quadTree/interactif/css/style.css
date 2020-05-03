@@ -7,6 +7,8 @@ pre, code {
   font-family: monospace, monospace;
   background-color: #1b2426;
   color: white;
+  display: inline-block;
+  padding-right: 25px;
 }
 
 .variable {
