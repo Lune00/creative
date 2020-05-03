@@ -10,6 +10,8 @@
 
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
+  <!-- code snippet -->
+  <link href="css/prism.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -196,7 +198,7 @@
 
   <div class="row justify-content-center" id="figure03">
     <figure class="figure">
-      <img src="media/quadtree.svg" class="figure-img img-fluid rounded" alt="" title="" width="800" />
+      <img src="media/quadtree.svg" class="figure-img img-fluid rounded" alt="" title="" width="700" />
       <figcaption class="figure-caption text-center">Figure 3 : Exemple d'un quadtree. Les feuilles portent les points. Notez qu'une branche ne peut porter<br /> que des branches ou des feuilles mais jamais directement des points.
         Chaque noeud peut porter jusqu'à quatre enfants maximum. </figcaption>
     </figure>
@@ -254,7 +256,7 @@
     </figure>
   </div>
 
-  <h3>Division</h3>
+  <h3>Mécanisme de division</h3>
 
   <p>
     Le noeud racine porte à présent 4 enfants et nous insérons un nouveau point de notre collection. La feuille se retrouve à présent en surcapacité, elle a un point de trop : elle se transforme en branche. D'après notre définition, une branche ne
@@ -265,21 +267,227 @@
   </p>
 
   <p>
-    Afin de couvrir l'intégralité du processus de division, il nous reste à discuter de deux cas possibles à la prochaine insertion. Supposons que nous voudrions insérer un point dans le quadrant nord-est de notre arbre. Demandons à la racine :
-    <ul style="list-style-type: '&mdash; '">
-      <li>
-        Est-ce que ce point se trouve dans ta région ?
-      </li>
-      <li>
-        Bien sûr, par définition, tous les points se trouvent dans ma région ! Cela dit, celui-ci se trouve peut-être dans la région de l'un de mes enfants, c'est donc à lui que revient la responsabilité de s'en occuper. Moi je suis une branche, je ne m'occupe plus des points, ce n'est plus mon problème.
-      </li>
-    </ul>
+    Afin de couvrir l'intégralité du processus de division, il nous reste à discuter de deux cas possibles à la prochaine insertion. Supposons que nous voudrions insérer un point dans le quadrant sud-ouest(2) de notre arbre. Demandons à la racine :
+  <ul style="list-style-type: '&mdash; '">
+    <li>
+      Est-ce que ce point se trouve dans ta région ?
+    </li>
+    <li>
+      Bien sûr, par définition, tous les points se trouvent dans ma région ! Cela dit, celui-ci se trouve aussi dans la région de l'un de mes enfants, c'est donc à lui que revient la responsabilité de s'en occuper. Moi je suis une branche, je ne
+      m'occupe plus des points, ce n'est plus mon problème. Demandez donc à ma feuille 2.
+    </li>
+  </ul>
+  Nous allons demander à la feuille 2:
+  <ul style="list-style-type: '&mdash; '">
+    <li>
+      Est-ce que ce point se trouve dans ta région ?
+    </li>
+    <li>
+      Oui, cette région m'appartient désormais, donnez moi votre point, je me charge.
+    </li>
+  </ul>
+
+  Et nous pouvons ajouter un point à la feuille 2, comme montré sur la <a href="#figure05">figure 5g</a>.
+  </p>
+  <div class="row justify-content-center" id="figure05">
+    <figure class="figure">
+      <img src="media/construction_suite.svg" class="figure-img img-fluid rounded" alt="" title="" width="800" />
+      <figcaption class="figure-caption text-center">Figure 5 : Deux points (en rouge) sont insérés sur l'arbre : la branche délègue la responsabilité à son enfant s'il existe déjà g), <br />ou met à disposition une nouvelle feuille s'il n'existe pas
+        encore h)</figcaption>
+    </figure>
+  </div>
+  <p>
+    A présent, regardons un deuxième cas de figure, supposons que nous voudrions insérer un point dans la quadrant sud-est(3) de notre arbre. Comme d'habitude, demandons à la racine:
+  <ul style="list-style-type: '&mdash; '">
+    <li>
+      Est-ce que ce point se trouve dans ta région ?
+    </li>
+    <li>
+      Bien sûr, par définition, tous les points se trouvent dans ma région ! Cela dit, celui-ci se trouve dans une sous-région qui n'est sous la responsabilité d'aucun de mes enfants. Cette région est encore sous ma responsabilité mais comme je l'ai
+      dit, je ne m'occupe plus personnellement des points, je suis une branche ! Voici, je vais faire pousser une feuille et celle-ci s'en chargera.
+    </li>
+  </ul>
+  Sur la <a href="#figure05">figure 5h</a> une feuille 3 a poussé. Nous pouvons aller lui demander, comme précédemment, si elle veut de notre point, et comme celui-ci se trouve dans la région dont elle a la responsabilité elle le portera.
+  </p>
+
+  <p>
+    En guise d'exercice, vous pouvez essayer de continuer de construire cet arbre avec des points choisis arbitrairement, en appliquant ces règles. Vous verrez les feuilles se transformer en branches, les branches créer des feuilles, et vos points se
+    répartir d'une feuille à l'autre au gré de la construction. Vous pourrez également vous rendre compte que la structure de l'arbre dépend de l'ordre dans lequel vous insérez les points.
+  </p>
+
+  <p>
+    <a href="#demo01">Une démo interactive</a> de création et d'inspection du quadtree est disponbile dans l'article. Vous pouvez y expérimentez la construction d'un quadtree point par point, par un simple clic sur le canvas. Le nombre de branches et
+    de feuilles de l'arbre sont affichés pour vous permettre de savoir si vous avez bien compris les mécanismes de division.
   </p>
 
 
-  <h2 id="implementation">Implémentation</h2>
+  <h3>Pseudo-code</h3>
+
+  <p>
+    Maintenant que nous avons bien défini le comportement de notre arbre et de ses composants, nous pouvons écrire un pseudo-code de l'algorithme de construction de notre arbre. La construction n'est rien d'autre qu'une suite d'insertions successives
+    de point au niveau de
+    la racine. Voici à quoi le pseudo-code de la fonction d'insertion pourrait ressembler:
+  </p>
+  <p>
+
+  <pre>
+      <span class="variable">racine</span>.<span class="function">inserer</span>(point){
+
+      <span class="if-else">if</span> <span class="statement">le point n'est pas dans mon domaine</span>
+        quitter;
+
+      <span class="if-else">if</span> <span class="statement">le point est dans le domaine d'un de mes enfants</span>
+        <span class="variable">enfant</span>.<span class="function">inserer</span>(point);
+      <span class="if-else">else</span>
+
+        <span class="if-else">if</span> <span class="statement">je suis une branche</span>
+          creer un nouvel enfant feuille
+          <span class="variable">enfant</span>.<span class="function">inserer</span>(point)
+        <span class="if-else">else</span>
+          <span class="function">porter</span>(point)
+
+        <span class="if-else">if</span> <span class="statement">j'ai plus de 4 enfants</span>
+          se transformer en <span class="variable">branche</span>
+          creer autant d'enfants feuille que nécessaire : <span class="variable">mes_feuilles</span>
+          recuperer tous mes points : mes_points
+          <span class="variable">mes_enfants</span>.<span class="function">inserer</span>(mes_points)
+      }
+    </pre>
+  </p>
+
+
+  <h2 id="implementation">Implémentation d'un noeud :  <code class="language-javascript">class Node</code></h2>
+
+
+  <pre class="language-javascript line-numbers">
+    <code class="language-javascript">
+      class Node {
+
+        constructor(x, y, w, h, depth) {
+
+          //Region : (x,y) position du centre, (w,h) demi largeur/hauteur
+          this.x = x;
+          this.y = y;
+          this.w = w;
+          this.h = h;
+
+          //                0   1   2   3
+          this.children = [ [], [], [], [] ];
+
+          this.isBranch = false;
+
+          //Nombre d'enfants max === capacité
+          this.nChildrenMax = this.children.length;
+
+          //taille
+          this.length = 1;
+
+          //profondeur
+          if (!depth)
+            this.depth = 0;
+          else
+            this.depth = depth;
+        }
+        //Methodes a implementer
+        insert(point){}
+        query(area){}
+      }
+    </code>
+  </pre>
+
+<h2 id="implementation">Implémentation de la construction du quadtree :  <code class="language-javascript">insert(point)</code></h2>
+
+  <pre class="language-javascript line-numbers">
+    <code class="language-javascript">
+      insert(point) {
+
+        if (!this.contains(point))
+          return;
+
+        let index = this.index(point);
+
+        if (this.children[index] instanceof Node) {
+          this.children[index].insert(point);
+          return;
+        } else {
+
+          //Si c'est une branche alors il faut créer une nouvelle feuille et y insérer le point
+          if (this.isBranch) {
+            this.children[index] = this.getNewNode(index);
+            this.children[index].insert(point);
+            return;
+          }
+
+          //C'est une feuille, elle porte le point
+          this.children[index].push(point);
+
+          //Si la feuille a dépassé sa capacité elle se transforme en branche
+          if (this.hasReachedMaxCapacity())
+            this.branch();
+        }
+      }
+    </code>
+  </pre>
+
+  <pre class="language-javascript line-numbers">
+    <code class="language-javascript">
+      branch() {
+        //Seule une feuille peut devenir une branche, ses enfants sont nécessairement des tableaux de points
+        this.children.forEach((points, index) => {
+          //Si un enfant contient des points, créer une feuille a la place...
+          if (points.length !== 0) {
+            this.children[index] = this.getNewNode(index);
+            //...et y insérer les points
+            for (let p of points)
+              this.children[index].insert(p);
+          }
+        });
+
+        this.isBranch = true;
+      }
+    </code>
+  </pre>
+
 
   <h2>Interroger le quadtree</h2>
+
+
+  <h2 id="implementation">Implémentation de l'interrogation du quadtree : <code class="language-javascript">query()</code></h2>
+
+  <pre class="language-javascript line-numbers">
+    <code class="language-javascript">
+      query(circleProbe, points) {
+
+        if (!points) {
+          points = [];
+        }
+
+        let boundingBox = {
+          x: this.x,
+          y: this.y,
+          w: this.w,
+          h: this.h
+        };
+
+        if (!circleProbe.intersects(boundingBox))
+          return;
+
+        this.children.forEach(child => {
+
+          if (child instanceof Node)
+            child.query(circleProbe, points);
+          else
+            child.forEach(p => {
+              if (circleProbe.contains(p))
+                points.push(p);
+            });
+
+        });
+
+        return points;
+      }
+    </code>
+  </pre>
 
   <div id="demo01">
 
@@ -395,14 +603,17 @@
 
   <h2>Sources : aller plus loin</h2>
 
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+  <script src="js/lib/prism.js"></script>
+
 </body>
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 
 
