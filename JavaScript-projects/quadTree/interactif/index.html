@@ -194,8 +194,6 @@
   </dl>
 
 
-
-
   <div class="row justify-content-center" id="figure03">
     <figure class="figure">
       <img src="media/quadtree.svg" class="figure-img img-fluid rounded" alt="" title="" width="700" />
@@ -312,7 +310,7 @@
 
   <p>
     En guise d'exercice, vous pouvez essayer de continuer de construire cet arbre avec des points choisis arbitrairement, en appliquant ces règles. Vous verrez les feuilles se transformer en branches, les branches créer des feuilles, et vos points se
-    répartir d'une feuille à l'autre au gré de la construction. Vous pourrez également vous rendre compte que la structure de l'arbre dépend de l'ordre dans lequel vous insérez les points.
+    répartir d'une feuille à l'autre au gré de la construction.
   </p>
 
   <p>
@@ -436,7 +434,9 @@
   </p>
   <p>
     Si le noeud contient le point, la méthode <code class="language-javascript">index(point)</code> se charge de récupérer l'index de la sous-région dans laquelle il se trouve. Cet index, allant de 0 à 3 est celui représenté sur <a href="figure04">la
-      figure 4</a>. Il permet d'accèder à l'enfant en charge du sous-espace. Nous pouvons ensuite interroger l'enfant <code class="language-javascript">children[index]</code> :
+      figure 4</a>. Il permet d'accèder à l'enfant en charge du sous-espace. Nous pouvons ensuite interroger l'enfant <code class="language-javascript">children[index]</code>. L'instruction <code class="language-javascript">children[index] instanceof
+      Node</code> est une syntaxe de la norme <a href="https://www.w3schools.com/js/js_es6.asp">ECMAScript 6</a>. Sous le capot aucun cast, JavaScript se contente de tester si <code class="language-javascript">children</code> possède, dans sa <a
+      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">chaîne de prototype</a>, une référence vers le prototype du constructeur <code class="language-javascript">Node</code>.
 
   <ul>
     <li>
@@ -536,7 +536,9 @@
   <p>
     Ci-dessous vous trouverez une démo interactive de cette implémentation. Vous pouvez insérer des points par un simple click sur le canvas. Vous pouvez insérer point par point pour bien suivre l'évolution du nombre de branches et de feuilles, soit
     par nuages de points. Une zone d'inspection, qui suit le mouvement du curseur, est également à disposition pour inspecter le quadtree. Vous pouvez régler sa taille. Elle détecte les points contenus à l'intérieur du cercle. Le nombre de
-    points candidats montre combien de points il a fallu interroger pour obtenir ce résulat. Vous pouvez observer qu'il est possible de selectionner les points à l'intérieur du cercle sont évaluer tous les points présents (sauf s'ils y sont tous bien sûr). Les lignes blanches marquent les frontières des neuds. Un noeud en surbrillance indique une feuille intérogée par la zone d'inspection. Nous verrons dans la prochaine partie comment inspecter et nous servir du quadtree. N'hésitez pas alors à revenir expérimenter avec cette démo.
+    points candidats montre combien de points il a fallu interroger pour obtenir ce résulat. Vous pouvez observer qu'il est possible de selectionner les points à l'intérieur du cercle sont évaluer tous les points présents (sauf s'ils y sont tous bien
+    sûr). Les lignes blanches marquent les frontières des neuds. Un noeud en surbrillance indique une feuille intérogée par la zone d'inspection. Nous verrons dans la prochaine partie comment inspecter et nous servir du quadtree. N'hésitez pas alors
+    à revenir expérimenter avec cette démo.
   </p>
 
 
@@ -602,7 +604,7 @@
     </div>
   </div>
 
-<br />
+  <br />
   <p>
     Nous avons à présent construit notre quadtree. Notre structure de données est enfin prête. La partie intéressante peut commencer, nous allons à présent nous servir de notre quadtree pour obtenir des réponses aux questions que nous nous posions !
   </p>
@@ -610,8 +612,68 @@
   <h2>Se servir (enfin) du quadtree</h2>
 
 
+  <p>
+    La question que nous nous posions à la base était la suivante : quels sont les objets sur la <a href="#figure02">figure 2</a>, présents à l'interieur du cercle rouge ? Et nous voulions y répondre sans devoir interroger l'intégralité des points et
+    écopper de la complexité <code>0(n)</code>. Pour cela nous avons ré-organisé nos données dans une structure quadtree. Comment récupérer les points que nous cherchons ?
+  </p>
+
+  <p>
+    Nous devons définir notre zone d'inspection, notre cercle rouge, comme dans <a href="#demo01">la démo</a>. Dans ce cas ci la zone d'inspection est vraiment très simple: elle est définie par les coordonnées de son centre et par un rayon. Nous
+    allons initialiser notre requête au quadtree en demandant à la racine si notre cercle recouvre, même partiellement, l'espace mis sous sa reponsabilité. Si c'est le cas, et si la racine a des noeuds enfants, alors le cercle doit nécessairement
+    recouvrir au moins une des sous-régions à la charge de l'un de ses enfants. Récursivement nous allons donc interroger les enfants recouverts jusqu'à arriver sur les feuilles. Les feuilles sont les noeuds les plus profonds de l'arbre, il n'y a
+    rien en dessous, mis à
+    part nos points. Les enfants des feuilles sont les points que nous cherchons. Nous n'avons plus qu'à remonter tous les points contenus dans les feuilles recouvertes par notre cercle. Le pseudo-code est de la forme :
+  </p>
+
+  <div class="row justify-content-center" id="pseudocode">
+    <pre>
+      <span class="variable">racine</span>.<span class="function">query</span>(cercle_rouge){
+
+      <span class="if-else">if !</span><span class="statement">cercle_rouge</span>.<span class="function">recouvre</span>(<span class="variable">racine.region</span>)
+        quitter;
+
+      Pour chaque <span class="variable">enfant</span>
+        <span class="if-else">if</span> <span class="variable">enfant</span> est un noeud
+          <span class="variable">enfant</span>.<span class="function">query</span>(cercle_rouge)
+        <span class="if-else">else</span>
+          Pour chaque <span class="variable">point</span> de <span class="variable">enfant</span>
+            <span class="if-else">if</span> <span class="statement">cercle_rouge</span>.<span class="function">contient</span>(<span class="variable">point</span>)
+              garder <span class="variable">point</span>
+      }
+    </pre>
+  </div>
+
+  <p>
+    Nous profitons ici de l'architecture en arbre. Le fait d'avoir partionné l'espace de manière récursive nous permet de changer la manière dont nous posons notre question : nous ne demandons plus "parmi tous les points quels sont ceux qui se
+    trouvent dans le cercle rouge ?". La complexité <code>0(n)</code> est loin maintenant. L'espace étant divisé et mis sous la reponsabilité d'une multitude de noeuds, nous n'avons plus qu'à descendre l'arbre étage par étage. Tant qu'un noeud nous
+    répond "oui, vous me recouvrez" nous continuons à poser encore et toujours la même question. Jusqu'à arriver au dernier noeud, à la feuille qui nous dit "oui, vous me recouvrez, tenez, voici les points que j'ai sous ma responsabilité". Et là, seulement à ce moment là, on peut tester si le point est contenu dans le cercle rouge.
 
 
+  <div class="row justify-content-center" id="figure06">
+    <figure class="figure">
+      <img src="media/requete.svg" class="figure-img img-fluid rounded" alt="" title="" width="800" />
+      <figcaption class="figure-caption text-center">Figure 6 :</figcaption>
+    </figure>
+  </div>
+
+
+  <p>
+    En somme, grâce au travail préalable de division de l'espace et de construction de l'arbre nous avons déplacé ce sur quoi porte notre question : nous ne demandons plus aux points "êtes vous dans le cercle?", nous demandons aux noeuds "êtes vous
+    dans le cercle?" Et si un noeud nous répond non, nous n'irons pas poser la question à ses noeuds enfants. Nous pouvons alors tout simplement abandonner les recherches dans la région sous sa reponsabilité, il n'y aucune chance qu'un de ses points
+    se trouve dans notre cercle. Un pan entier de l'espace est soustrait à nos efforts de recherche.
+  </p>
+
+  <p>
+    Analyser la complexité d'une requête dans un quadtree n'est pas évidente car elle dépend de la requête elle même et de la structure de l'arbre. Cependant nous pouvons estimer les complexité aux cas limites : si tous les points sont présents dans
+    notre cercle rouge alors nous retombons sur la pire complexité, en <code>0(n)</code>. Si cette situation se présente majoritairement cela ne signifie pas que le quadtree est à blâmer, mais plutôt qu'il y'a un problème en terme de design au niveau
+    de votre programme. Si 99% des points sont systématiquement candidats à votre requête alors l'utilisation d'un quadtree n'est pas nécessairement pertinent. A l'inverse, si la requête est très ciblée, et qu'une seule feuille est recouverte par le
+    cercle, elle va traverser l'arbre directement de la racine à la feuille et la complexité sera de <code>0(p)</code>, où p est la profondeur de la feuille. On peut donc au moins garantir que la complexité de notre requête est comprise entre
+    <code>0(p)</code> et <code>0(n)</code>. C'est déjà une grande nouvelle, car la complexité <code>0(n)</code> qui était garantie à 100% par notre solution naïve est désormais devenue celle du cas le plus extrême.
+  </p>
+
+
+  Voyons à présent les détails de l'implémentation de la requête.
+  </p>
   <h2 id="implementation">Implémentation de l'interrogation du quadtree : <code class="language-javascript">query()</code></h2>
 
   <pre class="language-javascript line-numbers">
