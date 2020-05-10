@@ -90,7 +90,7 @@
     appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils se trouvent à l'intérieur du domaine délimité par le cercle rouge. Cette
     solution demanderait un temps d'execution propotionnel au nombre de points à traiter, on dit qu'elle est <code>O(n)</code>, où <code>n</code> représente le nombre de
     points à parcourir. La <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes">complexité</a> d'un algorithme, ou d'une fonction, est une mesure de la quantité de ressources (temps ou mémoire) nécessaire à son
-    éxecution. Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en sélectionner que deux !
+    éxecution :<code>O(n)</code> signifie que les ressources demandées sont proportionnelles à n.  Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en sélectionner que deux !
   </p>
   <p>
     Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le point le plus proche de chaque point. Pour y arriver nous devrions, pour chaque point, regarder les n - 1 points restants, mesurer
