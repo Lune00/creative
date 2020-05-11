@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="173.37474mm"
+   height="89.71434mm"
+   viewBox="0 0 173.37474 89.71434"
+   version="1.1"
+   id="svg11121"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="stacktrace.svg">
+  <defs
+     id="defs11115" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="372.62535"
+     inkscape:cy="230.57033"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata11118">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.1920937,-4.5684264)">
+    <rect
+       y="36.593559"
+       x="136.41493"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-7-8-1"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="36.026604"
+       x="92.758659"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-7-8"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="36.447334"
+       x="3.1171234"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="86.437096"
+       x="3.1783185"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-2-1-5-9"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="4.7088842"
+       x="1.3466469"
+       height="39.795856"
+       width="39.816879"
+       id="rect4518-9-5"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="3.0238094" />
+    <rect
+       y="28.178093"
+       x="3.1171234"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="6.3894939"
+       y="34.312496"
+       id="text12148"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="6.3894939"
+         y="34.312496"
+         id="tspan12146"
+         style="stroke-width:0.07344428"><tspan
+           x="6.3894939"
+           y="34.312496"
+           id="tspan12144"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="6.1846113"
+       y="27.326578"
+       id="text12142"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="6.1846113"
+         y="27.326578"
+         id="tspan12140"
+         style="stroke-width:0.07344428"><tspan
+           x="6.1846113"
+           y="27.326578"
+           id="tspan12138"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="4.7421637"
+       x="46.764988"
+       height="39.763504"
+       width="39.816879"
+       id="rect4518-9-5-7"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="3.2127976" />
+    <rect
+       y="27.568367"
+       x="48.535465"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-9"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="35.837608"
+       x="48.535465"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-7"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="60.526321"
+       y="33.800961"
+       id="text12136"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="60.526321"
+         y="33.800961"
+         id="tspan12134"
+         style="stroke-width:0.07344428"><tspan
+           x="60.526321"
+           y="33.800961"
+           id="tspan12132"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="59.690689"
+       y="26.815042"
+       id="text12130"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="59.690689"
+         y="26.815042"
+         id="tspan12128"
+         style="stroke-width:0.07344428"><tspan
+           x="59.690689"
+           y="26.815042"
+           id="tspan12126"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="19.299156"
+       x="48.535465"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-9-4"
+       style="fill:#75ebc6;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="59.690689"
+       y="19.877527"
+       id="text12124"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="59.690689"
+         y="19.877527"
+         id="tspan12122"
+         style="stroke-width:0.07344428"><tspan
+           x="59.690689"
+           y="19.877527"
+           id="tspan12120"
+           style="stroke-width:0.07344428">console.log('foo')</tspan></tspan></text>
+    <rect
+       y="4.7703466"
+       x="90.988197"
+       height="39.730766"
+       width="39.816879"
+       id="rect4518-9-5-6"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="3.5907738" />
+    <rect
+       y="27.75736"
+       x="92.758667"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="36.026604"
+       x="92.758667"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-76"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="113.2386"
+       y="33.959511"
+       id="text12118"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="113.2386"
+         y="33.959511"
+         id="tspan12116"
+         style="stroke-width:0.07344428"><tspan
+           x="113.2386"
+           y="33.959511"
+           id="tspan12114"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="112.40298"
+       y="26.973597"
+       id="text12112"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="112.40298"
+         y="26.973597"
+         id="tspan12110"
+         style="stroke-width:0.07344428"><tspan
+           x="112.40298"
+           y="26.973597"
+           id="tspan12108"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="4.6739264"
+       x="134.64445"
+       height="39.826668"
+       width="39.816879"
+       id="rect4518-9-5-6-0"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="4.3467264" />
+    <rect
+       y="28.324316"
+       x="136.41493"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="36.593559"
+       x="136.41493"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-76-2"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="165.2751"
+       y="34.435158"
+       id="text12106"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="165.2751"
+         y="34.435158"
+         id="tspan12104"
+         style="stroke-width:0.07344428"><tspan
+           x="165.2751"
+           y="34.435158"
+           id="tspan12102"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.93777132px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="165.70096"
+       y="27.624258"
+       id="text12100"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="165.70096"
+         y="27.624258"
+         id="tspan12098"
+         style="stroke-width:0.07344428"><tspan
+           x="165.70096"
+           y="27.624258"
+           id="tspan12096"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="20.166054"
+       x="136.58189"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9-8"
+       style="fill:#75ebc6;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="165.89996"
+       y="20.604834"
+       id="text12094"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="165.89996"
+         y="20.604834"
+         id="tspan12092"
+         style="stroke-width:0.07344428"><tspan
+           x="165.89996"
+           y="20.604834"
+           id="tspan12090"
+           style="stroke-width:0.07344428">bar execution context</tspan></tspan></text>
+    <rect
+       y="78.16787"
+       x="3.1783185"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9-2"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="86.437096"
+       x="3.1783185"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-76-2-1"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="6.4624372"
+       y="76.251617"
+       id="text12088"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="6.4624372"
+         y="76.251617"
+         id="tspan12086"
+         style="stroke-width:0.07344428"><tspan
+           x="6.4624372"
+           y="76.251617"
+           id="tspan12084"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="6.257556"
+       y="69.265701"
+       id="text12082"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="6.257556"
+         y="69.265701"
+         id="tspan12080"
+         style="stroke-width:0.07344428"><tspan
+           x="6.257556"
+           y="69.265701"
+           id="tspan12078"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="70.009605"
+       x="3.3452802"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9-8-6"
+       style="fill:#75ebc6;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="6.4565654"
+       y="62.421291"
+       id="text12076"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="6.4565654"
+         y="62.421291"
+         id="tspan12074"
+         style="stroke-width:0.07344428"><tspan
+           x="6.4565654"
+           y="62.421291"
+           id="tspan12072"
+           style="stroke-width:0.07344428">bar execution context</tspan></tspan></text>
+    <rect
+       y="61.740395"
+       x="3.3452802"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-9-4-8"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="5.82582"
+       y="55.483799"
+       id="text12070"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="5.82582"
+         y="55.483799"
+         id="tspan12068"
+         style="stroke-width:0.07344428"><tspan
+           x="5.82582"
+           y="55.483799"
+           id="tspan12066"
+           style="stroke-width:0.07344428">console.log('bar')</tspan></tspan></text>
+    <rect
+       y="53.559837"
+       x="45.631062"
+       height="40.617428"
+       width="39.816879"
+       id="rect4518-9-5-6-0-7"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="3.0238094" />
+    <rect
+       y="77.978874"
+       x="47.401539"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9-24"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="86.2481"
+       x="47.401539"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-76-2-0"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="59.174721"
+       y="76.093063"
+       id="text12064"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="59.174721"
+         y="76.093063"
+         id="tspan12062"
+         style="stroke-width:0.07344428"><tspan
+           x="59.174721"
+           y="76.093063"
+           id="tspan12060"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="58.969841"
+       y="69.107147"
+       id="text12058"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="58.969841"
+         y="69.107147"
+         id="tspan12056"
+         style="stroke-width:0.07344428"><tspan
+           x="58.969841"
+           y="69.107147"
+           id="tspan12054"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="69.82061"
+       x="47.568501"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9-8-1"
+       style="fill:#75ebc6;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="58.538105"
+       y="62.262737"
+       id="text12052"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="58.538105"
+         y="62.262737"
+         id="tspan12050"
+         style="stroke-width:0.07344428"><tspan
+           x="58.538105"
+           y="62.262737"
+           id="tspan12048"
+           style="stroke-width:0.07344428">bar execution context</tspan></tspan></text>
+    <rect
+       y="53.556175"
+       x="89.854271"
+       height="40.621082"
+       width="39.816879"
+       id="rect4518-9-5-6-0-7-3"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="4.1577382" />
+    <rect
+       y="77.978874"
+       x="91.624748"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-9-97-9-24-9"
+       style="fill:#cc84ed;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="86.2481"
+       x="91.624748"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-76-2-0-1"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="111.887"
+       y="76.093048"
+       id="text12046"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="111.887"
+         y="76.093048"
+         id="tspan12044"
+         style="stroke-width:0.07344428"><tspan
+           x="111.887"
+           y="76.093048"
+           id="tspan12042"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="111.68212"
+       y="69.107132"
+       id="text12040"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="111.68212"
+         y="69.107132"
+         id="tspan12038"
+         style="stroke-width:0.07344428"><tspan
+           x="111.68212"
+           y="69.107132"
+           id="tspan12036"
+           style="stroke-width:0.07344428">foo execution context</tspan></tspan></text>
+    <rect
+       y="53.680046"
+       x="134.26648"
+       height="40.492962"
+       width="39.816879"
+       id="rect4518-9-5-6-0-7-3-8"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="4.1577382" />
+    <rect
+       y="85.87011"
+       x="136.03696"
+       height="6.6817379"
+       width="36.348656"
+       id="rect4986-3-84-76-2-0-1-9"
+       style="fill:#efd292;fill-opacity:1;stroke:none;stroke-width:0.33400002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93775702px;line-height:1.25;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07344428"
+       x="164.82454"
+       y="75.775932"
+       id="text12034"
+       transform="scale(0.8389546,1.1919596)"><tspan
+         sodipodi:role="line"
+         x="164.82454"
+         y="75.775932"
+         id="tspan12032"
+         style="stroke-width:0.07344428"><tspan
+           x="164.82454"
+           y="75.775932"
+           id="tspan12030"
+           style="stroke-width:0.07344428">Global execution context</tspan></tspan></text>
+    <rect
+       y="53.438137"
+       x="1.2975937"
+       height="40.73901"
+       width="39.816879"
+       id="rect4518-9-5-9"
+       style="fill:none;fill-opacity:1;stroke:#040000;stroke-width:0.211;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       ry="3.0238094" />
+  </g>
+</svg>
