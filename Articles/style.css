@@ -1,0 +1,23 @@
+html {
+  margin: 0;
+  padding: 30;
+  font-size: 18px;
+  margin: 1em;
+  line-height: 1.5em;
+}
+
+
+body {
+  padding: 300px;
+}
+
+.encart{
+  background-color: #C6C6C6;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+h1{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
