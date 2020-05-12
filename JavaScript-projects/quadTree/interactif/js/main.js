@@ -1,6 +1,41 @@
+//Main
+const main = (() => {
+
+  let main = {};
+
+  //Map canvas to switch
+  main.map_switch_canvas = (() => {
+    let map = new Map();
+    map.set('defaultCanvas0', 'switch-demo01');
+    map.set('defaultCanvas1', 'switch-demo02');
+    map.set('defaultCanvas2', 'switch-demo03');
+    return map;
+  })();
+
+  main.start = function() {
+    console.log('start app');
+    //Start demo01 and init its UI
+    // main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
+    main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
+    uiApp01.init();
+
+    main.p5demo02 = new p5(demo02, 'canvas-demo02-depth');
+    uiApp02.init();
+
+    main.p5demo03 = new p5(demo03, 'canvas-demo03-collisions');
+    uiApp03.init();
+
+    //init with p5demo01
+    $('#switch-demo01').bootstrapToggle('on');
+  };
+
+  return main;
+})();
+
 //Manage activation/desactivation of demos (only one demo active at a time)
 (function() {
   $('.switch-demo').change(function() {
+
     if (this.checked) {
       $('.switch-demo').not(this).bootstrapToggle('off');
       activateDemo(this.id);
@@ -21,6 +56,7 @@
   })
 })();
 
+
 const activateDemo = id => {
   if (id === 'switch-demo01') {
     document.getElementById('resetButton').disabled = false;
@@ -33,6 +69,12 @@ const activateDemo = id => {
     if (!main.p5demo02._loop) {
       main.p5demo02.loop();
     }
+
+  } else if (id === 'switch-demo03') {
+    document.getElementById('resetButton-demo03').disabled = false;
+    if (!main.p5demo03._loop) {
+      main.p5demo03.loop();
+    }
   }
 };
 
@@ -43,34 +85,11 @@ const desactivateDemo = id => {
   } else if (id === 'switch-demo02') {
     document.getElementById('resetButton-demo02').disabled = true;
     main.p5demo02.noLoop();
+  } else if (id === 'switch-demo03') {
+    document.getElementById('resetButton-demo03').disabled = true;
+    main.p5demo03.noLoop();
   }
-
 };
 
 
-//Main
-const main = (() => {
-  console.log('start app');
-  let main = {};
-
-  //Map canvas to switch
-  main.map_switch_canvas = (() => {
-    let map = new Map();
-    map.set('defaultCanvas0', 'switch-demo01');
-    map.set('defaultCanvas1', 'switch-demo02');
-    return map;
-  })();
-
-  //Start demo01 and init its UI
-  // main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
-  main.p5demo01 = new p5(demo01, 'canvas-demo01-insert-querry');
-  uiApp01.init();
-
-  main.p5demo02 = new p5(demo02, 'canvas-demo02-depth');
-  uiApp02.init();
-
-  //init with p5demo01
-  $('.switch-demo01').bootstrapToggle('on');
-
-  return main;
-})();
+main.start();
