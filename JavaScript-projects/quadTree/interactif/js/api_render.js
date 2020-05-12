@@ -95,7 +95,7 @@ const apiP5 = {
     sketch.strokeWeight(0.2);
 
     let c = sketch.map(node.depth, 0, maxDepth + 1, 0, 200);
-    sketch.fill(c);
+    sketch.fill(c/3,c/3,c);
 
     if (node.over)
       sketch.fill('#5733FF');

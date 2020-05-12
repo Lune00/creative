@@ -760,19 +760,60 @@
 
   <h2>Attacher des données aux feuilles</h2>
 
-  <h2>Utilisation d'un quadTree pour la détection de collisions</h2>
+  <h2>Utilisation d'un Quadtree pour la détection de collisions</h2>
 
 
 
   <div id="demo03">
+
+
+
+
+    <div>
+      <div id="radioContainer-demo03">
+
+        <input type="radio" id="quadtree" name="algorithme" value="quadtree" checked="checked">
+        <label for="quadtree"><acronym title="Utiliser le quadtree">Quadtree</acronym></label>
+
+        <input type="radio" id="naive" name="algorithme" value="naive">
+        <label for="naive"><acronym title="Utiliser l'algorithme naïf qui parcourt toutes les paires">Approche naïve</acronym></label>
+
+
+
+        <label for="nbParticules">Nombre de particules</label>
+        <input type="range" id="nbParticulesRange" name="nbParticules" value="200" min="2" max="1000">
+        <output id="output-nbParticules"></output>
+      </div>
+    </div>
+
+    <h4>Infos</h4>
+    <div>
+      <label for="timeToBuildQuadtree" <acronym title="Temps d'éxecution nécessaire à la construction du quadtree uniquement">Temps construction du Quadtree (ms) : </label>
+      <span id="timeToBuildQuadtree" name="timeToBuildQuadtree"></span>
+    </div>
+    <div>
+      <label for="timeToComputeInteractions" <acronym
+        title="Temps d'execution nécessaire au calcul de toutes les interactions. Dans le cas de l'approche naive le calcul mesure le temps nécessaire pour parcourir toutes les paires de particules. Dans le cas du quadtree, le calcul comprend le temps de construction du quadtree et des querry.">Temps
+        total du calcul de toutes les interactions (ms) :</label>
+      <span id="timeToComputeInteractions" name="timeToComputeInteractions"></span>
+    </div>
+
+    <div>
+      <input type="checkbox" name="showQuadTreeCheckbox" id="showQuadTreeCheckbox">
+      <label for="showQuadTreeCheckbox">Afficher quadtree</label>
+      <input type="checkbox" name="showDetectionZoneCheckbox" id="showDetectionZoneCheckbox">
+      <label for="showDetectionZoneCheckbox">Afficher zones de détection</label>
+    </div>
+
     <div>Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a> - <a href="#demo03">3</a></div>
+
     <div class="resetButtonContainer">
       <!-- <input type="button" value="reset"> -->
       <button type="button" class="btn btn-primary btn-sm" id="resetButton-demo03">Réinitialiser</button>
       <input id="switch-demo03" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
     </div>
-    <div id="canvas-demo03-collisions"  class="myCanvas">
 
+    <div id="canvas-demo03-collisions" class="myCanvas">
     </div>
   </div>
   <h2>Sources : aller plus loin</h2>
