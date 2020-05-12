@@ -123,7 +123,7 @@
       l’est. Elle est <em>appelée</em>, comme n’importe quelle fonction, elle n’est pas <em>rappelée</em>. Le sens commun de <em>rappel</em> ne s’applique pas ici, callback y signifie seulement <q>est passé en argument à une autre fonction</q>.
     </p>
 
-    <h3>Lorsque le terme callback correspond au sens commun</h3>
+    <h3>Lorsque le terme <em>callback</em> correspond au sens commun</h3>
 
     <p>Le problème c’est que dans son usage le plus courant en Javascript le terme <em>callback</em> signifie bien à la fois est <q> passé en argument à une autre fonction </q> et <q> est appelée plus tard dans le temps </q>. Par exemple, c’est ce
       qui arrive à chaque fois que nous
@@ -180,7 +180,7 @@ element.addEventListener(‘onClick’, bar) ;
     </p>
 
 
-    <h2>Callstack, Web API, Callback queue et Event-loop : au coeur de Javascript</h2>
+    <h2>Stack, Web API, Callback queue et Event-loop : au coeur de Javascript</h2>
 
 
     <p>Pour la suite je fais le choix de garder les mots anglais pour désigner les processus où les éléments techniques. Ces mots seront ceux rencontrés en permanence dans les documentations ou les ressources en ligne, et plutôt que d’en proposer des
@@ -188,17 +188,17 @@ element.addEventListener(‘onClick’, bar) ;
 
     <h3>Javascript est mono-threadé, « there is not such a thing as asynchronous calls in Javascript »</h3>
 
-    <p>L’interpréteur Javascript dans le navigateur est <strong>mono-threadé</strong>, c’est à dire qu’il ne possède qu’une <strong>stack mémoire</strong>. La stack est une zone mémoire où les données sont ajoutées ou retirées suivant l’architecture
+    <p>L’interpréteur Javascript dans le navigateur est <strong>mono-threadé</strong>, c’est à dire qu’il ne possède qu’une <strong>Stack mémoire</strong>. La Stack est une zone mémoire où les données sont ajoutées ou retirées suivant l’architecture
       d’une pile : <a href="https://en.wikipedia.org/wiki/Stack-based_memory_allocation ">dernier entré, premier sorti.</a> </p>
 
 
-    <p>A chaque appel de fonction rencontré par le flot du programme un contexte mémoire (stackframe) est créée sur la stack (ou callstack) . Le contexte contient toutes les informations nécessaires à l’exécution de la fonction  (arguments, variables
+    <p>A chaque appel de fonction rencontré par le flot du programme un contexte mémoire (stackframe) est créée sur la Stack (ou Callstack) . Le contexte contient toutes les informations nécessaires à l’exécution de la fonction  (arguments, variables
       locales, références vers des fonctions appelées à l’intérieur, références vers des objets présents dans l’environnement d’exécution de la fonction, référence vers les objets dans le contexte global…) Je ne souhaite pas rentrer dans les détails
       sur ces aspects car ils ne servent pas mon propos, mais vous pouvez en apprendre plus <a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">ici</a> ou <a
         href="https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c">là</a>.</p>
 
     <p>
-      Une fois que la fonction a fait son travail et a retourné son contexte est détruit et retiré de la stack. Si l’on reprend l’exemple de tout à l’heure 
+      Une fois que la fonction a fait son travail et a retourné son contexte est détruit et retiré de la Stack. Si l’on reprend l’exemple de tout à l’heure 
     </p>
 
 
@@ -218,7 +218,7 @@ element.addEventListener(‘onClick’, bar) ;
 </pre>
     </div>
 
-    <p>Voici schématiquement ce qu’il se passe dans la stack </p>
+    <p>Voici schématiquement ce qu’il se passe dans la Stack </p>
 
     <div class="row justify-content-center" id="stacktrace">
       <figure class="figure">
@@ -229,19 +229,19 @@ element.addEventListener(‘onClick’, bar) ;
 
 
     <p>
-      Le navigateur au moment du chargement du script Javascript et de l’initialisation de la stack génère par défaut un contexte spécial, le global execution context, qui se trouve poussé dessus. Ce contexte existe sur toute la durée de vie du
-      thread. Le flot rencontre l’appel de <code>foo</code>, un nouveau contexte est poussé sur la stack pour foo. Au sein de la fonction <code>foo</code> il y’a un appel a <code>console.log</code>, un nouveau contexte est crée pour cet appel. Il est
-      exécuté et retiré de la stack. Ensuite
-      arrive l’appel de <code>bar</code>, un nouveau contexte est crée, <code>bar</code> est exécutée, retourne, son contexte est détruit. Enfin <code>foo</code> retourne, son contexte est détruit et la stack est vide.
+      Le navigateur au moment du chargement du script Javascript et de l’initialisation de la Stack génère par défaut un contexte spécial, le global execution context, qui se trouve poussé dessus. Ce contexte existe sur toute la durée de vie du
+      thread. Le flot rencontre l’appel de <code>foo</code>, un nouveau contexte est poussé sur la Stack pour foo. Au sein de la fonction <code>foo</code> il y’a un appel a <code>console.log</code>, un nouveau contexte est crée pour cet appel. Il est
+      exécuté et retiré de la Stack. Ensuite
+      arrive l’appel de <code>bar</code>, un nouveau contexte est crée, <code>bar</code> est exécutée, retourne, son contexte est détruit. Enfin <code>foo</code> retourne, son contexte est détruit et la Stack est vide.
     </p>
 
     <p>
-      Ce qu’il faut retenir de cette abstraction de l’interpréteur Javascript c’est qu’il est mono-threadé (il ne possède qu’une stack) et que <strong>tout s’y exécute de manière synchrone</strong>. Une seule chose peut s’y passer à la fois.
+      Ce qu’il faut retenir de cette abstraction de l’interpréteur Javascript c’est qu’il est mono-threadé (il ne possède qu’une Stack) et que <strong>tout s’y exécute de manière synchrone</strong>. Une seule chose peut s’y passer à la fois.
     </p>
 
     <p>Ce même thread est également <a href="https://www.youtube.com/watch?v=cCOL7MC4Pl0 ">utilisé par le navigateur pour rafraichir la vue et repeindre son canvas</a>. Le <a href="https://fr.wikipedia.org/wiki/Moteur_de_rendu_HTML">rendering</a> a
       lieu en général à intervales définis ou à un rythme défini par le navigateur lui même(pour ne pas rafraichir pour
-      rien). Cette opération utilise la même stack que le même thread que Javascript, et ne peut se produire que lorsque <strong>la stack est vide</strong>. Cela explique pourquoi lorsqu’un traitement est trop long dans la stack le rendu est bloqué
+      rien). Cette opération utilise la même Stack que le même thread que Javascript, et ne peut se produire que lorsque <strong>la Stack est vide</strong>. Cela explique pourquoi lorsqu’un traitement est trop long dans la Stack le rendu est bloqué
       et le navigateur ne semble plus répondre aux inputs. D’où l’intéret d’utiliser des traitements asynchrones
       afin de laisser au navigateur la possibilité de se repeindre et de traiter les interactions utilisateurs.</p>
 
@@ -276,14 +276,16 @@ setTimeout( function foo() => { console.log(‘foo’);}, 1000) ;
     </div>
 
     <p>
-      on lui passe une référence vers une fonction, une callback. On délègue ainsi au navigateur la tâche d’imposer un délai à l’execution de la fonction <code>foo</code>. La fonction <code>setTimeout</code> est immédiatement executée et retourne,
-      son contexte est retiré de
-      la stack et l’interpréteur peut continuer à exécuter du code sur la stack. <code>setTimeout</code> a lancé une tâche prise en charge par le navigateur : celle d’ imposer un délai de 1s à l’execution de <code>foo</code>. Une fois ce délai passé
+      on lui passe en argument une callback. On délègue ainsi au navigateur la tâche d’imposer un délai à l’execution de <code>foo</code>. La fonction <code>setTimeout</code> est immédiatement executée et retourne.
+      Son contexte est retiré de
+      la Stack et l’interpréteur peut continuer à exécuter du code sur la Stack.
+    </p>
+    <p><code>setTimeout</code> a lancé une tâche prise en charge par le navigateur : celle d’ imposer un délai de 1s à l’execution de <code>foo</code>. Une fois ce délai passé
       le navigateur
       place la
-      fonction <code>foo</code> dans la callback queue. Lorsque la stack de Javascript est vide, l’Event loop prend la première tâche dans la queue et la pousse sur la stack Javascript. Cette tache n’est rien d’autre que la callback <code>foo</code>.
-      L'Event loop est un processus qui tourne en permanence. Dès que la stack est vide elle ramène un élément de la queue sur la stack.
-    </p>
+      fonction <code>foo</code> dans la <strong>Callback queue</strong>. Lorsque la Stack de Javascript est vide, <strong>l’Event loop</strong> prend la première tâche dans la queue et la pousse sur la Stack Javascript. Cette tache n’est rien d’autre que la callback <code>foo</code>.
+      L'Event loop est un processus qui tourne en permanence. Dès que la Stack est vide elle ramène un élément de la queue sur la Stack.</p>
+
 
 
     <div class="row justify-content-center" id="system">
@@ -315,8 +317,8 @@ element.addEventListener(‘onClick’, bar) ;
 
 
     <p>
-      on appelle l’api EventListener du navigateur et on lui dit «  lorsque l’élement du DOM sous ton contrôle recevra l’élement click, alors envoie moi sur la stack Javascript la fonction bar pour que je l’execute » . Lorsque l’élement est cliqué,
-      le navigateur place la fonction <code>bar</code> dans la callback queue et lorsqu’elle arrive au début de la file d’attente, et que la stack est vide, l’Event loop la pousse et <code>bar</code> est executée dans le thread Javascript.
+      on appelle l’api EventListener du navigateur et on lui dit «  lorsque l’élement du DOM sous ton contrôle recevra l’élement click, alors envoie moi sur la Stack Javascript la fonction bar pour que je l’execute » . Lorsque l’élement est cliqué,
+      le navigateur place la fonction <code>bar</code> dans la callback queue et lorsqu’elle arrive au début de la file d’attente, et que la Stack est vide, l’Event loop la pousse et <code>bar</code> est executée dans le thread Javascript.
     </p>
 
     <p>
@@ -327,23 +329,31 @@ element.addEventListener(‘onClick’, bar) ;
 
     <h3>En résumé</h3>
     <p>
-      On peut voir que dans le contexte d’execution asynchrone, à l’appel de la Web API (ou d’une api C++ avec Node), le terme de callback y a effectivement tout son sens. Ces fonctions sont « appelées plus tard », on les fait bien revenir au terme
-      d’un traitement asynchrone.
+      On peut voir que dans le contexte d’execution asynchrone, à l’appel de la Web API (ou d’une api C++ avec Node), le terme de <em>callback</em> y a effectivement tout son sens. C'est d'aileurs ce contexte lui-même qui lui donne ce sens. Ces fonctions sont « appelées plus tard », on les fait bien revenir au terme
+      d’un traitement asynchrone : déléguation à l'environnement d'execution, retour par la Callback queue.
+    </p>
+
+    <p>Cependant, le mot <em>callback</em> est toujours employé pour désigner une simple fonction passée en argument à une autre fonction. Par exemple, la <a
+        href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/forEach">documentation</a> de la méthode <code>forEach</code>, du prototype d'<code>Array</code>, nous dit que <code>forEach</code> prend en
+      argument une <em>callback</em>. Cette callback sera executée pour chaque élément du tableau sur lequel <code>forEach</code> est appliqué. Ici on dénomme <em>callback</em> cette fonction alors que <code>forEach</code> applique un traitement
+      synchrone.
+      Cette <em>callback</em> ne
+      passe jamais par la Web API ou par la Callback queue. Elle est executée directement sur la Stack. A nouveau, le mot est abusivement employé hors de son contexte d'origine, où il fait sens, et produit de la confusion.
     </p>
 
     <p>
       Nous l’avons vu, les exécutions asynchrones en Javascript ne se font pas à proprement parler « en » Javascript mais par l’intermédiaire d’un thread supplémentaire mis a disposition par le navigateur (ou par Node). Javascript est monothreadé et
-      son thread, en plus d’avoir sa propre autonomie est alimenté par l’Event loop de son environnement. L’Event-loop et la queue sont les briques de base d’une architecture <em>programmation événementielle</em>.
+      son thread, en plus d’avoir sa propre autonomie est alimenté par l’Event loop de son environnement. L’Event-loop et la Callback queue sont les briques de base d’une architecture <em>programmation événementielle</em>.
     </p>
 
+
+    <h2>Retour sur la Stack : gestion du traitement asynchrone</h2>
     <p>
-      Les callbacks qui retombent sur la stack doivent être traitées et gérées par le développeur pour faire tourner correctement son programme. Cependant dès que nous passons notre callback à la Wep API nous perdons le contrôle sur le flot de notre
-      programme et nous ne sommes plus sûrs de rien. Comment gérer alors le retour de nos callbacks sur la stack ? Pour reprendre mon exemple précédent, comment je m’y prends si je souhaite appeler une autre fonction uniquement <em>après</em> que
+      Les callbacks qui retombent sur la Stack doivent être traitées et gérées par le développeur pour faire tourner correctement son programme. Cependant dès que nous passons notre callback à la Wep API nous perdons le contrôle sur le flot de notre
+      programme et nous ne sommes plus sûrs de rien. Comment gérer alors le retour de nos callbacks sur la Stack ? Pour reprendre mon exemple précédent, comment je m’y prends si je souhaite appeler une autre fonction uniquement <em>après</em> que
       <code>foo</code> ait été
       exécutée <em>correctement</em>?
     </p>
-
-    <h2>Retour sur la stack : gestion du traitement asynchrone</h2>
 
 
     <h3>Callback hell</h3>
@@ -373,13 +383,13 @@ element.addEventListener(‘onClick’, bar) ;
     <p>
       Je voudrais ici appeler une fonction <code>bar</code> aussitôt ‘foo succès’ affiché dans la console au moins 3 secondes après l’execution de ce code. Je ne peux pas écrire du code à la suite de <code>setTimeout</code> car l’execution de
       <code>setTimeout</code> est immédiate. La
-      fonction <code>foo</code> est passée à la Web API et, après un délai, attend son tour dans la callback queue. Elle va retomber dans la stack à un moment que je ne peux pas déterminer. Mon unique solution est donc d’appeler directement
+      fonction <code>foo</code> est passée à la Web API et, après un délai, attend son tour dans la callback queue. Elle va retomber dans la Stack à un moment que je ne peux pas déterminer. Mon unique solution est donc d’appeler directement
       <code>bar</code>
       <em>depuis</em> <code>foo</code>.
     </p>
 
     <p>
-      Voici un exemple d’appels permettant d’enchainer les traitements asynchrones. Chaque traitement asynchrone renvoie la callback sur la stack à un moment indéfini. Je suis donc obligé de passer à chaque traitement asynchrone une référence vers le
+      Voici un exemple d’appels permettant d’enchainer les traitements asynchrones. Chaque traitement asynchrone renvoie la callback sur la Stack à un moment indéfini. Je suis donc obligé de passer à chaque traitement asynchrone une référence vers le
       prochain traitement asynchrone ou, plus directement encore, de définir dans chaque traitement le prochain traitement. Dans chaque callback on définit une callback, puis encore une callback etc... En pratique voici ce que ça donne
     </p>
 
@@ -418,7 +428,7 @@ element.addEventListener(‘onClick’, bar) ;
       code, pourtant gardé volontairement simple ici, ne dévoile pas ses intentions, ne dit pas comment il fonctionne ou ce qu’il fait. Ces symptômes sont une alerte. Et plus l’enchaînement des traitements augmente et plus cette suite d’appels sera
       profonde et illisible. </p>
 
-    <p>Le problème c’est que jusqu’à l’arrivée du système de promesses il n’y avait aucun autre moyen d’écouter le retour sur la stack d’un traitement asynchrone. Il fallait que le retour contienne lui même une référence vers la fonction à appeler en
+    <p>Le problème c’est que jusqu’à l’arrivée du système de promesses il n’y avait aucun autre moyen d’écouter le retour sur la Stack d’un traitement asynchrone. Il fallait que le retour contienne lui même une référence vers la fonction à appeler en
       cas de réussite ou d’échec du traitement asynchrone.</p>
 
     <h3> Les promesses</h3>
@@ -473,7 +483,7 @@ element.addEventListener(‘onClick’, bar) ;
 
 
     <p><code>foo</code> qui retourne à présent une promesse. La promesse prend en argument une fonction qui est immédiatement executée. Ici <code>setTimeout</code> s’exécute : elle passe la callback à l’environnement du navigateur. L’Event-loop
-      finira par la pousser de la callback queue sur la stack. Remarquez que <code>foo</code> ne contient plus aucune référence ou une définition d’une callback a appeler à la fin de son exécution. Elle n’en a plus la charge. <code>foo</code>
+      finira par la pousser de la callback queue sur la Stack. Remarquez que <code>foo</code> ne contient plus aucune référence ou une définition d’une callback a appeler à la fin de son exécution. Elle n’en a plus la charge. <code>foo</code>
       retourne ici une promesse, elle
       promet de retourner quelque chose, même si elle ne sait pas encore quoi et quand. La responsabilité du retour et de savoir quoi en faire revient donc à la promesse. </p>
 
@@ -485,7 +495,7 @@ element.addEventListener(‘onClick’, bar) ;
       d’une autre si notre traitement a réussi ou échoué. Mais au lieu de dire à <code>foo</code> <em>quoi faire</em> en cas d’échec ou de réussite, nous disons à la promesse <em>quoi dire</em> en cas d’échec ou de réussite. </p>
 
 
-    <p>Lorsque le traitement asynchrone est terminé, la callback passée en argument à <code>setTimeout</code> revient sur la stack, est executée et notifie la promesse. Nous pouvons alors interroger la promesse pour savoir comment notre traitement
+    <p>Lorsque le traitement asynchrone est terminé, la callback passée en argument à <code>setTimeout</code> revient sur la Stack, est executée et notifie la promesse. Nous pouvons alors interroger la promesse pour savoir comment notre traitement
       s’est passé.
       Pour cela, la promesse nous met à disposition deux méthodes : <code>then</code> et <code>catch</code></p>
 
