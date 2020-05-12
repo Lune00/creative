@@ -65,6 +65,36 @@ const apiP5 = {
       else
         child.forEach(p => this.showPoint(sketch, p, 'white'));
     });
+  },
+
+  showNodeWithDepth: function(sketch, node) {
+    let maxDepth = node.getMaxDepth()
+    this.showNodeContent(sketch, node, maxDepth);
+  },
+
+  showNodeContent: function(sketch, node, maxDepth) {
+    this.showNode(sketch, node, maxDepth);
+    node.children.forEach(child => {
+      if (child instanceof Node) {
+        this.showNodeContent(sketch, child, maxDepth);
+      } else
+        child.forEach(p => this.showPoint(sketch, p, 'white'));
+    });
+  },
+
+  showNode: function(sketch, node, maxDepth) {
+    sketch.push();
+    sketch.rectMode(sketch.CENTER);
+
+    sketch.strokeWeight(0.5);
+    sketch.stroke(255);
+
+    let c = sketch.map(node.depth, 0, maxDepth + 1 , 0, 255);
+    // console.log(this.depth, maxDepth, c);
+    sketch.fill(0,c/2,c);
+
+    sketch.rect(node.x, node.y, 2 * node.w, 2 * node.h);
+    sketch.pop();
   }
 
 }

@@ -9,6 +9,7 @@ class NodePedagogic extends Node {
   constructor(x, y, w, h, depth) {
     super(x, y, w, h, depth);
     this.intersected = false;
+    this.over = false;
   }
 
   nbBranch(tree) {
@@ -34,22 +35,6 @@ class NodePedagogic extends Node {
     return tree;
   }
 
-  //TODO : write
-  depthUnderCursor(circularProbe) {
-
-    let boundingBox = {
-      x: this.x,
-      y: this.y,
-      w: this.w,
-      h: this.h
-    };
-
-    if (circleProbe.intersects(boundingBox)) {
-
-    }
-
-  }
-
 
   nbPoints() {
 
@@ -64,26 +49,25 @@ class NodePedagogic extends Node {
     return n;
   }
 
-  isIntersected(circleProbe) {
+  depthUnderCursor(circularProbe) {
 
-    let boundingBox = {
-      x: this.x,
-      y: this.y,
-      w: this.w,
-      h: this.h
-    };
+     let boundingBox = {
+       x: this.x,
+       y: this.y,
+       w: this.w,
+       h: this.h
+     };
 
-    if (circleProbe.intersects(boundingBox) && !this.isBranch)
-      this.intersected = true;
-    else
-      this.intersected = false;
+     if (this.contains(circularProbe.x, circularProbe.y))
+       this.over = true;
+     else
+       this.over = false;
 
-    this.children.forEach(child => {
-      if (child instanceof Node)
-        child.isIntersected(circleProbe)
-    });
-  }
-
+     this.children.forEach(child => {
+       if (child instanceof Node)
+         child.depthUnderCursor(circularProbe)
+     });
+   }
 
   //Returns all points looked in the circular probe
   queryLooked(circleProbe, points) {
@@ -127,5 +111,46 @@ class NodePedagogic extends Node {
     else if (region === 3)
       return new NodePedagogic(this.x + this.w / 2, this.y + this.h / 2, this.w / 2, this.h / 2, this.depth + 1);
   }
+
+
+
+  getMaxDepth(depthData) {
+
+    if(!depthData){
+      depthData = {};
+      depthData.maxDepth = 0;
+    }
+    for (let i = 0; i != this.children.length; i++) {
+      if (this.children[i] instanceof Node && this.children[i].isBranch)
+        this.children[i].getMaxDepth(depthData)
+      else {
+        if (this.children[i].depth) {
+          depthData.maxDepth = depthData.maxDepth > this.children[i].depth ? depthData.maxDepth : this.children[i].depth;
+        }
+      }
+    }
+
+    return depthData.maxDepth;
+  }
+
+  isIntersected(circleProbe) {
+
+   let boundingBox = {
+     x: this.x,
+     y: this.y,
+     w: this.w,
+     h: this.h
+   };
+
+   if (circleProbe.intersects(boundingBox) && !this.isBranch)
+     this.intersected = true;
+   else
+     this.intersected = false;
+
+   this.children.forEach(child => {
+     if (child instanceof Node)
+       child.isIntersected(circleProbe)
+   });
+ }
 
 }

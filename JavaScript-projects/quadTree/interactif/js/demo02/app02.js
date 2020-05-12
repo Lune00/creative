@@ -21,7 +21,13 @@ const demo02 = (sketch) => {
     sketch.background(0);
     circularProbe.moveTo(sketch.mouseX, sketch.mouseY);
     //apiP5.showPoint(sketch, circularProbe, 'white' );
-    apiP5.showNode(sketch,rootNode);
+
+    rootNode.depthUnderCursor(circularProbe);
+    apiP5.showNodeWithDepth(sketch,rootNode);
+
+
+
+
   }
 
   //Interace with UI
