@@ -225,10 +225,10 @@
   <h3>Le point de départ de l'arbre : la racine</h3>
   <p>
     Nous allons commencer par définir la racine de notre quadtree, le premier noeud. La racine n'a pas de noeud parent par définition et c'est une feuille. A présent il faut faire la connexion entre notre arbre et
-    l'espace géometrique : <strong>chaque noeud aura la responsabilité d'une région de l'espace. La région de la racine sera
-      l'intégralité de notre espace</strong>. Elle sera
+    l'espace géometrique : <strong>chaque noeud aura la responsabilité d'une région de l'espace. La racine a
+      l'intégralité de l'espace sous sa responsabilité</strong>. Elle sera
     responsable de tout ce
-    qu'il se trouvera à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir.
+    qu'il se trouve à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir.
   </p>
 
   <h3>Insérer des points dans le quadtree</h3>
@@ -259,7 +259,7 @@
 
   <p>
     Le noeud racine porte à présent 4 enfants et nous insérons un nouveau point de notre collection. La feuille se retrouve à présent en surcapacité, elle a un point de trop : elle se transforme en branche. D'après notre définition, une branche ne
-    peut avoir pour enfant que d'autres noeuds. Elle divise donc la région dont elle a la responsabilité en quatre sous-régions égales. Ces sous-régions sont chacune mises sous la responsabilité de nouveaux enfants, des feuilles. Chaque feuille prend
+    peut avoir pour enfant que d'autres noeuds. Elle divise donc la région dont elle a la responsabilité en trois sous-régions égales (la dernière sous-région ne contenant aucun point n'est pas définie). Ces sous-régions sont chacune mises sous la responsabilité de nouveaux enfants, des feuilles. Chaque feuille prend
     la charge des points qui se trouvent dans sa région. Chaque point, originellement porté par la branche, se trouve alors poussé sur sa feuille et la structure est de nouveau à l'équilibre. Sur la <a href="figure04">figure 4f</a> on peut voir que 3
     feuilles ont poussé sur l'arbre. Elles contiennent les 5 points insérés. Chacune d'entre elle porte les points qui se trouvent dans la région dont elle est responsable. Enfin, la racine est à présent une branche et elle n'a pour enfant que des
     feuilles.
@@ -348,8 +348,8 @@
         <span class="if-else">if</span> <span class="statement">j'ai plus de 4 enfants</span>
           se transformer en <span class="variable">branche</span>
           creer autant d'enfants feuille que nécessaire : <span class="variable">mes_feuilles</span>
-          recuperer tous mes points : mes_points
-          <span class="variable">mes_enfants</span>.<span class="function">inserer</span>(mes_points)
+          recuperer tous mes points : <span class="variable">mes_points</span>
+          <span class="variable">mes_feuilles</span>.<span class="function">inserer</span>(<span class="variable">mes_points</span>)
       }
     </pre>
   </div>
@@ -373,15 +373,15 @@
 
   </p>
   <p>
-    Un noeud pouvont a en pratique toujours 4 enfants, donc <code class="language-javascript">children</code> est un tableau de 4 éléments, un pour chaque enfant. Les enfants sont initialisés sous la forme d'un tableau vide. Chaque indice du tableau
+    Un noeud a en pratique toujours 4 enfants, donc <code class="language-javascript">children</code> est un tableau de 4 éléments, un pour chaque enfant. Les enfants sont initialisés sous la forme d'un tableau vide. Chaque indice du tableau
     <code class="language-javascript">children</code> correspond à une sous-région de l'espace détenu par le noeud, comme représenté sur <a href="figure04">la figure 4</a>. On peut voir que l'espace est virtuellement pré-découpé en 4 sous-regions
     par des traits pointillés blancs. L'indice, allant de 0 à 3 sert d'identité à chaque sous-région. Ainsi <code class="language-javascript">children[0]</code> retourne soit l'ensemble des points contenus dans la sous-région <code
-      class="language-javascript">0</code> du noeud si le noeud est une feuille, soit une feuille enfant si le noeud est une branche.
+      class="language-javascript">0</code> du noeud si le noeud est une feuille, soit une feuille si le noeud est une branche.
   </p>
 
   <p>
     Un attribut <code class="language-javascript">capacity</code> définit la capacité de chaque feuille, égale par convention au nombre d'enfants max, soit 4. Un noeud nouvellement crée est par défaut une feuille, et sa profondeur est initialisée à
-    celle de son parent, où à 0 dans le cas de la racine.
+    partir de celle de son parent, où à 0 dans le cas de la racine.
   </p>
 
 

@@ -18,8 +18,9 @@ const demo03 = (sketch) => {
 
     let width = sketch.width;
     let height = sketch.height;
+    let nParticles = uiApp03.getNbParticles();
 
-    for (let i = 0; i != 200; i++) {
+    for (let i = 0; i != nParticles; i++) {
       particles[i] = new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), 8, sketch.random(2 * sketch.PI));
       rmax = rmax > particles[i].r ? rmax : particles[i].r;
     }
@@ -27,12 +28,11 @@ const demo03 = (sketch) => {
     probe = new CircularProbe(0, 0, 2 * rmax);
     rootNode = new Node(width / 2, height / 2, width / 2, height / 2);
 
-    console.log('init done');
   }
 
   sketch.draw = function() {
 
-    sketch.background(0);
+    //sketch.background(0);
     rootNode.clear();
 
     let p = new Point(0, 0);
@@ -45,7 +45,7 @@ const demo03 = (sketch) => {
     }
 
 
-    apiP5.showNode(sketch,rootNode);
+    //apiP5.showNode(sketch,rootNode);
     //Detect collisions and render
     for (let i = 0; i != particles.length; i++) {
 
@@ -56,11 +56,12 @@ const demo03 = (sketch) => {
       apiP5.showCircularProbe(sketch, probe);
 
       for (let n of neighbors) {
+        //TODO
         // if (n.data != current && current.isOverlaping(n.data)) {
         //   current.highlight();
         // }
       }
-      //apiP5.showParticle(sketch, particles[i], 'blue');
+      apiP5.showParticle(sketch, particles[i], 'blue');
     }
 
   }

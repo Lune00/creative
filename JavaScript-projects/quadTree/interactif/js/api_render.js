@@ -28,7 +28,7 @@ const apiP5 = {
   },
 
 
-  //Form demo01 only
+  //Form demo01/demo03 only
   //TODO : refactor later these 2 functions
   showNode: function(sketch, node) {
     sketch.push();
