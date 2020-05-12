@@ -641,8 +641,10 @@ element.addEventListener(‘onClick’, bar) ;
     </div>
 
     <p>Le mot clef <code>async</code> ne signifie pas que votre fonction est devenue une fonction asynchrone, qu’elle lance des taches en parallèle etc.. Javascript est monothreadé ! Le mot clé dit seulement au développeur
-      « attention, ici il y’a du traitement asynchrone et un usage invisibles de promesses ». Aync et await masquent seulement aux yeux du développeur l’architecture des promesses, mais elle est bien présente. La succession des <code>then</code> est invisible mais elle est
-      bien là. La fonction <code>maChaineDeTraitementsAsynchrones</code> n’est pas devenue une fonction asynchrone elle-même : chacune de ses instructions marqués du mot clé <code>await</code> retourne (une promesse), comme dans tout bon flot synchrone.</p>
+      « attention, ici il y’a du traitement asynchrone et un usage invisibles de promesses ». Aync et await masquent seulement aux yeux du développeur l’architecture des promesses, mais elle est bien présente. La succession des <code>then</code> est
+      invisible mais elle est
+      bien là. La fonction <code>maChaineDeTraitementsAsynchrones</code> n’est pas devenue une fonction asynchrone elle-même : chacune de ses instructions marqués du mot clé <code>await</code> retourne (une promesse), comme dans tout bon flot
+      synchrone.</p>
 
     <p>Afin d’être complet voici notre code fil rouge écrit à l’aide de la syntaxe async/await. </p>
 
@@ -703,7 +705,8 @@ maChaineDeTraitementsAsynchrones();
 
   <p>Nous avons vu que callback et traitements asynchrones sont deux concepts qui ne sont pas nécessairement liés. Le terme callback est utilisé pour désigner toute fonction passée en argument à une autre fonction, indépendamment de son traitement
     synchrone ou asynchrone. Par abus de langage, étant donné qu’en Javascript on passe régulièrement des fonctions à des fonctions dans le cas de traitement asynchrone (via la Web API), les callbacks sont souvent associées, <em>dans leur
-    dénomination même</em> au traitement asynchrone lui-même, et à l’idée d’un appel qui revient. Lorsque l’on voit <em>callback</em>, il ne faut pas penser asynchrone. Il faut penser à une fonction passée en argument à une autre fonction, sans aucun a priori
+      dénomination même</em> au traitement asynchrone lui-même, et à l’idée d’un appel qui revient. Lorsque l’on voit <em>callback</em>, il ne faut pas penser asynchrone. Il faut penser à une fonction passée en argument à une autre fonction, sans
+    aucun a priori
     sur la manière dont elle sera appelée. La fonction à laquelle on passe notre callback fait peut-être du traitement asynchrone, mais pas nécessairement. </p>
 
   <p>Nous avons finalement parcouru les différentes manières de faire de la gestion asynchrone à l’aide des callbacks, puis des promesses. Grâce aux promesses nous avons pu passer d’une structure d’appels imbriquée à une structure plus commode sous
@@ -712,19 +715,39 @@ maChaineDeTraitementsAsynchrones();
   </p>
 
   <h2>Aller plus loin</h2>
-  <p>Les contextes et le moteur javascript :
-    What the heck is the event loop anyway ? Philip Roberts
-    https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
-    http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/ https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c
+  <dl>
+    <dt>Les différentes queues et l'Event loop</dt>
+    <dd>
+      <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway ?</a>, Philip Roberts
+    </dd>
+    <dd><a href="  https://www.youtube.com/watch?v=cCOL7MC4Pl0">In the loop</a>, Jake Archibald</p>
+    </dd>
 
-    Les différentes queues
-    https://www.youtube.com/watch?v=cCOL7MC4Pl0
-    Traitement asynchrone :
-    https://itnext.io/javascript-promises-vs-rxjs-observables-de5309583ca2] https://medium.com/codebuddies/getting-to-know-asynchronous-javascript-callbacks-promises-and-async-await-17e0673281ee
+    <dt>
+      Les contextes d'éxecution
+    </dt>
+    <dd>
+      <a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">What is the Execution Context & Stack in JavaScript?</a>, Philip Roberts
+    </dd>
 
-    Une analogie sympa et illustrée du fonctionnement des promesses avec celui d’une commande au drive
-    https://frank.taillandier.me/2017/03/23/comprendre-les-promesses-en-javascript/</p>
+    <dd><a href="https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c">Execution context, Scope chain and JavaScript internals</a>, Rupesh Mishra
+    </dd>
+
+    </dd>
+
+    <dt>Traitement asynchrone</dt>
+    <dd>
+      <a href="https://itnext.io/javascript-promises-vs-rxjs-observables-de5309583ca2">JavaScript Promises vs. RxJS Observables</a>, Daniel Weibel
+    </dd>
+
+
+    <dd>
+      <a href="https://medium.com/codebuddies/getting-to-know-asynchronous-javascript-callbacks-promises-and-async-await-17e0673281ee">Getting to know asynchronous JavaScript: Callbacks, Promises and Async/Await</a>, Sebastian Lindström
+    </dd>
+    <dd><a href="  https://frank.taillandier.me/2017/03/23/comprendre-les-promesses-en-javascript/">Un guide illustré pour comprendre les promesses en JavaScript</a>, Mariko Kosoka, traduit par Frank Taillandier</dd>
+  </dl>
+
 
 
 </body>
