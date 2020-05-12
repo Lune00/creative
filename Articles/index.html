@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" type="text/css" href="style.css">
 
+<link href="prism.css" rel="stylesheet" />
+
 <body>
 
   <div class="container-fluid">
@@ -21,8 +23,7 @@
 
     <div id="intro">
       <p>
-        Partager une expérience passée d’incompréhension n’est pas évidente. Car une fois qu’on a compris ce qu’on ne comprenait pas, on ne comprend plus ce qu’on n'avait pas compris. Néanmoins je vais tenter de remonter le fil de ce qui était un
-        brouillard.
+        Partager une expérience passée d’incompréhension n’est pas évidente. Car une fois qu’on a compris ce qu’on ne comprenait pas, on ne comprend plus ce qu’on n'avait pas compris. Je vais néanmoins tenter de remonter le fil.
       </p>
 
       <p>
@@ -72,9 +73,9 @@
       une base données ou à un serveur, ce genre de requête pouvant prendre un certain temps, on le fera de manière asynchrone. Dans ce cas, nous perdons le contrôle sur le flot du programme mais nous serons avertis lors du retour de la fonction, à
       un moment indéterminé dans le futur.</p>
 
-    <p>Et la désignation <em>rappel</em>, qui éveille en nous le sens commun du mot, nous incite à donner à la fonction, inconsciemment, sans effort, une qualité asynchrone. Alors que non, pas du tout ! Pour moi la première difficulté réside là : le
+    <p>Ainsi, le mot <em>rappel</em>, qui éveille en nous le sens commun du mot, nous incite à donner à la fonction, inconsciemment, sans effort, une qualité asynchrone. Alors que non, pas du tout ! Pour moi la première difficulté réside là : le
       terme de
-      callback, de rappel a été donné à toute fonction passée en paramètre d’une autre, en référence à son cas d’utilisation le plus courant.</p>
+      callback, de rappel a été donné à toute fonction passée en paramètre d’une autre, en référence à son contexte d’utilisation le plus courant même lorsque ce contexte n'a rien d'asynchrone.</p>
 
     <p class="encart">Dans cet article je m'abstiendrai d'utiliser des métaphores et par extension des pseudo-codes métaphoriques. Les métaphores sont très utiles pour expliquer des concepts inconnus en les rattachant à des choses connues. Cependant,
       elles charrient avec elles des inconvénients : elles supposent la manière dont une chose est connue par l'autre et sont souvent plus agréables à énoncer pour celui/celle qui transmet qu'à entendre pour celui/celle qui reçoit. Lorsque je veux
@@ -117,7 +118,8 @@
 
 
     <p>
-      Rien de surprenant, l’ordre des appels est respecté. Tout est bien synchrone, le programme s’exécute de manière impérative, comme nous en avons l’habitude dans des langages de programmation conventionnel. Finalement bar est appelée comme foo
+      Rien de surprenant, l’ordre des appels est respecté. Tout est bien synchrone, le programme s’exécute de manière impérative, comme nous en avons l’habitude dans des langages de programmation conventionnel. Finalement <code>bar</code> est appelée
+      comme <code>foo</code>
       l’est. Elle est <em>appelée</em>, comme n’importe quelle fonction, elle n’est pas <em>rappelée</em>. Le sens commun de <em>rappel</em> ne s’applique pas ici, callback y signifie seulement <q>est passé en argument à une autre fonction</q>.
     </p>
 
@@ -193,7 +195,7 @@ element.addEventListener(‘onClick’, bar) ;
     <p>A chaque appel de fonction rencontré par le flot du programme un contexte mémoire (stackframe) est créée sur la stack (ou callstack) . Le contexte contient toutes les informations nécessaires à l’exécution de la fonction  (arguments, variables
       locales, références vers des fonctions appelées à l’intérieur, références vers des objets présents dans l’environnement d’exécution de la fonction, référence vers les objets dans le contexte global…) Je ne souhaite pas rentrer dans les détails
       sur ces aspects car ils ne servent pas mon propos, mais vous pouvez en apprendre plus <a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">ici</a> ou <a
-        href="https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c"></a>là</p>.
+        href="https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c">là</a>.</p>
 
     <p>
       Une fois que la fonction a fait son travail et a retourné son contexte est détruit et retiré de la stack. Si l’on reprend l’exemple de tout à l’heure 
@@ -230,11 +232,11 @@ element.addEventListener(‘onClick’, bar) ;
       Le navigateur au moment du chargement du script Javascript et de l’initialisation de la stack génère par défaut un contexte spécial, le global execution context, qui se trouve poussé dessus. Ce contexte existe sur toute la durée de vie du
       thread. Le flot rencontre l’appel de <code>foo</code>, un nouveau contexte est poussé sur la stack pour foo. Au sein de la fonction <code>foo</code> il y’a un appel a <code>console.log</code>, un nouveau contexte est crée pour cet appel. Il est
       exécuté et retiré de la stack. Ensuite
-      arrive l’appel de <code>bar</code>, un nouveau contexte est crée, <code>bar</code> est exécutée, retourne, son contexte est détruit. Enfin foo retourne, son contexte est détruit et la stack devient vide.
+      arrive l’appel de <code>bar</code>, un nouveau contexte est crée, <code>bar</code> est exécutée, retourne, son contexte est détruit. Enfin <code>foo</code> retourne, son contexte est détruit et la stack est vide.
     </p>
 
     <p>
-      Ce qu’il faut retenir de cette abstraction de l’interpréteur Javascript c’est qu’il est monothreadé (il ne possède qu’une stack) et que <strong>tout s’y exécute de manière synchrone</strong>. Une seule chose peut s’y passer à la fois.
+      Ce qu’il faut retenir de cette abstraction de l’interpréteur Javascript c’est qu’il est mono-threadé (il ne possède qu’une stack) et que <strong>tout s’y exécute de manière synchrone</strong>. Une seule chose peut s’y passer à la fois.
     </p>
 
     <p>Ce même thread est également <a href="https://www.youtube.com/watch?v=cCOL7MC4Pl0 ">utilisé par le navigateur pour rafraichir la vue et repeindre son canvas</a>. Le <a href="https://fr.wikipedia.org/wiki/Moteur_de_rendu_HTML">rendering</a> a
@@ -258,6 +260,9 @@ element.addEventListener(‘onClick’, bar) ;
       Javascript ne délègue jamais du code javascript à un autre thread : javascript est mono-threadé !
     </p>
 
+
+    <h3>Le rôle de la callback queue et de l'Event Listener</h3>
+
     <p>
       Lorsqu’on appelle <code>setTimeout</code> par exemple
     </p>
@@ -273,9 +278,11 @@ setTimeout( function foo() => { console.log(‘foo’);}, 1000) ;
     <p>
       on lui passe une référence vers une fonction, une callback. On délègue ainsi au navigateur la tâche d’imposer un délai à l’execution de la fonction <code>foo</code>. La fonction <code>setTimeout</code> est immédiatement executée et retourne,
       son contexte est retiré de
-      la pile et l’interpréteur peut continuer à exécuter du code sur la stack. SetTimeout a lancé une tache prise en charge par le navigateur : celle d’ imposer un délai de 1s à l’execution de <code>foo</code>. Une fois ce délai passé le navigateur
+      la stack et l’interpréteur peut continuer à exécuter du code sur la stack. <code>setTimeout</code> a lancé une tâche prise en charge par le navigateur : celle d’ imposer un délai de 1s à l’execution de <code>foo</code>. Une fois ce délai passé
+      le navigateur
       place la
-      fonction <code>foo</code> dans la callback queue. Lorsque la stack de Javascript est vide, l’Event loop prend la première tache dans la queue et la pousse sur la stack Javascript. Cette tache n’est rien d’autre que la callback <code>foo</code>.
+      fonction <code>foo</code> dans la callback queue. Lorsque la stack de Javascript est vide, l’Event loop prend la première tâche dans la queue et la pousse sur la stack Javascript. Cette tache n’est rien d’autre que la callback <code>foo</code>.
+      L'Event loop est un processus qui tourne en permanence. Dès que la stack est vide elle ramène un élément de la queue sur la stack.
     </p>
 
 
@@ -289,10 +296,14 @@ setTimeout( function foo() => { console.log(‘foo’);}, 1000) ;
     <p>
       On remarque au passage que le délai au bout duquel s’executera la fonction <code>foo</code> ne sera pas nécessairement égal à celui demandé à l’appel de setTimeout (soit 1 seconde). Lorsque la queue possède déjà des événements en attente d’être
       traités, la fonction <code>foo</code>
-      attend son tour comme les autres. Le délai passé à setTimout correspond donc au délai minimum avant que foo ne soit executée. Mais une fois passée à la webapi nous perdons le contrôle et son délai d’execution dépend de l’état de la queue. La
+      attend son tour comme les autres. Le délai passé à setTimout correspond donc au délai minimum avant que foo ne soit executée. Mais une fois passée à la Web API nous perdons le contrôle et son délai d’execution dépend de l’état de la queue. La
       seule garantie ici est que <code>foo</code> sera appelée <em>au moins dans 1 seconde.</em>
+    </p>
+    <p>
       En effet, dans la queue on peut trouver d’autres évènements en attente. Par exemple lorsque l’on écrit
     </p>
+
+
 
     <div id="snpippet-node">
       <pre>
@@ -313,6 +324,8 @@ element.addEventListener(‘onClick’, bar) ;
       l’Event loop. La gestion des évènements est optimisée, par exemple, en leur assignant des priorités (certains évènements sont plus prioritaires que d’autres). Mais ça ne change pas grand-chose à ce qui nous intéresse ici
     </p>
 
+
+    <h3>En résumé</h3>
     <p>
       On peut voir que dans le contexte d’execution asynchrone, à l’appel de la Web API (ou d’une api C++ avec Node), le terme de callback y a effectivement tout son sens. Ces fonctions sont « appelées plus tard », on les fait bien revenir au terme
       d’un traitement asynchrone.
@@ -324,13 +337,13 @@ element.addEventListener(‘onClick’, bar) ;
     </p>
 
     <p>
-      Les callbacks qui retombent sur la stack doivent être traitées et gérées par le développeur pour faire tourner correctement son programme. Cependant dès que nous passons notre callback à la webapi nous perdons le contrôle sur le flot de notre
+      Les callbacks qui retombent sur la stack doivent être traitées et gérées par le développeur pour faire tourner correctement son programme. Cependant dès que nous passons notre callback à la Wep API nous perdons le contrôle sur le flot de notre
       programme et nous ne sommes plus sûrs de rien. Comment gérer alors le retour de nos callbacks sur la stack ? Pour reprendre mon exemple précédent, comment je m’y prends si je souhaite appeler une autre fonction uniquement <em>après</em> que
       <code>foo</code> ait été
       exécutée <em>correctement</em>?
     </p>
 
-    <h2>Retour sur la stack : gestion des évènements asynchrones</h2>
+    <h2>Retour sur la stack : gestion du traitement asynchrone</h2>
 
 
     <h3>Callback hell</h3>
@@ -648,8 +661,8 @@ element.addEventListener(‘onClick’, bar) ;
 
     <p>Afin d’être complet voici notre code fil rouge écrit à l’aide de la syntaxe async/await. </p>
 
-    div id="snpippet-node">
-    <pre>
+    <div id="snpippet-node">
+      <pre>
 <code class="language-javascript">
   async function maChaineDeTraitementsAsynchrones() {
 
@@ -695,58 +708,60 @@ element.addEventListener(‘onClick’, bar) ;
 maChaineDeTraitementsAsynchrones();
 </code>
 </pre>
-  </div>
+    </div>
 
-  <p>On peut remarquer que la lisibilité est grandement améliorée : les mots async/await nous préviennent qu’il s’agit là d’un appel qui réalise du travail asynchrone. Cependant, les instructions à l’intérieur de cette méthode asynchrone se lisent
-    comme une suite d’instructions synchrones, sans difficultés.</p>
-
-
-  <h2>Conclusion</h2>
-
-  <p>Nous avons vu que callback et traitements asynchrones sont deux concepts qui ne sont pas nécessairement liés. Le terme callback est utilisé pour désigner toute fonction passée en argument à une autre fonction, indépendamment de son traitement
-    synchrone ou asynchrone. Par abus de langage, étant donné qu’en Javascript on passe régulièrement des fonctions à des fonctions dans le cas de traitement asynchrone (via la Web API), les callbacks sont souvent associées, <em>dans leur
-      dénomination même</em> au traitement asynchrone lui-même, et à l’idée d’un appel qui revient. Lorsque l’on voit <em>callback</em>, il ne faut pas penser asynchrone. Il faut penser à une fonction passée en argument à une autre fonction, sans
-    aucun a priori
-    sur la manière dont elle sera appelée. La fonction à laquelle on passe notre callback fait peut-être du traitement asynchrone, mais pas nécessairement. </p>
-
-  <p>Nous avons finalement parcouru les différentes manières de faire de la gestion asynchrone à l’aide des callbacks, puis des promesses. Grâce aux promesses nous avons pu passer d’une structure d’appels imbriquée à une structure plus commode sous
-    forme de chaîne. Enfin, les mots clés async et await, arrivés avec la norme ES8, masquent fortement la gestion asynchrone et permettent d’écrire et présenter le code à la manière d’un traitement synchrone. Ce confort supplémentaire augmente
-    fortement la lisibilité du code.
-  </p>
-
-  <h2>Aller plus loin</h2>
-
-  <dl>
-    <dt>Les différentes queues et l'Event loop</dt>
-    <dd>
-      <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway ?</a>, Philip Roberts
-    </dd>
-    <dd><a href="  https://www.youtube.com/watch?v=cCOL7MC4Pl0">In the loop</a>, Jake Archibald</p>
-    </dd>
-
-    <dt>
-      Les contextes d'éxecution
-    </dt>
-    <dd>
-      <a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">What is the Execution Context & Stack in JavaScript?</a>, Philip Roberts
-    </dd>
-
-    <dd><a href="https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c">Execution context, Scope chain and JavaScript internals</a>, Rupesh Mishra
-    </dd>
-
-    </dd>
-
-    <dt>Traitement asynchrone</dt>
-    <dd>
-      <a href="https://itnext.io/javascript-promises-vs-rxjs-observables-de5309583ca2">JavaScript Promises vs. RxJS Observables</a>, Daniel Weibel
-    </dd>
+    <p>On peut remarquer que la lisibilité est grandement améliorée : les mots async/await nous préviennent qu’il s’agit là d’un appel qui réalise du travail asynchrone. Cependant, les instructions à l’intérieur de cette méthode asynchrone se lisent
+      comme une suite d’instructions synchrones, sans difficultés.</p>
 
 
-    <dd>
-      <a href="https://medium.com/codebuddies/getting-to-know-asynchronous-javascript-callbacks-promises-and-async-await-17e0673281ee">Getting to know asynchronous JavaScript: Callbacks, Promises and Async/Await</a>, Sebastian Lindström
-    </dd>
-    <dd><a href="  https://frank.taillandier.me/2017/03/23/comprendre-les-promesses-en-javascript/">Un guide illustré pour comprendre les promesses en JavaScript</a>, Mariko Kosoka, traduit par Frank Taillandier</dd>
-  </dl>
+    <h2>Conclusion</h2>
+
+    <p>Nous avons vu que callback et traitements asynchrones sont deux concepts qui ne sont pas nécessairement liés. Le terme callback est utilisé pour désigner toute fonction passée en argument à une autre fonction, indépendamment de son traitement
+      synchrone ou asynchrone. Par abus de langage, étant donné qu’en Javascript on passe régulièrement des fonctions à des fonctions dans le cas de traitement asynchrone (via la Web API), les callbacks sont souvent (et malheureusement) associées,
+      <em>dans leur
+        dénomination</em> au traitement asynchrone lui-même, et à l’idée d’un appel futur. La fonction passée en argument a hérité d'un nom qui se réfère à son contexte d'utilisation le plus courant <em>et ce, indépendamment du contexte</em>. Lorsque
+      l’on rencontre le terme <em>callback</em>, il ne faut pas penser asynchrone. Il faut penser à une fonction passée en argument à une autre fonction, sans
+      aucun a priori
+      sur la manière dont elle sera appelée. La fonction à laquelle on passe notre callback fait peut-être du traitement asynchrone, mais pas nécessairement. </p>
+
+    <p>Nous avons finalement parcouru les différentes manières de faire de la gestion asynchrone à l’aide des callbacks, puis des promesses. Grâce aux promesses nous avons pu passer d’une structure d’appels imbriquée à une structure plus commode sous
+      forme de chaîne. Enfin, les mots clés async et await, arrivés avec la norme ES8, masquent fortement la gestion asynchrone et permettent d’écrire et présenter le code à la manière d’un traitement synchrone. Ce confort supplémentaire augmente
+      fortement la lisibilité du code.
+    </p>
+
+    <h2>Aller plus loin</h2>
+
+    <dl>
+      <dt>Les différentes queues et l'Event loop</dt>
+      <dd>
+        <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway ?</a>, Philip Roberts
+      </dd>
+      <dd><a href="  https://www.youtube.com/watch?v=cCOL7MC4Pl0">In the loop</a>, Jake Archibald</p>
+      </dd>
+
+      <dt>
+        Les contextes d'éxecution
+      </dt>
+      <dd>
+        <a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">What is the Execution Context & Stack in JavaScript?</a>, Philip Roberts
+      </dd>
+
+      <dd><a href="https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c">Execution context, Scope chain and JavaScript internals</a>, Rupesh Mishra
+      </dd>
+
+      </dd>
+
+      <dt>Traitement asynchrone</dt>
+      <dd>
+        <a href="https://itnext.io/javascript-promises-vs-rxjs-observables-de5309583ca2">JavaScript Promises vs. RxJS Observables</a>, Daniel Weibel
+      </dd>
+
+
+      <dd>
+        <a href="https://medium.com/codebuddies/getting-to-know-asynchronous-javascript-callbacks-promises-and-async-await-17e0673281ee">Getting to know asynchronous JavaScript: Callbacks, Promises and Async/Await</a>, Sebastian Lindström
+      </dd>
+      <dd><a href="  https://frank.taillandier.me/2017/03/23/comprendre-les-promesses-en-javascript/">Un guide illustré pour comprendre les promesses en JavaScript</a>, Mariko Kosoka, traduit par Frank Taillandier</dd>
+    </dl>
 
 
 
@@ -755,6 +770,8 @@ maChaineDeTraitementsAsynchrones();
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="prism.js"></script>
 
 
 
