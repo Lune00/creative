@@ -27,6 +27,8 @@ const apiP5 = {
     }
   },
 
+
+  //Form demo01 only
   //TODO : refactor later these 2 functions
   showNode: function(sketch, node) {
     sketch.push();
@@ -67,6 +69,10 @@ const apiP5 = {
     });
   },
 
+
+  //For demo02 - depth Only (bordelo)
+
+  //Main call from demo (interface)
   showNodeWithDepth: function(sketch, node) {
     let maxDepth = node.getMaxDepth()
     this.showNodeContent(sketch, node, maxDepth);
@@ -86,12 +92,13 @@ const apiP5 = {
     sketch.push();
     sketch.rectMode(sketch.CENTER);
 
-    sketch.strokeWeight(0.5);
-    sketch.stroke(255);
+    sketch.strokeWeight(0.2);
 
-    let c = sketch.map(node.depth, 0, maxDepth + 1 , 0, 255);
-    // console.log(this.depth, maxDepth, c);
-    sketch.fill(0,c/2,c);
+    let c = sketch.map(node.depth, 0, maxDepth + 1, 0, 200);
+    sketch.fill(c);
+
+    if (node.over)
+      sketch.fill('#5733FF');
 
     sketch.rect(node.x, node.y, 2 * node.w, 2 * node.h);
     sketch.pop();

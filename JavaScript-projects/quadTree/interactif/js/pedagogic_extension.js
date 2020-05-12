@@ -51,15 +51,11 @@ class NodePedagogic extends Node {
 
   depthUnderCursor(circularProbe) {
 
-     let boundingBox = {
-       x: this.x,
-       y: this.y,
-       w: this.w,
-       h: this.h
-     };
+     if (this.contains(new Point(circularProbe.x, circularProbe.y)) && !this.isBranch){
+        this.over = true;
+        modelDemoQuadTreeDepth.depthUnderCursor = this.depth; //coupling
+     }
 
-     if (this.contains(circularProbe.x, circularProbe.y))
-       this.over = true;
      else
        this.over = false;
 
@@ -67,6 +63,7 @@ class NodePedagogic extends Node {
        if (child instanceof Node)
          child.depthUnderCursor(circularProbe)
      });
+
    }
 
   //Returns all points looked in the circular probe

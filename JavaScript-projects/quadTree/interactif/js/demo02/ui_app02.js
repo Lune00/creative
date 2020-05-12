@@ -1,6 +1,20 @@
 const modelDemoQuadTreeDepth = {
+  maxDepth: 0,
+  depthUnderCursor: 0,
 
+  updateMaxDepth: function() {
+    this.maxDepth = main.p5demo02.getMaxDepth();
+  },
 
+  updateDepthUnderCursor: function(){
+    // this.depthUnderCursor = main.p5demo02.getDepthUnderCursor();
+    //Directly updated from pedagogic_extension depthUnderCursor (j'avais la flemme)
+  },
+
+  update: function() {
+    this.updateMaxDepth();
+    this.updateDepthUnderCursor();
+  }
 }
 
 const uiApp02 = {
@@ -44,5 +58,9 @@ const uiApp02 = {
     });
   },
 
-  update: function() {},
+  update: function() {
+    this.model.update();
+    document.getElementById('depth_max').innerHTML = this.model.maxDepth;
+    document.getElementById('depth_current').innerHTML = this.model.depthUnderCursor;
+  },
 }

@@ -19,19 +19,13 @@ const demo02 = (sketch) => {
 
   sketch.draw = function() {
     sketch.background(0);
+    uiApp02.update();
     circularProbe.moveTo(sketch.mouseX, sketch.mouseY);
-    //apiP5.showPoint(sketch, circularProbe, 'white' );
-
     rootNode.depthUnderCursor(circularProbe);
-    apiP5.showNodeWithDepth(sketch,rootNode);
-
-
-
-
+    apiP5.showNodeWithDepth(sketch, rootNode);
   }
 
   //Interace with UI
-
   sketch.insertNormal = function() {
     rootNode.insert(new Point(circularProbe.x, circularProbe.y));
   }
@@ -45,6 +39,11 @@ const demo02 = (sketch) => {
   sketch.reset = function() {
     if (rootNode)
       rootNode.clear();
+  }
+
+  sketch.getMaxDepth = function() {
+    if (rootNode)
+      return rootNode.getMaxDepth();
   }
 
 }

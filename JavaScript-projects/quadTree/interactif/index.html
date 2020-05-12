@@ -90,7 +90,8 @@
     appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils se trouvent à l'intérieur du domaine délimité par le cercle rouge. Cette
     solution demanderait un temps d'execution propotionnel au nombre de points à traiter, on dit qu'elle est <code>O(n)</code>, où <code>n</code> représente le nombre de
     points à parcourir. La <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes">complexité</a> d'un algorithme, ou d'une fonction, est une mesure de la quantité de ressources (temps ou mémoire) nécessaire à son
-    éxecution :<code>O(n)</code> signifie que les ressources demandées sont proportionnelles à n.  Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en sélectionner que deux !
+    éxecution :<code>O(n)</code> signifie que les ressources demandées sont proportionnelles à n. Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en
+    sélectionner que deux !
   </p>
   <p>
     Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le point le plus proche de chaque point. Pour y arriver nous devrions, pour chaque point, regarder les n - 1 points restants, mesurer
@@ -598,7 +599,7 @@
       <button type="button" class="btn btn-primary btn-sm" id="resetButton">Réinitialiser</button>
       <input id="switch-demo01" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
     </div>
-
+<div>Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a></div>
     <div id="canvas-demo01-insert-querry" class="myCanvas">
 
     </div>
@@ -646,7 +647,8 @@
   <p>
     Nous profitons ici de l'architecture en arbre. Le fait d'avoir partionné l'espace de manière récursive nous permet de changer la manière dont nous posons notre question : nous ne demandons plus "parmi tous les points quels sont ceux qui se
     trouvent dans le cercle rouge ?". La complexité <code>0(n)</code> est loin maintenant. L'espace étant divisé et mis sous la reponsabilité d'une multitude de noeuds, nous n'avons plus qu'à descendre l'arbre étage par étage. Tant qu'un noeud nous
-    répond "oui, vous me recouvrez" nous continuons à poser encore et toujours la même question. Jusqu'à arriver au dernier noeud, à la feuille qui nous dit "oui, vous me recouvrez, tenez, voici les points que j'ai sous ma responsabilité". Et là, seulement à ce moment là, on peut tester si le point est contenu dans le cercle rouge.
+    répond "oui, vous me recouvrez" nous continuons à poser encore et toujours la même question. Jusqu'à arriver au dernier noeud, à la feuille qui nous dit "oui, vous me recouvrez, tenez, voici les points que j'ai sous ma responsabilité". Et là,
+    seulement à ce moment là, on peut tester si le point est contenu dans le cercle rouge.
 
 
   <div class="row justify-content-center" id="figure06">
@@ -734,10 +736,12 @@
 
     <h4>Infos</h4>
     <div class="highlightContainer">
-      <div name="depth_current"></div>
-      <label for="depth_current" <acronym title="Profondeur du noeud sous la souris">Profondeur </label>
-      <div name="depth_max"></div>
-      <label for="depth_max" <acronym title="Profondeur maximale observée dans le quadtree">Profondeur maximale </label>
+
+      <label for="depth_current" <acronym title="Profondeur du noeud sous la souris">Profondeur sous le curseur: </label>
+      <span id="depth_current" name="depth_current"></span>
+
+      <label for="depth_max" <acronym title="Profondeur maximale observée dans le quadtree">Profondeur maximale de l'arbre: </label>
+      <span id="depth_max" name="depth_max"></span>
     </div>
     <div class="resetButtonContainer_demo02">
       <!-- <input type="button" value="reset"> -->
@@ -745,6 +749,8 @@
       <input id="switch-demo02" type="checkbox" data-toggle="toggle" data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
     </div>
 
+
+    <div>Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a></div>
     <div id="canvas-demo02-depth" class="myCanvas">
 
     </div>
