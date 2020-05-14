@@ -46,4 +46,9 @@ const demo02 = (sketch) => {
       return rootNode.getMaxDepth();
   }
 
+  sketch.numberOfPoints = function() {
+    let n = rootNode.nbPoints();
+    return n === undefined ? 0 : n;
+  }
+
 }

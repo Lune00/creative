@@ -1,9 +1,14 @@
 const modelDemoQuadTreeDepth = {
   maxDepth: 0,
   depthUnderCursor: 0,
+  totalNPoints: 0,
 
   updateMaxDepth: function() {
     this.maxDepth = main.p5demo02.getMaxDepth();
+  },
+
+  updateTotalNPoints: function() {
+    this.totalNPoints = main.p5demo02.numberOfPoints();
   },
 
   updateDepthUnderCursor: function(){
@@ -14,6 +19,7 @@ const modelDemoQuadTreeDepth = {
   update: function() {
     this.updateMaxDepth();
     this.updateDepthUnderCursor();
+    this.updateTotalNPoints();
   }
 }
 
@@ -60,6 +66,7 @@ const uiApp02 = {
 
   update: function() {
     this.model.update();
+      document.getElementById('nbPointsTotal-demo02').innerHTML = this.model.totalNPoints;
     document.getElementById('depth_max').innerHTML = this.model.maxDepth;
     document.getElementById('depth_current').innerHTML = this.model.depthUnderCursor;
   },
