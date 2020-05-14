@@ -1,8 +1,17 @@
 const modelDemoQuadTreeInteractions = {
+  frameRate: 0,
+  timeConstructionQuadtree: 0,
+  totalTimeQuadtreeAlgorithm: 0,
+  totalTimeNaiveAlgorithm: 0,
 
-  update: function() {
 
-  }
+  updateFrameRate() {
+    setInterval(() => {
+      this.frameRate = main.p5demo03.frameRate();
+    }, 1000);
+  },
+
+  update: function() {}
 
 }
 
@@ -40,11 +49,31 @@ const uiApp03 = {
     document.getElementById('output-nbParticules').value = document.getElementById('nbParticulesRange').value;
     document.getElementById('nbParticulesRange').addEventListener('input', function() {
       document.getElementById('output-nbParticules').value = this.value;
+      main.p5demo03.setNumberOfParticles(Number.parseInt(this.value));
     });
+
+    document.getElementById('showQuadTreeCheckbox').addEventListener('click', function() {
+
+      main.p5demo03.showQuadTree(this.checked);
+
+    });
+
+    this.model.updateFrameRate();
   },
 
   update: function() {
-    model.update();
+    this.model.update();
+
+    //FrameRate
+    let frameRate = Number.parseFloat(this.model.frameRate).toPrecision(2);
+    let frameRateSpan = document.getElementById('frameRate');
+    frameRateSpan.innerHTML = frameRate;
+    if (frameRate > 40)
+      frameRateSpan.style.color = 'green';
+    else if (frameRate > 20)
+      frameRateSpan.style.color = 'orange';
+    else
+      frameRateSpan.style.color = 'red';
   }
 
 }

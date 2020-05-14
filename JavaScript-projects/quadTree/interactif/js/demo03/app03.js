@@ -7,6 +7,11 @@ const demo03 = (sketch) => {
   let rootNode;
   let probe;
   let particles = [];
+  let nParticles;
+  let rmax;
+  let width;
+  let height;
+  let showQuadtree = false;
 
   sketch.setup = function() {
 
@@ -14,11 +19,11 @@ const demo03 = (sketch) => {
     sketch.createCanvas(1024, 600);
     sketch.background(0);
 
-    let rmax = 0;
+    rmax = 0;
 
-    let width = sketch.width;
-    let height = sketch.height;
-    let nParticles = uiApp03.getNbParticles();
+    width = sketch.width;
+    height = sketch.height;
+    nParticles = uiApp03.getNbParticles();
 
     for (let i = 0; i != nParticles; i++) {
       particles[i] = new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), 8, sketch.random(2 * sketch.PI));
@@ -32,40 +37,62 @@ const demo03 = (sketch) => {
 
   sketch.draw = function() {
 
-    //sketch.background(0);
-    rootNode.clear();
+      sketch.background(0);
+      rootNode.clear();
 
-    let p = new Point(0, 0);
+      uiApp03.update();
 
-    //Update
-    for (let i = 0; i != particles.length; i++) {
-      particles[i].overlap = false;
-      particles[i].move(sketch.width, sketch.height);
-      rootNode.insert(new Point(particles[i].x, particles[i].y, particles[i]));
-    }
+      let p = new Point(0, 0);
 
-
-    //apiP5.showNode(sketch,rootNode);
-    //Detect collisions and render
-    for (let i = 0; i != particles.length; i++) {
-
-      let current = particles[i];
-      probe.moveTo(current.x, current.y);
-      let neighbors = rootNode.query(probe);
-
-      apiP5.showCircularProbe(sketch, probe);
-
-      for (let n of neighbors) {
-        //TODO
-        // if (n.data != current && current.isOverlaping(n.data)) {
-        //   current.highlight();
-        // }
+      //Update
+      for (let i = 0; i != particles.length; i++) {
+        particles[i].overlap = false;
+        particles[i].move(sketch.width, sketch.height);
+        rootNode.insert(new Point(particles[i].x, particles[i].y, particles[i]));
       }
-      apiP5.showParticle(sketch, particles[i], 'blue');
+
+
+      if (showQuadtree)
+        apiP5.showNodeWithoutPoints(sketch, rootNode);
+
+
+      //Detect collisions and render
+      for (let i = 0; i != particles.length; i++) {
+
+        let current = particles[i];
+        probe.moveTo(current.x, current.y);
+        let neighbors = rootNode.query(probe);
+
+        apiP5.showCircularProbe(sketch, probe);
+
+        for (let n of neighbors) {
+          //TODO
+          // if (n.data != current && current.isOverlaping(n.data)) {
+          //   current.highlight();
+          // }
+        }
+        apiP5.showParticle(sketch, particles[i], 'blue');
+      }
+
+    },
+
+    //Interace with UI
+    sketch.setNumberOfParticles = function(nbParticles) {
+
+      //Remove add particles where nbParticles = nParticles
+      if (nbParticles > particles.length) {
+        let nbParticlesToAdd = nbParticles - particles.length;
+        for (let i = 0; i != nbParticlesToAdd; i++) {
+          particles.push(new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), sketch.random(8, rmax), sketch.random(2 * sketch.PI)));
+        }
+      } else if (nbParticles < particles.length) {
+        let nbParticlesToRemove = particles.length - nbParticles;
+        particles.splice(0, nbParticlesToRemove);
+      }
     }
 
+  sketch.showQuadTree = function(show) {
+    showQuadtree = show;
   }
-
-  //Interace with UI
 
 }

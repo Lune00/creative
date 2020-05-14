@@ -47,6 +47,22 @@ const apiP5 = {
     });
   },
 
+
+  showNodeWithoutPoints: function(sketch,node){
+    sketch.push();
+    sketch.rectMode(sketch.CENTER);
+    sketch.noFill();
+    sketch.stroke(150);
+    sketch.strokeWeight(0.5);
+    sketch.rect(node.x, node.y, 2 * node.w, 2 * node.h);
+    sketch.pop();
+
+    node.children.forEach(child => {
+      if (child instanceof Node)
+        this.showNodeWithoutPoints(sketch, child);
+    });
+  },
+
   showNodeAndHighlightIntersectedLeafs: function(sketch, node) {
     sketch.push();
     sketch.rectMode(sketch.CENTER);
