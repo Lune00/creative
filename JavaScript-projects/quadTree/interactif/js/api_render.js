@@ -27,6 +27,13 @@ const apiP5 = {
     }
   },
 
+  showParticleDetectionZone: function(sketch, circularProbe) {
+      sketch.stroke('#5733FF');
+      sketch.strokeWeight(1.5);
+      sketch.noFill();
+      sketch.circle(circularProbe.x, circularProbe.y, 2 * circularProbe.r);
+  },
+
 
   //Form demo01/demo03 only
   //TODO : refactor later these 2 functions

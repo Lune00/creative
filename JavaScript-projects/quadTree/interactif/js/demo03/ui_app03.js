@@ -37,12 +37,14 @@ const uiApp03 = {
           document.getElementById('nbParticulesRange').disabled = false;
           document.getElementById('showDetectionZoneCheckbox').disabled = true;
           document.getElementById('showQuadTreeCheckbox').disabled = true;
+          main.p5demo03.algorithm = main.p5demo03.setAlgorithm('naive');
         });
       } else if (radio.id === "quadtree") {
         radio.addEventListener('click', () => {
           document.getElementById('nbParticulesRange').disabled = false;
           document.getElementById('showDetectionZoneCheckbox').disable = false;
           document.getElementById('showQuadTreeCheckbox').disable = false;
+            main.p5demo03.algorithm = main.p5demo03.setAlgorithm('quadtree');
         });
       }
     }
@@ -53,9 +55,11 @@ const uiApp03 = {
     });
 
     document.getElementById('showQuadTreeCheckbox').addEventListener('click', function() {
-
       main.p5demo03.showQuadTree(this.checked);
+    });
 
+    document.getElementById('showDetectionZoneCheckbox').addEventListener('click', function() {
+      main.p5demo03.showDetectionZones(this.checked);
     });
 
     this.model.updateFrameRate();
