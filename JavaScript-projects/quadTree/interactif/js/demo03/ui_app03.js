@@ -1,13 +1,24 @@
 const modelDemoQuadTreeInteractions = {
   frameRate: 0,
   timeConstructionQuadtree: 0,
-  totalTimeQuadtreeAlgorithm: 0,
-  totalTimeNaiveAlgorithm: 0,
+  totalTimeInteractions: 0,
 
 
   updateFrameRate() {
     setInterval(() => {
       this.frameRate = main.p5demo03.frameRate();
+    }, 1000);
+  },
+
+  updateTimeConstructionQuadTree() {
+    setInterval(() => {
+      this.timeConstructionQuadtree = main.p5demo03.getTimeConstructionQuadTree();
+    }, 1000);
+  },
+
+  updateTimeComputeInteractions() {
+    setInterval(() => {
+      this.totalTimeInteractions = main.p5demo03.getTimeToComputeInteractions();
     }, 1000);
   },
 
@@ -42,9 +53,9 @@ const uiApp03 = {
       } else if (radio.id === "quadtree") {
         radio.addEventListener('click', () => {
           document.getElementById('nbParticulesRange').disabled = false;
-          document.getElementById('showDetectionZoneCheckbox').disable = false;
-          document.getElementById('showQuadTreeCheckbox').disable = false;
-            main.p5demo03.algorithm = main.p5demo03.setAlgorithm('quadtree');
+          document.getElementById('showDetectionZoneCheckbox').disabled = false;
+          document.getElementById('showQuadTreeCheckbox').disabled = false;
+          main.p5demo03.algorithm = main.p5demo03.setAlgorithm('quadtree');
         });
       }
     }
@@ -63,11 +74,15 @@ const uiApp03 = {
     });
 
     this.model.updateFrameRate();
+    this.model.updateTimeConstructionQuadTree();
+    this.model.updateTimeComputeInteractions();
   },
 
   update: function() {
     this.model.update();
 
+    document.getElementById('timeToBuildQuadtree').innerHTML = Number.parseFloat(this.model.timeConstructionQuadtree).toPrecision(2);
+    document.getElementById('timeToComputeInteractions').innerHTML = Number.parseFloat(this.model.totalTimeInteractions).toPrecision(3);
     //FrameRate
     let frameRate = Number.parseFloat(this.model.frameRate).toPrecision(2);
     let frameRateSpan = document.getElementById('frameRate');

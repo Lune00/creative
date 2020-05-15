@@ -214,7 +214,7 @@ class Node {
 //TODO: refactor
 class Particle {
 
-  constructor(x, y, r, tetha = 0) {
+  constructor(x, y, r, tetha = 0, overlap = false) {
 
     this.x = x;
     this.y = y;
@@ -223,8 +223,7 @@ class Particle {
     this.vx = 1 * Math.cos(tetha);
     this.vy = 1 * Math.sin(tetha);
 
-    this.overlap = false;
-
+    this.overlap = overlap;
   }
 
   move(width, height) {
@@ -232,6 +231,7 @@ class Particle {
     this.y += this.vy;
     this.bounce(width, height);
   }
+
 
   //TODO: refactor and move outside
   bounce(width, height) {
@@ -247,12 +247,4 @@ class Particle {
       this.vy *= -1;
 
   }
-
-  highlight() {
-    this.overlap = true;
-  }
-
-  // isOverlaping(other) {
-  //   return dist(this.x, this.y, other.x, other.y) < this.r + other.r;
-  // }
 }

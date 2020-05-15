@@ -15,6 +15,8 @@ const demo03 = (sketch) => {
   let showDetectionZones = false;
 
   let algorithm;
+  let timeConstructionQuadtree = 0;
+  let timeComputeInteractions = 0;
 
   sketch.setup = function() {
 
@@ -42,25 +44,49 @@ const demo03 = (sketch) => {
 
 
   sketch.useNaive = function() {
-    console.log('use naive');
+    //Nx(N-1)/2
+    let tstart = performance.now();
+    for (let i = 0; i != particles.length; i++) {
+
+      let current = particles[i];
+
+      for (let j = i + 1; j != particles.length; j++) {
+
+        if (i != j) {
+          if (sketch.overlap(current, particles[j]))
+            current.overlap = true;
+        }
+      }
+
+      if (showDetectionZones)
+        apiP5.showParticleDetectionZone(sketch, current);
+
+      apiP5.showParticle(sketch, current);
+    }
+    let tend = performance.now();
+    timeComputeInteractions = tend - tstart;
+
   };
 
   sketch.useQuadTree = function() {
-    console.log('use quadtree');
 
     let p = new Point(0, 0);
 
     //Update
+    let t0 = performance.now();
     for (let i = 0; i != particles.length; i++) {
-      particles[i].overlap = false;
-      particles[i].move(sketch.width, sketch.height);
       rootNode.insert(new Point(particles[i].x, particles[i].y, particles[i]));
     }
+    let t1 = performance.now();
+
+    timeConstructionQuadtree = t1 - t0;
 
     if (showQuadtree)
       apiP5.showNodeWithoutPoints(sketch, rootNode);
 
-    //Detect collisions and render
+    //Detect collisions
+
+    let tstart = performance.now();
     for (let i = 0; i != particles.length; i++) {
 
       let current = particles[i];
@@ -70,30 +96,38 @@ const demo03 = (sketch) => {
       if (showDetectionZones)
         apiP5.showParticleDetectionZone(sketch, probe);
 
+      current.overlap = false;
       for (let n of neighbors) {
-        //TODO
-        // if (n.data != current && current.isOverlaping(n.data)) {
-        //   current.highlight();
-        // }
+        if (n.data != current && sketch.overlap(current, n.data)) {
+          current.overlap = true;
+          break;
+        }
       }
-      apiP5.showParticle(sketch, particles[i], 'blue');
     }
+    let tend = performance.now();
+    timeComputeInteractions = tend - tstart + timeConstructionQuadtree;
 
   };
 
-
-
   sketch.draw = function() {
-
-
     sketch.background(0);
     rootNode.clear();
     uiApp03.update();
+    //move
+    for (let i = 0; i != particles.length; i++) {
+      particles[i].move(sketch.width, sketch.height);
+    }
 
     algorithm();
+    //render
+    for (let i = 0; i != particles.length; i++) {
+      apiP5.showParticle(sketch, particles[i]);
+    }
+  };
 
 
-
+  sketch.overlap = function(particleA, particleB) {
+    return sketch.dist(particleA.x, particleA.y, particleB.x, particleB.y) < particleA.r + particleB.r;
   };
 
   //Interace with UI
@@ -124,6 +158,14 @@ const demo03 = (sketch) => {
       algorithm = sketch.useNaive;
     else if (algo === 'quadtree')
       algorithm = sketch.useQuadTree;
+  }
+
+  sketch.getTimeConstructionQuadTree = function() {
+    return timeConstructionQuadtree;
+  }
+
+  sketch.getTimeToComputeInteractions = function() {
+    return timeComputeInteractions;
   }
 
 }

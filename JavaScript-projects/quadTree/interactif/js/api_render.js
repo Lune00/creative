@@ -8,13 +8,13 @@ const apiP5 = {
     sketch.point(point.x, point.y);
   },
 
-  showParticle: function(sketch, particle, color) {
+  showParticle: function(sketch, particle, color = 'white') {
     sketch.stroke(color);
     sketch.strokeWeight(1);
     sketch.stroke(0);
     sketch.fill(255);
     if (particle.overlap)
-      sketch.fill('#33FF57');
+      sketch.fill('#FF00C1');
     sketch.circle(particle.x, particle.y, 2 * particle.r);
   },
 
