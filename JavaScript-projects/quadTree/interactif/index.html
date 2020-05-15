@@ -147,7 +147,7 @@
   <p>
     Mettons nous d'accord sur le vocabulaire et quelques définitions afin de ne laisser place à aucune ambiguité. En effet, il n'y a pas de définition standard du Quadtree, plusieurs implémentations existent et ont chacune leur intérêt et leur
     défaut. Il existe plusieurs stratégies pour le construire et la structure possède plusieurs paramètres (capacité, profondeur...) ajustables par l'utilisateur en fonction de ses besoins. Néanmoins, tous les Quadtrees partagent une définition
-    commune : ce sont des structures de type arbre (récursives) dans laquelle chaque noeud à quatre enfants. La suite de cet article s'appuiera sur l'ensemble des défintions suivantes.
+    commune : ce sont des structures de type arbre (récursives) dans laquelle chaque noeud a jusqu'à quatre enfants. La suite de cet article s'appuiera sur l'ensemble des défintions suivantes.
   </p>
 
   <p>
@@ -172,7 +172,7 @@
       Feuille
     </dt>
     <dd>
-      un noeud qui ne peut porter que des points, mais jamais d'autres noeuds. Lorsque la capacité de la feuille est excédée elle se transforme en branche.
+      un noeud qui ne peut porter que des points, mais jamais d'autres noeuds. Lorsque la capacité de la feuille est dépassée elle se transforme en branche.
     </dd>
     <dt>
       Enfant
@@ -206,8 +206,12 @@
   </div>
 
   <p>
-    La <a href="#figure3"> figure 3</a> montre un exemple de quatree où les points sont répartis sur des feuilles. Ces points sont ceux qui existent dans notre espace bidimensionnel et que nous avons organisés suivant cette étrange structure, au lieu
-    de les garder sous forme de liste. Voyons maintenant comment construire un quatree comme celui-ci, et comment nous passons de notre espace bidimensionnel à cet <i>arbre</i>. Nous verrons également pourquoi nous distinguons les noeuds en branches
+    La <a href="#figure3"> figure 3</a> montre un exemple de Quatree où les points sont répartis sur des feuilles. Ces points sont ceux qui existent dans notre espace bidimensionnel et que nous avons organisés suivant cette étrange structure, au lieu
+    de les garder sous forme de liste.
+
+  </p>
+  <p>
+    Voyons maintenant comment construire un Quatree comme celui-ci et son rapport à notre esapce bidimensionnel. Nous verrons également pourquoi nous distinguons les noeuds en branches
     et en feuilles.
   </p>
 
@@ -219,8 +223,8 @@
   <h2>Construction</h2>
 
   <p>
-    Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données Quadtree à partir de nos points. Nous allons insister ici sur les principes de construction, plutôt que sur les détails de l'implémentation.
-    L'objectif est d'abord d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>.
+    Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données Quadtree à partir de nos points. Nous allons d'abord insister sur les principes de construction, plutôt que sur les détails de l'implémentation.
+    L'objectif premier est d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>. L'implémentation proposée dans cet article est une suggestion, et n'est évidemment pas la seule possible, libre à vous de l'adapter à vos besoins ou de l'améliorer.
   </p>
 
 
@@ -228,7 +232,7 @@
   <p>
     Nous allons commencer par définir la racine de notre Quadtree, le premier noeud. La racine n'a pas de noeud parent par définition et c'est une feuille. A présent il faut faire la connexion entre notre arbre et
     l'espace géometrique : <strong>chaque noeud aura la responsabilité d'une région de l'espace. La racine a
-      l'intégralité de l'espace sous sa responsabilité</strong>. Elle sera
+      sous sa responsabilité l'intégralité de l'espace</strong>. Elle sera
     responsable de tout ce
     qu'il se trouve à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir.
   </p>
@@ -784,7 +788,7 @@
         total du calcul de toutes les interactions (ms) :</label>
       <span id="timeToComputeInteractions" name="timeToComputeInteractions"></span>
 
-      <div><label for="pourcentage" <acronym title="Rapport (en %) du temps nécessaire à la construction du Quadtree par rapport au temps nécessaire au calcul des interactions (proportionnelle au nombre de particules)">Rapport du temps de
+      <div><label for="pourcentage" <acronym title="Rapport (en %) du temps nécessaire à la construction du Quadtree par rapport au temps nécessaire au calcul des interactions">Rapport du temps de
           construction du Quadtree au temps du calcul des interactions (%):</label>
         <span id="pourcentage" name="pourcentage"></span></div>
 

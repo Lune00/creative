@@ -20,7 +20,7 @@ const apiP5 = {
 
   showCircularProbe: function(sketch, circularProbe) {
     if (sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height) {
-      sketch.stroke('#5733FF');
+      sketch.stroke('white');
       sketch.strokeWeight(1.5);
       sketch.noFill();
       sketch.circle(circularProbe.x, circularProbe.y, 2 * circularProbe.r);
@@ -75,7 +75,7 @@ const apiP5 = {
     sketch.rectMode(sketch.CENTER);
 
     if (node.intersected) {
-      sketch.fill(100);
+      sketch.fill('#2B1A80');
     } else {
       sketch.fill(0);
     }
