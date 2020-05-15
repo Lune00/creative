@@ -31,7 +31,7 @@ const demo03 = (sketch) => {
     nParticles = uiApp03.getNbParticles();
 
     for (let i = 0; i != nParticles; i++) {
-      particles[i] = new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), 8, sketch.random(2 * sketch.PI));
+      particles[i] = new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), sketch.random(8,12), sketch.random(2 * sketch.PI));
       rmax = rmax > particles[i].r ? rmax : particles[i].r;
     }
 
