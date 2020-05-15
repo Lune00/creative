@@ -2,7 +2,7 @@ const modelDemoQuadTreeInteractions = {
   frameRate: 0,
   timeConstructionQuadtree: 0,
   totalTimeInteractions: 0,
-
+  pourcentageConstructionInteractions: 0,
 
   updateFrameRate() {
     setInterval(() => {
@@ -22,8 +22,14 @@ const modelDemoQuadTreeInteractions = {
     }, 1000);
   },
 
-  update: function() {}
+  updatePourcentage() {
+    if (this.totalTimeInteractions != 0)
+      this.pourcentageConstructionInteractions = this.timeConstructionQuadtree / this.totalTimeInteractions * 100;
+  },
 
+  update() {
+    this.updatePourcentage();
+  }
 }
 
 const uiApp03 = {
@@ -83,6 +89,7 @@ const uiApp03 = {
 
     document.getElementById('timeToBuildQuadtree').innerHTML = Number.parseFloat(this.model.timeConstructionQuadtree).toPrecision(2);
     document.getElementById('timeToComputeInteractions').innerHTML = Number.parseFloat(this.model.totalTimeInteractions).toPrecision(3);
+    document.getElementById('pourcentage').innerHTML = Number.parseFloat(this.model.pourcentageConstructionInteractions).toPrecision(3);
     //FrameRate
     let frameRate = Number.parseFloat(this.model.frameRate).toPrecision(2);
     let frameRateSpan = document.getElementById('frameRate');
