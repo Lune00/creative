@@ -24,26 +24,26 @@
   <h3>Ce que nous allons aborder et ce dont nous ne parlerons pas</h3>
 
   <p>
-    Les <a href="https://fr.wikipedia.org/wiki/Quadtree">quadtree</a> sont des structures de données qui peuvent être très utiles pour résoudre certains types de problèmes. Précisons d'emblée que cet article ne cherche pas à couvrir de manière
-    exhaustive tous les usages et les contextes d'application des quadtrees. Nous nous nous restreindrons à son usage principal, celui du partitionnement d'un espace à deux dimensions.
-    Au lieu de partir de considérations théoriques et générales nous allons plutôt aborder les quadtrees d'un point de vue pratique en tachant de répondre à ces questions : à quoi un quadtree peut-il servir ? Qu'est ce qu'un quadtree ? Comment le
+    Les <a href="https://fr.wikipedia.org/wiki/Quadtree">Quadtree</a> sont des structures de données qui peuvent être très utiles pour résoudre certains types de problèmes. Précisons d'emblée que cet article ne cherche pas à couvrir de manière
+    exhaustive tous les usages et les contextes d'application des Quadtrees. Nous nous nous restreindrons à son usage principal, celui du partitionnement d'un espace à deux dimensions.
+    Au lieu de partir de considérations théoriques et générales nous allons plutôt aborder les Quadtrees d'un point de vue pratique en tachant de répondre à ces questions : à quoi un Quadtree peut-il servir ? Qu'est ce qu'un Quadtree ? Comment le
     construire ? Comment l'interroger ? Comment s'en servir ?
-    Nous allons donc commencer par proposer une définition d'un quadtree. Puis, à l'aide de notre définition, nous allons le construire et l'implémenter (en JavaScript ici mais facilement
+    Nous allons donc commencer par proposer une définition d'un Quadtree. Puis, à l'aide de notre définition, nous allons le construire et l'implémenter (en JavaScript ici mais facilement
     reproductible dans n'importe quel langage de programmation). Nous allons ensuite voir comment nous en servir pour manipuler ou interroger efficacement nos données.
-    Finalement, nous allons l'utiliser dans un cas pratique où le quadtree fait largement ses preuves : la détection de collisions.
+    Finalement, nous allons l'utiliser dans un cas pratique où le Quadtree fait largement ses preuves : la détection de collisions.
 
   </p>
 
 
 
-  <h3>Dans quel cas les quadtrees sont-ils utiles?</h3>
+  <h3>Dans quel cas les Quadtrees sont-ils utiles?</h3>
 
   <p>
-    Avant même de définir ce qu'est un quadtree, il paraît intéressant de voir à quoi peut-il peut servir et à quels types de questions il permet de répondre.
+    Avant même de définir ce qu'est un Quadtree, il paraît intéressant de voir à quoi peut-il peut servir et à quels types de questions il permet de répondre.
   </p>
 
   <p>
-    Pour nous servir des quadtrees nous avons besoin d'un espace à deux dimensions (un écran, un sous-espace d'un espace plus grand, une scène où se déplacent des objets, une image etc...)
+    Pour nous servir des Quadtrees nous avons besoin d'un espace à deux dimensions (un écran, un sous-espace d'un espace plus grand, une scène où se déplacent des objets, une image etc...)
     et que cet espace contienne des points. Ces points peuvent représenter n'importe quoi, la seule chose qui importe c'est que les <strong>coordonnées de ces points représentent
       quelque-chose</strong>. Par exemple ces points pourraient représenter des particules, les pixels d'une image, les villes d'un pays etc... Les coordonnées ont du sens : deux particules veulent savoir si elles sont en contact ou non, le sens
     d'une image est
@@ -90,16 +90,18 @@
     appliquer un traitement particulier. Comment allons-nous nous y prendre? La solution <i>naïve</i> consisterait à parcourir tous les points et à tester s'ils se trouvent à l'intérieur du domaine délimité par le cercle rouge. Cette
     solution demanderait un temps d'execution propotionnel au nombre de points à traiter, on dit qu'elle est <code>O(n)</code>, où <code>n</code> représente le nombre de
     points à parcourir. La <a href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes">complexité</a> d'un algorithme, ou d'une fonction, est une mesure de la quantité de ressources (temps ou mémoire) nécessaire à son
-    éxecution :<code>O(n)</code> signifie que les ressources demandées sont proportionnelles à n. Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en
+    éxecution : <code>O(n)</code> signifie que les ressources demandées sont proportionnelles à n. Si nous avons un million de points et que notre cercle rouge ne contient que deux points alors nous devrons faire un million d'opérations pour n'en
     sélectionner que deux !
   </p>
   <p>
     Et ce n'est pas tout. Là encore c'est une complexité tolérable. Supposons que nous cherchions à savoir quel est le point le plus proche de chaque point. Pour y arriver nous devrions, pour chaque point, regarder les n - 1 points restants, mesurer
     la distance entre les deux et garder le point pour lequel la distance est la plus courte. Et nous devrions répeter cette opération n fois, pour chaque point. Cela veut dire qu'il faudrait n * (n -1) opérations pour obtenir notre résultat. Il
-    serait possible de réduire le coût en ne considérant les paires qu'une fois. Comme chaque paire compte double dans le décompte précédent il est encore possible de diviser par 2 le nombre d'opérations, pour le ramener à n(n-1)/2. Néanmoins, on
-    voit toujours apparaitre un facteur n*n. La complexité de notre calcul est donc ici en <code>0(n2)</code>. Si nous avions un million de points il faudrait faire un billion (1 000 000 000 000) d'opérations pour obtenir notre résultat ! Ce n'est
+    serait possible de réduire le coût en ne considérant les paires qu'une fois. Comme chaque paire compte double dans le décompte précédent il est encore possible de diviser par 2 le nombre d'opérations, pour le ramener à n *( n - 1 ) / 2.
+    Néanmoins, on
+    voit toujours apparaitre un facteur n<sup>2</sup>. La complexité de notre calcul est donc ici en <code>0(n<sup>2</sup>)</code>. Si nous avions un million de points il faudrait faire un billion (1 000 000 000 000) d'opérations pour obtenir notre
+    résultat ! Ce n'est
     pas sérieux. La complexité
-    <code>0(n2)</code> est une complexité qu'il faut éviter à chaque fois que cela est possible, sa mise à l'échelle avec la taille de l'échantillon est trop vertigineuse, et elle indique souvent qu'il y'a <i>un autre chemin</i>.
+    <code>0(n<sup>2</sup>)</code> est une complexité qu'il faut éviter à chaque fois que cela est possible, sa mise à l'échelle avec la taille de l'échantillon est trop vertigineuse, et elle indique souvent qu'il y'a <i>un autre chemin</i>.
   </p>
 
   <p>
@@ -112,16 +114,16 @@
     Pour le moment, nos objets sont stockés sous la forme d'un tableau, ou d'une liste, comme il est courant de le faire. Nous devons parcourir le tableau de points et tester pour chacun d'entre eux s'il est à l'interieur de la zone circulaire rouge.
     Mais c'est embêtant, car nous devons tester tous les points, même ceux à l'autre bout de l'espace, loin, si loin de notre zone. Il doit y avoir une meilleure solution. Pouvons-nous mieux faire? Oui, nous pouvons mieux faire ! Et pour mieux faire
     nous avons besoin d'une
-    structure de données adaptée à ce genre de problème : le quadtree.
+    structure de données adaptée à ce genre de problème : le Quadtree.
   </p>
 
 
   <p>
-    Le quadtree est une structure de données où l'on va ranger les points dans des petites boîtes. Ces boîtes seront définies en appliquant une décomposition de l'espace en quatre sous-espaces égaux de manière <a
+    Le Quadtree est une structure de données où l'on va ranger les points dans des petites boîtes. Ces boîtes seront définies en appliquant une décomposition de l'espace en quatre sous-espaces égaux de manière <a
       href="https://fr.wikipedia.org/wiki/R%C3%A9cursivit%C3%A9">récursive</a>. L'espace sera ainsi divisé <i>sur lui même</i> jusqu'à ce qu'aucune boite ne contienne plus de quatre points. C'est son aspect récursif qui
-    lui donne la forme d'un arbre (<i>tree</i>). Le <i>quad</i> vient lui du fait qu'on découpe l'espace toujours en quatre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du quadtree est d'organiser
+    lui donne la forme d'un arbre (<i>tree</i>). Le <i>quad</i> vient lui du fait qu'on découpe l'espace toujours en quatre. Même si cette définition parait pour le moment très insatisfaisante, nous allons voir que le but du Quadtree est d'organiser
     autrement les points (sans toucher à leur coordonnées bien entendu) pour optimiser drastiquement le coût de nos investigations. Pour reprendre la
-    question que nous nous posons, à savoir combien de points sont compris dans le cercle rouge, le problème de la solution naïve vient du fait qu'elle nous force à interroger tout l'espace (et donc tous les points !). Le quadtree va nous permettre
+    question que nous nous posons, à savoir combien de points sont compris dans le cercle rouge, le problème de la solution naïve vient du fait qu'elle nous force à interroger tout l'espace (et donc tous les points !). Le Quadtree va nous permettre
     d'affiner
     notre requête et d'interroger une partie de l'espace. Mais inutile de bavarder plus longtemps, et rentrons dans le vif du sujet.
   </p>
@@ -133,8 +135,8 @@
     </dt>
     <dd>
       <p class="togo">
-        Les quadtrees sont des structures de données qui permettent de traiter efficacement des données existantes dans un espace bidimensionnel. L'utilisation d'un quadtree pour réaliser ces
-        traitements offre un gain de performance considérable par rapport à l'approche <i>naïve</i>. Ce bénéfice provient du fait que le quadtree partitionne l'espace de manière récursive pour ré-organiser les données.
+        Les Quadtrees sont des structures de données qui permettent de traiter efficacement des données existantes dans un espace bidimensionnel. L'utilisation d'un Quadtree pour réaliser ces
+        traitements offre un gain de performance considérable par rapport à l'approche <i>naïve</i>. Ce bénéfice provient du fait que le Quadtree partitionne l'espace de manière récursive pour ré-organiser les données.
       </p>
     </dd>
   </dl>
@@ -143,8 +145,8 @@
   <h2>Définitions</h2>
 
   <p>
-    Mettons nous d'accord sur le vocabulaire et quelques définitions afin de ne laisser place à aucune ambiguité. En effet, il n'y a pas de définition standard du quadtree, plusieurs implémentations existent et ont chacune leur intérêt et leur
-    défaut. Il existe plusieurs stratégies pour le construire et la structure possède plusieurs paramètres (capacité, profondeur...) ajustables par l'utilisateur en fonction de ses besoins. Néanmoins, tous les quadtrees partagent une définition
+    Mettons nous d'accord sur le vocabulaire et quelques définitions afin de ne laisser place à aucune ambiguité. En effet, il n'y a pas de définition standard du Quadtree, plusieurs implémentations existent et ont chacune leur intérêt et leur
+    défaut. Il existe plusieurs stratégies pour le construire et la structure possède plusieurs paramètres (capacité, profondeur...) ajustables par l'utilisateur en fonction de ses besoins. Néanmoins, tous les Quadtrees partagent une définition
     commune : ce sont des structures de type arbre (récursives) dans laquelle chaque noeud à quatre enfants. La suite de cet article s'appuiera sur l'ensemble des défintions suivantes.
   </p>
 
@@ -157,8 +159,8 @@
       Noeud
     </dt>
     <dd>
-      le noeud est le composant fondamental du quadtree. Le quadtree est une association de noeuds, et il commence toujours par un noeud initial, un noeud racine. Les points insérés dans un quadtree finissent toujours attachés à un et un seul noeud.
-      Un noeud peut avoir jusqu'à 4 enfants. Le quadtree possède deux types de noeuds : les branches et les feuilles.
+      le noeud est le composant fondamental du Quadtree. Le Quadtree est une association de noeuds, et il commence toujours par un noeud initial, un noeud racine. Les points insérés dans un Quadtree finissent toujours attachés à un et un seul noeud.
+      Un noeud peut avoir jusqu'à 4 enfants. Le Quadtree possède deux types de noeuds : les branches et les feuilles.
     </dd>
     <dt>
       Branche
@@ -176,7 +178,7 @@
       Enfant
     </dt>
     <dd>
-      un enfant est un élément du quadtree qui est porté par son noeud parent. Un enfant peut-être un noeud ou un point. Seul un noeud peut être parent. Par exemple, sur la <a href="#figure3"> figure 3</a>, la feuille <i>b</i> est l'enfant de la
+      un enfant est un élément du Quadtree qui est porté par son noeud parent. Un enfant peut-être un noeud ou un point. Seul un noeud peut être parent. Par exemple, sur la <a href="#figure3"> figure 3</a>, la feuille <i>b</i> est l'enfant de la
       branche <i>a</i>. On dit que <i>a</i> porte <i>b</i>. De même, le point <i>c</i> est l'enfant de la feuille <i>b</i>, mais <i>c</i> n'est pas l'enfant de <i>a</i>, car <i>a</i> ne porte pas directement <i>b</i>.
     </dd>
     <dt>
@@ -198,7 +200,7 @@
   <div class="row justify-content-center" id="figure03">
     <figure class="figure">
       <img src="media/quadtree.svg" class="figure-img img-fluid rounded" alt="" title="" width="700" />
-      <figcaption class="figure-caption text-center">Figure 3 : Exemple d'un quadtree. Les feuilles portent les points. Notez qu'une branche ne peut porter<br /> que des branches ou des feuilles mais jamais directement des points.
+      <figcaption class="figure-caption text-center">Figure 3 : Exemple d'un Quadtree. Les feuilles portent les points. Notez qu'une branche ne peut porter<br /> que des branches ou des feuilles mais jamais directement des points.
         Chaque noeud peut porter jusqu'à quatre enfants maximum. </figcaption>
     </figure>
   </div>
@@ -217,21 +219,21 @@
   <h2>Construction</h2>
 
   <p>
-    Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données quadtree à partir de nos points. Nous allons insister ici sur les principes de construction, plutôt que sur les détails de l'implémentation.
+    Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données Quadtree à partir de nos points. Nous allons insister ici sur les principes de construction, plutôt que sur les détails de l'implémentation.
     L'objectif est d'abord d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>.
   </p>
 
 
   <h3>Le point de départ de l'arbre : la racine</h3>
   <p>
-    Nous allons commencer par définir la racine de notre quadtree, le premier noeud. La racine n'a pas de noeud parent par définition et c'est une feuille. A présent il faut faire la connexion entre notre arbre et
+    Nous allons commencer par définir la racine de notre Quadtree, le premier noeud. La racine n'a pas de noeud parent par définition et c'est une feuille. A présent il faut faire la connexion entre notre arbre et
     l'espace géometrique : <strong>chaque noeud aura la responsabilité d'une région de l'espace. La racine a
       l'intégralité de l'espace sous sa responsabilité</strong>. Elle sera
     responsable de tout ce
     qu'il se trouve à l'intérieur. C'est ce que l'on peut voir sur la <a href="#figure04">figure 4a</a>, où la racine a la charge de tout le rectangle noir.
   </p>
 
-  <h3>Insérer des points dans le quadtree</h3>
+  <h3>Insérer des points dans le Quadtree</h3>
 
   <p>
     Nous allons insérer nos points un à un dans l'arbre. Pour chaque point allons interroger la racine de l'arbre :
@@ -250,7 +252,7 @@
   <div class="row justify-content-center" id="figure04">
     <figure class="figure">
       <img src="media/construction.svg" class="figure-img img-fluid rounded" alt="" title="" width="1000" />
-      <figcaption class="figure-caption text-center">Figure 4 : Etapes de construction d'un quadtree par insertions successives de points. A l'étape f) la feuille originale porte 5 enfants.<br /> Ayant dépassé sa capacité de 4, elle se transforme en
+      <figcaption class="figure-caption text-center">Figure 4 : Etapes de construction d'un Quadtree par insertions successives de points. A l'étape f) la feuille originale porte 5 enfants.<br /> Ayant dépassé sa capacité de 4, elle se transforme en
         branche et pousse les points sur leurs feuilles respectives. <br />Le prochain point sera porté par l'une des feuilles de profondeur 1 et le processus se répètera.</figcaption>
     </figure>
   </div>
@@ -259,7 +261,8 @@
 
   <p>
     Le noeud racine porte à présent 4 enfants et nous insérons un nouveau point de notre collection. La feuille se retrouve à présent en surcapacité, elle a un point de trop : elle se transforme en branche. D'après notre définition, une branche ne
-    peut avoir pour enfant que d'autres noeuds. Elle divise donc la région dont elle a la responsabilité en trois sous-régions égales (la dernière sous-région ne contenant aucun point n'est pas définie). Ces sous-régions sont chacune mises sous la responsabilité de nouveaux enfants, des feuilles. Chaque feuille prend
+    peut avoir pour enfant que d'autres noeuds. Elle divise donc la région dont elle a la responsabilité en trois sous-régions égales (la dernière sous-région ne contenant aucun point n'est pas définie). Ces sous-régions sont chacune mises sous la
+    responsabilité de nouveaux enfants, des feuilles. Chaque feuille prend
     la charge des points qui se trouvent dans sa région. Chaque point, originellement porté par la branche, se trouve alors poussé sur sa feuille et la structure est de nouveau à l'équilibre. Sur la <a href="figure04">figure 4f</a> on peut voir que 3
     feuilles ont poussé sur l'arbre. Elles contiennent les 5 points insérés. Chacune d'entre elle porte les points qui se trouvent dans la région dont elle est responsable. Enfin, la racine est à présent une branche et elle n'a pour enfant que des
     feuilles.
@@ -315,7 +318,7 @@
   </p>
 
   <p>
-    <a href="#demo01">Une démo interactive</a> de création et d'inspection du quadtree est disponbile dans l'article. Vous pouvez y expérimentez la construction d'un quadtree point par point, par un simple clic sur le canvas. Le nombre de branches et
+    <a href="#demo01">Une démo interactive</a> de création et d'inspection du Quadtree est disponbile dans l'article. Vous pouvez y expérimentez la construction d'un Quadtree point par point, par un simple clic sur le canvas. Le nombre de branches et
     de feuilles de l'arbre sont affichés pour vous permettre de savoir si vous avez bien compris les mécanismes de division.
   </p>
 
@@ -328,10 +331,9 @@
     la racine. Voici à quoi le pseudo-code de la fonction d'insertion pourrait ressembler:
   </p>
 
-  <div class="row justify-content-center" id="pseudocode">
-    <pre>
-      <span class="variable">racine</span>.<span class="function">inserer</span>(point){
-
+  <div>
+    <pre class="language-javascript">
+    <code><span class="variable">racine</span>.<span class="function">inserer</span>(point){
       <span class="if-else">if</span> <span class="statement">le point n'est pas dans mon domaine</span>
         quitter;
 
@@ -350,8 +352,8 @@
           creer autant d'enfants feuille que nécessaire : <span class="variable">mes_feuilles</span>
           recuperer tous mes points : <span class="variable">mes_points</span>
           <span class="variable">mes_feuilles</span>.<span class="function">inserer</span>(<span class="variable">mes_points</span>)
-      }
-    </pre>
+      }</code></pre>
+
   </div>
 
 
@@ -359,46 +361,44 @@
   <h2 id="implementation">Implémentation</h2>
 
   <p>
-    Cette partie portera sur l'implémentation (en javascript) d'un quadtree. Nous allons implémenter le composant <i>noeud</i> et la fonctionalité d'insertion. Tous les détails de l'implémentation ne sont pas mentionnés, notamment le code concernant
+    Cette partie portera sur l'implémentation (en JavaScript) d'un Quadtree. Nous allons implémenter le composant <i>noeud</i> et la fonctionalité d'insertion. Tous les détails de l'implémentation ne sont pas mentionnés, notamment le code concernant
     les fonctions auxiliaires. Il est cependant accessible dans le <a href="#">code-source</a>.
   </p>
 
 
-  <h3>Implémentation du noeud : <code class="language-javascript">class Node</code> </h3>
+  <h3>Implémentation du noeud : <code>class Node</code> </h3>
 
   <p>
-    Un noeud est la structure fondamentale de l'arbre. Elle possède une région, un espace géometrique, dont elle a la responsabilité. Cette région est rectangulaire et est entièrement définie par les variables <code
-      class="language-javascript">x,y,w,h</code> où <code class="language-javascript">(x,y)</code> représentent <strong>le centre</strong> du rectangle et <code class="language-javascript">(w,h)</code> sa <strong>demi-largeur et
+    Un noeud est la structure fondamentale de l'arbre. Elle possède une région, un espace géometrique, dont elle a la responsabilité. Cette région est rectangulaire et est entièrement définie par les variables <code>x,y,w,h</code> où
+    <code>(x,y)</code> représentent <strong>le centre</strong> du rectangle et <code>(w,h)</code> sa <strong>demi-largeur et
       demi-longueur</strong>.
 
   </p>
   <p>
-    Un noeud a en pratique toujours 4 enfants, donc <code class="language-javascript">children</code> est un tableau de 4 éléments, un pour chaque enfant. Les enfants sont initialisés sous la forme d'un tableau vide. Chaque indice du tableau
-    <code class="language-javascript">children</code> correspond à une sous-région de l'espace détenu par le noeud, comme représenté sur <a href="figure04">la figure 4</a>. On peut voir que l'espace est virtuellement pré-découpé en 4 sous-regions
-    par des traits pointillés blancs. L'indice, allant de 0 à 3 sert d'identité à chaque sous-région. Ainsi <code class="language-javascript">children[0]</code> retourne soit l'ensemble des points contenus dans la sous-région <code
-      class="language-javascript">0</code> du noeud si le noeud est une feuille, soit une feuille si le noeud est une branche.
+    Un noeud a en pratique toujours 4 enfants, donc <code>children</code> est un tableau de 4 éléments, un pour chaque enfant. Les enfants sont initialisés sous la forme d'un tableau vide. Chaque indice du tableau
+    <code>children</code> correspond à une sous-région de l'espace détenu par le noeud, comme représenté sur <a href="figure04">la figure 4</a>. On peut voir que l'espace est virtuellement pré-découpé en 4 sous-regions
+    par des traits pointillés blancs. L'indice, allant de 0 à 3 sert d'identité à chaque sous-région. Ainsi <code>children[0]</code> retourne soit l'ensemble des points contenus dans la sous-région <code>0</code> du noeud si le noeud est une feuille,
+    soit une feuille si le noeud est une branche.
   </p>
 
   <p>
-    Un attribut <code class="language-javascript">capacity</code> définit la capacité de chaque feuille, égale par convention au nombre d'enfants max, soit 4. Un noeud nouvellement crée est par défaut une feuille, et sa profondeur est initialisée à
+    Un attribut <code>capacity</code> définit la capacité de chaque feuille, égale par convention au nombre d'enfants max, soit 4. Un noeud nouvellement crée est par défaut une feuille, et sa profondeur est initialisée à
     partir de celle de son parent, où à 0 dans le cas de la racine.
   </p>
 
 
-  <div class="row justify-content-center" id="snpippet-node">
-    <pre>
-    <code class="language-javascript">
-      class Node {
+  <div>
+    <pre class="language-javascript line-numbers">
+    <code >class Node {
 
-        constructor(x, y, w, h, depth) {
+        constructor(x, y, w, h, depth = 0) {
 
-          //Region : (x,y) position du centre, (w,h) demi largeur/hauteur
+          //Region sous responsabilité : (x,y) position du centre, (w,h) demi largeur/hauteur
           this.x = x;
           this.y = y;
           this.w = w;
           this.h = h;
-
-          //                0   1   2   3
+          //                 0   1   2   3
           this.children = [ [], [], [], [] ];
 
           this.isBranch = false;
@@ -410,46 +410,44 @@
           this.length = 1;
 
           //profondeur
-          if (!depth)
-            this.depth = 0;
-          else
-            this.depth = depth;
+          this.depth = depth;
         }
         //Methodes a implementer
-        insert(point){}
-        query(area){}
-      }
-    </code>
-  </pre>
+        insert( point ){}
+        query( area ){}
+      }</code></pre>
 
   </div>
 
-  Pour initialiser la racine il suffira de l'instancier dans notre programme avec <code class="language-javascript">let racine = new Node(x,y,w,h)</code>, où x,y,w,h sont les données géometriques de l'espace où se trouvent vos points, typiquement les
+  Pour initialiser la racine il suffira de l'instancier dans notre programme avec <code>let racine = new Node(x, y, w, h)</code>, où <code>(x, y, w, h)</code> sont les données géometriques de l'espace où se trouvent vos points, typiquement les
   propriétés de votre écran.
 
-  <h2 id="implementation">Implémentation de l'insertion : <code class="language-javascript">insert(point)</code></h2>
+  <h2 id="implementation">Implémentation de l'insertion : <code>insert(point)</code></h2>
 
   <p>
-    Maintenant que nous avons initialisé notre arbre il faut pouvoir y insérer nos points. C'est le but de la méthode <code class="language-javascript">insert(point)</code>. Tout d'abord nous vérifions si le point est contenu dans la région contrôlée
-    par le noeud. Si ce n'est pas le cas alors on ne l'insert pas, tout simplement. Un point généré en dehors de votre écran n'intéresse pas le quadtree.
+    Maintenant que nous avons initialisé notre arbre il faut pouvoir y insérer nos points. C'est le but de la méthode <code>insert(point)</code>. Tout d'abord nous vérifions si le point est contenu dans la région contrôlée
+    par le noeud. Si ce n'est pas le cas alors on ne l'insert pas, tout simplement. Un point généré en dehors de votre écran n'intéresse pas le Quadtree.
   </p>
   <p>
-    Si le noeud contient le point, la méthode <code class="language-javascript">index(point)</code> se charge de récupérer l'index de la sous-région dans laquelle il se trouve. Cet index, allant de 0 à 3 est celui représenté sur <a href="figure04">la
-      figure 4</a>. Il permet d'accèder à l'enfant en charge du sous-espace. Nous pouvons ensuite interroger l'enfant <code class="language-javascript">children[index]</code>. L'instruction <code class="language-javascript">children[index] instanceof
-      Node</code> est une syntaxe de la norme <a href="https://www.w3schools.com/js/js_es6.asp">ECMAScript 6</a>. Sous le capot aucun cast, JavaScript se contente de tester si <code class="language-javascript">children</code> possède, dans sa <a
-      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">chaîne de prototype</a>, une référence vers le prototype du constructeur <code class="language-javascript">Node</code>.
+    Si le noeud contient le point, la méthode <code>index(point)</code> se charge de récupérer l'index de la sous-région dans laquelle il se trouve. Cet index, allant de 0 à 3 est celui représenté sur <a href="figure04">la
+      figure 4</a>. Il permet d'accèder à l'enfant en charge du sous-espace. Nous pouvons ensuite interroger l'enfant <code>children[index]</code>.
+  </p>
+  <p>
+    L'instruction <code>children[index] instanceof
+      Node</code>, à la ligne 8, est une syntaxe de la norme <a href="https://www.w3schools.com/js/js_es6.asp">ECMAScript 6</a>. Sous le capot aucun cast, JavaScript se contente de tester si <code>children</code> possède, dans sa <a
+      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">chaîne de prototype</a>, une référence vers le prototype du constructeur <code>Node</code>. Deux cas se présentent :
 
   <ul>
     <li>
-      si l'enfant un noeud alors le noeud parent lui délegue le travail et la méthode <code class="language-javascript">insert(point)</code> est appelée récursivement sur l'enfant. Le travail est terminé pour le noeud parent.
+      si l'enfant est un noeud, le noeud parent lui délegue le travail et la méthode <code>insert(point)</code> est appelée récursivement sur l'enfant. Le travail est terminé pour le noeud parent.
     </li>
     <li>
-      si l'enfant n'est pas un noeud, mais encore un tableau alors deux cas se présentent :
+      si l'enfant n'est pas un noeud, mais encore un tableau, alors deux cas se présentent :
       <ul>
         <li>
-          soit le noeud en cours est une branche qui n'a pas encore fait poussé de feuille dans cette sous-région. Dans ce cas on fait pointer l'enfant sur une nouvelle feuille : <code class="language-javascript">children[index] =
-            getNewNode(index)</code>. Puis on lui demande de s'occuper du point. La méthode <code class="language-javascript">getNewNode(index)</code> prend en paramètre l'index de la sous-région sur laquelle il doit pointer et renvoie une feuille
-          toute fraiche ayant la charge de cette sous-région. Mais, et si <code class="language-javascript">children[index]</code> contenait des points, alors nous pourrions les perdre dans cette opération, non? Non, car le noeud est une branche ! Et
+          soit le noeud en cours est une branche qui n'a pas encore fait poussé de feuille dans cette sous-région. Dans ce cas on fait pointer l'enfant sur une nouvelle feuille : <code>children[index] =
+            getNewNode(index)</code>. Puis on lui demande de s'occuper du point. La méthode <code>getNewNode(index)</code> prend en paramètre l'index de la sous-région sur laquelle il doit pointer et renvoie une feuille
+          toute fraiche ayant la charge de cette sous-région. Mais, et si <code>children[index]</code> contenait des points, alors nous pourrions les perdre dans cette opération, non? Non, car le noeud est une branche ! Et
           par définition, une branche ne porte jamais de points.
         </li>
         <li>
@@ -463,10 +461,9 @@
   Il reste une dernière étape avant de terminer cette fonction. Il faut implémenter la transformation en branche d'une feuille lorsque celle-ci est en surcapacité. C'est le rôle de la dernière évaluation.
 
   </p>
-  <div class="row justify-content-center" id="snpippet-node">
+  <div>
     <pre class="language-javascript line-numbers">
-    <code class="language-javascript">
-      insert(point) {
+    <code>insert(point) {
 
         if (!this.contains(point))
           return;
@@ -492,28 +489,25 @@
           if (this.hasReachedMaxCapacity())
             this.branch();
         }
-      }
-    </code>
-  </pre>
+      }</code></pre>
   </div>
 
   <p>
-    Le code de la méthode <code class="language-javascript">branch()</code> est montré ci-dessous. Rappelons nous : lorsqu'une feuille porte plus de 4 points, elle est en sur-capacité et se change en branche. Elle doit alors instancier de nouvelles
+    Le code de la méthode <code>branch()</code> est montré ci-dessous. Rappelons nous : lorsqu'une feuille porte plus de 4 points, elle est en sur-capacité et se change en branche. Elle doit alors instancier de nouvelles
     feuilles
     et pousser ses points dessus. A la fin, la branche ne doit avoir que des feuilles pour enfant.
   </p>
 
   <p>
-    Nous parcourons alors tous les enfants de la feuille. Ces enfants, par définition, <strong>sont garantis d'être des tableaux de points</strong>. C'est pour cela que dans la boucle <code
-      class="language-javascript">children.forEach((points,index))</code> la référence vers chaque enfant est nommée <code class="language-javascript">points</code>, et non child. Nous ne voulons pas instancier plus de feuilles que nécessaire, c'est
-    pourquoi nous instancions une feuille que lorsqu'un enfant porte des points. Une fois l'enfant transformé en feuille, nous insérons les <code class="language-javascript">points</code> dedans. Finalement, nous n'oublions pas d'indiquer que notre
-    noeud est à présent une branche : <code class="language-javascript">this.isBranch = true</code>.
+    Nous parcourons alors tous les enfants de la feuille. Ces enfants, par définition, <strong>sont garantis d'être des tableaux de points</strong>. C'est pour cela que dans la boucle <code>children.forEach((points,index))</code> la référence vers
+    chaque enfant est nommée <code>points</code>, et non <code>child</code>. Nous ne voulons pas instancier plus de feuilles que nécessaire, c'est
+    pourquoi nous instancions une feuille que lorsqu'un enfant contient des points. Une fois l'enfant transformé en feuille, nous insérons les <code>points</code> dedans. Finalement, nous n'oublions pas d'indiquer que notre
+    noeud est à présent une branche avec l'instruction <code>this.isBranch = true</code>.
   </p>
 
-  <div class="row justify-content-center" id="snpippet-node">
+  <div>
     <pre class="language-javascript line-numbers">
-    <code class="language-javascript">
-      branch() {
+    <code>branch() {
         //Seule une feuille peut devenir une branche, ses enfants sont nécessairement des tableaux de points
         this.children.forEach((points, index) => {
           //Si un enfant contient des points, créer une feuille a la place...
@@ -526,9 +520,7 @@
         });
 
         this.isBranch = true;
-      }
-    </code>
-  </pre>
+    }</code></pre>
   </div>
 
 
@@ -536,9 +528,9 @@
 
   <p>
     Ci-dessous vous trouverez une démo interactive de cette implémentation. Vous pouvez insérer des points par un simple click sur le canvas. Vous pouvez insérer point par point pour bien suivre l'évolution du nombre de branches et de feuilles, soit
-    par nuages de points. Une zone d'inspection, qui suit le mouvement du curseur, est également à disposition pour inspecter le quadtree. Vous pouvez régler sa taille. Elle détecte les points contenus à l'intérieur du cercle. Le nombre de
+    par nuages de points. Une zone d'inspection, qui suit le mouvement du curseur, est également à disposition pour inspecter le Quadtree. Vous pouvez régler sa taille. Elle détecte les points contenus à l'intérieur du cercle. Le nombre de
     points candidats montre combien de points il a fallu interroger pour obtenir ce résulat. Vous pouvez observer qu'il est possible de selectionner les points à l'intérieur du cercle sont évaluer tous les points présents (sauf s'ils y sont tous bien
-    sûr). Les lignes blanches marquent les frontières des neuds. Un noeud en surbrillance indique une feuille intérogée par la zone d'inspection. Nous verrons dans la prochaine partie comment inspecter et nous servir du quadtree. N'hésitez pas alors
+    sûr). Les lignes blanches marquent les frontières des neuds. Un noeud en surbrillance indique une feuille intérogée par la zone d'inspection. Nous verrons dans la prochaine partie comment inspecter et nous servir du Quadtree. N'hésitez pas alors
     à revenir expérimenter avec cette démo.
   </p>
 
@@ -607,28 +599,30 @@
 
   <br />
   <p>
-    Nous avons à présent construit notre quadtree. Notre structure de données est enfin prête. La partie intéressante peut commencer, nous allons à présent nous servir de notre quadtree pour obtenir des réponses aux questions que nous nous posions !
+    Nous avons à présent construit notre Quadtree. Notre structure de données est enfin prête. La partie intéressante peut commencer, nous allons à présent nous servir de notre Quadtree pour obtenir des réponses aux questions que nous nous posions !
   </p>
 
-  <h2>Se servir (enfin) du quadtree</h2>
+  <h2>Se servir (enfin) du Quadtree</h2>
 
 
   <p>
     La question que nous nous posions à la base était la suivante : quels sont les objets sur la <a href="#figure02">figure 2</a>, présents à l'interieur du cercle rouge ? Et nous voulions y répondre sans devoir interroger l'intégralité des points et
-    écopper de la complexité <code>0(n)</code>. Pour cela nous avons ré-organisé nos données dans une structure quadtree. Comment récupérer les points que nous cherchons ?
+    écopper de la complexité <code>0(n)</code>. Pour cela nous avons ré-organisé nos données dans une structure Quadtree. Comment récupérer les points que nous cherchons ?
   </p>
 
   <p>
     Nous devons définir notre zone d'inspection, notre cercle rouge, comme dans <a href="#demo01">la démo</a>. Dans ce cas ci la zone d'inspection est vraiment très simple: elle est définie par les coordonnées de son centre et par un rayon. Nous
-    allons initialiser notre requête au quadtree en demandant à la racine si notre cercle recouvre, même partiellement, l'espace mis sous sa reponsabilité. Si c'est le cas, et si la racine a des noeuds enfants, alors le cercle doit nécessairement
+    allons initialiser notre requête au Quadtree en demandant à la racine si notre cercle recouvre, même partiellement, l'espace mis sous sa reponsabilité. Si c'est le cas, et si la racine a des noeuds enfants, alors le cercle doit nécessairement
     recouvrir au moins une des sous-régions à la charge de l'un de ses enfants. Récursivement nous allons donc interroger les enfants recouverts jusqu'à arriver sur les feuilles. Les feuilles sont les noeuds les plus profonds de l'arbre, il n'y a
     rien en dessous, mis à
     part nos points. Les enfants des feuilles sont les points que nous cherchons. Nous n'avons plus qu'à remonter tous les points contenus dans les feuilles recouvertes par notre cercle. Le pseudo-code est de la forme :
   </p>
 
-  <div class="row justify-content-center" id="pseudocode">
-    <pre>
-      <span class="variable">racine</span>.<span class="function">query</span>(cercle_rouge){
+
+
+  <div>
+    <pre class="language-javascript">
+    <code><span class="variable">racine</span>.<span class="function">query</span>(cercle_rouge){
 
       <span class="if-else">if !</span><span class="statement">cercle_rouge</span>.<span class="function">recouvre</span>(<span class="variable">racine.region</span>)
         quitter;
@@ -640,8 +634,7 @@
           Pour chaque <span class="variable">point</span> de <span class="variable">enfant</span>
             <span class="if-else">if</span> <span class="statement">cercle_rouge</span>.<span class="function">contient</span>(<span class="variable">point</span>)
               garder <span class="variable">point</span>
-      }
-    </pre>
+   }</code></pre>
   </div>
 
   <p>
@@ -666,9 +659,9 @@
   </p>
 
   <p>
-    Analyser la complexité d'une requête dans un quadtree n'est pas évidente car elle dépend de la requête elle même et de la structure de l'arbre. Cependant nous pouvons estimer les complexité aux cas limites : si tous les points sont présents dans
-    notre cercle rouge alors nous retombons sur la pire complexité, en <code>0(n)</code>. Si cette situation se présente majoritairement cela ne signifie pas que le quadtree est à blâmer, mais plutôt qu'il y'a un problème en terme de design au niveau
-    de votre programme. Si 99% des points sont systématiquement candidats à votre requête alors l'utilisation d'un quadtree n'est pas nécessairement pertinent. A l'inverse, si la requête est très ciblée, et qu'une seule feuille est recouverte par le
+    Analyser la complexité d'une requête dans un Quadtree n'est pas évidente car elle dépend de la requête elle même et de la structure de l'arbre. Cependant nous pouvons estimer les complexité aux cas limites : si tous les points sont présents dans
+    notre cercle rouge alors nous retombons sur la pire complexité, en <code>0(n)</code>. Si cette situation se présente majoritairement cela ne signifie pas que le Quadtree est à blâmer, mais plutôt qu'il y'a un problème en terme de design au niveau
+    de votre programme. Si 99% des points sont systématiquement candidats à votre requête alors l'utilisation d'un Quadtree n'est pas nécessairement pertinent. A l'inverse, si la requête est très ciblée, et qu'une seule feuille est recouverte par le
     cercle, elle va traverser l'arbre directement de la racine à la feuille et la complexité sera de <code>0(p)</code>, où p est la profondeur de la feuille. On peut donc au moins garantir que la complexité de notre requête est comprise entre
     <code>0(p)</code> et <code>0(n)</code>. C'est déjà une grande nouvelle, car la complexité <code>0(n)</code> qui était garantie à 100% par notre solution naïve est désormais devenue celle du cas le plus extrême.
   </p>
@@ -676,11 +669,10 @@
 
   Voyons à présent les détails de l'implémentation de la requête.
   </p>
-  <h2 id="implementation">Implémentation de l'interrogation du quadtree : <code class="language-javascript">query()</code></h2>
+  <h2 id="implementation">Implémentation de l'interrogation du Quadtree : <code>query()</code></h2>
 
   <pre class="language-javascript line-numbers">
-    <code class="language-javascript">
-      query(circleProbe, points) {
+    <code class="language-javascript">query(circleProbe, points) {
 
         if (!points) {
           points = [];
@@ -709,9 +701,7 @@
         });
 
         return points;
-      }
-    </code>
-  </pre>
+    }</code></pre>
 
 
 
@@ -740,7 +730,7 @@
       <label for="depth_current" <acronym title="Profondeur du noeud sous la souris">Profondeur sous le curseur: </label>
       <span id="depth_current" name="depth_current"></span>
 
-      <label for="depth_max" <acronym title="Profondeur maximale observée dans le quadtree">Profondeur maximale de l'arbre: </label>
+      <label for="depth_max" <acronym title="Profondeur maximale observée dans le Quadtree">Profondeur maximale de l'arbre: </label>
       <span id="depth_max" name="depth_max"></span>
 
       <div>
@@ -799,7 +789,7 @@
     </div>
     <div>
       <label for="timeToComputeInteractions" <acronym
-        title="Temps d'execution nécessaire au calcul de toutes les interactions. Dans le cas de l'approche naive le calcul mesure le temps nécessaire pour parcourir toutes les paires de particules. Dans le cas du quadtree, le calcul comprend le temps de construction du quadtree et des querry.">Temps
+        title="Temps d'execution nécessaire au calcul de toutes les interactions. Dans le cas de l'approche naive le calcul mesure le temps nécessaire pour parcourir toutes les paires de particules. Dans le cas du Quadtree, le calcul comprend le temps de construction du Quadtree et des querry.">Temps
         total du calcul de toutes les interactions (ms) :</label>
       <span id="timeToComputeInteractions" name="timeToComputeInteractions"></span>
 

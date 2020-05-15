@@ -1,32 +1,3 @@
-canvas {
-  display: block;
-}
-
-/* code displaying */
-pre, code {
-  font-family: monospace, monospace;
-  background-color: #1b2426;
-  color: white;
-  display: inline-block;
-  padding-right: 25px;
-}
-
-.variable {
-  color: #34eb46;
-}
-
-.if-else {
-  color: yellow;
-}
-
-.statement {
-  color: #fc00e2;
-}
-
-.function {
-  color: #66a6ff;
-}
-
 html {
   margin: 0;
   padding: 30;
@@ -43,6 +14,7 @@ canvas {
   display: block;
 }
 
+
 dt {
   font-weight: bold;
 }
@@ -55,7 +27,7 @@ dd {
   background-color: #5733FF;
   color: white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 15px;
 }
 
 #groupNbPoitnsSelected {
@@ -64,4 +36,10 @@ dd {
 
 #groupNbPoitnsEvaluated {
   background-color: black;
+}
+
+
+h2{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
