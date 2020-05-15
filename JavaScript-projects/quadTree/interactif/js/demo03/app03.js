@@ -115,7 +115,7 @@ const demo03 = (sketch) => {
     uiApp03.update();
     //move
     for (let i = 0; i != particles.length; i++) {
-      particles[i].move(sketch.width, sketch.height);
+      particles[i].move(sketch.width, sketch.height, sketch.deltaTimeSeconds());
     }
 
     algorithm();
@@ -129,6 +129,11 @@ const demo03 = (sketch) => {
   sketch.overlap = function(particleA, particleB) {
     return sketch.dist(particleA.x, particleA.y, particleB.x, particleB.y) < particleA.r + particleB.r;
   };
+
+
+  sketch.deltaTimeSeconds = function() {
+    return sketch.deltaTime / 1000;
+  }
 
   //Interace with UI
   sketch.setNumberOfParticles = function(nbParticles) {
