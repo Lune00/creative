@@ -224,7 +224,8 @@
 
   <p>
     Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données Quadtree à partir de nos points. Nous allons d'abord insister sur les principes de construction, plutôt que sur les détails de l'implémentation.
-    L'objectif premier est d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>. L'implémentation proposée dans cet article est une suggestion, et n'est évidemment pas la seule possible, libre à vous de l'adapter à vos besoins ou de l'améliorer.
+    L'objectif premier est d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>. L'implémentation proposée dans cet article est une suggestion, et n'est évidemment pas la seule
+    possible, libre à vous de l'adapter à vos besoins ou de l'améliorer.
   </p>
 
 
@@ -439,8 +440,13 @@
   <p>
     L'instruction <code>children[index] instanceof
       Node</code>, à la ligne 8, est une syntaxe de la norme <a href="https://www.w3schools.com/js/js_es6.asp">ECMAScript 6</a>. Sous le capot aucun cast, JavaScript se contente de tester si <code>children</code> possède, dans sa <a
-      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">chaîne de prototype</a>, une référence vers le prototype du constructeur <code>Node</code>. Deux cas se présentent :
+      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">chaîne de prototype</a>, une référence vers le prototype du constructeur <code>Node</code>.
+  </p>
+  <p>
+    Deux cas se présentent :
+  </p>
 
+  <p>
   <ul>
     <li>
       si l'enfant est un noeud, le noeud parent lui délegue le travail et la méthode <code>insert(point)</code> est appelée récursivement sur l'enfant. Le travail est terminé pour le noeud parent.
@@ -460,11 +466,13 @@
       </ul>
     </li>
   </ul>
-
-
-  Il reste une dernière étape avant de terminer cette fonction. Il faut implémenter la transformation en branche d'une feuille lorsque celle-ci est en surcapacité. C'est le rôle de la dernière évaluation.
-
   </p>
+
+
+  <p> Il reste une dernière étape avant de terminer cette fonction. Il faut implémenter la transformation en branche d'une feuille lorsque celle-ci est en surcapacité. C'est le rôle de la dernière évaluation.</p>
+
+
+
   <div>
     <pre class="language-javascript line-numbers">
     <code>insert(point) {
