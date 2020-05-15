@@ -586,13 +586,14 @@
         <span id="nbPointsTotal" name="nbPointsTotal">0</span> points
       </div>
 
+
       <div id="groupNbPoitnsEvaluated">
-        <label for="nbPoitnsEvaluated"><b>Points candidats (% Total)</b> : </label>
+        <label for="nbPoitnsEvaluated" <acronym title="Nombre total de points évalués lors de la requête (présence ou non dans la zone circulaire)"><b>Points candidats (% Total)</b> : </label>
         <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span>
       </div>
 
       <div id="groupNbPoitnsSelected">
-        <label for="nbPoitnsSelected"><b>Points inclus dans la zone d'inspection (% Total) : </b></label>
+        <label for="nbPoitnsSelected" <acronym title="Nombre total de points évalués et retournés par la reqûete (présence ou non dans la zone circulaire)"><b>Points inclus dans la zone d'inspection (% Total) : </b></label>
         <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span>
       </div>
 
@@ -715,7 +716,37 @@
         return points;
     }</code></pre>
 
-  <h2>Notion de profondeur</h2>
+  <p>
+    La méthode <code>query</code>, tout comme la méthode <code>insert</code>, fonctionne de manière récursive et est appelée sur le noeud racine. Elle prend en argument la zone d'inspection circulaire <code>circleProbe</code> et <code>points</code>,
+    le tableau de points contenant le résultat de notre requête, à savoir l'ensemble des points contenus dans <code>circleProbe</code>. Ici la subtilité c'est que <code>query</code> est une fonction récursive et qu'elle doit retourner un résultat,
+    comme ici
+  </p>
+  <pre class="language-javascript">
+  <code class="language-javascript"> let pointsInsideCircleProbe = rootNode.query(circleProbe);</code></pre>
+
+  <p>La méthode est donc appelée sans l'argument optionnel <code>points</code>, <code>points</code> aura donc pour valeur <code>undefined</code> lors du premier appel sur le noeud racine. Dans ce cas, nous assignons à <code>points</code> un tableau
+    vide. La variable <code>points</code> va servir de <em>variable globale</em> à l'ensemble des appels récursifs de <code>query</code>.</p>
+  <p>
+    Nous regardons d'abord, à la ligne 14, si la zone d'inspection recouvre la zone sous la responsabilité du noeud courant. Si ce n'est pas le cas, alors on retourne, il n'y a rien à voir. Si c'est le cas, on parcourt les enfants du noeud :
+  <ul>
+    <li>si l'enfant est un noeud, le noeud courant est une branche. <code>circleProbe</code> pourrait recouvrir ce noeud enfant et la méthode <code>query</code> est appelée </li> sur lui.
+    <li>si l'enfant n'est pas un noeud, le noeud courant est une feuille. <code>circleProbe</code> pourrait alors contenir un ou plusieurs points portés par ses enfants. On parcourt les points attachés à la feuille (ligne 22) : si un point est
+      contenu dans <code>circleProble</code> on l'ajoute à <code>points</code>.</li>
+  </ul>
+  </p>
+
+  <p> Remarquez qu'à la ligne 22, on retrouve le parcours de tous les points contenus dans la région sous la responsabilité de la feuille. On voit ici clairement le bénéfice du Quadtree: au lieu d'interroger tous les points de l'espace, comme dans la
+    solution naïve, on interroge ici <strong>seulement les points contenus dans cette sous-région</strong>.</p>
+
+  <p>Enfin, le premier appel de <code>query</code> sur le noeud racine retourne <code>points</code>. </p>
+
+  <p>Visualisez la méthode <code>query</code> sur la <a href="#demo01">demo 1</a>. La zone circulaire autour du pointeur de la souris représente <code>circleProbe</code>. Vous pouvez alors visualiser l'ensemble des points à l'intérieur mais également
+    l'ensemble des points candidats à la requête. Vous pouvez voir que le nombre de points parcourus et évalués n'est pas systématiquement égal au nombre de points total, comme dans le cas de la solution naïve. Ce cas se présente d'ailleurs très
+    rarement et généralement le nombre de points évalués lors de la requête est une petite fraction du nombre de points total.</p>
+
+  <p>On peut enfin goûter ici à la puissance et à l'intérêt du Quadtree.</p>
+
+  <h2>Paramètres du Quadtree : capacité et profondeur</h2>
 
   <h4>Insertion</h4>
 
