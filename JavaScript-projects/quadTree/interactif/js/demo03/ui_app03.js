@@ -23,7 +23,7 @@ const modelDemoQuadTreeInteractions = {
   },
 
   updatePourcentage() {
-    if (this.totalTimeInteractions != 0)
+    if (this.totalTimeInteractions &&this.totalTimeInteractions != 0)
       this.pourcentageConstructionInteractions = this.timeConstructionQuadtree / this.totalTimeInteractions * 100;
   },
 
