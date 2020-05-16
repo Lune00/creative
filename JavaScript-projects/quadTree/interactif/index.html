@@ -13,6 +13,8 @@
   <!-- code snippet -->
   <link href="css/prism.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
 </head>
 
 <body>
@@ -222,8 +224,13 @@
 
   <h2>Construction</h2>
 
+
+  <p>Dans le principe, la construction d'un Quadtree est très simple. Prenez une feuille de papier, elle définira notre espace. Placez-y des points où bon vous semble. A présent, donnez vous une capacité, par exemple 2. Divisez la feuille en 4
+    rectangles égaux. Comptez le nombre de points dans chaque rectangle. Si un rectangle en contient plus que 2, divisez le en 4 rectangles égaux. Recommencez l'opération jusqu'à ce que chaque rectangle contienne au maximum 2 points. Et voilà ! Sur
+    le papier, rien de bien compliqué. Evidemment, pour ce qui est de le programmer les choses se corsent un peu. </p>
+
   <p>
-    Nous allons voir pas à pas, à la main, comment nous pouvons construire une structure de données Quadtree à partir de nos points. Nous allons d'abord insister sur les principes de construction, plutôt que sur les détails de l'implémentation.
+    Nous allons voir, pas à pas, comment construire une structure de données Quadtree à partir de nos points. Nous allons d'abord insister sur les principes de construction, plutôt que sur les détails de l'implémentation.
     L'objectif premier est d'obtenir un pseudo-code, les détails de l'algorithme sont discutés dans la partie <a href="implementation">implémentation</a>. L'implémentation proposée dans cet article est une suggestion, et n'est évidemment pas la seule
     possible, libre à vous de l'adapter à vos besoins ou de l'améliorer.
   </p>
@@ -513,8 +520,7 @@
   <p>
     Nous parcourons alors tous les enfants de la feuille. Ces enfants, par définition, <strong>sont garantis d'être des tableaux de points</strong>. C'est pour cela que dans la boucle <code>children.forEach((points,index))</code> la référence vers
     chaque enfant est nommée <code>points</code>, et non <code>child</code>. Nous ne voulons pas instancier plus de feuilles que nécessaire, c'est
-    pourquoi nous instancions une feuille que lorsqu'un enfant contient des points. Une fois l'enfant transformé en feuille, nous insérons les <code>points</code> dedans. Finalement, nous n'oublions pas d'indiquer que notre
-    noeud est à présent une branche avec l'instruction <code>this.isBranch = true</code>.
+    pourquoi nous instancions une feuille que lorsqu'un enfant contient des points. Une fois l'enfant transformé en feuille, nous insérons les <code>points</code> dedans.
   </p>
 
   <div>
@@ -530,8 +536,6 @@
               this.children[index].insert(p);
           }
         });
-
-        this.isBranch = true;
     }</code></pre>
   </div>
 
@@ -617,12 +621,14 @@
 
   <h2>Se servir (enfin) du Quadtree</h2>
 
-
+  <h3>Rappel</h3>
   <p>
-    La question que nous nous posions à la base était la suivante : quels sont les objets sur la <a href="#figure02">figure 2</a>, présents à l'interieur du cercle rouge ? Et nous voulions y répondre sans devoir interroger l'intégralité des points et
+    La question que nous nous posions à la base était la suivante : quels sont les points, sur la <a href="#figure02">figure 2</a>, présents à l'interieur du cercle rouge ? Et nous voulions y répondre sans devoir interroger l'intégralité des points
+    et
     écopper de la complexité <code>0(n)</code>. Pour cela nous avons ré-organisé nos données dans une structure Quadtree. Comment récupérer les points que nous cherchons ?
   </p>
 
+  <h3>Pseudo-code d'une requête</h3>
   <p>
     Nous devons définir notre zone d'inspection, notre cercle rouge, comme dans <a href="#demo01">la démo</a>. Dans ce cas ci la zone d'inspection est vraiment très simple: elle est définie par les coordonnées de son centre et par un rayon. Nous
     allons initialiser notre requête au Quadtree en demandant à la racine si notre cercle recouvre, même partiellement, l'espace mis sous sa reponsabilité. Si c'est le cas, et si la racine a des noeuds enfants, alors le cercle doit nécessairement
@@ -671,6 +677,7 @@
     se trouve dans notre cercle. Un pan entier de l'espace est soustrait à nos efforts de recherche.
   </p>
 
+  <h3>Complexité d'une reqûete</h3>
   <p>
     Analyser la complexité d'une requête dans un Quadtree n'est pas évidente car elle dépend de la requête elle même et de la structure de l'arbre. Cependant nous pouvons estimer les complexité aux cas limites : si tous les points sont présents dans
     notre cercle rouge alors nous retombons sur la pire complexité, en <code>0(n)</code>. Si cette situation se présente majoritairement cela ne signifie pas que le Quadtree est à blâmer, mais plutôt qu'il y'a un problème en terme de design au niveau
@@ -684,7 +691,7 @@
   </p>
   <h2 id="implementation">Implémentation de l'interrogation du Quadtree : <code>query()</code></h2>
 
-  <pre class="language-javascript line-numbers">
+  <pre id="query" class="language-javascript line-numbers">
     <code class="language-javascript">query(circleProbe, points) {
 
         if (!points) {
@@ -746,7 +753,31 @@
 
   <p>On peut enfin goûter ici à la puissance et à l'intérêt du Quadtree.</p>
 
+
+  <h2>L'intérêt des branches et des feuilles</h2>
+
+
+  <p>
+    Vous vous demandez peut-être à ce stade pourquoi avoir pris la peine de distinguer les noeuds en branches et en feuilles. En effet, à strictement parler, dans l'implémentation, nous n'avons jamais eu besoin d'avoir recours à cette
+    différenciation.
+  </p>
+  <p>
+    Disons tout d'abord qu'elle est utile d'un point de vue modélisation de notre structure, cette distinction nous permet de bien définir le comportement des noeuds lors de la phase de construction.
+  </p>
+  <p>
+    Le fait qu'un noeud, une fois atteint sa capacité maximale, se divise et ne compte parmi ses enfants que d'autres noeuds a un intérêt. Le concept de <em>branche</em> a un intérêt. Imaginons qu'un noeud ait à la fois des points et des noeuds pour
+    enfants, et que nous ne faisions pas la distinction entre branche et feuille. Si nous interrogeons ce noeud et que notre zone d'inspection l'intersecte alors nous n'aurions pas d'autre choix que d'évaluer tous ses enfants points, peut importe où ils
+    se trouvent, à la <a href="#query">ligne 22 du code précédent</a>. Imposer à un noeud d'avoir que des enfants noeuds (branche) ou que des enfants points (une feuille) nous préserve d'évaluations inutiles.
+  </p>
+  <p>
+    Enfin, le fait qu'un noeud qui devient branche ne se subdivise pas automatiquement en 4 feuilles mais uniquement en autant de feuilles que nécessaire, nous permet d'éviter des appels inutiles de <code>query</code>. En effet, si nous divisions
+    automatiquement en 4 chaque noeud en surcapacité, celui-ci pourrait créer des feuilles vides. <a href="#query">Aux lignes 19 et 20</a> nous ferions alors des appels inutiles de <code>query</code> sur ces noeuds enfants vides.
+  </p>
+
   <h2>Paramètres du Quadtree : capacité et profondeur</h2>
+
+  <p></p>
+
 
   <h4>Insertion</h4>
 
