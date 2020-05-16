@@ -758,16 +758,13 @@
 
 
   <p>
-    Vous vous demandez peut-être à ce stade pourquoi avoir pris la peine de distinguer les noeuds en branches et en feuilles. En effet, à strictement parler, dans l'implémentation, nous n'avons jamais eu besoin d'avoir recours à cette
-    différenciation.
-  </p>
-  <p>
-    Disons tout d'abord qu'elle est utile d'un point de vue modélisation de notre structure, cette distinction nous permet de bien définir le comportement des noeuds lors de la phase de construction.
+    Vous vous demandez peut-être à ce stade pourquoi avoir pris la peine de distinguer les noeuds en branches et en feuilles.
   </p>
   <p>
     Le fait qu'un noeud, une fois atteint sa capacité maximale, se divise et ne compte parmi ses enfants que d'autres noeuds a un intérêt. Le concept de <em>branche</em> a un intérêt. Imaginons qu'un noeud ait à la fois des points et des noeuds pour
-    enfants, et que nous ne faisions pas la distinction entre branche et feuille. Si nous interrogeons ce noeud et que notre zone d'inspection l'intersecte alors nous n'aurions pas d'autre choix que d'évaluer tous ses enfants points, peut importe où ils
-    se trouvent, à la <a href="#query">ligne 22 du code précédent</a>. Imposer à un noeud d'avoir que des enfants noeuds (branche) ou que des enfants points (une feuille) nous préserve d'évaluations inutiles.
+    enfants, et que nous ne faisions pas la distinction entre branche et feuille. Si nous interrogeons ce noeud et que notre zone d'inspection l'intersecte alors nous n'aurions pas d'autre choix que d'évaluer tous ses enfants points, peut importe où
+    ils
+    se trouvent, à la <a href="#query">ligne 22 du code précédent</a>. Imposer à un noeud d'avoir que des enfants noeuds (branche) ou que des enfants points (feuille) nous préserve d'évaluations inutiles.
   </p>
   <p>
     Enfin, le fait qu'un noeud qui devient branche ne se subdivise pas automatiquement en 4 feuilles mais uniquement en autant de feuilles que nécessaire, nous permet d'éviter des appels inutiles de <code>query</code>. En effet, si nous divisions
@@ -776,7 +773,68 @@
 
   <h2>Paramètres du Quadtree : capacité et profondeur</h2>
 
-  <p></p>
+  <p>
+    Ces paramètres permettent d'optimiser les performances du Quadtree en insertion (<code>insert</code>) ou en recherche (<code>query</code>). Ces considérations dépassent l'ambition de cet article mais il est utile néanmoins d'en discuter un peu
+    pour que vous soyez au moins conscient de ces aspects.
+  </p>
+
+  <p>
+    Le Quadtree possède deux paramètres ajustables par l'utilisateur : la capacité et la profondeur. La capacité est le nombre de points maximal que peut porter une feuille, la profondeur (ou aussi appelée <em>taille</em> de l'arbre) est une mesure
+    de la récursivité de l'arbre. Plus il est profond plus il est nécessaire de faire des appels récursifs pour récupérer les points. On remarque que ces deux paramètres sont corrélés : plus la capacité des noeuds est grande, moins il sera profond et
+    inversement.
+  </p>
+
+
+
+  <h3>Définir une profondeur maximale</h3>
+  <p>
+    Dans cette implémentation il n'y a aucune restriction sur la profondeur de l'arbre. Chaque noeud peut se diviser et donner naissance à d'autres noeuds plus profonds. On pourrait très facilement rajouter cette fonctionalité en définissant une
+    profondeur maximal <code>MAX_DEPTH</code> mettant une condition sur la méthode <code>branch()</code> :
+  </p>
+  <div>
+    <pre class="language-javascript line-numbers">
+    <code>insert(point) {
+          ...
+          if (this.hasReachedMaxCapacity() && this.depth < MAX_DEPTH)
+            this.branch();
+        }
+      }</code></pre>
+  </div>
+
+  <p>
+    Ainsi, l'arbre aura une taille maximale qu'il ne peut pas dépasser, et les feuilles a la profondeur maximale porteront un nombre indeterminé de points (au delà de leur capacité), ceux-ci <em>s'entasseront au fond</em> de l'arbre.
+  </p>
+  <p>
+    Y'a-t-il un intérêt à définir une profondeur maximale ? Cela dépend des cas mais c'est un choix judicieux lorsqu'on souhaite avoir un peu de contrôle sur les appeles récursifs. Par exemple, dans le cas où vous avez une scène remplie de points
+    infinement proches (séparés de quelques pixels). Ces points très proches pourraient être le centre d'objets superposés. Sans profondeur maximale imposée votre Quadtree risque d'avoir des profondeurs localisées très importantes là où les points
+    sont infiniment proches. Cette <em>surpartition</em> de l'espace n'est pas très utile car en pratique, si vous voulez faire de la détection de voisinage de l'un de ces points, toutes ces feuilles seront de toute manière inspectées.
+  </p>
+
+  <h3>Quelle valeurs choisir pour la capacité et la profondeur maximale?</h3>
+
+  <p>
+    La réponse à cette question n'est pas évidente mais elle pourrait être "cela dépend de ce que vous voulez".
+  </p>
+
+
+<!-- TODO : reformuler et synthétisez -->
+  <!-- <p>
+    Si vous voulez construire rapidement le QuadTree alors vous avez besoin d'un <code>insert</code> rapide. Pour cela, il suffit d'augmenter la capacité de l'arbre : plus une feuille pourra porter de points, moins elle aura de chance de se
+    subdiviser. Ainsi, augmenter la capacité diminue le nombre d'appels récursifs d'<code>insert</code> et diminue le nombre d'appels à <code>branch</code>.
+  </p>
+
+  <p>
+    Cela dit, en gagnant de l'efficacité à la construction vous en perdez nécessairement en recherche, car il faudra évaluer plus de points à chaque appel de <code>query</code>.
+    D'un autre côté, si vous diminuez la capacité vous augmenter la profondeur de l'arbre. La profondeur de l'arbre est mauvaise à la fois à la construction et à la recherche : plus elle est grande, plus la recherche est lente car il faut faire plus d'appels récurifs de <code>query</code>. -->
+  <p>
+
+  <p>
+     Comme nous l'avons vu, il n'y a pas de réponse toute faite. Dans cette implémentation nous avons avons donné choisi une valeur de 4, ce qui est un choix totalement arbitraire. Au final, choisir ces valeurs fait partie d'un processus plus large qui est celui de l'optimisation de notre Quadtree. L'optimisation dépend du problème que l'on
+    cherche à résoudre mais également d'autres éléments non négligeables : des propriétés même de nos points (dispersion et nombre), de l'implémentation, de l'utilisation de la mémoire etc.
+  </p>
+<p>
+  Voilà pourquoi ces aspects méritent d'être mentionnés, mais ne seront pas traités en profondeur ici, car ce n'est pas le but de l'article. L'optimisation vient toujours après la réalisation. Des sources en bas de l'article sont proposées pour aller plus loin sur l'optimisation.
+</p>
 
 
   <h4>Insertion</h4>
@@ -892,13 +950,28 @@
 
   <h2>Sources : aller plus loin</h2>
 
+  <dl>
+    <dt></dt>
+    <dd>
+      <a href="https://dev.solita.fi/2015/08/06/quad-tree.html">Is there an optimal quad tree out there?</a>, Paavo Toivanen
+    </dd>
+    <dd>
+      <a href="https://stackoverflow.com/questions/41946007/efficient-and-well-explained-implementation-of-a-quadtree-for-2d-collision-det/48330314#48330314">Efficient QuadTree on StackOverflow</a>, Dragon Energy
+    </dd>
+
+  </dl>
+
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-
+  <p>
+    Si vous voulez construire rapidement le QuadTree alors vous avez besoin d'un <code>insert</code> rapide. Pour cela, il suffit d'augmenter la capacité de l'arbre : plus une feuille pourra porter de points, moins elle aura de chance de se
+    subdiviser. Ainsi, augmenter la capacité diminue le nombre d'appels récursifs d'<code>insert</code> et diminue le nombre d'appels à <code>branch</code>. Cela dit, vous perdez nécessairement en efficacité en recherche, car vous aurez plus de
+    points à évaluer.
+  </p>
   <script src="js/lib/prism.js"></script>
 
 </body>
