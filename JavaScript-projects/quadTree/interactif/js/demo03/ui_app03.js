@@ -1,4 +1,6 @@
-import {main} from '../main.js'
+import {
+  main
+} from '../main.js'
 
 const modelDemoQuadTreeInteractions = {
   frameRate: 0,
@@ -25,7 +27,7 @@ const modelDemoQuadTreeInteractions = {
   },
 
   updatePourcentage() {
-    if (this.totalTimeInteractions &&this.totalTimeInteractions != 0)
+    if (this.totalTimeInteractions && this.totalTimeInteractions != 0)
       this.pourcentageConstructionInteractions = this.timeConstructionQuadtree / this.totalTimeInteractions * 100;
   },
 
@@ -37,6 +39,7 @@ const modelDemoQuadTreeInteractions = {
 export const uiApp03 = {
 
   model: modelDemoQuadTreeInteractions,
+  mode: 'quadtree',
 
   getNbParticles: function() {
     return parseInt(document.getElementById('nbParticulesRange').value);
@@ -51,11 +54,12 @@ export const uiApp03 = {
     for (let radio of document.getElementsByName("algorithme")) {
       if (radio.id === "naive") {
         radio.addEventListener('click', () => {
-          console.log('here');
           document.getElementById('nbParticulesRange').disabled = false;
           document.getElementById('showDetectionZoneCheckbox').disabled = true;
           document.getElementById('showQuadTreeCheckbox').disabled = true;
           main.p5demo03.algorithm = main.p5demo03.setAlgorithm('naive');
+          this.mode = 'naive';
+
         });
       } else if (radio.id === "quadtree") {
         radio.addEventListener('click', () => {
@@ -63,6 +67,7 @@ export const uiApp03 = {
           document.getElementById('showDetectionZoneCheckbox').disabled = false;
           document.getElementById('showQuadTreeCheckbox').disabled = false;
           main.p5demo03.algorithm = main.p5demo03.setAlgorithm('quadtree');
+          this.mode = 'quadtree';
         });
       }
     }
@@ -86,7 +91,9 @@ export const uiApp03 = {
   },
 
   update: function() {
-    this.model.update();
+
+    if (this.mode === 'quadtree')
+      this.model.update();
 
     document.getElementById('timeToBuildQuadtree').innerHTML = Number.parseFloat(this.model.timeConstructionQuadtree).toPrecision(2);
     document.getElementById('timeToComputeInteractions').innerHTML = Number.parseFloat(this.model.totalTimeInteractions).toPrecision(3);
