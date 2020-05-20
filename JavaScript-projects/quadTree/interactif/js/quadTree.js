@@ -1,7 +1,6 @@
 //Quadtree source-code (point, probe, Node) including p5.js library functions and variables for visualisation
 //Author : Paul Schuhmacher
-
-class Point {
+export class Point {
   constructor(x, y, data) {
     this.x = x;
     this.y = y;
@@ -10,7 +9,7 @@ class Point {
 }
 
 //A circular probe used to inspects the quadtree
-class CircularProbe {
+export class CircularProbe {
 
   constructor(x, y, r) {
     this.x = x;
@@ -55,7 +54,7 @@ class CircularProbe {
 //Node is divided in 4 children: [NW,NE,SW,SE] => [0,1,2,3]
 //A node can contains only points (it is a leaf) or only nodes (it is a branch)
 
-class Node {
+export class Node {
 
   constructor(x, y, w, h, depth) {
     //Rectangular area : (x,y) position of the center, (w,h) half width/height
@@ -212,7 +211,7 @@ class Node {
 
 //Data representation
 //TODO: refactor
-class Particle {
+export class Particle {
 
   constructor(x, y, r, tetha = 0, overlap = false) {
 

@@ -1,8 +1,12 @@
 //Quadtree : demo insertion and inspection around a point within a circular range
-//source: https://jimkang.com/quadtreevis/
 //Author : Paul Schuhmacher
 
-const demo01 = (sketch) => {
+import NodePedagogic from '../pedagogic_extension.js';
+import {Node, CircularProbe, Point} from '../quadTree.js';
+import {uiApp01, colors} from './ui_app01.js';
+import * as apiP5 from '../api_render.js';
+
+export default function demo01(sketch){
 
   let rootNode;
   let circularProbe;
@@ -31,24 +35,24 @@ const demo01 = (sketch) => {
     rootNode.isIntersected(circularProbe);
 
     //Show quadtree
-    apiP5.showNodeAndHighlightIntersectedLeafs(sketch, rootNode);
+    apiP5.apiP5.showNodeAndHighlightIntersectedLeafs(sketch, rootNode);
 
     //Show probe
-    apiP5.showCircularProbe(sketch, circularProbe);
+    apiP5.apiP5.showCircularProbe(sketch, circularProbe);
 
     //Candidates points => For pedagogical reasons only
     let looked = rootNode.queryLooked(circularProbe);
 
     if (looked !== undefined)
       for (let p of looked) {
-        apiP5.showPoint(sketch, p, colors.colorPointLooked);
+        apiP5.apiP5.showPoint(sketch, p, colors.colorPointLooked);
       }
 
     let points = rootNode.query(circularProbe);
 
     if (points !== undefined) {
       for (let p of points) {
-        apiP5.showPoint(sketch, p, colors.colorPointSelected);
+        apiP5.apiP5.showPoint(sketch, p, colors.colorPointSelected);
       }
     }
   }

@@ -1,8 +1,13 @@
 //Quadtree : demo insertion and inspection around a point within a circular range
 //source: https://jimkang.com/quadtreevis/
 //Author : Paul Schuhmacher
+import NodePedagogic from '../pedagogic_extension.js';
+import {Node, CircularProbe, Point, Particle} from '../quadTree.js';
+import {uiApp03} from './ui_app03.js';
+import * as apiP5 from '../api_render.js';
 
-const demo03 = (sketch) => {
+
+export default function demo03(sketch){
 
   let rootNode;
   let probe;
@@ -17,6 +22,9 @@ const demo03 = (sketch) => {
   let algorithm;
   let timeConstructionQuadtree = 0;
   let timeComputeInteractions = 0;
+  //Game loop
+  let previous = 0.;
+  let lag = 0.;
 
   sketch.setup = function() {
 
@@ -31,7 +39,7 @@ const demo03 = (sketch) => {
     nParticles = uiApp03.getNbParticles();
 
     for (let i = 0; i != nParticles; i++) {
-      particles[i] = new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), sketch.random(8,12), sketch.random(2 * sketch.PI));
+      particles[i] = new Particle(sketch.random(10, width - 10), sketch.random(10, height - 10), sketch.random(8, 12), sketch.random(2 * sketch.PI));
       rmax = rmax > particles[i].r ? rmax : particles[i].r;
     }
 
@@ -45,24 +53,30 @@ const demo03 = (sketch) => {
 
   sketch.useNaive = function() {
     //Nx(N-1)/2
+
+
+    for(let i = 0 ; i!= particles.length; i++){
+      particles[i].overlap = false;
+    }
     let tstart = performance.now();
-    for (let i = 0; i != particles.length; i++) {
+    for (let i = 0; i != particles.length-1; i++) {
 
       let current = particles[i];
 
       for (let j = i + 1; j != particles.length; j++) {
 
-        if (i != j) {
-          if (sketch.overlap(current, particles[j]))
-            current.overlap = true;
+        if (sketch.overlap(current, particles[j])) {
+          current.overlap = true;
+          particles[j].overlap = true;
         }
       }
 
       if (showDetectionZones)
-        apiP5.showParticleDetectionZone(sketch, current);
+        apiP5.apiP5.showParticleDetectionZone(sketch, current);
 
-      apiP5.showParticle(sketch, current);
+      apiP5.apiP5.showParticle(sketch, current);
     }
+
     let tend = performance.now();
     timeComputeInteractions = tend - tstart;
 
@@ -82,7 +96,7 @@ const demo03 = (sketch) => {
     timeConstructionQuadtree = t1 - t0;
 
     if (showQuadtree)
-      apiP5.showNodeWithoutPoints(sketch, rootNode);
+      apiP5.apiP5.showNodeWithoutPoints(sketch, rootNode);
 
     //Detect collisions
 
@@ -94,7 +108,7 @@ const demo03 = (sketch) => {
       let neighbors = rootNode.query(probe);
 
       if (showDetectionZones)
-        apiP5.showParticleDetectionZone(sketch, probe);
+        apiP5.apiP5.showParticleDetectionZone(sketch, probe);
 
       current.overlap = false;
       for (let n of neighbors) {
@@ -109,21 +123,31 @@ const demo03 = (sketch) => {
 
   };
 
+  sketch.deltaTimeSeconds = function() {
+    return sketch.deltaTime / 1000;
+  }
+
   sketch.draw = function() {
     sketch.background(0);
+
+    sketch.update();
+
+    //render
+    for (let i = 0; i != particles.length; i++) {
+      apiP5.apiP5.showParticle(sketch, particles[i]);
+    }
+  };
+
+  sketch.update = function(dt) {
     rootNode.clear();
     uiApp03.update();
     //move
     for (let i = 0; i != particles.length; i++) {
-      particles[i].move(sketch.width, sketch.height, sketch.deltaTimeSeconds());
+      particles[i].move(sketch.width, sketch.height);
     }
-
     algorithm();
-    //render
-    for (let i = 0; i != particles.length; i++) {
-      apiP5.showParticle(sketch, particles[i]);
-    }
-  };
+
+  }
 
 
   sketch.overlap = function(particleA, particleB) {
@@ -131,9 +155,7 @@ const demo03 = (sketch) => {
   };
 
 
-  sketch.deltaTimeSeconds = function() {
-    return sketch.deltaTime / 1000;
-  }
+
 
   //Interace with UI
   sketch.setNumberOfParticles = function(nbParticles) {

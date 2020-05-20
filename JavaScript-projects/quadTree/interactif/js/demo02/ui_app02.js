@@ -1,4 +1,6 @@
-const modelDemoQuadTreeDepth = {
+import {main} from '../main.js'
+
+export const modelDemoQuadTreeDepth = {
   maxDepth: 0,
   depthUnderCursor: 0,
   totalNPoints: 0,
@@ -23,7 +25,7 @@ const modelDemoQuadTreeDepth = {
   }
 }
 
-const uiApp02 = {
+export const uiApp02 = {
 
   model: modelDemoQuadTreeDepth,
 

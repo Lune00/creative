@@ -1,5 +1,14 @@
+import demo01 from './demo01/app01.js';
+import {uiApp01} from './demo01/ui_app01.js';
+
+import demo02 from './demo02/app02.js';
+import {uiApp02} from './demo02/ui_app02.js';
+
+import demo03 from './demo03/app03.js';
+import {uiApp03} from './demo03/ui_app03.js';
+
 //Main
-const main = (() => {
+export const main = (() => {
 
   let main = {};
 

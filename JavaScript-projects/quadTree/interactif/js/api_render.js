@@ -1,6 +1,8 @@
 //API to render using p5
 //sketch : p5 template instanciation
-const apiP5 = {
+
+import {Node} from './quadTree.js'
+export const apiP5 = {
 
   showPoint: function(sketch, point, color) {
     sketch.stroke(color);

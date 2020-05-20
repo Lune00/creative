@@ -1,4 +1,6 @@
-const colors = {
+import {main} from '../main.js'
+
+export const colors = {
   colorPointSelected: '#33FF57',
   colorPointLooked: '#FF5733'
 }
@@ -42,7 +44,7 @@ const modelDemoQuadTreeCreationInspection = {
 }
 
 
-const uiApp01 = {
+export const uiApp01 = {
 
   model: modelDemoQuadTreeCreationInspection,
 

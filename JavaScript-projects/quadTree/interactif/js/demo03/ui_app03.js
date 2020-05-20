@@ -1,3 +1,5 @@
+import {main} from '../main.js'
+
 const modelDemoQuadTreeInteractions = {
   frameRate: 0,
   timeConstructionQuadtree: 0,
@@ -32,7 +34,7 @@ const modelDemoQuadTreeInteractions = {
   }
 }
 
-const uiApp03 = {
+export const uiApp03 = {
 
   model: modelDemoQuadTreeInteractions,
 
@@ -41,7 +43,6 @@ const uiApp03 = {
   },
 
   init: function() {
-
     document.getElementById('resetButton-demo03').addEventListener('click', () => {
       main.p5demo03.reset();
       this.update();
@@ -94,9 +95,9 @@ const uiApp03 = {
     let frameRate = Number.parseFloat(this.model.frameRate).toPrecision(2);
     let frameRateSpan = document.getElementById('frameRate');
     frameRateSpan.innerHTML = frameRate;
-    if (frameRate > 40)
+    if (frameRate > 30)
       frameRateSpan.style.color = 'green';
-    else if (frameRate > 20)
+    else if (frameRate > 10)
       frameRateSpan.style.color = 'orange';
     else
       frameRateSpan.style.color = 'red';

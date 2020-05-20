@@ -1,7 +1,12 @@
 //Quadtree : demo insertion and inspection of the depth
 //Author : Paul Schuhmacher
+import NodePedagogic from '../pedagogic_extension.js';
+import {Node, CircularProbe, Point} from '../quadTree.js';
+import {uiApp02} from './ui_app02.js';
+import * as apiP5 from '../api_render.js';
 
-const demo02 = (sketch) => {
+
+export default function demo02(sketch){
 
   let rootNode;
   let circularProbe;
@@ -22,7 +27,7 @@ const demo02 = (sketch) => {
     uiApp02.update();
     circularProbe.moveTo(sketch.mouseX, sketch.mouseY);
     rootNode.depthUnderCursor(circularProbe);
-    apiP5.showNodeWithDepth(sketch, rootNode);
+    apiP5.apiP5.showNodeWithDepth(sketch, rootNode);
   }
 
   //Interace with UI

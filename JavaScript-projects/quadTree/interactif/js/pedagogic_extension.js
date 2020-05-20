@@ -1,10 +1,14 @@
 //Derived class from Node to add some informations about the quadtree on the web page
 //author : Paul Schuhmacher
-
 console.log('pedagogic extension loaded');
 
+import {Node, CircularProbe, Point, Particle} from './quadTree.js';
+
+//TODO: remove this dep !!!
+import {modelDemoQuadTreeDepth} from './demo02/ui_app02.js'
+
 //Extension of the Node class to add some functions/state for pedagogic reasons only
-class NodePedagogic extends Node {
+export default class NodePedagogic extends Node {
 
   constructor(x, y, w, h, depth) {
     super(x, y, w, h, depth);
