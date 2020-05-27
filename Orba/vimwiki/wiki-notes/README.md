@@ -1,1 +1,0 @@
-Ce Wiki rassemble les notes prises sur les pages de cahier. Chaque entrée est liée a l'en-tête d'une page avec la date. Ce n'est pas un Wiki thématique, comme le Wiki1. C'est une numérisation des notes prises, comme telles, dans leur sens chronologique.
