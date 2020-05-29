@@ -958,11 +958,33 @@
     nous voudrons l'utiliser pour interroger des nouveaux types de données.
   </p>
 
-  <p>Notre QuadTree est enfin devenu utile ! Dans la prochaine partie, en guise d'illustration, nous allons nous servir du QuadTree pour faire de la détection de collisions entre particules dans une simulation 2D. Nous allons pouvoir mettre à profit les avantages de cette structure de données.</p>
+  <p>Notre QuadTree est enfin devenu utile ! Dans la prochaine partie, en guise d'illustration, nous allons nous servir du QuadTree pour faire de la détection de collisions entre particules dans une simulation 2D. Nous allons pouvoir mettre à profit
+    les avantages de cette structure de données.</p>
 
-  <h2>Utilisation d'un Quadtree pour la détection de collisions</h2>
+  <h2>Utiliser la puissance du QuadTree pour la détection de collisions</h2>
 
 
+
+  <p>Supposons que nous ayons un ensemble de particules circulaires qui se déplacent dans un espace en deux dimensions. Nous voudrions savoir quand ces particules rentrent en collision pour y appliquer un traitement. Par exemple, nous souhaiterions appliquer des
+    forces de répulsion pour qu'elles rebondissent les unes sur les autres. Ou encore, dans le cas d'un jeu de shoot, nous voudrions que deux particules se détruisent lorsqu'elles rentrent en contact. Ce que vous voulez en faire de cette détection
+    c'est votre problème. Détecter les collisions en revanche, c'est un problème qu'un QuadTree sait très bien gérer, et de manière efficace.</p>
+  <p>
+  <h3>Détecter une collision</h3>
+  Pour savoir si deux particules circulaires entrent en collision il suffit de déterminer si ces deux particules se recouvrent ou non. Soient deux particules de rayon <code>r<sub>1</sub></code> et <code>r<sub>2</sub></code>. Pour déterminer si ces deux particules se chevauchent il suffit de calculer la distance entre leurs centres et de regarder si cette distance est inférieure à la somme de leurs rayons respectifs, soit <code>d<sub>1-2</sub></code> <  <code>r<sub>1</sub></code> +  <code>r<sub>2</sub></code>. Si cette évaluation est vraie, alors les particules sont en collision. On pourrait implémenter une fonction <code>overlap</code> qui prend en argument les deux particules et renvoient vrai si elles se chevauchent, faux sinon :
+  </p>
+
+  <div>
+    <pre class="language-javascript line-numbers">
+    <code>overlap(particule1, particule2){
+      const distanceSquared = (particule1.x - particule2.x) * (particule1.x - particule2.x) + (particule1.y - particule2.y) * (particule1.y - particule2.y);
+      return distanceSquared < (particule1.r + particule2.r) * (particule1.r + particule2.r);
+    }</code></pre>
+  </div>
+
+  <p>Ici on manipule tout <em>au carré</em> pour éviter d'avoir à invoquer des appels de <code>Math.sqrt()</code> et <code>Math.pow()</code> qui sont des opérations couteuses. C'est une petite optimisation qui a son importance car cette fonction va être appelée de manière intensive.</p>
+
+  <h3>Approche Naïve vs QuadTree</h3>
+  <p>Souvenez vous, au début de cet article nous avons parlé d'une approche directe, sans structure de données efficace, pour résoudre ce genre de problème.</p>
   <div id="demo03">
     <div>
       <div id="radioContainer-demo03">
@@ -1022,7 +1044,13 @@
     </div>
   </div>
 
-
+  <h4>Notes sur la démo</h4>
+  <p>
+    Les mesures absolues affichées ici n'ont pas d'intérêt en soi, les performances dépendront de votre navigateur, de votre machine. La seule chose qui est objectivement intéressante ici sont les mesures relatives : le rapport du temps de
+    construction de l'arbre au temps de calcul des interactions, ou entre la méthode <em>naïve</em> et la méthode <em>QuadTree</em>. D'autre part, étant donné l'objectif de cette démo, il n'y a pas d'implémentation d'une réelle <a
+      href="https://developer.mozilla.org/en-US/docs/Games/Anatomy">gameloop</a> : la fréquence de calcul des interactions est la même que la fréquence d'affichage (imposée par défaut à 60 frames par seconde) . Gardez donc à l'esprit que les mesures
+    et les performances de chaque méthode présentées ici ne sont pas <em>en soi</em> pertinentes. Cette démo a pour but de montrer qualitativement en quoi le QuadTree est plus performant qu'une approche <em>naïve</em>.
+  </p>
 
   <h2>Sources : aller plus loin</h2>
 
