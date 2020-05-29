@@ -692,11 +692,7 @@
   <h2 id="implementation">Implémentation de l'interrogation du Quadtree : <code>query()</code></h2>
 
   <pre id="query" class="language-javascript line-numbers">
-    <code class="language-javascript">query(circleProbe, points) {
-
-        if (!points) {
-          points = [];
-        }
+    <code class="language-javascript">query(circleProbe, points = []) {
 
         let boundingBox = {
           x: this.x,
@@ -705,21 +701,19 @@
           h: this.h
         };
 
-        if (!circleProbe.intersects(boundingBox))
+        if ( !circleProbe.intersects(boundingBox) )
           return;
 
-        this.children.forEach(child => {
+        this.children.forEach( child => {
 
           if (child instanceof Node)
             child.query(circleProbe, points);
           else
-            child.forEach(p => {
-              if (circleProbe.contains(p))
+            child.forEach( p => {
+              if ( circleProbe.contains(p) )
                 points.push(p);
             });
-
         });
-
         return points;
     }</code></pre>
 
@@ -965,114 +959,262 @@
 
 
 
-  <p>Supposons que nous ayons un ensemble de particules circulaires qui se déplacent dans un espace en deux dimensions. Nous voudrions savoir quand ces particules rentrent en collision pour y appliquer un traitement. Par exemple, nous souhaiterions appliquer des
+  <p>Supposons que nous ayons un ensemble de particules circulaires qui se déplacent dans un espace en deux dimensions. Nous voudrions savoir quand ces particules rentrent en collision pour y appliquer un traitement. Par exemple, nous souhaiterions
+    appliquer des
     forces de répulsion pour qu'elles rebondissent les unes sur les autres. Ou encore, dans le cas d'un jeu de shoot, nous voudrions que deux particules se détruisent lorsqu'elles rentrent en contact. Ce que vous voulez en faire de cette détection
     c'est votre problème. Détecter les collisions en revanche, c'est un problème qu'un QuadTree sait très bien gérer, et de manière efficace.</p>
   <p>
-  <h3>Détecter une collision</h3>
-  Pour savoir si deux particules circulaires entrent en collision il suffit de déterminer si ces deux particules se recouvrent ou non. Soient deux particules de rayon <code>r<sub>1</sub></code> et <code>r<sub>2</sub></code>. Pour déterminer si ces deux particules se chevauchent il suffit de calculer la distance entre leurs centres et de regarder si cette distance est inférieure à la somme de leurs rayons respectifs, soit <code>d<sub>1-2</sub></code> <  <code>r<sub>1</sub></code> +  <code>r<sub>2</sub></code>. Si cette évaluation est vraie, alors les particules sont en collision. On pourrait implémenter une fonction <code>overlap</code> qui prend en argument les deux particules et renvoient vrai si elles se chevauchent, faux sinon :
-  </p>
 
-  <div>
-    <pre class="language-javascript line-numbers">
+  <h3>Définir une collision</h3>
+
+  Pour savoir si deux particules circulaires entrent en collision il suffit de déterminer si ces deux particules se recouvrent ou non. Soient deux particules de rayon <code>r<sub>1</sub></code> et <code>r<sub>2</sub></code>. Pour déterminer si ces
+  deux particules se chevauchent il suffit de calculer la distance entre leurs centres et de regarder si cette distance est inférieure à la somme de leurs rayons respectifs, soit <code>d<sub>1-2</sub></code>
+  < <code>r<sub>1</sub></code> + <code>r<sub>2</sub></code>. Si cette évaluation est vraie, alors les particules sont en collision. On pourrait implémenter une fonction <code>overlap</code> qui prend en argument les deux particules et renvoient vrai
+    si elles se chevauchent, faux sinon :
+    </p>
+
+    <div>
+      <pre class="language-javascript line-numbers">
     <code>overlap(particule1, particule2){
       const distanceSquared = (particule1.x - particule2.x) * (particule1.x - particule2.x) + (particule1.y - particule2.y) * (particule1.y - particule2.y);
       return distanceSquared < (particule1.r + particule2.r) * (particule1.r + particule2.r);
     }</code></pre>
-  </div>
+    </div>
 
-  <p>Ici on manipule tout <em>au carré</em> pour éviter d'avoir à invoquer des appels de <code>Math.sqrt()</code> et <code>Math.pow()</code> qui sont des opérations couteuses. C'est une petite optimisation qui a son importance car cette fonction va être appelée de manière intensive.</p>
+    <p>Ici on manipule tout <em>au carré</em> pour éviter de faire des appels coûteux de <code>Math.sqrt()</code> et <code>Math.pow()</code>. C'est une petite optimisation qui a son importance car cette fonction va être appelée de manière intensive.
+    </p>
 
-  <h3>Approche Naïve vs QuadTree</h3>
-  <p>Souvenez vous, au début de cet article nous avons parlé d'une approche directe, sans structure de données efficace, pour résoudre ce genre de problème.</p>
-  <div id="demo03">
+    <h3>Détecter une collision, quand le QuadTree rentre en scène</h3>
+    <p>
+      Prenons une particule. Quelles particules doit elle considérer comme étant potentiellement en collision avec elle ?
+    </p>
+    <h4>Toutes, la solution naïve</h4>
+
+    <p>Souvenez vous, au début de cet article nous avons parlé d'une approche directe, sans structure de données efficace, pour résoudre ce genre de problème. Dans le cas où nous n'avons rien préparé en amont nous devons checker toutes les paires
+      possibles de particules. Une procédure qui hérite en temps d'une complexité <code>O(n<sup>2</sup>)</code> car il faut parcourir, pour chaque particule, toutes les autres particules.</p>
+
+    <h4>Se servir du QuadTree</h4>
+    <p>
+      Nous pouvons faire mieux à présent ! Nous allons toujours parcourir toutes les particules, ça malheureusement nous avons pas le choix (même s'il est possible de penser ici à faire des optimisations mais ce n'est pas le programme). Mais à
+      présent nous allons seulement tester celles qui sont dans son voisinage grâce à notre structure QuadTree et notre partitionnement de l'espace.
+    </p>
+
+    <p>
+      Premièrement, à chaque instant de notre simulation, nous allons construire un QuadTree. Vous verrez par vous même dans la démo suivante que cette opération ne <strong>coûte rien</strong>, et qu'elle résiste très bien à la montée en charge du
+      nombre de particules à insérer. Ce n'est pas surprenant car <code>insert</code> réalise des opérations très primitives. Les évaluations ne coûtent pas grand chose, l'accès à la mémoire oui ! Parcourir <code>n<sup>2</sup></code> éléments d'un
+      tableau, déférencer le contenu du pointeur, accèder à ses propriétés (ou attributs) ça, ça coûte cher.
+    </p>
+    <p>
+      J'insère donc mon tableau de particules <code>particules</code>, élément par élément dans mon QuadTree en m'adressant au noeud racine <code>rootNode</code> :
+    </p>
     <div>
-      <div id="radioContainer-demo03">
+      <pre class="language-javascript line-numbers">
+    <code>particules.forEach( particule => {
+      rootNode.insert( new Point(particule.x, particule.y, particule));
+    });</code></pre>
+    </div>
+    <p>
+      Maintenant que notre QuadTree est construit, il me suffit de parcourir toutes mes particules une par une. Pour chaque particule je n'ai plus besoin d'interroger <em>toutes les autres</em>, il me suffit de faire une requête au QuadTree, avec ma
+      zone d'inspection, centrée sur la position de ma particule ! Exactement comme dans la <a href="#demo1">démo 1</a>, lorsque je déplace mon curseur. Je peux alors récupérer toutes les particules voisines de ma particule considérée :
+    </p>
+    <div>
+      <pre class="language-javascript">
+    <code>let neighbors = rootNode.query(probe);</code></pre>
+    </div>
+    <p>
+      où <code>probe</code> est une zone d'inspection circulaire positionnée exactement au centre de la particule courante.
+    </p>
+    <p>
+      La zone d'inspection doit cependant avoir une taille souvenez vous, un rayon, que l'on appellera <code>R</code>. Quelle valeur de <code>R</code> doit-on choisir ? Si on veut être sûr de ne rater aucune particule dans le voisinage de la
+      particule
+      considérée, il faut que cette taille soit suffisament grande. Au moins supérieure à la taille <code>r</code> de la particule, soit <code>R > r</code>. Mais pas trop grande non plus, car sinon on considérerait trop de particules qui <em>ne
+        peuvent
+        pas</em> être en collision avec cette particule car elles sont trop loin ! Dans le cas où les particules ont toutes une taille différente, c'est à dire que notre échantillon de particules est <em>poly-disperse</em>, il me suffit de connaître
+      la
+      taille de la particule la plus grande <code>r<sub>max</sub></code>. Je peux facilement la déterminer avant de commencer ma simulation, ou le recalculer si les tailles des particules changent au cours du temps. C'est la distance minimale
+      nécessaire d'inspection pour pouvoir affirmer ne rien rater </p>
 
-        <input type="radio" id="quadtree" name="algorithme" value="quadtree" checked="checked">
-        <label for="quadtree"><acronym title="Utiliser le quadtree">Quadtree</acronym></label>
+    <p>
+      Une fois <code>r<sub>max</sub></code> connue alors il me suffit de regarder dans un rayon de <code>r + r<sub>max</sub> </code> autour du centre de ma particule pour être sûr de ne rater aucune collision. Voilà la taille de ma zone d'inspection
+      : <code>R = r + r<sub>max</sub> </code>. Notez qu'ici cette taille doit être recalculée pour chaque particule. Il est également possible d'y aller de manière plus forte, mais qui ne nécessite pas une mise à jour de la taille, en définissant une
+      fois pour toute <code>R</code> = <code>2r<sub>max</sub></code>.
+    </p>
+    <p>
+      Notre tableau de voisins <code>neighbors</code> contient donc toutes les particules dans le voisinage de la particule considérée, c'est à dire dans un rayon <code>2r<sub>max</sub></code> autour d'elle. Il n'y a plus qu'à les parcourir, à
+      appliquer notre fonction <code>overlap</code> pour savoir si elles se chevauchent, et voilà ! Vous n'avez plus qu'à faire le traitement qui vous convient en cas de collision.
+    </p>
 
-        <input type="radio" id="naive" name="algorithme" value="naive">
-        <label for="naive"><acronym title="Utiliser l'algorithme naïf qui parcourt toutes les paires">Approche naïve</acronym></label>
+    <h3>Qu'avons-nous gagné ?</h3>
+    <p>
+      Qu'avons nous gagné dans cette histoire ? Nous héritons toujours de la complexité minimum en <code>O(n)</code>. Souvenez-vous, je dois toujours parcourir <em>au moins une fois</em> toutes mes particules. Très bien, quel complexité à présent
+      pour trouver les voisins ? Lorsque nous avons analysé la complexité de
+      recherche
+      dans le QuadTree, la méthode <code>query</code>, nous avions vu qu'il était difficile de la définir avec certitude. À défaut de la définir nous avons été capable de la borner, ce qui est déjà pas trop mal. Nous pouvions au moins donner les
+      bornes min et max de cette complexité.</p>
+    <p>
+      Au minimum, une requête au QuadTree est proportionnelle à la profondeur
+      <code>p</code> de
+      l'arbre, soit <code>O(p)</code>. Cette profondeur, vous avez pu l'expérimenter dans la <a href="#demo2">démo précédente</a>, reste assez insensible au <em>nombre</em> de points présents dans le QuadTree, elle est uniquement sensible à <em>la
+        densité</em> de points. Vous
+      avez pu voir qu'il était difficile de dépasser une profondeur de <code>10</code> par exemple, même en insérant beaucoup de points (car la résolution de l'espace n'est pas suffisament grande). Le point important ici c'est que <strong>la
+        profondeur à laquelle une feuille se trouve n'est
+        pas fonction du nombre de points total</strong>. Ce sont là <em>deux choses</em> différentes. Évidemment, en moyenne, dans un espace fini, la densité augmente avec le nombre de points. Mais <em>localement</em> cette propriété n'est pas
+      nécessairement vraie. Autrement dit, on peut faire l'approximation suivante : la complexité en temps minimale d'une requête au QuadTree, <code>O(p)</code> est équivalente à une complexité constante, c'est à dire <code>O(1)</code>. Elle n'est
+      pas fonction du nombre de
+      particules, elle n'est pas <code>O(n)</code>.
+    </p>
+
+    <p> Concernant la borne maximale, justement, lorsque la densité des points est très importante, quand tous vos points sont agglutinés au même endroit, vous retombez nécessairement sur une complexité
+      <code>O(n)</code>, car tous les points sont là, vous devez les considérer !</p>
+    <p>
+      On en revient donc à cette conclusion minimale sur les performances de notre QuadTree dans le cas de la détection de collisions. La complexité de la détection des collisions est comprise entre <code>O(n)</code> et <code>O(n<sup>2</sup>)</code>.
+      La majorité du temps, sauf cas de densité immense (et là aucun algorithme sans <em>a priori</em> sur vos données ne pourra faire mieux), la complexité sera plus proche de la borne inférieure que supérieure. On peut donc dire qu'on a gagné, en
+      moyenne, un
+      facteur <code>n</code> dans notre complexité. Ce qui n'est pas rien !
+    </p>
+
+    <h3>Démo interactive : détection de collisions et analyse des apports du QuadTree face à la méthode <i>naïve</i></h3>
+
+    <p>
+      La démo ci-dessous est là pour vous convaincre que tout ce travail préalable n'a pas été fait en vain, et que ces analyses de complexité <em>sont visualisables et se ressentent</em>. La démo fait vivre un ensemble de particules circulaires, de
+      tailles
+      différentes, qui rebondissent sur les parois d'une boîte. Lorsque deux particules se chevauchent elles changent de couleur pour témoigner d'une collision. Vous pouvez modifier le nombre de particules et choisir la méthode de détection des
+      collisions : <em>naïve</em> ou avec l'utilisation du QuadTree.
+    </p>
+    <p>
+      Pour les deux méthodes vous avez accès au temps nécessaire pour calculer toutes les détections de collisions, ainsi qu'au <em>FrameRate</em>, une mesure de performance quantitative. Elle mesure la fluidité de <em>l'animation</em> et donc
+      indirectement le temps de calcul des collisions.
+    </p>
+    <p>
+      Dans le cas où vous utilisez le QuadTree vous avez accès à son temps de construction en temps réel. Ce temps est le temps nécessaire pour insérer tous les points dans le noeud racine. Ceci est pour vous convaincre que construire le QuadTree, à
+      chaque frame, car les particules changent de position, <em>ne coûte rien</em> comparé au temps nécessaire pour parcourir toutes les particules.
+    </p>
+    <div id="demo03">
+      <div>
+        <div id="radioContainer-demo03">
+
+          <input type="radio" id="quadtree" name="algorithme" value="quadtree" checked="checked">
+          <label for="quadtree"><acronym title="Utiliser le quadtree">Quadtree</acronym></label>
+
+          <input type="radio" id="naive" name="algorithme" value="naive">
+          <label for="naive"><acronym title="Utiliser l'algorithme naïf qui parcourt toutes les paires">Approche naïve</acronym></label>
 
 
 
-        <label for="nbParticules">Nombre de particules</label>
-        <input type="range" id="nbParticulesRange" name="nbParticules" value="200" min="2" max="1500">
-        <output id="output-nbParticules"></output>
+          <label for="nbParticules">Nombre de particules</label>
+          <input type="range" id="nbParticulesRange" name="nbParticules" value="200" min="2" max="1500">
+          <output id="output-nbParticules"></output>
+        </div>
       </div>
-    </div>
 
-    <h4>Infos</h4>
-    <div>
-      <label for="timeToBuildQuadtree" <acronym title="Temps d'éxecution nécessaire à la construction du quadtree uniquement">Temps construction du Quadtree (ms) : </label>
-      <span id="timeToBuildQuadtree" name="timeToBuildQuadtree"></span>
-    </div>
-    <div>
-      <label for="timeToComputeInteractions" <acronym
-        title="Temps d'execution nécessaire au calcul de toutes les interactions. Dans le cas de l'approche naive le calcul mesure le temps nécessaire pour parcourir toutes les paires de particules. Dans le cas du Quadtree, le calcul comprend le temps de construction du Quadtree et des querry.">Temps
-        total du calcul de toutes les interactions (ms) :</label>
-      <span id="timeToComputeInteractions" name="timeToComputeInteractions"></span>
+      <h4>Infos</h4>
+      <div>
+        <label for="timeToBuildQuadtree" <acronym title="Temps d'éxecution nécessaire à la construction du quadtree uniquement">Temps construction du Quadtree (ms) : </label>
+        <span id="timeToBuildQuadtree" name="timeToBuildQuadtree"></span>
+      </div>
+      <div>
+        <label for="timeToComputeInteractions" <acronym
+          title="Temps d'execution nécessaire au calcul de toutes les interactions. Dans le cas de l'approche naive le calcul mesure le temps nécessaire pour parcourir toutes les paires de particules. Dans le cas du Quadtree, le calcul comprend le temps de construction du Quadtree et des querry.">Temps
+          total du calcul de toutes les interactions (ms) :</label>
+        <span id="timeToComputeInteractions" name="timeToComputeInteractions"></span>
 
-      <div><label for="pourcentage" <acronym title="Rapport (en %) du temps nécessaire à la construction du Quadtree par rapport au temps nécessaire au calcul des interactions">Rapport du temps de
-          construction du Quadtree au temps du calcul des interactions (%):</label>
-        <span id="pourcentage" name="pourcentage"></span></div>
+        <div><label for="pourcentage" <acronym title="Rapport (en %) du temps nécessaire à la construction du Quadtree par rapport au temps nécessaire au calcul des interactions">Rapport du temps de
+            construction du Quadtree au temps du calcul des interactions (%):</label>
+          <span id="pourcentage" name="pourcentage"></span></div>
 
+
+        <div>
+          <label for="frameRate">FrameRate (frames/s): </label>
+          <span id="frameRate">0</span>
+        </div>
+      </div>
 
       <div>
-        <label for="frameRate">FrameRate (frames/s): </label>
-        <span id="frameRate">0</span>
+        <input type="checkbox" name="showQuadTreeCheckbox" id="showQuadTreeCheckbox">
+        <label for="showQuadTreeCheckbox">Afficher quadtree</label>
+        <input type="checkbox" name="showDetectionZoneCheckbox" id="showDetectionZoneCheckbox">
+        <label for="showDetectionZoneCheckbox">Afficher zones de détection</label>
+      </div>
+
+      <div>Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a> - <a href="#demo03">3</a></div>
+
+      <div class="resetButtonContainer">
+        <!-- <input type="button" value="reset"> -->
+        <button type="button" class="btn btn-primary btn-sm" id="resetButton-demo03">Réinitialiser</button>
+        <input id="switch-demo03" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
+      </div>
+
+      <div id="canvas-demo03-collisions" class="myCanvas">
       </div>
     </div>
 
-    <div>
-      <input type="checkbox" name="showQuadTreeCheckbox" id="showQuadTreeCheckbox">
-      <label for="showQuadTreeCheckbox">Afficher quadtree</label>
-      <input type="checkbox" name="showDetectionZoneCheckbox" id="showDetectionZoneCheckbox">
-      <label for="showDetectionZoneCheckbox">Afficher zones de détection</label>
-    </div>
-
-    <div>Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a> - <a href="#demo03">3</a></div>
-
-    <div class="resetButtonContainer">
-      <!-- <input type="button" value="reset"> -->
-      <button type="button" class="btn btn-primary btn-sm" id="resetButton-demo03">Réinitialiser</button>
-      <input id="switch-demo03" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
-    </div>
-
-    <div id="canvas-demo03-collisions" class="myCanvas">
-    </div>
-  </div>
-
-  <h4>Notes sur la démo</h4>
-  <p>
-    Les mesures absolues affichées ici n'ont pas d'intérêt en soi, les performances dépendront de votre navigateur, de votre machine. La seule chose qui est objectivement intéressante ici sont les mesures relatives : le rapport du temps de
-    construction de l'arbre au temps de calcul des interactions, ou entre la méthode <em>naïve</em> et la méthode <em>QuadTree</em>. D'autre part, étant donné l'objectif de cette démo, il n'y a pas d'implémentation d'une réelle <a
-      href="https://developer.mozilla.org/en-US/docs/Games/Anatomy">gameloop</a> : la fréquence de calcul des interactions est la même que la fréquence d'affichage (imposée par défaut à 60 frames par seconde) . Gardez donc à l'esprit que les mesures
-    et les performances de chaque méthode présentées ici ne sont pas <em>en soi</em> pertinentes. Cette démo a pour but de montrer qualitativement en quoi le QuadTree est plus performant qu'une approche <em>naïve</em>.
-  </p>
-
-  <h2>Sources : aller plus loin</h2>
-
-  <dl>
-    <dt></dt>
-    <dd>
-      <a href="https://dev.solita.fi/2015/08/06/quad-tree.html">Is there an optimal quad tree out there?</a>, Paavo Toivanen
-    </dd>
-    <dd>
-      <a href="https://stackoverflow.com/questions/41946007/efficient-and-well-explained-implementation-of-a-quadtree-for-2d-collision-det/48330314#48330314">Efficient QuadTree on StackOverflow</a>, Dragon Energy
-    </dd>
-
-  </dl>
+    <h4>Notes sur la démo</h4>
+    <p>
+      Les mesures absolues affichées ici n'ont pas d'intérêt en soi, les performances dépendront de votre navigateur, de votre machine. La seule chose qui est objectivement intéressante ici sont les mesures relatives : le rapport du temps de
+      construction de l'arbre au temps de calcul des interactions, ou entre la méthode <em>naïve</em> et la méthode <em>QuadTree</em>. D'autre part, étant donné l'objectif de cette démo, il n'y a pas d'implémentation d'une réelle <a
+        href="https://developer.mozilla.org/en-US/docs/Games/Anatomy">gameloop</a> : la fréquence de calcul des interactions est la même que la fréquence d'affichage (imposée par défaut à 60 frames par seconde) . Gardez donc à l'esprit que les
+      mesures
+      et les performances de chaque méthode présentées ici ne sont pas <em>en soi</em> pertinentes. Cette démo a pour but de montrer qualitativement en quoi le QuadTree est plus performant qu'une approche <em>naïve</em>.
+    </p>
 
 
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <h2>Conclusions</h2>
+    <p>
+      Dans cet article nous avons vu ce qu'était un QuadTree, à quoi il pouvait servir et à quel genre de questions il pouvait répondre. Le QuadTree est une généralisation du <a href="https://en.wikipedia.org/wiki/Binary_tree">BinaryTree</a> à deux
+      dimensions. Il est également possible de généraliser les mécanismes du QuadTree à trois dimensions, c'est ce qu'on appelle un <a href="https://fr.wikipedia.org/wiki/Octree">OctTree</a>. Ces trois structures de données sont fondamentalement les
+      mêmes : ce sont des arbres et ils fonctionnent par partition récursive de l'espace en 1, 2 ou 3 dimensions. Tout ce que vous avez appris sur les QuadTrees est transférable aux arbres de dimension inférieure ou supérieure. C'est la bonne
+      nouvelle.
+    </p>
+    <p>
+      Nous avons également mis en place une implémentation du QuadTree en JavaScript. Nous avons vu comment cet arbre se construisait, et nous avons abordé les différents types de noeuds de l'arbre: les feuilles et les branches. Enfin, nous nous en
+      sommes servis pour un cas d'application concret: la détection de collisions en deux dimensions.
+    </p>
+    <p>
+      Cet article est une longue introduction aux QuadTrees et abordent ses composantes fondamentales. Il est possible d'aller beaucoup plus loin, notamment dans les possibilités d'amélioration et d'optimisation de notre implémentation. Des liens
+      vous sont proposés dans la section suivante. Il est également possible de se servir du QuadTree pour poser beaucoup plus de questions que celles jusqu'ici évoquées. Par exemple, il peut permettre de trouver les voisins les plus proches, de
+      compresser des images etc.
+    </p>
+    <p>
+      Il y a encore beaucoup de choses à découvrir sur les QuadTrees ! J'espère que cet article vous aura donné les armes pour aller plus loin et mieux appréhender ces structures en arbre qui offrent de nombreux possibles dans la manipulation et le
+      traitement des données. Ces structures en arbre sont présentes dans de nombreux algorithmes et il est intéressant d'apprendre à les connaître et à les utiliser.
+    </p>
 
-  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <h2>Code source de l'implémentation du QuadTree</h2>
+    <p>Le code source de l'implémentation discutée et présentée dans cet article est disponible <a href="">ici</a>.</p>
+    <p>Les démos interactives ont été développées avec la librairie <a href="https://p5js.org/">p5js</a>.</p>
+    <h2>Sources : aller plus loin</h2>
 
-  <script src="js/lib/prism.js"></script>
+    <dl>
+      <dt>The coding train</dt>
+      <p>L'inénarrable <a href="https://shiffman.net/">Daniel Shiffman</a> qui m'a intéressé aux QuadTrees et m'a inspiré pour écrire cet article. Vous pouvez voir sa série en trois vidéos sur le sujet :</p>
+      <dd>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=OJxEcs0w_kE">partie 1</a></li>
+          <li><a href="https://www.youtube.com/watch?v=QQx_NmCIuCY">partie 2</a></li>
+          <li><a href="https://www.youtube.com/watch?v=z0YFFg_nBjw">partie 3</a></li>
+        </ul>
+      </dd>
+      <dd><a href="https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374">Quick Tip: Use Quadtrees to Detect Likely Collisions in 2D Space</a>, par Steven Lambert</dd>
+      <dt>Visualisation</dt>
+      <dd><a href="https://jimkang.com/quadtreevis/">An interactive explanation of quadtrees</a>, par Jim Kang. Une très belle démo interactive où l'on peut se déplacer de l'espace aux noeuds de l'arbre.</dd>
+      <dt>Optimisation</dt>
+      <dd>
+        <a href="https://dev.solita.fi/2015/08/06/quad-tree.html">Is there an optimal quad tree out there?</a> par Paavo Toivanen
+      </dd>
+      <dd>
+        <a href="https://stackoverflow.com/questions/41946007/efficient-and-well-explained-implementation-of-a-quadtree-for-2d-collision-det/48330314#48330314">Efficient QuadTree on StackOverflow</a> par Dragon Energy
+      </dd>
+
+    </dl>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+    <script src="js/lib/prism.js"></script>
 
 </body>
 
