@@ -910,14 +910,14 @@
     (qui peut être absolument tout ce que vous voulez) de la représentation qu'a cette donnée dans l'implémentation du QuadTree. Autrement dit, nous n'aurons plus jamais à modifier notre implémentation du QuadTree maintenant que nous avons notre
     structure <code>Point</code>.</p>
   <p>
-    Maintenant que chaque point stocke une référence sur la donnée qu'il représente, il suffit de construire un point pour chaque donnée et lui assigner des coordonnées. Ces coordonées peuvent être intrinsèques à la donnée (si votre donnée est une
+    Maintenant que chaque point porte une référence sur la donnée qu'il représente, il suffit d'en construire un pour chaque donnée et lui assigner des coordonnées. Ces coordonées peuvent être intrinsèques à la donnée (si votre donnée est une
     particule alors elle possède naturellement des coordonées spatiales par exemple) ou
     calculées au moment de la création de <code>Point</code> (par exemple le nombre de voyelles dans un mot peut agir comme une coordonée dans un espace à une dimension pour ma donnée <q>mot</q>).
   </p>
 
   <p>
-    Par exemple si j'ai une structure <code>data</code> et que je souhaite l'insérer dans mon QuadTree il faut que j'instancie un <code>Point</code>. Le QuadTree ne connait pas d'autres formes de données que des <code>Point</code>, vos données ne
-    l'intéresse pas. Au passage, <code>Point</code> n'est qu'une structure qui possède deux coordonnées <code>x</code> et <code>y</code>. C'est tout ce dont à besoin le QuadTree pour fonctionner. Voici comment on pourrait s'y prendre :
+    Par exemple, si j'ai une structure <code>data</code> et que je souhaite l'insérer dans mon QuadTree il faut que j'instancie un <code>Point</code>. Le QuadTree ne connait pas d'autres formes de données que des <code>Point</code>, vos données ne
+    l'intéresse pas. Au passage, <code>Point</code> n'est qu'une structure qui possède deux coordonnées <code>x</code> et <code>y</code>. C'est tout ce dont a besoin le QuadTree pour fonctionner. Voici comment on pourrait s'y prendre :
   </p>
 
   <div>
@@ -926,12 +926,12 @@
     rootNode.insert(point);</code></pre>
   </div>
   <p>
-    Ici <code>data</code> fournit des coordonées <code>x</code> et <code>y</code> par des méthodes pour rester le plus général possible, si vos données ne contiennent pas <em>naturellement</em> de coordonées dans un espace bidimensionnel. Remarquez
-    que le troisième argument est <code>data</code> lui même. </p>
+    Ici <code>data</code> fournit des coordonnées <code>x</code> et <code>y</code> par des méthodes pour rester le plus général possible, au cas où vos données ne contiennent pas <em>naturellement</em> de coordonnées dans un espace bidimensionnel. Remarquez
+    que le troisième argument est <code>data</code> lui-même. </p>
   <p>On instancie un point, on le lie à sa donnée et on l'insert dans le QuadTree.</p>
 
   <p>
-    Comment récupérer nos données ? Un appel à <code>query</code> sur notre QuadTree nous renverra une liste de points, pas une liste de données. Il suffit simplement d'accèder a la donnée portée par le point : <code>point.data</code>, ou alors dans
+    Comment récupérer nos données ? Un appel à <code>query</code> sur notre QuadTree nous renverra une liste de points et non une liste de données. Il suffit simplement d'accèder à la donnée portée par le point : <code>point.data</code>, ou alors dans
     le cas d'une liste :
   </p>
 
@@ -942,7 +942,7 @@
   </div>
 
   <p>
-    Sur la première ligne nous récupérons la liste des points correspondant à notre requête. A la deuxième ligne on récupère ce qu'on veut vraiement : le tableau des données portées par ces points, grâce à la méthode <a
+    Sur la première ligne nous récupérons la liste des points correspondant à notre requête. A la deuxième ligne, on récupère ce qu'on veut vraiment : un tableau des données portées par ces points, grâce à la méthode <a
       href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map">map</a>.
   </p>
 
@@ -952,8 +952,7 @@
     nous voudrons l'utiliser pour interroger des nouveaux types de données.
   </p>
 
-  <p>Notre QuadTree est enfin devenu utile ! Dans la prochaine partie, en guise d'illustration, nous allons nous servir du QuadTree pour faire de la détection de collisions entre particules dans une simulation 2D. Nous allons pouvoir mettre à profit
-    les avantages de cette structure de données.</p>
+  <p>Notre QuadTree est enfin devenu utile ! Dans la prochaine partie, en guise d'illustration, nous allons nous servir du QuadTree pour faire de la détection de collisions entre particules dans une simulation 2D.</p>
 
   <h2>Utiliser la puissance du QuadTree pour la détection de collisions</h2>
 
@@ -961,15 +960,15 @@
 
   <p>Supposons que nous ayons un ensemble de particules circulaires qui se déplacent dans un espace en deux dimensions. Nous voudrions savoir quand ces particules rentrent en collision pour y appliquer un traitement. Par exemple, nous souhaiterions
     appliquer des
-    forces de répulsion pour qu'elles rebondissent les unes sur les autres. Ou encore, dans le cas d'un jeu de shoot, nous voudrions que deux particules se détruisent lorsqu'elles rentrent en contact. Ce que vous voulez en faire de cette détection
+    forces de répulsion pour qu'elles rebondissent les unes sur les autres. Ou encore, dans le cas d'un jeu de shoot, nous voudrions que deux particules se détruisent lorsqu'elles rentrent en contact. Ce que vous voulez faire du résultat de cette détection,
     c'est votre problème. Détecter les collisions en revanche, c'est un problème qu'un QuadTree sait très bien gérer, et de manière efficace.</p>
   <p>
 
   <h3>Définir une collision</h3>
 
-  Pour savoir si deux particules circulaires entrent en collision il suffit de déterminer si ces deux particules se recouvrent ou non. Soient deux particules de rayon <code>r<sub>1</sub></code> et <code>r<sub>2</sub></code>. Pour déterminer si ces
+  Pour savoir si deux particules circulaires entrent en collision il suffit de déterminer si ces deux particules se recouvrent ou non. Prenons deux particules de rayon <code>r<sub>1</sub></code> et <code>r<sub>2</sub></code>. Pour déterminer si ces
   deux particules se chevauchent il suffit de calculer la distance entre leurs centres et de regarder si cette distance est inférieure à la somme de leurs rayons respectifs, soit <code>d<sub>1-2</sub></code>
-  < <code>r<sub>1</sub></code> + <code>r<sub>2</sub></code>. Si cette évaluation est vraie, alors les particules sont en collision. On pourrait implémenter une fonction <code>overlap</code> qui prend en argument les deux particules et renvoient vrai
+  < <code>r<sub>1</sub></code> + <code>r<sub>2</sub></code>. Si cette évaluation est vraie, alors les particules sont en collision. On pourrait implémenter une fonction <code>overlap</code> qui prend en argument les deux particules et renvoie vrai
     si elles se chevauchent, faux sinon :
     </p>
 
@@ -986,26 +985,26 @@
 
     <h3>Détecter une collision, quand le QuadTree rentre en scène</h3>
     <p>
-      Prenons une particule. Quelles particules doit elle considérer comme étant potentiellement en collision avec elle ?
+      Prenons une particule. Quelles particules doit-elle considérer comme étant potentiellement en collision avec elle ?
     </p>
     <h4>Toutes, la solution naïve</h4>
 
     <p>Souvenez vous, au début de cet article nous avons parlé d'une approche directe, sans structure de données efficace, pour résoudre ce genre de problème. Dans le cas où nous n'avons rien préparé en amont nous devons checker toutes les paires
       possibles de particules. Une procédure qui hérite en temps d'une complexité <code>O(n<sup>2</sup>)</code> car il faut parcourir, pour chaque particule, toutes les autres particules.</p>
 
-    <h4>Se servir du QuadTree</h4>
+    <h4>La solution QuadTree</h4>
     <p>
-      Nous pouvons faire mieux à présent ! Nous allons toujours parcourir toutes les particules, ça malheureusement nous avons pas le choix (même s'il est possible de penser ici à faire des optimisations mais ce n'est pas le programme). Mais à
-      présent nous allons seulement tester celles qui sont dans son voisinage grâce à notre structure QuadTree et notre partitionnement de l'espace.
+      Nous pouvons faire mieux à présent ! Nous allons toujours parcourir toutes les particules, ça malheureusement nous avons pas le choix (même s'il est possible de penser ici à faire des optimisations mais ce n'est pas le programme). Seulement à
+      présent, nous allons <em>uniquement</em> tester celles qui sont dans son voisinage grâce à notre structure QuadTree et notre partitionnement de l'espace.
     </p>
 
     <p>
-      Premièrement, à chaque instant de notre simulation, nous allons construire un QuadTree. Vous verrez par vous même dans la démo suivante que cette opération ne <strong>coûte rien</strong>, et qu'elle résiste très bien à la montée en charge du
+      Premièrement, à chaque instant de notre simulation, nous allons construire un QuadTree. Vous verrez par vous même dans la <a href="#demo3">démo suivante</a> que cette opération ne <strong>coûte rien</strong>, et qu'elle résiste très bien à la montée en charge du
       nombre de particules à insérer. Ce n'est pas surprenant car <code>insert</code> réalise des opérations très primitives. Les évaluations ne coûtent pas grand chose, l'accès à la mémoire oui ! Parcourir <code>n<sup>2</sup></code> éléments d'un
       tableau, déférencer le contenu du pointeur, accèder à ses propriétés (ou attributs) ça, ça coûte cher.
     </p>
     <p>
-      J'insère donc mon tableau de particules <code>particules</code>, élément par élément dans mon QuadTree en m'adressant au noeud racine <code>rootNode</code> :
+      J'insère donc mon tableau de particules <code>particules</code>, élément par élément, dans mon QuadTree en m'adressant au noeud racine <code>rootNode</code> :
     </p>
     <div>
       <pre class="language-javascript line-numbers">
@@ -1014,12 +1013,13 @@
     });</code></pre>
     </div>
     <p>
-      Maintenant que notre QuadTree est construit, il me suffit de parcourir toutes mes particules une par une. Pour chaque particule je n'ai plus besoin d'interroger <em>toutes les autres</em>, il me suffit de faire une requête au QuadTree, avec ma
+      Maintenant que le QuadTree est construit, il me suffit de parcourir toutes mes particules une par une. Pour chaque particule je n'ai plus besoin d'interroger <em>toutes les autres</em>, il me suffit de faire une requête au QuadTree, avec ma
       zone d'inspection, centrée sur la position de ma particule ! Exactement comme dans la <a href="#demo1">démo 1</a>, lorsque je déplace mon curseur. Je peux alors récupérer toutes les particules voisines de ma particule considérée :
     </p>
     <div>
       <pre class="language-javascript">
-    <code>let neighbors = rootNode.query(probe);</code></pre>
+    <code>probe(particule.x, particule.y);
+    let neighbors = rootNode.query(probe);</code></pre>
     </div>
     <p>
       où <code>probe</code> est une zone d'inspection circulaire positionnée exactement au centre de la particule courante.
@@ -1171,7 +1171,7 @@
     </p>
     <p>
       Cet article est une longue introduction aux QuadTrees et abordent ses composantes fondamentales. Il est possible d'aller beaucoup plus loin, notamment dans les possibilités d'amélioration et d'optimisation de notre implémentation. Des liens
-      vous sont proposés dans la section suivante. Il est également possible de se servir du QuadTree pour poser beaucoup plus de questions que celles jusqu'ici évoquées. Par exemple, il peut permettre de trouver les voisins les plus proches, de
+      vous sont proposés dans la section suivante. Il est également possible de se servir du QuadTree pour poser beaucoup plus de questions que celles évoquées ici. Par exemple, il peut permettre de trouver les voisins les plus proches, de
       compresser des images etc.
     </p>
     <p>
