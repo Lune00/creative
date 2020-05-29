@@ -774,8 +774,8 @@
   <h2>Paramètres du Quadtree : capacité et profondeur</h2>
 
   <p>
-    Ces paramètres permettent d'optimiser les performances du Quadtree en insertion (<code>insert</code>) ou en recherche (<code>query</code>). Ces considérations dépassent l'ambition de cet article mais il est utile néanmoins d'en discuter un peu
-    pour que vous soyez au moins conscient de ces aspects.
+    Ces paramètres permettent <strong>d'optimiser les performances du Quadtree</strong> en insertion (<code>insert</code>) ou en recherche (<code>query</code>). Ces considérations dépassent l'ambition de cet article, mais il est néanmoins utile de
+    les mentionner.
   </p>
 
   <p>
@@ -783,8 +783,6 @@
     de la récursivité de l'arbre. Plus il est profond plus il est nécessaire de faire des appels récursifs pour récupérer les points. On remarque que ces deux paramètres sont corrélés : plus la capacité des noeuds est grande, moins il sera profond et
     inversement.
   </p>
-
-
 
   <h3>Définir une profondeur maximale</h3>
   <p>
@@ -813,28 +811,35 @@
   <h3>Quelle valeurs choisir pour la capacité et la profondeur maximale?</h3>
 
   <p>
-    La réponse à cette question n'est pas évidente mais elle pourrait être "cela dépend de ce que vous voulez".
+    La réponse à cette question n'est pas évidente mais elle pourrait être <q>cela dépend de ce que vous voulez</q>. Notez que ces paramètres n'auront pas un effet considérable en soi sur les performances du QuadTree. Un choix minutieux pour ces
+    paramètres implique
   </p>
 
-
-<!-- TODO : reformuler et synthétisez -->
-  <!-- <p>
+  <p>
     Si vous voulez construire rapidement le QuadTree alors vous avez besoin d'un <code>insert</code> rapide. Pour cela, il suffit d'augmenter la capacité de l'arbre : plus une feuille pourra porter de points, moins elle aura de chance de se
-    subdiviser. Ainsi, augmenter la capacité diminue le nombre d'appels récursifs d'<code>insert</code> et diminue le nombre d'appels à <code>branch</code>.
+    subdiviser. Ainsi, augmenter la capacité diminue le nombre d'appels récursifs d'<code>insert</code> et diminue le nombre d'appels à <code>branch</code>. Cela dit, en gagnant de l'efficacité en construction vous en perdez nécessairement en
+    recherche, car il faudra évaluer plus de points à chaque appel de <code>query</code>.
   </p>
 
   <p>
-    Cela dit, en gagnant de l'efficacité à la construction vous en perdez nécessairement en recherche, car il faudra évaluer plus de points à chaque appel de <code>query</code>.
-    D'un autre côté, si vous diminuez la capacité vous augmenter la profondeur de l'arbre. La profondeur de l'arbre est mauvaise à la fois à la construction et à la recherche : plus elle est grande, plus la recherche est lente car il faut faire plus d'appels récurifs de <code>query</code>. -->
+    Évidemment, jouer seulement sur la valeur de ces paramètres ne va pas avoir des répercussions importantes sur les performances du QuadTree. Ce choix doit être soutenu par une architecture optimisée en mémoire des fonctions <code>insert</code> et
+    <code>querry</code> et surtout d'une optimisation de la gestion de la mémoire.
+  </p>
   <p>
+    Dans un premier temps, il est inutile de trop s'attarder sur ces paramètres, car choisir leurs valeurs fait partie d'un processus plus large qui est celui de l'optimisation. Et L'optimisation vient toujours après. Si vous voulez en savoir plus
+    sur ce sujet des liens sont proposés à
+    la fin de l'article sur l'optimisation des Quadtrees.
+  </p>
 
   <p>
-     Comme nous l'avons vu, il n'y a pas de réponse toute faite. Dans cette implémentation nous avons avons donné choisi une valeur de 4, ce qui est un choix totalement arbitraire. Au final, choisir ces valeurs fait partie d'un processus plus large qui est celui de l'optimisation de notre Quadtree. L'optimisation dépend du problème que l'on
-    cherche à résoudre mais également d'autres éléments non négligeables : des propriétés même de nos points (dispersion et nombre), de l'implémentation, de l'utilisation de la mémoire etc.
+    Dans cette implémentation nous avons choisi une valeur de 4, ce qui est un choix totalement arbitraire, mais élégant.
   </p>
-<p>
-  Voilà pourquoi ces aspects méritent d'être mentionnés, mais ne seront pas traités en profondeur ici, car ce n'est pas le but de l'article. L'optimisation vient toujours après la réalisation. Des sources en bas de l'article sont proposées pour aller plus loin sur l'optimisation.
-</p>
+
+
+  <h2>Démo interactive : profondeur du QuadTree</h2>
+
+  <p>Pour avoir une meilleur idée de la manière dont évolue la profondeur de l'arbre vous avez, ci-dessous, une démo interactive. Vous pouvez ajouter des points (individuellement ou par paquet) et regarder la profondeur d'une feuille sous le curseur.
+    La profondeur maximale de l'arbre est également affichée. Le gradient de couleur vous donne une idée de la dispersion des profondeurs des feuilles au sein de l'arbre.</p>
 
 
   <h4>Insertion</h4>
@@ -881,8 +886,79 @@
 
   </div>
 
+  <p>
+    Comme vous pouvez le constater, dans cette application ci la profondeur maximale se stabilise assez rapidement autour de 8, et il n'est pas nécessaire d'implémenter une profondeur maximale.
+  </p>
 
-  <h2>Attacher des données aux feuilles</h2>
+
+  <h2>Lier notre QuadTree à nos données réelles ou comment attacher des données aux feuilles</h2>
+
+  <p>Jusqu'ici nous avons inséré ou récupéré des points à l'aide de notre QuadTree. C'est bien gentil et intéressant, mais où sont passées nos données ? Ici nous allons voir comment nous allons connecter notre QuadTree à nos données réelles. C'est
+    l'ultime étape pour rendre tous nos efforts utiles et notre QuadTree intéressant.</p>
+  <p>
+    Le principe est très simple et élégant : chaque point inséré dans le QuadTree garde une référence (ou un pointeur) vers la donnée qu'il est supposé représenter. Et c'est tout ! Regardons la structure <code>Point</code>
+  </p>
+
+  <div>
+    <pre class="language-javascript line-numbers">
+    <code>class Point {
+      constructor(x, y, data) {
+        this.x = x;
+        this.y = y;
+        this.data = data;
+      }
+    }</code></pre>
+  </div>
+
+  <p>Elle possède trois propriétés : <code>x</code> et <code>y</code> les coordonnées du point, et <code>data</code> qui est une référence vers la donnée que ce point représente, peut importe sa nature.</p>
+
+  <p>L'intérêt de cette façon de faire c'est que notre structure (ou classe, appelez ça comme vous voulez) <code>Point</code> agit comme une interface qui masque les détails du fonctionnement de notre QuadTree et <strong>découple</strong> la donnée
+    (qui peut être absolument tout ce que vous voulez) de la représentation qu'a cette donnée dans l'implémentation du QuadTree. Autrement dit, nous n'aurons plus jamais à modifier notre implémentation du QuadTree maintenant que nous avons notre
+    structure <code>Point</code>.</p>
+  <p>
+    Maintenant que chaque point stocke une référence sur la donnée qu'il représente, il suffit de construire un point pour chaque donnée et lui assigner des coordonnées. Ces coordonées peuvent être intrinsèques à la donnée (si votre donnée est une
+    particule alors elle possède naturellement des coordonées spatiales par exemple) ou
+    calculées au moment de la création de <code>Point</code> (par exemple le nombre de voyelles dans un mot peut agir comme une coordonée dans un espace à une dimension pour ma donnée <q>mot</q>).
+  </p>
+
+  <p>
+    Par exemple si j'ai une structure <code>data</code> et que je souhaite l'insérer dans mon QuadTree il faut que j'instancie un <code>Point</code>. Le QuadTree ne connait pas d'autres formes de données que des <code>Point</code>, vos données ne
+    l'intéresse pas. Au passage, <code>Point</code> n'est qu'une structure qui possède deux coordonnées <code>x</code> et <code>y</code>. C'est tout ce dont à besoin le QuadTree pour fonctionner. Voici comment on pourrait s'y prendre :
+  </p>
+
+  <div>
+    <pre class="language-javascript line-numbers">
+    <code>let point = new Point(data.x(), data.y(), data)
+    rootNode.insert(point);</code></pre>
+  </div>
+  <p>
+    Ici <code>data</code> fournit des coordonées <code>x</code> et <code>y</code> par des méthodes pour rester le plus général possible, si vos données ne contiennent pas <em>naturellement</em> de coordonées dans un espace bidimensionnel. Remarquez
+    que le troisième argument est <code>data</code> lui même. </p>
+  <p>On instancie un point, on le lie à sa donnée et on l'insert dans le QuadTree.</p>
+
+  <p>
+    Comment récupérer nos données ? Un appel à <code>query</code> sur notre QuadTree nous renverra une liste de points, pas une liste de données. Il suffit simplement d'accèder a la donnée portée par le point : <code>point.data</code>, ou alors dans
+    le cas d'une liste :
+  </p>
+
+  <div>
+    <pre class="language-javascript line-numbers">
+    <code>const points = rootNode.query(probe);
+    const datas = points.map(point => point.data)</code></pre>
+  </div>
+
+  <p>
+    Sur la première ligne nous récupérons la liste des points correspondant à notre requête. A la deuxième ligne on récupère ce qu'on veut vraiement : le tableau des données portées par ces points, grâce à la méthode <a
+      href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map">map</a>.
+  </p>
+
+  <p>
+    En résumé de cette partie, nous avons vu comment lier nos données aux points manipulés par le QuadTree. Grâce à cette implémentation nous pouvons désormais représenter n'importe quelle donnée dans notre QuadTree et nous en servir pour interroger
+    efficacement nos données. La structure <code>Point</code> sert <strong>d'interface</strong> et permet de découpler les données de leur représentation dans le QuadTree. Nous n'aurons donc jamais à toucher à notre implémentation du QuadTree lorsque
+    nous voudrons l'utiliser pour interroger des nouveaux types de données.
+  </p>
+
+  <p>Notre QuadTree est enfin devenu utile ! Dans la prochaine partie, en guise d'illustration, nous allons nous servir du QuadTree pour faire de la détection de collisions entre particules dans une simulation 2D. Nous allons pouvoir mettre à profit les avantages de cette structure de données.</p>
 
   <h2>Utilisation d'un Quadtree pour la détection de collisions</h2>
 
@@ -967,11 +1043,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-  <p>
-    Si vous voulez construire rapidement le QuadTree alors vous avez besoin d'un <code>insert</code> rapide. Pour cela, il suffit d'augmenter la capacité de l'arbre : plus une feuille pourra porter de points, moins elle aura de chance de se
-    subdiviser. Ainsi, augmenter la capacité diminue le nombre d'appels récursifs d'<code>insert</code> et diminue le nombre d'appels à <code>branch</code>. Cela dit, vous perdez nécessairement en efficacité en recherche, car vous aurez plus de
-    points à évaluer.
-  </p>
+
   <script src="js/lib/prism.js"></script>
 
 </body>
