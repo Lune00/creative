@@ -550,73 +550,98 @@
     à revenir expérimenter avec cette démo.
   </p>
 
+  <div class="row demo1-container" id="demo01">
+    <div class="insertion-informations">
+      <div class="container-insertion">
+        <h4>Insertion</h4>
 
-  <div class="row justify-content-center" id="demo01">
+        <div>
+          <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
+          <label for="point"><acronym title="Insère un unique point à chaque clic">Point par point</acronym></label>
+        </div>
+        <div>
+
+          <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
+          <label for="gaussian"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
+          <label for="nbPointsGaussian">Nombre de points à insérer</label>
+          <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
+          <output id="nbPointsGaussianValue"></output>
+        </div>
+
+        <div class="slideContainer">
+          <label for="sliderProbeSize">Taille de la zone d'inspection</label>
+          <input type="range" min="10" max="200" value="100" id="sliderProbeSize" name="sliderProbeSize">
+
+        </div>
+
+        <div>
+            <label for="nbPointsTotal">Nombre de points insérés :</label>
+            <span id="nbPointsTotal" name="nbPointsTotal">0</span>
+        </div>
+
+      </div>
+      <div class="container-informations">
+        <div class="title">
+          <h4>Informations</h4>
+        </div>
+
+        <div class="left">
+          <table class="table table-striped table-hover table-sm table-dark">
+            <tbody>
+              <tr>
+                <th scope="row" class="candidats"><label for="nbPoitnsEvaluated" <abbr title="Nombre total de points évalués lors de la requête (présence ou non dans la zone d'inspection)"><b>Points candidats (% Total)</b> : </label></th>
+                <td class="candidats">  <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="inclus"><label for="nbPoitnsSelected" <abbr title="Nombre total de points évalués et retournés par la reqûete (présents ou non dans la zone d'inspection)"><b>Points inclus dans la zone d'inspection (% Total) : </b></label></th>
+                <td class="inclus"> <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="nbLeaf">Nombre de feuilles</label></th>
+                <td><span id="nbLeaf" name="nbLeaf"></span></td>
+
+              </tr>
+              <tr>
+                <th <label for="nbBranch">Nombre de branches</label></th>
+                <td><span id="nbBranch" name="nbBranch"></span></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-striped table-hover table-sm ">
+            <tbody>
+
+            </tbody>
+          </table>
 
 
-    <h4>Insertion</h4>
-    <div class="radioContainer">
-      <input type="radio" id="normal" name="insertionModeGroup" value="point" checked="checked">
-      <label for="point"><acronym title="Insère un unique point à chaque clic">Point</acronym></label>
+        </div>
 
-      <input type="radio" id="gaussian" name="insertionModeGroup" value="gaussian">
-      <label for="gaussian"><acronym title="Insère un nuage gaussien de points à chaque clic">Nuage de points</acronym></label>
+        <div class="right">
 
-      <label for="nbPointsGaussian">Nombre de points à insérer</label>
-      <input type="range" id="nbPointsGaussian" name="nbPointsGaussian" value="100" min="10" max="250" disabled="">
-      <output id="nbPointsGaussianValue"></output>
+        </div>
+
+      </div>
     </div>
 
-    <h4>Inspection</h4>
-    <div class="slideContainer">
-      <label for="sliderProbeSize">Taille zone d'inspection</label>
-      <input type="range" min="10" max="200" value="100" id="sliderProbeSize" name="sliderProbeSize">
-    </div>
-
-    <h4>Infos</h4>
-    <div class="infos">
-      <div>
-        <label for="nbBranch">Nombre de branches : </label>
-        <span id="nbBranch" name="nbBranch"></span>
-      </div>
-
-      <div>
-        <label for="nbLeaf">Nombre de feuilles : </label>
-        <span id="nbLeaf" name="nbLeaf"></span>
-      </div>
-
-      <div>
-        <label for="nbPointsTotal">Nombre de points : </label>
-        <span id="nbPointsTotal" name="nbPointsTotal">0</span> points
-      </div>
-
-
-      <div id="groupNbPoitnsEvaluated">
-        <label for="nbPoitnsEvaluated" <acronym title="Nombre total de points évalués lors de la requête (présence ou non dans la zone circulaire)"><b>Points candidats (% Total)</b> : </label>
-        <span id="nbPoitnsEvaluated" name="nbPoitnsEvaluated"></span>
-      </div>
-
-      <div id="groupNbPoitnsSelected">
-        <label for="nbPoitnsSelected" <acronym title="Nombre total de points évalués et retournés par la reqûete (présence ou non dans la zone circulaire)"><b>Points inclus dans la zone d'inspection (% Total) : </b></label>
-        <span id="nbPoitnsSelected" name="nbPoitnsSelected"></span>
-      </div>
-
-    </div>
-
-    <div class="resetButtonContainer">
+    <div class="container-buttons">
       <!-- <input type="button" value="reset"> -->
-      <button type="button" class="btn btn-primary btn-sm" id="resetButton">Réinitialiser</button>
+      <button type="button" class="btn btn-primary btn-sm resetButton" id="resetButton">Réinitialiser</button>
       <input id="switch-demo01" type="checkbox" data-toggle="toggle" checked data-on="En cours" data-off="En Pause" data-onstyle="success" data-offstyle="warning" data-size="sm" class="switch-demo">
-    </div>
-    <div>Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a> - <a href="#demo03">3</a></div>
-    <div id="canvas-demo01-insert-querry" class="myCanvas">
 
     </div>
+
+    <div class="navigation">Naviguer vers la démo: <a href="#demo01">1</a> - <a href="#demo02">2</a> - <a href="#demo03">3</a></div>
+
+    <div class="container-canvas">
+      <div id="canvas-demo01-insert-querry" class="myCanvas"></div>
+    </div>
+
   </div>
 
   <br />
+
   <p>
-    Nous avons à présent construit notre Quadtree. Notre structure de données est enfin prête. La partie intéressante peut commencer, nous allons à présent nous servir de notre Quadtree pour obtenir des réponses aux questions que nous nous posions !
+    Nous avons à présent construitable-hovert notre Quadtree. Notre structure de données est enfin prête. La partie intéressante peut commencer, nous allons à présent nous servir de notre Quadtree pour obtenir des réponses aux questions que nous nous posions !
   </p>
 
   <h2>Se servir (enfin) du Quadtree</h2>
@@ -764,7 +789,7 @@
     Enfin, le fait qu'un noeud qui devient branche ne se subdivise pas automatiquement en 4 feuilles mais uniquement en autant de feuilles que nécessaire, nous permet d'éviter des appels inutiles de <code>query</code>. En effet, si nous divisions
     automatiquement en 4 chaque noeud en surcapacité, celui-ci pourrait créer des feuilles vides. <a href="#query">Aux lignes 19 et 20</a> nous ferions alors des appels inutiles de <code>query</code> sur ces noeuds enfants vides.
   </p>
-
+table-hover
   <h2>Paramètres du Quadtree : capacité et profondeur</h2>
 
   <p>
@@ -926,12 +951,14 @@
     rootNode.insert(point);</code></pre>
   </div>
   <p>
-    Ici <code>data</code> fournit des coordonnées <code>x</code> et <code>y</code> par des méthodes pour rester le plus général possible, au cas où vos données ne contiennent pas <em>naturellement</em> de coordonnées dans un espace bidimensionnel. Remarquez
+    Ici <code>data</code> fournit des coordonnées <code>x</code> et <code>y</code> par des méthodes pour rester le plus général possible, au cas où vos données ne contiennent pas <em>naturellement</em> de coordonnées dans un espace bidimensionnel.
+    Remarquez
     que le troisième argument est <code>data</code> lui-même. </p>
   <p>On instancie un point, on le lie à sa donnée et on l'insert dans le QuadTree.</p>
 
   <p>
-    Comment récupérer nos données ? Un appel à <code>query</code> sur notre QuadTree nous renverra une liste de points et non une liste de données. Il suffit simplement d'accèder à la donnée portée par le point : <code>point.data</code>, ou alors dans
+    Comment récupérer nos données ? Un appel à <code>query</code> sur notre QuadTree nous renverra une liste de points et non une liste de données. Il suffit simplement d'accèder à la donnée portée par le point : <code>point.data</code>, ou alors
+    dans
     le cas d'une liste :
   </p>
 
@@ -960,7 +987,8 @@
 
   <p>Supposons que nous ayons un ensemble de particules circulaires qui se déplacent dans un espace en deux dimensions. Nous voudrions savoir quand ces particules rentrent en collision pour y appliquer un traitement. Par exemple, nous souhaiterions
     appliquer des
-    forces de répulsion pour qu'elles rebondissent les unes sur les autres. Ou encore, dans le cas d'un jeu de shoot, nous voudrions que deux particules se détruisent lorsqu'elles rentrent en contact. Ce que vous voulez faire du résultat de cette détection,
+    forces de répulsion pour qu'elles rebondissent les unes sur les autres. Ou encore, dans le cas d'un jeu de shoot, nous voudrions que deux particules se détruisent lorsqu'elles rentrent en contact. Ce que vous voulez faire du résultat de cette
+    détection,
     c'est votre problème. Détecter les collisions en revanche, c'est un problème qu'un QuadTree sait très bien gérer, et de manière efficace.</p>
   <p>
 
@@ -999,7 +1027,8 @@
     </p>
 
     <p>
-      Premièrement, à chaque instant de notre simulation, nous allons construire un QuadTree. Vous verrez par vous même dans la <a href="#demo3">démo suivante</a> que cette opération ne <strong>coûte rien</strong>, et qu'elle résiste très bien à la montée en charge du
+      Premièrement, à chaque instant de notre simulation, nous allons construire un QuadTree. Vous verrez par vous même dans la <a href="#demo3">démo suivante</a> que cette opération ne <strong>coûte rien</strong>, et qu'elle résiste très bien à la
+      montée en charge du
       nombre de particules à insérer. Ce n'est pas surprenant car <code>insert</code> réalise des opérations très primitives. Les évaluations ne coûtent pas grand chose, l'accès à la mémoire oui ! Parcourir <code>n<sup>2</sup></code> éléments d'un
       tableau, déférencer le contenu du pointeur, accèder à ses propriétés (ou attributs) ça, ça coûte cher.
     </p>

@@ -7,13 +7,12 @@ html {
 }
 
 body {
-  padding: 300px;
+
 }
 
 canvas {
   display: block;
 }
-
 
 dt {
   font-weight: bold;
@@ -30,16 +29,83 @@ dd {
   padding: 15px;
 }
 
-#groupNbPoitnsSelected {
-  background-color: black;
-}
-
-#groupNbPoitnsEvaluated {
-  background-color: black;
-}
-
-
-h2{
+h2 {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.demo1-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.insertion-informations {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.title{
+  flex: 0 0 100%
+}
+
+.container-insertion {
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+  margin-right: 20px;
+  /* flex: 0 0 0%; */
+}
+
+.container-inspection {
+  flex: 0 0 50%;
+  padding: 10px;
+}
+
+.container-informations {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.right{
+margin-left: 5px;
+}
+
+.container-buttons{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.resetButton {
+
+}
+.switch-demo{
+
+}
+.navigation{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  font-size: 14px;
+}
+
+.container-canvas{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.table{
+  
+}
+
+.candidats{
+  color: #33FF57;
+  font-weight: bold;
+}
+.inclus{
+  color: #FF5733;
+  font-weight: bold;
 }
