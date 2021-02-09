@@ -16,9 +16,9 @@
 
       <p>
         <label for="af_nature">Nature: </label>
-        <select name="af_nature" id="af_nature">
-          <option value="discrete">Discrète</option>
-          <option value="continuous">Continue</option>
+        <select v-model="nature" name="af_nature" id="af_nature">
+          <option :value="this.discreteNature()">Discrète</option>
+          <option :value="this.continuousNature()">Continue</option>
         </select>
       </p>
 
@@ -28,18 +28,20 @@
       </p>
 
       <h2>Allèles</h2>
-      <AllelesEditableList></AllelesEditableList>
+      <AllelesEditableList :nature="nature"></AllelesEditableList>
 
       <h2>Règles de codominance</h2>
 
       <p>
-        <input type="submit" value="Ajouter" />
+        <input type="submit" value="Enregistrer" />
       </p>
     </form>
   </div>
 </template>
 <script>
-import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue";
+
+import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue"
+import model from '@/services/model-helpers.js'
 
 export default {
   name: "TheFormAddAbstractFeature",
@@ -47,12 +49,20 @@ export default {
     AllelesEditableList,
   },
   data() {
-    return {};
+    return {
+      nature: '',
+    };
   },
   methods: {
     checkForm: function(e) {
       console.log("check form", e);
     },
+    discreteNature(){
+      return model.discreteNature()
+    },
+    continuousNature(){
+      return model.continuousNature()
+    }
   },
 };
 </script>
