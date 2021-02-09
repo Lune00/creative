@@ -7,6 +7,8 @@
       action="#"
       method="post"
     >
+      <h2>Général</h2>
+
       <p>
         <label for="af_label">Libellé: </label>
         <input type="text" id="af_label" name="af_label" required />
@@ -22,12 +24,13 @@
 
       <p>
         <label for="nb_genes">Nombre de gênes:</label>
-        <input type="number" id="af_nbgenes" name="nb_genes" min="1">
+        <input type="number" id="af_nbgenes" name="nb_genes" min="1" />
       </p>
 
-      <p>
-        
-      </p>
+      <h2>Allèles</h2>
+      <AllelesEditableList></AllelesEditableList>
+
+      <h2>Règles de codominance</h2>
 
       <p>
         <input type="submit" value="Ajouter" />
@@ -36,7 +39,13 @@
   </div>
 </template>
 <script>
+import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue";
+
 export default {
+  name: "TheFormAddAbstractFeature",
+  components: {
+    AllelesEditableList,
+  },
   data() {
     return {};
   },

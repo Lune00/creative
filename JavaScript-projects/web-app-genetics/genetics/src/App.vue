@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <AddAbstractFeature></AddAbstractFeature>
+    <ViewNewAbstractFeature></ViewNewAbstractFeature>
   </div>
 </template>
 
 <script>
-import AddAbstractFeature from "@/views/AddAbstractFeature.vue";
+import ViewNewAbstractFeature from "@/views/Editor/ViewNewAbstractFeature.vue";
 
 export default {
   name: "App",
   components: {
-    AddAbstractFeature
+    ViewNewAbstractFeature
   }
 };
 </script>
