@@ -41,7 +41,7 @@
 <script>
 
 import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue"
-import model from '@/services/model-helpers.js'
+import model from '@/models/model-helpers.js'
 
 export default {
   name: "TheFormAddAbstractFeature",
