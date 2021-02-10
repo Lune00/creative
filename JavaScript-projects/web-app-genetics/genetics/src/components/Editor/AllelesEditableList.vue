@@ -11,35 +11,35 @@
   </div>
 </template>
 <script>
-import Row from "@/components/Editor/AllelesEditableListRow.vue";
+import Row from '@/components/Editor/AllelesEditableListRow.vue'
 
 export default {
-  name: "AllelesEditableList",
+  name: 'AllelesEditableList',
   components: {
-    Row,
+    Row
   },
   data() {
-    return {};
+    return {}
   },
   props: {
     nature: {
       type: String,
-      required: true,
+      required: true
     },
     alleles: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
 
   methods: {
     add: function() {
-      this.$emit("add_allele");
+      this.$emit('add_allele')
     },
     onRemoveAllele: function(index) {
-      this.$emit("remove_allele", index);
-    },
-  },
-};
+      this.$emit('remove_allele', index)
+    }
+  }
+}
 </script>
 <style lang=""></style>

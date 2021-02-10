@@ -1,15 +1,23 @@
-export default{
+import Rule from '@/models/Rule.js'
+// import Allele from '@/models/Allele.js'
 
-    discreteNature(){
+export default {
+    discreteNature() {
         return 'discrete'
     },
-    continuousNature(){
+    continuousNature() {
         return 'continuous'
     },
-    isFeatureDiscrete(nature){
+    isFeatureDiscrete(nature) {
         return 'discrete' === nature
     },
-    isFeatureContinuous(nature){
+    isFeatureContinuous(nature) {
         return 'continuous' === nature
     },
+
+    //Return Rule(id_i,id_j) if it exists in array rules, false otherwise
+    getRule(rules, id_i, id_j) {
+
+    }
+
 }

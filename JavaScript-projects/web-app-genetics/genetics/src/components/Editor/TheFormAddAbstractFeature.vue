@@ -23,7 +23,7 @@
       </p>
 
       <p>
-        <label for="nb_genes">Nombre de gênes:</label>
+        <label for="nb_genes">Nombre de gènes: </label>
         <input type="number" id="af_nbgenes" name="nb_genes" min="1" />
       </p>
 
@@ -36,48 +36,63 @@
       ></AllelesEditableList>
 
       <h2>Règles de codominance</h2>
-      <CodominanceRulesTable :alleles="alleles"></CodominanceRulesTable>
+      <CodominanceRulesTable
+        :alleles="alleles"
+        :rules="rules"
+      ></CodominanceRulesTable>
+
       <p>
         <input type="submit" value="Enregistrer" />
       </p>
     </form>
   </div>
 </template>
+
 <script>
-import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue";
-import CodominanceRulesTable from "@/components/Editor/CodominanceRulesTable.vue";
-import model from "@/models/model-helpers.js";
-import Allele from "@/models/Allele.js";
+import AllelesEditableList from '@/components/Editor/AllelesEditableList.vue'
+import CodominanceRulesTable from '@/components/Editor/CodominanceRulesTable.vue'
+import model from '@/models/model-helpers.js'
+import Allele from '@/models/Allele.js'
+
 export default {
-  name: "TheFormAddAbstractFeature",
+  name: 'TheFormAddAbstractFeature',
   components: {
     AllelesEditableList,
-    CodominanceRulesTable,
+    CodominanceRulesTable
   },
   data() {
     return {
-      nature: "",
+      nature: '',
       alleles: [],
-    };
+      rules: [],
+      allele_id: 0
+    }
   },
   methods: {
     checkForm: function(e) {
-      console.log("check form", e);
+      console.log('check form', e)
+      //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
     },
     discreteNature() {
-      return model.discreteNature();
+      return model.discreteNature()
     },
     continuousNature() {
-      return model.continuousNature();
+      return model.continuousNature()
     },
     onAddAllele() {
-      this.alleles.push(new Allele("", ""));
+      const allele = new Allele(this.generateUniqueAlleleId())
+      this.alleles.push(allele)
+      this.rules = model.rules_add_allele(this.rules, allele)
     },
     onRemoveAllele(index) {
-      console.log('remive',index)
-      this.alleles.splice(index, 1);
+      this.alleles.splice(index, 1)
     },
-  },
-};
+    generateUniqueAlleleId() {
+      const id = this.allele_id
+      this.allele_id++
+      return id
+    }
+  }
+}
 </script>
 <style lang="scss"></style>
