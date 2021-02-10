@@ -1,22 +1,23 @@
 <template lang="">
   <div>
-    <div v-for="allele in alleles" :key="allele.key">      
-      <Row v-bind:allele="allele"></Row>
-    </div>
+ 
+      <Row  v-for="(allele, index) in alleles" :key="index" :allele="allele" :index="index"></Row>
+
+    <button type="button" @click="add">Ajouter</button>
   </div>
 </template>
 <script>
-import Allele from "@/models/Allele.js"
-import Row from '@/components/Editor/AllelesEditableListRow.vue'
+import Allele from "@/models/Allele.js";
+import Row from "@/components/Editor/AllelesEditableListRow.vue";
 
 export default {
   name: "AllelesEditableList",
-  components : {
-      Row
+  components: {
+    Row,
   },
   data() {
     return {
-      alleles: [new Allele("1", "50"), new Allele("2", "100")],
+      alleles: [],
     };
   },
   props: {
@@ -25,6 +26,12 @@ export default {
       required: true,
     },
   },
+
+  methods: {
+      add: function(){
+          this.alleles.push(new Allele('',''))
+      }
+  }
 };
 </script>
 <style lang=""></style>

@@ -1,6 +1,7 @@
 class Allele {
     constructor(key, value){
-        this[key] = value
+        this.key = key,
+        this.value = value
     }
 }
 
