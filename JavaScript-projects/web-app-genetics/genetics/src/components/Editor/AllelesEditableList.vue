@@ -1,8 +1,6 @@
 <template lang="">
   <div>
- 
-      <Row  v-for="(allele, index) in alleles" :key="index" :allele="allele" :index="index"></Row>
-
+      <Row  v-for="(allele, index) in alleles" :key="index" :allele="allele" :index="index" @remove_allele="onRemoveAllele"></Row>
     <button type="button" @click="add">Ajouter</button>
   </div>
 </template>
@@ -30,6 +28,9 @@ export default {
   methods: {
       add: function(){
           this.alleles.push(new Allele('',''))
+      },
+      onRemoveAllele(index){
+          this.alleles.splice(index,1)
       }
   }
 };

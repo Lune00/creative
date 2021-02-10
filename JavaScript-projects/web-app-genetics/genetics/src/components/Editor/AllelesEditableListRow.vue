@@ -35,8 +35,7 @@ export default {
       return "allele-label:" + this.index;
     },
     deleteAllele() {
-        console.log('remove this allele:', this.index)
-        this.$emit('event_remove_allele', this.index)
+        this.$emit('remove_allele', this.index)
     },
   },
 };
