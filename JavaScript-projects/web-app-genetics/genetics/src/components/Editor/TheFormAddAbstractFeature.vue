@@ -28,10 +28,15 @@
       </p>
 
       <h2>Allèles</h2>
-      <AllelesEditableList :nature="nature"></AllelesEditableList>
+      <AllelesEditableList
+        :nature="nature"
+        :alleles="alleles"
+        @add_allele="onAddAllele"
+        @remove_allele="onRemoveAllele"
+      ></AllelesEditableList>
 
       <h2>Règles de codominance</h2>
-
+      <CodominanceRulesTable :alleles="alleles"></CodominanceRulesTable>
       <p>
         <input type="submit" value="Enregistrer" />
       </p>
@@ -39,30 +44,39 @@
   </div>
 </template>
 <script>
-
-import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue"
-import model from '@/models/model-helpers.js'
-
+import AllelesEditableList from "@/components/Editor/AllelesEditableList.vue";
+import CodominanceRulesTable from "@/components/Editor/CodominanceRulesTable.vue";
+import model from "@/models/model-helpers.js";
+import Allele from "@/models/Allele.js";
 export default {
   name: "TheFormAddAbstractFeature",
   components: {
     AllelesEditableList,
+    CodominanceRulesTable,
   },
   data() {
     return {
-      nature: '',
+      nature: "",
+      alleles: [],
     };
   },
   methods: {
     checkForm: function(e) {
       console.log("check form", e);
     },
-    discreteNature(){
-      return model.discreteNature()
+    discreteNature() {
+      return model.discreteNature();
     },
-    continuousNature(){
-      return model.continuousNature()
-    }
+    continuousNature() {
+      return model.continuousNature();
+    },
+    onAddAllele() {
+      this.alleles.push(new Allele("", ""));
+    },
+    onRemoveAllele(index) {
+      console.log('remive',index)
+      this.alleles.splice(index, 1);
+    },
   },
 };
 </script>

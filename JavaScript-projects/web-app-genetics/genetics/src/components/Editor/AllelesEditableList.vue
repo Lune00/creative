@@ -1,11 +1,16 @@
 <template lang="">
   <div>
-      <Row  v-for="(allele, index) in alleles" :key="index" :allele="allele" :index="index" @remove_allele="onRemoveAllele"></Row>
+    <Row
+      v-for="(allele, index) in alleles"
+      :key="index"
+      :allele="allele"
+      :index="index"
+      @remove_allele="onRemoveAllele"
+    ></Row>
     <button type="button" @click="add">Ajouter</button>
   </div>
 </template>
 <script>
-import Allele from "@/models/Allele.js";
 import Row from "@/components/Editor/AllelesEditableListRow.vue";
 
 export default {
@@ -14,25 +19,27 @@ export default {
     Row,
   },
   data() {
-    return {
-      alleles: [],
-    };
+    return {};
   },
   props: {
     nature: {
       type: String,
       required: true,
     },
+    alleles: {
+      type: Array,
+      required: true,
+    },
   },
 
   methods: {
-      add: function(){
-          this.alleles.push(new Allele('',''))
-      },
-      onRemoveAllele(index){
-          this.alleles.splice(index,1)
-      }
-  }
+    add: function() {
+      this.$emit("add_allele");
+    },
+    onRemoveAllele: function(index) {
+      this.$emit("remove_allele", index);
+    },
+  },
 };
 </script>
 <style lang=""></style>

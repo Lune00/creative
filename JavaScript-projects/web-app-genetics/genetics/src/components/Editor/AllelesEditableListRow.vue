@@ -23,9 +23,9 @@ export default {
       },
     },
     index: {
-        type: Number,
-        required: true
-    }
+      type: Number,
+      required: true,
+    },
   },
   methods: {
     inputLabelValue() {
@@ -35,7 +35,7 @@ export default {
       return "allele-label:" + this.index;
     },
     deleteAllele() {
-        this.$emit('remove_allele', this.index)
+      this.$emit("remove_allele", this.index);
     },
   },
 };
