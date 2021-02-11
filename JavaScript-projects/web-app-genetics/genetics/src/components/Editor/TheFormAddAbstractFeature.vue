@@ -9,6 +9,10 @@
     >
       <h2>General</h2>
 
+      <!-- <button type="button" @click="deleteRandomRule">
+        Delete random rule
+      </button> -->
+
       <div v-if="errorState.hasErrors()">
         Errors have been found, please check again to submit your data
       </div>
@@ -74,6 +78,9 @@
         :alleles="alleles"
         :rules="rules"
       ></CodominanceRulesTable>
+      <div class="form-error" v-if="errorState.hasError('rules')">
+        {{ errorState.messages('rules').join(',') }}
+      </div>
 
       <p>
         <input type="submit" value="Save" />
@@ -98,7 +105,7 @@ export default {
   },
   data() {
     return {
-      name: '',
+      name: 'Foo',
       nature: ModelParameters.discreteNature(),
       nbOfGenes: 3,
       alleles: [],
@@ -169,10 +176,6 @@ export default {
           'Some rules are not valid, each rule should have a value between 0 and 1 included'
         )
 
-      if (this.errorState.hasErrors()) {
-        console.log('Errors have been found', this.errorState)
-        return
-      }
       //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
       if (
         !ModelParametersValidation.geneticSupport.isSetOfRulesComplete(
@@ -182,7 +185,7 @@ export default {
       )
         this.errorState.addMessage(
           'rules',
-          'The set of rules is not complete and do not cover all possible alleles interactions, please correct it'
+          'The set of rules is not complete and do not cover all possible alleles combinations, please correct it'
         )
 
       if (this.errorState.hasErrors()) {
@@ -200,7 +203,7 @@ export default {
     },
     onAddAllele() {
       const id = this.generateUniqueAlleleId()
-      const allele = new Allele(id, id)
+      const allele = new Allele(id, id, 1)
       this.alleles.push(allele)
       this.rules = Model.rules.addAllele(this.rules, this.alleles, allele)
     },
@@ -216,6 +219,12 @@ export default {
     onSubmit() {
       console.log('Submit valid genetic support')
     }
+    // deleteRandomRule() {
+    //   console.log('test')
+    //   if (this.rules.length) {
+    //     this.rules.splice(0, 1)
+    //   }
+    // }
   }
 }
 </script>
