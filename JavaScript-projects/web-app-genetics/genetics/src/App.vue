@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import ViewNewAbstractFeature from "@/views/Editor/ViewNewAbstractFeature.vue";
+import ViewNewAbstractFeature from '@/views/Editor/ViewNewAbstractFeature.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     ViewNewAbstractFeature
   }
-};
+}
 </script>
 
 <style>

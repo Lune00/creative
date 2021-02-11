@@ -1,15 +1,15 @@
 <template lang="">
   <div>
-      <TheFormAddAbstractFeature></TheFormAddAbstractFeature>
+    <TheFormAddAbstractFeature></TheFormAddAbstractFeature>
   </div>
 </template>
 <script>
-import TheFormAddAbstractFeature from "@/components/Editor/TheFormAddAbstractFeature.vue";
+import TheFormAddAbstractFeature from '@/components/Editor/TheFormAddAbstractFeature.vue'
 export default {
-  name: "ViewNewAbstractFeature",
+  name: 'ViewNewAbstractFeature',
   components: {
-    TheFormAddAbstractFeature,
-  },
-};
+    TheFormAddAbstractFeature
+  }
+}
 </script>
 <style lang=""></style>

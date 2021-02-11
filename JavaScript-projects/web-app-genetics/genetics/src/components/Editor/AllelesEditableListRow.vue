@@ -10,34 +10,34 @@
   </div>
 </template>
 <script>
-import Allele from "@/models/Allele.js";
+import Allele from '@/models/Allele.js'
 
 export default {
-  name: "AlleleRow",
+  name: 'AlleleRow',
   props: {
     allele: {
       type: Object,
       required: true,
       validator: function(allele) {
-        return allele instanceof Allele;
-      },
+        return allele instanceof Allele
+      }
     },
     index: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     inputLabelValue() {
-      return "allele-value:" + this.index;
+      return 'allele-value:' + this.index
     },
     inputLabelName() {
-      return "allele-label:" + this.index;
+      return 'allele-label:' + this.index
     },
     deleteAllele() {
-      this.$emit("remove_allele", this.index);
-    },
-  },
-};
+      this.$emit('remove_allele', this.index)
+    }
+  }
+}
 </script>
 <style lang=""></style>
