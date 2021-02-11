@@ -5,12 +5,7 @@ import {
 
 const Model = {
   nature: {
-    isFeatureDiscrete(nature) {
-      return ModelParameters.discreteNature() === nature
-    },
-    isFeatureContinuous(nature) {
-      return ModelParameters.continuousNature() === nature
-    }
+
   },
 
   rules: {
@@ -85,10 +80,38 @@ const Model = {
 
     // }
   },
+}
+
+const ModelParametersValidation = {
+
+
+  isFeatureDiscrete(nature) {
+    return ModelParameters.discreteNature() === nature
+  },
+  isFeatureContinuous(nature) {
+    return ModelParameters.continuousNature() === nature
+  },
+
+  geneticSupport: {
+
+    isNameValid(name) {
+      return name.length
+    },
+    isNatureValid(nature) {
+      return ModelParametersValidation.isFeatureDiscrete(nature) ||
+        ModelParametersValidation.isFeatureContinuous(nature)
+    },
+    isNbOfEncodingGenesValid(nbOfGenes) {
+      return nbOfGenes >= 1 && nbOfGenes <= ModelParameters.maxNumberOfEncodingGenes()
+    }
+  }
+
 
 
 }
 
+
 export {
-  Model
+  Model,
+  ModelParametersValidation
 }
