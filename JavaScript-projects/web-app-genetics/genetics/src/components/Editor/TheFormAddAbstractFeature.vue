@@ -51,7 +51,9 @@
 <script>
 import AllelesEditableList from '@/components/Editor/AllelesEditableList.vue'
 import CodominanceRulesTable from '@/components/Editor/CodominanceRulesTable.vue'
-import model from '@/models/model-helpers.js'
+import { Model } from '@/models/model-helpers.js'
+import { ModelParameters } from '@/models/model-parameters.js'
+import { ErrorState } from '@/services/FormValidationService.js'
 import Allele from '@/models/Allele.js'
 
 export default {
@@ -65,30 +67,41 @@ export default {
       nature: '',
       alleles: [],
       rules: [],
-      allele_id: 0
+      allele_id: 0,
+      errorState: new ErrorState([
+        'hasLabel',
+        'allelesHasUniqueLabel',
+        'rulesCompletness'
+      ])
     }
   },
   methods: {
     checkForm: function(e) {
       console.log('check form', e)
+      //Check que l'allele a un nom
+
+      //Check nature est continue ou discrete
+
+      //Check que nombre de genes est entre 1 et 99
+
       //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
       //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
     },
     discreteNature() {
-      return model.discreteNature()
+      return ModelParameters.discreteNature()
     },
     continuousNature() {
-      return model.continuousNature()
+      return ModelParameters.continuousNature()
     },
     onAddAllele() {
       const id = this.generateUniqueAlleleId()
       const allele = new Allele(id, id)
       this.alleles.push(allele)
-      this.rules = model.rules_add_allele(this.rules, this.alleles, allele)
+      this.rules = Model.rules.add_allele(this.rules, this.alleles, allele)
     },
     onRemoveAllele(index) {
       const removedAllele = this.alleles.splice(index, 1)
-      this.rules = model.rules_remove_allele(this.rules, removedAllele)
+      this.rules = Model.rules.remove_allele(this.rules, removedAllele)
     },
     generateUniqueAlleleId() {
       const id = this.allele_id

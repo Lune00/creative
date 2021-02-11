@@ -43,7 +43,8 @@
   </div>
 </template>
 <script>
-import model from '@/models/model-helpers.js'
+import { Model } from '@/models/model-helpers.js'
+import { round } from '@/services/helpers.js'
 export default {
   name: 'CodominanceRulesTable',
   data() {
@@ -61,13 +62,13 @@ export default {
   },
   methods: {
     rule(allele_i, allele_j) {
-      const value = model.getRuleValue(this.rules, allele_i.id, allele_j.id)
-      return model.round(value, 10)
+      const value = Model.rules.getValue(this.rules, allele_i.id, allele_j.id)
+      return round(value, 10)
     },
     changeRule(event, allele_i, allele_j) {
-      const target_rule = model.getRule(this.rules, allele_i.id, allele_j.id)
+      const target_rule = Model.rules.get(this.rules, allele_i.id, allele_j.id)
       const new_value = parseFloat(event.target.value)
-      const rounded = model.round(new_value, 10)
+      const rounded = round(new_value, 10)
       target_rule.value = allele_i.id > allele_j.id ? 1 - rounded : rounded
     }
   }
