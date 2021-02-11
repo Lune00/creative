@@ -152,7 +152,6 @@ export default {
         this.alleles,
         this.rules
       )
-
       console.log('Submit valid genetic support', geneticSupport)
     },
     checkForm: function() {

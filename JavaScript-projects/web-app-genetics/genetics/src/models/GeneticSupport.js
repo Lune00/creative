@@ -97,6 +97,14 @@ const GeneticSupportValidation = {
 
     expectedNumberOfRules(nOfAlleles) {
         return nOfAlleles * (nOfAlleles + 1) / 2
+    },
+
+    isValid(geneticSupport) {
+        const validName = this.isNameValid(geneticSupport.name)
+        const validNature = this.isNatureValid(geneticSupport.nature)
+        const validAlleles = this.isAllelesNumberValid(geneticSupport.alleles) && this.isAllelesValidKeys(geneticSupport.alleles) && this.isAllelesValidValues(geneticSupport.alleles)
+        const validRules = this.isRulesValidValues(geneticSupport.rules) && this.isSetOfRulesComplete(geneticSupport.rules, geneticSupport.alleles)
+        return validName && validNature && validAlleles && validRules
     }
 }
 

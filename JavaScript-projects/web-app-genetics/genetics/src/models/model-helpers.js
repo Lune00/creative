@@ -4,9 +4,6 @@ import {
 } from '@/models/model-parameters.js'
 
 const Model = {
-  nature: {
-
-  },
 
   rules: {
     //Return Rule from rules associated to the arrangement (id_i, id_j), undefined otherwise
