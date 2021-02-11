@@ -61,13 +61,14 @@ export default {
   },
   methods: {
     rule(allele_i, allele_j) {
-      return model.getRuleValue(this.rules, allele_i.id, allele_j.id)
+      const value = model.getRuleValue(this.rules, allele_i.id, allele_j.id)
+      return model.round(value, 10)
     },
     changeRule(event, allele_i, allele_j) {
       const target_rule = model.getRule(this.rules, allele_i.id, allele_j.id)
       const new_value = parseFloat(event.target.value)
-      console.log(target_rule.value, new_value)
-      target_rule.value = new_value
+      const rounded = model.round(new_value, 10)
+      target_rule.value = allele_i.id > allele_j.id ? 1 - rounded : rounded
     }
   }
 }

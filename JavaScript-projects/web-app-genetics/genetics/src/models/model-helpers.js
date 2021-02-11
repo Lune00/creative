@@ -84,5 +84,9 @@ export default {
             }
         }
         return false
-    }
+    },
+
+    round(value, base) {
+        return Math.round(value * base) / base;
+    },
 }
