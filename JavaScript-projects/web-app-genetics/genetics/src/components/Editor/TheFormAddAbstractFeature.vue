@@ -72,6 +72,7 @@ export default {
     checkForm: function(e) {
       console.log('check form', e)
       //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
+      //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
     },
     discreteNature() {
       return model.discreteNature()

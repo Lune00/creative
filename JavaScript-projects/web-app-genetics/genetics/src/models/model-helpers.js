@@ -25,16 +25,26 @@ export default {
             id_i = id_j
             id_j = temp
         }
-
         return rules.find(rule => {
-            id_i === rule.id_a && id_j === rule.id_b
+            return parseInt(id_i) === parseInt(rule.id_a) && parseInt(id_j) === parseInt(rule.id_b)
         })
+
+    },
+
+
+    getRuleValue(rules, id_i, id_j) {
+        const rule = this.getRule(rules, id_i, id_j)
+        const value = rule.value
+        if (id_i > id_j)
+            return 1. - value
+
+        return value
     },
 
     rules_add_allele(rules, alleles, new_allele) {
 
         const id = new_allele.id
-        const defaultRuleValue = 0
+        const defaultRuleValue = 0.3
 
         const new_rules = new Array()
 
@@ -59,15 +69,15 @@ export default {
         return new_rules
     },
 
-    //Return rules that concern array of Allele ids
+    //Return rules that applied to an array of Allele ids
     filterAssociatedRules(rules, ids) {
         return rules.filter(rule => {
-            return this.filterAssociatedRule(rule, ids)
+            return this.isRuleAssociatedTo(rule, ids)
         })
     },
 
-    //Return true if the rule is concerned by an Allele id
-    filterAssociatedRule(rule, ids) {
+    //Return true if rule applied to one of Allele id in ids
+    isRuleAssociatedTo(rule, ids) {
         for (const id of ids) {
             if (rule.applyToAllele(id)) {
                 return true

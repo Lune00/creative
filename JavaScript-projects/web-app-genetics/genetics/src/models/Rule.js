@@ -1,5 +1,7 @@
 class Rule {
 
+    //id_a < id_b always
+
     constructor(id_a, id_b, value) {
 
         let temp
