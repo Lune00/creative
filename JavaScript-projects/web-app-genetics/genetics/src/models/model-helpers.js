@@ -103,6 +103,30 @@ const ModelParametersValidation = {
     },
     isNbOfEncodingGenesValid(nbOfGenes) {
       return nbOfGenes >= 1 && nbOfGenes <= ModelParameters.maxNumberOfEncodingGenes()
+    },
+    isAllelesValidKeys(alleles) {
+      const keys = alleles.map(allele => (allele.key).toString())
+      //Check for no empty key/name/label
+      const result = keys.filter(key => key.length === 0)
+      if (result.length) {
+        return false
+      }
+      return (new Set(keys)).size === keys.length
+    },
+    isAllelesValidValues(alleles) {
+      const values = alleles.map(allele => (allele.value))
+      for (let value of values) {
+        if (undefined === value || isNaN(parseInt(value)))
+          return false
+      }
+      return true
+    },
+
+    isRulesValidValues(rules) {
+
+    },
+    isSetOfRulesComplete(rules, alleles) {
+
     }
   }
 

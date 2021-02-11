@@ -56,8 +56,20 @@
         @add_allele="onAddAllele"
         @remove_allele="onRemoveAllele"
       ></AllelesEditableList>
+      <div class="form-error" v-if="errorState.hasError('alleles')">
+        {{ errorState.messages('alleles').join(',') }}
+      </div>
 
       <h2>Codominance Rules</h2>
+      <div class="documentation">
+        <h3>How to read</h3>
+        <div>Lore ipsum...</div>
+      </div>
+      <div v-if="nature === discreteNature()">
+        You have choosed a discrete nature for this genetic support. The
+        codominance rules are interpreted as probability of expression. For more
+        information, please read the <a href="#">documentation</a>
+      </div>
       <CodominanceRulesTable
         :alleles="alleles"
         :rules="rules"
@@ -87,7 +99,7 @@ export default {
   data() {
     return {
       name: '',
-      nature: '',
+      nature: ModelParameters.discreteNature(),
       nbOfGenes: 3,
       alleles: [],
       rules: [],
@@ -96,7 +108,8 @@ export default {
         'name',
         'nature',
         'nbOfGenes',
-        'rulesCompletness'
+        'alleles',
+        'rules'
       ])
     }
   },
@@ -129,8 +142,48 @@ export default {
         )
 
       //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
+      if (
+        !ModelParametersValidation.geneticSupport.isAllelesValidKeys(
+          this.alleles
+        )
+      )
+        this.errorState.addMessage(
+          'alleles',
+          'The alleles must have a unique label'
+        )
 
+      //Check que les alleles ont toutes une value
+      if (
+        !ModelParametersValidation.geneticSupport.isAllelesValidValues(
+          this.alleles
+        )
+      )
+        this.errorState.addMessage('alleles', 'The alleles must have a value')
+
+      //Check que chaque regle a une valeur, comprise entre 0 et 1
+      if (
+        !ModelParametersValidation.geneticSupport.isRulesValidValues(this.rules)
+      )
+        this.errorState.addMessage(
+          'rules',
+          'Some rules are not valid, each rule should have a value between 0 and 1 included'
+        )
+
+      if (this.errorState.hasErrors()) {
+        console.log('Errors have been found', this.errorState)
+        return
+      }
       //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
+      if (
+        !ModelParametersValidation.geneticSupport.isSetOfRulesComplete(
+          this.rules,
+          this.alleles
+        )
+      )
+        this.errorState.addMessage(
+          'rules',
+          'The set of rules is not complete and do not cover all possible alleles interactions, please correct it'
+        )
 
       if (this.errorState.hasErrors()) {
         console.log('Errors have been found', this.errorState)
