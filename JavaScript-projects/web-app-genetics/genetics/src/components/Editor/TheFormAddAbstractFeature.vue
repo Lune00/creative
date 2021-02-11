@@ -3,15 +3,11 @@
     <h1>Add a new Genetic Support</h1>
     <form
       id="add_abstract_feature"
-      @submit.prevent="checkForm"
+      @submit.prevent="onSubmit"
       action="#"
       method="post"
     >
       <h2>General</h2>
-
-      <!-- <button type="button" @click="deleteRandomRule">
-        Delete random rule
-      </button> -->
 
       <div v-if="errorState.hasErrors()">
         Errors have been found, please check again to submit your data
@@ -92,8 +88,12 @@
 <script>
 import AllelesEditableList from '@/components/Editor/AllelesEditableList.vue'
 import CodominanceRulesTable from '@/components/Editor/CodominanceRulesTable.vue'
-import { Model, ModelParametersValidation } from '@/models/model-helpers.js'
+import { Model } from '@/models/model-helpers.js'
 import { ModelParameters } from '@/models/model-parameters.js'
+import {
+  GeneticSupport,
+  GeneticSupportValidation
+} from '@/models/GeneticSupport.js'
 import { ErrorState } from '@/services/FormValidationService.js'
 import Allele from '@/models/Allele.js'
 
@@ -121,80 +121,6 @@ export default {
     }
   },
   methods: {
-    checkForm: function() {
-      this.errorState.clear()
-      //Check que l'allele a un nom
-      if (!ModelParametersValidation.geneticSupport.isNameValid(this.name))
-        this.errorState.addMessage(
-          'name',
-          'The name of the genetic support is necessary, please fill in'
-        )
-
-      //Check nature est continue ou discrete
-      if (!ModelParametersValidation.geneticSupport.isNatureValid(this.nature))
-        this.errorState.addMessage(
-          'nature',
-          'The nature of the genetic material needs to be defined either as Discrete or Continuous'
-        )
-
-      //Check que nombre de genes est entre 1 et 99
-      if (
-        !ModelParametersValidation.geneticSupport.isNbOfEncodingGenesValid(
-          this.nbOfGenes
-        )
-      )
-        this.errorState.addMessage(
-          'nbOfGenes',
-          'The number of encoding genes of the genetic material needs to between 1 and 99'
-        )
-
-      //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
-      if (
-        !ModelParametersValidation.geneticSupport.isAllelesValidKeys(
-          this.alleles
-        )
-      )
-        this.errorState.addMessage(
-          'alleles',
-          'The alleles must have a unique label'
-        )
-
-      //Check que les alleles ont toutes une value
-      if (
-        !ModelParametersValidation.geneticSupport.isAllelesValidValues(
-          this.alleles
-        )
-      )
-        this.errorState.addMessage('alleles', 'The alleles must have a value')
-
-      //Check que chaque regle a une valeur, comprise entre 0 et 1
-      if (
-        !ModelParametersValidation.geneticSupport.isRulesValidValues(this.rules)
-      )
-        this.errorState.addMessage(
-          'rules',
-          'Some rules are not valid, each rule should have a value between 0 and 1 included'
-        )
-
-      //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
-      if (
-        !ModelParametersValidation.geneticSupport.isSetOfRulesComplete(
-          this.rules,
-          this.alleles
-        )
-      )
-        this.errorState.addMessage(
-          'rules',
-          'The set of rules is not complete and do not cover all possible alleles combinations, please correct it'
-        )
-
-      if (this.errorState.hasErrors()) {
-        console.log('Errors have been found', this.errorState)
-        return
-      }
-
-      this.onSubmit()
-    },
     discreteNature() {
       return ModelParameters.discreteNature()
     },
@@ -217,14 +143,77 @@ export default {
       return id
     },
     onSubmit() {
-      console.log('Submit valid genetic support')
+      this.checkForm()
+
+      const geneticSupport = new GeneticSupport(
+        this.name,
+        this.nature,
+        this.nbOfGenes,
+        this.alleles,
+        this.rules
+      )
+
+      console.log('Submit valid genetic support', geneticSupport)
+    },
+    checkForm: function() {
+      this.errorState.clear()
+      //Check que l'allele a un nom
+      if (!GeneticSupportValidation.isNameValid(this.name))
+        this.errorState.addMessage(
+          'name',
+          'The name of the genetic support is necessary, please fill in'
+        )
+
+      //Check nature est continue ou discrete
+      if (!GeneticSupportValidation.isNatureValid(this.nature))
+        this.errorState.addMessage(
+          'nature',
+          'The nature of the genetic material needs to be defined either as Discrete or Continuous'
+        )
+
+      //Check que nombre de genes est entre 1 et 99
+      if (!GeneticSupportValidation.isNbOfEncodingGenesValid(this.nbOfGenes))
+        this.errorState.addMessage(
+          'nbOfGenes',
+          'The number of encoding genes of the genetic material needs to between 1 and 99'
+        )
+
+      //Check que y'a un moins une allele
+      if (!GeneticSupportValidation.isAllelesNumberValid(this.alleles))
+        this.errorState.addMessage(
+          'alleles',
+          'You should have at least one allele for the genetic support'
+        )
+
+      //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
+      if (!GeneticSupportValidation.isAllelesValidKeys(this.alleles))
+        this.errorState.addMessage(
+          'alleles',
+          'The alleles must have a unique label'
+        )
+
+      //Check que les alleles ont toutes une value
+      if (!GeneticSupportValidation.isAllelesValidValues(this.alleles))
+        this.errorState.addMessage('alleles', 'The alleles must have a value')
+
+      //Check que chaque regle a une valeur, comprise entre 0 et 1
+      if (!GeneticSupportValidation.isRulesValidValues(this.rules))
+        this.errorState.addMessage(
+          'rules',
+          'Some rules are not valid, each rule should have a value between 0 and 1 included'
+        )
+
+      //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
+      if (
+        !GeneticSupportValidation.isSetOfRulesComplete(this.rules, this.alleles)
+      )
+        this.errorState.addMessage(
+          'rules',
+          'The set of rules is not complete and do not cover all possible alleles combinations, please correct it'
+        )
+
+      if (this.errorState.hasErrors()) return
     }
-    // deleteRandomRule() {
-    //   console.log('test')
-    //   if (this.rules.length) {
-    //     this.rules.splice(0, 1)
-    //   }
-    // }
   }
 }
 </script>
