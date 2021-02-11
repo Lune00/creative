@@ -31,3 +31,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Suivi du projet
 
 https://trello.com/b/ME4bmlgo/genetics
+
+### Serve mocked up database for testing
+
+Use json-server:
+
+json-server --watch db.json
+
+Doc: https://github.com/typicode/json-server

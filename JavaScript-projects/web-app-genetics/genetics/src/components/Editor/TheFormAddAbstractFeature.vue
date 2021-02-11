@@ -3,7 +3,7 @@
     <h1>Add a new Genetic Support</h1>
     <form
       id="add_abstract_feature"
-      @submit.prevent="onSubmit"
+      @submit.prevent="checkForm"
       action="#"
       method="post"
     >
@@ -97,6 +97,8 @@ import {
 import { ErrorState } from '@/services/FormValidationService.js'
 import Allele from '@/models/Allele.js'
 
+import geneticSupportRepository from '@/services/repository/geneticSupportRepository'
+
 export default {
   name: 'TheFormAddAbstractFeature',
   components: {
@@ -143,8 +145,6 @@ export default {
       return id
     },
     onSubmit() {
-      this.checkForm()
-
       const geneticSupport = new GeneticSupport(
         this.name,
         this.nature,
@@ -153,6 +153,10 @@ export default {
         this.rules
       )
       console.log('Submit valid genetic support', geneticSupport)
+
+      geneticSupportRepository.get().then(result => {
+        console.log(result)
+      })
     },
     checkForm: function() {
       this.errorState.clear()
@@ -212,6 +216,8 @@ export default {
         )
 
       if (this.errorState.hasErrors()) return
+
+      this.onSubmit()
     }
   }
 }
