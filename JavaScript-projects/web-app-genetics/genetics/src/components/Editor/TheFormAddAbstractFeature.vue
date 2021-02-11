@@ -80,12 +80,14 @@ export default {
       return model.continuousNature()
     },
     onAddAllele() {
-      const allele = new Allele(this.generateUniqueAlleleId())
+      const id = this.generateUniqueAlleleId()
+      const allele = new Allele(id, id)
       this.alleles.push(allele)
-      this.rules = model.rules_add_allele(this.rules, allele)
+      this.rules = model.rules_add_allele(this.rules, this.alleles, allele)
     },
     onRemoveAllele(index) {
-      this.alleles.splice(index, 1)
+      const removedAllele = this.alleles.splice(index, 1)
+      this.rules = model.rules_remove_allele(this.rules, removedAllele)
     },
     generateUniqueAlleleId() {
       const id = this.allele_id

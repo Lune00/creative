@@ -11,7 +11,6 @@ class Rule {
 
         this.id_a = id_a
         this.id_b = id_b
-
         this.value = value
     }
 
@@ -19,6 +18,10 @@ class Rule {
         if (!(rule instanceof Rule))
             return false
         return this.id_a == rule.id_a && this.id_b == this.id_b
+    }
+
+    applyToAllele(id) {
+        return this.id_a === parseInt(id) || this.id_b === parseInt(id)
     }
 
 }
