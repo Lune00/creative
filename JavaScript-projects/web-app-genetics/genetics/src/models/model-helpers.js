@@ -41,8 +41,7 @@ const Model = {
 
     addAllele(rules, alleles, new_allele) {
       const id = new_allele.id
-      const defaultRuleValue = 0.3
-
+      const defaultRuleValue = ModelParameters.defaultCodominanceRuleValue()
       const new_rules = new Array()
 
       alleles.forEach(allele => {

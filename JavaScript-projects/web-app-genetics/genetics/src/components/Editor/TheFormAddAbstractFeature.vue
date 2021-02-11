@@ -1,33 +1,41 @@
 <template lang="">
   <div>
-    <h1>Ajouter une feature abstraite</h1>
+    <h1>Add a new Genetic Support</h1>
     <form
       id="add_abstract_feature"
       @submit.prevent="checkForm"
       action="#"
       method="post"
     >
-      <h2>Général</h2>
+      <h2>General</h2>
 
       <p>
-        <label for="af_label">Libellé: </label>
+        <label for="af_label">Name: </label>
         <input type="text" id="af_label" name="af_label" required />
       </p>
 
       <p>
         <label for="af_nature">Nature: </label>
         <select v-model="nature" name="af_nature" id="af_nature">
-          <option :value="this.discreteNature()">Discrète</option>
-          <option :value="this.continuousNature()">Continue</option>
+          <option :value="this.discreteNature()">Discrete</option>
+          <option :value="this.continuousNature()">Continuous</option>
         </select>
       </p>
 
       <p>
-        <label for="nb_genes">Nombre de gènes: </label>
-        <input type="number" id="af_nbgenes" name="nb_genes" min="1" />
+        <label for="nb_genes">Number of encoding genes: </label>
+        <input
+          type="number"
+          id="af_nbgenes"
+          name="af_nbgenes"
+          min="1"
+          max="99"
+          step="1"
+          value="3"
+        />
       </p>
 
-      <h2>Allèles</h2>
+      <h2>Alleles</h2>
       <AllelesEditableList
         :nature="nature"
         :alleles="alleles"
@@ -35,14 +43,14 @@
         @remove_allele="onRemoveAllele"
       ></AllelesEditableList>
 
-      <h2>Règles de codominance</h2>
+      <h2>Codominance Rules</h2>
       <CodominanceRulesTable
         :alleles="alleles"
         :rules="rules"
       ></CodominanceRulesTable>
 
       <p>
-        <input type="submit" value="Enregistrer" />
+        <input type="submit" value="Save" />
       </p>
     </form>
   </div>
@@ -85,6 +93,7 @@ export default {
       //Check que nombre de genes est entre 1 et 99
 
       //Check que les alleles n'ont pas le meme key(label, unique pour l'user)
+
       //Check la completness des rules (lazy: calcule le nombre, si ça passe pas erreur, si ça passe vrai test)
     },
     discreteNature() {

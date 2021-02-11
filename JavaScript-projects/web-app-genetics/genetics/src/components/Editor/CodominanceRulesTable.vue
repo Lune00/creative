@@ -3,12 +3,12 @@
     <table>
       <thead>
         <tr>
-          <th :colspan="alleles.length + 1">Règles</th>
+          <th :colspan="alleles.length + 1">Rules between alleles</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td></td>
+          <td>Allele</td>
           <th v-for="(allele, index) in alleles" :key="index">
             {{ allele.key }}
           </th>

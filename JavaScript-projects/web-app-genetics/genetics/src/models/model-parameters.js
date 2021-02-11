@@ -7,7 +7,12 @@ const ModelParameters = {
   },
   maxNumberOfEncodingGenes() {
     return 99
+  },
+  defaultCodominanceRuleValue() {
+    return 0.5
   }
 }
 
-export { ModelParameters }
+export {
+  ModelParameters
+}

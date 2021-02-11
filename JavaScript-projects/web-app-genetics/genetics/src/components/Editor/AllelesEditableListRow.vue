@@ -6,7 +6,7 @@
     <label :for="inputLabelValue()">Valeur</label>
     <input type="number" :name="inputLabelValue()" v-model="allele.value" />
 
-    <button type="button" @click="deleteAllele">Supprimer</button>
+    <button type="button" @click="deleteAllele">Delete</button>
   </div>
 </template>
 <script>

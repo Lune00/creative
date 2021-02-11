@@ -7,7 +7,7 @@
       :index="index"
       @remove_allele="onRemoveAllele"
     ></Row>
-    <button type="button" @click="add">Ajouter</button>
+    <button type="button" @click="add">Add</button>
   </div>
 </template>
 <script>
