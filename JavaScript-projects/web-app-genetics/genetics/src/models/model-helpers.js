@@ -1,5 +1,7 @@
 import Rule from '@/models/Rule.js'
-import { ModelParameters } from '@/models/model-parameters.js'
+import {
+  ModelParameters
+} from '@/models/model-parameters.js'
 
 const Model = {
   nature: {
@@ -37,7 +39,7 @@ const Model = {
       return value
     },
 
-    add_allele(rules, alleles, new_allele) {
+    addAllele(rules, alleles, new_allele) {
       const id = new_allele.id
       const defaultRuleValue = 0.3
 
@@ -54,7 +56,7 @@ const Model = {
       return rules.concat(new_rules)
     },
 
-    remove_allele(rules, removed_alleles) {
+    removeAllele(rules, removed_alleles) {
       const ids = removed_alleles.map(allele => parseInt(allele.id))
       const rules_to_remove = this.filterAssociatedRules(rules, ids)
       const new_rules = rules.filter(rule => {
@@ -78,16 +80,16 @@ const Model = {
         }
       }
       return false
-    }
+    },
+
+    // rules_check_completness(rules, alleles) {
+
+    // }
   },
 
-  round(value, base) {
-    return Math.round(value * base) / base
-  }
 
-  // rules_check_completness(rules, alleles) {
-
-  // }
 }
 
-export { Model }
+export {
+  Model
+}

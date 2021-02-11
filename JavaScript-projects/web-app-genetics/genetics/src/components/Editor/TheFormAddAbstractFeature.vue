@@ -97,11 +97,11 @@ export default {
       const id = this.generateUniqueAlleleId()
       const allele = new Allele(id, id)
       this.alleles.push(allele)
-      this.rules = Model.rules.add_allele(this.rules, this.alleles, allele)
+      this.rules = Model.rules.addAllele(this.rules, this.alleles, allele)
     },
     onRemoveAllele(index) {
       const removedAllele = this.alleles.splice(index, 1)
-      this.rules = Model.rules.remove_allele(this.rules, removedAllele)
+      this.rules = Model.rules.removeAllele(this.rules, removedAllele)
     },
     generateUniqueAlleleId() {
       const id = this.allele_id
