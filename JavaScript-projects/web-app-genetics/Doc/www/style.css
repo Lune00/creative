@@ -1,0 +1,32 @@
+html {
+    background-color: #fff;
+    color: #555;
+    font-family: "Lato", "Arial", "sans-serif";
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+body{
+    margin : 0 150px;
+}
+
+
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+
+
+.center-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

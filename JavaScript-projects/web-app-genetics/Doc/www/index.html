@@ -1,0 +1,203 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="projet génétique doc">
+  <meta name="author" content="Paul Schuhmacher">
+
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <h1 id="documentation--modèle-génétique--démographique">Documentation : Modèle génétique / démographique</h1>
+    <p>22/02/2021<br>
+    version 1</p>
+    <h2 id="préambule">Introduction</h2>
+    <h2 id="ce-quon-fabrique">Ce qu’on fabrique</h2>
+    <p>Construire une bibliothèque que n’importe qui peut installer et utiliser dans ses propres projets informatiques. Cette bibliothèque est constituée d’un moteur (un ensemble de fonctions implémentant le modèle) ainsi que de données (avec un format bien défini) exportables et importables. Ainsi, les utilisateurs pourront partager leurs données entre eux (design du génome, des traits phénotypiques et des espèces) et une communauté <em>pourrait</em> se former construisant petit à petit des designs de plus en plus élaborés. L’idée c’est qu’on pourra construire à partir de ce qu’on a construit.</p>
+    <p>Pour permettre cela tout en étant <em>user-friendly</em> des éditeurs avec interface graphique seront développés :</p>
+    <ul>
+    <li>Un éditeur de <a href="#support-g%C3%A9n%C3%A9tique">support génétique</a></li>
+    <li>Un éditeur de <a href="#features">traits phénotypiques</a></li>
+    <li>Un éditeur d’<a href="#esp%C3%A8ces">espèces</a></li>
+    <li>Un bac à sable pour tester et explorer rapidement ses designs</li>
+    </ul>
+    <p>Les 3 éditeurs permettront d’éditer, importer, exporter, dupliquer, supprimer, ces 3 type de données facilement. Ces données seront ensuite importées dans le projet informatique de l’utilisateur et celui-ci, après import du moteur, pourra faire tourner le modèle dans le but qu’il s’est fixé.</p>
+    <h2 id="objectifs">Objectifs</h2>
+    <p>S’amuser. Fournir un moteur permettant de simuler des entités (biologiques ou non) possédant des caractéristiques (traits phénotypiques) <strong>interprétables par l’utilisateur</strong>. Ces caractéristiques sont le résultat de l’évaluation d’un support génétique (principalement). Les entités pourront se reproduire et transmettre à leur descendance une part de leur génome pour créer de l’hérédité, de la filiation (et de l’histoire). Ce génome pourra également être soumis à des mutations et évoluer. L’utilisateur pourra alors facilement simuler de la sélection et des populations au cours du temps dans son propre projet. Les espèces pourront muter, les populations évoluer etc. En somme un gros bac à sable. Ce modèle pourrait avoir des ambitions plus générales. Car s’il vise principalement à simuler <em>de la vie</em>, le moteur pourrait être appliqué à d’autres <em>objets</em>. On peut penser par exemple à faire une filiation de langues (en utilisant des méthodes de <a href="https://fr.wikipedia.org/wiki/Philologie">philologie comparée</a> comme a pu le faire (sérieusement) Tolkien : utiliser des règles spécifiques de mutation qui permette de passer d’un mot ancêtre à un mot descendant et vice versa). En fait tout ce qui est sujet à itérations successives, tout objet qui« produit du nouveau a partir de lui même » pourrait être simulé.</p>
+    <h2 id="contraintes">Contraintes</h2>
+    <p>La contrainte forte du modèle c’est qu’il faut définir à l’avance des traits phénotypiques auxquels l’utilisateur pourra donner <strong>du sens</strong>. J’insiste là dessus car le but est de pouvoir <strong>interpréter fonctionnellement les évaluations des phénotypes pour prendre des décisions.</strong> Ce que j’entends par là c’est que si une espèce possède un trait phénotypique qui renvoie la valeur ‘foo’ il faut que cette valeur <strong>puisse</strong> (pas nécessairement) avoir un sens pour l’utilisateur dans son programme. En ce sens, les traits phénotypiques doivent être définis dès le départ et le réservoir de phénotypes possibles doit pouvoir être contrôlé.</p>
+    <h2 id="composants-à-développer">Composants à développer</h2>
+    <p><img src="./img/composants.png" alt="Composants"><br>
+    Le projet se compose des composants suivants à concevoir et développer :</p>
+    <ul>
+    <li>Les structures de données :
+    <ul>
+    <li>Support génétique</li>
+    <li>Feature (traits phénotypiques)</li>
+    <li>Espèce</li>
+    </ul>
+    </li>
+    <li>Les éditeurs graphiques (web) pour les éditeurs de données:</li>
+    <li>Un bac à sable pour aider à prototyper et tester ses designs</li>
+    <li>Le moteur (toutes les fonctions, dépendances qui implémentent le modèle)</li>
+    </ul>
+    <p>Les structures de données seront complexes et un éditeur graphique pour les manipuler sera (quasi) indispensable. Ces éditeurs permettront d’importer et d’exporter les données facilement, de les éditer, dupliquer, supprimer. Le modèle est <em>piloté par les données</em>, ces structures sont capitales et doivent être manipulées et définies de manière rigoureuses.</p>
+    <h2 id="aperçu-général-du-modèle-génétique--du-génome-au-phénotype">Aperçu général du modèle génétique : du génome au phénotype</h2>
+    <p>L’utilisateur de la bibliothèque pourra faire évoluer des populations d’individus possédant un phénotype, ou un ensemble de traits observables et mesurables. L’utilisateur pourra évaluer les traits de chaque individu et leur appliquer le traitement qu’il souhaite. Ces traits seront l’expression d’un génome <strong>diploïde</strong> porté par chaque individu, transmissible par reproduction ou clonage de génération en génération.</p>
+    <p>Le <em>support génétique</em> (encodé en binaire) lorsqu’il est évalué produit une valeur. Cette valeur est ensuite interprétée par une <em>feature</em> qui produit à son tour une valeur auquel l’utilisateur donne une unité de mesure. L’expression de la feature est alors remontée dans le phénotype, le résultat de l’évaluation de toutes les <em>features</em> de l’individu. La valeur en sortie d’une feature peut servir d’entrée à une autre <em>feature</em> et ainsi de suite. Ainsi, l’expression du phénotype forme une collection de couples {valeur, unité} produite par l’évaluation successive du support génétique puis des features.</p>
+    <p>Lors de la reproduction ou du clonage, le support génétique est transmis à l’aide de mécanismes connus de la biologie (mais nécessairement simplifiés) : mitose, méiose.</p>
+    <p>Le support génétique pourra être exposé à des mutations. Chaque individu disposera en plus de son support génétique d’un état interne modélisant les effets <em>épigénétiques</em>. Cet état supplémentaire, non encodé dans le génome, pourra modéliser la transmission de caractères acquis.</p>
+    <h2 id="notations">Notations</h2>
+    <p>(…) : collection non ordonnée<br>
+    [ ] : tableau<br>
+    [a-b] : allèles a et b sur le même locus d’une paire de chromosomes analogues</p>
+    <h2 id="les-modèles-de-données">Les modèles de données</h2>
+    <h3 id="support-génétique">Support génétique</h3>
+    <p>Un support génétique est une séquence en binaire (de 0 et de 1) qui peut être évalué pour <strong>produire des valeurs</strong> entières.</p>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4">Support génétique</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Paramètre</th>
+                <th>Description</th>
+                 <th>Type</th>
+                  <th>Contraintes</th>
+            </tr>
+        <tr>
+                <td>Nom</td>
+                <td>Un nom donné au support</td>
+                <td>String</td>
+                 <td>Unique</td>
+            </tr>
+            <tr>
+                <td>Nombre de gènes <code>N</code></td>
+                <td>Nombre de gènes contribuant à la valeur du support</td>
+                 <td>Integer</td>
+                   <td>\( n \ge 1\)</td>
+            </tr>
+              <tr>
+                <td>Nombre de bits <code>n</code></td>
+                <td>Nombre de bits sur lequel est encodé chaque gène du support : l’utilisateur pourra choisir d’encoder des gènes sur des structures allant de 1 à 8 bits (limite arbitraire). Ce paramètre défini par défaut le nombre de variations d’un même gène (allèles) accessibles. Par exemple, sur un support à 2 bits on a 4 valeurs possibles : 00 (0), 01 (1), 10 (2) et 11 (3). On a donc, au maximum 4 allèles pour ce gène dans notre « réservoir ». Sur 8 bits on a 256 valeurs possibles, donc 256 allèles possibles pour un même gène. La structure binaire est suffisante pour créer assez de variations (pas besoin de 4 caractères AGCT). </td>
+                 <td>Integer</td>
+                  <td>\( 1 \le n \le 8 \)</td>
+            </tr>
+                      <tr>
+                <td>Allèles disponibles <code>n<sub>a</sub></code></td>
+                <td>La population d'allèles est par définition produite par le nombre de bits sur lequel est encodé un gène. C’est le réservoir par défaut. L’utilisateur pourra décider de n’utiliser qu'un sous-ensemble de ce réservoir s’il le souhaite. <strong>Une allèle est une valeur</strong> possible d'un gène. Elle peut donc muter dans l'espace défini par le gène vers une autre valeur. </td>
+                 <td>(Integer...)</td>
+                  <td>\( 1 \le n_a \le N^{2} \)</td>
+            </tr>
+             <tr>
+                <td>Relations entre allèles <code>U</code></td>
+                <td>Tableau de coefficients dont chaque valeur permet de calculer la contribution de chacune des 2 allèles du même gène à l’évaluation du support génétique. L’utilisateur pourra générer ces coefficients de manière aléatoire ou suivant des règles prédéfinies, ou les écrire manuellement (il y a toujours le contrôle total si on le souhaite).</td>
+                 <td>[Float]</td>
+                  <td>
+                  <ul>
+                  <li>Nombre de coefficients =\( n_a(n_a+1)/2\) pour évaluer toutes les combinaisons possibles
+                  </li>
+                  <li>\( 0 \le u(i,j) \le 1\)</li>
+                  </ul>
+                  </td>
+            </tr>
+             <tr>
+                <td>Nature</td>
+                <td>
+     <ul>
+                  <li><strong>Discret : </strong> une seule allèle s'exprime (remonte), l'évaluation produit uniquement des valeurs discrètes. Utile pour modéliser une expression booléenne ou un ensemble prédéfini de valeurs (ex: une liste de couleurs, absence ou présence etc...) 
+                  </li>
+                  <li><strong>Continu : </strong>toutes les valeurs s'expriment, l'évaluation du support produit des valeurs dans un spectre continu (ex : taille d’un membre). En fonction des contributions de chaque allèle l’évaluation pourra prendre n’importe qu’elle valeur dans l'intervalle défini par le nombre de bits</li>
+                  </ul>
+            </td>
+                 <td>String</td>
+                  <td>2 valeurs possibles : 'discrete' ou 'continuous'</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Pour résumer, l’évaluation d’un support génétique (et la production d’une valeur) se fait en évaluant pour chacun de ses gènes la paire d’<a href="https://fr.wikipedia.org/wiki/All%C3%A8le">allèles</a> (une allèle sur chaque <a href="https://fr.wikipedia.org/wiki/Chromosome_homologue">chromosome homologue</a>) correspondante. Les règles de codominance et la nature permettent de calculer la <strong>valeur</strong> du support génétique.</p>
+    <h4 id="exemple--support-génétique-continu">Exemple : support génétique continu</h4>
+    <p>Prenons un support génétique :</p>
+    <ul>
+    <li>codé sur 3 gènes</li>
+    <li>chaque gène est codé sur 2 bits</li>
+    <li>nature :</li>
+    <li>Allèles disponibles : toutes, soit
+    <ul>
+    <li>00 ( a )</li>
+    <li>01 ( b )</li>
+    <li>10 ( c )</li>
+    <li>11 ( d )</li>
+    </ul>
+    </li>
+    </ul>
+    <p>Initialisons le tableau des relations entre allèles :</p>
+    <div class="center-container">
+
+    
+    <table>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>a</td>
+                 <td>b</td>
+                <td>c</td>
+                 <td>d</td>
+            </tr>
+            <tr>
+                <td>a</td>
+                <td>1</td>
+                 <td>0.3</td>
+                <td>0.7</td>
+                 <td>1</td>
+            </tr>
+              <tr>
+                <td>b</td>
+                <td>-</td>
+                 <td>1</td>
+                <td>0.2</td>
+                 <td>0.4</td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td>-</td>
+                 <td>-</td>
+                <td>1</td>
+                 <td>0.5</td>
+            </tr>
+             <tr>
+                <td>d</td>
+                <td>-</td>
+                 <td>-</td>
+                <td>-</td>
+                 <td>1</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <p>avec \(u(i,j)\) le coefficient de codominance entre l’allèle  \(i\) et  \(j\). Par exemple  \(u(a,b)\) signifie (dans le cas continu) que les allèles a et b d’un même locus (d’une paire de chromosomes analogues) vont contribuer respectivement à 30% et à 70% de l’évaluation du gène.</p>
+    <p>Notons  \((a-b)\) deux allèles sur le même locus, l'évaluation du gène donne</p>
+    $$v = u(a,b)v_a + u(b,a)v_b= 0.7 $$
+    <p>avec \(v_a=0\) et \(v_b=1\). On a par définition (normalisation)</p>
+    $$u(j,i) = 1 - u(i,j) $$ 
+    <p>Évaluons à présent un individu qui posséderait un support génétique initialisé comme suit :</p>
+    <p><code>(a-b)(c-b)(a-b)</code></p>
+    <p>L’individu est <a href="https://fr.wikipeda.org/wiki/H%C3%A9t%C3%A9rozygote">hétérozygote</a> pour chacun des 3 gènes.</p>
+    <h3 id="features">Features</h3>
+    <p>code pour une <em>feature</em> (ou trait phénotypique, même chose), qui sera définie ultérieurement par l’utilisateur. Un même support peut être réutilisé pour plusieurs features.</p>
+    <h3 id="espèces">Espèces</h3>
+    
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
