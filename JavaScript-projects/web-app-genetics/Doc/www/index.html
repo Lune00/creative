@@ -124,12 +124,13 @@
         </tbody>
     </table>
     <p>Pour résumer, l’évaluation d’un support génétique (et la production d’une valeur) se fait en évaluant pour chacun de ses gènes la paire d’<a href="https://fr.wikipedia.org/wiki/All%C3%A8le">allèles</a> (une allèle sur chaque <a href="https://fr.wikipedia.org/wiki/Chromosome_homologue">chromosome homologue</a>) correspondante. Les règles de codominance et la nature permettent de calculer la <strong>valeur</strong> du support génétique.</p>
+
     <h4 id="exemple--support-génétique-continu">Exemple : support génétique continu</h4>
     <p>Prenons un support génétique :</p>
     <ul>
     <li>codé sur 3 gènes</li>
     <li>chaque gène est codé sur 2 bits</li>
-    <li>nature :</li>
+    <li>nature : Continu</li>
     <li>Allèles disponibles : toutes, soit
     <ul>
     <li>00 ( a )</li>
@@ -141,8 +142,6 @@
     </ul>
     <p>Initialisons le tableau des relations entre allèles :</p>
     <div class="center-container">
-
-    
     <table>
         <tbody>
             <tr>
@@ -189,8 +188,84 @@
     <p>avec \(v_a=0\) et \(v_b=1\). On a par définition (normalisation)</p>
     $$u(j,i) = 1 - u(i,j) $$ 
     <p>Évaluons à présent un individu qui posséderait un support génétique initialisé comme suit :</p>
-    <p><code>(a-b)(c-b)(a-b)</code></p>
-    <p>L’individu est <a href="https://fr.wikipeda.org/wiki/H%C3%A9t%C3%A9rozygote">hétérozygote</a> pour chacun des 3 gènes.</p>
+    $$(a-b)(c-b)(a-b)$$
+    <p>L’individu est <a href="https://fr.wikipeda.org/wiki/H%C3%A9t%C3%A9rozygote">hétérozygote</a> pour chacun des 3 gènes. L'évaluation du support génétique est donné par la somme des évaluations de chaque gène soit</p>
+
+    $$ v = \frac{1}{3}  \left[ 2(u(a,b)v_a + u(b,a)v_b) + u(c,b)v_c + u(b,c)v_b  \right] = 0.9$$ 
+
+    L'évaluation d'un support génétique continu encodé sur \(N\) gènes est donné par 
+
+    $$ V = \frac{1}{N}\sum_{i=1}^{N} u(i_a,i_b)v_a + (1-u(i_a,i_b))v_b $$ 
+
+
+    <p>avec \(i_a\) et \(i_b\) les allèles a et b du gène \(i\).</p>
+
+
+
+    <h4>Exemple : support génétique discret</h4>
+
+    <p>Prenons un support génétique :</p>
+    <ul>
+    <li>codé sur 2 gènes</li>
+    <li>chaque gène est codé sur 2 bits</li>
+    <li>nature : Discret</li>
+    <li>Allèles disponibles : toutes, soit
+    <ul>
+    <li>00 ( a )</li>
+    <li>01 ( b )</li>
+    <li>10 ( c )</li>
+    <li>11 ( d )</li>
+    </ul>
+    </li>
+    </ul>
+    <p>Reprenons le même tableau des relations entre allèles :</p>
+    <div class="center-container">
+    <table>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>a</td>
+                 <td>b</td>
+                <td>c</td>
+                 <td>d</td>
+            </tr>
+            <tr>
+                <td>a</td>
+                <td>1</td>
+                 <td>0.3</td>
+                <td>0.7</td>
+                 <td>1</td>
+            </tr>
+              <tr>
+                <td>b</td>
+                <td>-</td>
+                 <td>1</td>
+                <td>0.2</td>
+                 <td>0.4</td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td>-</td>
+                 <td>-</td>
+                <td>1</td>
+                 <td>0.5</td>
+            </tr>
+             <tr>
+                <td>d</td>
+                <td>-</td>
+                 <td>-</td>
+                <td>-</td>
+                 <td>1</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>Évaluons le support génétique d'un individu qui est défini comme suit :</p>
+$$(a-b)(a-a)$$
+
+<p>L'individu est <a href="https://fr.wikipedia.org/wiki/Homozygote">homozygote</a> sur le deuxième gène.</p>
+<p>Dans le cas d'un support discret le coefficient \(u(a,b)\) n'est plus un coefficient de proportionalité comme dans le cas continu, mais une probabilité d'expression. </p>
+
     <h3 id="features">Features</h3>
     <p>code pour une <em>feature</em> (ou trait phénotypique, même chose), qui sera définie ultérieurement par l’utilisateur. Un même support peut être réutilisé pour plusieurs features.</p>
     <h3 id="espèces">Espèces</h3>
