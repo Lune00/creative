@@ -8,10 +8,9 @@ html {
     overflow-x: hidden;
 }
 
-body{
-    margin : 0 150px;
+body {
+    margin: 0 20%;
 }
-
 
 table,
 td {
@@ -24,9 +23,14 @@ tfoot {
     color: #fff;
 }
 
-
-.center-container{
+.center-container {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.modele-img {
+    display: inline-flex;
+    justify-content: center;
+    width: 80%;
 }
