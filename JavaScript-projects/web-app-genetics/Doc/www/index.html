@@ -296,6 +296,23 @@ $$ v = \{ AB: 1, A:1, B:0.5, C:0.5 \}$$
 
 <p>Les allèles A et B sont codominantes, elles s'expriment donc toutes les deux mais leurs effets ne se combinent pas, elles produisent une nouvelle valeur \(AB\), un nouveau phénotype.</p>
 
+<h3>Sur les allèles</h3>
+Un allèle est un code binaire, une variation d'un gène. Son code binaire est son identifiant, qu'on pourra surharger avec un nom. Un allèle peut être déclaré :
+<ul>
+    <li>Disponible : l'allèle pourra être présent à l'initatialisation d'une population d'individus</li>
+    <li>Mutant : non accesible par défaut, seulement par mutation de son code génétique</li>
+</ul>
+Un allèle pourra muter 
+<ul>
+    <li>vers un allèle existant (Disponible), équivalent à du brassage génétique</li>
+    <li>vers un allèle mutant (Mutant), introduction d'un nouvel allèle dans la population</li>
+</ul>
+Au niveau de la feature, la valeur de cet allèle (ainsi que son rapport aux autres) peut être
+<ul>
+    <li>défini à l'avance par l'utilisateur. Ainsi il garde le contrôle complet sur les entrées/sorties au niveau des features </li>
+    <li>défini aléatoirement (par une fonction), l'utilisateur perd alors le contrôle sur l'évaluation du génome qui va évoluer de lui même (selon des règles définies à l'avance) </li>
+</ul>
+Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. En fonction de ses besoins il doit pouvoir garder ou lâcher le contrôle. Dans le cas où les valeurs ne seront pas défini à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
     <h3 id="features">Features</h3>
     <p>code pour une <em>feature</em> (ou trait phénotypique, même chose), qui sera définie ultérieurement par l’utilisateur. Un même support peut être réutilisé pour plusieurs features.</p>
 
