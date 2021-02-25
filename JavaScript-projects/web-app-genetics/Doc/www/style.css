@@ -34,3 +34,15 @@ tfoot {
     justify-content: center;
     width: 80%;
 }
+
+.comment{
+    color: green
+}
+
+.note{
+    color: orange;
+}
+
+.to-debate{
+    
+}

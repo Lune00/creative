@@ -338,7 +338,7 @@ Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l
        L'unité de mesure servira à faire de l'analyse dimensionnelle et valider la cohérence de certaines expressions. Elle pourra servir à faire des conversions automatiques. Par exemple si un phénotype représente une taille, on pourra demander à évaluer cette valeur en 'cm', en 'm' sans avoir besoin de faire la conversion nous même.
     </p>
 
-    <p>
+    <p class="note">
         A noter : l'utilisateur s'il souhaite avoir directement accès à la valeur du support génétique peut le faire, il peut demander à la feature de retourner directement la valeur du support.
     </p>
 
@@ -352,21 +352,43 @@ Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l
         <li>ce qu'elle retourne en sortie: quelle transformation j'opère pour produire une valeur "phénotype"</li>
     </ul>
 
-    <p>Quand j'écris une valeur phénotype c'est assez général, on n'impose rien sur le type de retour d'une feature [a voir en fonction du design général], mais en général on peut faire retourner à une feature ce qu'on veut. Ce sont là plutot des questions techniques, savoir s'il faut fabriquer des types de données à respecter pour assurer une architecture robuste. Ces restrictions viendront au fil de l'eau, par défaut, une feature peut renvoyer n'importe quelle valeur.</p>
+    <p class="comment">Quand j'écris une valeur phénotype c'est assez général, on n'impose rien sur le type de retour d'une feature [a voir en fonction du design général], mais en général on peut faire retourner à une feature ce qu'on veut. Ce sont là plutot des questions techniques, savoir s'il faut fabriquer des types de données à respecter pour assurer une architecture robuste. Ces restrictions viendront au fil de l'eau, par défaut, une feature peut renvoyer n'importe quelle valeur.</p>
 
-    <p>code pour une <em>feature</em> (ou trait phénotypique, même chose), qui sera définie ultérieurement par l’utilisateur. Un même support peut être réutilisé pour plusieurs features.</p>
+    <h4>Mapper les valeurs des allèles</h4>
 
-    <p>avec \(u(i,j)\) le coefficient de codominance entre l’allèle  \(i\) et  \(j\). On rappelle que \(u(a,b)=0.3\) signifie ici que les allèles a et b d’un même locus (d’une paire de chromosomes analogues) vont contribuer respectivement à 30% et à 70% de l’évaluation du gène.</p>
-    <p>Soit \((a-b)\) deux allèles sur le même locus, l'évaluation du gène donne</p>
-    $$v = u(a,b)v_a + u(b,a)v_b= 0.7 $$
-    <p>avec \(v_a=0\) et \(v_b=1\). On a par définition (normalisation)</p>
-    $$u(j,i) = 1 - u(i,j) $$ 
+    <p>La première étape est donc de <em>maper</em> (d'associer) à chaque allèle exprimée du support génétique une valeur. Comme les allèles sont définies au niveau du support génétique on peut facilement proposer une liste de valeurs à maper à l'utilisateur. On peut associer à la valeur de l'allèle n'importe quelle valeur de notre choix</p>
+<p>Prenons un exemple de valeur produite par le support génétique encodé sur 3 gènes</p>
+$$(c-B)A(A-B) $$
+<p>qui est évalué à</p>
+    $$ S =\{ AB: 1, A:1, B:0.5, C:0.5 \} $$
+    On doit proposer à l'utilisateur d'associer à chaque allèle une valeur. Prenons \(A\), voici les possibilités :
+
+    <ul>
+        <li>Associer un entier : \(A \mapsto 1 \)</li>
+        <li>Associer un nombre décimal : \(A \mapsto 0.1 \)</li>
+        <li>Associer une chaine de caractères : \(A \mapsto \text{'foo'}\)</li>
+        <li>Associer un tableau : \(A \mapsto \left[1, \text{'foo'}, 0.5, \left[1, \text{'foo'}, 0.5,  \right]\  \right]\)</li>
+        <li>Associer une association clé:valeur : \(A \mapsto \{a: 1, b: \text{'foo'}\}\)</li>
+        <li> <a href="#fonctionnal-feature">Associer une fonction</a> : \(A \mapsto f(S)\)</li>
+    </ul>
+
+    <p>On peut proposer des stratégies de map au lieu de map indivduellement chaque allèle.</p>
    
-    
+    <h5>Map Combinaison linéaire</h5>
 
-    $$ v = \frac{1}{3}  \left[ 2(u(a,b)v_a + u(b,a)v_b) + u(c,b)v_c + u(b,c)v_b  \right] = 0.9$$ 
+    <p>Dans le cas, et seulement dans le cas (pour des raisons de complexité), où l'utilisateur map chacune des allèles à un nombre (entier ou décimal) on peut proposer à l'utilisateur d'en faire un combinaison linéaire se servant du poids de chaque expression du gène. Par exemple ici, définissons cette association : </p>
+    <ul>
+        <li>\(AB \mapsto 1 \)</li>
+        <li>\(A \mapsto 0 \)</li>
+        <li>\(B \mapsto 5 \)</li>
+        <li>\(C \mapsto -1 \)</li>
+    </ul>
+    <p>On peut facilement fabriquer de la variation continue en faisant la combinaison linéaire de l'expression de chaque allèle</p>
 
-    L'évaluation d'un support génétique continu encodé sur \(N\) gènes est donné par 
+    $$ \frac{1}{3} (v_{AB} + v_A + 0.5v_B + 0.5v_C)  $$
+    <p>en utilisant le poids de l'expression de chaque allèle. La feature sera évaluée ici à \(1\)</p>
+
+    L'évaluation en combinaison linéaire d'un support génétique encodé sur \(N\) gènes est donné par 
 
     $$ V = \frac{1}{N}\sum_{i=1}^{N} u(i_a,i_b)v_a + (1-u(i_a,i_b))v_b $$ 
 
@@ -375,7 +397,18 @@ Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l
 
     <p>avec \(i_a\) et \(i_b\) les allèles a et b du gène \(i\).</p>
 
+    <p>
+        Ensuite l'utilisateur peut rescaler les valeurs obtenues vers un nouvel intervalle. En effet, en fonction des valeurs qu'il a associé à chaque allèle, il a accès à l'intervalle du domaine de départ (les bornes min et max), ici \( \left[ -1 : 5 \right]\). Il peut interpoler chaque valeur de cet intervalle vers un autre intervalle. Pour cela il a juste à définir un min, un max et une fonction d'interpolation. Par exemple, il définit l'intervalle d'arrivée à \( \left[ 10 : 300 \right]\) et une fonction d'interpolation linéaire.
+    </p>
+    <p>
+        On peut faire une interpolation linéaire ou avec n’importe quel polynôme. Le choix de l'interpolation est un paramètre intéressant car ainsi, une variation infime du génome (brassage, mutation) peut conduire à des variations phénotypiques plus fortes (et non directement proportionnelle ou graduelle)
+    </p>
 
+    <img src="img/interpolation.png" alt="" style="width:80%">
+
+
+
+    <h4 id="fonctionnal-feature">Features <em>fonctionnelles</em></h4>
 
     <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
 
