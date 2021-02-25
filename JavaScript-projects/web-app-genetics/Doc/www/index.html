@@ -686,6 +686,19 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
  ...
  const killed = glib.kill(population)
  ...
+//j'ai déjà ma propre structure de données/objet
+//Fish avec son comportement
+const fish = new Fish('toto')
+console.log(fish) // = {toto:'foo'}
+//je veux qu'il puisse se reproduire, le rendre
+//genetique
+fish = glib.setSpecie(fish, 'espece#1')
+//fish dispose maintenant de toutes les features
+//de l'espce#1 et peut se reproduire
+const babyFish = glib.reproduce({fish, args: {bar}},fish2)
+//babyFish a conservé tout ce dont il hérite
+//de sa structure originelle
+console.log(babyFish) // = {toto:'bar', phenotype: {....}} 
 
         </pre>
     </code>
