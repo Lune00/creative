@@ -372,6 +372,22 @@ $$(c-B)A(A-B) $$
         <li> <a href="#fonctionnal-feature">Associer une fonction</a> : \(A \mapsto f(S)\)</li>
     </ul>
 
+    <h4>Cas d'un support codé sur un gène</h4>
+
+    <p>
+        Dans le cas d'un support encodé sur un seul gène, la question ne se pose pas, on retourne la valeur mappé à la valeur qui s'est exprimée.
+    </p>
+
+    <h4>Cas d'un support codé sur plusieurs gènes</h4>
+    <p>
+       Comme dans notre exemple, dans ce cas plusieurs stratégies d'interprétation peuvent être définies par l'utilisateur.
+       On peut :
+       <ul>
+           <li>Renvoyer toutes les valeurs avec leurs poids (information transparente, l'utilisateur en fera quelque chose soit dans une feature à l'étage supérieur, soit directement dans son projet)</li>
+           <li>Filtrer : ne renvoyer qu'une valeur, envoyer des valeurs dont le poids normalisé respecte une condition</li>
+       </ul>
+    </p>
+
     <p>On peut proposer des stratégies de map au lieu de map indivduellement chaque allèle.</p>
    
     <h5>Map Combinaison linéaire</h5>
@@ -408,14 +424,95 @@ $$(c-B)A(A-B) $$
 
 
 
+    <h5>Stratégies par défaut</h5>
+
+    <p>On peut proposer des stratégies par défaut (sans avoir à écrire du code) pour définir la valeur renvoyée par la feature</p>
+
+    <ul>
+        <li>Faire remonter l'allèle qui s'exprime le plus. Cela revient à donner plus de poids à certains gènes d'un support. </li>
+        <li>... ?</li>
+    </ul>
+ 
+
+    <p class="question">Comment ça se passe pour un trait phénotypique encodé sur plusieurs gènes ? Quelles stratégies on peut mettre en place pour fabriquer une interprétation d'un support génétique s'exprimant sur plusieurs gènes ? Quel rôle donner aux <em>poids d'expression</em> ?</p>
+
+
+    <h5>Ultime possibilité (et la plus forte) : écrire soi même sa fonction !</h5>
+
+
+    <p>
+        L'idéal est de pouvoir écrire soi même une fonction qui renverra le phénotype. Cette fonction permet de couvrir toutes les autres stratégies définies précédemment (celles-ci ne sont que des aides pour l'utilisateur, lui proposer des stratégies clés en main sur des patterns courants). Ainsi on peut imaginer ouvrir une fenêtre d'édition à l'utilisateur pour qu'il écrive soi même sa fonction
+    </p>
+    <code class="pseudo-code">
+        <pre>
+function evaluate(args){
+    //Write your own function that returns a phenotype (data)
+    //...
+    return {}
+}
+        </pre>
+    </code>
+    <p>où <code>args</code> est une variable d'entrée de la fonction que l'utilisateur peut utiliser. Elle aurait toutes les infos nécessaires pour écrire la fonction : les valeurs de départ du support, les poids et les valeurs mappés. Par exemple ici :</p>
+<pre>
+    <code>args = {
+        data: { 
+          AB: {
+            // poids expression de la valeur retournée par le support
+            weight: 1, 
+            // la valeur assignée par l'utilisateur
+            map: 1 
+          },
+          A: {
+            weight: 1,
+            map: 0  
+          },
+          B: {
+            weight: 0.5,
+            map: 5  
+          },
+          C: {
+            weight: 0.5,
+            map: -1  
+          },
+         }
+        otherData: ???
+    }
+    </code>
+</pre>
+
+<p> Le code sera à écrire en JavaScript. Il permettra de faire tout ce qu'on veut.</p>
+<p class="note">Peut-être faudra-t-il demander en plus à l'utilisateur de donner un schéma de réponse (la structure de la collection clé/valeurs et les types de données) dans le cas où une autre feature vient prendre en entrée ce résultat. Comme ça on pourrait lui garantir un certain format de données à utiliser pour composer sa prochaine stratégie et éviter bien des bugs.</p>
+
+<p>Prenons un exemple simple ici j'écris ma fonction, je veux, par exemple, retourner la valeur de \(AB\) si elle existe, sinon je renvoie 'toto'</p>
+<code class="pseudo-code">
+    <pre>
+function evaluate(args, phenotype = { value: undefined, dimension = undefined, 
+    units = undefined}){
+    if( 'AB' in args.data){
+        phenotype.value =  args.data['AB'].map // valeur du phénotype retourné
+        phenotype.dimension = 'Length'
+        phenotype.units = 'm'
+        return phenotype
+    }
+    //Si AB n'est pas présent
+    phenotype.value = 'toto'
+    return phenotype
+}
+    </pre>
+</code>
+
+<p>Ici on contraint la réponse à respecter le schéma suivant : la valeur retourné doit contenir 3 clés: value, dimension et units. Si une clé manque (ou si une autre clé est ajoutée) une erreur est émise. Un <em>template</em> de phénotype est imposé. </p>
+    <p> Ici j'ai deux phénotypes possibles (valeurs, grandeur et unité de mesure différentes) Si une autre feature prend en entrée ce phénotype On pourrait imagnier contraindre encore plus le retour en demandant le type de données attendue pour la value, la valeur de la dimension et de l'unité de mesure etc.. Ce sont des points techniques mais intéressants.</p>
+
+    <p class="note">On peut imaginer encore beaucoup de choses dans les contraintes à imposer ici. Plus on met de contraintes plus c'est long d'éditer mais plus on peut proposer des tests automatiques pour avertir l'utilisateur en cas de bug. Autant de temps à débugger en moins dans son projet</p>
+
+
     <h4 id="fonctionnal-feature">Features <em>fonctionnelles</em></h4>
 
     <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
 
     <h3 id="espèces">Espèces</h3>
     
-
-
 
     <h2>Reproduction de cas classiques</h2>
 
