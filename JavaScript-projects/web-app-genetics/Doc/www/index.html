@@ -505,7 +505,7 @@ function evaluate(args){
     </code>
 </pre>
 
-<p> Le code sera à écrire en JavaScript. Il permettra de faire tout ce qu'on veut.</p>
+<p> Le code sera à écrire en JavaScript. Il permettra de faire tout ce qu'on veut. Justement, tout ce qu'on veut peut amener à des gros poblèmes de sécurité. Il faudra songer à ce point : accès au DOM, Web API du navigateur? Emettre des requetes? Il faudra proposer un environnement où on peut contrôler les autorisations qu'on donne à ce code.</p>
 <p class="note">Peut-être faudra-t-il demander en plus à l'utilisateur de donner un schéma de réponse (la structure de la collection clé/valeurs et les types de données) dans le cas où une autre feature vient prendre en entrée ce résultat. Comme ça on pourrait lui garantir un certain format de données à utiliser pour composer sa prochaine stratégie et éviter bien des bugs.</p>
 
 <p>Prenons un exemple simple ici j'écris ma fonction, je veux, par exemple, retourner la valeur de \(AB\) si elle existe, sinon je renvoie 'toto'</p>
@@ -634,6 +634,61 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     <h2>Génération d'une documentation interactive automatique</h2>
 
     <p>Générer une documentation automatiquement décrivant l'API de chaque Feature dans un projet donné. Cette documentation aidera grandement l'utilisateur a desiger ses modèles de données et aussi à les utiliser dans son propre programme.</p>
+
+
+    <h2>Usage de la bibliothèque (dans les grandes lignes)</h2>
+    <p>La bibliothèque sera open-source (évidemment). Le code sera accessible depuis un dépot public. Le code source sera découpé en au moins deux composants:</p>
+    <ul>
+        <li>code source moteur de la lib (tout ce qui fera tourner le modèle)</li>
+        <li>code source des éditeurs, generateur doc, bac à sable</li>
+    </ul>
+    <p>On pourra imaginer à terme de faire des éditeurs et du bac à sable une web app: éditeur en ligne, création d'une store où les gens peuvent partager leur design et les télécharger (création d'une communauté). Chaque design aura sa doc.</p>
+
+    <p>En tant qu'utilisateur je veux intégrer cette library pour mon projet :</p>
+    <ul>
+        <li>Je l'installe (avec ses dépendances) dans mon projet (surement via npm ou yarn). J'importe seulement le moteur dans mon projet</li>
+        <li>Soit:
+            <ul>
+                <li>j'ai envie de créer mes propres design ou éditer design existants, je lance les éditeurs et je travaille dessus. Quand je suis satisfait, que j'ai testé dans le bac à sable j'exporte les données (sous format d'un fichier). Les données comprenent: les supports génétiques, les features, les especes, les mutations etc...</li>
+                <li>j'ai pas envie d'en faire moi même, d'autres gens en ont peut etre fait des mieux qui me correspondent ou pourraient me servir de base. Je récupère un design de quelqu'un (un fichier) (téléchargable en ligne sur le store), je l'importe, je l'édide et je l'exporte.</li>
+            </ul>
+        </li>
+        <li>J'importe mes fichiers de design dans mon projet</li>
+        <li>Je fabrique surement un fichier de configuration global demandé par la bibliothèque pour initialiser des choses (sécurité, gestion du temps, gestion des erreurs, generation pop, blabblabla...)</li>
+        <li>J'utilise le tout pour fabriquer mon programme !</li>
+    </ul>
+
+    <p>Voici un pseudo code de l'utilisation de la bibliothèque (juste pour donner une idée)</p>
+
+
+<code class="pseudo-code">
+        <pre>
+ import * as glib from "moteur"
+
+ //Je crée une population initiale  de 50 individus, 
+ //de l'espece 'espece#1' que j'ai designé
+ const population = glib.generatePopulation('espece#1', 50)
+ ...
+ //Mon programme arrive à un point
+ //où je veux déclencher une mutation designée
+ const result = glib.triggerMutation('nomMutation') 
+ ...
+ //Deux individus se reproduisent et donnent une descendance de 10 individus:
+ const offspings = glib.reproduce(individu1,individu2, 10)
+ ...
+ //Une fleur s'autoféconde pour fabriquer un nombre aléatoire de descendants
+ const flowers = glib.reproduce(flower, random(10,100))
+ ...
+ //Deux individus se reproduisent, le nombre de descendant 
+ //est borné par une feature 'capaciteGestation'
+ const offspings = glib.reproduce(individu1,individu2, 
+ random(1, get_phenotype(individu2,'capaciteGestation')))
+ ...
+ const killed = glib.kill(population)
+ ...
+
+        </pre>
+    </code>
 
     <h2>Exemples : reproduction de cas connus</h2>
 
