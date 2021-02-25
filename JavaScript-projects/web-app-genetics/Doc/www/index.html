@@ -339,8 +339,10 @@ Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaîtr
     </p>
 
     <p class="note">
-        A noter : l'utilisateur s'il souhaite avoir directement accès à la valeur du support génétique peut le faire, il peut demander à la feature de retourner directement la valeur du support.
+        A noter : l'utilisateur s'il souhaite avoir directement accès à la valeur du support génétique peut le faire, il peut demander à la feature de retourner directement la valeur du support. L'utilisateur pourrait lui donner une valeur (et une dimension, et unité de mesure) dynamiquement durant l'execution de son programme. Par exemple, regardons ce pseudo code d'un utilisateur qui utilise notre bibliothèque dans son projet
     </p>
+
+
 
 
     <h4>Ecrire une feature</h4>
@@ -371,6 +373,23 @@ $$(c-B)A(A-B) $$
         <li>Associer une association clé:valeur : \(A \mapsto \{a: 1, b: \text{'foo'}\}\)</li>
         <li> <a href="#fonctionnal-feature">Associer une fonction</a> : \(A \mapsto f(S)\)</li>
     </ul>
+
+    <p>On pourra évidemment proposer ici de mapper des valeurs de manière automatique (pattern, aléatoire etc..)</p>
+
+    <p>On pourrait imaginer ne pas contraindre l'utilisateur à définir la valeur de chaque allèle. Ainsi, une valeur non mappée aurait une valeur assignée par le système, par exemple <code>unknown</code>.</p>
+
+    <code class="pseudo-code">
+        <pre>
+x = evaluate(individu, feature) // acceder au phénotype retourné par la feature
+//Allèle inconnue (mutation, non définie par l'utilisateur)
+if(unkown(x)){
+    //Do stuff
+    valeur = ....
+    // retrouve l'allèle unkown et lui assigne valeur,dimension, unité
+    setValue(individu, feature, 'valeur', dimension, unité) 
+}
+        </pre>
+    </code>
 
     <h4>Cas d'un support codé sur un gène</h4>
 
@@ -489,7 +508,8 @@ function evaluate(args){
 function evaluate(args, phenotype = { value: undefined, dimension = undefined, 
     units = undefined}){
     if( 'AB' in args.data){
-        phenotype.value =  args.data['AB'].map // valeur du phénotype retourné
+        // valeur du phénotype retourné
+        phenotype.value =  args.data['AB'].map
         phenotype.dimension = 'Length'
         phenotype.units = 'm'
         return phenotype
