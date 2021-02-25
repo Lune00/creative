@@ -4,9 +4,10 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>Modèle Génétique</title>
   <meta name="description" content="projet génétique doc">
   <meta name="author" content="Paul Schuhmacher">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <link rel="stylesheet" href="./style.css">
 
@@ -544,7 +545,7 @@ function evaluate(args){
     <p>où <code>args</code> est une variable d'entrée de la fonction que l'utilisateur peut utiliser. Elle aurait toutes les infos nécessaires pour écrire la fonction : les valeurs de départ du support, les poids et les valeurs mappés. Par exemple ici :</p>
 <pre>
     <code>args = {
-        data: { 
+        genetic: { 
           AB: {
             // poids expression de la valeur retournée par le support
             weight: 1, 
@@ -564,7 +565,8 @@ function evaluate(args){
             map: -1  
           },
          }
-        otherData: ???
+        featureB: {}
+        ...
     }
     </code>
 </pre>
@@ -592,7 +594,7 @@ function evaluate(args, phenotype = { value: undefined, dimension = undefined,
 </code>
 
 <p>Ici on contraint la réponse à respecter le schéma suivant : la valeur retourné doit contenir 3 clés: value, dimension et units. Si une clé manque (ou si une autre clé est ajoutée) une erreur est émise. Un <em>template</em> de phénotype est imposé. </p>
-    <p> Ici j'ai deux phénotypes possibles (valeurs, grandeur et unité de mesure différentes) Si une autre feature prend en entrée ce phénotype On pourrait imagnier contraindre encore plus le retour en demandant le type de données attendue pour la value, la valeur de la dimension et de l'unité de mesure etc.. Ce sont des points techniques mais intéressants.</p>
+    <p> Ici j'ai deux phénotypes possibles (valeurs, grandeur et unité de mesure différentes). On pourrait imaginer contraindre encore plus le retour en demandant le type de données attendue pour la value, la valeur de la dimension et de l'unité de mesure etc.. Ce sont des points techniques mais intéressants.</p>
 
     <p class="note">On peut imaginer encore beaucoup de choses dans les contraintes à imposer ici. Plus on met de contraintes plus c'est long d'éditer mais plus on peut proposer des tests automatiques pour avertir l'utilisateur en cas de bug. Autant de temps à débugger en moins dans son projet</p>
 
@@ -624,15 +626,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
         </pre>
     </code>
 
-    <p>Les features fonctionnnelles ne sont qu'une généralisation des autres features. En effet, quand on associe une valeur à un allèle</p>
-    $$ A \mapsto \text{'foo'} $$
-   <p>c'est équivalent à lui associer une fonction sans argument qui retourne 'foo' </p>
-   $$ A \mapsto \text{'foo'} \equiv A \mapsto f_A() \{ \text{return 'foo'} \} $$
-
    <p>Le fait de pouvoir retourner directement des fonctions est une propriété très intéressante et utile au modèle pour créer des phénotypes riches, faits d'états mais aussi de comportements. Cela ouvre énormément de possibilités.</p>
-
-
-
 
    <h4>Sur les dimensions et unités de mesure</h4>
    <p>
@@ -656,7 +650,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
     <p>Une feature peut prendre en entrée (en argument)</p>
     <ul>
-        <li> <strong> un et un seul support génétique</strong>. Dans la vraie vie c'est l'expression des gènes qui produit des phénotypes, avoir plusieurs traits pour le même support génétique semble absurde. Mais est-ce absurde? Est ce que ça pourrait pas être utile ? A voir.</li>
+        <li> <strong> un et un seul support génétique</strong></li>
         <li>un support génétique, une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
     </ul>
 
@@ -703,14 +697,14 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
         </p>
 
         <p>
-            Il est hors de question pour notre feature d'avoir un état pour ces raisons. Une feature est une fonction qui produit des valeurs (en appelant d'autres features au besoin). Quand j'ai besoin de l'évaluer je l'évalue et je produis une nouvelle valeur pour mon phénotype.
+            Il est hors de question pour notre feature d'avoir un état pour ces raisons. Une feature est une fonction qui produit des valeurs (en appelant d'autres features au besoin).
         </p>
         <p>
             Dans ce modèle, l'état mutable est justement le support génétique, sujet à des <em>mutations</em>. Dans toute cette biliothèque le seul état mutable est le génome (exception faite de l'épigénétique, qui est d'ailleurs peut-être une mauvaise idée, ça peut être utile mais déconseillée à n'utiliser que dans des cas où c'est nécessaire)
         </p>
 
         <p>
-            Pour résumer, <strong>le phénotype d'un individu est une valeur</strong> produite par les features à un instant donné. Les features n'ont pas d'état mutable (elles ne maintiennent pas un état, elle ne font pas d'assignement). Elles peuvent produire une valeur à partir d'une valeur produite dans le passé, c'est bien normal. Mais <strong>elles ne peuvent pas modifier le passé</strong>, elles peuvent juste y accéder en lecture, <strong>ce sont des faits</strong>. En ce sens le log est un état mais un état immutable. Chaque nouvelle entrée s'ajoute aux précédentes sans les modifier, aucune entrée ne peut pas être modifiée ou supprimer par la feature.  
+            Pour résumer, <strong>le phénotype d'un individu est une valeur</strong> produite par les features à un instant donné. Les features n'ont pas d'état mutable (elles ne maintiennent pas un état, elle ne font pas d'assignement). Elles peuvent produire une valeur à partir d'une valeur produite dans le passé, c'est bien normal. Mais <strong>elles ne peuvent pas modifier le passé</strong>, elles peuvent juste y accéder en lecture, <strong>ce sont des faits</strong>. Chaque nouvelle entrée s'ajoute aux précédentes sans les modifier, aucune entrée ne peut pas être modifiée ou supprimée par la feature.  
         </p>
       
 
