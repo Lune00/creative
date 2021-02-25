@@ -574,6 +574,26 @@ function evaluate(args){
 <p> Le code sera à écrire en JavaScript. Il permettra de faire tout ce qu'on veut. Justement, tout ce qu'on veut peut amener à des gros poblèmes de sécurité. Il faudra songer à ce point : accès au DOM, Web API du navigateur? Emettre des requetes? Il faudra proposer un environnement où on peut contrôler les autorisations qu'on donne à ce code.</p>
 <p class="note">Peut-être faudra-t-il demander en plus à l'utilisateur de donner un schéma de réponse (la structure de la collection clé/valeurs et les types de données) dans le cas où une autre feature vient prendre en entrée ce résultat. Comme ça on pourrait lui garantir un certain format de données à utiliser pour composer sa prochaine stratégie et éviter bien des bugs.</p>
 
+<h5>Contrainte sur la valeur retournée</h5>
+
+<p>Si l'utilisateur écrit sa propre fonction (dans les autres cas ça sera fait automatiquement) il devra fournir un schéma de données (clé:type)pour la valeur retournée par la feature. Par exemple </p>
+<pre>
+    <code>value = {
+        foo : Object {
+            a: String,
+            b: Number
+        },
+        bar: Integer,
+        toto: Function {
+            {
+                a: Number
+            }
+        }
+    }
+    </code>
+</pre>
+<p>Ainsi il sera beaucoup plus simple dans l'étape de design de coupler les features, car on saura exactement quelles données on recevra en entrée. Il est peut être même possible qu'on puisse récupérer les valeurs possibles retournées (il faudrait pour cela parser le code écrit par l'utilisateur, à voir). Quid de la dimension et de l'unité de mesure? Sinon on contraint de renvoyer une valeur avec une seule clef. On peut contraindre pas mal je pense car si on met trop de libertés ça va compliquer le design. Si une feature peut renvoyer deux types de données différents c'est qu'elle peut probablement être découpée en deux features qui retourne chacune un type de données.</p>
+
 <p>Prenons un exemple simple ici j'écris ma fonction, je veux, par exemple, retourner la valeur de \(AB\) si elle existe, sinon je renvoie 'toto'</p>
 <code class="pseudo-code">
     <pre>
@@ -728,7 +748,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     <h5>Une feature "Groupe de features"</h5>
 
     <p>
-        Un nom juste pour dire « une feature qui est un paquet de features ». Comme on l’a vu, on pourra combiner des features pour faire des nouvelles features, utiliser l’expression d’une pour conditionner l’expression de l’autre. Cela crée naturellement des dépendances entres features. Pour simplifier la vie de l’utilisateur on pourrait rajouter quelque chose de simple : faire des paquets de features. Au lieu d’évaluer chacune d’entre elles on en évalue qu’une qui renverra l ‘évaluation de toutes les features qu’elle contient. C’est juste une fonctionnalité pour faciliter la vie de l’utilisateur et simplifier l’usage de la bibliothèque.
+        Comme on l’a vu, on peut coupler des features pour faire des nouvelles features. Cela crée des dépendances entres features. Pour simplifier la vie de l’utilisateur on pourrait rajouter quelque chose de simple : faire des paquets de features. Au lieu d’évaluer chacune d’entre elles on en évalue qu’une qui renverra l ‘évaluation de toutes les features dont elle dépend. C’est juste une fonctionnalité pour faciliter la vie de l’utilisateur et simplifier l’usage de la bibliothèque.
     </p>
     <p>
         Par exemple, je crée tout un ensemble de features relatives à la possibilité de voler d’un animal : absence/présence d’ailes, taille des ailes, types ailes (a plume, mammifère), forme des ailes, couleurs des plumes, bruit que fond les ailes, vitesse en vol, vitesse de pointe etc... Toutes ces features sont reliées les unes aux autres. Par exemple s’il n’y a pas de plumes, il n'y a pas de couleur des plumes. Au lieu d’avoir à interroger manuellement chacune de ces features je pourrais créer une « méta-feature » qui s’appelle « vol » par exemple. Elle les comprendrait toutes. Cela donnerait une paquet prêt à l’emploi ds n’importe quel projet où je veux voir ce trait phénotypique exister. Ainsi dans le code au lieu d’avoir un truc du genre :
