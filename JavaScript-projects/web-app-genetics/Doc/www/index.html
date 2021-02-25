@@ -312,8 +312,48 @@ Au niveau de la feature, la valeur de cet allèle (ainsi que son rapport aux aut
     <li>défini à l'avance par l'utilisateur. Ainsi il garde le contrôle complet sur les entrées/sorties au niveau des features </li>
     <li>défini aléatoirement (par une fonction), l'utilisateur perd alors le contrôle sur l'évaluation du génome qui va évoluer de lui même (selon des règles définies à l'avance) </li>
 </ul>
-Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. En fonction de ses besoins il doit pouvoir garder ou lâcher le contrôle. Dans le cas où les valeurs ne seront pas défini à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
+Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. Dans le cas où les valeurs ne seront pas définies à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
     <h3 id="features">Features</h3>
+
+    <h4>Définition</h4>
+
+    <p>Une fois définis des supports génétiques on peut commencer à designer le composant à l'étage du dessus : la feature. Une feature est un trait (un phénotype) observable au niveau de l'individu. Jusqu’ici on a seulement parlé de support génétique dont l'évaluation produit des valeurs.  C’est donc à ce niveau qu’on va  <em>donner un sens aux valeurs générées par le support génétique</em>. La feature produit une   <strong>observable</strong> que l'utilisateur va définir. </p>
+
+    <p>L’intérêt de découpler la production de valeur par un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features et redéfinir l'interprétation que l'on fait de sa valeur.</p>
+    <p>
+        La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#eatures-coupling">ou d'une autre features</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur (ici un couple {valeur, unité}) dans un ensemble d'arrivée (valeurs du phénotype).
+    </p>
+
+    <img src="./img/feature-function.png" alt="">
+
+   <p>Pour définir l'évaluation d'une feature, lui donner sens, nous allons avoir besoin d' </p>
+
+    <ul>
+        <li>une valeur : nombre décimal, une chaîne de caractères, un ensemble de clé:valeur, voir même une fonction</li>
+        <li>une grandeur: (ex: temps, longueur, grandeur personalisée...) [OPTIONNEL]</li>
+        <li>une unité de measure: ‘m/s’, des ‘mols’, des ‘kg’, des ‘grade’, des ‘milipilpoils’ etc.. [OPTIONNEL]</li>
+    </ul>
+    
+    <p>
+       L'unité de mesure servira à faire de l'analyse dimensionnelle et valider la cohérence de certaines expressions. Elle pourra servir à faire des conversions automatiques. Par exemple si un phénotype représente une taille, on pourra demander à évaluer cette valeur en 'cm', en 'm' sans avoir besoin de faire la conversion nous même.
+    </p>
+
+    <p>
+        A noter : l'utilisateur s'il souhaite avoir directement accès à la valeur du support génétique peut le faire, il peut demander à la feature de retourner directement la valeur du support.
+    </p>
+
+
+    <h4>Ecrire une feature</h4>
+
+    Pour qu'une feature fonctionne il faut définir :
+
+    <ul>
+        <li>ce qu'elle prend en entrée: quelles données arrivent du support génétique</li>
+        <li>ce qu'elle retourne en sortie: quelle transformation j'opère pour produire une valeur "phénotype"</li>
+    </ul>
+
+    <p>Quand j'écris une valeur phénotype c'est assez général, on n'impose rien sur le type de retour d'une feature [a voir en fonction du design général], mais en général on peut faire retourner à une feature ce qu'on veut. Ce sont là plutot des questions techniques, savoir s'il faut fabriquer des types de données à respecter pour assurer une architecture robuste. Ces restrictions viendront au fil de l'eau, par défaut, une feature peut renvoyer n'importe quelle valeur.</p>
+
     <p>code pour une <em>feature</em> (ou trait phénotypique, même chose), qui sera définie ultérieurement par l’utilisateur. Un même support peut être réutilisé pour plusieurs features.</p>
 
     <p>avec \(u(i,j)\) le coefficient de codominance entre l’allèle  \(i\) et  \(j\). On rappelle que \(u(a,b)=0.3\) signifie ici que les allèles a et b d’un même locus (d’une paire de chromosomes analogues) vont contribuer respectivement à 30% et à 70% de l’évaluation du gène.</p>
@@ -336,9 +376,19 @@ Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l
     <p>avec \(i_a\) et \(i_b\) les allèles a et b du gène \(i\).</p>
 
 
+
+    <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
+
     <h3 id="espèces">Espèces</h3>
     
 
+
+
+    <h2>Reproduction de cas classiques</h2>
+
+    <h3>Lapins</h3>
+    <h3>Fleurs dragons (dominance incimplete)</h3>
+    <h3>Groupe sanguin chez l'Homme</h3>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
