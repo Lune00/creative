@@ -566,6 +566,28 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
    $$ A \mapsto \text{'foo'} \equiv A \mapsto f_A() \{ \text{return 'foo'} \} $$
 
    <p>Le fait de pouvoir retourner directement des fonctions est une propriété très intéressante et utile au modèle pour créer des phénotypes riches, faits d'états mais aussi de comportements. Cela ouvre énormément de possibilités.</p>
+
+
+
+
+   <h4>Sur les dimensions et unités de mesure</h4>
+   <p>
+       La bibliothèque embarquera avec elle les dimensions et unités de mesure répandues (sûrement en utilisant une library tierce). L'utilisateur pourra également définir lui même ses propres grandeurs et unités associées.
+   </p>
+
+   <h4>Sur le temps</h4>
+   <p>
+       Pour le moment nous n'avons pas parlé du temps, les features produisent des phénotypes statiques pour un matériel génétique donné. <strong>Le temps sera accessible par défaut à chaque feature en argument</strong> pour permettre à l'utilisateur de produire des évaluations dynamiques du phénotype. En effet, pour faire évoluer un système (un individu par exemple) il faut une notion de temps d'une manière ou d'une autre.
+   </p>
+
+   <p>
+       Il faudra définir un temps bien caractérisé (unité) qui sera utilisable par toutes les features et défini/initialisé à l'échelle du projet comme une variable globale. A refléchir...
+   </p>
+
+
+
+
+
     <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
 
     <p>Une feature peut prendre son entrée, être branchée soit</p>
@@ -583,6 +605,10 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     <p>
         Créer un réseau de features pour fabriquer des nouvelles features, pour fabriquer des nouvelles features. Ainsi on peut créer du couplage entre supports génétiques et produire des phénotypes beaucoup plus intéressants. Voyons cela plus en détails, à partir d’un exemple concret.
     </p>
+
+
+    <h5>Les features comme des API</h5>
+
     <h3 id="espèces">Espèces</h3>
     
 
@@ -603,6 +629,11 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     <h3>Meiose</h3>
     <h3>Cross-over</h3>
     <h3>Mitose</h3>
+
+
+    <h2>Génération d'une documentation interactive automatique</h2>
+
+    <p>Générer une documentation automatiquement décrivant l'API de chaque Feature dans un projet donné. Cette documentation aidera grandement l'utilisateur a desiger ses modèles de données et aussi à les utiliser dans son propre programme.</p>
 
     <h2>Exemples : reproduction de cas connus</h2>
 
