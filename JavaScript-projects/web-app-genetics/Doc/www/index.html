@@ -313,7 +313,7 @@ Au niveau de la feature, la valeur de cet allèle (ainsi que son rapport aux aut
     <li>défini aléatoirement (par une fonction), l'utilisateur perd alors le contrôle sur l'évaluation du génome qui va évoluer de lui même (selon des règles définies à l'avance) </li>
 </ul>
 Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. Dans le cas où les valeurs ne seront pas définies à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
-    <h3 id="features">Features</h3>
+    <h3 id="features">Feature (ou trait, phénotype local)</h3>
 
     <h4>Définition</h4>
 
@@ -322,6 +322,10 @@ Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaîtr
     <p>L’intérêt de découpler la production de valeur par un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features (dans différents projets) et redéfinir l'interprétation que l'on fait de sa valeur.</p>
     <p>
         La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#eatures-coupling">ou d'une autre features</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur (ici un couple {valeur, unité}) dans un ensemble d'arrivée (valeurs du phénotype).
+    </p>
+
+    <p>
+        Le point important c'est qu'une feature <strong>ne possède pas d'état interne</strong>. Elle prend des valeurs en entrée et renvoie des valeurs en sortie. Les même valeurs en entrée produisent les mêmes valeurs en sortie. Elle n'a aucun effet de bord, c'est à dire que lorsqu'elle est évaluée elle ne <em> modifie pas l'état du monde</em> (exception faite des <a href="#epigenetique"> features attachées à l'état épigénétique</a>). En d'autres termes ce sont des <a href="https://fr.wikipedia.org/wiki/Fonction_pure">fonctions pures</a>. L'état d'un individu est complètement encodé dans ses supports génétiques et son épigénetique. L'ensemble des features vient agir comme une fonction qui prend cet état et renvoie un phénotype macroscopique. 
     </p>
 
     <img src="./img/feature-function.png" alt="">
@@ -583,6 +587,9 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     
 
     <h2 id="mutations">Mutations</h2>
+
+
+    <h3 id="epigenetique">Épigénétique</h3>
 
 
     <h2 id="mutations">Moteur : reproduction et transmission du génome</h2>
