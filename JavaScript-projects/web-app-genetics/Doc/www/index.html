@@ -654,10 +654,10 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
     <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
 
-    <p>Une feature peut prendre son entrée, être branchée soit</p>
+    <p>Une feature peut prendre en entrée (en argument)</p>
     <ul>
-        <li> <strong>a un et un seul support génétique</strong>. Dans la vraie vie c'est l'expression des gènes qui produit des phénotypes, avoir plusieurs traits pour le même support génétique semble absurde. Mais est-ce absurde? Est ce que ça pourrait pas être utile ? A voir.</li>
-        <li>à une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
+        <li> <strong> un et un seul support génétique</strong>. Dans la vraie vie c'est l'expression des gènes qui produit des phénotypes, avoir plusieurs traits pour le même support génétique semble absurde. Mais est-ce absurde? Est ce que ça pourrait pas être utile ? A voir.</li>
+        <li>un support génétique, une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
     </ul>
 
     <p>
@@ -713,11 +713,23 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
             Pour résumer, <strong>le phénotype d'un individu est une valeur</strong> produite par les features à un instant donné. Les features n'ont pas d'état mutable (elles ne maintiennent pas un état, elle ne font pas d'assignement). Elles peuvent produire une valeur à partir d'une valeur produite dans le passé, c'est bien normal. Mais <strong>elles ne peuvent pas modifier le passé</strong>, elles peuvent juste y accéder en lecture, <strong>ce sont des faits</strong>. En ce sens le log est un état mais un état immutable. Chaque nouvelle entrée s'ajoute aux précédentes sans les modifier, aucune entrée ne peut pas être modifiée ou supprimer par la feature.  
         </p>
       
+
+    <h5>Quelques exemples</h5>
+
+    <h5>Feature présente mais cachée</h5>
    
 
-    <h5>Les features comme des API</h5>
+    <p>Prenons l'exemple d'un d'un serpent. Il possède des gènes pour coder un pied, et d'autres gènes pour lui donner forme (nombre de doigts, pied palmé etc...). Dans la plupart du temps (phénotype dominant à l'état sauvage) il ne s'exprime pas. Dans son phénotype on ne trouve aucune expression du pied, et des traits propres au pied.  </p>
+    <img src="./img/coupling-feature-on-off-ex2" style="width: 100%;" alt="">
+    <p> Si une feature renvoie une valeur vide \(\{\}\) (ou une valeur définie par le système du genre 'required') toutes les features qui en dépendent ne peuvent plus s'exprimer et renvoient une valeur vide à leur tour. Le résultat est que le génome concerné ne s'exprime pas et que le phénotype n'est pas observé </p>
+<p>Ces gènes ne s'activent que si l'allèle A s'exprime, comme ci-dessous. Si c'est le cas l'intégralité du génome du pied s'exprime et on trouve un phénotype</p>
+    <img src="./img/coupling-feature-on-off-ex1" style="width: 100%;" alt="">
+    <p>L'activation en cascade de toutes les features dépendantes est alors automatique dans le modèle.</p>
 
 
+    <h5>Les features sont des API</h5>
+
+<p>Les features sont des fonctions pures qui prennent en entrée une valeur et retourne une valeur. En ce sens tout leur comportement est défini par les arguments en entrée. Aussi on pourra fournir pour chacune d'entre elle, en fonction des contraintes qu'on imposera, une documentation des arguments acceptés et des sorties produites. Elles seront alors facilement testables de manière unitaire (isolées). Elles ont donc une <a href="https://fr.wikipedia.org/wiki/Interface_de_programmation">API</a> et il n'est pas utile de regarder dans le détail de leur code source pour s'en servir. La documentation pourra nous dire ce que chaque feature fait, de quelle feature elle dépend etc.. Et une fois définie (ou récupérée) on pourra l'utiliser comme une boîte noire dans notre projet, sans avoir à soulever le capot. </p>
 
     <h5>Une feature "Groupe de features"</h5>
 
@@ -745,10 +757,12 @@ vol = evaluate(individu, ‘vol’)
     plumageColor : undefined,
     wingSize : {
         value : 52,
+        dimension: 'length'
         unit : ‘cm’
     },
     speed : {
         value : 60 ,
+        dimension: 'speed'
         unit : ‘km/h’
     }
     //Etc...
