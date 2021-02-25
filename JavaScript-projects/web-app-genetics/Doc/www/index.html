@@ -450,10 +450,10 @@ $$(c-B)A(A-B) $$
         <pre>
 x = evaluate(individu, feature) // acceder au phénotype retourné par la feature
 //Allèle inconnue (mutation, non définie par l'utilisateur)
-if(unkown(x)){
+if(unknown(x)){
     //Do stuff
     valeur = ....
-    // retrouve l'allèle unkown et lui assigne valeur,dimension, unité
+    // retrouve l'allèle unknown et lui assigne valeur,dimension, unité
     setValue(feature, 'valeur', dimension, unité) 
 }
         </pre>
@@ -670,8 +670,102 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
         Créer un réseau de features pour fabriquer des nouvelles features, pour fabriquer des nouvelles features. Ainsi on peut créer du couplage entre supports génétiques et produire des phénotypes beaucoup plus intéressants. Voyons cela plus en détails, à partir d’un exemple concret.
     </p>
 
+    <img src="./img/features-coupling-time" alt="" style="width: 100%;">
+
+    <p>
+        Sur le schéma ci dessus on a un cas de couplage qui fait intervenir le temps. On a une feature qui nous renvoie la taille de l'individu. Cette taille est fonction du temps, cette donnée est accessible en lecture et donnée par le système à toutes les features. Pour évaluer la taille d'un individu il faut évaluer cette feature. Cette feature est couplée à trois autres features : taille min qui donne une taille min encodée sur son support génétique, taille max idem, et taux de croissance.
+    </p>
+
+    <p>
+        On a donc une feature taille qui pour être évaluée doit avant évaluer tout ses dépendances (on pourra optimiser cette étape, avec un cache et n'évaluer que si l'évaluation de cette feature a changé, notamment grâce à la gestion des mutations). Avec cette définition, quand j'évaluerai taille j'aurai toujours la bonne valeur, même si taux de croissance mute entre deux évaluations.
+    </p>
+
+    <p>
+        Voici comment on peut coupler les features entre elles pour produire des nouvelles features, et créer autant de complexité qu'on le souhaite. On peut imaginer ici reproduire des features à la manière de composants informatiques, qui viennent éteindre et allumer l'expression d'autres features.
+    </p>
+
+    <p>
+        Comme on peut le voir on se sert des valeurs générées précedemment par la feature pour arriver à ce résultat. Il est temps d'aborder un point important sur l'évaluation et les états d'un individu.
+    </p>
+
+    <h4>Les états et l'évaluation</h4>
+
+    <p>C'est sans doute l'un des points les plus importants dans le design de ce modèle. Le phénotype d'un individu, le global (l'aggrégation de tous les phénotypes produits par les features) et le local (produit par une feature) <strong>est un état immutable</strong>. Le phénotype est lui aussi <strong>une valeur</strong>. </p>
+        <p>
+            Quand on veut connaître la taille d'un invidivu par exemple, on ne vient pas écraser ou mettre à jour la taille qu'il avait avant. On évalue la feature et elle nous renvoie une valeur. Cette valeur ne change pas dans le temps, la taille d'un individu ne change pas dans le temps : quand on la mesure on obtient des valeurs différentes à chaque instant. Quand on mesurait notre taille enfant en mettant une petite marque sur le mur, on n'effacait pas la marque d'avant pour mettre la suivante, plus haute. On faisait une nouvelle marque ! Il sera toujours vrai, qu'à un moment donné vous étiez plus petit qu'aujourd'hui. En ce sens, votre taille n'est pas un état mutable. Vous avez plutot effectué une mesure, et au cours du temps, cette mesure a renvoyé des valeurs différentes.
+        </p>
+
+        <p>
+            C'est la même chose pour notre phénotype. Le phénotype n'a pas à être un état mutable, qu'on viendrait mettre à jour à chaque pas de temps. Non ! Le phénotype est <strong>un instantanné de l'évaluation de toutes les features d'un individu</strong>. Si je veux connaitre la taille d'un individu, j'évalue sa feature taille et elle me renvoie une valeur. Cette valeur dépend du temps (mesurer deux fois la taille au même instant produit la même valeur). 
+        </p>
+        <p>
+            Chaque feature, comme dans l'exemple ci-dessus, conserve un journal, un historique (un log) de toutes les valeurs qu'elle a produite quand on l'a évaluée. Ainsi, j'accède naturellement à l'histoire complète de mon individu. Je ne remplace pas la valeur taille, j'en créee un nouvelle à chaque fois que je fais la mesure. Ce log permet de calculer le présent en fonction du passé. Le présent (ou le futur) ne vient pas écraser le passé. 
+        </p>
+
+        <p>
+            Il est hors de question pour notre feature d'avoir un état pour ces raisons. Une feature est une fonction qui produit des valeurs (en appelant d'autres features au besoin). Quand j'ai besoin de l'évaluer je l'évalue et je produis une nouvelle valeur pour mon phénotype.
+        </p>
+        <p>
+            Dans ce modèle, l'état mutable est justement le support génétique, sujet à des <em>mutations</em>. Dans toute cette biliothèque le seul état mutable est le génome (exception faite de l'épigénétique, qui est d'ailleurs peut-être une mauvaise idée, ça peut être utile mais déconseillée à n'utiliser que dans des cas où c'est nécessaire)
+        </p>
+
+        <p>
+            Pour résumer, <strong>le phénotype d'un individu est une valeur</strong> produite par les features à un instant donné. Les features n'ont pas d'état mutable (elles ne maintiennent pas un état, elle ne font pas d'assignement). Elles peuvent produire une valeur à partir d'une valeur produite dans le passé, c'est bien normal. Mais <strong>elles ne peuvent pas modifier le passé</strong>, elles peuvent juste y accéder en lecture, <strong>ce sont des faits</strong>. En ce sens le log est un état mais un état immutable. Chaque nouvelle entrée s'ajoute aux précédentes sans les modifier, aucune entrée ne peut pas être modifiée ou supprimer par la feature.  
+        </p>
+      
+   
 
     <h5>Les features comme des API</h5>
+
+
+
+    <h5>Une feature "Groupe de features"</h5>
+
+    <p>
+        Un nom juste pour dire « une feature qui est un paquet de features ». Comme on l’a vu, on pourra combiner des features pour faire des nouvelles features, utiliser l’expression d’une pour conditionner l’expression de l’autre. Cela crée naturellement des dépendances entres features. Pour simplifier la vie de l’utilisateur on pourrait rajouter quelque chose de simple : faire des paquets de features. Au lieu d’évaluer chacune d’entre elles on en évalue qu’une qui renverra l ‘évaluation de toutes les features qu’elle contient. C’est juste une fonctionnalité pour faciliter la vie de l’utilisateur et simplifier l’usage de la bibliothèque.
+    </p>
+    <p>
+        Par exemple, je crée tout un ensemble de features relatives à la possibilité de voler d’un animal : absence/présence d’ailes, taille des ailes, types ailes (a plume, mammifère), forme des ailes, couleurs des plumes, bruit que fond les ailes, vitesse en vol, vitesse de pointe etc... Toutes ces features sont reliées les unes aux autres. Par exemple s’il n’y a pas de plumes, il n'y a pas de couleur des plumes. Au lieu d’avoir à interroger manuellement chacune de ces features je pourrais créer une « méta-feature » qui s’appelle « vol » par exemple. Elle les comprendrait toutes. Cela donnerait une paquet prêt à l’emploi ds n’importe quel projet où je veux voir ce trait phénotypique exister. Ainsi dans le code au lieu d’avoir un truc du genre :
+    </p>
+
+    <code class="pseudo-code">
+        <pre>
+hasPlumage = evaluate(individu, ‘hasPlumage’)
+plumageColors = evaluate(individu, ‘plumageColors’)
+wingsSize = evaluate(individu, ‘wingsSize’)
+etc.
+//Then do logic
+...
+//A la place on aurait
+vol = evaluate(individu, ‘vol’)
+//vol contiendrait toutes les données :
+//par ex : vol = {
+    hasWings : true,
+    hasPlumage : false,
+    plumageColor : undefined,
+    wingSize : {
+        value : 52,
+        unit : ‘cm’
+    },
+    speed : {
+        value : 60 ,
+        unit : ‘km/h’
+    }
+    //Etc...
+} 
+        </pre>
+</code>
+
+<p>
+    En ce sens, le phénotype global d'un individu (l'ensemble de ses traits), est la méta feature la plus globale
+</p>
+<code class="pseudo-code">
+    <pre>
+//evalue toutes les features d'un coup
+phenotype = evaluate(individu)
+    </pre>
+</code>
+ 
 
     <h3 id="espèces">Espèce</h3>
 
