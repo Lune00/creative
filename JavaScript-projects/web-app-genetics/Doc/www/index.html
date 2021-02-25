@@ -120,7 +120,7 @@
 
     <h4>Dominat/Récessif, dominance incomplète et codominance</h4>
 <p>
-    <a href="https://fr.wikipedia.org/wiki/All%C3%A8le">Plusieurs relations entre allèles</a> existent. Le modèle se propose de modéliser 3 d'entre elles :
+    <a href="https://fr.wikipedia.org/wiki/All%C3%A8le#Relations_entre_all%C3%A8les">Plusieurs relations entre allèles</a> existent. Le modèle se propose de modéliser 3 d'entre elles :
 
 </p>
 
@@ -312,14 +312,14 @@ Au niveau de la feature, la valeur de cet allèle (ainsi que son rapport aux aut
     <li>défini à l'avance par l'utilisateur. Ainsi il garde le contrôle complet sur les entrées/sorties au niveau des features </li>
     <li>défini aléatoirement (par une fonction), l'utilisateur perd alors le contrôle sur l'évaluation du génome qui va évoluer de lui même (selon des règles définies à l'avance) </li>
 </ul>
-Dans le deuxième cas de l'évolution inctrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. Dans le cas où les valeurs ne seront pas définies à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
+Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. Dans le cas où les valeurs ne seront pas définies à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
     <h3 id="features">Features</h3>
 
     <h4>Définition</h4>
 
     <p>Une fois définis des supports génétiques on peut commencer à designer le composant à l'étage du dessus : la feature. Une feature est un trait (un phénotype) observable au niveau de l'individu. Jusqu’ici on a seulement parlé de support génétique dont l'évaluation produit des valeurs.  C’est donc à ce niveau qu’on va  <em>donner un sens aux valeurs générées par le support génétique</em>. La feature produit une   <strong>observable</strong> que l'utilisateur va définir. </p>
 
-    <p>L’intérêt de découpler la production de valeur par un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features et redéfinir l'interprétation que l'on fait de sa valeur.</p>
+    <p>L’intérêt de découpler la production de valeur par un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features (dans différents projets) et redéfinir l'interprétation que l'on fait de sa valeur.</p>
     <p>
         La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#eatures-coupling">ou d'une autre features</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur (ici un couple {valeur, unité}) dans un ensemble d'arrivée (valeurs du phénotype).
     </p>
@@ -376,7 +376,7 @@ $$(c-B)A(A-B) $$
    
     <h5>Map Combinaison linéaire</h5>
 
-    <p>Dans le cas, et seulement dans le cas (pour des raisons de complexité), où l'utilisateur map chacune des allèles à un nombre (entier ou décimal) on peut proposer à l'utilisateur d'en faire un combinaison linéaire se servant du poids de chaque expression du gène. Par exemple ici, définissons cette association : </p>
+    <p> <strong>Si et seulement si l'utilisateur map chacune des allèles à un nombre (entier ou décimal) </strong>on peut proposer à l'utilisateur d'en faire un combinaison linéaire se servant du poids caractérisant la contribution de chaque allèle. Par exemple ici, définissons cette association : </p>
     <ul>
         <li>\(AB \mapsto 1 \)</li>
         <li>\(A \mapsto 0 \)</li>
@@ -398,7 +398,7 @@ $$(c-B)A(A-B) $$
     <p>avec \(i_a\) et \(i_b\) les allèles a et b du gène \(i\).</p>
 
     <p>
-        Ensuite l'utilisateur peut rescaler les valeurs obtenues vers un nouvel intervalle. En effet, en fonction des valeurs qu'il a associé à chaque allèle, il a accès à l'intervalle du domaine de départ (les bornes min et max), ici \( \left[ -1 : 5 \right]\). Il peut interpoler chaque valeur de cet intervalle vers un autre intervalle. Pour cela il a juste à définir un min, un max et une fonction d'interpolation. Par exemple, il définit l'intervalle d'arrivée à \( \left[ 10 : 300 \right]\) et une fonction d'interpolation linéaire.
+        L'utilisateur peut ensuite <strong>metre à l'échelle (rescale)</strong> les valeurs obtenues vers un nouvel intervalle. En effet, en fonction des valeurs qu'il a associé à chaque allèle, il a accès à l'intervalle du domaine de départ (les bornes min et max), ici \( \left[ -1 : 5 \right]\). Il peut interpoler chaque valeur de cet intervalle vers un autre intervalle. Pour cela il a juste à définir un min, un max et une fonction d'interpolation. Par exemple, il définit l'intervalle d'arrivée à \( \left[ 10 : 300 \right]\) et une fonction d'interpolation linéaire.
     </p>
     <p>
         On peut faire une interpolation linéaire ou avec n’importe quel polynôme. Le choix de l'interpolation est un paramètre intéressant car ainsi, une variation infime du génome (brassage, mutation) peut conduire à des variations phénotypiques plus fortes (et non directement proportionnelle ou graduelle)
