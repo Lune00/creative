@@ -54,7 +54,7 @@
     <p>Le <em>support génétique</em> (encodé en binaire) lorsqu’il est évalué produit une valeur. Cette valeur est ensuite interprétée par une <em>feature</em> qui produit à son tour une valeur auquel l’utilisateur donne une unité de mesure. L’expression de la feature est alors remontée dans le phénotype, le résultat de l’évaluation de toutes les <em>features</em> de l’individu. La valeur en sortie d’une feature peut servir d’entrée à une autre <em>feature</em> et ainsi de suite. Ainsi, le phénotype forme une collection de couples clé:{valeur, unité} produite par l’évaluation d'un réseau de features (possiblement) interdépendantes, fondé sur un support génétique.  </p>
 
 
-    <img class="modele-img" src="./img/modele-general" alt="Modèle général">
+    <img id="general-model" class="modele-img" src="./img/modele-general" alt="Modèle général">
 
 
     <p>Lors de la reproduction ou du clonage, le support génétique est transmis à l’aide de mécanismes connus de la biologie (mais nécessairement simplifiés) : mitose, méiose.</p>
@@ -386,7 +386,7 @@ if(unkown(x)){
     //Do stuff
     valeur = ....
     // retrouve l'allèle unkown et lui assigne valeur,dimension, unité
-    setValue(individu, feature, 'valeur', dimension, unité) 
+    setValue(feature, 'valeur', dimension, unité) 
 }
         </pre>
     </code>
@@ -531,8 +531,54 @@ function evaluate(args, phenotype = { value: undefined, dimension = undefined,
 
     <h4 id="fonctionnal-feature">Features <em>fonctionnelles</em></h4>
 
+    <p>
+        Jusqu’ici on a parlé d’associer aux valeurs remontées par le support génétique d'autres valeurs qui <em>font sens</em>. On fait correspondre des valeurs à des valeurs, on map. Une feature est une simple <em>fonction</em> au sens mathématique qui, à chaque valeur fait correspondre une autre valeur. Pourquoi s’arrêter là ? Pourquoi ne pas donner la possibilité d’associer à chaque valeur d’un support génétique directement une fonction ? En effet, une fonction est <em>une valeur comme les autres</em> (dans une approche <a href="https://en.wikipedia.org/wiki/First-class_function">first-class function</a>), au même titre que 1 ou ‘toto’.
+    </p>
+
+    <p>
+        Cette possibilité est <strong>extrêmement intéressante</strong> car elle permet de produire des phénotypes qui sont non plus juste des états (une valeur interprétée du support génétique) mais des <strong>comportements</strong>. 
+    </p>
+
+    <p>Reprenons un exemple où notre support génétique est codé sur un gène avec deux allèles A et B, avec \(u(A,B)=1\), soit A dominant et B récessif. On a donc deux valeurs possibles , A ou B, pour ce support. Associons une fonction(une valeur) à chaque allèle dans notre feature que nous appelerons <code>'FeatureA'</code> :</p>
+    <ul>
+        <li>\(A \mapsto f_A(x,y) \{ \text{return x + y} \} \)</li>
+        <li>\(B \mapsto f_B(x,y) \{ \text{return x - y} \} \)</li>
+    </ul>
+
+    <p>où \(x\) peut être n'importe quoi (y compris une fonction !) C'est à l'utilisateur de le définir. Attention ici on est pas dans le cas où on va appliquer \(f_A\) quand A s'exprime et renvoyer le résultat. Ici, on <strong>retourne</strong>\(f_A(x)\)</p>
+
+    <p>Par exemple, un extrait de pseudo-code de l'utilisateur dans son projet</p>
+
+    <code class="pseudo-code">
+        <pre>
+value = evaluate(individu,'FeatureA')
+x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
+        </pre>
+    </code>
+
+    <p>Les features fonctionnnelles ne sont qu'une généralisation des autres features. En effet, quand on associe une valeur à un allèle</p>
+    $$ A \mapsto \text{'foo'} $$
+   <p>c'est équivalent à lui associer une fonction sans argument qui retourne 'foo' </p>
+   $$ A \mapsto \text{'foo'} \equiv A \mapsto f_A() \{ \text{return 'foo'} \} $$
+
+   <p>Le fait de pouvoir retourner directement des fonctions est une propriété très intéressante et utile au modèle pour créer des phénotypes riches, faits d'états mais aussi de comportements. Cela ouvre énormément de possibilités.</p>
     <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
 
+    <p>Une feature peut prendre son entrée, être branchée soit</p>
+    <ul>
+        <li> <strong>a un et un seul support génétique</strong>. Dans la vraie vie si c'est l'expression des gènes qui produit des phénotypes, avoir plusieurs traits pour le même support génétique semble absurde.</li>
+        <li>à une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
+    </ul>
+
+    <p>
+        Voici une notion un peu plus avancée du modèle mais qui permet, je crois, de lui donner beaucoup d’intérêt et de puissance.
+    </p>
+    <p>
+        Pour le moment, on peut définir des features, chacune interprétant l'expression d'un support génétique. C’est cool déjà, mais c’est embêtant car toutes ces features sont sagement <em>les unes à coté des autres, à s’ignorer mutuellement et à vivre leur vie</em> . En soi on peut laisser au soin de l’utilisateur de combiner les effets des features pour fabriquer de nouveaux mécanismes lui-même. Mais on peut aussi intégrer nativement cette possibilité dans notre bibliothèque, et créer de manière récursive et <em>infinie</em> des features à partir d’autres features.
+    </p>
+    <p>
+        Créer un réseau de features pour fabriquer des nouvelles features, pour fabriquer des nouvelles features. Ainsi on peut créer du couplage entre supports génétiques et produire des phénotypes beaucoup plus intéressants. Voyons cela plus en détails, à partir d’un exemple concret.
+    </p>
     <h3 id="espèces">Espèces</h3>
     
 
