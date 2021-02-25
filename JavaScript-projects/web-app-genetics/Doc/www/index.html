@@ -347,6 +347,70 @@ Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaîtr
     </p>
 
 
+    <h4>Paramètres</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4">Feature</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Paramètre</th>
+                <th>Description</th>
+                 <th>Type</th>
+                  <th>Contraintes</th>
+            </tr>
+        <tr>
+                <td>Nom</td>
+                <td>Un nom donné à la feature</td>
+                <td>String</td>
+                 <td>Unique</td>
+            </tr>
+            <tr>
+                <td>Source</td>
+                <td>D'où proviennent les entrées de la feature</td>
+                <td>Support Génétique ou (Features...)</td>
+                 <td>Unique si support, MAX(à définir) si features</td>
+            </tr>
+            <tr>
+                <td>Output</td>
+                <td>Données en sortie de la feature</td>
+                <td>Ensemble {clé:valeurs},<code>Object</code></td>
+                 <td>
+                     Doit respecter le schéma <code>{valeur: Object, dimension: String, unit: String}</code>. Ajouter peut être une contrainte sur le schéma de <code>value</code>
+                   </td>
+            </tr>
+            <tr>
+                <td>Input</td>
+                <td>Données en entrée de la feature. <ul>
+                    <li>Si support génétique : évaluation du support [entrées possibles définies]</li>
+                    <li>Si une ou plusieurs features : concaténation des évaluations des features</li>
+                </ul></td>
+                <td>Ensemble {clé:valeurs},<code>Object</code></td>
+                 <td>
+
+                    <ul>
+                        <li> Si source est support : structure passée en entrée doit contenir les clefs appartenant à l'ensemble des allèles définis sur le support</li>
+
+                        <li>Si sources est features : voir contraintes à mettre. Chaque input doit respecter le schéma de données Output de la source. Chaque input doit respecter le schéma <code>{valeur: Object, dimension: String, unit: String}</code>  </li>
+                    </ul>
+                     
+                    
+                   </td>
+            </tr>
+            <tr>
+                <td>Log</td>
+                <td>Historique de toutes les valeurs générées par la feature. A chaque évaluation, si l'évaluation est différente de la précédente valeur on la log.</td>
+                <td>Stack (Last in First Out) { t: {valeur, dimension, unit}}, tableau d'Object</td>
+                 <td>
+                   Aucune
+                   </td>
+
+            </tr>
+        </tbody>
+    </table>
 
 
     <h4>Ecrire une feature</h4>
@@ -577,7 +641,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
    <h4>Sur le temps</h4>
    <p>
-       Pour le moment nous n'avons pas parlé du temps, les features produisent des phénotypes statiques pour un matériel génétique donné. <strong>Le temps sera accessible par défaut à chaque feature en argument</strong> pour permettre à l'utilisateur de produire des évaluations dynamiques du phénotype. En effet, pour faire évoluer un système (un individu par exemple) il faut une notion de temps d'une manière ou d'une autre.
+       Pour le moment nous n'avons pas parlé du temps, les features produisent des phénotypes statiques pour un matériel génétique donné. <strong>Le temps sera accessible par défaut à chaque feature en argument</strong> pour permettre à l'utilisateur de produire des évaluations dynamiques du phénotype. En effet, pour faire évoluer un système (un individu par exemple) il faut une notion de temps d'une manière ou d'une autre. L'horloge interne d'un invidu (à sa naissance) \(t_0\) sera accessible à chaque individu.
    </p>
 
    <p>
@@ -592,7 +656,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
     <p>Une feature peut prendre son entrée, être branchée soit</p>
     <ul>
-        <li> <strong>a un et un seul support génétique</strong>. Dans la vraie vie si c'est l'expression des gènes qui produit des phénotypes, avoir plusieurs traits pour le même support génétique semble absurde.</li>
+        <li> <strong>a un et un seul support génétique</strong>. Dans la vraie vie c'est l'expression des gènes qui produit des phénotypes, avoir plusieurs traits pour le même support génétique semble absurde. Mais est-ce absurde? Est ce que ça pourrait pas être utile ? A voir.</li>
         <li>à une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
     </ul>
 
@@ -609,7 +673,9 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
     <h5>Les features comme des API</h5>
 
-    <h3 id="espèces">Espèces</h3>
+    <h3 id="espèces">Espèce</h3>
+
+    <h3 id="espèces">Population</h3>
     
 
     <h2 id="mutations">Mutations</h2>
