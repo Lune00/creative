@@ -268,7 +268,7 @@
                             interdépendantes, fondé sur un support génétique. </p>
 
 
-                        <img id="general-model" class="modele-img" src="./img/modele-general" alt="Modèle général">
+                        <img id="general-model" class="modele-img" src="./img/modele-general.png" alt="Modèle général">
 
 
                         <p>Lors de la reproduction ou du clonage, le support génétique est transmis à l’aide de
@@ -287,8 +287,7 @@
 
                         <h2 id="les-modèles-de-données">Les modèles de données</h2>
                         <h3 id="support-génétique">Support génétique</h3>
-                        <p>Un support génétique est une séquence en binaire (de 0 et de 1) qui peut être évalué pour
-                            <strong>produire des valeurs</strong> entières.</p>
+                        <p>Un support génétique est une séquence en binaire (de 0 et de 1) </p>
                         <table>
                             <thead>
                                 <tr>
@@ -956,7 +955,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
         Créer un réseau de features pour fabriquer des nouvelles features, pour fabriquer des nouvelles features. Ainsi on peut créer du couplage entre supports génétiques et produire des phénotypes beaucoup plus intéressants. Voyons cela plus en détails, à partir d’un exemple concret.
     </p>
 
-    <img src="./img/features-coupling-time" alt="" style="width: 100%;">
+    <img src="./img/features-coupling-time.png" alt="" style="width: 100%;">
 
     <p>
         Sur le schéma ci dessus on a un cas de couplage qui fait intervenir le temps. On a une feature qui nous renvoie la taille de l'individu. Cette taille est fonction du temps, cette donnée est accessible en lecture et donnée par le système à toutes les features. Pour évaluer la taille d'un individu il faut évaluer cette feature. Cette feature est couplée à trois autres features : taille min qui donne une taille min encodée sur son support génétique, taille max idem, et taux de croissance.
@@ -978,7 +977,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
     <p>C'est sans doute l'un des points les plus importants dans le design de ce modèle. Le phénotype d'un individu, le global (l'aggrégation de tous les phénotypes produits par les features) et le local (produit par une feature) <strong>est un état immutable</strong>. Le phénotype est lui aussi <strong>une valeur</strong>. </p>
         <p>
-            Quand on veut connaître la taille d'un individu par exemple, on ne vient pas écraser ou mettre à jour la taille qu'il avait avant. On évalue la feature et elle nous renvoie une valeur. Cette valeur ne change pas dans le temps, la taille d'un individu ne change pas dans le temps : quand on la mesure on obtient des valeurs différentes à chaque instant. Quand on mesurait notre taille enfant en mettant une petite marque sur le mur, on n'effaçait pas la marque d'avant pour mettre la suivante, plus haute. On faisait une nouvelle marque ! Il sera toujours vrai, qu'à un moment donné vous étiez plus petit qu'aujourd'hui. En ce sens, votre taille n'est pas un état mutable. Vous avez plutôt effectué une mesure, et au cours du temps, cette mesure a renvoyé des valeurs différentes.
+            Quand on veut connaître la taille d'un individu par exemple, on ne vient pas écraser ou mettre à jour la taille qu'on avait noté avant. La taille d'un individu ne change pas dans le temps (votre taille change bien sûr mais pas dans un système d'informations, c'est une nouvelle entrée ) : quand on la mesure on obtient des valeurs différentes à chaque instant. Quand on mesurait notre taille enfant en mettant une petite marque sur le mur, on n'effaçait pas la marque d'avant pour mettre la suivante, plus haute. On faisait une nouvelle marque ! Il sera toujours vrai, qu'à un moment donné vous étiez plus petit qu'aujourd'hui. Prenez une personne que vous connaissiez enfant et qui est devenue adulte, vous vous souvenez d'elle quand elle était petite, vous n'êtes pas allés dans notre cerveau chercher la cellule qui stocke sa taille pour la remplacer par sa taille adulte ! Les deu cohabitent, les informations s'accumulent, de manière associative. Et c'est ce qui vous permet de dire "Oh, ce que tu as grandi!". En ce sens, du point de vue du système d'information, votre taille n'est pas un état mutable. 
         </p>
 
         <p>
@@ -1006,10 +1005,10 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
    
 
     <p>Prenons l'exemple d'un d'un serpent. Il possède des gènes pour coder un pied, et d'autres gènes pour lui donner forme (nombre de doigts, pied palmé etc...). Dans la plupart du temps (phénotype dominant à l'état sauvage) il ne s'exprime pas. Dans son phénotype on ne trouve aucune expression du pied, et des traits propres au pied.  </p>
-    <img src="./img/coupling-feature-on-off-ex2" style="width: 100%;" alt="">
+    <img src="./img/coupling-feature-on-off-ex2.png" style="width: 100%;" alt="">
     <p> Si une feature renvoie une valeur vide \(\{\}\) (ou une valeur définie par le système du genre 'required') toutes les features qui en dépendent ne peuvent plus s'exprimer et renvoient une valeur vide à leur tour. Le résultat est que le génome concerné ne s'exprime pas et que le phénotype n'est pas observé </p>
 <p>Ces gènes ne s'activent que si l'allèle A s'exprime, comme ci-dessous. Si c'est le cas l'intégralité du génome du pied s'exprime et on trouve un phénotype</p>
-    <img src="./img/coupling-feature-on-off-ex1" style="width: 100%;" alt="">
+    <img src="./img/coupling-feature-on-off-ex1.png" style="width: 100%;" alt="">
     <p>L'activation en cascade de toutes les features dépendantes est alors automatique dans le modèle.</p>
 
 
