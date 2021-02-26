@@ -2357,6 +2357,9 @@ p {
 ===========================*/
 .carousel-item {
   background-color: #0067f4;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../assets/images/dna-3539309_1280.jpg");
+  background-size: cover;
+  background-attachment: fixed;
   position: relative; }
   .carousel-item::before {
     position: absolute;
