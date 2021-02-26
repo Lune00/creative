@@ -1141,6 +1141,16 @@ featureHistory = getFeatureHistory(t-50, t, t,
         Comment c'est possible ? Et bien c'est très simple : il suffit de récupérer un phénotype dans le passé d'un individu comme on l'a vu précédemment. On dispose non seulement de son phénotype mais également de son génome, sa valeur à cet instant ! Il suffit alors de dupliquer notre individu et de lui assigner ce phénotype <em>du passé</em>. Du point de vue de notre modèle, nous avons là un clone parfait de l'individu à un instant dans le passé. Si l'environnement peut être reproduit à l'identique, on peut lui faire subir une mutation, le mettre un peu plus à gauche ou à droite que sais-je, et observer la divergence des deux lignes de vie. Les possibilités sont grandes ! Et on peut évidemment faire tout ça à l'échelle d'une population : )  
     </p>
 
+    <p>
+        Ce qui est intéressant avec ce système de mémoire, c'est qu'on va pouvoir répondre à des questions intéressantes dans notre programme, prendre des décisions sur le passé. Par exemple on pourra écrire une fonction qui dira "si tel individu, entre telle année et telle année n'a pas dépassé cette taille là, n'a pas eu cette couleur, n'a pas synthétisé cette molécule... alors...".
+    </p>
+
+
+    <h2>Hacker le modèle</h2>
+
+    <p>Il y aurait plein de façons de hacker, de détourner de son usage principal, le modèle pour créer des nouveaux mécanismes au delà des phénotypes et du génome. On pourrait imaginer des features qui ne prennent pas du tout en compte le génome (même indirectement). Et étendre le système d'évaluation dans le temps et de mémoire à des traits non génétiques (opinion politique, goût, caractère, état d'esprit...)</p>
+
+
     <h2 id="engine">Moteur : reproduction et transmission du génome</h2>
 
     <h3>Auto-fertilisation</h3>
