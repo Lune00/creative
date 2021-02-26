@@ -1080,7 +1080,7 @@ On pourrait ainsi donner naturellement un rôle sympa aux séquences non codante
         L'intérêt de designer le modèle sous forme d'aggrégations de valeurs, et de composition de fonctions pures, c'est qu'on peut garder mémoire de tout ce qui s'est passé au cours du temps.
     </p>
     <p>
-        On peut reconstruire <em>toute l'histoire</em> d'un individu à partir de son état initial (son génome), du temps et des logs des mutations ! En effet, vu que tout est valeur et que rien n'est remplacé sur place (sauf le génome mais on garde ses états précédents), et que toutes les features sont des fonctions pures, le système garde la mémoire de toutes les informations nécessaires pour re-dérouler le fil de l'histoire.  
+        On peut reconstruire <em>toute l'histoire</em> d'un individu à partir de son état initial (son génome), du temps et des logs des mutations ! En effet, vu que tout est valeur et que rien n'est remplacé sur place (sauf le génome mais on garde ses états précédents), et que toutes les features sont des fonctions pures, le système garde la mémoire de toutes les informations nécessaires pour re-dérouler le fil de l'histoire. On peut même obtenir des valeurs à des instants par lesquels n'est pas passée notre simulation.
     </p>
     <p>
         Regardons la puissance de cette approche (que je n'ai pas du tout inventé, beaucoup inspiré par Rich Hickey et notamment cette   <a href="https://www.youtube.com/watch?v=V6DKjEbdYos&t=3043s">conférence absolument géniale</a>) sur un exemple concret, un pseudo-code (je ne vais pas détailler pour le moment comment tout ça <em>exactement</em> va être implémenté mais c'est possible !)
@@ -1142,7 +1142,7 @@ featureHistory = getFeatureHistory(t-50, t, t,
     </p>
 
     <p>
-        Ce qui est intéressant avec ce système de mémoire, c'est qu'on va pouvoir répondre à des questions intéressantes dans notre programme, prendre des décisions sur le passé. Par exemple on pourra écrire une fonction qui dira "si tel individu, entre telle année et telle année n'a pas dépassé cette taille là, n'a pas eu cette couleur, n'a pas synthétisé cette molécule... alors...".
+        Ce qui est intéressant avec ce système de mémoire, c'est qu'on va pouvoir répondre à des questions intéressantes dans notre programme, prendre des décisions sur le passé. Par exemple on pourra écrire une fonction qui dira "si tel individu, entre telle année et telle année n'a pas dépassé cette taille là, n'a pas eu cette couleur, n'a pas synthétisé 10L de telle molécule... alors...".
     </p>
 
 
