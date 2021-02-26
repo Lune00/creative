@@ -129,7 +129,10 @@
    <ul>
        <li><strong>Dominant/récessif :</strong>  un allèle récessif demande l'homozygotie d'un gène pour pouvoir s'exprimer. Autrement dit, soit \(a-B\) deux allèles du même gène, a est récessif (et B est dominant) si  \(u(a,B)=0\). Ce gène est évalué à \(B\)</li>
        <li><strong> Dominance incomplète :</strong> aucun des allèles qui déterminent le caractère est dominant, les deux s'expriment et le caractère est un mélange des deux contributions. Autrement dit, soit \(a-b\) deux allèles du même gène, a et b ont une dominance incomplète si  \( u(a,b) \in  \left] 0 : 1\right[ \). Ce gène est évalué à {\(A: u(a,b), B: 1-u(a,b)\)}. En ce sens, le modèle Dominant/récessif n'est qu'un cas particulier de dominance incomplète.</li>
-       <li><strong>Codominance :</strong>  les deux allèles s'expriment en même temps, et le trait est l'expression conjointe des deux allèles.Autrement dit, soit \(A-B\) deux allèles du même gène, il faut donner au coefficient une valeur distincte pour prendre en compte ce cas. On pose par définition la valeur \(u(A,B)=-1\) pour symboliser ce cas. L'évaluation du gène retourne la valeur \(AB\). Dans ce cas, deux allèles peuvent produire 3 valeurs distinctes : A , B et AB}  </li>
+       <li><strong>Codominance :</strong>  les deux allèles s'expriment en même temps, et le trait est l'expression conjointe des deux allèles.Autrement dit, soit \(A-B\) deux allèles du même gène, il faut donner au coefficient une valeur distincte pour prendre en compte ce cas. On pose par définition la valeur \(u(A,B)=-1\) pour symboliser ce cas. L'évaluation du gène retourne la valeur \(AB\). Dans ce cas, deux allèles peuvent produire 3 valeurs distinctes : A , B et AB  </li>
+
+       <li><strong>Allèle inerte :</strong>on verra à la section sur <a href="#mutations">les mutations</a> qu'une allèle peut devenir inerte, c'est à dire qu'elle n'exprime plus rien. Une allèle inerte est toujours récessive, si deux allèles inertes sont sur le même gène le gène ne renvoie aucune évaluation.</li>
+       <li><strong>Allèle léthale :</strong>: si cette allèle s'exprime l'individu meurt</li>
    </ul>
 
    
@@ -163,11 +166,21 @@
             <td>\(u(A,B) = -1\)</td> 
             <td>\( \{ AB: 1 \}\)</td>  
         </tr>
+        <tr>
+            <td>Allèle inerte \(A\)</td>
+            <td>\(u(A,B) = 0, \forall B\)</td> 
+            <td>\( \{ B: 1 \}\)</td>  
+        </tr>
+        <tr>
+            <td>Allèles inertes \(A\) et \(B\) </td>
+            <td>\(u(A,B) = u(B,A) = 0\)</td> 
+            <td>\( \{ \}\)</td>  
+        </tr>
     </tbody>
 </table>
 
 <p>
-    Pour le moment aucune valeur n'est assignée à chaque allèle, sa valeur est son code binaire (ou son nom qui est un alias pour ce code). La valeur et le sens seront défini au niveau d'une feature.
+    Pour le moment aucune valeur n'est assignée à chaque allèle, sa valeur est son code binaire (ou son nom qui est un alias pour ce code). La valeur et le sens seront défini au niveau d'une <a href="#features">feature</a>.
 </p>
 
 
@@ -322,7 +335,7 @@ Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaîtr
 
     <p>L’intérêt de découpler la production de valeur par un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features (dans différents projets) et redéfinir l'interprétation que l'on fait de sa valeur.</p>
     <p>
-        La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#eatures-coupling">ou d'une autre features</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur (ici un couple {valeur, unité}) dans un ensemble d'arrivée (valeurs du phénotype).
+        La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#features-coupling">ou d'une autre feature</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur (ici un couple {valeur, unité}) dans un ensemble d'arrivée (valeurs du phénotype).
     </p>
 
     <p>
@@ -703,7 +716,7 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     </p>
 
     <p>
-        Comme on peut le voir on se sert des valeurs générées précedemment par la feature pour arriver à ce résultat. Il est temps d'aborder un point important sur l'évaluation et les états d'un individu.
+        Comme on peut le voir on se sert des valeurs générées précedemment par la feature pour retourner la taille. On accède à LOG, l'historique, et on récupère la dernière entrée avec <code>popValue()</code>  et <code>popTime()</code>. Le LOG est une <a href="https://fr.wikipedia.org/wiki/Pile_(informatique)">pile</a>, c'est une structure de données "Last In First Out".  Il est temps d'aborder un point important sur l'évaluation et les états d'un individu.
     </p>
 
     <h4 id="immutability">Les états et l'évaluation</h4>
@@ -897,8 +910,133 @@ phenotype = evaluate(individu)
 
     <h2 id="mutations">Mutations</h2>
 
-    
+    <h3>Définition d'une mutation dans le modèle</h3>
 
+    <p>
+        Une mutation est une modification rare, accidentelle ou provoquée de l'information génétique dans le génome. Dans le modèle une mutation pourrait être
+    </p>
+    <ul>
+        <li>code génétique d'une allèle : transition vers une autre allèle, vers une allèle mutante ou vers une allèle inerte (code inconnu)</li>
+        <li class="question">relation entre deux allèles. Est ce raisonnable ? Dans la vraie vie il peut y avoir une mutation qui rend une allèle jusque la récessive tout d'un coup dominante?</li>
+        <li>Apparation d'un nouveau gène codant pour une feature</li>
+        <li>Disparition d'un nouveau gène codant pour une feature</li>
+        <li>Disparition d'une allèle à la prochaine reproduction (remplacé par une allèle inerte</li>
+        <li class="question">Autre idée?</li>
+    </ul>
+  
+
+    <p>
+        Le support génétique peut muter : par exemple un bit pourrait se décaler vers la gauche. Prenons un gène codé sur 8bits qui vaut initialement <code>00000001</code> (correspond à une allèle). Une mutation est déclenchée et un bit se décale) à <code>00000010</code> :
+
+        <ul>
+            <li>soit j'ai défini une allèle mutante en amont, pris en compte dans ma feature</li>
+            <li>soit je n'ai pas associé de valeur. L'allèle sera évualée à <code>'unknown'</code> ou sera inerte.</li>
+        </ul>
+    </p>
+
+
+    <h3>Rôle des gènes non codants</h3>
+
+    <p>
+        On peut imaginer introduire des gènes non codants sur les chromosomes. Par exemple :
+        $$...\color{grey}0000000\color{red}10000100\color{blue}11011110\color{grey}11001100... $$ 
+
+    <ul>
+        <li><span style="color:red;">Gène codant 1 allèle A </span></li>
+        <li><span style="color:blue;">Gène codant 2 allèle B </span></li>
+        <li><span style="color:grey;">Gène non codant </span></li>
+    </ul>
+
+
+
+</p>
+
+<p>
+    Maintenant on peut imaginer une forme de mutation où chaque bit se décale de 1 pas sur la gauche. Le résultat serait cette séquence (me suis peut être trompé c’est chiant à faire)
+</p>
+
+$$...\color{grey}0000001\color{red}00010011\color{blue}01111011\color{grey}10011001... $$ 
+<ul>
+    <li><span style="color:red;">Gène codant 1 allèle C (par exemple) </span></li>
+    <li><span style="color:blue;">Gène codant 2 allèle inconnu (par exemple) </span></li>
+    <li><span style="color:grey;">Gène non codant </span></li>
+</ul>
+On pourrait ainsi donner naturellement un rôle sympa aux séquences non codantes. Après je te laisse imaginer toutes les opérations cools de mutation qu’on peut faire par des opérations très simples sur les bits.
+    </p>
+
+
+    <p>
+        Si l'on souhaite faire une simulation plus bas niveau seulement de brassage génétique et de mutations, en analysant le génome d'un individu sans lui donner du sens, on pourrait remplir leur génome que du matériel non codant. Et appliquer des mutations dessus à chaque génération.
+    </p>
+
+    <h3>Paramètres (à compléter/modifier)</h3>
+
+    <p>
+        Les mutations seront designées comme les supports génétiques, features et especes.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4">Feature</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Paramètre</th>
+                <th>Description</th>
+                 <th>Type</th>
+                  <th>Contraintes</th>
+            </tr>
+        <tr>
+                <td>Nom</td>
+                <td>Un nom donné à la mutation</td>
+                <td>String</td>
+                 <td>Unique</td>
+            </tr>      
+            <tr>
+                <td>Cible</td>
+                <td>Qui vise-t-elle, Liste de support génétique, Chromosome entier</td>
+                <td>Support génétique (Liste de gènes) ou Gène</td>
+                 <td>Au moins 1 gène visé</td>
+            </tr>   
+            <tr>
+                <td>Action</td>
+                <td>Que fait elle sur sa cible</td>
+                <td>Proposer des actions : décalage, substitution(nombre de bits concernés), aléatoire, éteindre/allumer (en faisant muter vers une allèle du système défini comme 'unknown')  etc..</td>
+                <td></td>
+            </tr> 
+            <tr>
+                <td>Déclenchement</td>
+                <td>Proposer des déclenchements automatiques</td>
+                <td>Chaque reproduction, aléatoire, fréquence etc...</td>
+                <td></td>
+            </tr> 
+            <tr>
+                <td>Agressivité</td>
+                <td>Permettre à la cible de résister ou non à la mutation. On définit un nombre de 0 à 100. On jette un dé, si le résultat est en dessus de ce nombre la mutation n'a pas lieu.</td>
+                <td>Integer</td>
+                <td>Entre 0 et 100 (arbitraire)</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <p>
+        Chaque mutation définit pourra être déclenchée automatiquement si elle a été configurée ainsi. Sinon l'utilisateur pourra toujours la déclencher manuellement quand il veut, en fonction des conditions de sa propre simulation(s'il simule un environnement par exemple), du genre
+    </p>
+
+    <code class="pseudo-code">
+        <pre>
+    //Déclenche manuellement une mutation
+    mutation = triggerMutation('nomMutation')
+    //Tous les individus concernés verront leur génome muter
+        </pre>
+    </code>
+     
+    <p>
+        Chaque mutation sera loguée par le système.
+    </p>
 
     <h3 id="epigenetique">Épigénétique</h3>
 
@@ -912,6 +1050,18 @@ phenotype = evaluate(individu)
         L'état épigénetique serait simplement une collection de clé:valeur mutables, et transmissible à la descendance. Quelles contraintes à mettre dessus ? Dans le cas d'une reproduction sexuée comment l'épigénétique de 2 parents se combinent pour être transmis ? Concaténation des clefs:valeurs? Est-ce vraiment une bonne idée (j'ai des doutes) ?s
     </p>
 
+
+    <h2 id="analyse">Analyse</h2>
+
+    <p>
+        Si l'on souhaite utiliser le modèle pour faire des simulations et s'amuser à faire de la démographie, on aura naturellement accès à toute l'histoire de notre simulation
+    </p>
+    <ul>
+        <li>Chaque feature log toutes les valeurs qu'elle a produit</li>
+        <li>A partir de ces logs on peut reconstruire l'histoire du phénotype au cours du temps</li>
+        <li>Chaque support génétique log les mutations qu'il a subi et chaque mutation est logué par le système quand elle est déclenchée</li>
+        <li>Chaque individu généré disposera de ces logs et la simulation gardera en mémoire sa date de naissance et de mort</li>
+    </ul>
 
     <h2 id="engine">Moteur : reproduction et transmission du génome</h2>
 
