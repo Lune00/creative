@@ -3306,13 +3306,30 @@ img{
 
 table{
   margin: 15px;
+  overflow-x: auto;
 }
 
 td, th, tr{
   padding: 10px 15px;
+  vertical-align: top;
 }
 
-h3{
+h2, h3, h4{
   margin-bottom: 10px;
-  padding:20px;
+  padding:20px 0;
+}
+
+pre{
+  font-family: monospace;
+  font-size:18px;
+  background-color: rgb(37, 37, 37);
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 10px 5px 5px black;
+}
+
+p{
+  margin: 10px 10px;
+  padding: 10px 0;
 }
