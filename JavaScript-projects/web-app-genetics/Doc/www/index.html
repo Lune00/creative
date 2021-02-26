@@ -99,6 +99,13 @@
                 <td>Nombre de bits sur lequel est encodé chaque gène du support : l’utilisateur pourra choisir d’encoder des gènes sur des structures allant de 1 à 8 bits (limite arbitraire). Ce paramètre défini par défaut le nombre de variations d’un même gène (allèles) accessibles. Par exemple, sur un support à 2 bits on a 4 valeurs possibles : 00 (0), 01 (1), 10 (2) et 11 (3). On a donc, au maximum 4 allèles pour ce gène dans notre « réservoir ». Sur 8 bits on a 256 valeurs possibles, donc 256 allèles possibles pour un même gène. La structure binaire est suffisante pour créer assez de variations (pas besoin de 4 caractères AGCT). </td>
                  <td>Integer</td>
                   <td>\( 1 \le n \le 8 \)</td>
+                </tr>
+                <tr>
+          <td>Rareté d'une allèle \(r\)</td>
+          <td>Sur les allèles disponibles on peut définir une rareté, un nombre qui sert au moment de la génération de populations. Ce nombre permettra de définir chance qu'un individu généré (non issu d'une reproduction) porte cet allèle initialement. </td>
+           <td>Float</td>
+            <td>\( 0 \le r \le 1 \)</td>
+      </tr>
             </tr>
                       <tr>
                 <td>Allèles disponibles <code>n<sub>a</sub></code></td>
@@ -636,6 +643,8 @@ function evaluate(args, phenotype = { value: undefined, dimension = undefined,
     <p class="note">On peut imaginer encore beaucoup de choses dans les contraintes à imposer ici. Plus on met de contraintes plus c'est long d'éditer mais plus on peut proposer des tests automatiques pour avertir l'utilisateur en cas de bug. Autant de temps à débugger en moins dans son projet</p>
 
 
+ 
+
     <h4 id="fonctionnal-feature">Features <em>fonctionnelles</em></h4>
 
     <p>
@@ -811,6 +820,17 @@ phenotype = evaluate(individu)
     </pre>
 </code>
  
+
+<h4>Pour résumer :</h4>
+
+<p>Pour créer une feature l'utilisateur doit</p>
+<ul>
+    <li>Lui donner un nom</li>
+    <li>Lui donner ses sources (un support génétique, une ou plusieurs features). Ca définit ce qu'elle prend en entrée</li>
+    <li>Si une source est un support génétique il doit associer une valeur à chaque allèle retournée par le support. Si la source est une feature il n'a rien à faire (l'entrée est définie par la valeur retournée par cette feature)</li>
+    <li>Définir ce que la feature retourne (soit une stratégie, soit il implémente sa propre fonction)</li>
+    <li>Si la valeur retournée est définie par une fonction écrite par l'utilisateur il doit en plus renseigner le schéma de la réponse(la structure des données renvoyée)</li>
+</ul>
 
     <h3 id="espèces">Espèce</h3>
 
