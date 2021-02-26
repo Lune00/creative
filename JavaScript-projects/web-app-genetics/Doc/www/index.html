@@ -574,25 +574,29 @@ function evaluate(args){
 <p> Le code sera à écrire en JavaScript. Il permettra de faire tout ce qu'on veut. Justement, tout ce qu'on veut peut amener à des gros poblèmes de sécurité. Il faudra songer à ce point : accès au DOM, Web API du navigateur? Emettre des requetes? Il faudra proposer un environnement où on peut contrôler les autorisations qu'on donne à ce code.</p>
 <p class="note">Peut-être faudra-t-il demander en plus à l'utilisateur de donner un schéma de réponse (la structure de la collection clé/valeurs et les types de données) dans le cas où une autre feature vient prendre en entrée ce résultat. Comme ça on pourrait lui garantir un certain format de données à utiliser pour composer sa prochaine stratégie et éviter bien des bugs.</p>
 
-<h5>Contrainte sur la valeur retournée</h5>
+<h5>Contrainte sur la valeur retournée?</h5>
 
-<p>Si l'utilisateur écrit sa propre fonction (dans les autres cas ça sera fait automatiquement) il devra fournir un schéma de données (clé:type)pour la valeur retournée par la feature. Par exemple </p>
+<p>Si l'utilisateur écrit sa propre fonction (dans les autres cas ça sera fait automatiquement) il devra fournir un schéma de données pour la valeur retournée par la feature. Par exemple </p>
 <pre>
-    <code>value = {
-        foo : Object {
-            a: String,
-            b: Number
+    <code>phenotype = [
+        {
+            value: String,
+            dimension: String,
+            unit: String,
         },
-        bar: Integer,
-        toto: Function {
-            {
-                a: Number
-            }
-        }
+        {
+            value: Integer,
+            dimension: String,
+            unit: String,
+        },
+        ...
+       ]
     }
     </code>
 </pre>
-<p>Ainsi il sera beaucoup plus simple dans l'étape de design de coupler les features, car on saura exactement quelles données on recevra en entrée. Il est peut être même possible qu'on puisse récupérer les valeurs possibles retournées (il faudrait pour cela parser le code écrit par l'utilisateur, à voir). Quid de la dimension et de l'unité de mesure? Sinon on contraint de renvoyer une valeur avec une seule clef. On peut contraindre pas mal je pense car si on met trop de libertés ça va compliquer le design. Si une feature peut renvoyer deux types de données différents c'est qu'elle peut probablement être découpée en deux features qui retourne chacune un type de données.</p>
+<p>Ainsi il sera beaucoup plus simple dans l'étape de design de coupler les features, car on saura exactement quelles données on recevra en entrée. Il est peut être même possible qu'on puisse récupérer les valeurs possibles retournées (on peut imaginer créer un bouton dans l'éditeur <code>Test</code> qui testerait la fonction (vérification entrées, vérification du retour conforme au schmé) et qui évalue la fonction sur toutes les entrées possibles pour produire tous les outputs possibles. On aurait alors la liste de toutes les sorties qui pourra être accessible à la feature qui veut la prendre en entrée. </p>
+    <p>Ici j'ai mis un tableau de structure phénotype {value, dimension, unit}, on pourrait restreindre encore davantage à une seule structure phénotype. On peut contraindre pas mal je pense car si on met trop de libertés ça va compliquer le design. Si une feature peut renvoyer deux phénotypes différents c'est qu'elle peut probablement être découpée en deux features qui retourne chacune un seul. Ces questions seront tranchées par la pratique.</p>
+    
 
 <p>Prenons un exemple simple ici j'écris ma fonction, je veux, par exemple, retourner la valeur de \(AB\) si elle existe, sinon je renvoie 'toto'</p>
 <code class="pseudo-code">
