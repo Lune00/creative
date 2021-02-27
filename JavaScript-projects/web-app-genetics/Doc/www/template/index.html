@@ -130,8 +130,7 @@
                             <div class="col-lg-6">
                                 <div class="slider-content">
                                     <h1 class="title">Modèle démographique</h1>
-                                    <p class="text">Toute l'histoire des populations, des individus est accessible à
-                                        tout moment. Remontez dans le temps, changez le cours de l'histoire</p>
+                                    <p class="text">Remontez dans le temps, changez le cours de l'histoire</p>
                                 </div> <!-- slider-content -->
                             </div>
                         </div> <!-- row -->
@@ -186,10 +185,10 @@
                         <p>Construire une bibliothèque que n’importe qui peut installer et utiliser dans ses propres
                             projets informatiques. Cette bibliothèque est constituée d’un moteur (un ensemble de
                             fonctions implémentant le modèle) ainsi que de données (avec un format bien défini)
-                            exportables et importables. Ainsi, les utilisateurs pourront partager leurs données entre
-                            eux (design du génome, des traits phénotypiques et des espèces) et une communauté
-                            <em>pourrait</em> se former construisant petit à petit des designs de plus en plus élaborés.
-                            L’idée c’est qu’on pourra construire à partir de ce qu’on a construit.</p>
+                            exportables. Ainsi, les utilisateurs pourront partager leurs design entre
+                            eux (features, especes) et une communauté
+                            <em>pourrait</em> se former construisant par itération des designs de plus en plus élaborés.
+                            </p>
                         <p>Pour permettre cela tout en étant <em>user-friendly</em> des éditeurs avec interface
                             graphique seront développés :</p>
                         <ul>
@@ -201,20 +200,20 @@
                             <li>Un générateur de documentation des allèles et features de chaque espèce dans lequel il
                                 sera facile de chercher (nom, données retournées par une feature etc...)</li>
                         </ul>
-                        <p>Les 3 éditeurs permettront d’éditer, importer, exporter, dupliquer, supprimer, ces 3 type de
+                        <p>Les éditeurs permettront d’éditer, importer, exporter, dupliquer, supprimer, ces 3 type de
                             données facilement. Ces données seront ensuite importées dans le projet informatique de
                             l’utilisateur et celui-ci, après import du moteur, pourra faire tourner le modèle dans le
                             but qu’il s’est fixé.</p>
                         <h2 id="objectifs">Objectifs</h2>
                         <p>S’amuser. Fournir un moteur permettant de simuler des entités (biologiques ou non) possédant
-                            des caractéristiques (traits phénotypiques) <strong>interprétables par
-                                l’utilisateur</strong>. Ces caractéristiques sont le résultat de l’évaluation d’un
+                            des phénotypes <strong>interprétables par
+                                l’utilisateur</strong>. Le phénotype de chaque individu résulte de l’évaluation d’un
                             support génétique (principalement). Les entités pourront se reproduire et transmettre à leur
-                            descendance une part de leur génome pour créer de l’hérédité, de la filiation (et de
+                            descendance leur génome pour créer de l’hérédité, de la filiation (et de
                             l’histoire). Ce génome pourra également être soumis à des mutations et évoluer.
                             L’utilisateur pourra alors facilement simuler de la sélection et des populations au cours du
                             temps dans son propre projet. Les espèces pourront muter, les populations évoluer etc. En
-                            somme un gros bac à sable. Ce modèle pourrait avoir des ambitions plus générales. Car s’il
+                            somme, un gros bac à sable. Ce modèle pourrait avoir des ambitions plus générales. Car s’il
                             vise principalement à simuler <em>de la vie</em>, le moteur pourrait être appliqué à
                             d’autres <em>objets</em>. On peut penser par exemple à faire une filiation de langues (en
                             utilisant des méthodes de <a href="https://fr.wikipedia.org/wiki/Philologie">philologie
@@ -228,9 +227,8 @@
                             but est de pouvoir <strong>interpréter fonctionnellement le phénotype pour prendre des
                                 décisions.</strong> Ce que j’entends par là c’est que si une espèce possède un trait
                             phénotypique qui renvoie la valeur ‘foo’ il faut que cette valeur <strong>puisse</strong>
-                            (pas nécessairement) avoir un sens pour l’utilisateur dans son programme. En ce sens, les
-                            traits phénotypiques doivent être définis dès le départ et le réservoir de phénotypes
-                            possibles doit pouvoir être contrôlé.</p>
+                            (pas nécessairement) avoir un sens pour l’utilisateur dans son programme, qu'elle puisse être anticipée. En ce sens, le réservoir de phénotypes
+                            possibles doit <em>pouvoir</em> être contrôlé.</p>
                         <h2 id="composants-à-développer">Composants à développer</h2>
                         <p><img src="./img/composants.png" alt="Composants"><br>
                             Le projet se compose des composants suivants à concevoir et développer :</p>
@@ -239,6 +237,7 @@
                                 <ul>
                                     <li>Support génétique</li>
                                     <li>Feature (traits phénotypiques)</li>
+                                    <li>Mutation</li>
                                     <li>Espèce</li>
                                 </ul>
                             </li>
@@ -247,24 +246,22 @@
                             <li>Le moteur (toutes les fonctions, dépendances qui implémentent le modèle)</li>
                         </ul>
                         <p>Les structures de données seront complexes et un éditeur graphique pour les manipuler sera
-                            (quasi) indispensable. Ces éditeurs permettront d’importer et d’exporter les données
+                            indispensable. Ces éditeurs permettront d’importer et d’exporter les données
                             facilement, de les éditer, dupliquer, supprimer. Le modèle est <em>piloté par les
                                 données</em>, ces structures sont capitales et doivent être manipulées et définies de
                             manière rigoureuses.</p>
                         <h2 id="aperçu-général-du-modèle-génétique--du-génome-au-phénotype">Aperçu général du modèle
                             génétique : du génome au phénotype</h2>
-                        <p>L’utilisateur de la bibliothèque pourra faire évoluer des populations d’individus possédant
-                            un phénotype, ou un ensemble de traits observables et mesurables. L’utilisateur pourra
-                            évaluer les traits de chaque individu et leur appliquer le traitement qu’il souhaite. Ces
+                        <p>L’utilisateur de la bibliothèque pourra faire évoluer des populations d’individus et
+                            évaluer les traits de chaque individu afin d'appliquer le traitement qu’il souhaite. Ces
                             traits seront l’expression d’un génome <strong>diploïde</strong> porté par chaque individu,
-                            transmissible par reproduction ou clonage de génération en génération.</p>
+                            transmissible par reproduction sexuée, auto-fécondation ou clonage de génération en génération.</p>
                         <p>Le <em>support génétique</em> (encodé en binaire) lorsqu’il est évalué produit une valeur.
                             Cette valeur est ensuite interprétée par une <em>feature</em> qui produit à son tour une
-                            valeur auquel l’utilisateur donne une unité de mesure. L’expression de la feature est alors
-                            remontée dans le phénotype, le résultat de l’évaluation de toutes les <em>features</em> de
-                            l’individu. La valeur en sortie d’une feature peut servir d’entrée à une autre
+                            valeur auquel l’utilisateur donne une dimension et une unité de mesure. L’expression de la feature est alors
+                            remontée dans le phénotype. La valeur en sortie d’une feature peut servir d’entrée à une autre
                             <em>feature</em> et ainsi de suite. Ainsi, le phénotype forme une collection de couples
-                            clé:{valeur, unité} produite par l’évaluation d'un réseau de features (possiblement)
+                            <code>{nomFeature, {valeur, dimension, unité}}</code>, résultat de l’évaluation d'un réseau de features (possiblement)
                             interdépendantes, fondé sur un support génétique. </p>
 
 
@@ -432,7 +429,7 @@
 </table>
 
 <p>
-    Pour le moment aucune valeur n'est assignée à chaque allèle, sa valeur est son code binaire (ou son nom qui est un alias pour ce code). La valeur et le sens seront défini au niveau d'une <a href="#features">feature</a>.
+    La valeur d'un allèle est son code binaire (ou un alias pour ce code). La valeur et le sens seront défini au niveau d'une <a href="#features">feature</a>. Soit un gène codé sur 1 bit avec \(A \equiv 0\) et \(B \equiv 1\). Si le gène mute de 0 à 1, la valeur du gène passe de A à B.
 </p>
 
 
@@ -495,7 +492,7 @@
 
 <p>On a par définition</p>
     $$u(A,B) = 1 - u(B,A) $$ 
-    <p>si A et B ne sont pas codominants. Pour le cas de codominance on a défini une valeur arbitraire</p>
+    <p>si A et B ne sont pas codominants ou tous les deux inertes. Pour le cas de codominance on a défini une valeur arbitraire</p>
     $$u(A,B) = u(B,A) = -1 $$ 
 
 <p>On peut noter que l'allèle D est récessif vis à vis de A qui est dominant. Dans tous les autres rapports d'allèles nous sommes dans un cas de dominance incomplète. Évaluons à présent un individu qui posséderait un support génétique initialisé comme suit :</p>
@@ -563,35 +560,37 @@ $$ v = \{ AB: 1, A:1, B:0.5, C:0.5 \}$$
 <p>Les allèles A et B sont codominantes, elles s'expriment donc toutes les deux mais leurs effets ne se combinent pas, elles produisent une nouvelle valeur \(AB\), un nouveau phénotype.</p>
 
 <h3>Sur les allèles</h3>
-Un allèle est un code binaire, une variation d'un gène. Son code binaire est son identifiant, qu'on pourra surharger avec un nom. Un allèle peut être déclaré :
+
+<p>
+    Un allèle est un code binaire, une variation d'un gène. Son code binaire est son identifiant, qu'on pourra surcharger avec un nom. Un allèle peut être déclaré :
+</p>
+
 <ul>
-    <li>Disponible : l'allèle pourra être présent à l'initialisation d'une population d'individus</li>
+    <li>Disponible : l'allèle est accessible lors de l'initialisation d'une population d'individus</li>
     <li>Mutant : non accessible par défaut, seulement par mutation de son code génétique</li>
 </ul>
-Un allèle pourra muter 
+<p>Un allèle pourra muter </p>
+
 <ul>
     <li>vers un allèle existant (Disponible), équivalent à du brassage génétique</li>
     <li>vers un allèle mutant (Mutant), introduction d'un nouvel allèle dans la population</li>
 </ul>
-Au niveau de la feature, la valeur de cet allèle (ainsi que son rapport aux autres) peut être
-<ul>
-    <li>défini à l'avance par l'utilisateur. Ainsi il garde le contrôle complet sur les entrées/sorties au niveau des features </li>
-    <li>défini aléatoirement (par une fonction), l'utilisateur perd alors le contrôle sur l'évaluation du génome qui va évoluer de lui même (selon des règles définies à l'avance) </li>
-</ul>
-Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaître car même l'utilisateur ne saura pas à l'avance la valeur que va produire le support génétique. Les deux cas sont intéressants, le contrôle doit être libre pour l'utilisateur. Dans le cas où les valeurs ne seront pas définies à l'avance (et pourront être n'importe quoi), il faudra prévenir l'utilisateur que la valeur que prend en entrée la feature est inconnue ou imprévisible, afin d'être sûr de ne pas casser son code. A charge de l'utilisateur de faire le nécessaire pour l'interpréter (la solution la plus simple consistant à retourner la valeur telle quelle.)
+
     <h3 id="features">Feature (ou trait, phénotype local)</h3>
 
     <h4>Définition</h4>
 
-    <p>Une fois définis des supports génétiques on peut commencer à designer le composant à l'étage du dessus : la feature. Une feature est un trait (un phénotype) observable au niveau de l'individu. Jusqu’ici on a seulement parlé de support génétique dont l'évaluation produit des valeurs.  C’est donc à ce niveau qu’on va  <em>donner un sens aux valeurs générées par le support génétique</em>. La feature produit une   <strong>observable</strong> que l'utilisateur va définir. </p>
+    <p>Une fois que les supports génétiques sont définis on peut commencer à designer le composant à l'étage du dessus : la feature. On peut aussi commencer par une feature et designer ensuite le génome.</p>
+        
+        <p>Une feature est un trait (un phénotype) observable au niveau de l'individu. C’est à ce niveau qu’on va  <em>donner un sens aux valeurs retournées par le support génétique</em>. La feature produit une <strong>observable</strong> que l'utilisateur va définir. </p>
 
-    <p>L’intérêt de découpler la production de valeur par un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features (dans différents projets) et redéfinir l'interprétation que l'on fait de sa valeur.</p>
+    <p>L’intérêt de découpler la valeur d'un support génétique de son interprétation c’est qu'ont peut réutiliser un même support pour plusieurs features (dans différents projets) et redéfinir l'interprétation qu'on en fait.</p>
     <p>
-        La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#features-coupling">ou d'une autre feature</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur (ici un couple {valeur, unité}) dans un ensemble d'arrivée (valeurs du phénotype).
+        La feature est une fonction qui va prendre en entrée la valeur d'un support génétique, <a href="#features-coupling">ou d'une autre feature</a>, et retourner un phénotype, c'est à dire, une valeur et (possiblement) une grandeur et une unité de mesure. C'est une fonction au sens mathématique du terme : à chaque valeur de l'ensemble de départ (valeurs du support génétique) elle produira une valeur dans un ensemble d'arrivée (valeurs du phénotype).
     </p>
 
     <p>
-        Le point important c'est qu'une feature <strong>ne possède pas d'état interne</strong>. Elle prend des valeurs en entrée et renvoie des valeurs en sortie. Les même valeurs en entrée produisent les mêmes valeurs en sortie. Elle n'a aucun effet de bord, c'est à dire que lorsqu'elle est évaluée elle ne <em> modifie pas l'état du monde</em> (exception faite des <a href="#epigenetique"> features attachées à l'état épigénétique</a>). En d'autres termes ce sont des <a href="https://fr.wikipedia.org/wiki/Fonction_pure">fonctions pures</a>. L'état d'un individu est complètement encodé dans ses supports génétiques et son épigénetique. L'ensemble des features vient agir comme une fonction qui prend cet état et renvoie un phénotype macroscopique. 
+        Le point important c'est qu'une feature <strong>ne possède pas d'état interne</strong>. Elle prend des valeurs en entrée et renvoie des valeurs en sortie. Les même valeurs en entrée produisent <em>toujours</em> les mêmes valeurs en sortie. Elle n'a aucun effet de bord, c'est à dire que lorsqu'elle est évaluée elle ne <em> modifie pas l'état du monde</em> (exception faite des <a href="#epigenetique"> features attachées à l'état épigénétique</a>). En d'autres termes ce sont des <a href="https://fr.wikipedia.org/wiki/Fonction_pure">fonctions pures</a>. L'état d'un individu est complètement encodé dans ses supports génétiques et son épigénetique. L'ensemble des features vient agir comme une fonction qui prend cet état et renvoie un phénotype macroscopique. 
     </p>
 
     <img src="./img/feature-function.png" alt="">
@@ -609,7 +608,7 @@ Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaîtr
     </p>
 
     <p class="note">
-        A noter : l'utilisateur s'il souhaite avoir directement accès à la valeur du support génétique peut le faire, il peut demander à la feature de retourner directement la valeur du support. L'utilisateur pourrait lui donner une valeur (et une dimension, et unité de mesure) dynamiquement durant l'execution de son programme. Par exemple, regardons ce pseudo code d'un utilisateur qui utilise notre bibliothèque dans son projet
+        A noter : l'utilisateur s'il souhaite avoir directement accès à la valeur du support génétique peut le faire, il peut demander à la feature de retourner directement la valeur du support, par exemple <code>{A:1, B:2}</code>.
     </p>
 
 
@@ -684,13 +683,11 @@ Dans le deuxième cas de figure, de l'évolution incontrôlée pourra apparaîtr
     Pour qu'une feature fonctionne il faut définir :
 
     <ul>
-        <li>ce qu'elle prend en entrée: quelles données arrivent du support génétique</li>
+        <li>ce qu'elle prend en entrée (arguments): valeur d'un support génétique, valeur produite par une autre feature</li>
         <li>ce qu'elle retourne en sortie: quelle transformation j'opère pour produire une valeur "phénotype"</li>
     </ul>
 
-    <p class="comment">Quand j'écris une valeur phénotype c'est assez général, on n'impose rien sur le type de retour d'une feature [a voir en fonction du design général], mais en général on peut faire retourner à une feature ce qu'on veut. Ce sont là plutôt des questions techniques, savoir s'il faut fabriquer des types de données à respecter pour assurer une architecture robuste. Ces restrictions viendront au fil de l'eau, par défaut, une feature peut renvoyer n'importe quelle valeur.</p>
-
-    <h4>Mapper les valeurs des allèles</h4>
+    <h4>1) Mapper les valeurs des allèles</h4>
 
     <p>La première étape est donc de <em>maper</em> (d'associer) à chaque allèle exprimée du support génétique une valeur. Comme les allèles sont définies au niveau du support génétique on peut facilement proposer une liste de valeurs à maper à l'utilisateur. On peut associer à la valeur de l'allèle n'importe quelle valeur de notre choix</p>
 <p>Prenons un exemple de valeur produite par le support génétique encodé sur 3 gènes</p>
@@ -710,16 +707,16 @@ $$(c-B)A(A-B) $$
 
     <p>On pourra évidemment proposer ici de mapper des valeurs de manière automatique (pattern, aléatoire etc..)</p>
 
-    <p>On pourrait imaginer ne pas contraindre l'utilisateur à définir la valeur de chaque allèle. Ainsi, une valeur non mappée aurait une valeur assignée par le système, par exemple <code>unknown</code>.</p>
+    <p>On pourrait imaginer ne pas contraindre l'utilisateur à définir la valeur de chaque allèle. Ainsi, une valeur non mappée aurait la valeur de son code binaire, nom et une dimension dédiée, par exemple <code>{value: {A:1, B:1}, dimension: 'gene', unit: 'none'}</code></p>
 
     <code class="pseudo-code">
         <pre>
 x = evaluate(individu, feature) // acceder au phénotype retourné par la feature
 //Allèle inconnue (mutation, non définie par l'utilisateur)
-if(unknown(x)){
+if(isGene(x)){
     //Do stuff
     valeur = ....
-    // retrouve l'allèle unknown et lui assigne valeur,dimension, unité
+    // retrouve l'allèle non mappée et lui assigne valeur,dimension, unité
     setValue(feature, 'valeur', dimension, unité) 
 }
         </pre>
@@ -730,22 +727,27 @@ if(unknown(x)){
     <h4>Cas d'un support codé sur un gène</h4>
 
     <p>
-        Dans le cas d'un support encodé sur un seul gène, la question ne se pose pas, on retourne la valeur mappé à la valeur qui s'est exprimée.
+        Dans le cas où la feature prend en entrée l'évaluation d'un support encodé sur un seul gène, la question ne se pose pas, on retourne la valeur mappé à la valeur qui s'est exprimée.
     </p>
 
     <h4>Cas d'un support codé sur plusieurs gènes</h4>
     <p>
-       Comme dans notre exemple, dans ce cas plusieurs stratégies d'interprétation peuvent être définies par l'utilisateur.
+       Reprenons notre exemple précédent, 
+       $$ S =\{ AB: 1, A:1, B:0.5, C:0.5 \} $$
+       Ici, un support génétique est s'exprime sur plusieurs gènes. Pour interpréter cette valeur, plusieurs stratégies d'interprétation peuvent être définies par l'utilisateur.
        On peut :
        <ul>
            <li>Renvoyer toutes les valeurs avec leurs poids (information transparente, l'utilisateur en fera quelque chose soit dans une feature à l'étage supérieur, soit directement dans son projet)</li>
            <li>Filtrer : ne renvoyer qu'une valeur, envoyer des valeurs dont le poids normalisé respecte une condition</li>
+           <li>mapper automatiquement à un type et une valeur (aléatoire, regex...)</li>
        </ul>
     </p>
 
-    <p>On peut proposer des stratégies de map au lieu de map indivduellement chaque allèle.</p>
+    <p>
+        Si on associe à chaque valeur du support un nombre (entier ou décimal) alors on peut faire une combinaison linéaire.
+    </p>
    
-    <h5>Map Combinaison linéaire</h5>
+    <h5>Combinaison linéaire</h5>
 
     <p> <strong>Si et seulement si l'utilisateur map chacune des allèles à un nombre (entier ou décimal) </strong>on peut proposer à l'utilisateur d'en faire un combinaison linéaire se servant du poids caractérisant la contribution de chaque allèle. Par exemple ici, définissons cette association : </p>
     <ul>
@@ -754,22 +756,23 @@ if(unknown(x)){
         <li>\(B \mapsto 5 \)</li>
         <li>\(C \mapsto -1 \)</li>
     </ul>
-    <p>On peut facilement fabriquer de la variation continue en faisant la combinaison linéaire de l'expression de chaque allèle</p>
+    <p>On peut facilement fabriquer de la variation continue en faisant la combinaison linéaire de l'expression de chaque allèle (notamment dans le cas de dominance incomplète)</p>
 
     $$ \frac{1}{3} (v_{AB} + v_A + 0.5v_B + 0.5v_C)  $$
-    <p>en utilisant le poids de l'expression de chaque allèle. La feature sera évaluée ici à \(1\)</p>
+    <p>en utilisant le poids de l'expression de chaque allèle. La feature sera évaluée ici à \(1\). L'évaluation en combinaison linéaire d'un support génétique encodé sur \(N\) gènes est donné par 
 
-    L'évaluation en combinaison linéaire d'un support génétique encodé sur \(N\) gènes est donné par 
+  
 
     $$ V = \frac{1}{N}\sum_{i=1}^{N} u(i_a,i_b)v_a + (1-u(i_a,i_b))v_b $$ 
 
     Soit
     $$ V = \frac{1}{N}\sum_{i=1}^{N}  u(i_a,i_b)\left[v_a -v_b\right] + v_b $$ 
+</p>
 
     <p>avec \(i_a\) et \(i_b\) les allèles a et b du gène \(i\).</p>
 
     <p>
-        L'utilisateur peut ensuite <strong>metre à l'échelle (rescale)</strong> les valeurs obtenues vers un nouvel intervalle. En effet, en fonction des valeurs qu'il a associé à chaque allèle, il a accès à l'intervalle du domaine de départ (les bornes min et max), ici \( \left[ -1 : 5 \right]\). Il peut interpoler chaque valeur de cet intervalle vers un autre intervalle. Pour cela il a juste à définir un min, un max et une fonction d'interpolation. Par exemple, il définit l'intervalle d'arrivée à \( \left[ 10 : 300 \right]\) et une fonction d'interpolation linéaire.
+        L'utilisateur peut ensuite <strong>metre à l'échelle (rescale)</strong> les valeurs obtenues vers un nouvel intervalle. En effet, en fonction des valeurs qu'il a associé à chaque allèle, il a défini un domaine de départ (les bornes min et max), ici \( \left[ -1 : 5 \right]\). Il peut interpoler chaque valeur de cet intervalle vers un autre intervalle. Pour cela il a juste à définir un min, un max et une fonction d'interpolation. Par exemple, il définit l'intervalle d'arrivée à \( \left[ 10 : 300 \right]\) et une fonction d'interpolation linéaire.
     </p>
     <p>
         On peut faire une interpolation linéaire ou avec n’importe quel polynôme. Le choix de l'interpolation est un paramètre intéressant car ainsi, une variation infime du génome (brassage, mutation) peut conduire à des variations phénotypiques plus fortes (et non directement proportionnelle ou graduelle)
@@ -778,25 +781,13 @@ if(unknown(x)){
     <img src="img/interpolation.png" alt="" style="width:80%">
 
 
-
-    <h5>Stratégies par défaut</h5>
-
-    <p>On peut proposer des stratégies par défaut (sans avoir à écrire du code) pour définir la valeur renvoyée par la feature</p>
-
-    <ul>
-        <li>Faire remonter l'allèle qui s'exprime le plus. Cela revient à donner plus de poids à certains gènes d'un support. </li>
-        <li>... ?</li>
-    </ul>
- 
-
-    <p class="question">Comment ça se passe pour un trait phénotypique encodé sur plusieurs gènes ? Quelles stratégies on peut mettre en place pour fabriquer une interprétation d'un support génétique s'exprimant sur plusieurs gènes ? Quel rôle donner aux <em>poids d'expression</em> ?</p>
+    <p class="question">Comment ça se passe pour un trait phénotypique encodé sur plusieurs gènes en vrai? Quelles stratégies peut on mettre en place pour fabriquer une interprétation d'un support génétique s'exprimant sur plusieurs gènes ? Dans ce cas, quel rôle donner aux <em>poids d'expression</em> ?</p>
 
 
     <h5>Ultime possibilité (et la plus forte) : écrire soi même sa fonction !</h5>
 
-
     <p>
-        L'idéal est de pouvoir écrire soi même une fonction qui renverra le phénotype. Cette fonction permet de couvrir toutes les autres stratégies définies précédemment (celles-ci ne sont que des aides pour l'utilisateur, lui proposer des stratégies clés en main sur des patterns courants). Ainsi on peut imaginer ouvrir une fenêtre d'édition à l'utilisateur pour qu'il écrive soi même sa fonction
+        L'idéal est de pouvoir écrire soi même une fonction qui renverra le phénotype. Cette fonction permet de couvrir toutes les autres stratégies définies précédemment (celles-ci ne sont que des aides pour l'utilisateur, lui proposer des stratégies clés en main sur des patterns courants). Ainsi on peut donner à l'utilisateur un éditeur pour qu'il écrive soi même sa fonction
     </p>
     <code class="pseudo-code">
         <pre>
@@ -807,7 +798,7 @@ function evaluate(args){
 }
         </pre>
     </code>
-    <p>où <code>args</code> est une variable d'entrée de la fonction que l'utilisateur peut utiliser. Elle aurait toutes les infos nécessaires pour écrire la fonction : les valeurs de départ du support, les poids et les valeurs mappés. Par exemple ici :</p>
+    <p>où <code>args</code> est une variable d'entrée de la fonction que l'utilisateur peut utiliser. Elle aurait toutes les infos nécessaires pour écrire la fonction : les valeurs de départ du support, les poids et les valeurs mappés (si elles l'ont été). Par exemple ici :</p>
 <pre>
     <code>args = {
         genetic: { 
@@ -827,7 +818,7 @@ function evaluate(args){
           },
           C: {
             weight: 0.5,
-            map: -1  
+            map: undefined  
           },
          }
         featureB: {}
@@ -836,8 +827,7 @@ function evaluate(args){
     </code>
 </pre>
 
-<p> Le code sera à écrire en JavaScript. Il permettra de faire tout ce qu'on veut. Justement, tout ce qu'on veut peut amener à des gros problèmes de sécurité. Il faudra songer à ce point : accès au DOM, Web API du navigateur? Émettre des requêtes? Il faudra proposer un environnement où on peut contrôler les autorisations qu'on donne à ce code.</p>
-<p class="note">Peut-être faudra-t-il demander en plus à l'utilisateur de donner un schéma de réponse (la structure de la collection clé/valeurs et les types de données) dans le cas où une autre feature vient prendre en entrée ce résultat. Comme ça on pourrait lui garantir un certain format de données à utiliser pour composer sa prochaine stratégie et éviter bien des bugs.</p>
+<p> Le code sera à écrire en JavaScript (ou langage de script transpilable vers JS). Il permettra de faire tout ce qu'on veut. Justement, tout ce qu'on veut peut amener à des gros problèmes de sécurité. Il faudra songer à ce point : accès au DOM, Web API du navigateur? Émettre des requêtes? Il faudra proposer un environnement où on peut contrôler les autorisations qu'on donne à ce code.</p>
 
 <h5>Contrainte sur la valeur retournée?</h5>
 
@@ -859,36 +849,32 @@ function evaluate(args){
     }
     </code>
 </pre>
-<p>Ainsi il sera beaucoup plus simple dans l'étape de design de coupler les features, car on saura exactement quelles données on recevra en entrée. Il est peut être même possible qu'on puisse récupérer les valeurs possibles retournées (on peut imaginer créer un bouton dans l'éditeur <code>Test</code> qui testerait la fonction (vérification entrées, vérification du retour conforme au schmé) et qui évalue la fonction sur toutes les entrées possibles pour produire tous les outputs possibles. On aurait alors la liste de toutes les sorties qui pourra être accessible à la feature qui veut la prendre en entrée. </p>
-    <p>Ici j'ai mis un tableau de structure phénotype {value, dimension, unit}, on pourrait restreindre encore davantage à une seule structure phénotype. On peut contraindre pas mal je pense car si on met trop de libertés ça va compliquer le design. Si une feature peut renvoyer deux phénotypes différents c'est qu'elle peut probablement être découpée en deux features qui retourne chacune un seul. Ces questions seront tranchées par la pratique.</p>
+<p>Ainsi il sera beaucoup plus simple dans l'étape de design de coupler les features, car on saura exactement quelles données on recevra en entrée. Il est peut être même possible qu'on puisse récupérer les valeurs possibles retournées (on peut imaginer créer un bouton  <code>Test</code>  dans l'éditeur qui testerait la fonction (vérification entrées, vérification du retour conforme au schéma) et qui l'évaluerait sur toutes les valeurs d'entrées possibles pour produire tous les outputs possibles. On disposerait d'une liste de valeurs retournées pour aider le design d'une autre feature qui la prendrait en argument. </p>
+    <p>Ici j'ai mis un tableau de structure phénotype {value, dimension, unit}, on pourrait restreindre encore davantage à une seule structure phénotype. Et demander un schéma de données pour la valeur. On peut contraindre pas mal je pense car si on met trop de libertés ça va compliquer le design. Si une feature peut renvoyer deux phénotypes différents c'est qu'elle peut probablement être découpée en deux features qui retourne chacune un seul. Ces questions seront tranchées par la pratique.</p>
     
 
 <p>Prenons un exemple simple ici j'écris ma fonction, je veux, par exemple, retourner la valeur de \(AB\) si elle existe, sinon je renvoie 'toto'</p>
 <code class="pseudo-code">
     <pre>
-function evaluate(args, phenotype = { value: undefined, dimension = undefined, 
-    units = undefined}){
+function evaluate(args, phenotypes = []}){
     if( 'AB' in args.data){
         // valeur du phénotype retourné
-        phenotype.value =  args.data['AB'].map
+        phenotype.value =  args.genetic['AB'].map
         phenotype.dimension = 'Length'
         phenotype.units = 'm'
-        return phenotype
+        return phenotypes.push(phenotype)
     }
     //Si AB n'est pas présent
     phenotype.value = 'toto'
-    return phenotype
+    return phenotypes.push(phenotype)
 }
     </pre>
 </code>
 
 <p>Ici on contraint la réponse à respecter le schéma suivant : la valeur retourné doit contenir 3 clés: value, dimension et units. Si une clé manque (ou si une autre clé est ajoutée) une erreur est émise. Un <em>template</em> de phénotype est imposé. </p>
-    <p> Ici j'ai deux phénotypes possibles (valeurs, grandeur et unité de mesure différentes). On pourrait imaginer contraindre encore plus le retour en demandant le type de données attendue pour la value, la valeur de la dimension et de l'unité de mesure etc.. Ce sont des points techniques mais intéressants.</p>
+   
 
     <p class="note">On peut imaginer encore beaucoup de choses dans les contraintes à imposer ici. Plus on met de contraintes plus c'est long d'éditer mais plus on peut proposer des tests automatiques pour avertir l'utilisateur en cas de bug. Autant de temps à débugger en moins dans son projet</p>
-
-
- 
 
     <h4 id="fonctionnal-feature">Features <em>fonctionnelles</em></h4>
 
@@ -900,7 +886,7 @@ function evaluate(args, phenotype = { value: undefined, dimension = undefined,
         Cette possibilité est <strong>extrêmement intéressante</strong> car elle permet de produire des phénotypes qui sont non plus juste des états (une valeur interprétée du support génétique) mais des <strong>comportements</strong>. 
     </p>
 
-    <p>Reprenons un exemple où notre support génétique est codé sur un gène avec deux allèles A et B, avec \(u(A,B)=1\), soit A dominant et B récessif. On a donc deux valeurs possibles , A ou B, pour ce support. Associons une fonction(une valeur) à chaque allèle dans notre feature que nous appelerons <code>'FeatureA'</code> :</p>
+    <p>Reprenons un exemple où notre support génétique est codé sur un gène avec deux allèles A et B, avec \(u(A,B)=1\), soit A dominant et B récessif. On a donc deux valeurs possibles , A ou B, pour ce support. Associons une fonction(une valeur) à chaque allèle dans notre feature que nous appellerons <code>'FeatureA'</code> :</p>
     <ul>
         <li>\(A \mapsto f_A(x,y) \{ \text{return x + y} \} \)</li>
         <li>\(B \mapsto f_B(x,y) \{ \text{return x - y} \} \)</li>
@@ -934,15 +920,12 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
    </p>
 
 
-
-
-
-    <h4 id="features-coupling">Créer des features à partir de features, à partir de features, à...</h4>
+    <h4 id="features-coupling">Coupler les features (et donc l'expression des gènes)</h4>
 
     <p>Une feature peut prendre en entrée (en argument)</p>
     <ul>
         <li> <strong> un et un seul support génétique</strong></li>
-        <li>un support génétique, une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
+        <li>un support génétique et une ou plusieurs features, voir <a href="#general-model">ce schéma</a></li>
     </ul>
 
     <p>
@@ -958,44 +941,43 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
     <img src="./img/features-coupling-time.png" alt="" style="width: 100%;">
 
     <p>
-        Sur le schéma ci dessus on a un cas de couplage qui fait intervenir le temps. On a une feature qui nous renvoie la taille de l'individu. Cette taille est fonction du temps, cette donnée est accessible en lecture et donnée par le système à toutes les features. Pour évaluer la taille d'un individu il faut évaluer cette feature. Cette feature est couplée à trois autres features : taille min qui donne une taille min encodée sur son support génétique, taille max idem, et taux de croissance.
+        Sur le schéma ci dessus on a un cas de couplage qui fait intervenir le temps. On a une feature qui nous renvoie la taille de l'individu. Cette taille est fonction du temps (accessible en lecture et donnée par le système à toutes les features). Pour évaluer la taille d'un individu il faut évaluer cette feature <code>taille</code>. Cette feature est couplée à trois autres features : <code>taille min</code> qui donne une taille minimale (à la naissance) encodée sur son support génétique, <code></code> idem, et <code>taux de croissance</code> .
     </p>
 
     <p>
-        On a donc une feature taille qui pour être évaluée doit avant évaluer tout ses dépendances (on pourra optimiser cette étape, avec un cache et n'évaluer que si l'évaluation de cette feature a changé, notamment grâce à la gestion des mutations). Avec cette définition, quand j'évaluerai taille j'aurai toujours la bonne valeur, même si taux de croissance mute entre deux évaluations.
+        On a donc une feature <code>taille</code> qui, pour être évaluée, doit évaluer avant tout ses dépendances (on pourra optimiser cette étape, avec un cache et n'évaluer que si l'évaluation de cette feature a changé, notamment grâce à la gestion des mutations). Avec la fonction définie pour la feature <code>taille</code>, quand je l'évaluerai j'aurai toujours la bonne valeur, même si taux de croissance mute entre deux évaluations.
     </p>
-
     <p>
         Voici comment on peut coupler les features entre elles pour produire des nouvelles features, et créer autant de complexité qu'on le souhaite. On peut imaginer ici reproduire des features à la manière de composants informatiques, qui viennent éteindre et allumer l'expression d'autres features.
     </p>
-
     <p>
-        Comme on peut le voir on se sert des valeurs générées précédemment par la feature pour retourner la taille. On accède à LOG, l'historique, et on récupère la dernière entrée avec <code>popValue()</code>  et <code>popTime()</code>. Le LOG est une <a href="https://fr.wikipedia.org/wiki/Pile_(informatique)">pile</a>, c'est une structure de données "Last In First Out".  Il est temps d'aborder un point important sur l'évaluation et les états d'un individu.
+        Comme on peut le voir dans l'exemple, pour évaluer <code>taille</code> on se sert de la dernière valeur renvoyée par la feature. On accède à son<code>LOG</code>, son historique, et on récupère la dernière entrée avec <code>popValue()</code>  et <code>popTime()</code>. Le <code>LOG</code> est une <a href="https://fr.wikipedia.org/wiki/Pile_(informatique)">pile</a>, c'est une structure de données "Last In First Out". C'est une collection de <code>valeurs immutables</code> (on ne peut pas les changer!). Chaque entrée du <code>LOG</code> a la structure <code>{date, value}</code> . Il est temps d'aborder un point important sur l'évaluation et les états d'un individu.
     </p>
 
+   
     <h4 id="immutability">Les états et l'évaluation</h4>
 
-    <p>C'est sans doute l'un des points les plus importants dans le design de ce modèle. Le phénotype d'un individu, le global (l'aggrégation de tous les phénotypes produits par les features) et le local (produit par une feature) <strong>est un état immutable</strong>. Le phénotype est lui aussi <strong>une valeur</strong>. </p>
+    <p>C'est sans doute l'un des points les plus importants dans le design de ce modèle. Le phénotype d'un individu <strong>est une valeur, elle est donc immutable</strong>.</p>
         <p>
-            Quand on veut connaître la taille d'un individu par exemple, on ne vient pas écraser ou mettre à jour la taille qu'on avait noté avant. La taille d'un individu ne change pas dans le temps (votre taille change bien sûr mais pas dans un système d'informations, c'est une nouvelle entrée ) : quand on la mesure on obtient des valeurs différentes à chaque instant. Quand on mesurait notre taille enfant en mettant une petite marque sur le mur, on n'effaçait pas la marque d'avant pour mettre la suivante, plus haute. On faisait une nouvelle marque ! Il sera toujours vrai, qu'à un moment donné vous étiez plus petit qu'aujourd'hui. Prenez une personne que vous connaissiez enfant et qui est devenue adulte, vous vous souvenez d'elle quand elle était petite, vous n'êtes pas allés dans notre cerveau chercher la cellule qui stocke sa taille pour la remplacer par sa taille adulte ! Les deu cohabitent, les informations s'accumulent, de manière associative. Et c'est ce qui vous permet de dire "Oh, ce que tu as grandi!". En ce sens, du point de vue du système d'information, votre taille n'est pas un état mutable. 
+            Quand on veut connaître la taille d'un individu par exemple, on ne vient pas écraser ou mettre à jour la taille qu'on avait noté avant. La taille d'un individu ne change pas dans le temps (votre taille change bien sûr mais pas dans un système d'informations, si elle change c'est une nouvelle entrée) : quand on la mesure on obtient des valeurs différentes à chaque instant. Quand on mesurait notre taille enfant en mettant une petite marque sur le mur, on n'effaçait pas la marque d'avant pour mettre la suivante, plus haute. On faisait une nouvelle marque ! Il sera toujours vrai, qu'à un moment donné vous étiez plus petit qu'aujourd'hui. Prenez une personne que vous connaissiez enfant et qui est devenue adulte, vous vous souvenez d'elle quand elle était petite, vous n'êtes pas allés dans notre cerveau chercher la cellule qui stocke sa taille pour la remplacer par sa taille adulte ! Les deux cohabitent, les informations s'accumulent, de manière associative. Et c'est ce qui vous permet de dire "Oh, ce que tu as grandi!". En ce sens, du point de vue du système d'information, la taille n'est pas un état mutable. 
         </p>
 
         <p>
-            C'est la même chose pour notre phénotype. Le phénotype n'a pas à être un état mutable, qu'on viendrait mettre à jour à chaque pas de temps. Non ! Le phénotype est <strong>un instantanée de l'évaluation de toutes les features d'un individu</strong>. Si je veux connaître la taille d'un individu, j'évalue sa feature taille et elle me renvoie une valeur. Cette valeur dépend du temps (mesurer deux fois la taille au même instant produit la même valeur). 
+            C'est la même chose pour notre phénotype. Le phénotype n'a pas à être un état mutable, qu'on viendrait mettre à jour à chaque pas de temps. Non ! Le phénotype est <strong>un instantanée de l'évaluation de toutes les features d'un individu</strong>. Si je veux connaître la taille d'un individu, j'évalue sa feature <code>taille</code> et elle me renvoie une valeur. Cette valeur dépend du temps (mesurer deux fois la taille au même instant produit la même valeur). 
         </p>
         <p>
-            Chaque feature, comme dans l'exemple ci-dessus, conserve un journal, un historique (un log) de toutes les valeurs qu'elle a produite quand on l'a évaluée. Ainsi, j'accède naturellement à l'histoire complète de mon individu. Je ne remplace pas la valeur taille, j'en créée un nouvelle à chaque fois que je fais la mesure. Ce log permet de calculer le présent en fonction du passé. Le présent (ou le futur) ne vient pas écraser le passé. 
-        </p>
-
-        <p>
-            Il est hors de question pour notre feature d'avoir un état pour ces raisons. Une feature est une fonction qui produit des valeurs (en appelant d'autres features au besoin).
-        </p>
-        <p>
-            Dans ce modèle, l'état mutable est justement le support génétique, sujet à des <em>mutations</em>. Dans toute cette bibliothèque le seul état mutable est le génome (exception faite de l'épigénétique, qui est d'ailleurs peut-être une mauvaise idée, ça peut être utile mais déconseillée à n'utiliser que dans des cas où c'est nécessaire)
+            Chaque feature, comme dans l'exemple ci-dessus, conserve un journal, un historique (un <code>LOG</code>) de toutes les valeurs qu'elle a produite par le passées. Ainsi, j'accède naturellement à l'histoire complète de mon individu. Je ne remplace pas la valeur taille, j'en créée un nouvelle à chaque fois que je fais la mesure. Ce <code>LOG</code> permet de calculer le présent en fonction du passé. Le présent (ou le futur) ne vient pas écraser le passé. 
         </p>
 
         <p>
-            Pour résumer, <strong>le phénotype d'un individu est une valeur</strong> produite par les features à un instant donné. Les features n'ont pas d'état mutable (elles ne maintiennent pas un état, elle ne font pas d'assignment). Elles peuvent produire une valeur à partir d'une valeur produite dans le passé, c'est bien normal. Mais <strong>elles ne peuvent pas modifier le passé</strong>, elles peuvent juste y accéder en lecture, <strong>ce sont des faits</strong>. Chaque nouvelle entrée s'ajoute aux précédentes sans les modifier, aucune entrée ne peut pas être modifiée ou supprimée par la feature.  
+            Pour ces raisons, il est hors de question pour notre feature d'avoir un état mutable (qui change sur place). Le <code>LOG</code> change non, on ajoute des valeurs. Oui, mais une collection de valeurs immutables, qui s'agrandit peut être vue comme une valeur.
+        </p>
+        <p>
+            Dans ce modèle, l'état mutable est le support génétique, sujet à des <em>mutations</em>. Dans toute cette bibliothèque le seul état mutable est le génome (exception faite de l'épigénétique, qui est d'ailleurs peut-être une mauvaise idée, ça peut être utile mais déconseillée à n'utiliser que dans des cas où c'est nécessaire)
+        </p>
+
+        <p>
+            Pour résumer, <strong>le phénotype d'un individu est une valeur</strong> produite par les features à un instant donné. Les features n'ont pas d'état mutable (qui change sur place). Elles peuvent produire une valeur à partir d'une valeur produite dans le passé, c'est bien normal. Mais <strong>elles ne peuvent pas modifier le passé</strong>, elles peuvent juste y accéder en lecture, <strong>ce sont des faits</strong>. Chaque nouvelle entrée s'ajoute aux précédentes sans les modifier, aucune entrée ne peut être modifiée ou supprimée par la feature.  
         </p>
       
 
@@ -1347,10 +1329,7 @@ On pourrait ainsi donner naturellement un rôle sympa aux séquences non codante
     //All phenotype history
     history = getPhenotypes(individu)
     //Phenotype at time t-30 only
-    history = getPhenotype(t-30, t, individu)
-        </pre>
-    </code>
-
+    history = getPhenotype(t-30, t, individu)</pre></code>
     <p>
         Imaginons qu'on n'ai jamais évalué une seule fois notre individu, aucun phénotype n'a été mesuré et mis en entrée dans les logs. Mais est ce un problème ? Comme on a logé toutes les mutations sur son génome (s'il y'en a eu), a partir du temps, de sa date de naissance et des dates et effets des mutations on peut <em>reconstruire toute son histoire</em> jusqu'au présent !
     </p>
@@ -1466,16 +1445,16 @@ featureHistory = getFeatureHistory(t-50, t, t,
 //j'ai déjà ma propre structure de données/objet
 //Fish avec son comportement
 const fish = new Fish('toto')
-console.log(fish) // = {toto:'foo'}
+console.log(fish) // = {foo:'toto'}
 //je veux qu'il puisse se reproduire, le rendre
 //genetique
 fish = glib.setSpecie(fish, 'espece#1')
 //fish dispose maintenant de toutes les features
 //de l'espce#1 et peut se reproduire
-const babyFish = glib.reproduce({fish, args: {bar}},fish2)
+const babyFish = glib.reproduce({fish, args: {'bar'}},fish2)
 //babyFish a conservé tout ce dont il hérite
 //de sa structure originelle
-console.log(babyFish) // = {toto:'bar', phenotype: {....}} 
+console.log(babyFish) // = {foo:'bar', phenotype: {....}} 
         </pre>
     </code>
 
