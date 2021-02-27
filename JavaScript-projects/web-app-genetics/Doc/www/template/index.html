@@ -983,12 +983,12 @@ x = value(1,2) // = 3 si A s'exprime, -1 si B s'exprime
 
     <h5>Quelques exemples</h5>
 
-    <h5>Feature présente mais cachée</h5>
+    <h5>Phénotype dormant</h5>
    
 
     <p>Prenons l'exemple d'un d'un serpent. Il possède des gènes pour coder un pied, et d'autres gènes pour lui donner forme (nombre de doigts, pied palmé etc...). Dans la plupart du temps (phénotype dominant à l'état sauvage) il ne s'exprime pas. Dans son phénotype on ne trouve aucune expression du pied, et des traits propres au pied.  </p>
     <img src="./img/coupling-feature-on-off-ex2.png" style="width: 100%;" alt="">
-    <p> Si une feature renvoie une valeur vide \(\{\}\) (ou une valeur définie par le système du genre 'required') toutes les features qui en dépendent ne peuvent plus s'exprimer et renvoient une valeur vide à leur tour. Le résultat est que le génome concerné ne s'exprime pas et que le phénotype n'est pas observé </p>
+    <p> Si une feature renvoie une valeur vide \(\{\}\) toutes les features qui en dépendent ne peuvent plus s'exprimer et renvoient une valeur vide à leur tour. Le résultat est que le génome concerné ne s'exprime pas et que le phénotype n'est pas observé </p>
 <p>Ces gènes ne s'activent que si l'allèle A s'exprime, comme ci-dessous. Si c'est le cas l'intégralité du génome du pied s'exprime et on trouve un phénotype</p>
     <img src="./img/coupling-feature-on-off-ex1.png" style="width: 100%;" alt="">
     <p>L'activation en cascade de toutes les features dépendantes est alors automatique dans le modèle.</p>
@@ -1038,7 +1038,7 @@ vol = evaluate(individu, ‘vol’)
 </code>
 
 <p>
-    En ce sens, le phénotype global d'un individu (l'ensemble de ses traits), est la méta feature la plus globale
+    En ce sens, le phénotype global d'un individu (l'ensemble de ses traits), est la <em>méta feature</em> la plus globale.
 </p>
 <code class="pseudo-code">
     <pre>
@@ -1053,8 +1053,8 @@ phenotype = evaluate(individu)
 <p>Pour créer une feature l'utilisateur doit</p>
 <ul>
     <li>Lui donner un nom</li>
-    <li>Lui donner ses sources (un support génétique, une ou plusieurs features). Ca définit ce qu'elle prend en entrée</li>
-    <li>Si une source est un support génétique il doit associer une valeur à chaque allèle retournée par le support. Si la source est une feature il n'a rien à faire (l'entrée est définie par la valeur retournée par cette feature)</li>
+    <li>Lui donner ses sources/arguments (un support génétique, une ou plusieurs features). Ca définit ce qu'elle prend en entrée</li>
+    <li>Si une source est un support génétique, il peut associer une valeur à chaque allèle. Si la source est une feature, il n'a rien à faire (l'entrée est définie par le retour de cette feature)</li>
     <li>Définir ce que la feature retourne (soit une stratégie, soit il implémente sa propre fonction)</li>
     <li>Si la valeur retournée est définie par une fonction écrite par l'utilisateur il doit en plus renseigner le schéma de la réponse(la structure des données renvoyée)</li>
 </ul>
@@ -1166,8 +1166,8 @@ phenotype = evaluate(individu)
         <li>code génétique d'une allèle : transition vers une autre allèle, vers une allèle mutante ou vers une allèle inerte (code inconnu)</li>
         <li class="question">relation entre deux allèles. Est ce raisonnable ? Dans la vraie vie il peut y avoir une mutation qui rend une allèle jusque la récessive tout d'un coup dominante?</li>
         <li>Apparition d'un nouveau gène codant pour une feature</li>
-        <li>Disparition d'un nouveau gène codant pour une feature</li>
-        <li>Disparition d'une allèle à la prochaine reproduction (remplacé par une allèle inerte</li>
+        <li>Disparition d'un gène codant pour une feature</li>
+        <li>Disparition d'un allèle</li>
         <li class="question">Autre idée?</li>
     </ul>
   
@@ -1208,12 +1208,12 @@ $$...\color{grey}0000001\color{red}00010011\color{blue}01111011\color{grey}10011
     <li><span style="color:blue;">Gène codant 2 allèle inconnu (par exemple) </span></li>
     <li><span style="color:grey;">Gène non codant </span></li>
 </ul>
-On pourrait ainsi donner naturellement un rôle sympa aux séquences non codantes. Après je te laisse imaginer toutes les opérations cools de mutation qu’on peut faire par des opérations très simples sur les bits.
+L'allèle du gène 1 est maintenant l'allèle <code>C</code> dans le modèle. On pourrait ainsi donner naturellement un rôle sympa aux séquences non codantes. Après je te laisse imaginer les opérations cools de mutation qu’on peut faire par des opérations très simples sur les bits.
     </p>
 
 
     <p>
-        Si l'on souhaite faire une simulation plus bas niveau seulement de brassage génétique et de mutations, en analysant le génome d'un individu sans lui donner du sens, on pourrait remplir leur génome que du matériel non codant. Et appliquer des mutations dessus à chaque génération.
+        Si l'on souhaite faire une simulation plus bas niveau de brassage génétique et de mutations, en analysant le génome d'un individu sans lui donner du sens, on pourrait remplir utiliser uniquement du matériel non codant. Et appliquer des mutations dessus.
     </p>
 
     <h3>Paramètres (à compléter/modifier)</h3>
@@ -1270,7 +1270,7 @@ On pourrait ainsi donner naturellement un rôle sympa aux séquences non codante
     </table>
 
     <p>
-        Chaque mutation définit pourra être déclenchée automatiquement si elle a été configurée ainsi. Sinon l'utilisateur pourra toujours la déclencher manuellement quand il veut, en fonction des conditions de sa propre simulation(s'il simule un environnement par exemple), du genre
+        Chaque mutation définie pourra être déclenchée automatiquement si elle a été configurée ainsi. Sinon l'utilisateur pourra toujours la déclencher manuellement quand il veut, en fonction des conditions de sa propre simulation (s'il simule un environnement par exemple), du genre
     </p>
 
     <code class="pseudo-code">
@@ -1294,7 +1294,7 @@ On pourrait ainsi donner naturellement un rôle sympa aux séquences non codante
         Cet état est accessible en écriture/lecture à des features spécifiques. Comme montré sur le schéma, une feature qui utiliserait cet état interne devrait le déclarer. En effet, on fait ici une exception à la règle d'or de notre design, que <a href="#immutability">les features sont des fonctions pures</a>. Une feature qui utiliserait l'état "épigénétique" cesserait d'être pure, elle produirait un effet de bord et changerait l'état du monde. Ce qui provoque des couplages indésirés entre features.
     </p>
     <p class="question">
-        L'état épigénétique serait simplement une collection de clé:valeur mutables, et transmissible à la descendance. Quelles contraintes à mettre dessus ? Dans le cas d'une reproduction sexuée comment l'épigénétique de 2 parents se combinent pour être transmis ? Concaténation des clefs:valeurs? Est-ce vraiment une bonne idée (j'ai des doutes) ?s
+        L'état épigénétique serait simplement une collection de clé:valeur mutables, et transmissible à la descendance. Quelles contraintes à mettre dessus ? Dans le cas d'une reproduction sexuée comment l'épigénétique de 2 parents se combinent pour être transmis ? Concaténation des clefs:valeurs? Est-ce vraiment une bonne idée (j'ai des doutes) ?
     </p>
 
 
@@ -1389,7 +1389,7 @@ featureHistory = getFeatureHistory(t-50, t, t,
 
     <h2>Génération d'une documentation interactive automatique</h2>
 
-    <p>Générer une documentation automatiquement décrivant l'API de chaque Feature dans un projet donné. Cette documentation aidera grandement l'utilisateur a desiger ses modèles de données et aussi à les utiliser dans son propre programme.</p>
+    <p>Générer une documentation automatiquement décrivant l'API de chaque Feature dans un projet donné. Cette documentation aidera grandement l'utilisateur a designer ses modèles de données et aussi à les utiliser dans son propre programme.</p>
 
 
     <h2>Usage de la bibliothèque (dans les grandes lignes)</h2>
