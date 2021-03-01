@@ -1494,15 +1494,26 @@ du développement
     <h4>Deceleration et Accélération du développement</h4>
 
     <p>
-        La néoténie et l'accélération se manifestent sous la forme d'une décélération ou accélération du développement d'un trait, d'une génération à la suivante. Le trait s'exprime sur la même durée <code>t2-t1</code> mais le taux de développement (par exemple un taux de croissance) est plus faible chez le descendant (néoténie) ou plus fort chez le descendant (accélération). La croissance cumulée, sur une même période de la vie d'un individu, est donc différente
+        La néoténie et l'accélération se manifestent sous la forme d'une décélération ou accélération du développement d'un trait, d'une génération à la suivante. Le génome s'exprime pour produire, au final, le même effet (phénotype), mais le taux de développement (par exemple un taux de croissance) est plus faible chez le descendant (néoténie) ou plus fort chez le descendant (accélération). L'effet cumulé est identique soi 
     </p>
 
-    $$ \text{Néoténie: } \tau_1 < \tau_0 \equiv \int_{t_1}^{t_2} \tau_{1} dt > \int_{t_1}^{t_2} \tau_{0} dt$$ 
-    $$ \text{Accélération: }tau_1 > \tau_0 \equiv \int_{t_1}^{t_2} \tau_{1} dt < \int_{t_1}^{t_2} \tau_{0} dt$$ 
+    $$\int_{t_1}^{t_2} \tau_{1} dt = \int_{t_1'}^{t_2'} \tau_{0} dt$$ 
+
 
     <p>
-        où \(\tau_0\) est le taux de croissance d'un autre trait chez le parent, \(\tau_1\) chez le descendant, \(t_1\) et \(t_2\) sont les ages de l'individu définissant la période de l'expression du gènome (identique chez le descendant et le parent).
+        où \(\tau_0\) est le taux de croissance d'un autre trait chez le parent, \(\tau_1\) chez le descendant, \(t_1\) et \(t_2\) sont les ages de l'individu définissant la période de l'expression du gènome chez l'ancêtre, \(t_1'\) et \(t_2'\) chez le descendant. Dans le cas de la néoténie ou l'accélération \( t_1 \equiv t_1'\). En effet, le début du développement n'est pas décalé.
     </p>
+<ul>
+    <li>Néoténie :
+        
+           \(\tau_1 < \tau_0\), \(t_2\) recalculé pour que l'effet cumulé soit identique. Le développement arrive jusqu'au même stade que l'ancêtre, sauf qu'il prend beaucoup plus de temps. Ainsi, un trait jusque là exprimé seulement avant la maturité sexuelle peut se retrouver exprimé tout au long de la vie de l'individu
+        </li>
+        <li>
+            Accélération : 
+            \(\tau_1 > \tau_0\), \(t_2\) recalculé pour que l'effet cumulé soit identique. Le développement arrive jusqu'au même stade que l'ancêtre, sauf qu'il prend beaucoup moins de temps.
+        </li>
+</ul>
+  
 
     <h4>Dans le modèle</h4>
 
