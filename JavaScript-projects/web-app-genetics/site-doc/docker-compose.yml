@@ -6,8 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    user: "${UID}:${GID}"
     volumes:
-      - ./www/:/var/www/html:rw
+      - ./web/:/var/www/html/:rw
     networks:
       - web
     container_name: modele-genome-www
