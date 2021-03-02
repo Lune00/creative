@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="" type="image/png">
+    <!-- <link rel="shortcut icon" href="" type="image/png"> -->
 
     <!--====== Magnific Popup CSS ======-->
     <link rel="stylesheet" href="../src/assets/css/magnific-popup.css">
@@ -134,3 +134,10 @@
     </section>
 
     <!--====== SLIDER PART ENDS ======-->
+
+
+    <section id="services" class="features-area">
+     <div class="container">
+         <div class="row justify-content-center">
+             <div class="col-lg-10 col-md-10">
+                 <div class="section-titlepb-10">

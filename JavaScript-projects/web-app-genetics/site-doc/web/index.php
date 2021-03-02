@@ -1,9 +1,8 @@
 <?php
 
-require('template-parts/header.php');
-require('template-parts/navbar.php');
+require_once('template-parts/header.php');
+require_once('template-parts/navbar.php');
 
-echo "Hello World!";
+require_once('pages/home.php');
 
-
-require('template-parts/footer.php');
+require_once('template-parts/footer.php');

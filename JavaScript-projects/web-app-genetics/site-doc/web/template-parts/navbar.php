@@ -4,8 +4,6 @@
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
 
-
-
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTwo"
                             aria-controls="navbarTwo" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="toggler-icon"></span>
@@ -15,7 +13,11 @@
 
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarTwo">
                             <ul class="navbar-nav m-auto">
-                                <li class="nav-item active"><a class="page-scroll" href="#home">home</a></li>
+
+                                <form action=""></form>
+                                <li class="nav-item active"><a class="page-scroll" href="#home">Home</a></li>
+                                <li class="nav-item"><a class="page-scroll" href="#home">Données</a></li>
+                                <li class="nav-item"><a class="page-scroll" href="#home">Composants</a></li>
                             </ul>
                         </div>
 
