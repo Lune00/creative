@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./www/:/var/www/html:rw
+    networks:
+      - web
+    container_name: modele-genome-www
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:${DOCKER_DOMAIN}"
+      - "traefik.enable=true"
+      - "traefik.entryPoint=http"
+
+networks:
+  web:
+    external: true
