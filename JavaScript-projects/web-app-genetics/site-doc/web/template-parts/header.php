@@ -74,8 +74,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="slider-content">
-                                    <h1 class="title">Modèle Génétique</h1>
-                                    <p class="text">Du génome au phénotype, d'un individu à une population</p>
+                                    <h1 class="title">Moteur</h1>
+                                    <p class="text">Du génome au phénotype, d'un individu à une population, d'une population à son environnement, de l'environnement au génome</p>
                                 </div>
                             </div>
                         </div> <!-- row -->
@@ -92,7 +92,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="slider-content">
-                                    <h1 class="title">Modèle démographique</h1>
+                                    <h1 class="title">Démographique</h1>
                                     <p class="text">Remontez dans le temps, changez le cours de l'histoire</p>
                                 </div> <!-- slider-content -->
                             </div>

@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="footer-logo text-center">
-                        <a class="mt-30" href="index.html"><img src="assets/images/logo.svg" alt="Logo"></a>
+                        <a class="mt-30" href="index.html"><img src="../src/assets/images/logo.svg" alt="Logo"></a>
                     </div> <!-- footer logo -->
                     <div class="footer-support text-center">
                         <span class="mail">paul.schuhm@gmail.com</span>
