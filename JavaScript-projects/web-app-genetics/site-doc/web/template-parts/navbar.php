@@ -13,11 +13,7 @@
 
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarTwo">
                             <ul class="navbar-nav m-auto">
-
-                                <form action=""></form>
-                                <li class="nav-item active"><a class="page-scroll" href="#home">Home</a></li>
-                                <li class="nav-item"><a class="page-scroll" href="#home">Données</a></li>
-                                <li class="nav-item"><a class="page-scroll" href="#home">Composants</a></li>
+                              <?php require_once('nav-links.php'); ?>
                             </ul>
                         </div>
 
