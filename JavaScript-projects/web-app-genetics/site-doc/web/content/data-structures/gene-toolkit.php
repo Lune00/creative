@@ -1,5 +1,8 @@
-<h3 id="support-génétique">Support génétique</h3>
-<p>Un support génétique est une séquence en binaire (de 0 et de 1) </p>
+<h3 id="support-génétique">Support génétique (<em>Genetic toolkit)</em></h3>
+<p>Un support génétique est une séquence en binaire (de 0 et de 1). L’évaluation d’un support génétique (et la production d’une valeur) se fait en
+    évaluant pour chacun de ses gènes la paire d’<a href="https://fr.wikipedia.org/wiki/All%C3%A8le">allèles</a> (une allèle sur chaque <a href="https://fr.wikipedia.org/wiki/Chromosome_homologue">chromosome homologue</a>)
+    correspondante. Les relations entre allèles permettent de calculer la
+    <strong>valeur</strong> du support génétique.</p>
 <table>
     <thead>
         <tr>
@@ -75,10 +78,7 @@
     </tbody>
 </table>
 
-<p>Pour résumer, l’évaluation d’un support génétique (et la production d’une valeur) se fait en
-    évaluant pour chacun de ses gènes la paire d’<a href="https://fr.wikipedia.org/wiki/All%C3%A8le">allèles</a> (une allèle sur chaque <a href="https://fr.wikipedia.org/wiki/Chromosome_homologue">chromosome homologue</a>)
-    correspondante. Les relations entre allèles permettent de calculer la
-    <strong>valeur</strong> du support génétique.
+<p>
 </p>
 
 

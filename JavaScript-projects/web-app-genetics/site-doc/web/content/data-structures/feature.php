@@ -110,7 +110,12 @@ Pour qu'une feature fonctionne il faut définir :
     <li>ce qu'elle retourne en sortie: quelle transformation j'opère pour produire une valeur "phénotype"</li>
 </ul>
 
-<h4>1) Mapper les valeurs des allèles</h4>
+<p>Voici les différentes entrées<em>(inputs)</em> possibles pour une feature</p>
+
+<img src="../../src/img/feature-all-possible-inputs.png" alt="Inputs possibles d'une feature" style="width:80%;">
+
+
+<h4>Mapper les valeurs des allèles</h4>
 
 <p>La première étape est donc de <em>maper</em> (d'associer) à chaque allèle exprimée du support génétique une valeur. Comme les allèles sont définies au niveau du support génétique on peut facilement proposer une liste de valeurs à maper à l'utilisateur. On peut associer à la valeur de l'allèle n'importe quelle valeur de notre choix</p>
 <p>Prenons un exemple de valeur produite par le support génétique encodé sur 3 gènes</p>
