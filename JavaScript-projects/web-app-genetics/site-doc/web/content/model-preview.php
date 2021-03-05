@@ -48,28 +48,34 @@
     (pas nécessairement) avoir un sens pour l’utilisateur dans son programme, qu'elle puisse être anticipée. En ce sens, le réservoir de phénotypes
     possibles doit <em>pouvoir</em> être contrôlé.</p>
 <h2 id="composants-à-développer">Composants à développer</h2>
-<p><img src="./../src/img/composants.png" alt="Composants"><br>
+<p><img src="../src/img/project-components.png" alt="Composants" style="width:80%;"><br>
     Le projet se compose des composants suivants à concevoir et développer :</p>
 <ul>
-    <li>Les structures de données :
+    <li>Le moteur (engine) :
         <ul>
-            <li>Support génétique</li>
-            <li>Feature (traits phénotypiques)</li>
-            <li>Mutation</li>
-            <li>Espèce</li>
+            <li>Les structures de données (modèles) :
+                <ul>
+                    <li>Support génétique</li>
+                    <li>Feature (traits phénotypiques)</li>
+                    <li>Mutation</li>
+                    <li>Espèce</li>
+                    <li>Environnements</li>
+                </ul>
+            </li>
+            <li>
+                Ensemble de fonctions pour lire et interpréter les données
+            </li>
         </ul>
     </li>
-    <li>Les éditeurs graphiques (web) pour les éditeurs de données:</li>
+    <li>Les éditeurs graphiques (web) pour manipuler et lier les structures de données facilement</li>
     <li>Un bac à sable pour aider à prototyper et tester ses designs</li>
-    <li>Le moteur (toutes les fonctions, dépendances qui implémentent le modèle)</li>
 </ul>
 <p>Les structures de données seront complexes et un éditeur graphique pour les manipuler sera
     indispensable. Ces éditeurs permettront d’importer et d’exporter les données
     facilement, de les éditer, dupliquer, supprimer. Le modèle est <em>piloté par les
         données</em>, ces structures sont capitales et doivent être manipulées et définies de
     manière rigoureuses.</p>
-<h2 id="aperçu-général-du-modèle-génétique--du-génome-au-phénotype">Aperçu général du modèle
-    génétique : du génome au phénotype</h2>
+<h2 id="aperçu-général-du-modèle-génétique--du-génome-au-phénotype">Aperçu général du moteur</h2>
 <p>L’utilisateur de la bibliothèque pourra faire évoluer des populations d’individus et
     évaluer les traits de chaque individu afin d'appliquer le traitement qu’il souhaite. Ces
     traits seront l’expression d’un génome <strong>diploïde</strong> porté par chaque individu,
@@ -84,7 +90,7 @@
 </p>
 
 
-<img id="general-model" class="modele-img" src="./../src/img/modele-general.png" alt="Modèle général">
+<img id="general-model" class="modele-img" src="./../src/img/engine-overview.png" alt="Modèle général">
 
 
 <p>Lors de la reproduction ou du clonage, le support génétique est transmis à l’aide de
