@@ -82,11 +82,13 @@
     transmissible par reproduction sexuée, auto-fécondation ou clonage de génération en génération.</p>
 <p>Le <em>support génétique</em> (encodé en binaire) lorsqu’il est évalué produit une valeur.
     Cette valeur est ensuite interprétée par une <em>feature</em> qui produit à son tour une
-    valeur auquel l’utilisateur donne une dimension et une unité de mesure. L’expression de la feature est alors
-    remontée dans le phénotype. La valeur en sortie d’une feature peut servir d’entrée à une autre
-    <em>feature</em> et ainsi de suite. Ainsi, le phénotype forme une collection de couples
-    <code>{nomFeature, {valeur, dimension, unité}}</code>, résultat de l’évaluation d'un réseau de features (possiblement)
-    interdépendantes, fondé sur un support génétique.
+    valeur auquel l’utilisateur donne une dimension et une unité de mesure (une signification). Cette expression est à la fois le produit du génome mais aussi possiblement d'un <em>environnement</em>, notamment le temps.
+    
+    </p><p>
+     L’expression de la feature est ensuite
+    remontée au niveau du phénotype d'un <em>individu</em>. La valeur en sortie d’une feature peut servir d’entrée à une autre
+    <em>feature</em> et ainsi de suite. Ainsi, le phénotype est le résultat de l’évaluation d'un réseau de features (possiblement)
+    interdépendantes, fondé sur un support génétique. Le temps, des <em>environnements</em> ou directement l'utilisateur (à la manière d'un horloger) peuvent déclencer des mutations du matériel génétique, qui auront des répercusions sur les individus. A leur tour, les individus peuvent modifier les environnements.
 </p>
 
 
@@ -95,10 +97,6 @@
 
 <p>Lors de la reproduction ou du clonage, le support génétique est transmis à l’aide de
     mécanismes connus de la biologie (mais nécessairement simplifiés) : mitose, méiose.</p>
-<p>Le support génétique pourra être exposé à des mutations. Chaque individu disposera en plus de
-    son support génétique d’un état interne modélisant les effets <em>épigénétiques</em>. Cet
-    état supplémentaire, non encodé dans le génome, pourra modéliser la transmission de
-    caractères acquis.</p>
 <h2 id="notations">Notations</h2>
 <ul>
     <li> \(a-B\) : allèles a et B sur le même locus d’une paire de chromosomes analogues. a est
