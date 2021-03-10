@@ -1,5 +1,6 @@
 
 <?php
+$active= 'models';
 require_once('../template-parts/header.php');
 require_once('../template-parts/navbar.php');
 ?>
