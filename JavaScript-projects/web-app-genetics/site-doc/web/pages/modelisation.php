@@ -1,7 +1,5 @@
 <?php
 $active = 'modelisation';
-require_once('../template-parts/header.php');
-require_once('../template-parts/navbar.php');
 ?>
 
 <h2>Composants et modèlisations</h2>
@@ -10,6 +8,7 @@ require_once('../template-parts/navbar.php');
     <li><a href="#ontogenese">Ontogenèse</a></li>
     <li><a href="#heterochrony">Hétérochronies</a></li>
     <li><a href="#features">Reproduction</a></li>
+    <li><a href="#">Bus des évènements : mutations et environnement</a></li>
 </ul>
 
 
@@ -18,6 +17,6 @@ require_once('../template-parts/navbar.php');
 </p>
 
 <?php
-require_once('../content/components/ontogenesis.php');
-require_once('../content/components/heterochrony.php');
-require_once('../template-parts/footer.php');
+require_once(get_url('ontogenesis'));
+require_once(get_url('heterochrony'));
+

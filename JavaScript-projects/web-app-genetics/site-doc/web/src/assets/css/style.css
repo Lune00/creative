@@ -24,7 +24,8 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: normal;
   font-style: normal;
-  color: #121212; }
+  color: #121212;  background-color:rgb(228, 228, 228);}
+ 
 
 * {
   margin: 0;
@@ -2403,7 +2404,7 @@ p {
 .slider-content {
   position: relative;
   z-index: 9;
-  height: 100vh;
+  height: 50vh;
   padding-top: 240px;
   padding-bottom: 200px; }
   @media (max-width: 767px) {
@@ -2528,7 +2529,6 @@ p {
 ===========================*/
 /*===== features TWO =====*/
 .features-area {
-  background-color: #ffffff;
   padding-top: 120px;
   padding-bottom: 130px; }
 

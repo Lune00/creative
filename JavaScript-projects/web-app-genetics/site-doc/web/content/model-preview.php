@@ -7,13 +7,13 @@
     <em>pourrait</em> se former construisant par itération des designs de plus en plus élaborés.
 </p>
 <p>Pour permettre cela tout en étant <em>user-friendly</em> des éditeurs avec interface
-    graphique seront développés :</p>
+    graphique seront développés. Il y aura un éditeur pour :</p>
 <ul>
-    <li>Un éditeur de <a href="#support-g%C3%A9n%C3%A9tique">support génétique</a></li>
-    <li>Un éditeur de <a href="#features">traits phénotypiques</a></li>
-    <li>Un éditeur de <a href="#mutations">mutations</a></li>
-    <li>Un éditeur d’<a href="#esp%C3%A8ces">espèces</a></li>
-    <li>Un éditeur d’<a href="#environment">environnement</a></li>
+    <li>les <a href="./models.php#genome">support génétique</a></li>
+    <li>les <a href="#features">traits phénotypiques</a></li>
+    <li>les  <a href="#mutations">mutations</a></li>
+    <li>les <a href="#esp%C3%A8ces">lignées</a></li>
+    <li>les <a href="#environment">environnement</a></li>
     <li>Un bac à sable pour tester et explorer rapidement ses designs</li>
     <li>Un générateur de documentation desenvironment allèles et features de chaque espèce dans lequel il
         sera facile de chercher (nom, données retournées par une feature etc...)</li>

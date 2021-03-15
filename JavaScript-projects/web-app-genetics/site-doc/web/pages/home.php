@@ -1,8 +1,5 @@
 <?php
 $active= 'home';
-require_once('template-parts/header.php');
-require_once('template-parts/navbar.php');
+require_once(get_url('model-preview'));
 
-require_once('content/model-preview.php');
 
-require_once('template-parts/footer.php');

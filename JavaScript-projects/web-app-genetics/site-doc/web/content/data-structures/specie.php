@@ -1,17 +1,25 @@
 
-<h3 id="espèces">Espèce</h3>
+<h3 id="espèces">Lignée</h3>
 
 
 <p>
-    Une espèce est définie par un ensemble de features designées préalablement. Une feature peut être utilisée pour plusieurs espèces. A cela s’ajouteront des paramètres (à définir), des caractères irréductibles (non codés par du support génétique). Ces « méta paramètres »seront utiles pour le modèle (pour simplifier des choses).
+    Une lignée est définie par un ensemble de features designées préalablement. Une feature peut être utilisée pour plusieurs lignées. Une lignée est également définie par des méta-caractères, seulement utiles pour le modèle. En effet, dans la nature il n'y a <em>que des individus</em>. Ces paramètres sont définis dans le tableau ci-dessous.
 </p>
 
-
-
-
-<p class="question">
-    Tout ce modèle est très «génétique centré», est ce qu’on pourrait imaginer des caractères non réductibles à l’expression du génome, à définir directement sur l’espèce (des méta caractères, épigénétique...)?
+<p>
+    Deux individus appartenant à la même lignée peuvent se reproduire ensemble selon certaines conditions définies par l'utilisateur. S'inspirant du darwinisme, le concept d'espèce n'est pas <em>first-class</em> dans le modèle au sens où les <em>espèces n'existent pas dans la nature</em>. En effet, une espèce n'est rien d'autre qu'une boîte conceptuelle, un chausse-pied, qui définit les contours d'un flux généalogique à un instant donné. C'est une photographie a un instant t d'un flux d'individus partageant des caractéristiques communes et notamment la capacité de se reproduire entre eux.
 </p>
+
+<p>
+    La notion d'espèce, utile pour raisonner, n'est donc pas inclus dans le modèle sinon en tant que label pour regrouper des individus entre eux, mais ce n'est pas un concept opérant. Il est laissé au soin de l'utilisateur de le définir selon ses propres besoins.
+</p>
+<p>
+    Deux individus appartenant à des lignées différentes pourront également se reproduire entre eux en précisant des règles pour l'hérédité du génome et des features (addition, aléatoire, si features déjà en commun...).
+</p>
+<p>
+    Il conviendra donc de définir des <em>barrières à la reproduction entre deux individus</em> pour que le modèle puisse proposer des ruptures dans le flux généalogique et donc une phylogénie. 
+</p>
+
 
 
 <h4>Paramètres</h4>
@@ -31,19 +39,19 @@
         </tr>
         <tr>
             <td>Nom</td>
-            <td>Un nom donné à l'espece</td>
+            <td>Un nom donné à la lignée</td>
             <td>String</td>
             <td>Unique</td>
         </tr>
         <tr>
             <td>Features (nombre \(n_f\))</td>
-            <td>Liste de features caractérisant l'espece. Chaque feature sélectionnée embarque avec elle son support génétique et ses dépendances</td>
+            <td>Liste de features caractérisant la lignée. Chaque feature sélectionnée embarque avec elle son support génétique et ses dépendances</td>
             <td>Liste Features</td>
             <td>Aucune</td>
         </tr>
         <tr>
             <td>Nombre de paires de chromosomes \(n_p\)</td>
-            <td>Toutes les espèces sont diploïdes mais le nombre de paires de chromosomes peut être défini pour chaque espèce (brassage)</td>
+            <td>Toutes les lignées sont diploïdes mais le nombre de paires de chromosomes peut être défini pour chaque espèce (brassage)</td>
             <td>Integer</td>
             <td>Au moins un gène par chromosome, \(n_p \leq \sum_{i=1}^{n_f} N_i\)</td>
         </tr>
@@ -66,17 +74,17 @@
             <td>Appartenir aux types de reproduction définie par le système</td>
         </tr>
         <tr>
-            <td>Peut se reproduire avec d'autres espèces?</td>
-            <td class="question">
-                Sous quelles conditions, comment ça marcherait ? Je ne souhaite pas que la notion d’espèce soit trop « cloisonnante », mais plutôt comme c’est en vrai, un concept aux contours évoluant avec le temps, « un flux ». C’est pratique pour programmer. En soi le modèle est piloté par des données donc tout est imaginable. On voudrait bien que des individus d’espèces différentes se croisent ! Sous quelles conditions (proximité génétique : valeur seuil de % génome commun ?) ? Quel génome résultant (chaque individu apporte tout ou une partie de ses features) ? Là ton regard pour être très précieux sur ces aspects pour imaginer des mécanismes.
+            <td>Barrières à la reproduction</td>
+            <td>
+               Les barrières à la reproduction sont des features spéciales, qui permet à l'utilisateur de définir si deux individus peuvent encore se reproduire. On pourra y définir des règles automatiques (% génome en commun seuil etc...) Indiquer aussi barrière reproduction entre lignées et quelles conséquences de la reproduction
             </td>
-            <td>{booléan, proximité : Float}</td>
+            <td>Bloc spécial, voir plus bas. chaque individu devra implémenter ce bloc. Par défaut deux individus de la même lignée peuvent se reproduire ensemble et pas avec une autre lignée</td>
             <td>??</td>
         </tr>
         <tr>
-            <td>Autoriser Mutations</td>
+            <td>Autoriser (activer) Mutations</td>
             <td>
-                Choisir si le génome de l'espèce peut muter
+                Choisir si le génome de la lignée peut muter
             </td>
             <td>Boolean</td>
             <td>Aucune</td>
