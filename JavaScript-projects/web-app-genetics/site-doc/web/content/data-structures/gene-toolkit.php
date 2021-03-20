@@ -1,5 +1,9 @@
 <h3 id="support-génétique">Support génétique (<em>Genetic toolkit)</em></h3>
+<<<<<<< HEAD
+<p>Un support génétique est un ensemble de 1 ou plusieurs gènes codant ou non pour un trait. Chaque gène du support est un nombre binaire (de 0 et de 1). L’évaluation d’un support génétique (et la production d’une valeur) se fait en
+=======
 <p>Un support génétique est une séquence en binaire (de 0 et de 1). L’évaluation d’un support génétique (et la production d’une valeur) se fait en
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
     évaluant pour chacun de ses gènes la paire d’<a href="https://fr.wikipedia.org/wiki/All%C3%A8le">allèles</a> (une allèle sur chaque <a href="https://fr.wikipedia.org/wiki/Chromosome_homologue">chromosome homologue</a>)
     correspondante. Les relations entre allèles permettent de calculer la
     <strong>valeur</strong> du support génétique.</p>
@@ -45,7 +49,11 @@
         <tr>
             <td>Rareté d'une allèle \(r\)</td>
             <td>Sur les allèles disponibles on peut définir une rareté, un nombre qui sert au
+<<<<<<< HEAD
+                moment de la génération initiale d'une population (par l'utilisateur). Ce nombre permettra de définir la probabilité
+=======
                 moment de la génération de populations. Ce nombre permettra de définir chance
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
                 qu'un individu généré (non issu d'une reproduction) porte cet allèle
                 initialement. </td>
             <td>Float</td>
@@ -54,11 +62,19 @@
         </tr>
         <tr>
             <td>Allèles disponibles <code>n<sub>a</sub></code></td>
+<<<<<<< HEAD
+            <td>Le réservoir d'allèles disponibles est par définition défini par le nombre de
+                bits sur lequel est encodé un gène. L’utilisateur pourra décider de autoriser
+                qu'un sous-ensemble de ce réservoir s’il le souhaite. <strong>Une allèle est une
+                    valeur</strong> possible d'un gène. Elle peut donc muter dans l'espace
+                autorisé pour le gène vers une autre valeur. </td>
+=======
             <td>Le réservoir d'allèles disponibles est par définition définie par le nombre de
                 bits sur lequel est encodé un gène. L’utilisateur pourra décider de n’utiliser
                 qu'un sous-ensemble de ce réservoir s’il le souhaite. <strong>Une allèle est une
                     valeur</strong> possible d'un gène. Elle peut donc muter dans l'espace
                 défini par le gène vers une autre valeur. </td>
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
             <td>(Integer...)</td>
             <td>\( 1 \le n_a \le N^{2} \)</td>
         </tr>
@@ -85,18 +101,32 @@
 
 <h4>Dominat/Récessif, dominance incomplète et codominance</h4>
 <p>
+<<<<<<< HEAD
+    <a href="https://fr.wikipedia.org/wiki/All%C3%A8le#Relations_entre_all%C3%A8les">Plusieurs relations entre allèles</a> existent. Le modèle se propose de modéliser les relations suivantes :
+
+=======
     <a href="https://fr.wikipedia.org/wiki/All%C3%A8le#Relations_entre_all%C3%A8les">Plusieurs relations entre allèles</a> existent. Le modèle se propose de modéliser 3 d'entre elles :
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
 
 </p>
 
 
 <ul>
+<<<<<<< HEAD
+    <li><strong>Dominant/récessif : </strong> un allèle récessif demande l'homozygotie d'un gène pour pouvoir s'exprimer. Autrement dit, soit \(a-B\) deux allèles du même gène, a est récessif (et B est dominant) si \(u(a,B)=0\). Ce gène est évalué à \(B\)</li>
+    <li><strong> Dominance incomplète : </strong> aucun des allèles qui déterminent le caractère est dominant, les deux s'expriment et le caractère est un mélange des deux contributions. Autrement dit, soit \(a-b\) deux allèles du même gène, a et b ont une dominance incomplète si \( u(a,b) \in \left] 0 : 1\right[ \). Ce gène est évalué à {\(A: u(a,b), B: 1-u(a,b)\)}. En ce sens, le modèle Dominant/récessif n'est qu'un cas particulier de dominance incomplète.</li>
+    <li><strong>Codominance :</strong> les deux allèles s'expriment en même temps, et le trait est l'expression conjointe des deux allèles.Autrement dit, soit \(A-B\) deux allèles du même gène, il faut donner au coefficient une valeur distincte pour prendre en compte ce cas. On pose par définition la valeur \(u(A,B)=-1\) pour symboliser ce cas. L'évaluation du gène retourne la valeur \(AB\). Dans ce cas, deux allèles peuvent produire 3 valeurs distinctes : A , B et AB </li>
+
+    <li><strong>Allèle inerte : </strong>on verra à la section sur <a href="#mutations">les mutations</a> qu'une allèle peut devenir inerte, c'est à dire qu'elle n'exprime plus rien. Une allèle inerte est toujours récessive, si deux allèles inertes sont sur le même gène le gène ne renvoie aucune évaluation.</li>
+    <li><strong>Allèle létale :</strong> si cette allèle s'exprime l'individu meurt</li>
+=======
     <li><strong>Dominant/récessif :</strong> un allèle récessif demande l'homozygotie d'un gène pour pouvoir s'exprimer. Autrement dit, soit \(a-B\) deux allèles du même gène, a est récessif (et B est dominant) si \(u(a,B)=0\). Ce gène est évalué à \(B\)</li>
     <li><strong> Dominance incomplète :</strong> aucun des allèles qui déterminent le caractère est dominant, les deux s'expriment et le caractère est un mélange des deux contributions. Autrement dit, soit \(a-b\) deux allèles du même gène, a et b ont une dominance incomplète si \( u(a,b) \in \left] 0 : 1\right[ \). Ce gène est évalué à {\(A: u(a,b), B: 1-u(a,b)\)}. En ce sens, le modèle Dominant/récessif n'est qu'un cas particulier de dominance incomplète.</li>
     <li><strong>Codominance :</strong> les deux allèles s'expriment en même temps, et le trait est l'expression conjointe des deux allèles.Autrement dit, soit \(A-B\) deux allèles du même gène, il faut donner au coefficient une valeur distincte pour prendre en compte ce cas. On pose par définition la valeur \(u(A,B)=-1\) pour symboliser ce cas. L'évaluation du gène retourne la valeur \(AB\). Dans ce cas, deux allèles peuvent produire 3 valeurs distinctes : A , B et AB </li>
 
     <li><strong>Allèle inerte :</strong>on verra à la section sur <a href="#mutations">les mutations</a> qu'une allèle peut devenir inerte, c'est à dire qu'elle n'exprime plus rien. Une allèle inerte est toujours récessive, si deux allèles inertes sont sur le même gène le gène ne renvoie aucune évaluation.</li>
     <li><strong>Allèle létale :</strong>: si cette allèle s'exprime l'individu meurt</li>
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
 </ul>
 
 

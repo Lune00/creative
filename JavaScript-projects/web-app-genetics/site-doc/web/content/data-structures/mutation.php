@@ -16,6 +16,18 @@
 
 
 <p>
+<<<<<<< HEAD
+    Une mutation est déclenchée par un évènement (utilisateur, temps, environnement, autre mutation). En ce sens une mutation est définie, les supports génétiques souscrivent à cette mutation et seront notifiés lorsque les conditions pour qu'apparaisse cette mutation seront remplies. La mutation opérera alors sur tous les supports génétiques visés (aucun ou production d'une nouvelle valeur).
+</p>
+
+<p>
+    Le support génétique peut muter : par exemple un bit pourrait se décaler vers la gauche. Prenons un gène codé sur 8bits qui vaut initialement <code>00000001</code> (correspond à une allèle). Une mutation est déclenchée et un bit se décale et on obtient <code>00000010</code>.
+</p>
+
+
+
+
+=======
     Le support génétique peut muter : par exemple un bit pourrait se décaler vers la gauche. Prenons un gène codé sur 8bits qui vaut initialement <code>00000001</code> (correspond à une allèle). Une mutation est déclenchée et un bit se décale) à <code>00000010</code> :
 
 <ul>
@@ -58,6 +70,7 @@ L'allèle du gène 1 est maintenant l'allèle <code>C</code> dans le modèle. On
 <p>
     Si l'on souhaite faire une simulation plus bas niveau de brassage génétique et de mutations, en analysant le génome d'un individu sans lui donner du sens, on pourrait remplir utiliser uniquement du matériel non codant. Et appliquer des mutations dessus.
 </p>
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
 
 <h3>Paramètres (à compléter/modifier)</h3>
 
@@ -93,13 +106,21 @@ L'allèle du gène 1 est maintenant l'allèle <code>C</code> dans le modèle. On
         <tr>
             <td>Action</td>
             <td>Que fait elle sur sa cible</td>
+<<<<<<< HEAD
+            <td>??</td>
+=======
             <td>Proposer des actions : décalage, substitution(nombre de bits concernés), aléatoire, éteindre/allumer (en faisant muter vers une allèle du système défini comme 'unknown') etc..</td>
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
             <td></td>
         </tr>
         <tr>
             <td>Déclenchement</td>
             <td>Proposer des déclenchements automatiques</td>
+<<<<<<< HEAD
+            <td>Chaque reproduction, aléatoire, fréquence temporelle, déclenchés par des environnements etc...</td>
+=======
             <td>Chaque reproduction, aléatoire, fréquence etc...</td>
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
             <td></td>
         </tr>
         <tr>
@@ -126,4 +147,42 @@ L'allèle du gène 1 est maintenant l'allèle <code>C</code> dans le modèle. On
 
 <p>
     Chaque mutation sera loguée par le système.
+<<<<<<< HEAD
+
+</p>
+
+<h3>Rôle des gènes non codants</h3>
+
+<p>
+    On peut imaginer introduire des gènes non codants sur les chromosomes. Par exemple :
+    $$...\color{grey}0000000\color{red}10000100\color{blue}11011110\color{grey}11001100... $$
+
+<ul>
+    <li><span style="color:red;">Gène codant 1 allèle A </span></li>
+    <li><span style="color:blue;">Gène codant 2 allèle B </span></li>
+    <li><span style="color:grey;">Gène non codant </span></li>
+</ul>
+
+
+
+</p>
+
+<p>
+    Maintenant on peut imaginer une forme de mutation où chaque bit se décale de 1 pas sur la gauche. Le résultat serait cette séquence (me suis peut être trompé c’est chiant à faire)
+</p>
+
+$$...\color{grey}0000001\color{red}00010011\color{blue}01111011\color{grey}10011001... $$
+<ul>
+    <li><span style="color:red;">Gène codant 1 allèle C (par exemple) </span></li>
+    <li><span style="color:blue;">Gène codant 2 allèle inconnu (par exemple) </span></li>
+    <li><span style="color:grey;">Gène non codant </span></li>
+</ul>
+L'allèle du gène 1 est maintenant l'allèle <code>C</code> dans le modèle. On pourrait ainsi donner naturellement un rôle sympa aux séquences non codantes. Après je te laisse imaginer les opérations cools de mutation qu’on peut faire par des opérations très simples sur les bits.
+</p>
+
+
+<p>
+    Si l'on souhaite faire une simulation plus bas niveau de brassage génétique et de mutations, en analysant le génome d'un individu sans lui donner du sens, on pourrait remplir utiliser uniquement du matériel non codant. Et appliquer des mutations dessus.
+=======
+>>>>>>> 768b01cc22953f7497a1ce6a1eaecabdc00df415
 </p>
