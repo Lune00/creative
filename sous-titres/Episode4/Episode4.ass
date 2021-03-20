@@ -15,9 +15,9 @@ Video File: ../../../Téléchargements/Richard Feynman Messenger Lectures at Cor
 Video AR Mode: 4
 Video AR Value: 1.305556
 Video Zoom Percent: 1.625000
-Scroll Position: 302
-Active Line: 314
-Video Position: 47443
+Scroll Position: 316
+Active Line: 328
+Video Position: 49298
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -339,4 +339,18 @@ Dialogue: 0,0:26:06.10,0:26:10.43,Default,,0,0,0,,Mais je veux insister sur l'im
 Dialogue: 0,0:26:10.43,0:26:15.95,Default,,0,0,0,,À présent vous devez être convaincus que toutes les lois de la physique sont symétriques,
 Dialogue: 0,0:26:15.95,0:26:20.04,Default,,0,0,0,,Donc je dois vous donner des exemples de lois qui ne le sont pas.
 Dialogue: 0,0:26:20.04,0:26:23.01,Default,,0,0,0,,La première, le changement d'échelle.
-Dialogue: 0,0:26:23.01,0:26:25.01,Default,,0,0,0,,
+Dialogue: 0,0:26:23.01,0:26:25.85,Default,,0,0,0,,Ce n'est pas vrai que lorsque vous fabriquez une machine,
+Dialogue: 0,0:26:25.85,0:26:31.22,Default,,0,0,0,,et que vous la refaites ici mais deux fois plus grande, toutes proportions gardées,
+Dialogue: 0,0:26:31.23,0:26:33.33,Default,,0,0,0,,que tout marchera de la même façon.
+Dialogue: 0,0:26:33.33,0:26:36.02,Default,,0,0,0,,Ceux qui sont familiers avec les atomes savent ça,
+Dialogue: 0,0:26:36.02,0:26:41.08,Default,,0,0,0,,car si je la faisais 10 milliards de fois plus petite, elle ne serait faite que de 5 atomes.
+Dialogue: 0,0:26:41.08,0:26:47.62,Default,,0,0,0,,Et je ne peux pas faire des pas de vis avec ça
+Dialogue: 0,0:26:47.68,0:26:51.22,Default,,0,0,0,,Il est évident que lorsqu'on va assez loin on ne peut pas changer l'échelle,
+Dialogue: 0,0:26:51.22,0:26:55.53,Default,,0,0,0,,mais avant même qu'on ait une image claire de l'atome,
+Dialogue: 0,0:26:55.53,0:26:57.87,Default,,0,0,0,,on savait que ce n'était pas possible.
+Dialogue: 0,0:26:57.87,0:27:03.80,Default,,0,0,0,,Vous avez sûrement déjà vu dans le journal quelqu'un faire des cathédrales en allumettes.
+Dialogue: 0,0:27:03.80,0:27:10.51,Default,,0,0,0,,Plusieurs étages, magnifique... plus gothique que toute cathédrale gohtique qui n'ait jamais existé.
+Dialogue: 0,0:27:10.51,0:27:14.49,Default,,0,0,0,,Si délicat. Pourquoi on n'en construit pas des comme ça avec de grandes poutres ?
+Dialogue: 0,0:27:14.49,0:27:19.44,Default,,0,0,0,,Avec le même degré de folie. Avec autant de détails.
+Dialogue: 0,0:27:19.44,0:27:24.89,Default,,0,0,0,,La raison est que si on le faisait, ce serait tellement haut et lourd que ça s'effondrerait.
+Dialogue: 0,0:27:24.89,0:27:26.89,Default,,0,0,0,,
