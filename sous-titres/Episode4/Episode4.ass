@@ -15,9 +15,9 @@ Video File: ../../../Téléchargements/Richard Feynman Messenger Lectures at Cor
 Video AR Mode: 4
 Video AR Value: 1.305556
 Video Zoom Percent: 1.625000
-Scroll Position: 202
-Active Line: 214
-Video Position: 32383
+Scroll Position: 302
+Active Line: 314
+Video Position: 47443
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -239,4 +239,104 @@ Dialogue: 0,0:17:37.93,0:17:42.68,Default,,0,0,0,,comme vous allez à 200 000km/
 Dialogue: 0,0:17:42.68,0:17:47.14,Default,,0,0,0,,la lumière vous semblera aller qu'à 100 000km/s
 Dialogue: 0,0:17:47.14,0:17:54.43,Default,,0,0,0,,Mais si vos faites l'expérience vous verrez que la lumière vous arrive à 300 000km/s, comme pour moi.
 Dialogue: 0,0:17:56.35,0:18:00.50,Default,,0,0,0,,Les faits produits par la nature ne sont pas si simples à comprendre.
-Dialogue: 0,0:18:00.50,0:18:02.50,Default,,0,0,0,,
+Dialogue: 0,0:18:00.50,0:18:04.54,Default,,0,0,0,,Et le résultat de cette expérience va tellement à l'encontre du sens commun,
+Dialogue: 0,0:18:04.54,0:18:09.63,Default,,0,0,0,,qu'il y a toujours des gens qui n'y croient pas.
+Dialogue: 0,0:18:09.63,0:18:13.33,Default,,0,0,0,,Mais le temps a passé, et toutes les expériences ont montré
+Dialogue: 0,0:18:13.33,0:18:19.74,Default,,0,0,0,,que la vitesse de la lumière est de 300 000km/s peu importe à quelle vitesse vous vous déplacez.
+Dialogue: 0,0:18:19.74,0:18:23.05,Default,,0,0,0,,Comment est-ce possible ?
+Dialogue: 0,0:18:24.52,0:18:31.78,Default,,0,0,0,,Poincaré a proposé d'en faire un des principes de la nature.
+Dialogue: 0,0:18:31.78,0:18:36.05,Default,,0,0,0,,Que les équations de Maxwell sont correctes,
+Dialogue: 0,0:18:36.05,0:18:43.80,Default,,0,0,0,,et que les mathématiques nécessaires pour comparer un système en mouvement et un système au repos...
+Dialogue: 0,0:18:43.80,0:18:49.21,Default,,0,0,0,,Attendez, je rends ça trop compliqué, je vais reformuler ce que je viens de dire.
+Dialogue: 0,0:18:49.21,0:18:55.65,Default,,0,0,0,,Einstein et Poincaré ont remarqué, il est difficile de faire la chronologie exacte de cette idée,
+Dialogue: 0,0:18:55.65,0:19:04.84,Default,,0,0,0,,que la seule façon pour qu'une personne en mouvement et une autre au repos puissent mesurer la même vitesse,
+Dialogue: 0,0:19:04.84,0:19:08.62,Default,,0,0,0,,est que leurs notions du temps et de l'espace sont différentes.
+Dialogue: 0,0:19:08.62,0:19:13.30,Default,,0,0,0,,Les tic-tac de l'horloge à bord du vaisseau battent un rythme différent de celle restée au sol.
+Dialogue: 0,0:19:14.43,0:19:19.45,Default,,0,0,0,,Vous vous dîtes "Ok, donc si je regarde l'horloge dans le vaisseau alors je vois son rythme ralentir", non non !
+Dialogue: 0,0:19:19.45,0:19:22.84,Default,,0,0,0,,Votre cerveau ralentit aussi.
+Dialogue: 0,0:19:22.84,0:19:26.82,Default,,0,0,0,,Donc pour s'assurer que tout cela se passait bien ainsi dans le vaisseau
+Dialogue: 0,0:19:26.82,0:19:34.96,Default,,0,0,0,,il fût possible d'inventer un système qui indique une vitesse de 300 000" km-vaisseau" / "s-vaisseau"
+Dialogue: 0,0:19:34.96,0:19:41.92,Default,,0,0,0,,et pour moi 300 000 "mes-km"/"mes-s", c'est la même unité. C'est très ingénieux d'avoir fait ça,
+Dialogue: 0,0:19:41.92,0:19:44.92,Default,,0,0,0,,et il est remarquable que cela soit possible à faire.
+Dialogue: 0,0:19:44.92,0:19:49.18,Default,,0,0,0,,J'ai déja évoqué l'une des conséquences du principe de relativité,
+Dialogue: 0,0:19:49.18,0:19:54.13,Default,,0,0,0,,que vous ne pouvez pas dire à quelle vitesse vous allez en ligne droite dans le cas où
+Dialogue: 0,0:19:54.16,0:20:01.26,Default,,0,0,0,,vous avez deux voitures et un évènement se produit.
+Dialogue: 0,0:20:01.26,0:20:06.44,Default,,0,0,0,,Imaginez qu'un évènement se produise à chaque extrémité de la voiture, un homme se tient au milieu,
+Dialogue: 0,0:20:06.44,0:20:10.66,Default,,0,0,0,,et il assure qu'ils se sont produits au même instant,
+Dialogue: 0,0:20:10.66,0:20:16.64,Default,,0,0,0,,car du milieu de la voiture, il a vu la lumière simultanément produite par ces deux évènements.
+Dialogue: 0,0:20:16.64,0:20:20.54,Default,,0,0,0,,Alors que l'homme qui se trouve dans l'autre voiture et se déplace par là,
+Dialogue: 0,0:20:20.54,0:20:26.94,Default,,0,0,0,,a aussi vu ces évènements mais pas au même instant, il a vu celui-ci se produire en premier.
+Dialogue: 0,0:20:26.94,0:20:31.64,Default,,0,0,0,,La lumière l'a atteinte en premier car il se dirige vers elle.
+Dialogue: 0,0:20:31.64,0:20:36.82,Default,,0,0,0,,Vous voyez qu'une des conséquences du principe de symétrie du mouvement rectiligne uniforme
+Dialogue: 0,0:20:36.82,0:20:39.64,Default,,0,0,0,,est que vous ne pouvez pas dire qui a raison.
+Dialogue: 0,0:20:39.64,0:20:46.02,Default,,0,0,0,,Cela signifie que si vous entendez quelqu'un dire "tout ce qui arrive dans le monde en ce moment",
+Dialogue: 0,0:20:46.02,0:20:48.48,Default,,0,0,0,,cela ne veut rien dire.
+Dialogue: 0,0:20:48.48,0:20:52.22,Default,,0,0,0,,Si vous suivez un mouvement rectiligne uniforme,
+Dialogue: 0,0:20:52.22,0:20:57.88,Default,,0,0,0,,le "même moment" pour vous n'est pas le "même moment" pour moi,
+Dialogue: 0,0:20:57.88,0:21:00.78,Default,,0,0,0,,quand nous nous croisons nous pouvons dire "maintenant",
+Dialogue: 0,0:21:00.80,0:21:06.77,Default,,0,0,0,,mais à distance nous ne pouvons nous mettre d'accord sur le sens du mot "maintenant".
+Dialogue: 0,0:21:06.77,0:21:10.42,Default,,0,0,0,,Nous devons alors transformer en profondeur nos idées de temps et d'espace,
+Dialogue: 0,0:21:10.42,0:21:18.17,Default,,0,0,0,,pour respecter le principe de relativité, pour que le mouvement rectiligne uniforme reste indétectable.
+Dialogue: 0,0:21:18.17,0:21:21.14,Default,,0,0,0,,En d'autres termes,
+Dialogue: 0,0:21:21.14,0:21:26.32,Default,,0,0,0,,si deux choses semblent se produire de manière simultanée, ce n'est pas le cas 
+Dialogue: 0,0:21:26.32,0:21:33.50,Default,,0,0,0,,ce n'est pas nécessairement vrai d'un autre point de vue, à condition qu'ils ne soient pas au même endroit.
+Dialogue: 0,0:21:33.50,0:21:37.13,Default,,0,0,0,,Ça ressemble de près à mes "x et y",
+Dialogue: 0,0:21:37.13,0:21:45.79,Default,,0,0,0,,deux choses me sembleront être à la même distance en face de moi,
+Dialogue: 0,0:21:45.79,0:21:51.12,Default,,0,0,0,,Pour quelqu'un dans une autre position, il verra une chose devant et une autre derrière.
+Dialogue: 0,0:21:51.12,0:21:55.95,Default,,0,0,0,,De mon point de vue, chacun des murs se trouve de chaque côté
+Dialogue: 0,0:21:55.95,0:22:04.12,Default,,0,0,0,,mais si je me tourne ainsi, et que je regarde les mêmes murs, l'un est devant et l'autre est derrière.
+Dialogue: 0,0:22:04.12,0:22:09.08,Default,,0,0,0,,Donc si deux évènements semblent se produire d'un point de vue de manière simultanée,
+Dialogue: 0,0:22:09.10,0:22:11.72,Default,,0,0,0,,et d'un autre à deux instants différents,
+Dialogue: 0,0:22:11.72,0:22:18.21,Default,,0,0,0,,on généralise le concept appliqué à la rotation en 2 dimensions à l'espace et au temps.
+Dialogue: 0,0:22:18.21,0:22:22.33,Default,,0,0,0,,Le temps est ajouté à l'espace pour faire un monde à 4 dimensions.
+Dialogue: 0,0:22:22.33,0:22:28.06,Default,,0,0,0,,Et ce n'est pas un ajout artificiel, du genre "Oui on a ajouté le temps à l'espace parce que "
+Dialogue: 0,0:22:28.06,0:22:30.54,Default,,0,0,0,,- comme on peut le voir dans des ouvrages grand public -
+Dialogue: 0,0:22:30.54,0:22:33.96,Default,,0,0,0,,il ne suffit pas de dire "où" mais aussi "quand".
+Dialogue: 0,0:22:33.96,0:22:39.93,Default,,0,0,0,,Très bien, mais il ne suffit pas de les coller ensemble pour fabriquer un nouvel espace,
+Dialogue: 0,0:22:39.93,0:22:51.58,Default,,0,0,0,,Le vrai espace a la propriété d'exister indépendamment du point de vue où l'on se place,
+Dialogue: 0,0:22:53.84,0:22:57.72,Default,,0,0,0,,Du temps peut se retrouver mélanger avec de l'espace.
+Dialogue: 0,0:22:57.72,0:23:02.58,Default,,0,0,0,,Le temps et l'espace sont entièrement couplés.
+Dialogue: 0,0:23:02.58,0:23:09.42,Default,,0,0,0,,Après cette découverte, Minkowski déclara: "L'espace et le temps, pris séparément, partent en fumée,"
+Dialogue: 0,0:23:09.42,0:23:12.97,Default,,0,0,0,,"seule l'union des deux survivra".
+Dialogue: 0,0:23:12.97,0:23:16.81,Default,,0,0,0,,J'aborde cet exemple sans lésiner sur les détails
+Dialogue: 0,0:23:16.81,0:23:20.94,Default,,0,0,0,,car il marque le début de l'étude des symétries des lois physiques.
+Dialogue: 0,0:23:20.94,0:23:27.16,Default,,0,0,0,,Poincaré a eu l'idée de faire cette analyse: qu'est ce que je peux faire aux équations sans les modifier?
+Dialogue: 0,0:23:27.16,0:23:32.17,Default,,0,0,0,,Il attira l'attention sur les symétries dans les lois physiques,
+Dialogue: 0,0:23:32.17,0:23:37.93,Default,,0,0,0,,les symétries de translation dans l'espace, délai dans le temps etc.. n'étaient pas très profondes.
+Dialogue: 0,0:23:37.94,0:23:45.48,Default,,0,0,0,,Mais la symétrie dans le mouvement rectiligne uniforme est très intéressant et a de nombreuses conséquences.
+Dialogue: 0,0:23:45.48,0:23:52.10,Default,,0,0,0,,Ces conséquences ont permis de découvrir des lois que l'on ignorait.
+Dialogue: 0,0:23:52.10,0:23:55.86,Default,,0,0,0,,En devinant que ce principe est vrai, dans le cas de la désintégration d'un méson mu
+Dialogue: 0,0:23:55.86,0:24:00.44,Default,,0,0,0,,nous ignorons pourquoi un méson mu se désintègre, mais on peut déjà dire
+Dialogue: 0,0:24:00.44,0:24:05.80,Default,,0,0,0,,qu'un méson mu ne nous permettra pas non plus de savoir à quelle vitesse va notre vaisseau.
+Dialogue: 0,0:24:05.80,0:24:09.88,Default,,0,0,0,,Et ça nous dit au moins quelque-chose à propos de la désintégration des méson mu.
+Dialogue: 0,0:24:09.88,0:24:13.53,Default,,0,0,0,,Il y a d'autres symétries, certaines sont de nature différente,
+Dialogue: 0,0:24:13.53,0:24:20.60,Default,,0,0,0,,pour en mentionner une autre : vous pouvez remplacer un atome par un autre atome de même nature,
+Dialogue: 0,0:24:20.60,0:24:24.29,Default,,0,0,0,,et ça ne change rien, dans aucune situation.
+Dialogue: 0,0:24:24.30,0:24:27.72,Default,,0,0,0,,Vous vous dites "Qu'est ce que vous voulez dire par le même type ?"
+Dialogue: 0,0:24:27.72,0:24:32.76,Default,,0,0,0,,Je veux dire celui qui lorsqu'on le remplace par un autre ne change rien.
+Dialogue: 0,0:24:32.76,0:24:36.58,Default,,0,0,0,,On dirait que les physiciens ne disent que des absurdités n'est-ce pas?
+Dialogue: 0,0:24:36.58,0:24:40.35,Default,,0,0,0,,Il y a des atomes de nature différentes, si vous en échanger deux ça fait une différence,
+Dialogue: 0,0:24:40.35,0:24:43.17,Default,,0,0,0,,mais s'ils sont de même nature cela ne change rien.
+Dialogue: 0,0:24:43.18,0:24:46.01,Default,,0,0,0,,Cela ressemble à une tautologie mais
+Dialogue: 0,0:24:46.01,0:24:50.37,Default,,0,0,0,,ce que ça veut dire c'est qu'il y a des atomes de même nature.
+Dialogue: 0,0:24:50.37,0:24:53.44,Default,,0,0,0,,Il est possible de trouver des classes d'atomes,
+Dialogue: 0,0:24:53.44,0:24:58.49,Default,,0,0,0,,qui lorsque vous les échanger entre eux cela ne change rien, ça existe bel et bien.
+Dialogue: 0,0:24:58.49,0:25:05.78,Default,,0,0,0,,Puisque le nombre d'atomes dans n’importe quel morceau de matière est 1 suivi de 23 zéros
+Dialogue: 0,0:25:05.78,0:25:09.97,Default,,0,0,0,,c'est important qu'ils soient pas tout de natures différentes !
+Dialogue: 0,0:25:09.97,0:25:15.31,Default,,0,0,0,,Et c'est intéressant qu'on puisse les classer dans seulement quelques centaines de catégories,
+Dialogue: 0,0:25:15.31,0:25:21.92,Default,,0,0,0,,Donc la proposition qu'on puisse un atome par un autre de même nature est significative.
+Dialogue: 0,0:25:21.92,0:25:24.73,Default,,0,0,0,,Elle est surtout très significative en mécanique quantique
+Dialogue: 0,0:25:24.73,0:25:29.64,Default,,0,0,0,, mais c'est impossible de vous expliquer comment... En partie, mais seulement en partie,
+Dialogue: 0,0:25:29.64,0:25:36.25,Default,,0,0,0,,car cette audience n'est pas prête mathématiquement,
+Dialogue: 0,0:25:36.25,0:25:40.20,Default,,0,0,0,,En mécanique quantique la proposition "vous pouvez remplacer un atome par un autre de même nature"
+Dialogue: 0,0:25:40.20,0:25:42.20,Default,,0,0,0,,a de superbes conséquences
+Dialogue: 0,0:25:42.20,0:25:45.49,Default,,0,0,0,,Cela produit des phénomènes particuliers, comme l'hélium liquide,
+Dialogue: 0,0:25:45.49,0:25:50.60,Default,,0,0,0,,où l'hélium s'écoule dans des tubes sans résistance, il s'écoule indéfiniment.
+Dialogue: 0,0:25:50.60,0:25:58.27,Default,,0,0,0,,Elle est à l'origine du tableau périodique des éléments,
+Dialogue: 0,0:25:58.27,0:26:02.32,Default,,0,0,0,,et des forces qui m'empêchent de passer à travers le sol.
+Dialogue: 0,0:26:02.32,0:26:06.10,Default,,0,0,0,,Mais je ne peux pas rentrer dans ces détails,
+Dialogue: 0,0:26:06.10,0:26:10.43,Default,,0,0,0,,Mais je veux insister sur l'importance à accorder à ces principes.
+Dialogue: 0,0:26:10.43,0:26:15.95,Default,,0,0,0,,À présent vous devez être convaincus que toutes les lois de la physique sont symétriques,
+Dialogue: 0,0:26:15.95,0:26:20.04,Default,,0,0,0,,Donc je dois vous donner des exemples de lois qui ne le sont pas.
+Dialogue: 0,0:26:20.04,0:26:23.01,Default,,0,0,0,,La première, le changement d'échelle.
+Dialogue: 0,0:26:23.01,0:26:25.01,Default,,0,0,0,,
