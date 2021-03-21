@@ -10,14 +10,14 @@ PlayResX: 470
 PlayResY: 360
 
 [Aegisub Project Garbage]
-Audio File: ../../../Téléchargements/Richard Feynman Messenger Lectures at Cornell   The Character of Physical Law   Part 4 Symmetry in Physical Law.mp4
-Video File: ../../../Téléchargements/Richard Feynman Messenger Lectures at Cornell   The Character of Physical Law   Part 4 Symmetry in Physical Law.mp4
+Audio File: ../../../../Téléchargements/Richard Feynman Messenger Lectures at Cornell   The Character of Physical Law   Part 4 Symmetry in Physical Law.mp4
+Video File: ../../../../Téléchargements/Richard Feynman Messenger Lectures at Cornell   The Character of Physical Law   Part 4 Symmetry in Physical Law.mp4
 Video AR Mode: 4
 Video AR Value: 1.305556
 Video Zoom Percent: 1.625000
-Scroll Position: 410
-Active Line: 421
-Video Position: 62655
+Scroll Position: 452
+Active Line: 464
+Video Position: 68766
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -278,7 +278,7 @@ Dialogue: 0,0:21:00.80,0:21:06.77,Default,,0,0,0,,mais à distance nous ne pouvo
 Dialogue: 0,0:21:06.77,0:21:10.42,Default,,0,0,0,,Nous devons alors transformer en profondeur nos idées de temps et d'espace,
 Dialogue: 0,0:21:10.42,0:21:18.17,Default,,0,0,0,,pour respecter le principe de relativité, pour que le mouvement rectiligne uniforme reste indétectable.
 Dialogue: 0,0:21:18.17,0:21:21.14,Default,,0,0,0,,En d'autres termes,
-Dialogue: 0,0:21:21.14,0:21:26.32,Default,,0,0,0,,si deux choses semblent se produire de manière simultanée, ce n'est pas le cas 
+Dialogue: 0,0:21:21.14,0:21:26.32,Default,,0,0,0,,si deux choses semblent se produire de manière simultanée, ce n'est pas le cas
 Dialogue: 0,0:21:26.32,0:21:33.50,Default,,0,0,0,,ce n'est pas nécessairement vrai d'un autre point de vue, à condition qu'ils ne soient pas au même endroit.
 Dialogue: 0,0:21:33.50,0:21:37.13,Default,,0,0,0,,Ça ressemble de près à mes "x et y",
 Dialogue: 0,0:21:37.13,0:21:45.79,Default,,0,0,0,,deux choses me sembleront être à la même distance en face de moi,
@@ -369,7 +369,7 @@ Dialogue: 0,0:28:20.06,0:28:24.21,Default,,0,0,0,,Dans l'ouvrage de Galilée int
 Dialogue: 0,0:28:24.21,0:28:29.71,Default,,0,0,0,,vous verrez des images d'os imaginaires de chiens géants aux proportions démesurées.
 Dialogue: 0,0:28:30.04,0:28:33.20,Default,,0,0,0,,Galilée sentit que cette découverte, enfin j'imagine je n'en sais rien,
 Dialogue: 0,0:28:33.20,0:28:37.16,Default,,0,0,0,,que le fait que les lois de la nature changent en changeant d'échelle
-Dialogue: 0,0:28:37.16,0:28:41.21,Default,,0,0,0,,était aussi important que sa loi du mouvement car elles furent réunies 
+Dialogue: 0,0:28:37.16,0:28:41.21,Default,,0,0,0,,était aussi important que sa loi du mouvement car elles furent réunies
 Dialogue: 0,0:28:41.23,0:28:45.69,Default,,0,0,0,,dans le même ouvrage {\i1}Discours concernant {\b1}deux{\b0} sciences nouvelles.{\i0}
 Dialogue: 0,0:28:45.70,0:28:51.53,Default,,0,0,0,,Je passe à présent à un autre exemple de loi qui n'a pas de symétrie.
 Dialogue: 0,0:28:51.53,0:28:57.08,Default,,0,0,0,,Si vous tournez sur vous-même à une vitesse angulaire uniforme dans un vaisseau
@@ -440,11 +440,53 @@ Dialogue: 0,0:33:51.40,0:33:55.31,Default,,0,0,0,,sont telles que cela ne change
 Dialogue: 0,0:33:55.31,0:34:00.81,Default,,0,0,0,,Les lois de l’électricité et du magnétisme
 Dialogue: 0,0:34:01.58,0:34:06.38,Default,,0,0,0,,
 Dialogue: 0,0:34:06.38,0:34:14.77,Default,,0,0,0,,Et si la montre fonctionnait grâce à une réaction nucléaire, ça ne changerait rien non plus.
-Dialogue: 0,0:34:18.15,0:34:21.28,Default,,0,0,0,,Mais il y a quand même une petite différence.
-Dialogue: 0,0:34:21.28,0:34:23.82,Default,,0,0,0,,Je reviens sur cette différence dans un instant,
-Dialogue: 0,0:34:23.82,0:34:29.27,Default,,0,0,0,,mais la première idée qui pourrait vous venir si vous connaissez le sujet,
-Dialogue: 0,0:34:29.28,0:34:33.29,Default,,0,0,0,,est qu'il est possible de mesurer la concentration de sucre dans l'eau
-Dialogue: 0,0:34:33.29,0:34:40.30,Default,,0,0,0,,en projetant une lumière polarisée à travers l'eau, si vous faites cela,
-Dialogue: 0,0:34:40.30,0:34:44.58,Default,,0,0,0,,vous verrez que la lumière en passant au
-Dialogue: 0,0:34:44.58,0:34:50.60,Default,,0,0,0,,
-Dialogue: 0,0:34:50.60,0:34:52.60,Default,,0,0,0,,
+Dialogue: 0,0:34:18.15,0:34:21.28,Default,,0,0,0,,Mais il y aurait quand même\N une petite différence.
+Dialogue: 0,0:34:21.28,0:34:23.82,Default,,0,0,0,,J'y reviendrai dans un instant.
+Dialogue: 0,0:34:23.82,0:34:33.29,Default,,0,0,0,,mais vous savez peut-être qu'il est possible de mesurer la concentration de sucre dans l'eau
+Dialogue: 0,0:34:29.28,0:34:35.61,Default,,0,0,0,,est qu'il est possible de mesurer la concentration de sucre dans l'eau, en faisant passer de la lumière\N polarisée à travers l'eau
+Dialogue: 0,0:34:35.62,0:34:40.30,Default,,0,0,0,,Si on place un morceau de polaroid qui laisse seulement passer la lumière avec une certaine orientation
+Dialogue: 0,0:34:40.30,0:34:44.57,Default,,0,0,0,,on observe que lorsqu'on regarde la lumière traverser de plus en plus profondément l'eau sucrée
+Dialogue: 0,0:34:44.58,0:34:51.88,Default,,0,0,0,,il faut tourner le polaroid à la sortie de la solution de plus en plus vers la droite pour laisser passer la lumière,
+Dialogue: 0,0:34:52.12,0:34:56.16,Default,,0,0,0,,ou vers la gauche, je ne me souviens plus, disons vers la droite,
+Dialogue: 0,0:34:56.16,0:34:58.80,Default,,0,0,0,,
+Dialogue: 0,0:34:58.80,0:35:02.51,Default,,0,0,0,,Si vous faites entrer la lumière par l'autre extrémité c'est toujours vers la droite.
+Dialogue: 0,0:35:02.51,0:35:05.45,Default,,0,0,0,,Il existe donc une différence\N entre la gauche et la droite.
+Dialogue: 0,0:35:05.45,0:35:08.34,Default,,0,0,0,,Donc si on fabrique notre montre avec de l'eau sucrée et de la lumière,
+Dialogue: 0,0:35:08.34,0:35:15.36,Default,,0,0,0,,si on place un réservoir d'eau entre deux polaroids arrangés pour laisser passer la lumière
+Dialogue: 0,0:35:15.36,0:35:18.92,Default,,0,0,0,,et qu'on la reproduit en miroir, en espérant que la lumière tourne à gauche,
+Dialogue: 0,0:35:18.92,0:35:21.55,Default,,0,0,0,,non, elle tourne à droite et\N la lumière ne passe pas.
+Dialogue: 0,0:35:21.55,0:35:27.70,Default,,0,0,0,,En résumé, en utilisant de l'eau sucrée nos deux montres miroirs seront différentes.
+Dialogue: 0,0:35:30.59,0:35:40.41,Default,,0,0,0,,Il semble donc que les lois physiques ne sont pas symétriques dans le cas de la réflexion.
+Dialogue: 0,0:35:40.41,0:35:45.15,Default,,0,0,0,,Cela dit, il est possible de faire un sucre en laboratoire, ce sucre là était un sucre de betterave, 
+Dialogue: 0,0:35:45.17,0:35:47.42,Default,,0,0,0,,Le sucre n'est pas une molécule compliquée,
+Dialogue: 0,0:35:47.42,0:35:51.31,Default,,0,0,0,,Il est possible de faire du sucre en laboratoire à partir de C02 et d'eau,
+Dialogue: 0,0:35:51.31,0:35:54.83,Default,,0,0,0,,et après beaucoup d'étapes, obtenir du sucre artificiel.
+Dialogue: 0,0:35:54.83,0:36:03.39,Default,,0,0,0,,Utilisez ce sucre, il semble identique chimiquement, mais il ne fait pas tourner la lumière.
+Dialogue: 0,0:36:04.27,0:36:09.44,Default,,0,0,0,,Si vous y introduisez des bactéries, elles vont manger le sucre.
+Dialogue: 0,0:36:09.44,0:36:16.05,Default,,0,0,0,,Si on regarde ce qu'il reste après un moment, on remarque qu'elles n'ont mangé que la moitié du sucre.
+Dialogue: 0,0:36:17.32,0:36:20.57,Default,,0,0,0,,Et maintenant la lumière tourne vers la gauche.
+Dialogue: 0,0:36:22.38,0:36:26.85,Default,,0,0,0,,En voici l'explication,
+Dialogue: 0,0:36:26.85,0:36:34.02,Default,,0,0,0,,Le sucre est une molécule compliquée, un ensemble d'atomes disposés de manière compliquée,
+Dialogue: 0,0:36:34.02,0:36:39.20,Default,,0,0,0,,Si vous faites le même arrangement mais en échangeant la gauche et la droite,
+Dialogue: 0,0:36:39.20,0:36:43.46,Default,,0,0,0,,mirroir l'une de l'autre,
+Dialogue: 0,0:36:43.46,0:36:49.22,Default,,0,0,0,,La distance entre chaque paire d'atomes est identique dans les deux cas,
+Dialogue: 0,0:36:49.21,0:36:51.72,Default,,0,0,0,,Leurs énergies sont les mêmes,
+Dialogue: 0,0:36:51.72,0:36:57.28,Default,,0,0,0,,et elles sont "identiques" dans tous les phénomènes chimiques où la lumière ne joue aucun rôle.
+Dialogue: 0,0:36:57.28,0:37:01.10,Default,,0,0,0,,Les créatures vivantes elles, voient leur différences.
+Dialogue: 0,0:37:01.10,0:37:03.66,Default,,0,0,0,,La bactérie n'en mange qu'une sorte.
+Dialogue: 0,0:37:03.66,0:37:09.74,Default,,0,0,0,,Le sucre de betterave est \Ntoujours une molécule "droite",
+Dialogue: 0,0:37:09.74,0:37:12.11,Default,,0,0,0,,elle fait tourner la lumière d'un seul côté.
+Dialogue: 0,0:37:12.11,0:37:14.53,Default,,0,0,0,,La bactérie ne peut manger\Nque ce type de molécule.
+Dialogue: 0,0:37:14.53,0:37:20.48,Default,,0,0,0,,Lorsqu'on fabrique du sucre à partir de substances non asymétriques elles-mêmes,
+Dialogue: 0,0:37:20.48,0:37:23.06,Default,,0,0,0,,on produit les deux sortes en nombres égaux.
+Dialogue: 0,0:37:23.06,0:37:27.79,Default,,0,0,0,,Si ensuite on introduit les bactéries, elles mangent l'espèce qu'elles peuvent manger
+Dialogue: 0,0:37:27.81,0:37:30.91,Default,,0,0,0,,et ce qui reste fait tourner la lumière.
+Dialogue: 0,0:37:30.91,0:37:37.42,Default,,0,0,0,,On peut différencier les deux sortes en observant les cristaux au microscope, comme l'a découvert Pasteur.
+Dialogue: 0,0:37:37.42,0:37:42.27,Default,,0,0,0,,On peut montrer que chaque molécule a "un sens", 
+Dialogue: 0,0:37:42.27,0:37:47.62,Default,,0,0,0,,et concernant notre sucre artificiel, on sait les séparer nous même, sans l'aide des bactéries.
+Dialogue: 0,0:37:47.62,0:37:53.84,Default,,0,0,0,,Si la bactérie arrive à les discerner est-ce-que ça signifie que les processus du vivant obéissent à d'autres lois ?
+Dialogue: 0,0:37:53.84,0:37:59.52,Default,,0,0,0,,Il semble que non, es créatures vivantes sont composées de beaucoup de molécules compliquées
+Dialogue: 0,0:37:59.52,0:38:01.52,Default,,0,0,0,,qui ont toutes une forme de "filetage".
+Dialogue: 0,0:38:01.52,0:38:08.64,Default,,0,0,0,,La protéine, la molécule du vivant la plus emblématique,
+Dialogue: 0,0:38:08.64,0:38:14.48,Default,,0,0,0,,possède un filetage, disons, vers la droite.
+Dialogue: 0,0:38:14.48,0:38:16.48,Default,,0,0,0,,Pour autant que nous le sachions, nous pourrions faire l
