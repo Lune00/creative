@@ -15,9 +15,9 @@ Video File: ../../../Téléchargements/Richard Feynman Messenger Lectures at Cor
 Video AR Mode: 4
 Video AR Value: 1.305556
 Video Zoom Percent: 1.625000
-Scroll Position: 316
-Active Line: 328
-Video Position: 49298
+Scroll Position: 410
+Active Line: 421
+Video Position: 62655
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -353,4 +353,98 @@ Dialogue: 0,0:27:03.80,0:27:10.51,Default,,0,0,0,,Plusieurs étages, magnifique.
 Dialogue: 0,0:27:10.51,0:27:14.49,Default,,0,0,0,,Si délicat. Pourquoi on n'en construit pas des comme ça avec de grandes poutres ?
 Dialogue: 0,0:27:14.49,0:27:19.44,Default,,0,0,0,,Avec le même degré de folie. Avec autant de détails.
 Dialogue: 0,0:27:19.44,0:27:24.89,Default,,0,0,0,,La raison est que si on le faisait, ce serait tellement haut et lourd que ça s'effondrerait.
-Dialogue: 0,0:27:24.89,0:27:26.89,Default,,0,0,0,,
+Dialogue: 0,0:27:24.89,0:27:30.62,Default,,0,0,0,,Quand vous comparez deux choses, vous devez changer tout ce qui agit dans le système,
+Dialogue: 0,0:27:30.62,0:27:34.70,Default,,0,0,0,,La petite cathédrale en allumettes est attirée par la Terre,
+Dialogue: 0,0:27:34.70,0:27:39.82,Default,,0,0,0,,donc pour faire la comparaison, je devrais faire une grande cathédrale attirée par une plus grande Terre.
+Dialogue: 0,0:27:39.82,0:27:42.67,Default,,0,0,0,,Dommage, une plus grande Terre l'attirerait encore davantage
+Dialogue: 0,0:27:42.67,0:27:46.94,Default,,0,0,0,,et les poutres se briseraient encore plus facilement
+Dialogue: 0,0:27:48.20,0:27:52.49,Default,,0,0,0,,Ce fait, que les lois de la physique restent inchangées quand on change d'échelle,
+Dialogue: 0,0:27:52.49,0:27:54.99,Default,,0,0,0,,fut découvert en premier par Galilée.
+Dialogue: 0,0:27:54.99,0:27:59.94,Default,,0,0,0,,Il le montra en discutant de la résistance des roues et des os.
+Dialogue: 0,0:27:59.94,0:28:05.76,Default,,0,0,0,,Il soutint que si vous avez besoin d'un os pour un animal deux fois plus grand
+Dialogue: 0,0:28:05.76,0:28:11.25,Default,,0,0,0,,vous avez 8 fois plus de poids, donc vous avez besoin d'un os qui supporte 8 fois la charge initiale.
+Dialogue: 0,0:28:11.25,0:28:16.00,Default,,0,0,0,,Or la résistance d'un os dépend de sa coupe transversale, si l'os est deux fois plus large
+Dialogue: 0,0:28:16.00,0:28:20.06,Default,,0,0,0,,sa section ne sera que 4 fois plus grande, et ne supportera que 4 fois le poids initial.
+Dialogue: 0,0:28:20.06,0:28:24.21,Default,,0,0,0,,Dans l'ouvrage de Galilée intitulé {\i1}Discours concernant deux sciences nouvelles{\i0},
+Dialogue: 0,0:28:24.21,0:28:29.71,Default,,0,0,0,,vous verrez des images d'os imaginaires de chiens géants aux proportions démesurées.
+Dialogue: 0,0:28:30.04,0:28:33.20,Default,,0,0,0,,Galilée sentit que cette découverte, enfin j'imagine je n'en sais rien,
+Dialogue: 0,0:28:33.20,0:28:37.16,Default,,0,0,0,,que le fait que les lois de la nature changent en changeant d'échelle
+Dialogue: 0,0:28:37.16,0:28:41.21,Default,,0,0,0,,était aussi important que sa loi du mouvement car elles furent réunies 
+Dialogue: 0,0:28:41.23,0:28:45.69,Default,,0,0,0,,dans le même ouvrage {\i1}Discours concernant {\b1}deux{\b0} sciences nouvelles.{\i0}
+Dialogue: 0,0:28:45.70,0:28:51.53,Default,,0,0,0,,Je passe à présent à un autre exemple de loi qui n'a pas de symétrie.
+Dialogue: 0,0:28:51.53,0:28:57.08,Default,,0,0,0,,Si vous tournez sur vous-même à une vitesse angulaire uniforme dans un vaisseau
+Dialogue: 0,0:28:57.08,0:28:59.65,Default,,0,0,0,,vous pouvez dire que vous êtes en train de tourner.
+Dialogue: 0,0:28:59.65,0:29:02.02,Default,,0,0,0,,Tout est projeté aux murs,
+Dialogue: 0,0:29:02.02,0:29:05.55,Default,,0,0,0,,vous vous sentez mal...
+Dialogue: 0,0:29:07.06,0:29:10.54,Default,,0,0,0,,Il y a d'autres effets mais tout se retrouve bien projeté contre les murs
+Dialogue: 0,0:29:10.54,0:29:13.37,Default,,0,0,0,,par force centrifuge, décrivez le comme bon vous semble,
+Dialogue: 0,0:29:13.37,0:29:20.13,Default,,0,0,0,,et j'espère qu'il n'y a pas de professeurs ou de journalistes scientifiques présents pour me corriger...
+Dialogue: 0,0:29:20.13,0:29:23.98,Default,,0,0,0,,Mais il est possible de savoir que la Terre tourne
+Dialogue: 0,0:29:23.98,0:29:27.43,Default,,0,0,0,,grâce à un pendule ou un gyroscope,
+Dialogue: 0,0:29:27.43,0:29:32.00,Default,,0,0,0,,et vous avez sûrement déjà vu dans des observatoires ou des musées
+Dialogue: 0,0:29:32.00,0:29:35.69,Default,,0,0,0,,un pendule de Foucault qui prouve que la Terre sans avoir à regarder les étoiles
+Dialogue: 0,0:29:35.69,0:29:40.28,Default,,0,0,0,,Donc il est possible de dire que nous tournons à une vitesse angulaire constante,
+Dialogue: 0,0:29:40.28,0:29:42.09,Default,,0,0,0,,depuis la Terre, sans regarder dehors,
+Dialogue: 0,0:29:42.09,0:29:46.34,Default,,0,0,0,,car les lois de la physique ne restent pas inchangées dans ce phénomène.
+Dialogue: 0,0:29:46.83,0:29:54.11,Default,,0,0,0,,Beaucoup de gens ont suggéré que puisque vous tournez par rapport aux galaxies,
+Dialogue: 0,0:29:54.11,0:29:58.71,Default,,0,0,0,,alors si vous tournez les galaxies aussi, vous ne verriez aucune différence.
+Dialogue: 0,0:29:58.71,0:30:01.26,Default,,0,0,0,,Mais j'ignore ce qu'il arriverait si nous faisions tourner tout l'univers,
+Dialogue: 0,0:30:01.26,0:30:04.11,Default,,0,0,0,,et pour le moment, nous n'avons aucun moyen de le vérifier,
+Dialogue: 0,0:30:04.11,0:30:12.57,Default,,0,0,0,,ni, pour le moment, de théorie qui décrit l'influence de galaxies sur ce qu'il se passe ici,
+Dialogue: 0,0:30:12.57,0:30:18.96,Default,,0,0,0,,mais il ressort de cette théorie, sans détours, explicitement,
+Dialogue: 0,0:30:18.96,0:30:22.47,Default,,0,0,0,,que l'inertie de rotation, que l'effet de rotation
+Dialogue: 0,0:30:22.47,0:30:27.25,Default,,0,0,0,,le fait que la surface d'un seau d'eau en rotation ait cette forme,
+Dialogue: 0,0:30:27.25,0:30:30.65,Default,,0,0,0,,soit le résultat de forces exercées par des objets environnants.
+Dialogue: 0,0:30:30.65,0:30:32.57,Default,,0,0,0,,Cela n'a jamais été confirmé,
+Dialogue: 0,0:30:32.57,0:30:36.41,Default,,0,0,0,,cette hypothèse est c'est ce qu'on appelle le principe de Mach,
+Dialogue: 0,0:30:36.41,0:30:40.57,Default,,0,0,0,,mais elle n'a jamais été prouvée à ce jour.
+Dialogue: 0,0:30:42.14,0:30:48.16,Default,,0,0,0,,Mais la vraie question à se poser, je veux dire expérimentalement, est la suivante :
+Dialogue: 0,0:30:48.16,0:30:53.44,Default,,0,0,0,,si on tourne à vitesse angulaire uniforme par rapport aux nébuleuses, voit on un effet ? Oui.
+Dialogue: 0,0:30:53.44,0:30:57.93,Default,,0,0,0,,Si on se déplace en suivant un mouvement rectiligne uniforme par rapport aux nébuleuses
+Dialogue: 0,0:30:57.93,0:31:00.88,Default,,0,0,0,,voit-on un effet ? Non, c'est deux choses différentes.
+Dialogue: 0,0:31:00.88,0:31:05.61,Default,,0,0,0,,donc ne dites pas que tous les mouvements sont relatifs, ce n'est pas ce que dit la relativité,
+Dialogue: 0,0:31:05.61,0:31:12.52,Default,,0,0,0,,La relativité dit que le mouvement rectiligne uniforme par rapport aux nébuleuses est indétectable.
+Dialogue: 0,0:31:16.62,0:31:19.92,Default,,0,0,0,,La loi symétrique dont j'aimerais parler à présent
+Dialogue: 0,0:31:19.92,0:31:22.63,Default,,0,0,0,,est intéressante de par son histoire.
+Dialogue: 0,0:31:22.63,0:31:26.17,Default,,0,0,0,,Elle aborde le problème de la réflexion dans l'espace.
+Dialogue: 0,0:31:27.01,0:31:30.29,Default,,0,0,0,,Si je construis une machine, disons une montre,
+Dialogue: 0,0:31:30.29,0:31:36.09,Default,,0,0,0,,et que je fabrique ici la même montre, sauf qu'elle ressemble à la première vue dans un miroir,
+Dialogue: 0,0:31:36.11,0:31:40.27,Default,,0,0,0,,Je ne veux pas dire que je regarde la première dans un miroir, je fabrique bien une nouvelle montre
+Dialogue: 0,0:31:40.27,0:31:46.87,Default,,0,0,0,,qui est une copie parfaite de la première vue dans un miroir.
+Dialogue: 0,0:31:46.87,0:31:50.65,Default,,0,0,0,,Autrement dit, j'ai le chiffre 2 peint délicatement ici,
+Dialogue: 0,0:31:50.65,0:31:54.41,Default,,0,0,0,,et je peins sur l'autre le chiffre 2 inversé.
+Dialogue: 0,0:31:55.08,0:31:56.88,Default,,0,0,0,,C'est l'occasion de faire un dessein,
+Dialogue: 0,0:31:56.88,0:32:00.13,Default,,0,0,0,,2 d'un côté, 2 inversé de l'autre.
+Dialogue: 0,0:32:17.19,0:32:22.01,Default,,0,0,0,,La première montre est remontée dans un sens, la deuxième dans l'autre.
+Dialogue: 0,0:32:22.01,0:32:26.41,Default,,0,0,0,,Elles vont de paire, comme deux gants, gauche et droite.
+Dialogue: 0,0:32:26.41,0:32:30.67,Default,,0,0,0,,Remontons les deux montres aux mêmes positions,
+Dialogue: 0,0:32:30.67,0:32:35.53,Default,,0,0,0,,j'allais les dire les mêmes, en positions miroirs, et on les laisse tourner.
+Dialogue: 0,0:32:35.53,0:32:39.17,Default,,0,0,0,,Question : vont-elles rester en correspondance ?
+Dialogue: 0,0:32:39.17,0:32:46.04,Default,,0,0,0,,La machinerie de chacune des deux montres tourne en miroir l'une de l'autre
+Dialogue: 0,0:32:46.04,0:32:49.51,Default,,0,0,0,,Et j'ignore quel est votre pari sur le résultat,
+Dialogue: 0,0:32:49.51,0:32:53.58,Default,,0,0,0,,Vous vous dites sûrement que oui, et la plupart des gens ont deviné que c'était vrai,
+Dialogue: 0,0:32:58.31,0:33:01.42,Default,,0,0,0,,Nous ne parlons pas ici de géographie,
+Dialogue: 0,0:33:01.42,0:33:04.86,Default,,0,0,0,,nous ne pouvons pas distinguer la gauche de la droite. Géographiquement, on peut dire
+Dialogue: 0,0:33:04.86,0:33:09.66,Default,,0,0,0,,que si on regarde New-York depuis la Floride alors l'océan est sur la droite.
+Dialogue: 0,0:33:09.66,0:33:17.60,Default,,0,0,0,,et ça permet de distinguer la gauche de la droite, et si la montre implique l'océan, New-York etc
+Dialogue: 0,0:33:17.60,0:33:22.24,Default,,0,0,0,,alors on ne pourrait pas construire la montre miroir, ses aiguilles seraient dans l'eau.
+Dialogue: 0,0:33:22.24,0:33:26.86,Default,,0,0,0,,Il faut imaginer que la géographie de la Terre est aussi inversée,
+Dialogue: 0,0:33:26.86,0:33:29.28,Default,,0,0,0,,Tout ce qui est concerné doit être inversé.
+Dialogue: 0,0:33:29.28,0:33:34.07,Default,,0,0,0,,L'histoire aussi doit changer. Par exemple si vous achetez une vis dans un atelier,
+Dialogue: 0,0:33:34.06,0:33:36.22,Default,,0,0,0,,elle sera sûrement filetée à droite,
+Dialogue: 0,0:33:36.22,0:33:40.75,Default,,0,0,0,,Vous allez dire que la 2ème montre n'est pas identique à la 1ère, car il est plus difficile de lui trouver des vis.
+Dialogue: 0,0:33:40.74,0:33:43.77,Default,,0,0,0,,Mais là ça dépend juste de ce qu'on produit.
+Dialogue: 0,0:33:43.78,0:33:48.25,Default,,0,0,0,,Pour résumer, le premier pari est que ça ne fait aucune différence.
+Dialogue: 0,0:33:48.25,0:33:51.40,Default,,0,0,0,,Et il se trouve que les lois de la gravitation
+Dialogue: 0,0:33:51.40,0:33:55.31,Default,,0,0,0,,sont telles que cela ne changerait rien non plus sil elles fonctionnaient par gravité.
+Dialogue: 0,0:33:55.31,0:34:00.81,Default,,0,0,0,,Les lois de l’électricité et du magnétisme
+Dialogue: 0,0:34:01.58,0:34:06.38,Default,,0,0,0,,
+Dialogue: 0,0:34:06.38,0:34:14.77,Default,,0,0,0,,Et si la montre fonctionnait grâce à une réaction nucléaire, ça ne changerait rien non plus.
+Dialogue: 0,0:34:18.15,0:34:21.28,Default,,0,0,0,,Mais il y a quand même une petite différence.
+Dialogue: 0,0:34:21.28,0:34:23.82,Default,,0,0,0,,Je reviens sur cette différence dans un instant,
+Dialogue: 0,0:34:23.82,0:34:29.27,Default,,0,0,0,,mais la première idée qui pourrait vous venir si vous connaissez le sujet,
+Dialogue: 0,0:34:29.28,0:34:33.29,Default,,0,0,0,,est qu'il est possible de mesurer la concentration de sucre dans l'eau
+Dialogue: 0,0:34:33.29,0:34:40.30,Default,,0,0,0,,en projetant une lumière polarisée à travers l'eau, si vous faites cela,
+Dialogue: 0,0:34:40.30,0:34:44.58,Default,,0,0,0,,vous verrez que la lumière en passant au
+Dialogue: 0,0:34:44.58,0:34:50.60,Default,,0,0,0,,
+Dialogue: 0,0:34:50.60,0:34:52.60,Default,,0,0,0,,
