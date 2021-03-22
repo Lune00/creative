@@ -15,9 +15,9 @@ Video File: ../../../../Téléchargements/Richard Feynman Messenger Lectures at 
 Video AR Mode: 4
 Video AR Value: 1.305556
 Video Zoom Percent: 1.625000
-Scroll Position: 558
-Active Line: 570
-Video Position: 85861
+Scroll Position: 648
+Active Line: 657
+Video Position: 100528
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -595,4 +595,94 @@ Dialogue: 0,0:47:24.85,0:47:28.77,Default,,0,0,0,,Une façon de décrire les loi
 Dialogue: 0,0:47:28.77,0:47:35.33,Default,,0,0,0,,une certaine quantité, a une valeur minimum pour le chemin suivi.
 Dialogue: 0,0:47:35.32,0:47:41.14,Default,,0,0,0,,Une autre façon de dire que c'est un minimum, est de dire que si vous changez un peu le chemin,
 Dialogue: 0,0:47:41.14,0:47:44.89,Default,,0,0,0,,à première vue ça ne change rien,
-Dialogue: 0,0:47:44.94,0:47:51.14,Default,,0,0,0,,
+Dialogue: 0,0:47:44.94,0:47:51.14,Default,,0,0,0,,Imaginez que vous vous promeniez sur une colline, aux pentes douces,
+Dialogue: 0,0:47:51.14,0:47:56.09,Default,,0,0,0,,les mathématiques ici s'appliquent à des pentes douces,
+Dialogue: 0,0:47:56.09,0:48:01.63,Default,,0,0,0,,Vous vous baladez de collines en vallées, et vous arrivez à l'endroit le plus bas.
+Dialogue: 0,0:48:01.63,0:48:07.05,Default,,0,0,0,,donc si vous faites un petit pas en avant vous n'allez pas changer d'altitude.
+Dialogue: 0,0:48:07.05,0:48:13.07,Default,,0,0,0,,Quand vous êtes au point le plus haut ou le plus bas, un pas en avant ne change pas votre altitude,
+Dialogue: 0,0:48:13.07,0:48:21.05,Default,,0,0,0,,Alors que sur une pente, si vous faites un pas en avant soit vous descendez soit vous montez,
+Dialogue: 0,0:48:21.05,0:48:26.77,Default,,0,0,0,,et c'est pour cela qu'au point le plus bas, faire un pas ne change presque rien.
+Dialogue: 0,0:48:26.77,0:48:33.72,Default,,0,0,0,,Car si ça faisait une différence, en fonction de votre pas vous iriez vers le haut ou vers le bas,
+Dialogue: 0,0:48:33.72,0:48:40.48,Default,,0,0,0,,Mais comme vous êtes au plus bas, vous ne pouvez plus descendre, un pas en avant ne change rien.
+Dialogue: 0,0:48:41.85,0:48:45.60,Default,,0,0,0,,Nous pouvons donc dire que si on change ce chemin un petit peu,
+Dialogue: 0,0:48:45.60,0:48:49.50,Default,,0,0,0,,en première approximation, l'action ne change pas.
+Dialogue: 0,0:48:49.50,0:48:53.58,Default,,0,0,0,,Maintenant considérez cet autre chemin possible.
+Dialogue: 0,0:48:53.58,0:48:57.90,Default,,0,0,0,,Nous sautons d'abord à un autre point tout proche,
+Dialogue: 0,0:48:57.90,0:49:01.80,Default,,0,0,0,,Ensuite on continue...
+Dialogue: 0,0:49:01.80,0:49:08.35,Default,,0,0,0,,- cette partie est trop excentrique, permettez moi de dessiner un autre chemin -
+Dialogue: 0,0:49:08.35,0:49:13.33,Default,,0,0,0,,on suit exactement le même\N chemin jusqu'à un point ici,
+Dialogue: 0,0:49:13.32,0:49:18.48,Default,,0,0,0,,qui est déplacé ici de la même façon que les autres.
+Dialogue: 0,0:49:18.48,0:49:22.05,Default,,0,0,0,,Nous venons de découvrir que les lois de la nature sont telles 
+Dialogue: 0,0:49:22.05,0:49:30.19,Default,,0,0,0,,que l'action de ces deux chemins sont les mêmes, en première approximation.
+Dialogue: 0,0:49:30.19,0:49:33.63,Default,,0,0,0,,d'après le principe de moindre action,
+Dialogue: 0,0:49:33.63,0:49:41.05,Default,,0,0,0,,Maintenant regardez, l'action de chacun des chemins est le même
+Dialogue: 0,0:49:41.05,0:49:44.18,Default,,0,0,0,,si le monde est le même\N lorsque vous déplacez tout.
+Dialogue: 0,0:49:44.18,0:49:48.62,Default,,0,0,0,,Car la seule différence entre les deux c'est que vous avez tout déplacé.
+Dialogue: 0,0:49:48.62,0:49:52.96,Default,,0,0,0,,Donc si la symétrie par translation dans l'espace est vérifiée,
+Dialogue: 0,0:49:52.96,0:49:58.70,Default,,0,0,0,,alors l'action totale de chaque chemin est identique.
+Dialogue: 0,0:49:58.70,0:50:04.32,Default,,0,0,0,,Mais pour le vrai mouvement, l'action totale sur ce chemin
+Dialogue: 0,0:50:04.32,0:50:07.81,Default,,0,0,0,,est très proche de celle du mouvement initial.
+Dialogue: 0,0:50:09.86,0:50:17.04,Default,,0,0,0,,Vous avez sûrement remarqué que la contribution de chacune de ces sections sont égales,
+Dialogue: 0,0:50:17.04,0:50:22.68,Default,,0,0,0,,Vous sur cette section nous allons dans un sens, et sur l'autre dans le sens opposé,
+Dialogue: 0,0:50:22.68,0:50:28.52,Default,,0,0,0,,Donc la contribution du déplacement dans cette direction,
+Dialogue: 0,0:50:28.52,0:50:34.76,Default,,0,0,0,,et la contribution du déplacement dans l'autre direction, de signe opposé,
+Dialogue: 0,0:50:34.76,0:50:40.22,Default,,0,0,0,,nous le voyons, ces deux quantités doivent correspondre et s'annuler mutuellement.
+Dialogue: 0,0:50:40.22,0:50:46.30,Default,,0,0,0,,Elles sont la manifestation dans l'action, d'un petit pas fait de côté dans l'espace.
+Dialogue: 0,0:50:46.30,0:50:53.54,Default,,0,0,0,,L'effet du petit pas de côté sur l'action est le même au début qu' à la fin.
+Dialogue: 0,0:50:53.54,0:50:57.28,Default,,0,0,0,,Il y a donc une quantité qui ne change pas dans le temps, 
+Dialogue: 0,0:50:57.28,0:51:03.96,Default,,0,0,0,,si le principe de moindre action et la symétrie par translation sont vérifiés.
+Dialogue: 0,0:51:03.96,0:51:11.84,Default,,0,0,0,,Et cette quantité qui ne change pas, c'est en fait la quantité de mouvement, dont on a déjà parlé.
+Dialogue: 0,0:51:11.85,0:51:20.59,Default,,0,0,0,,De manière analogue, la symétrie dans le temps se traduit par la conservation de l'énergie.
+Dialogue: 0,0:51:20.59,0:51:28.76,Default,,0,0,0,,La symétrie des lois par rotation produit la conservation du moment cinétique, etc...
+Dialogue: 0,0:51:28.76,0:51:34.06,Default,,0,0,0,,La symétrie par réflexion ne se traduit pas par un effet classique,
+Dialogue: 0,0:51:34.06,0:51:38.70,Default,,0,0,0,,elle n'a pas d'interprétation classique simple.
+Dialogue: 0,0:51:38.70,0:51:43.88,Default,,0,0,0,,Certains appellent ça la parité, et on a une conservation de la parité,
+Dialogue: 0,0:51:43.88,0:51:47.97,Default,,0,0,0,,Mais ce sont des mots bien compliqués issus de la mécanique quantique,
+Dialogue: 0,0:51:47.98,0:51:52.53,Default,,0,0,0,,On dit juste que la symétrie gauche/droite n'est pas vérifiée,
+Dialogue: 0,0:51:52.53,0:51:56.94,Default,,0,0,0,,mais je dois parler de la conservation de la parité car vous avez peut-être lu dans les journaux
+Dialogue: 0,0:51:56.94,0:51:59.98,Default,,0,0,0,,"La loi de la conservation de la parité est fausse"
+Dialogue: 0,0:51:59.98,0:52:02.77,Default,,0,0,0,,Pour être plus clairs ils auraient du écrire :
+Dialogue: 0,0:52:02.77,0:52:08.54,Default,,0,0,0,,"Le principe selon lequel on peut distinguer la gauche de la droite est faux".
+Dialogue: 0,0:52:08.54,0:52:16.10,Default,,0,0,0,,Puisqu'on parle de symétrie, je voudrais aborder des symétries qui présentent des problèmes nouveaux.
+Dialogue: 0,0:52:16.10,0:52:22.35,Default,,0,0,0,,Par exemple, pour chaque particule comme un électron il y a une antiparticule, un positron,
+Dialogue: 0,0:52:22.35,0:52:25.10,Default,,0,0,0,,Le proton a un antiproton,
+Dialogue: 0,0:52:25.10,0:52:28.52,Default,,0,0,0,,et on peut faire en principe de "l'antimatière".
+Dialogue: 0,0:52:28.52,0:52:32.68,Default,,0,0,0,,où chaque atome a son "anti atome"
+Dialogue: 0,0:52:32.68,0:52:35.22,Default,,0,0,0,,Par exemple, un atome d'hydrogène a un proton et un électron,
+Dialogue: 0,0:52:35.22,0:52:39.42,Default,,0,0,0,,Si on assemble un antiproton, qui est négativement chargé, avec un positron
+Dialogue: 0,0:52:39.42,0:52:44.14,Default,,0,0,0,,ils vont former un atome un "anti-hydrogène", en principe. On en a jamais fait,
+Dialogue: 0,0:52:44.14,0:52:51.28,Default,,0,0,0,,mais on a compris qu'on "pouvait" en faire, et on pourrait faire toutes sortes d'antimatière ainsi.
+Dialogue: 0,0:52:51.28,0:52:57.24,Default,,0,0,0,,Une question qui se pose : pourquoi la matière se comporte de la même manière que l'antimatière ?
+Dialogue: 0,0:52:57.24,0:53:02.68,Default,,0,0,0,,Car c'est le cas, et une autre loi de symétrie est que si on fabrique une chose avec de l'antimatière,
+Dialogue: 0,0:53:02.69,0:53:06.25,Default,,0,0,0,,cette chose se comportera comme s'il était faite de matière ordinaire,
+Dialogue: 0,0:53:06.25,0:53:10.70,Default,,0,0,0,,bien sûr si les deux choses se rencontraient et s'annihileraient, ça ferait des étincelles...
+Dialogue: 0,0:53:10.70,0:53:14.32,Default,,0,0,0,,On pense que la matière et l'antimatière suivent les mêmes lois. 
+Dialogue: 0,0:53:14.32,0:53:16.78,Default,,0,0,0,,Mais voici la question suivante :
+Dialogue: 0,0:53:17.44,0:53:22.25,Default,,0,0,0,,Une fois qu'on a découvert que la symétrie gauche/droite est fausse,
+Dialogue: 0,0:53:22.21,0:53:25.97,Default,,0,0,0,,si cette symétrie est fausse vient une question importante,
+Dialogue: 0,0:53:25.97,0:53:29.87,Default,,0,0,0,,Si j'observe cette désintégration mais avec de l'antimatière, 
+Dialogue: 0,0:53:29.89,0:53:36.58,Default,,0,0,0,,un antineutron se désintègre en un antiproton, un positron et un neutrino,
+Dialogue: 0,0:53:36.58,0:53:45.01,Default,,0,0,0,,Est ce que, dans le cas de l'antimatière, l'électron sort-il avec un filetage à gauche ou l'inverse ?
+Dialogue: 0,0:53:45.04,0:53:52.11,Default,,0,0,0,,Il y a quelques mois encore, nous croyions que ça sortait dans l'autre sens
+Dialogue: 0,0:53:52.11,0:53:58.77,Default,,0,0,0,,et que l'antimatière faisait tourner l'électron vers la droite, puisque la matière le fait tourner vers la gauche,
+Dialogue: 0,0:53:58.77,0:54:05.52,Default,,0,0,0,,Et donc que nous ne pouvions pas dire au martien ce qu'est le droite ou la gauche,
+Dialogue: 0,0:54:05.52,0:54:08.82,Default,,0,0,0,,car s'il est fait d'antimatière il voit la chose tourner dans l'autre sens,
+Dialogue: 0,0:54:08.82,0:54:13.55,Default,,0,0,0,,car il fait des expériences avec des positrons et en déduit le mauvais sens,
+Dialogue: 0,0:54:13.55,0:54:18.24,Default,,0,0,0,,Donc si vous téléphonez au martien pour lui expliquer comment faire un être humain
+Dialogue: 0,0:54:18.24,0:54:23.49,Default,,0,0,0,,Imaginez qu'il en fait un qui fonctionne...
+Dialogue: 0,0:54:23.49,0:54:27.14,Default,,0,0,0,,Il lui explique tous nos codes sociaux etc...
+Dialogue: 0,0:54:27.14,0:54:31.90,Default,,0,0,0,,et au moment de rencontrer cet homme, après nous avoir appris un fabriquer un bon vaisseau,
+Dialogue: 0,0:54:31.90,0:54:36.93,Default,,0,0,0,,Vous allez à sa rencontre, vous tendez votre main droite pour une poignée de mains,
+Dialogue: 0,0:54:36.93,0:54:43.00,Default,,0,0,0,,s'il sort sa main droite alors ça va, mais s'il se sert de la gauche faites attention...
+Dialogue: 0,0:54:48.12,0:54:52.77,Default,,0,0,0,,Vous vous annihileriez l'un l'autre.
+Dialogue: 0,0:55:02.29,0:55:06.16,Default,,0,0,0,,Voici les symétries dont j'ai eu le temps de vous parler,
+Dialogue: 0,0:55:06.16,0:55:11.08,Default,,0,0,0,,j'aimerais pouvoir vous en présenter d'autres, mais elles sont plus difficiles à expliquer,
+Dialogue: 0,0:55:11.08,0:55:16.45,Default,,0,0,0,,mais il y a des choses formidables comme les symétries approximatives.
+Dialogue: 0,0:55:16.45,0:55:20.46,Default,,0,0,0,,Ce qui est formidable dans cette capacité à distinguer la gauche de la droite,
+Dialogue: 0,0:55:20.46,0:55:26.28,Default,,0,0,0,,est qu'on peut le faire que grâce à un tout petit effet, cette désintégration bêta.
+Dialogue: 0,0:55:26.28,0:55:31.69,Default,,0,0,0,,Ça veut dire que la nature est incapable à 99,99% de distinguer la gauche de la droite,
+Dialogue: 0,0:55:31.69,0:55:40.74,Default,,0,0,0,,il y a juste un petit morceau, un petit phénomène qui est radicalement différent, tout à fait "bancal".
+Dialogue: 0,0:55:40.74,0:55:44.81,Default,,0,0,0,,C'est un mystère, et personne ne le comprend encore.
+Dialogue: 0,0:55:44.81,0:55:46.81,Default,,0,0,0,,Merci.
+Dialogue: 0,0:55:48.28,0:55:52.37,Default,,0,0,0,,Sous-titres : @Galileo51 Galilei
+Dialogue: 0,0:55:52.37,0:55:54.37,Default,,0,0,0,,
