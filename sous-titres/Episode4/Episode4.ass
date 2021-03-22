@@ -15,9 +15,9 @@ Video File: ../../../../Téléchargements/Richard Feynman Messenger Lectures at 
 Video AR Mode: 4
 Video AR Value: 1.305556
 Video Zoom Percent: 1.625000
-Scroll Position: 452
-Active Line: 464
-Video Position: 68766
+Scroll Position: 502
+Active Line: 514
+Video Position: 76352
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -489,4 +489,54 @@ Dialogue: 0,0:37:53.84,0:37:59.52,Default,,0,0,0,,Il semble que non, es créatur
 Dialogue: 0,0:37:59.52,0:38:01.52,Default,,0,0,0,,qui ont toutes une forme de "filetage".
 Dialogue: 0,0:38:01.52,0:38:08.64,Default,,0,0,0,,La protéine, la molécule du vivant la plus emblématique,
 Dialogue: 0,0:38:08.64,0:38:14.48,Default,,0,0,0,,possède un filetage, disons, vers la droite.
-Dialogue: 0,0:38:14.48,0:38:16.48,Default,,0,0,0,,Pour autant que nous le sachions, nous pourrions faire l
+Dialogue: 0,0:38:14.48,0:38:18.68,Default,,0,0,0,,Nous pourrions reproduire ces molécules vers la gauche,
+Dialogue: 0,0:38:18.68,0:38:23.32,Default,,0,0,0,,mais elles ne fonctionneraient pas biologiquement car elles ne s'adapteraient plus aux autres,
+Dialogue: 0,0:38:23.32,0:38:28.68,Default,,0,0,0,,Un filetage à gauche s'adapte à un filetage à gauche, mais pas à un filetage à droite.
+Dialogue: 0,0:38:28.68,0:38:33.25,Default,,0,0,0,,La bactérie ayant un filetage chimique "à gauche"
+Dialogue: 0,0:38:33.25,0:38:35.97,Default,,0,0,0,,peut distinguer les sucres gauche et droit.
+Dialogue: 0,0:38:35.97,0:38:38.12,Default,,0,0,0,,Comment y sont-elles arrivées?
+Dialogue: 0,0:38:38.12,0:38:42.80,Default,,0,0,0,,La physique et la chimie ne peut pas fabriquer l'une ou l'autre, seulement les deux,
+Dialogue: 0,0:38:42.80,0:38:45.12,Default,,0,0,0,,mais la biologie y arrive.
+Dialogue: 0,0:38:45.12,0:38:53.96,Default,,0,0,0,,On peut imaginer qu'il y a bien longtemps, une molécule se forma par accident 
+Dialogue: 0,0:38:53.96,0:38:59.57,Default,,0,0,0,,et proliféra par réplication d'elle-même, et ainsi de suite, si bien que des années plus tard
+Dialogue: 0,0:38:59.57,0:39:05.34,Default,,0,0,0,,ces drôles de trucs, aux formes bizarres, se moquant les unes des autres...
+Dialogue: 0,0:39:05.34,0:39:08.76,Default,,0,0,0,,Ce sont les descendants des premières molécules,
+Dialogue: 0,0:39:08.76,0:39:13.81,Default,,0,0,0,,et c'est par accident qu'elles se sont formées dans un sens plutôt que l'autre,
+Dialogue: 0,0:39:13.81,0:39:19.68,Default,,0,0,0,,Il fallait que ça soit l'un ou l'autre, donc la chose qui se réplique est forcément gauche ou droite,
+Dialogue: 0,0:39:19.68,0:39:22.52,Default,,0,0,0,,et cela s'est ensuite propagé
+Dialogue: 0,0:39:22.52,0:39:29.33,Default,,0,0,0,,C'est comme les vis dans un atelier, on utilise des vis à droite pour faire des vis à droite etc...
+Dialogue: 0,0:39:29.33,0:39:37.38,Default,,0,0,0,,Voici sûrement la preuve la plus profonde,
+Dialogue: 0,0:39:37.38,0:39:43.06,Default,,0,0,0,,le fait que chez tous les organismes vivants les protéines aient le même filetage,
+Dialogue: 0,0:39:43.06,0:39:51.65,Default,,0,0,0,,c'est sûrement la preuve la plus profonde de l'origine commune de toutes les formes de vie,
+Dialogue: 0,0:39:51.65,0:39:58.43,Default,,0,0,0,,que l'on trouve ici directement \Nau niveau moléculaire.
+Dialogue: 0,0:39:58.43,0:40:05.12,Default,,0,0,0,,Pour mieux montrer que les lois physiques ont bien cette symétrie gauche/droite,
+Dialogue: 0,0:40:05.12,0:40:07.02,Default,,0,0,0,,on pourrait poser le problème suivant :
+Dialogue: 0,0:40:07.02,0:40:12.04,Default,,0,0,0,,Imaginez qu'on soit au téléphone avec un martien, ou autre chose,
+Dialogue: 0,0:40:12.04,0:40:18.99,Default,,0,0,0,,On ignore où il se trouve, et on aimerait lui décrire, lui raconter des trucs
+Dialogue: 0,0:40:19.01,0:40:23.81,Default,,0,0,0,,Comment va-t-il nous comprendre ? Pr Morrison, qui a travaillé ici, y a beaucoup travaillé,
+Dialogue: 0,0:40:23.81,0:40:29.26,Default,,0,0,0,,et il suggéra qu'une méthode serait de commencer par "tic tic" 2, "tic tic tic"  3 etc..
+Dialogue: 0,0:40:29.26,0:40:34.02,Default,,0,0,0,,Assez vite, l'autre capte qu'il s'agit de nombres
+Dialogue: 0,0:40:34.03,0:40:37.79,Default,,0,0,0,,Maintenant qu'il comprend vos nombres vous pouvez lui en envoyer
+Dialogue: 0,0:40:37.79,0:40:41.71,Default,,0,0,0,,et vous pourriez envoyer, par exemple, envoyer une grande suite de nombres qui représente
+Dialogue: 0,0:40:41.71,0:40:45.76,Default,,0,0,0,,les poids relatifs des atomes\N les un à la suite des autres
+Dialogue: 0,0:40:45.76,0:40:49.92,Default,,0,0,0,,"Hydrogen: 1.00... Deuterium: etc..."
+Dialogue: 0,0:40:49.92,0:40:54.65,Default,,0,0,0,,Il découvrirait, après s'être arraché les cheveux à comprendre le sens de ces nombres,
+Dialogue: 0,0:40:54.65,0:40:58.14,Default,,0,0,0,,que ces nombres sont les ratio des poids des éléments chimiques,
+Dialogue: 0,0:40:58.14,0:41:00.59,Default,,0,0,0,,et que les mots sont les noms des éléments etc...
+Dialogue: 0,0:41:00.59,0:41:08.68,Default,,0,0,0,,Petit à petit, il serait possible d'échanger avec lui dans un langage commun.
+Dialogue: 0,0:41:08.70,0:41:14.59,Default,,0,0,0,,Maintenant que vous vous connaissez, il vous demande "À quoi vous ressemblez ?"
+Dialogue: 0,0:41:14.59,0:41:17.64,Default,,0,0,0,,Vous dites : "On mesure environ 6 pieds de haut"
+Dialogue: 0,0:41:17.62,0:41:20.76,Default,,0,0,0,,Lui: "6 pieds ? 1 pied c'est grand comment ?"
+Dialogue: 0,0:41:20.76,0:41:28.66,Default,,0,0,0,,Vous: "C'est facile, 6 pieds ça correspond à la hauteur de dix-sept mille millions atomes d'hydrogène"
+Dialogue: 0,0:41:28.66,0:41:33.57,Default,,0,0,0,,Ce n'est pas une blague, c'est une façon de décrire 6 pieds pour quelqu'un qui n'a pas la métrique,
+Dialogue: 0,0:41:33.57,0:41:38.24,Default,,0,0,0,,Imaginez qu'on ne puisse rien lui envoyer, ni regarder le même objet.
+Dialogue: 0,0:41:38.24,0:41:40.96,Default,,0,0,0,,Le renseigner sur notre taille ? On peut le faire.
+Dialogue: 0,0:41:40.96,0:41:46.33,Default,,0,0,0,,Grâce au fait que les lois de la physique ne sont pas invariantes par changement d'échelle.
+Dialogue: 0,0:41:46.33,0:41:53.73,Default,,0,0,0,,Donc on peut utiliser ce fait pour définir une échelle.
+Dialogue: 0,0:41:53.73,0:42:01.94,Default,,0,0,0,,Ok, on continue à décrire notre apparence : notre taille, notre bilatéralité, on ressemble à ça etc..
+Dialogue: 0,0:42:01.96,0:42:04.46,Default,,0,0,0,,Lui : "Intéressant, à quoi \Nvous ressemblez à l’intérieur ?"
+Dialogue: 0,0:42:04.51,0:42:09.58,Default,,0,0,0,,On décrit notre cœur etc... Et on lui dit "Visualisez le cœur à gauche".
+Dialogue: 0,0:42:09.58,0:42:15.39,Default,,0,0,0,,La question est comment lui dire quel côté est le gauche ?
+Dialogue: 0,0:42:15.39,0:42:19.73,Default,,0,0,0,,"Alors vous devez prendre du sucre de betterave et puis..."
+Dialogue: 0,0:42:23.40,0:42:27.58,Default,,0,0,0,,Et il s'avère qu'il n'y a pas de betteraves chez lui,
+Dialogue: 0,0:42:27.58,0:42:29.58,Default,,0,0,0,,
