@@ -11,77 +11,101 @@ PlayResY: 720
 
 [Aegisub Project Garbage]
 Last Style Storage: Default
-Audio File: /home/paul/tmp/scripts/sous-titrage/the-value-of-values/The Value of Values with Rich Hickey.mp4
-Video File: /home/paul/tmp/scripts/sous-titrage/the-value-of-values/The Value of Values with Rich Hickey.mp4
+Audio File: The Value of Values with Rich Hickey.mp4
+Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
-Video Zoom Percent: 0.750000
-Scroll Position: 43
-Active Line: 58
-Video Position: 9996
+Video Zoom Percent: 0.625000
+Scroll Position: 61
+Active Line: 80
+Video Position: 13156
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Default,Arial,24,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
+Style: Conference,Arial,35,&H0024E6F8,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:11.00,0:00:14.50,Default,,0,0,0,,{\pos(379,558)}   La valeur des valeurs
-Dialogue: 0,0:00:15.10,0:00:18.00,Default,,0,0,0,,Qui travaille dans l'IT?
-Dialogue: 0,0:00:18.00,0:00:21.10,Default,,0,0,0,,Tout le monde je crois...
-Dialogue: 0,0:00:21.86,0:00:25.46,Default,,0,0,0,,Que veut dire IT?
-Dialogue: 0,0:00:25.46,0:00:31.30,Default,,0,0,0,,Technologies de l'Information (IT)
-Dialogue: 0,0:00:32.52,0:00:36.28,Default,,0,0,0,,Que veut-on dire par Information ?
-Dialogue: 0,0:00:36.28,0:00:42.52,Default,,0,0,0,,Comme vous le savez peut-être, pour préparer \Nune présentationje sors juste mon dictionnaire
-Dialogue: 0,0:00:42.66,0:00:44.42,Default,,0,0,0,,Il connait toutes les réponses
-Dialogue: 0,0:00:44.42,0:00:49.40,Default,,0,0,0,,Mon dictionnaire dit qu'information est basé sur le verbe informer,
-Dialogue: 0,0:00:49.40,0:00:52.90,Default,,0,0,0,,et signifie transmettre une connaissance via des faits
-Dialogue: 0,0:00:52.90,0:00:56.22,Default,,0,0,0,,Le but est de former l'esprit
-Dialogue: 0,0:00:56.22,0:01:03.24,Default,,0,0,0,,Et l'information, ce sont juste ces faits. Voilà ce qu'est une information : une information est un fait
-Dialogue: 0,0:01:03.24,0:01:06.40,Default,,0,0,0,,Donc qu'est ce qu'un fait ?
-Dialogue: 0,0:01:06.40,0:01:11.50,Default,,0,0,0,,Un fait est un lieu où est stocké l'information
-Dialogue: 0,0:01:11.50,0:01:18.06,Default,,0,0,0,, Ce qui est intéressant c'est qu'il y a un lieu pour toute information.
-Dialogue: 0,0:01:18.22,0:01:25.04,Default,,0,0,0,,Les faits possèdent aussi des opérations, comme get, set ou autres
-Dialogue: 0,0:01:25.04,0:01:29.98,Default,,0,0,0,,Ces opérations contrôlent comment les faits peuvent changer
-Dialogue: 0,0:01:29.98,0:01:39.66,Default,,0,0,0,,Les faits sont intéressants pour une autre raison, c'est facile \Nde transmettre un fait, il suffit de transmettre l'endroit où il se trouve
-Dialogue: 0,0:01:39.84,0:01:44.26,Default,,0,0,0,,Combien de personnes sont mal à l'aise à présent ?
-Dialogue: 0,0:01:44.38,0:01:48.30,Default,,0,0,0,,Je le suis, ce n'est pas vrai non ? C'est faux 
-Dialogue: 0,0:01:48.30,0:01:52.74,Default,,0,0,0,,Tout ce que je viens de dire est faux, complètement faux 
-Dialogue: 0,0:01:52.74,0:01:58.34,Default,,0,0,0,,Et vous devriez être mal à l'aise, les faits ne sont pas comme ça.
-Dialogue: 0,0:01:58.34,0:02:03.98,Default,,0,0,0,,Alors, est ce que les faits sont des lieux ? Qu'est ce qu'un lieu ?
-Dialogue: 0,0:02:03.98,0:02:08.32,Default,,0,0,0,,Selon le dico, un lieu est une portion définie de l'espace
-Dialogue: 0,0:02:08.32,0:02:13.16,Default,,0,0,0,,Espace est un mot important, nous y reviendrons plus tard.
-Dialogue: 0,0:02:14.68,0:02:19.58,Default,,0,0,0,,Ce qui compte à propos d'un lieu c'est cette notion de "délimitée"
-Dialogue: 0,0:02:19.60,0:02:28.20,Default,,0,0,0,,Un endroit défini comme un {\i1}lieu{\i0} a quelque-chose de spécial, et vice-versa
-Dialogue: 0,0:02:28.20,0:02:34.84,Default,,0,0,0,,Et nous savons ce qu'est un lieu. Nous en avons des bons exemples dans notre travail quotidien de programmeur
-Dialogue: 0,0:02:34.90,0:02:39.86,Default,,0,0,0,,Des adresses mémoire sont des lieux, des secteurs disque aussi
-Dialogue: 0,0:02:39.86,0:02:46.42,Default,,0,0,0,,Ils ont des adresses, on peut y aller, modifier leur contenu par un autre
-Dialogue: 0,0:02:46.42,0:02:50.04,Default,,0,0,0,,Cette notion de {\i1}lieu{\i0} nous est très familière
-Dialogue: 0,0:02:50.04,0:03:02.66,Default,,0,0,0,,Je pense que nous devons nous demander si en s'appuyant sur des lieux nous construisons de vrais systèmes d'information ?
-Dialogue: 0,0:03:02.66,0:03:05.98,Default,,0,0,0,,Qui sont dédiés à l'information, comme nous l'avons dit avant
-Dialogue: 0,0:03:05.98,0:03:14.84,Default,,0,0,0,,Nous utilisons la mémoire, est les objets -notamment à cette conférence-
-Dialogue: 0,0:03:14.84,0:03:20.44,Default,,0,0,0,,et les objets mutables ne sont rien d'autre que des abstractions sur des lieux (adresses)
-Dialogue: 0,0:03:20.44,0:03:26.28,Default,,0,0,0,,Ce sont de petites abstractions sur des lieux, surtout les objets mutables.
-Dialogue: 0,0:03:26.28,0:03:32.38,Default,,0,0,0,,Et elles ont des méthodes, comme ce que je disais tout à l'heure à propos des faits
-Dialogue: 0,0:03:32.38,0:03:34.48,Default,,0,0,0,,Les objets ont des méthodes
-Dialogue: 0,0:03:34.48,0:03:39.20,Default,,0,0,0,,C'est l'élément fondamental à partir duquel nous construisons nos systèmes
-Dialogue: 0,0:03:39.20,0:03:45.54,Default,,0,0,0,,Et du côté de la persistance, nous avons les mêmes notions : des tables, des documents, des records etc..
-Dialogue: 0,0:03:45.54,0:03:49.54,Default,,0,0,0,,Toutes ces notions sont des lieux, elles ont toutes une notion {\i1}d'update{\i0}
-Dialogue: 0,0:03:49.54,0:03:54.84,Default,,0,0,0,,Cette idée d'aller quelque part et d'y modifier la valeur
-Dialogue: 0,0:03:54.84,0:03:59.14,Default,,0,0,0,,Voici les fondements sur lesquels reposent nos systèmes,
-Dialogue: 0,0:03:59.14,0:04:05.94,Default,,0,0,0,,sur lesquels nous créons des abstractions qui ne s'en cachent pas,
-Dialogue: 0,0:04:05.94,0:04:13.70,Default,,0,0,0,,et que j'appelle PLOP : Place Oriented Programming, car il s'agit de ça.
-Dialogue: 0,0:04:13.70,0:04:20.48,Default,,0,0,0,,Et vous pouvez savoir quand vous y êtes, car à chaque fois qu'une nouvelle information en remplace une autre
-Dialogue: 0,0:04:20.48,0:04:25.00,Default,,0,0,0,,vous faites du place oriented programming (PLOP)
-Dialogue: 0,0:04:25.00,0:04:28.80,Default,,0,0,0,,Il y a une raison pour cela,
-Dialogue: 0,0:04:28.80,0:04:34.98,Default,,0,0,0,,car à l'époque, aux débuts de l'ordinateur, nous {\i1\b1}devions{\i0\b0} faire du Place Oriented Programming.
-Dialogue: 0,0:04:34.98,0:04:45.30,Default,,0,0,0,,J'ai vu une super conférence d'un gars qui parlait de la construction de ces systèmes sur des ordinateurs qui avaient une mémoire de 4 kiloword (8kB)
-Dialogue: 0,0:04:45.30,0:04:52.60,Default,,0,0,0,,et vous connaissiez toutes les adresses mémoire, vous saviez que les adresses paires étaient utilisées pour les {\i1}jump table{\i0} etc...
-Dialogue: 0,0:04:52.60,0:04:57.74,Default,,0,0,0,,et que ces adresses ci étaient utilisées pour les données, les autres pour le code,
-Dialogue: 0,0:04:57.74,0:05:05.28,Default,,0,0,0,,une même adresse servait à plusieurs choses, car vous saviez qu'à cet instant elle n'était pas prise par du code et donc utilisable pour les données, et vice versa, il n'y avait pas le choix
-Dialogue: 0,0:05:05.28,0:05:08.58,Default,,0,0,0,,il n'y avait pas assez de puissance pour faire autrement
-Dialogue: 0,0:05:08.58,0:05:14.98,Default,,0,0,0,,La mémoire était petite, les disques étaient petits, tout était très cher
-Dialogue: 0,0:05:14.98,0:05:24.14,Default,,0,0,0,,donc nous avons adopté cette approche basée sur la manipulation des lieux (adresses), et ça avait du sens
-Dialogue: 0,0:05:24.14,0:05:30.36,Default,,0,0,0,,Et ce que je veux dire c'est que ça {\b1\i1}avait du sens {\b0\i0}à l'époque
-Dialogue: 0,0:05:30.36,0:05:33.52,Default,,0,0,0,,Ces limitations ont disparu !
-Dialogue: 0,0:05:33.52,0:05:41.10,Default,,0,0,0,,
+Dialogue: 0,0:00:11.00,0:00:14.50,Conference,,0,0,0,,{\pos(379,558)}   La valeur des valeurs, Rich Hickey
+Dialogue: 0,0:00:15.10,0:00:18.00,Conference,,0,0,0,,Qui travaille dans l'IT ?
+Dialogue: 0,0:00:18.00,0:00:21.10,Conference,,0,0,0,,Tout le monde je crois...
+Dialogue: 0,0:00:21.86,0:00:25.46,Conference,,0,0,0,,Que veut dire IT?
+Dialogue: 0,0:00:25.46,0:00:31.30,Conference,,0,0,0,,Technologies de l'Information (IT)
+Dialogue: 0,0:00:32.52,0:00:36.28,Conference,,0,0,0,,Que veut-on dire par Information ?
+Dialogue: 0,0:00:36.28,0:00:42.52,Conference,,0,0,0,,Comme vous le savez peut-être, pour préparer \Nune présentationje sors juste mon dictionnaire
+Dialogue: 0,0:00:42.66,0:00:44.42,Conference,,0,0,0,,Il connait toutes les réponses
+Dialogue: 0,0:00:44.42,0:00:49.40,Conference,,0,0,0,,Mon dictionnaire dit qu'information est basé sur le verbe informer,
+Dialogue: 0,0:00:49.40,0:00:52.90,Conference,,0,0,0,,et signifie transmettre une connaissance via des faits
+Dialogue: 0,0:00:52.90,0:00:56.22,Conference,,0,0,0,,Le but est de former l'esprit
+Dialogue: 0,0:00:56.22,0:01:03.24,Conference,,0,0,0,,Et l'information, ce sont juste ces faits. Voilà ce qu'est une information : une information est un fait
+Dialogue: 0,0:01:03.24,0:01:06.40,Conference,,0,0,0,,Donc qu'est ce qu'un fait ?
+Dialogue: 0,0:01:06.40,0:01:11.50,Conference,,0,0,0,,Un fait est un lieu où est stocké l'information
+Dialogue: 0,0:01:11.50,0:01:18.06,Conference,,0,0,0,, Ce qui est intéressant c'est qu'il y a un lieu pour toute information.
+Dialogue: 0,0:01:18.22,0:01:25.04,Conference,,0,0,0,,Les faits possèdent aussi des opérations, comme get, set ou autres
+Dialogue: 0,0:01:25.04,0:01:29.98,Conference,,0,0,0,,Ces opérations contrôlent comment les faits peuvent changer
+Dialogue: 0,0:01:29.98,0:01:39.66,Conference,,0,0,0,,Les faits sont intéressants pour une autre raison, c'est facile \Nde transmettre un fait, il suffit de transmettre l'endroit où il se trouve
+Dialogue: 0,0:01:39.84,0:01:44.26,Conference,,0,0,0,,Combien de personnes sont mal à l'aise à présent ?
+Dialogue: 0,0:01:44.38,0:01:48.30,Conference,,0,0,0,,Je le suis, ce n'est pas vrai non ? C'est faux
+Dialogue: 0,0:01:48.30,0:01:52.74,Conference,,0,0,0,,Tout ce que je viens de dire est faux, complètement faux
+Dialogue: 0,0:01:52.74,0:01:58.34,Conference,,0,0,0,,Et vous devriez être mal à l'aise, les faits ne sont pas comme ça.
+Dialogue: 0,0:01:58.34,0:02:03.98,Conference,,0,0,0,,Alors, est ce que les faits sont des lieux ? Qu'est ce qu'un lieu ?
+Dialogue: 0,0:02:03.98,0:02:08.32,Conference,,0,0,0,,Selon le dico, un lieu est une portion définie de l'espace
+Dialogue: 0,0:02:08.32,0:02:13.16,Conference,,0,0,0,,Espace est un mot important, nous y reviendrons plus tard.
+Dialogue: 0,0:02:14.68,0:02:19.58,Conference,,0,0,0,,Ce qui compte à propos d'un lieu c'est cette notion de "délimitée"
+Dialogue: 0,0:02:19.60,0:02:28.20,Conference,,0,0,0,,Un endroit défini comme un {\i1}lieu{\i0} a quelque-chose de spécial, et vice-versa
+Dialogue: 0,0:02:28.20,0:02:34.84,Conference,,0,0,0,,Et nous savons ce qu'est un lieu. Nous en avons des bons exemples dans notre travail quotidien de programmeur
+Dialogue: 0,0:02:34.90,0:02:39.86,Conference,,0,0,0,,Des adresses mémoire sont des lieux, des secteurs disque aussi
+Dialogue: 0,0:02:39.86,0:02:46.42,Conference,,0,0,0,,Ils ont des adresses, on peut y aller, modifier leur contenu par un autre
+Dialogue: 0,0:02:46.42,0:02:50.04,Conference,,0,0,0,,Cette notion de {\i1}lieu{\i0} nous est très familière
+Dialogue: 0,0:02:50.04,0:03:02.66,Conference,,0,0,0,,Je pense que nous devons nous demander si en s'appuyant sur des lieux nous construisons de vrais systèmes d'information ?
+Dialogue: 0,0:03:02.66,0:03:05.98,Conference,,0,0,0,,Qui sont dédiés à l'information, comme nous l'avons dit avant
+Dialogue: 0,0:03:05.98,0:03:14.84,Conference,,0,0,0,,Nous utilisons la mémoire, est les objets -notamment à cette conférence-
+Dialogue: 0,0:03:14.84,0:03:20.44,Conference,,0,0,0,,et les objets mutables ne sont rien d'autre que des abstractions sur des lieux (adresses)
+Dialogue: 0,0:03:20.44,0:03:26.28,Conference,,0,0,0,,Ce sont de petites abstractions sur des lieux, surtout les objets mutables.
+Dialogue: 0,0:03:26.28,0:03:32.38,Conference,,0,0,0,,Et elles ont des méthodes, comme ce que je disais tout à l'heure à propos des faits
+Dialogue: 0,0:03:32.38,0:03:34.48,Conference,,0,0,0,,Les objets ont des méthodes
+Dialogue: 0,0:03:34.48,0:03:39.20,Conference,,0,0,0,,C'est l'élément fondamental à partir duquel nous construisons nos systèmes
+Dialogue: 0,0:03:39.20,0:03:45.54,Conference,,0,0,0,,Et du côté de la persistance, nous avons les mêmes notions : des tables, des documents, des records etc..
+Dialogue: 0,0:03:45.54,0:03:49.54,Conference,,0,0,0,,Toutes ces notions sont des lieux, elles ont toutes une notion {\i1}d'update{\i0}
+Dialogue: 0,0:03:49.54,0:03:54.84,Conference,,0,0,0,,Cette idée d'aller quelque part et d'y modifier la valeur
+Dialogue: 0,0:03:54.84,0:03:59.14,Conference,,0,0,0,,Voici les fondements sur lesquels reposent nos systèmes,
+Dialogue: 0,0:03:59.14,0:04:05.94,Conference,,0,0,0,,sur lesquels nous créons des abstractions qui ne s'en cachent pas,
+Dialogue: 0,0:04:05.94,0:04:13.70,Conference,,0,0,0,,et que j'appelle {\i1\b1}PLOP{\i0\b0} : {\i1}Place Oriented \N Programming{\i0}, car il s'agit de ça.
+Dialogue: 0,0:04:13.70,0:04:20.48,Conference,,0,0,0,,Et vous pouvez savoir quand vous y êtes, car à chaque fois qu'une nouvelle information en remplace une autre
+Dialogue: 0,0:04:20.48,0:04:25.00,Conference,,0,0,0,,vous faites du place oriented programming (PLOP)
+Dialogue: 0,0:04:25.00,0:04:28.80,Conference,,0,0,0,,Il y a une raison pour cela,
+Dialogue: 0,0:04:28.80,0:04:34.98,Conference,,0,0,0,,car à l'époque, aux débuts de l'ordinateur, nous {\i1\b1}devions{\i0\b0} faire du Place Oriented Programming.
+Dialogue: 0,0:04:34.98,0:04:45.30,Conference,,0,0,0,,J'ai vu une super conférence d'un gars qui parlait de la construction de ces systèmes sur des ordinateurs qui avaient une mémoire de 4 kiloword (8kB)
+Dialogue: 0,0:04:45.30,0:04:52.60,Conference,,0,0,0,,et vous connaissiez toutes les adresses mémoire, vous saviez que les adresses paires étaient utilisées pour les {\i1}jump table{\i0} etc...
+Dialogue: 0,0:04:52.60,0:04:57.74,Conference,,0,0,0,,et que ces adresses ci étaient utilisées pour les données, les autres pour le code,
+Dialogue: 0,0:04:57.74,0:05:05.28,Conference,,0,0,0,,une même adresse servait à plusieurs choses, car vous saviez qu'à cet instant elle n'était pas prise par du code et donc utilisable pour les données, et vice versa, il n'y avait pas le choix
+Dialogue: 0,0:05:05.28,0:05:08.58,Conference,,0,0,0,,il n'y avait pas assez de puissance pour faire autrement
+Dialogue: 0,0:05:08.58,0:05:14.98,Conference,,0,0,0,,La mémoire était petite, les disques étaient petits, tout était très cher
+Dialogue: 0,0:05:14.98,0:05:24.14,Conference,,0,0,0,,donc nous avons adopté cette approche basée sur\N la manipulation des lieux (adresses), et ça avait du sens.
+Dialogue: 0,0:05:24.14,0:05:30.36,Conference,,0,0,0,,Et ce que je veux dire c'est que ça {\b1\i1}avait du sens {\b0\i0}à l'époque.
+Dialogue: 0,0:05:30.36,0:05:33.52,Conference,,0,0,0,,Ces limitations ont disparu !
+Dialogue: 0,0:05:33.52,0:05:41.10,Conference,,0,0,0,,Depuis que j'ai commencé à programmer, \Nla capacité de ces deux choses a été multiplié par 1 million.
+Dialogue: 0,0:05:41.10,0:05:43.18,Conference,,0,0,0,,Par 1 million !
+Dialogue: 0,0:05:43.18,0:05:51.28,Conference,,0,0,0,,Dans la vie, qu'est ce qui reste inchangé quand on multiplie sa taille par un facteur 1 million ?
+Dialogue: 0,0:05:51.28,0:05:54.16,Conference,,0,0,0,,Imaginez que votre voiture \Nsoit 1 million de fois plus grande,
+Dialogue: 0,0:05:54.16,0:05:59.65,Conference,,0,0,0,,Quelles règles resteraient vraies ?\N Quelles caractéristiques resteraient les mêmes ?
+Dialogue: 0,0:05:59.63,0:06:06.38,Conference,,0,0,0,,Presque aucune, et pourtant nous conservons les décisions prises lorsque tout était beaucoup plus petit,
+Dialogue: 0,0:06:06.37,0:06:08.57,Conference,,0,0,0,,et nous continuons comme avant.
+Dialogue: 0,0:06:08.57,0:06:12.35,Conference,,0,0,0,,Pourquoi fait-on toujours du PLOP ? C'est la question.
+Dialogue: 0,0:06:12.35,0:06:18.66,Conference,,0,0,0,,Quand on parle de P{\i1}lace Oriented Programming{\i0} on emploie souvent ces deux mots : la mémoire et les enregistrements.
+Dialogue: 0,0:06:18.66,0:06:24.46,Conference,,0,0,0,,Ces mots avaient un sens avant l'arrivée des ordinateurs, non ?
+Dialogue: 0,0:06:24.46,0:06:26.78,Conference,,0,0,0,,Nous avons repris ces mots.
+Dialogue: 0,0:06:26.78,0:06:32.41,Conference,,0,0,0,,Nous nous sommes dits que {\i1}mémoire{\i0}\N signifie une adresse dans une puce RAM,
+Dialogue: 0,0:06:32.41,0:06:36.10,Conference,,0,0,0,,un {\i1}enregistrement{\i0} signifie\N un emplacement dans une table.
+Dialogue: 0,0:06:36.10,0:06:40.88,Conference,,0,0,0,,Reprendre ces mots n'est pas le problème, \Ncar nous avons un nombre limité de mots,
+Dialogue: 0,0:06:40.89,0:06:47.84,Conference,,0,0,0,,car l'analogie tient à peu près debout, l'analogie entre la mémoire et la mémoire dans votre tête.
+Dialogue: 0,0:06:47.84,0:06:51.49,Conference,,0,0,0,,Le problème c'est que nous avons employé\N ces mots depuis si longtemps 
+Dialogue: 0,0:06:51.49,0:06:55.68,Conference,,0,0,0,,que nous {\i1}croyons{\i0} à nos propres\N mythes concernant leur signification.
+Dialogue: 0,0:06:55.68,0:06:58.83,Conference,,0,0,0,,Mais nous devrions revenir \Nà leurs caractéristiques.
+Dialogue: 0,0:06:58.83,0:07:03.05,Conference,,0,0,0,,Ce qui caractérise la mémoire \Nc'est que c'est un système ouvert.
+Dialogue: 0,0:07:03.05,0:07:06.74,Conference,,0,0,0,,Si votre ami a une nouvelle adresse email,
+Dialogue: 0,0:07:06.74,0:07:12.01,Conference,,0,0,0,,cette info ne va pas dans votre cerveau, à la recherche de vos cellules qui contiennent l'email de votre ami,
+Dialogue: 0,0:07:12.01,0:07:16.09,Conference,,0,0,0,,pour la remplacer par la nouvelle adresse email.
+Dialogue: 0,0:07:16.09,0:07:19.41,Conference,,0,0,0,,Le cerveau ou la mémoire\N ne fonctionnent pas comme ça.
+Dialogue: 0,0:07:19.41,0:07:21.41,Conference,,0,0,0,,

@@ -1,0 +1,3 @@
+Hardcoded subtitles mp4 et .ass soustitres :
+ffmpeg -i source.mp4 -c:v mpeg4 -q:v 1 -vf subtitles=mysubtitles.ass target.mp4
+
