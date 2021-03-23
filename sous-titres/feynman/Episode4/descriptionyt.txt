@@ -1,0 +1,32 @@
+Richard Feynman,
+
+Cycle de conférences "La nature des lois physiques" donné en 1964, à l'Université de Cornell.
+
+Quatrième conférence: La symétrie des lois physiques
+
+Cette vidéo sous-titrée en français est là pour les francophones (et les autres) qui ont envie de découvrir ou redécouvrir Richard Feynman, qu'ils soient physiciens ou simplement curieux, sans se heurter à la barrière de la langue. Je recommande à ceux qui sont plutôt à l'aise avec l'anglais de regarder la version originale. Il est en effet difficile de ne pas porter atteinte à l'esprit de Feynman et à sa manière très directe de parler.
+
+Bon visionnage
+
+=================================
+
+Il est fort probable que ce soit la dernière conférence de Feynman que je sous-titre, il en restera donc deux sur les sept. Depuis que j'ai entrepris ce projet des années ont passé et mes envies se sont portées ailleurs. Comme j'avais commencé le sous-titrage de cette conférence il y a deux ans déjà, je voulais au moins la publier avant de laisser la main, et ainsi conclure cette aventure avec le sentiment, en ce qui me concerne, du travail accompli.
+
+Je mets donc mon travail à disposition de tout le monde sur ce dépôt https://github.com/galileo51galilei/feynman-subtitles, sous licence libre. 
+
+Vous y trouverez l'intégralité des fichiers de sous-titres réalisés sur cette série (les détails sont sur le dépôt) afin que ce travail puisse être mené à son terme, remanié, corrigé si jamais ça motive quelqu'un.
+
+Je tiens à vous remercier pour vos remerciements. J'ai eu le plaisir de constater que ce travail avait permis de rendre Feynman accessible à plus de personnes, et j'en suis ravi ! Car c'était, en plus du plaisir que j'ai eu à le faire, l'unique but de ce projet des heures perdues.
+
+
+Si j'en ai probablement fini avec Feynman, j'ai commencé à sous-titrer une autre conférence, dans un autre domaine, et je risque donc de proposer au compte-goutte d'autres sous-titrages de contenus sur lesquels mes passions se sont déplacées. Le but étant toujours le même, rendre accessible et se faire plaisir.
+
+En vous remerciant pour votre réception et vos encouragements, bon visionnage à toutes et tous !
+
+PS: l'intégralité de ces conférences a été publié sous le titre La Nature de la physique. Néanmoins, je vous avertis que cet ouvrage souffre de nombreux défauts de la retranscription et parfois dela traduction, ce qui le rend très difficile à suivre (si on ajoute à cela la manière très spéciale de Feynman d'aborder les choses). Cela dit je partage la douleur des auteurs, et je les remercie, car Feynman m'a également donné beaucoup de fil à retordre ! Ce livre, a
+
+PS2: je m'excuse auprès de Madraf Tintagel, et le remercie encore, qui en 2016, m'avait gentiment proposé de corriger des erreurs dans mes sous-titres sur la première vidéo, et m'avais envoyé une correction. Je n'ai jamais eu le courage de "revenir en arrière" à ce moment où j'étais déjà dans les suivantes. Ses corrections sont présentes également dans le dépôt.
+
+
+
+
