@@ -16,9 +16,9 @@ Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
 Video Zoom Percent: 0.750000
-Scroll Position: 104
-Active Line: 119
-Video Position: 17575
+Scroll Position: 103
+Active Line: 118
+Video Position: 17502
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -105,29 +105,29 @@ Dialogue: 0,0:06:51.49,0:06:55.68,Conference,,0,0,0,,que nous {\i1}croyons{\i0} 
 Dialogue: 0,0:06:55.68,0:06:58.83,Conference,,0,0,0,,Mais nous devrions revenir \Nà leurs caractéristiques.
 Dialogue: 0,0:06:58.83,0:07:03.05,Conference,,0,0,0,,Ce qui caractérise la mémoire \Nc'est que c'est un système ouvert.
 Dialogue: 0,0:07:03.05,0:07:06.74,Conference,,0,0,0,,Si votre ami a une nouvelle adresse email,
-Dialogue: 0,0:07:06.74,0:07:12.01,Conference,,0,0,0,,cette info ne va pas dans votre cerveau, à la recherche de vos cellules qui contiennent l'email de votre ami,
+Dialogue: 0,0:07:06.74,0:07:12.01,Conference,,0,0,0,,cette info ne va pas dans votre cerveau, rechercher vos cellules qui contiennent l'ancien email,
 Dialogue: 0,0:07:12.01,0:07:16.09,Conference,,0,0,0,,pour la remplacer par la nouvelle adresse email.
-Dialogue: 0,0:07:16.09,0:07:19.41,Conference,,0,0,0,,Le cerveau ou la mémoire\N ne fonctionnent pas comme ça.
-Dialogue: 0,0:07:19.41,0:07:23.15,Conference,,0,0,0,,La mémoire est un système ouvert, associatif,
+Dialogue: 0,0:07:16.09,0:07:19.35,Conference,,0,0,0,,Le cerveau ou la mémoire\N ne fonctionnent pas comme ça.
+Dialogue: 0,0:07:19.36,0:07:23.15,Conference,,0,0,0,,La mémoire est un système ouvert, associatif,
 Dialogue: 0,0:07:23.15,0:07:27.40,Conference,,0,0,0,,ce n'est pas un système basé sur des adresses.
-Dialogue: 0,0:07:27.73,0:07:31.82,Conference,,0,0,0,,Pareil pour les enregistrements! On s'en servait \Navant l'arrivée des ordinateurs.
-Dialogue: 0,0:07:31.82,0:07:37.90,Conference,,0,0,0,,Que faisait-on ? On burinait des \Ntablettes, on écrivait sur des papyrus...
+Dialogue: 0,0:07:27.73,0:07:31.77,Conference,,0,0,0,,Pareil pour les enregistrements! On s'en servait \Navant l'arrivée des ordinateurs.
+Dialogue: 0,0:07:31.77,0:07:37.90,Conference,,0,0,0,,Que faisait-on ? On burinait des \Ntablettes, on écrivait sur des papyrus...
 Dialogue: 0,0:07:37.90,0:07:40.64,Conference,,0,0,0,,Que faisait-on des nouvelles informations ?
 Dialogue: 0,0:07:40.64,0:07:45.12,Conference,,0,0,0,,On n'allait pas lisser les tablettes\N pour buriner à nouveau dessus,
 Dialogue: 0,0:07:45.13,0:07:48.57,Conference,,0,0,0,,on ne sortait pas les\N papyrus pour les effacer...
 Dialogue: 0,0:07:48.57,0:07:54.16,Conference,,0,0,0,,Pour tenir une comptabilité avant les ordinateurs on ne se servait pas non plus d'effaceurs, on faisait quoi ?
-Dialogue: 0,0:07:54.16,0:07:58.19,Conference,,0,0,0,,Comptabilité en partie double, registres... On faisait de nouvelles entrées pour corriger,
-Dialogue: 0,0:07:58.19,0:08:01.01,Conference,,0,0,0,,on ne revenait pas avec des effaceurs.
-Dialogue: 0,0:08:01.08,0:08:05.16,Conference,,0,0,0,,Ça ne marchait pas comme ça \Navant qu'on ait des ordinateurs.
-Dialogue: 0,0:08:05.28,0:08:10.76,Conference,,0,0,0,,Donc, cette conférence parle des valeurs, un terme que nous devons définir.
+Dialogue: 0,0:07:54.16,0:07:58.08,Conference,,0,0,0,,Comptabilité en partie double, registres... \NOn faisait de nouvelles entrées pour corriger,
+Dialogue: 0,0:07:58.08,0:08:00.96,Conference,,0,0,0,,on ne revenait pas avec des effaceurs.
+Dialogue: 0,0:08:00.96,0:08:05.16,Conference,,0,0,0,,Ça ne marchait pas comme ça \Navant qu'on ait des ordinateurs.
+Dialogue: 0,0:08:05.28,0:08:10.76,Conference,,0,0,0,,Donc, cette conférence parle des valeurs, \Nun terme que nous devons définir.
 Dialogue: 0,0:08:10.76,0:08:12.41,Conference,,0,0,0,,Regardons le dictionnaire.
 Dialogue: 0,0:08:12.41,0:08:15.80,Conference,,0,0,0,,On y trouve des définitions très\N intéressantes de "{\i1}valeur{\i0}".
 Dialogue: 0,0:08:15.80,0:08:17.77,Conference,,0,0,0,,La première est "mesure relative"
 Dialogue: 0,0:08:17.77,0:08:21.95,Conference,,0,0,0,,"{\i1}Relatif{\i0}" dénote un aspect crucial d'une valeur.
-Dialogue: 0,0:08:21.95,0:08:26.89,Conference,,0,0,0,,car la prochaine est la définition qui nous est le plus familière, surtout en informatique,
+Dialogue: 0,0:08:21.95,0:08:26.89,Conference,,0,0,0,,Car la prochaine est la définition qui nous est le plus familière, surtout en informatique,
 Dialogue: 0,0:08:26.89,0:08:30.88,Conference,,0,0,0,,car la définition suivante est celle\N qui s'applique à{\i1} 4{\i0}2, non ?
-Dialogue: 0,0:08:30.88,0:08:35.36,Conference,,0,0,0,,C'est une magnitude, c'est un nombre, on s'en sert pour mesurer quelque-chose d'autre.
-Dialogue: 0,0:08:35.36,0:08:40.04,Conference,,0,0,0,,cette notion de valeur est celle, je pense, \Nà laquelle on se réfère généralement.
+Dialogue: 0,0:08:30.88,0:08:35.24,Conference,,0,0,0,,C'est une magnitude, c'est un nombre, on s'en sert pour mesurer quelque-chose d'autre.
+Dialogue: 0,0:08:35.24,0:08:40.04,Conference,,0,0,0,,Cette notion de valeur est celle, je pense, \Nà laquelle on se réfère généralement.
 Dialogue: 0,0:08:40.04,0:08:47.31,Conference,,0,0,0,,Mais la notion complète de "{\i1}valeur{\i0}" se réfère au {\i1}sens{\i0}, à la {\i1}comparabilité{\i0} et à la mesure relative.
 Dialogue: 0,0:08:47.31,0:08:50.78,Conference,,0,0,0,,C'est la notion "complète" de "{\i1}valeur{\i0}",
 Dialogue: 0,0:08:50.80,0:08:55.10,Conference,,0,0,0,,car lorsqu'on mesure quelque-chose il faut \Nle mesurer en termes d'une autre chose.
@@ -135,15 +135,15 @@ Dialogue: 0,0:08:55.10,0:08:57.54,Conference,,0,0,0,,Il n'y a pas de mesure abso
 Dialogue: 0,0:08:57.82,0:09:00.67,Conference,,0,0,0,,Donc l'aspect comparatif est important.
 Dialogue: 0,0:09:00.90,0:09:04.62,Conference,,0,0,0,,Question, est-ce qu'une chaîne\N de caractères ({\i1}string{\i0}) est une valeur ? 
 Dialogue: 0,0:09:04.62,0:09:07.58,Conference,,0,0,0,,Qui pense que oui ?
-Dialogue: 0,0:09:07.58,0:09:10.48,Conference,,0,0,0,,J'adore répondre à mes propres questions,
-Dialogue: 0,0:09:10.48,0:09:12.10,Conference,,0,0,0,,
-Dialogue: 0,0:09:12.10,0:09:15.97,Conference,,0,0,0,,Qui pense qu'une chaîne de \Ncaractères ({\i1}string{\i0}) n'est {\i1}pas{\i0} une valeur ?
-Dialogue: 0,0:09:16.19,0:09:19.29,Conference,,0,0,0,,Qui pense "ça dépend" ?
-Dialogue: 0,0:09:19.29,0:09:24.94,Conference,,0,0,0,,Choisissez toujours "ça dépend", c'est toujours la meilleure réponse, cantonnez-vous y.
+Dialogue: 0,0:09:07.58,0:09:10.48,Conference,,0,0,0,,J'adore répondre à mes propres questions.
+Dialogue: 0,0:09:10.48,0:09:12.01,Conference,,0,0,0,,
+Dialogue: 0,0:09:12.05,0:09:15.97,Conference,,0,0,0,,Qui pense qu'une chaîne de \Ncaractères ({\i1}string{\i0}) n'est {\i1}pas{\i0} une valeur ?
+Dialogue: 0,0:09:15.97,0:09:18.91,Conference,,0,0,0,,Qui pense "ça dépend" ?
+Dialogue: 0,0:09:18.91,0:09:24.94,Conference,,0,0,0,,Choisissez toujours "ça dépend", c'est toujours la meilleure réponse, cantonnez-vous y.
 Dialogue: 0,0:09:24.94,0:09:28.40,Conference,,0,0,0,,De quoi ça dépend ?
-Dialogue: 0,0:09:28.40,0:09:30.77,Conference,,0,0,0,,Est-elle immuable ?
-Dialogue: 0,0:09:30.77,0:09:34.66,Conference,,0,0,0,,Si elle est immuable c'est une valeur,\N sinon ce n'est pas une valeur.
-Dialogue: 0,0:09:34.66,0:09:40.34,Conference,,0,0,0,,Combien de personnes travaillent avec \Ndes langages où les {\i1}string{\i0} sont mutables ?
-Dialogue: 0,0:09:40.34,0:09:43.98,Conference,,0,0,0,,Qui veut y retourner ?
+Dialogue: 0,0:09:28.40,0:09:30.67,Conference,,0,0,0,,Est-elle immuable ?
+Dialogue: 0,0:09:30.67,0:09:34.24,Conference,,0,0,0,,Si elle est immuable c'est une valeur,\N sinon ce n'est pas une valeur.
+Dialogue: 0,0:09:34.24,0:09:40.27,Conference,,0,0,0,,Combien de personnes travaillent avec \Ndes langages où les {\i1}string{\i0} sont mutables ?
+Dialogue: 0,0:09:40.27,0:09:43.98,Conference,,0,0,0,,Qui veut y retourner ?
 Dialogue: 0,0:09:43.98,0:09:46.40,Conference,,0,0,0,,Non ! On n'aime pas ça.
 Dialogue: 0,0:09:46.40,0:09:50.29,Conference,,0,0,0,,
