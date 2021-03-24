@@ -15,10 +15,10 @@ Audio File: The Value of Values with Rich Hickey.mp4
 Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
-Video Zoom Percent: 0.750000
-Scroll Position: 103
-Active Line: 118
-Video Position: 17502
+Video Zoom Percent: 0.500000
+Scroll Position: 145
+Active Line: 170
+Video Position: 23648
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -100,7 +100,7 @@ Dialogue: 0,0:06:26.78,0:06:32.41,Conference,,0,0,0,,Nous nous sommes dits que {
 Dialogue: 0,0:06:32.41,0:06:36.10,Conference,,0,0,0,,un {\i1}enregistrement{\i0} signifie\N un emplacement dans une table.
 Dialogue: 0,0:06:36.10,0:06:40.88,Conference,,0,0,0,,Reprendre ces mots n'est pas le problème, \Ncar nous avons un nombre limité de mots,
 Dialogue: 0,0:06:40.89,0:06:47.84,Conference,,0,0,0,,car l'analogie tient à peu près debout, l'analogie entre la mémoire et la mémoire dans votre tête.
-Dialogue: 0,0:06:47.84,0:06:51.49,Conference,,0,0,0,,Le problème c'est que nous avons employé\N ces mots depuis si longtemps 
+Dialogue: 0,0:06:47.84,0:06:51.49,Conference,,0,0,0,,Le problème c'est que nous avons employé\N ces mots depuis si longtemps
 Dialogue: 0,0:06:51.49,0:06:55.68,Conference,,0,0,0,,que nous {\i1}croyons{\i0} à nos propres\N mythes concernant leur signification.
 Dialogue: 0,0:06:55.68,0:06:58.83,Conference,,0,0,0,,Mais nous devrions revenir \Nà leurs caractéristiques.
 Dialogue: 0,0:06:58.83,0:07:03.05,Conference,,0,0,0,,Ce qui caractérise la mémoire \Nc'est que c'est un système ouvert.
@@ -133,7 +133,7 @@ Dialogue: 0,0:08:47.31,0:08:50.78,Conference,,0,0,0,,C'est la notion "complète"
 Dialogue: 0,0:08:50.80,0:08:55.10,Conference,,0,0,0,,car lorsqu'on mesure quelque-chose il faut \Nle mesurer en termes d'une autre chose.
 Dialogue: 0,0:08:55.10,0:08:57.54,Conference,,0,0,0,,Il n'y a pas de mesure absolue.
 Dialogue: 0,0:08:57.82,0:09:00.67,Conference,,0,0,0,,Donc l'aspect comparatif est important.
-Dialogue: 0,0:09:00.90,0:09:04.62,Conference,,0,0,0,,Question, est-ce qu'une chaîne\N de caractères ({\i1}string{\i0}) est une valeur ? 
+Dialogue: 0,0:09:00.90,0:09:04.62,Conference,,0,0,0,,Question, est-ce qu'une chaîne\N de caractères ({\i1}string{\i0}) est une valeur ?
 Dialogue: 0,0:09:04.62,0:09:07.58,Conference,,0,0,0,,Qui pense que oui ?
 Dialogue: 0,0:09:07.58,0:09:10.48,Conference,,0,0,0,,J'adore répondre à mes propres questions.
 Dialogue: 0,0:09:10.48,0:09:12.01,Conference,,0,0,0,,
@@ -146,4 +146,55 @@ Dialogue: 0,0:09:30.67,0:09:34.24,Conference,,0,0,0,,Si elle est immuable c'est 
 Dialogue: 0,0:09:34.24,0:09:40.27,Conference,,0,0,0,,Combien de personnes travaillent avec \Ndes langages où les {\i1}string{\i0} sont mutables ?
 Dialogue: 0,0:09:40.27,0:09:43.98,Conference,,0,0,0,,Qui veut y retourner ?
 Dialogue: 0,0:09:43.98,0:09:46.40,Conference,,0,0,0,,Non ! On n'aime pas ça.
-Dialogue: 0,0:09:46.40,0:09:50.29,Conference,,0,0,0,,
+Dialogue: 0,0:09:46.40,0:09:52.54,Conference,,0,0,0,,Cette notion {\i1}d’égalité{\i0} d'une valeur, \Ncar une string ne mesure rien,
+Dialogue: 0,0:09:52.54,0:09:57.84,Conference,,0,0,0,,ce n'est pas une magnitude, une quantité, elle ne correspond pas à cette définition d'une valeur,
+Dialogue: 0,0:09:57.84,0:10:01.40,Conference,,0,0,0,,mais une string immuable est un truc qu'on peut comparer.
+Dialogue: 0,0:10:01.40,0:10:08.72,Conference,,0,0,0,,Et la comparabilité c'est ce qui nous permet de faire de la logique, de prendre des décisions,
+Dialogue: 0,0:10:08.72,0:10:14.04,Conference,,0,0,0,,ça nous permet de dire "Est-ce que c'est pareil que hier ? Est ce plus grand ou plus petit qu'avant ? " etc...
+Dialogue: 0,0:10:14.04,0:10:19.16,Conference,,0,0,0,,Est ce que cette string a le bon libellé pour cette chose ? 
+Dialogue: 0,0:10:19.16,0:10:22.45,Conference,,0,0,0,,Bref, tout ce qu'on peut faire avec de l'information.
+Dialogue: 0,0:10:22.45,0:10:27.70,Conference,,0,0,0,,La comparabilité dans des tests d'égalité est fondamentale, et on revient à notre notion familière d'une valeur.
+Dialogue: 0,0:10:27.70,0:10:31.65,Conference,,0,0,0,,Donc on veut vraiment pas revenir en arrière.
+Dialogue: 0,0:10:32.03,0:10:38.70,Conference,,0,0,0,,Maintenant on voudrait parler du concept de valeur dans le contexte précis de la programmation.
+Dialogue: 0,0:10:38.70,0:10:44.94,Conference,,0,0,0,,Des nouveaux aspects émergent dans ce contexte, comme je n'ai que 30min, je vais me concentrer sur 2 d'entre elles.
+Dialogue: 0,0:10:44.94,0:10:48.12,Conference,,0,0,0,,Les valeurs sont immuables.
+Dialogue: 0,0:10:48.12,0:10:52.20,Conference,,0,0,0,,Les valeurs sont sémantiquement transparentes, c'est leur but,
+Dialogue: 0,0:10:52.20,0:10:58.88,Conference,,0,0,0,,de s'exposer à vous pour que vous puissiez faire une comparaison, et un test d'égalité.
+Dialogue: 0,0:10:58.89,0:11:04.43,Conference,,0,0,0,,Une valeur n'encapsule pas des trucs, des méthodes, elle n'agit pas.
+Dialogue: 0,0:11:04.43,0:11:07.33,Conference,,0,0,0,,Une valeur dit "compare moi à quelque-chose"
+Dialogue: 0,0:11:07.33,0:11:16.74,Conference,,0,0,0,,"Je te dis explicitement ce que je signifie",\N on la voit directement depuis l'extérieur.
+Dialogue: 0,0:11:16.74,0:11:19.69,Conference,,0,0,0,,Voilà ce qu'est une valeur.
+Dialogue: 0,0:11:19.69,0:11:25.93,Conference,,0,0,0,,Le but de cette conférence, c'est de parler de la "valeur des valeurs",
+Dialogue: 0,0:11:25.93,0:11:28.05,Conference,,0,0,0,,Qu'est ce qu'il y'a de bon dans une valeur ?
+Dialogue: 0,0:11:28.05,0:11:32.91,Conference,,0,0,0,,À l'origine cette conférence durait 1h, donc je vais aller un peu plus vite.
+Dialogue: 0,0:11:32.90,0:11:38.11,Conference,,0,0,0,,Mais il y a une tonne de choses qui font\N que les valeurs ont "de la valeur".
+Dialogue: 0,0:11:38.11,0:11:40.65,Conference,,0,0,0,,D'abord, une valeur peut être partagée.
+Dialogue: 0,0:11:40.65,0:11:45.86,Conference,,0,0,0,,Si vous avez une valeur, qui est immuable, pouvez-vous la donner à quelqu'un sans vous faire de soucis ?
+Dialogue: 0,0:11:45.86,0:11:48.74,Conference,,0,0,0,,Oui,  aucun soucis. Ont-ils quelque-chose \Nà craindre de vous ?
+Dialogue: 0,0:11:48.74,0:11:51.33,Conference,,0,0,0,,car vous vous référez tous\N les 2 à la même valeur. 
+Dialogue: 0,0:11:51.33,0:11:53.05,Conference,,0,0,0,,Quelq'un doit se faire du soucis ? 
+Dialogue: 0,0:11:53.05,0:11:59.07,Conference,,0,0,0,,Non, les valeurs peuvent être partagées, c'est très bénéfique.
+Dialogue: 0,0:11:59.07,0:12:01.54,Conference,,0,0,0,,Les valeurs encouragent la reproductibilité.
+Dialogue: 0,0:12:01.54,0:12:04.18,Conference,,0,0,0,,Si vous définissez une fonction en terme de valeurs,
+Dialogue: 0,0:12:04.18,0:12:08.08,Conference,,0,0,0,,chaque fois que vous appelez cette fonction avec la même valeur aurez vous la même réponse ?
+Dialogue: 0,0:12:08.08,0:12:08.74,Conference,,0,0,0,,Oui !
+Dialogue: 0,0:12:08.74,0:12:13.57,Conference,,0,0,0,,Si vous définissez cette fonction en terme de {\i1}lieu{\i0}, chaque appel vous donnera la même réponse ?
+Dialogue: 0,0:12:13.57,0:12:16.26,Conference,,0,0,0,,Non ! Ça dépend de ce qu'il s'y trouve.
+Dialogue: 0,0:12:16.26,0:12:18.68,Conference,,0,0,0,,La reproductibilité est importante,
+Dialogue: 0,0:12:18.68,0:12:21.60,Conference,,0,0,0,,ça vous permet de faire des tests reproductibles.
+Dialogue: 0,0:12:21.60,0:12:24.35,Conference,,0,0,0,,Tellement de personnes font des tests sur des {\i1}lieux{\i0},
+Dialogue: 0,0:12:24.35,0:12:26.57,Conference,,0,0,0,,ça ne vous dit rien,
+Dialogue: 0,0:12:26.57,0:12:31.55,Conference,,0,0,0,,ces tests sont tous conditionnés à votre capacité de remettre ce {\i1}lieu{\i0} dans le bon état,
+Dialogue: 0,0:12:31.55,0:12:34.27,Conference,,0,0,0,,à la même valeur.
+Dialogue: 0,0:12:34.27,0:12:38.54,Conference,,0,0,0,,Un autre aspect important des valeurs\N c'est qu'elles sont faciles à produire.
+Dialogue: 0,0:12:38.54,0:12:43.70,Conference,,0,0,0,,Vous pouvez faire une valeur à partir de rien dans n'importe quel langage de programmation, sans peine.
+Dialogue: 0,0:12:43.71,0:12:45.57,Conference,,0,0,0,,Pouvez-vous faire une string dans chaque langage ? Oui,.
+Dialogue: 0,0:12:45.56,0:12:46.77,Conference,,0,0,0,,Une liste de string ? Oui.
+Dialogue: 0,0:12:46.77,0:12:48.03,Conference,,0,0,0,,Une liste de nombres ? Oui.
+Dialogue: 0,0:12:48.03,0:12:49.66,Conference,,0,0,0,,Une liste de listes de nombres ? Oui.
+Dialogue: 0,0:12:49.66,0:12:51.66,Conference,,0,0,0,,Une {\i1}map{\i0} de listes de nombres ? Oui.
+Dialogue: 0,0:12:51.66,0:12:57.85,Conference,,0,0,0,,Est-ce-que je peux faire une instance de votre interface fantaisiste dans n'importe quel langage ?
+Dialogue: 0,0:12:57.85,0:13:00.52,Conference,,0,0,0,,Non ! Ce n'est pas facile à fabriquer.
+Dialogue: 0,0:13:00.52,0:13:05.70,Conference,,0,0,0,,Ce n'est pas facile de faire des programmes qui écrivent des programmes ou des tests,
+Dialogue: 0,0:13:05.70,0:13:09.05,Conference,,0,0,0,,si votre programme n'est pas construit sur des valeurs.
+Dialogue: 0,0:13:09.05,0:13:14.46,Conference,,0,0,0,,Donc le fait que les valeurs soient\N faciles à fabriquer, c'est important.
