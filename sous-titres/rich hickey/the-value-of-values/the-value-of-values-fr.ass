@@ -16,9 +16,9 @@ Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
 Video Zoom Percent: 0.750000
-Scroll Position: 201
-Active Line: 215
-Video Position: 28989
+Scroll Position: 288
+Active Line: 303
+Video Position: 39443
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -242,5 +242,92 @@ Dialogue: 0,0:15:54.06,0:15:57.65,Conference,,0,0,0,,Non ! Tout s'est évanoui, 
 Dialogue: 0,0:15:57.65,0:16:01.28,Conference,,0,0,0,,Ce composite, dont j'ai une politique de\N verrouillage pour chacune de ses parties, 
 Dialogue: 0,0:16:01.28,0:16:03.87,Conference,,0,0,0,,n'en a plus lui même. Je dois en fournir une nouvelle.
 Dialogue: 0,0:16:03.87,0:16:07.26,Conference,,0,0,0,,Une nouvelle pour le clonage, \Npour tout le reste, une fois encore.
-Dialogue: 0,0:16:07.26,0:16:13.20,Conference,,0,0,0,,Les valeurs s'aggrégent en valeurs, tous les bénéfices se retrouvent sur les agrégats.
-Dialogue: 0,0:16:13.20,0:16:15.20,Conference,,0,0,0,,
+Dialogue: 0,0:16:07.26,0:16:13.65,Conference,,0,0,0,,Les valeurs désagrégeant en valeurs, tous les bénéfices se retrouvent sur les agrégats.
+Dialogue: 0,0:16:13.65,0:16:18.27,Conference,,0,0,0,,Il y'a d'autres bénéfices à utiliser des valeurs, et ont les à tout le temps sous les yeux,
+Dialogue: 0,0:16:18.27,0:16:20.34,Conference,,0,0,0,,Les valeurs sont faciles à transmettre.
+Dialogue: 0,0:16:20.34,0:16:24.10,Conference,,0,0,0,,Si j'ai une information utile, je peux vous l'envoyer
+Dialogue: 0,0:16:24.10,0:16:28.61,Conference,,0,0,0,,Et je sais que je vous ai communiqué ce que j'ai vu.s
+Dialogue: 0,0:16:28.61,0:16:33.38,Conference,,0,0,0,,Si j'ai vu un truc intéressant et que \Nje vous communique {\i1}le lieu{\i0} où je l'ai vue,
+Dialogue: 0,0:16:33.38,0:16:36.92,Conference,,0,0,0,,Qu'est-ce que je vous ai vraiment transmis ?
+Dialogue: 0,0:16:36.92,0:16:39.69,Conference,,0,0,0,,Rien ! Aucune information ça c'est sûr.
+Dialogue: 0,0:16:39.69,0:16:43.15,Conference,,0,0,0,,Vous allez regarder ce qu'il s'y trouve \Net verrez autre chose que ce que j'ai vu.
+Dialogue: 0,0:16:43.15,0:16:45.70,Conference,,0,0,0,,Ça marche aussi dans l'autre sens.
+Dialogue: 0,0:16:45.70,0:16:49.21,Conference,,0,0,0,,Quand je veux percevoir \Nquelque-chose, si c'est une valeur,
+Dialogue: 0,0:16:49.21,0:16:51.58,Conference,,0,0,0,,je peux prendre mon temps pour la regarder.
+Dialogue: 0,0:16:51.58,0:16:55.65,Conference,,0,0,0,,surtout si c'est un ensemble de valeurs, un truc composite.
+Dialogue: 0,0:16:55.65,0:17:00.64,Conference,,0,0,0,,Si je veux percevoir un truc basé\N sur des lieux, comment je m'y prends ?
+Dialogue: 0,0:17:00.64,0:17:05.24,Conference,,0,0,0,,Il y a tout un tas d'endroits où je veux\N regarder. Qu'est ce que je dois faire ?
+Dialogue: 0,0:17:05.24,0:17:09.80,Conference,,0,0,0,,Je dois arrêter le monde ! S'il te plaît,\Narrête toi le temps que je regarde.
+Dialogue: 0,0:17:09.81,0:17:13.53,Conference,,0,0,0,,Sinon, pendant que j'en regarde une, l'autre a changé.
+Dialogue: 0,0:17:13.54,0:17:17.72,Conference,,0,0,0,,le temps a en quelque sorte {\i1}poursuivi le tout{\i0}, \Net j'ignore si le tout était cohérent.
+Dialogue: 0,0:17:17.72,0:17:21.57,Conference,,0,0,0,,Je dois prendre alors une \Ndécision basée sur rien de cohérent.
+Dialogue: 0,0:17:21.57,0:17:24.70,Conference,,0,0,0,,Et cela s'applique aussi à la mémoire.\NComment se souvient-ton d'un truc ?
+Dialogue: 0,0:17:24.70,0:17:30.24,Conference,,0,0,0,,Si vous rencontrez un objet durant l'éxecution de votre programme, et que vous voulez vous en souvenir
+Dialogue: 0,0:17:30.24,0:17:33.07,Conference,,0,0,0,,qu'est ce que vous faites ?
+Dialogue: 0,0:17:33.07,0:17:36.48,Conference,,0,0,0,,Vous gardez juste la référence ?
+Dialogue: 0,0:17:36.48,0:17:40.17,Conference,,0,0,0,,Pas suffisant non ? Que faut-il faire ?
+Dialogue: 0,0:17:40.17,0:17:43.58,Conference,,0,0,0,,Le cloner. Comment on le fait ?
+Dialogue: 0,0:17:43.58,0:17:47.61,Conference,,0,0,0,,Ça dépend, exactement. Ça dépend.
+Dialogue: 0,0:17:47.61,0:17:49.16,Conference,,0,0,0,,
+Dialogue: 0,0:17:49.16,0:17:53.97,Conference,,0,0,0,,Je vous invite à pensez à cela à un autre niveau, au delà de vos boîes et de vos processus,
+Dialogue: 0,0:17:53.97,0:17:58.78,Conference,,0,0,0,,car les qualités des valeurs se\N retrouvent au niveau du système.
+Dialogue: 0,0:17:58.78,0:18:01.92,Conference,,0,0,0,,Et en particulier, les valeurs font les meilleures interfaces.
+Dialogue: 0,0:18:01.92,0:18:06.77,Conference,,0,0,0,,Sur ce point, je crois qu'il n'y a pas\N de débats, on le fait déjà tous.
+Dialogue: 0,0:18:06.77,0:18:09.95,Conference,,0,0,0,,Qu'est ce que vous envoyez sur le réseau ?
+Dialogue: 0,0:18:09.95,0:18:13.12,Conference,,0,0,0,,Quelqu'un utilise encore CORBA ou DCOM ?
+Dialogue: 0,0:18:13.12,0:18:17.74,Conference,,0,0,0,,Nooon... Ils sont morts, pour des bonnes raisons.
+Dialogue: 0,0:18:17.74,0:18:22.96,Conference,,0,0,0,,Maintenant on utilise des valeurs. On envoie du JSON, ou de l'XML, enfin, si vous y êtes forcés...
+Dialogue: 0,0:18:22.97,0:18:27.31,Conference,,0,0,0,,Les deux sont des représentations de valeurs.
+Dialogue: 0,0:18:27.31,0:18:30.49,Conference,,0,0,0,,Ça nous permet de construire des interfaces,
+Dialogue: 0,0:18:30.49,0:18:33.40,Conference,,0,0,0,,qui sont faciles à changer à chaque bout.
+Dialogue: 0,0:18:33.40,0:18:37.81,Conference,,0,0,0,,L'autre aspect intéressant des valeurs, surtout à grande échelle, mais aussi à petite échelle,
+Dialogue: 0,0:18:37.81,0:18:41.41,Conference,,0,0,0,,On a parlé de comment percevoir \Nquelque-chose après avoir bloqué le monde entier,
+Dialogue: 0,0:18:41.41,0:18:46.51,Conference,,0,0,0,,Ça s'applique à grande échelle aussi. \NCombien de personnes ont entendu parler des {\i1}retransactions{\i0} ?
+Dialogue: 0,0:18:46.51,0:18:51.33,Conference,,0,0,0,,Oui, combien aiment ça ? Non !
+Dialogue: 0,0:18:51.33,0:18:56.92,Conference,,0,0,0,,L'idée générale est contre-intuitive et viole la physique.
+Dialogue: 0,0:18:56.93,0:19:02.76,Conference,,0,0,0,,En physique on se regarde les uns les autres, on ne doit pas tout arrêter pour regarder des trucs.
+Dialogue: 0,0:19:02.76,0:19:06.60,Conference,,0,0,0,,Quand on programme avec des\N valeurs, en particulier en persistance, 
+Dialogue: 0,0:19:06.60,0:19:09.66,Conference,,0,0,0,,nous réduisons nos besoins de coordination.
+Dialogue: 0,0:19:09.66,0:19:13.17,Conference,,0,0,0,,Et à nouveau, un autre bénéfice\N c'est la {\i1}flexibilité d'emplacemen{\i0}t.
+Dialogue: 0,0:19:13.17,0:19:15.65,Conference,,0,0,0,,Si vous construisez un système à petite échelle,
+Dialogue: 0,0:19:15.65,0:19:20.74,Conference,,0,0,0,,et si le système est défini en termes\N de processus qui communiquent des valeurs,
+Dialogue: 0,0:19:20.74,0:19:25.23,Conference,,0,0,0,,et vous décidez "cette partie du système, je veux l'écrire dans un langage plus rapide"
+Dialogue: 0,0:19:25.23,0:19:28.02,Conference,,0,0,0,,ou "je veux le faire tourner \Ndans un autre environnement".
+Dialogue: 0,0:19:28.02,0:19:33.40,Conference,,0,0,0,,Est-ce-que c'est facile à faire si vous utilisez des objets ou des trucs spécifiques à votre langage ?
+Dialogue: 0,0:19:33.40,0:19:40.52,Conference,,0,0,0,,Si je passe des interfaces Java... Plutôt des interfaces Ruby, est ce que c'est simple à réécrire en Java ?
+Dialogue: 0,0:19:40.52,0:19:42.91,Conference,,0,0,0,,Non.
+Dialogue: 0,0:19:42.91,0:19:48.16,Conference,,0,0,0,,Nous le savons, nous le faisons pas\N à grande échelle, nous utilisons des valeurs,
+Dialogue: 0,0:19:48.16,0:19:51.86,Conference,,0,0,0,,Mais à petite échelle, dans nos langages,\N nous faisons des trucs bizarres.
+Dialogue: 0,0:19:51.86,0:19:55.57,Conference,,0,0,0,,Et ces trucs bizarres nous \Nempêchent de déplacer des choses.
+Dialogue: 0,0:19:55.57,0:20:00.73,Conference,,0,0,0,,On ne peut pas les déplacer dans un autre thread, dans un autre langage, dans un autre environnement.
+Dialogue: 0,0:20:00.73,0:20:02.75,Conference,,0,0,0,,Mais si nous utilisons des \Nvaleurs nous pouvons le faire.
+Dialogue: 0,0:20:02.75,0:20:06.02,Conference,,0,0,0,,C'est ce que j'appelle la f{\i1}lexibilité de l'emplacemen{\i0}t.
+Dialogue: 0,0:20:06.02,0:20:11.29,Conference,,0,0,0,,Donc, revenons à I{\i1}nformation and Technology{\i0} et aux faits.
+Dialogue: 0,0:20:11.29,0:20:16.36,Conference,,0,0,0,,Le premier fait à propos des faits,\N c'est que les faits sont des valeurs.
+Dialogue: 0,0:20:16.36,0:20:19.26,Conference,,0,0,0,,Ce ne sont pas des lieux.
+Dialogue: 0,0:20:19.26,0:20:22.77,Conference,,0,0,0,,
+Dialogue: 0,0:20:22.77,0:20:26.03,Conference,,0,0,0,,Tout le monde pense tout bas "Mais les faits changent non ?"
+Dialogue: 0,0:20:26.03,0:20:30.03,Conference,,0,0,0,,"On avait pas un président à une\N époque puis un nouveau ?"
+Dialogue: 0,0:20:30.03,0:20:33.16,Conference,,0,0,0,,Non, ils ne changent pas !
+Dialogue: 0,0:20:33.16,0:20:36.52,Conference,,0,0,0,,Car les faits intègrent le temps.
+Dialogue: 0,0:20:36.52,0:20:38.52,Conference,,0,0,0,,Comment ça, qu'est ce que ça veut dire ?
+Dialogue: 0,0:20:38.52,0:20:42.17,Conference,,0,0,0,,A nouveau, le dictionnaire connait toutes les réponses.
+Dialogue: 0,0:20:42.17,0:20:47.12,Conference,,0,0,0,,Que signifie le mot {\i1}fait{\i0} ? Un fait \Nsignifie "quelque-chose qui s'est produit".
+Dialogue: 0,0:20:47.12,0:20:51.10,Conference,,0,0,0,,"Quelque-chose connu pour s'être \Nproduit ou avoir existé", ça vient du latin.
+Dialogue: 0,0:20:51.10,0:20:53.61,Conference,,0,0,0,,d'un participe passé latin. 
+Dialogue: 0,0:20:53.61,0:20:56.75,Conference,,0,0,0,,Ça signifie "quelque-chose qui {\i1}a eu{\i0} lieu".
+Dialogue: 0,0:20:56.75,0:21:00.48,Conference,,0,0,0,,Un fait c'est quelque-chose qui a eu lieu.
+Dialogue: 0,0:21:00.48,0:21:03.57,Conference,,0,0,0,,Ce n'est pas un lieu, ce n'est pas\N quelque-chose que vous pouvez changer.
+Dialogue: 0,0:21:03.58,0:21:09.42,Conference,,0,0,0,,Clinton était président. Le fait qu'il \Nait été président sera {\i1}toujours{\i0} un fait.
+Dialogue: 0,0:21:09.42,0:21:11.92,Conference,,0,0,0,,On peut avoir d'autres présidents,\N ce sont des nouveaux faits.
+Dialogue: 0,0:21:11.92,0:21:15.29,Conference,,0,0,0,,Comme vous pouvez avoir de nouvelles adresses mail.
+Dialogue: 0,0:21:15.29,0:21:19.86,Conference,,0,0,0,,L'autre chose importante à propos des faits, ce qui est important quand vous considérez des faits,
+Dialogue: 0,0:21:19.86,0:21:25.89,Conference,,0,0,0,,c'est que ce n'est pas suffisant de \Nne considérer que les faits les plus récents.
+Dialogue: 0,0:21:25.89,0:21:28.54,Conference,,0,0,0,,On revient au but de l'information.
+Dialogue: 0,0:21:28.54,0:21:35.87,Conference,,0,0,0,,L'information a pour but d'informer, pour que les gens puissent transmettre des connaissances.
+Dialogue: 0,0:21:35.87,0:21:38.42,Conference,,0,0,0,,Mais la connaissance provient des faits. 
+Dialogue: 0,0:21:38.42,0:21:42.13,Conference,,0,0,0,,Quand on essaie de prendre des\N décisions on compare des instants,
+Dialogue: 0,0:21:42.13,0:21:45.65,Conference,,0,0,0,,on compare deux choses\N différentes, on combine des faits.
+Dialogue: 0,0:21:45.65,0:21:47.81,Conference,,0,0,0,,et surtout on utilise des instants différents.
+Dialogue: 0,0:21:47.81,0:21:56.08,Conference,,0,0,0,,Imaginez que vous ne connaissiez que la valeur présente de n'importe quelle propriété du monde ?
+Dialogue: 0,0:21:56.08,0:22:00.20,Conference,,0,0,0,,A
