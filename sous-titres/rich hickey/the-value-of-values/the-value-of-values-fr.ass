@@ -16,9 +16,9 @@ Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
 Video Zoom Percent: 0.750000
-Scroll Position: 148
-Active Line: 161
-Video Position: 22943
+Scroll Position: 201
+Active Line: 215
+Video Position: 28989
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -151,7 +151,7 @@ Dialogue: 0,0:09:52.54,0:09:57.84,Conference,,0,0,0,,ce n'est pas une magnitude,
 Dialogue: 0,0:09:57.84,0:10:01.40,Conference,,0,0,0,,mais une {\i1}string{\i0} immuable est\N un truc qu'on peut comparer.
 Dialogue: 0,0:10:01.40,0:10:08.72,Conference,,0,0,0,,Et la comparabilité c'est ce qui nous permet de faire de la logique, de prendre des décisions.
 Dialogue: 0,0:10:08.72,0:10:14.04,Conference,,0,0,0,,Ça nous permet de dire "Est-ce que c'est pareil que hier ? Est-ce plus grand ou plus petit qu'avant ?"
-Dialogue: 0,0:10:14.04,0:10:19.16,Conference,,0,0,0,,Est-ce que cette {\i1}string{\i0} a le\N bon libellé pour cette chose ? 
+Dialogue: 0,0:10:14.04,0:10:19.16,Conference,,0,0,0,,Est-ce que cette {\i1}string{\i0} a le\N bon libellé pour cette chose ?
 Dialogue: 0,0:10:19.16,0:10:22.45,Conference,,0,0,0,,Bref, tout ce qu'on peut faire avec de l'information.
 Dialogue: 0,0:10:22.45,0:10:27.70,Conference,,0,0,0,,La comparabilité dans des tests d'égalité est fondamentale, et on revient à notre notion familière d'une valeur.
 Dialogue: 0,0:10:27.70,0:10:31.65,Conference,,0,0,0,,Donc on veut vraiment pas revenir en arrière.
@@ -171,8 +171,8 @@ Dialogue: 0,0:11:32.92,0:11:38.11,Conference,,0,0,0,,Mais il y a une tonne de ca
 Dialogue: 0,0:11:38.11,0:11:40.65,Conference,,0,0,0,,D'abord, une valeur peut être partagée.
 Dialogue: 0,0:11:40.65,0:11:45.86,Conference,,0,0,0,,Si vous avez une valeur, qui est immuable, pouvez-vous la donner à quelqu'un sans vous faire de soucis ?
 Dialogue: 0,0:11:45.86,0:11:48.99,Conference,,0,0,0,,Oui ! Aucun soucis.\N Ont-ils quelque-chose à craindre de vous ?
-Dialogue: 0,0:11:48.99,0:11:51.33,Conference,,0,0,0,,Car vous vous référez tous\N les 2 à la même valeur. 
-Dialogue: 0,0:11:51.33,0:11:53.05,Conference,,0,0,0,,Quelqu’un doit se faire du soucis ? 
+Dialogue: 0,0:11:48.99,0:11:51.33,Conference,,0,0,0,,Car vous vous référez tous\N les 2 à la même valeur.
+Dialogue: 0,0:11:51.33,0:11:53.05,Conference,,0,0,0,,Quelqu’un doit se faire du soucis ?
 Dialogue: 0,0:11:53.05,0:11:59.07,Conference,,0,0,0,,Non, les valeurs peuvent être partagées, c'est très bénéfique.
 Dialogue: 0,0:11:59.07,0:12:01.54,Conference,,0,0,0,,Les valeurs encouragent la reproductibilité.
 Dialogue: 0,0:12:01.54,0:12:04.18,Conference,,0,0,0,,Si vous définissez une fonction en terme de valeurs,
@@ -198,4 +198,49 @@ Dialogue: 0,0:12:57.85,0:13:00.52,Conference,,0,0,0,,Non ! Ce n'est pas facile �
 Dialogue: 0,0:13:00.52,0:13:05.70,Conference,,0,0,0,,Ce n'est pas facile de faire des programmes qui écrivent des programmes ou des tests,
 Dialogue: 0,0:13:05.70,0:13:09.05,Conference,,0,0,0,,si votre programme n'est pas construit sur des valeurs.
 Dialogue: 0,0:13:09.05,0:13:14.46,Conference,,0,0,0,,Donc le fait que les valeurs soient\N faciles à fabriquer, c'est important.
-Dialogue: 0,0:13:14.46,0:13:16.46,Conference,,0,0,0,,
+Dialogue: 0,0:13:14.46,0:13:17.05,Conference,,0,0,0,,
+Dialogue: 0,0:13:17.13,0:13:21.57,Conference,,0,0,0,,Les valeurs sont indépendantes du langage, \Nça rejoint ce que je viens de dire.
+Dialogue: 0,0:13:21.57,0:13:26.29,Conference,,0,0,0,,Les notions de liste, de nombre, de {\i1}map{\i0}
+Dialogue: 0,0:13:26.29,0:13:30.85,Conference,,0,0,0,,ne sont liées à aucun langage particulier.
+Dialogue: 0,0:13:30.85,0:13:36.72,Conference,,0,0,0,,Leurs agrégats non plus, \Nce sont des notions génériques.
+Dialogue: 0,0:13:36.72,0:13:41.48,Conference,,0,0,0,,Ces idées, les notions de valeur sont génériques.
+Dialogue: 0,0:13:43.01,0:13:48.33,Conference,,0,0,0,,Je pense qu'on n'y réfléchit pa\Ns assez lorsqu'on design nos systèmes.
+Dialogue: 0,0:13:48.33,0:13:51.97,Conference,,0,0,0,,Au coût réel de la spécificité.
+Dialogue: 0,0:13:51.97,0:13:57.13,Conference,,0,0,0,,On aime la spécificité, quand on utilise Java chaque idée nouvelle reçoit une nouvelle classe.
+Dialogue: 0,0:13:57.13,0:13:59.41,Conference,,0,0,0,,Toute nouveauté apporte de la nouveauté.
+Dialogue: 0,0:13:59.41,0:14:02.13,Conference,,0,0,0,,Qu'est-ce que ça produit ?
+Dialogue: 0,0:14:02.13,0:14:06.43,Conference,,0,0,0,,Vous vous retrouvez avec cette explosion\N de code, cette profusion de code,
+Dialogue: 0,0:14:06.43,0:14:11.72,Conference,,0,0,0,,L'{\i1}Orienté Objet {\i0}était sensé soutenir la ré-utilisabilité, c'est l'exact opposé, surtout dans les langages typés.
+Dialogue: 0,0:14:11.72,0:14:15.01,Conference,,0,0,0,,Vous obtenez peu de ré-utilisabilité \Ncar vous faites du nouveau à chaque fois.
+Dialogue: 0,0:14:15.01,0:14:17.23,Conference,,0,0,0,,Et que signifie plus de code ?
+Dialogue: 0,0:14:17.23,0:14:22.37,Conference,,0,0,0,,Plus de code égal plus de bugs, forcément.
+Dialogue: 0,0:14:22.37,0:14:26.13,Conference,,0,0,0,,Un autre aspect intéressant des valeurs \Nc'est qu'elles s’agrègent en valeurs.
+Dialogue: 0,0:14:26.13,0:14:28.75,Conference,,0,0,0,,Je veux que vous réfléchissiez bien à cela.
+Dialogue: 0,0:14:28.75,0:14:33.01,Conference,,0,0,0,,Nous avons parlé de 42, de strings, de choses {\i1}atomiques{\i0}
+Dialogue: 0,0:14:33.01,0:14:38.37,Conference,,0,0,0,,Mais une liste de choses immuable \Nest elle-même une chose immuable.
+Dialogue: 0,0:14:38.36,0:14:39.76,Conference,,0,0,0,,Et ainsi de suite.
+Dialogue: 0,0:14:39.76,0:14:44.01,Conference,,0,0,0,,Quand vous agrégez des valeurs, \Nces agrégats sont aussi des valeurs.
+Dialogue: 0,0:14:44.01,0:14:47.68,Conference,,0,0,0,,Et j'ai l'impression qu'on à tendance à s'arrêter en chemin, on se dit "bien sûr que les string sont immuables"
+Dialogue: 0,0:14:47.68,0:14:51.26,Conference,,0,0,0,,Mais une collection immuable... \NNon merci, je n'en vois pas l'intérêt.
+Dialogue: 0,0:14:51.26,0:14:52.65,Conference,,0,0,0,,Mais vous devriez.
+Dialogue: 0,0:14:52.65,0:14:57.60,Conference,,0,0,0,,Elle a tous les attributs désirables d'une string immuable,
+Dialogue: 0,0:14:57.60,0:15:00.89,Conference,,0,0,0,,Plus personne ici ne veut programmer\N à nouveau avec des string mutables.
+Dialogue: 0,0:15:00.89,0:15:04.86,Conference,,0,0,0,,Pourquoi continuer à programmer avec\N des collections mutables ? Vous ne devriez pas.
+Dialogue: 0,0:15:04.86,0:15:10.03,Conference,,0,0,0,,Il y a un réel bénéfice pourtant à le faire.
+Dialogue: 0,0:15:10.03,0:15:12.51,Conference,,0,0,0,,Par exemple, comparez ça aux objets.
+Dialogue: 0,0:15:12.51,0:15:15.39,Conference,,0,0,0,,Si vous voulez partager un \Nobjet vous devez faire quoi ?
+Dialogue: 0,0:15:15.39,0:15:20.40,Conference,,0,0,0,,Vous devez définir un objet, son interface etc..\N Mais après vous devez faire quoi ?
+Dialogue: 0,0:15:20.40,0:15:24.34,Conference,,0,0,0,,Si vous êtes dans un environnement\N concurrent que devez-vous faire ?
+Dialogue: 0,0:15:24.34,0:15:26.82,Conference,,0,0,0,,Une sorte de politique de verrouillage.
+Dialogue: 0,0:15:26.82,0:15:31.90,Conference,,0,0,0,,Très difficile à réaliser, beaucoup de langages ne vous donnent pas les ressources pour le faire correctement.
+Dialogue: 0,0:15:31.90,0:15:36.57,Conference,,0,0,0,,"Voici une serviette en papier, nous y avons défini comment nous allons utiliser cet objet"
+Dialogue: 0,0:15:36.57,0:15:42.50,Conference,,0,0,0,,Même si vous y parvenez.. Il y aussi d'autres problèmes : comment vous le copier ? Quelle est la stratégie de clonage ? etc...
+Dialogue: 0,0:15:42.50,0:15:47.20,Conference,,0,0,0,,Disons que vous avez réussi à achever \Nce travail, pour chacune de vos classes,
+Dialogue: 0,0:15:47.20,0:15:51.10,Conference,,0,0,0,,Et maintenant vous construisez quelque-chose\N qui composé de ces éléments,
+Dialogue: 0,0:15:51.10,0:15:54.06,Conference,,0,0,0,,Retrouvez-vous votre politique \Nde verrouillage après les avoir combinés ?
+Dialogue: 0,0:15:54.06,0:15:57.65,Conference,,0,0,0,,Non ! Tout s'est évanoui, vous \Ndevez refaire le travail encore une fois.
+Dialogue: 0,0:15:57.65,0:16:01.28,Conference,,0,0,0,,Ce composite, dont j'ai une politique de\N verrouillage pour chacune de ses parties, 
+Dialogue: 0,0:16:01.28,0:16:03.87,Conference,,0,0,0,,n'en a plus lui même. Je dois en fournir une nouvelle.
+Dialogue: 0,0:16:03.87,0:16:07.26,Conference,,0,0,0,,Une nouvelle pour le clonage, \Npour tout le reste, une fois encore.
+Dialogue: 0,0:16:07.26,0:16:13.20,Conference,,0,0,0,,Les valeurs s'aggrégent en valeurs, tous les bénéfices se retrouvent sur les agrégats.
+Dialogue: 0,0:16:13.20,0:16:15.20,Conference,,0,0,0,,
