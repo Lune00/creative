@@ -16,9 +16,9 @@ Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
 Video Zoom Percent: 0.750000
-Scroll Position: 288
-Active Line: 303
-Video Position: 39443
+Scroll Position: 402
+Active Line: 417
+Video Position: 51846
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -330,4 +330,118 @@ Dialogue: 0,0:21:38.42,0:21:42.13,Conference,,0,0,0,,Quand on essaie de prendre 
 Dialogue: 0,0:21:42.13,0:21:45.65,Conference,,0,0,0,,on compare deux choses\N différentes, on combine des faits.
 Dialogue: 0,0:21:45.65,0:21:47.81,Conference,,0,0,0,,et surtout on utilise des instants différents.
 Dialogue: 0,0:21:47.81,0:21:56.08,Conference,,0,0,0,,Imaginez que vous ne connaissiez que la valeur présente de n'importe quelle propriété du monde ?
-Dialogue: 0,0:21:56.08,0:22:00.20,Conference,,0,0,0,,A
+Dialogue: 0,0:21:56.08,0:22:00.20,Conference,,0,0,0,,Comment se porteraient vos\N capacités à prendre des décisions ?
+Dialogue: 0,0:22:00.20,0:22:04.99,Conference,,0,0,0,,Elles seraient désastreuses,\N complètement mauvaises.
+Dialogue: 0,0:22:04.99,0:22:09.54,Conference,,0,0,0,,Et pourtant, nous construisons des systèmes qui ne se souviennent que des faits les plus récents.
+Dialogue: 0,0:22:09.54,0:22:10.86,Conference,,0,0,0,,Rien d'autre.
+Dialogue: 0,0:22:10.86,0:22:17.18,Conference,,0,0,0,,Mais on est supposés faire des systèmes d'information, aidant à la prise de décisions.
+Dialogue: 0,0:22:17.18,0:22:20.01,Conference,,0,0,0,,Vous ne pouvez pas {\i1}mettre à jour{\i0} un fait.
+Dialogue: 0,0:22:20.02,0:22:24.04,Conference,,0,0,0,,Et la raison pour laquelle vous ne pouvez pas le fait, c'est parce que vous ne pouvez pas changer le passé.
+Dialogue: 0,0:22:24.04,0:22:28.02,Conference,,0,0,0,,Car c'est ce que ce sont les faits, \Nla documentation du passé.
+Dialogue: 0,0:22:28.02,0:22:34.28,Conference,,0,0,0,,Donc revenons au début, que signifierait\N de construire un système d'information ?
+Dialogue: 0,0:22:34.30,0:22:37.95,Conference,,0,0,0,,Cela voudrait dire que le système serait fondamentalement à propos des faits.
+Dialogue: 0,0:22:37.95,0:22:42.24,Conference,,0,0,0,,Maintenir des faits, manipuler des faits.
+Dialogue: 0,0:22:42.24,0:22:46.91,Conference,,0,0,0,,Et présenter des faits aux utilisateurs pour leur donner une marche de manœuvre, pour qu'ils puissent prendre des décisions.
+Dialogue: 0,0:22:46.92,0:22:50.54,Conference,,0,0,0,,On pense qu'on le fait déjà, comme nous sommes en IT, 
+Dialogue: 0,0:22:50.54,0:22:54.65,Conference,,0,0,0,,on pense qu'on fait des systèmes\N qui aident à la prise de décision.
+Dialogue: 0,0:22:54.65,0:23:00.78,Conference,,0,0,0,,Mais nous n'utilisons pas des infrastructures\N qui sont pilotées par les faits.
+Dialogue: 0,0:23:01.70,0:23:06.89,Conference,,0,0,0,,Au plus bas niveau, en laissant de côté l'aspect temporel des faits,
+Dialogue: 0,0:23:06.89,0:23:11.09,Conference,,0,0,0,,nous devrions sans aucun doute construire des systèmes qui sont pilotées par des valeurs.
+Dialogue: 0,0:23:11.09,0:23:17.44,Conference,,0,0,0,,Je ne veux pas dire par là que les langages ne devraient pas être pilotées par des processus, bien sûr que oui,
+Dialogue: 0,0:23:17.44,0:23:19.25,Conference,,0,0,0,,Mais on ne peut pas les distinguer.
+Dialogue: 0,0:23:19.25,0:23:24.42,Conference,,0,0,0,,Si vous regardez n'importe quel programme\Nil sera constitué en quelque sorte de deux parties.
+Dialogue: 0,0:23:24.42,0:23:28.18,Conference,,0,0,0,,Il y aura la partie de votre programme\N qui ressemble à une machine.
+Dialogue: 0,0:23:28.18,0:23:32.14,Conference,,0,0,0,,Il y a un quai de chargement, des trucs \Narrivent, on les poussent sur des tapis roulant,
+Dialogue: 0,0:23:32.14,0:23:37.33,Conference,,0,0,0,,ils sont déplacés, triés, des trucs \Nsont déposés ici, d'autres là.
+Dialogue: 0,0:23:37.33,0:23:43.31,Conference,,0,0,0,,Tout programme a cet aspect orienté\N processus, qui ressemble à une machine.
+Dialogue: 0,0:23:43.31,0:23:46.94,Conference,,0,0,0,,Et nous construisons des langages \Nqui nous procurent ces abstractions,
+Dialogue: 0,0:23:46.94,0:23:50.44,Conference,,0,0,0,,analogue à des petites machines, elles {\i1}font{\i0} des trucs.
+Dialogue: 0,0:23:50.44,0:23:55.85,Conference,,0,0,0,,Le problème c'est que nous appliquons cette technologie pour tout, y compris l'information.
+Dialogue: 0,0:23:55.85,0:23:58.82,Conference,,0,0,0,,L'information n'est pas une petite machine.
+Dialogue: 0,0:23:58.82,0:24:00.85,Conference,,0,0,0,,C'est tout sauf une machine.
+Dialogue: 0,0:24:00.85,0:24:04.00,Conference,,0,0,0,,Il faut donc les séparer de ces abstractions.
+Dialogue: 0,0:24:04.00,0:24:06.89,Conference,,0,0,0,,Et en particulier, le message de cette conférence, 
+Dialogue: 0,0:24:06.89,0:24:10.60,Conference,,0,0,0,,c'est que les lieux, toutes vos \Nabstractions basées sur des lieux,
+Dialogue: 0,0:24:10.60,0:24:14.73,Conference,,0,0,0,,n'ont aucun rôle à jouer dans un modèle d'information.
+Dialogue: 0,0:24:14.73,0:24:17.37,Conference,,0,0,0,,Ce sont des artefacts du\N fonctionnement des ordinateurs,
+Dialogue: 0,0:24:17.37,0:24:20.49,Conference,,0,0,0,,elles n'ont rien à voir avec ce que\N vos logiciels sont sensés faire.
+Dialogue: 0,0:24:20.49,0:24:25.12,Conference,,0,0,0,,Si votre logiciel est censé organiser de l'information,
+Dialogue: 0,0:24:25.12,0:24:27.58,Conference,,0,0,0,,Et la prise de décisions.
+Dialogue: 0,0:24:27.58,0:24:30.67,Conference,,0,0,0,,Ce qui est bien à propos de cette conférence,
+Dialogue: 0,0:24:30.67,0:24:35.24,Conference,,0,0,0,,c'est que, je pense que vous savez déjà tout ça.
+Dialogue: 0,0:24:35.63,0:24:38.05,Conference,,0,0,0,,Car on prend tous des décisions.
+Dialogue: 0,0:24:38.05,0:24:41.72,Conference,,0,0,0,,Nous savons ce qui est nécessaire\N pour pouvoir prendre des décisions.
+Dialogue: 0,0:24:41.72,0:24:44.78,Conference,,0,0,0,,Nous comparons en permanence le présent au passé.
+Dialogue: 0,0:24:44.78,0:24:48.62,Conference,,0,0,0,,Nous essayons de déceler des tendances,\N d'apprécier les taux de variation,
+Dialogue: 0,0:24:48.62,0:24:51.23,Conference,,0,0,0,,nous devons additionner des choses\N ensemble au cours du temps...
+Dialogue: 0,0:24:51.23,0:24:55.47,Conference,,0,0,0,,Nous avons presque toujours \Nbesoin d'un aspect temporel.
+Dialogue: 0,0:24:55.47,0:24:59.39,Conference,,0,0,0,,Comment je peux vous affirmer cela ? C'est plutôt évident.
+Dialogue: 0,0:24:59.39,0:25:04.17,Conference,,0,0,0,,Nous sommes programmeurs, on a des choses à faire, on a tous nos petites affaires.
+Dialogue: 0,0:25:04.17,0:25:07.56,Conference,,0,0,0,,Nous fabriquons des trucs. Que fabrique-t-on ?
+Dialogue: 0,0:25:07.56,0:25:10.76,Conference,,0,0,0,,Quel est notre matériau ?
+Dialogue: 0,0:25:10.76,0:25:12.67,Conference,,0,0,0,,Du code source.
+Dialogue: 0,0:25:12.67,0:25:16.65,Conference,,0,0,0,,Et il y a un aspect fonctionnel \Ndans notre travail. Que faisons nous ?
+Dialogue: 0,0:25:16.65,0:25:17.86,Conference,,0,0,0,,Nous exécutons nos programmes. 
+Dialogue: 0,0:25:17.86,0:25:20.83,Conference,,0,0,0,,Et nous maintenons de \Nl'information sur ces deux choses.
+Dialogue: 0,0:25:20.83,0:25:23.56,Conference,,0,0,0,,Regardons l'IT des programmeurs.
+Dialogue: 0,0:25:23.56,0:25:25.92,Conference,,0,0,0,,Regardons notre propre système d'information, 
+Dialogue: 0,0:25:25.92,0:25:28.90,Conference,,0,0,0,,celui que nous avons \Nconstruit pour nous-mêmes.
+Dialogue: 0,0:25:28.90,0:25:30.44,Conference,,0,0,0,,Le contrôle de code source.
+Dialogue: 0,0:25:30.44,0:25:35.33,Conference,,0,0,0,,Qui utilise un répertoire sur un système de fichiers pour le contrôle de leur code source ?
+Dialogue: 0,0:25:35.33,0:25:40.27,Conference,,0,0,0,,Et quand vous apportez une modification à votre programme vous l'ajoutez à votre répertoire ?
+Dialogue: 0,0:25:40.27,0:25:44.00,Conference,,0,0,0,,Vous ne devriez vraiment pas lever votre main (rires).
+Dialogue: 0,0:25:44.00,0:25:46.53,Conference,,0,0,0,,Non ! Bien sûr que non. On ne remplace rien sur place.
+Dialogue: 0,0:25:46.53,0:25:49.81,Conference,,0,0,0,,Quelqu'un utilise un contrôle de\N source qui fait des remplacements ?
+Dialogue: 0,0:25:49.81,0:25:51.71,Conference,,0,0,0,,Non ! Bien sûr que non.
+Dialogue: 0,0:25:51.71,0:25:56.38,Conference,,0,0,0,,Comment pourrions-nous savoir ce que nous faisons, ce que nous avons besoin de faire,
+Dialogue: 0,0:25:56.38,0:25:58.44,Conference,,0,0,0,,pour faire tourner notre petite boîte de logiciels,
+Dialogue: 0,0:25:58.44,0:26:00.06,Conference,,0,0,0,,si nous n'avions pas ces informations ?\N
+Dialogue: 0,0:26:00.06,0:26:02.06,Conference,,0,0,0,,Impossible !
+Dialogue: 0,0:26:02.06,0:26:04.92,Conference,,0,0,0,,Ok. Et concernant le côté fonctionnel ?
+Dialogue: 0,0:26:04.92,0:26:09.93,Conference,,0,0,0,,Nous exécutons nos systèmes. Que fait-on \Nde nos systèmes en cours d’exécution ?
+Dialogue: 0,0:26:09.93,0:26:13.55,Conference,,0,0,0,,On {\i1}log*{\i0} ! On {\i1}log{\i0}, on {\i1}log{\i0}, on {\i1}log{\i0}...\N(* {\i1}journalise{\i0})
+Dialogue: 0,0:26:13.55,0:26:16.40,Conference,,0,0,0,,On garde trace de tout ce qu'il se passe.
+Dialogue: 0,0:26:16.40,0:26:18.42,Conference,,0,0,0,,Quelqu'un utilise un \Nlog qui écrase ses entrées?
+Dialogue: 0,0:26:18.42,0:26:22.64,Conference,,0,0,0,,Un log qui dit "la {\i1}dernière{\i0} latence vaut 5".
+Dialogue: 0,0:26:22.64,0:26:25.62,Conference,,0,0,0,,Oui ? Non !
+Dialogue: 0,0:26:25.62,0:26:28.98,Conference,,0,0,0,,Quelqu'un utilise un log qui\N n'horodate pas chaque entrée ?
+Dialogue: 0,0:26:28.98,0:26:31.16,Conference,,0,0,0,,Non ! Bien sûr que non !
+Dialogue: 0,0:26:31.16,0:26:35.40,Conference,,0,0,0,,Comment pourrions nous comprendre ce que nos systèmes font ?
+Dialogue: 0,0:26:35.40,0:26:38.78,Conference,,0,0,0,,Si nous n'avions pas cette info, comment\N pourrions nous prendre des décisions ?
+Dialogue: 0,0:26:38.78,0:26:44.16,Conference,,0,0,0,,Nous le savons, il n'y en a pas. \NC'est impossible. Alors on ne le fait pas.
+Dialogue: 0,0:26:46.42,0:26:49.94,Conference,,0,0,0,,Les Big Data. Tout est lié.
+Dialogue: 0,0:26:49.94,0:26:51.42,Conference,,0,0,0,,C'est quoi les Big Data ?
+Dialogue: 0,0:26:51.42,0:26:55.05,Conference,,0,0,0,,J'affirme qu'un certain % des Big Data c'est ça.
+Dialogue: 0,0:26:55.05,0:26:57.25,Conference,,0,0,0,,Ce sont des boîtes qui disent aux programmeurs :
+Dialogue: 0,0:26:57.25,0:27:01.16,Conference,,0,0,0,,"Cette base de données que tu vous avez, je la préfère à celle que vous m'avez donnée."
+Dialogue: 0,0:27:01.16,0:27:04.46,Conference,,0,0,0,,"Car celle que tu m'as donnée ne se \Nsouvient que du dernier truc que je lui ai dit."
+Dialogue: 0,0:27:04.46,0:27:08.26,Conference,,0,0,0,,"Et votre base de données, vos logs, savent tout ce qu'il s'est passé dans notre boîte."
+Dialogue: 0,0:27:08.26,0:27:10.97,Conference,,0,0,0,,"Vous connaissez tout. Tout est daté."
+Dialogue: 0,0:27:10.97,0:27:13.02,Conference,,0,0,0,,"Allons {\i1}miner{\i0} ça."
+Dialogue: 0,0:27:13.02,0:27:16.58,Conference,,0,0,0,,"Pour chercher des informations utiles à nos prises de décision".
+Dialogue: 0,0:27:16.58,0:27:18.49,Conference,,0,0,0,,"Car ma base de données ne les a pas"
+Dialogue: 0,0:27:18.49,0:27:23.41,Conference,,0,0,0,,"elle ne se souvient que du dernier truc".
+Dialogue: 0,0:27:23.65,0:27:26.41,Conference,,0,0,0,,Les logs ont toutes les infos horodatées.
+Dialogue: 0,0:27:26.41,0:27:28.68,Conference,,0,0,0,,Je trouve que c'est une situation embarassante.
+Dialogue: 0,0:27:28.68,0:27:32.06,Conference,,0,0,0,,Car nous avons répondu présents sur ce point.
+Dialogue: 0,0:27:32.06,0:27:35.89,Conference,,0,0,0,,Miner les logs ? Nous connaissons des façons bien meilleures de représenter l'information.
+Dialogue: 0,0:27:35.89,0:27:39.14,Conference,,0,0,0,,Nous savons entreposer de l'information\N pour l’utiliser de manière plus optimale.
+Dialogue: 0,0:27:39.14,0:27:42.45,Conference,,0,0,0,,Les logs ne le permettent pas,\N travailler sur des logs n'est pas efficace.
+Dialogue: 0,0:27:42.45,0:27:44.74,Conference,,0,0,0,,Les logs sont aussi remplis de conneries.
+Dialogue: 0,0:27:44.74,0:27:47.04,Conference,,0,0,0,,Pleins de trucs à propos du\N du système lui même.
+Dialogue: 0,0:27:47.04,0:27:52.54,Conference,,0,0,0,,Il y a de l'information utile, métier ici. Nous n'avons pas encore construit de base de données pour stocker ça.
+Dialogue: 0,0:27:52.54,0:27:54.61,Conference,,0,0,0,,Mais c'est de notre faute.
+Dialogue: 0,0:27:54.61,0:28:00.00,Conference,,0,0,0,,Donc je pense que nous entrons dans \Nce que j'appelle l'{\i1}ère de l'espace{\i0}.
+Dialogue: 0,0:28:00.00,0:28:02.42,Conference,,0,0,0,,Une nouvelle définition, l'espace.
+Dialogue: 0,0:28:02.42,0:28:08.57,Conference,,0,0,0,,"L'étendue illimitée dans laquelle toutes les choses se trouvent et tous les évènements ont lieu."
+Dialogue: 0,0:28:08.57,0:28:10.98,Conference,,0,0,0,,Ce qui est intéressant dans\N la définition du mot {\i1}espace{\i0}
+Dialogue: 0,0:28:10.98,0:28:16.13,Conference,,0,0,0,,c'est qu'elle contient toujours, dans les anciennes définitions, dans les anciennes langues,
+Dialogue: 0,0:28:16.13,0:28:21.86,Conference,,0,0,0,,elle contient {\i1}toujours{\i0} à la fois l'espace {\i1}et{\i0} le temps.
+Dialogue: 0,0:28:21.86,0:28:26.21,Conference,,0,0,0,,{\i1}L'espace {\i0}n'a jamais été utilisé \Npour uniquement l'un ou l'autre.
+Dialogue: 0,0:28:26.21,0:28:30.72,Conference,,0,0,0,,Il a toujours connecté les deux, \Nil y a un côté physique à ça.
+Dialogue: 0,0:28:30.72,0:28:34.33,Conference,,0,0,0,,Si {\i1}new*{\i0} n'échoue jamais, si vous pouvez appeler {\i1}new{\i0}\N(* allouer de la mémoire)
+Dialogue: 0,0:28:34.33,0:28:38.35,Conference,,0,0,0,,jour après jour, 7j/7, encore et encore,
+Dialogue: 0,0:28:38.35,0:28:43.86,Conference,,0,0,0,,vous n’exécutez pas votre programme\N quelque-part mais dans {\i1}l'espace{\i0}.
+Dialogue: 0,0:28:43.86,0:28:46.96,Conference,,0,0,0,,Vous ne voyez pas les bords, vous n'êtes pas limité.
+Dialogue: 0,0:28:46.96,0:28:49.92,Conference,,0,0,0,,Vous avez besoin d'une nouvelle chose vous l'obtenez.
+Dialogue: 0,0:28:49.92,0:28:54.25,Conference,,0,0,0,,
