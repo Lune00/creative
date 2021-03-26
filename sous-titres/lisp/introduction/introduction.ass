@@ -15,7 +15,8 @@ Video File: /home/paul/tmp/creative/sous-titres/lisp/introduction/Lecture 1A_ Ov
 Video AR Mode: 4
 Video AR Value: 1.361111
 Video Zoom Percent: 1.375000
-Video Position: 227
+Active Line: 3
+Video Position: 2121
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -26,4 +27,15 @@ Style: Conference,Arial,20,&H0024E6F8,&H00000000,&H00000000,&H00000000,0,0,0,0,1
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:04.05,0:00:10.98,Conference,,0,0,0,,La structure et l'interprétation des programmes informatiques\N\NHarold Abelson & Gerald Jay Sussman
 Dialogue: 0,0:00:10.98,0:00:13.95,Conference,,0,0,0,, Introduction à Lisp
-Dialogue: 0,0:00:13.95,0:00:15.95,Conference,,0,0,0,,
+Dialogue: 0,0:00:14.67,0:00:21.45,Conference,,0,0,0,,Bienvenue dans ce cours\N de {\i1}Computer Science{\i0}.
+Dialogue: 0,0:00:28.44,0:00:32.84,Conference,,0,0,0,,A vrai dire c'est un départ désastreux, {\i1}Computer Science{\i0} est un terme très mauvais.
+Dialogue: 0,0:00:32.84,0:00:36.10,Conference,,0,0,0,,Pour commencer, ce n'est pas une science.
+Dialogue: 0,0:00:36.10,0:00:40.29,Conference,,0,0,0,,Ça pourrait être de\N l’ingénieure ou de l'art.
+Dialogue: 0,0:00:40.29,0:00:45.23,Conference,,0,0,0,,Mais au fond, ce qu'on appelle {\i1}Computer Science{\i0} a beaucoup en commun avec la magie.
+Dialogue: 0,0:00:45.23,0:00:47.48,Conference,,0,0,0,,Nous allons voir ça dans ce cours.
+Dialogue: 0,0:00:47.48,0:00:48.98,Conference,,0,0,0,,Ce n'est donc pas une science.
+Dialogue: 0,0:00:48.98,0:00:53.49,Conference,,0,0,0,,Ça ne parle pas non\N plus vraiment d'ordinateur.
+Dialogue: 0,0:00:53.49,0:00:56.60,Conference,,0,0,0,,Ça n'est pas à propos \Ndes ordinateurs au même titre 
+Dialogue: 0,0:00:56.60,0:01:00.99,Conference,,0,0,0,,que la physique n'est pas vraiment à propos des accélérateurs de particules.
+Dialogue: 0,0:01:00.99,0:01:06.61,Conference,,0,0,0,,Et que la biologie n'est pas à propos des microscopes et des boîtes de Pétri.
+Dialogue: 0,0:01:06.61,0:01:08.61,Conference,,0,0,0,,
