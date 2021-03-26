@@ -15,10 +15,10 @@ Audio File: The Value of Values with Rich Hickey.mp4
 Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
-Video Zoom Percent: 0.750000
-Scroll Position: 447
-Active Line: 462
-Video Position: 56820
+Video Zoom Percent: 0.625000
+Scroll Position: 228
+Active Line: 245
+Video Position: 32187
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -27,63 +27,65 @@ Style: Conference,Arial,38,&H00FFFFFF,&H00000000,&H00000000,&H00000000,0,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:11.00,0:00:14.50,Conference,,0,0,0,,{\pos(379,558)}   La valeur des valeurs, Rich Hickey
+Dialogue: 0,0:00:11.00,0:00:15.07,Conference,,0,0,0,,{\pos(379,558)}   {\i1}"La valeur des valeurs{\i0}, Rich Hickey\N{\i1}The Value of Values{\i0}
 Dialogue: 0,0:00:15.10,0:00:18.00,Conference,,0,0,0,,Qui travaille dans l'IT ?
 Dialogue: 0,0:00:18.00,0:00:21.10,Conference,,0,0,0,,Tout le monde je crois...
 Dialogue: 0,0:00:21.86,0:00:25.46,Conference,,0,0,0,,Que veut dire IT?
 Dialogue: 0,0:00:25.46,0:00:31.30,Conference,,0,0,0,,Technologies de l'Information (IT)
 Dialogue: 0,0:00:32.52,0:00:36.28,Conference,,0,0,0,,Que veut-on dire par Information ?
-Dialogue: 0,0:00:36.28,0:00:42.52,Conference,,0,0,0,,Comme vous le savez peut-être, pour préparer \Nune présentationje sors juste mon dictionnaire
-Dialogue: 0,0:00:42.66,0:00:44.42,Conference,,0,0,0,,Il connait toutes les réponses
-Dialogue: 0,0:00:44.42,0:00:49.40,Conference,,0,0,0,,Mon dictionnaire dit qu'information est basé sur le verbe informer,
-Dialogue: 0,0:00:49.40,0:00:52.90,Conference,,0,0,0,,et signifie transmettre une connaissance via des faits
-Dialogue: 0,0:00:52.90,0:00:56.22,Conference,,0,0,0,,Le but est de former l'esprit
-Dialogue: 0,0:00:56.22,0:01:03.24,Conference,,0,0,0,,Et l'information, ce sont juste ces faits. Voilà ce qu'est une information : une information est un fait
-Dialogue: 0,0:01:03.24,0:01:06.40,Conference,,0,0,0,,Donc qu'est ce qu'un fait ?
-Dialogue: 0,0:01:06.40,0:01:11.50,Conference,,0,0,0,,Un fait est un lieu où est stocké l'information
-Dialogue: 0,0:01:11.50,0:01:18.06,Conference,,0,0,0,, Ce qui est intéressant c'est qu'il y a un lieu pour toute information.
-Dialogue: 0,0:01:18.22,0:01:25.04,Conference,,0,0,0,,Les faits possèdent aussi des opérations, comme get, set ou autres
-Dialogue: 0,0:01:25.04,0:01:29.98,Conference,,0,0,0,,Ces opérations contrôlent comment les faits peuvent changer
-Dialogue: 0,0:01:29.98,0:01:39.66,Conference,,0,0,0,,Les faits sont intéressants pour une autre raison, c'est facile \Nde transmettre un fait, il suffit de transmettre l'endroit où il se trouve
+Dialogue: 0,0:00:36.28,0:00:42.52,Conference,,0,0,0,,Comme vous le savez peut-être, pour préparer \Nune présentation je sors juste mon dictionnaire.
+Dialogue: 0,0:00:42.66,0:00:44.42,Conference,,0,0,0,,Il a toutes les réponses.
+Dialogue: 0,0:00:44.42,0:00:49.40,Conference,,0,0,0,,Mon dictionnaire dit qu'{\i1}information{\i0} \Nest basé sur le verbe informer,
+Dialogue: 0,0:00:49.40,0:00:52.90,Conference,,0,0,0,,qui signifie {\i1}"transmettre de la \Nconnaissance par des faits{\i0}".
+Dialogue: 0,0:00:52.90,0:00:56.22,Conference,,0,0,0,,Le but est de former l'esprit.
+Dialogue: 0,0:00:56.22,0:01:03.24,Conference,,0,0,0,,Et l'information, ce sont juste ces faits. Voilà ce qu'est une information : une information est {\i1}un fait{\i0}.
+Dialogue: 0,0:01:03.24,0:01:06.40,Conference,,0,0,0,,Donc qu'est ce qu'un {\i1}fait{\i0} ?
+Dialogue: 0,0:01:06.40,0:01:11.50,Conference,,0,0,0,,Un fait est un {\i1}lieu{\i0} où on stocke de l'information.
+Dialogue: 0,0:01:11.50,0:01:18.06,Conference,,0,0,0,, Ce qui est intéressant c'est qu'il y a\N un lieu pour toute information.
+Dialogue: 0,0:01:18.22,0:01:25.04,Conference,,0,0,0,,Les faits possèdent aussi des opérations, \Ncomme {\i1}get{\i0}, {\i1}set{\i0} ou autres.
+Dialogue: 0,0:01:25.04,0:01:29.98,Conference,,0,0,0,,Ces opérations contrôlent \Ncomment les faits peuvent changer.
+Dialogue: 0,0:01:29.98,0:01:39.66,Conference,,0,0,0,,Les faits ont ceci d'intéressant : c'est facile de les transmettre, il suffit de transmettre l'endroit où il se trouve.
 Dialogue: 0,0:01:39.84,0:01:44.26,Conference,,0,0,0,,Combien de personnes sont mal à l'aise à présent ?
-Dialogue: 0,0:01:44.38,0:01:48.30,Conference,,0,0,0,,Je le suis, ce n'est pas vrai non ? C'est faux
-Dialogue: 0,0:01:48.30,0:01:52.74,Conference,,0,0,0,,Tout ce que je viens de dire est faux, complètement faux
-Dialogue: 0,0:01:52.74,0:01:58.34,Conference,,0,0,0,,Et vous devriez être mal à l'aise, les faits ne sont pas comme ça.
-Dialogue: 0,0:01:58.34,0:02:03.98,Conference,,0,0,0,,Alors, est ce que les faits sont des lieux ? Qu'est ce qu'un lieu ?
-Dialogue: 0,0:02:03.98,0:02:08.32,Conference,,0,0,0,,Selon le dico, un lieu est une portion définie de l'espace
-Dialogue: 0,0:02:08.32,0:02:13.16,Conference,,0,0,0,,Espace est un mot important, nous y reviendrons plus tard.
-Dialogue: 0,0:02:14.68,0:02:19.58,Conference,,0,0,0,,Ce qui compte à propos d'un lieu c'est cette notion de "délimitée"
-Dialogue: 0,0:02:19.60,0:02:28.20,Conference,,0,0,0,,Un endroit défini comme un {\i1}lieu{\i0} a quelque-chose de spécial, et vice-versa
-Dialogue: 0,0:02:28.20,0:02:34.84,Conference,,0,0,0,,Et nous savons ce qu'est un lieu. Nous en avons des bons exemples dans notre travail quotidien de programmeur
-Dialogue: 0,0:02:34.90,0:02:39.86,Conference,,0,0,0,,Des adresses mémoire sont des lieux, des secteurs disque aussi
-Dialogue: 0,0:02:39.86,0:02:46.42,Conference,,0,0,0,,Ils ont des adresses, on peut y aller, modifier leur contenu par un autre
-Dialogue: 0,0:02:46.42,0:02:50.04,Conference,,0,0,0,,Cette notion de {\i1}lieu{\i0} nous est très familière
+Dialogue: 0,0:01:44.38,0:01:48.30,Conference,,0,0,0,,Je le suis. Ce n'est pas vrai non ? C'est faux !
+Dialogue: 0,0:01:48.30,0:01:52.74,Conference,,0,0,0,,Tout ce que je viens de dire est faux, complètement faux.
+Dialogue: 0,0:01:52.74,0:01:58.34,Conference,,0,0,0,,Et vous devriez être mal à l'aise, \Nce n'est pas ce que sont les faits.
+Dialogue: 0,0:01:58.34,0:02:03.98,Conference,,0,0,0,,Alors, est-ce que les faits sont\N des {\i1}lieux{\i0} ? Qu'est ce qu'un {\i1}lieu{\i0} ?
+Dialogue: 0,0:02:03.98,0:02:08.32,Conference,,0,0,0,,Selon le dico, un {\i1}lieu{\i0} est une\N portion {\i1}définie{\i0} de l'espace.
+Dialogue: 0,0:02:08.32,0:02:13.16,Conference,,0,0,0,,{\i1}Espace{\i0} est un mot important,\N nous y reviendrons plus tard.
+Dialogue: 0,0:02:14.68,0:02:19.58,Conference,,0,0,0,,Ce qui compte à propos d'un lieu\N c'est cette notion de "{\i1}délimitée{\i0}".
+Dialogue: 0,0:02:19.60,0:02:28.20,Conference,,0,0,0,,Un endroit défini comme un {\i1}lieu{\i0} a\N quelque-chose de spécial, et vice-versa.
+Dialogue: 0,0:02:28.20,0:02:34.84,Conference,,0,0,0,,Et nous savons ce qu'est un lieu. Nous en avons des bons exemples dans notre travail quotidien de programmeur.
+Dialogue: 0,0:02:34.90,0:02:39.86,Conference,,0,0,0,,Des adresses mémoire sont des {\i1}lieux{\i0}, \Ndes secteurs disque aussi.
+Dialogue: 0,0:02:39.86,0:02:46.42,Conference,,0,0,0,,Ils ont des adresses, on peut y aller,\N modifier leur contenu par un autre.
+Dialogue: 0,0:02:46.42,0:02:50.04,Conference,,0,0,0,,Cette notion de {\i1}lieu{\i0} nous est très familière.
 Dialogue: 0,0:02:50.04,0:03:02.66,Conference,,0,0,0,,Je pense que nous devons nous demander si en s'appuyant sur des lieux nous construisons de vrais systèmes d'information ?
-Dialogue: 0,0:03:02.66,0:03:05.98,Conference,,0,0,0,,Qui sont dédiés à l'information, comme nous l'avons dit avant
-Dialogue: 0,0:03:05.98,0:03:14.84,Conference,,0,0,0,,Nous utilisons la mémoire, est les objets -notamment à cette conférence-
-Dialogue: 0,0:03:14.84,0:03:20.44,Conference,,0,0,0,,et les objets mutables ne sont rien d'autre que des abstractions sur des lieux (adresses)
-Dialogue: 0,0:03:20.44,0:03:26.28,Conference,,0,0,0,,Ce sont de petites abstractions sur des lieux, surtout les objets mutables.
-Dialogue: 0,0:03:26.28,0:03:32.38,Conference,,0,0,0,,Et elles ont des méthodes, comme ce que je disais tout à l'heure à propos des faits
-Dialogue: 0,0:03:32.38,0:03:34.48,Conference,,0,0,0,,Les objets ont des méthodes
-Dialogue: 0,0:03:34.48,0:03:39.20,Conference,,0,0,0,,C'est l'élément fondamental à partir duquel nous construisons nos systèmes
-Dialogue: 0,0:03:39.20,0:03:45.54,Conference,,0,0,0,,Et du côté de la persistance, nous avons les mêmes notions : des tables, des documents, des records etc..
-Dialogue: 0,0:03:45.54,0:03:49.54,Conference,,0,0,0,,Toutes ces notions sont des lieux, elles ont toutes une notion {\i1}d'update{\i0}
-Dialogue: 0,0:03:49.54,0:03:54.84,Conference,,0,0,0,,Cette idée d'aller quelque part et d'y modifier la valeur
-Dialogue: 0,0:03:54.84,0:03:59.14,Conference,,0,0,0,,Voici les fondements sur lesquels reposent nos systèmes,
-Dialogue: 0,0:03:59.14,0:04:05.94,Conference,,0,0,0,,sur lesquels nous créons des abstractions qui ne s'en cachent pas,
-Dialogue: 0,0:04:05.94,0:04:13.70,Conference,,0,0,0,,et que j'appelle {\i1\b1}PLOP{\i0\b0} : {\i1}Place Oriented \N Programming{\i0}, car il s'agit de ça.
+Dialogue: 0,0:03:02.66,0:03:05.98,Conference,,0,0,0,,Qui sont dédiés à l'information, \Ncomme nous l'avons dit avant.
+Dialogue: 0,0:03:05.98,0:03:14.84,Conference,,0,0,0,,Nous utilisons la mémoire, les objets\N -notamment à cette conférence-
+Dialogue: 0,0:03:14.84,0:03:20.44,Conference,,0,0,0,,et les objets mutables ne sont rien d'autre que des abstractions sur des lieux (adresses).
+Dialogue: 0,0:03:20.44,0:03:26.28,Conference,,0,0,0,,Ce sont de petites abstractions sur\N des lieux, surtout les objets mutables.
+Dialogue: 0,0:03:26.28,0:03:32.38,Conference,,0,0,0,,Et ils ont des méthodes, comme ce que \Nje disais tout à l'heure à propos des faits.
+Dialogue: 0,0:03:32.38,0:03:34.48,Conference,,0,0,0,,Les objets ont des méthodes.
+Dialogue: 0,0:03:34.48,0:03:39.20,Conference,,0,0,0,,C'est l'élément fondamental à partir \Nduquel nous construisons nos systèmes.
+Dialogue: 0,0:03:39.20,0:03:45.54,Conference,,0,0,0,,Et du côté de la persistance, nous avons les mêmes notions : des tables, des documents, des {\i1}records{\i0} etc..
+Dialogue: 0,0:03:45.54,0:03:49.54,Conference,,0,0,0,,Toutes ces notions sont des lieux, \Nelles ont toutes une notion {\i1}d'update{\i0}.
+Dialogue: 0,0:03:49.54,0:03:54.84,Conference,,0,0,0,,Cette notion d'aller sur place \Net d'y mettre une nouvelle valeur.
+Dialogue: 0,0:03:54.84,0:03:59.14,Conference,,0,0,0,,Voici les fondements sur lesquels\N reposent nos systèmes,
+Dialogue: 0,0:03:59.14,0:04:05.94,Conference,,0,0,0,,sur lesquels nous créons des abstractions\N qui ne mentent pas sur ce qu'elles sont.
+Dialogue: 0,0:04:05.94,0:04:13.70,Conference,,0,0,0,,Et j'appelle ça le {\i1\b1}PLOP{\i0\b0} : {\i1}PLace-Oriented \N Programming{\i0}, car il s'agit de ça.
 Dialogue: 0,0:04:13.70,0:04:20.48,Conference,,0,0,0,,Et vous pouvez savoir quand vous y êtes, car à chaque fois qu'une nouvelle information en remplace une autre
-Dialogue: 0,0:04:20.48,0:04:25.00,Conference,,0,0,0,,vous faites du place oriented programming (PLOP)
+Dialogue: 0,0:04:20.48,0:04:25.00,Conference,,0,0,0,,vous faites du {\i1}Place-Oriented Programming{\i0} (PLOP).
 Dialogue: 0,0:04:25.00,0:04:28.80,Conference,,0,0,0,,Il y a une raison pour cela,
-Dialogue: 0,0:04:28.80,0:04:34.98,Conference,,0,0,0,,car à l'époque, aux débuts de l'ordinateur, nous {\i1\b1}devions{\i0\b0} faire du Place Oriented Programming.
-Dialogue: 0,0:04:34.98,0:04:45.30,Conference,,0,0,0,,J'ai vu une super conférence d'un gars qui parlait de la construction de ces systèmes sur des ordinateurs qui avaient une mémoire de 4 kiloword (8kB)
-Dialogue: 0,0:04:45.30,0:04:52.60,Conference,,0,0,0,,et vous connaissiez toutes les adresses mémoire, vous saviez que les adresses paires étaient utilisées pour les {\i1}jump table{\i0} etc...
-Dialogue: 0,0:04:52.60,0:04:57.74,Conference,,0,0,0,,et que ces adresses ci étaient utilisées pour les données, les autres pour le code,
-Dialogue: 0,0:04:57.74,0:05:05.28,Conference,,0,0,0,,une même adresse servait à plusieurs choses, car vous saviez qu'à cet instant elle n'était pas prise par du code et donc utilisable pour les données, et vice versa, il n'y avait pas le choix
-Dialogue: 0,0:05:05.28,0:05:08.58,Conference,,0,0,0,,il n'y avait pas assez de puissance pour faire autrement
-Dialogue: 0,0:05:08.58,0:05:14.98,Conference,,0,0,0,,La mémoire était petite, les disques étaient petits, tout était très cher
-Dialogue: 0,0:05:14.98,0:05:24.14,Conference,,0,0,0,,donc nous avons adopté cette approche basée sur\N la manipulation des lieux (adresses), et ça avait du sens.
-Dialogue: 0,0:05:24.14,0:05:30.36,Conference,,0,0,0,,Et ce que je veux dire c'est que ça {\b1\i1}avait du sens {\b0\i0}à l'époque.
+Dialogue: 0,0:04:28.80,0:04:34.98,Conference,,0,0,0,,car à l'époque, aux débuts de l'ordinateur, nous {\i1}devions{\i0} faire du {\i1}Place-Oriented Programming{\i0}.
+Dialogue: 0,0:04:34.98,0:04:45.30,Conference,,0,0,0,,J'ai vu une super conférence d'un gars qui parlait de la construction de ces systèmes sur des ordinateurs qui avaient une mémoire de 4 kiloword (8kB).
+Dialogue: 0,0:04:45.30,0:04:52.60,Conference,,0,0,0,,Et vous connaissiez toutes les adresses mémoire, vous saviez que les adresses paires étaient utilisées pour les {\i1}jump table{\i0} etc...
+Dialogue: 0,0:04:52.60,0:04:57.74,Conference,,0,0,0,,et que ces adresses ci étaient utilisées\N pour les données, les autres pour le code,
+Dialogue: 0,0:04:57.74,0:05:00.86,Conference,,0,0,0,,une même adresse servait à plusieurs\N choses, car vous saviez qu'à cet instant
+Dialogue: 0,0:05:00.86,0:05:03.94,Conference,,0,0,0,, elle n'était pas prise par du code et donc\N utilisable pour les données, et vice versa.
+Dialogue: 0,0:05:03.95,0:05:05.70,Conference,,0,0,0,,Il n'y avait pas le choix.
+Dialogue: 0,0:05:05.70,0:05:08.50,Conference,,0,0,0,,Il n'y avait pas assez de\N puissance pour faire autrement.
+Dialogue: 0,0:05:08.50,0:05:14.98,Conference,,0,0,0,,La mémoire était petite, les disques\N étaient petits, tout était très cher.
+Dialogue: 0,0:05:14.98,0:05:24.14,Conference,,0,0,0,,Donc nous avons adopté cette approche basée sur\N la manipulation des lieux, et ça avait du sens.
+Dialogue: 0,0:05:24.14,0:05:30.36,Conference,,0,0,0,,Et ce que je veux dire c'est que\Nça {\i1}avait{\i0} du sens à l'époque.
 Dialogue: 0,0:05:30.36,0:05:33.52,Conference,,0,0,0,,Ces limitations ont disparu !
 Dialogue: 0,0:05:33.52,0:05:41.10,Conference,,0,0,0,,Depuis que j'ai commencé à programmer, \Nla capacité de ces deux choses a été multiplié par 1 million.
 Dialogue: 0,0:05:41.10,0:05:43.18,Conference,,0,0,0,,Par 1 million !
@@ -91,10 +93,10 @@ Dialogue: 0,0:05:43.18,0:05:51.28,Conference,,0,0,0,,Dans la vie, qu'est ce qui 
 Dialogue: 0,0:05:51.28,0:05:54.16,Conference,,0,0,0,,Imaginez que votre voiture \Nsoit 1 million de fois plus grande,
 Dialogue: 0,0:05:54.16,0:05:59.65,Conference,,0,0,0,,Quelles règles resteraient vraies ?\N Quelles caractéristiques resteraient les mêmes ?
 Dialogue: 0,0:05:59.63,0:06:06.38,Conference,,0,0,0,,Presque aucune, et pourtant nous conservons les décisions prises lorsque tout était beaucoup plus petit,
-Dialogue: 0,0:06:06.37,0:06:08.57,Conference,,0,0,0,,et nous continuons comme avant.
+Dialogue: 0,0:06:06.37,0:06:08.57,Conference,,0,0,0,,Et nous continuons comme avant.
 Dialogue: 0,0:06:08.57,0:06:12.35,Conference,,0,0,0,,Pourquoi fait-on toujours du PLOP ? C'est la question.
-Dialogue: 0,0:06:12.35,0:06:18.66,Conference,,0,0,0,,Quand on parle de P{\i1}lace Oriented Programming{\i0} on emploie souvent ces deux mots : la mémoire et les enregistrements.
-Dialogue: 0,0:06:18.66,0:06:24.46,Conference,,0,0,0,,Ces mots avaient un sens avant l'arrivée des ordinateurs, non ?
+Dialogue: 0,0:06:12.35,0:06:18.66,Conference,,0,0,0,,Quand on parle de {\i1}Place Oriented Programming{\i0} on emploie souvent ces deux mots : la mémoire et les enregistrements.
+Dialogue: 0,0:06:18.66,0:06:24.46,Conference,,0,0,0,,Ces mots avaient un sens avant\N l'arrivée des ordinateurs, non ?
 Dialogue: 0,0:06:24.46,0:06:26.78,Conference,,0,0,0,,Nous avons repris ces mots.
 Dialogue: 0,0:06:26.78,0:06:32.41,Conference,,0,0,0,,Nous nous sommes dits que {\i1}mémoire{\i0}\N signifie une adresse dans une puce RAM,
 Dialogue: 0,0:06:32.41,0:06:36.10,Conference,,0,0,0,,un {\i1}enregistrement{\i0} signifie\N un emplacement dans une table.
@@ -110,18 +112,18 @@ Dialogue: 0,0:07:12.01,0:07:16.09,Conference,,0,0,0,,pour la remplacer par la no
 Dialogue: 0,0:07:16.09,0:07:19.35,Conference,,0,0,0,,Le cerveau ou la mémoire\N ne fonctionnent pas comme ça.
 Dialogue: 0,0:07:19.36,0:07:23.15,Conference,,0,0,0,,La mémoire est un système ouvert, associatif,
 Dialogue: 0,0:07:23.15,0:07:27.40,Conference,,0,0,0,,ce n'est pas un système basé sur des adresses.
-Dialogue: 0,0:07:27.73,0:07:31.77,Conference,,0,0,0,,Pareil pour les enregistrements! On s'en servait \Navant l'arrivée des ordinateurs.
+Dialogue: 0,0:07:27.73,0:07:31.77,Conference,,0,0,0,,Pareil, pour les enregistrements. On s'en servait \Navant l'arrivée des ordinateurs.
 Dialogue: 0,0:07:31.77,0:07:37.90,Conference,,0,0,0,,Que faisait-on ? On burinait des \Ntablettes, on écrivait sur des papyrus...
 Dialogue: 0,0:07:37.90,0:07:40.64,Conference,,0,0,0,,Que faisait-on des nouvelles informations ?
 Dialogue: 0,0:07:40.64,0:07:45.12,Conference,,0,0,0,,On n'allait pas lisser les tablettes\N pour buriner à nouveau dessus,
 Dialogue: 0,0:07:45.13,0:07:48.57,Conference,,0,0,0,,on ne sortait pas les\N papyrus pour les effacer...
 Dialogue: 0,0:07:48.57,0:07:54.16,Conference,,0,0,0,,Pour tenir une comptabilité avant les ordinateurs on ne se servait pas non plus d'effaceurs, on faisait quoi ?
-Dialogue: 0,0:07:54.16,0:07:58.08,Conference,,0,0,0,,Comptabilité en partie double, registres... \NOn faisait de nouvelles entrées pour corriger,
-Dialogue: 0,0:07:58.08,0:08:00.96,Conference,,0,0,0,,on ne revenait pas avec des effaceurs.
+Dialogue: 0,0:07:54.16,0:07:58.08,Conference,,0,0,0,,Comptabilité en partie double, registres... \NPour corriger on faisait une nouvelle entrée.
+Dialogue: 0,0:07:58.08,0:08:00.96,Conference,,0,0,0,,On ne revenait pas avec des effaceurs.
 Dialogue: 0,0:08:00.96,0:08:05.16,Conference,,0,0,0,,Ça ne marchait pas comme ça \Navant qu'on ait des ordinateurs.
 Dialogue: 0,0:08:05.28,0:08:10.76,Conference,,0,0,0,,Donc, cette conférence parle des valeurs, \Nun terme que nous devons définir.
 Dialogue: 0,0:08:10.76,0:08:12.41,Conference,,0,0,0,,Regardons le dictionnaire.
-Dialogue: 0,0:08:12.41,0:08:15.80,Conference,,0,0,0,,On y trouve des définitions très\N intéressantes de "{\i1}valeur{\i0}".
+Dialogue: 0,0:08:12.41,0:08:15.80,Conference,,0,0,0,,On y trouve des définitions très\N intéressantes du mot {\i1}valeur{\i0}.
 Dialogue: 0,0:08:15.80,0:08:17.77,Conference,,0,0,0,,La première est "mesure relative"
 Dialogue: 0,0:08:17.77,0:08:21.95,Conference,,0,0,0,,"{\i1}Relatif{\i0}" dénote un aspect crucial d'une valeur.
 Dialogue: 0,0:08:21.95,0:08:26.89,Conference,,0,0,0,,Car la prochaine est la définition qui nous est le plus familière, surtout en informatique,
@@ -146,9 +148,9 @@ Dialogue: 0,0:09:30.67,0:09:34.24,Conference,,0,0,0,,Si elle est immuable c'est 
 Dialogue: 0,0:09:34.24,0:09:40.27,Conference,,0,0,0,,Combien de personnes travaillent avec \Ndes langages où les {\i1}string{\i0} sont mutables ?
 Dialogue: 0,0:09:40.27,0:09:43.98,Conference,,0,0,0,,Qui veut y retourner ?
 Dialogue: 0,0:09:43.98,0:09:46.40,Conference,,0,0,0,,Non ! On n'aime pas ça.
-Dialogue: 0,0:09:46.40,0:09:52.54,Conference,,0,0,0,,Cette notion {\i1}d’égalité{\i0} d'une valeur, \Ncar une string ne mesure rien,
-Dialogue: 0,0:09:52.54,0:09:57.84,Conference,,0,0,0,,ce n'est pas une magnitude, une quantité, elle ne correspond pas à cette définition d'une valeur,
-Dialogue: 0,0:09:57.84,0:10:01.40,Conference,,0,0,0,,mais une {\i1}string{\i0} immuable est\N un truc qu'on peut comparer.
+Dialogue: 0,0:09:46.40,0:09:52.54,Conference,,0,0,0,,Cette notion {\i1}d’égalité{\i0} d'une valeur, \Ncar une {\i1}string{\i0} ne mesure rien,
+Dialogue: 0,0:09:52.54,0:09:57.84,Conference,,0,0,0,,ce n'est pas une magnitude, une quantité, elle ne correspond pas à cette définition d'une valeur.
+Dialogue: 0,0:09:57.84,0:10:01.40,Conference,,0,0,0,,Mais une {\i1}string{\i0} immuable est\N un truc qu'on peut comparer.
 Dialogue: 0,0:10:01.40,0:10:08.72,Conference,,0,0,0,,Et la comparabilité c'est ce qui nous permet de faire de la logique, de prendre des décisions.
 Dialogue: 0,0:10:08.72,0:10:14.04,Conference,,0,0,0,,Ça nous permet de dire "Est-ce que c'est pareil que hier ? Est-ce plus grand ou plus petit qu'avant ?"
 Dialogue: 0,0:10:14.04,0:10:19.16,Conference,,0,0,0,,Est-ce que cette {\i1}string{\i0} a le\N bon libellé pour cette chose ?
@@ -161,7 +163,7 @@ Dialogue: 0,0:10:44.94,0:10:48.12,Conference,,0,0,0,,Les valeurs sont immuables.
 Dialogue: 0,0:10:48.12,0:10:52.20,Conference,,0,0,0,,Les valeurs sont sémantiquement transparentes, c'est leur but,
 Dialogue: 0,0:10:52.20,0:10:58.88,Conference,,0,0,0,,de s'exposer à vous pour que vous puissiez faire une comparaison, et un test d'égalité.
 Dialogue: 0,0:10:58.89,0:11:04.43,Conference,,0,0,0,,Une valeur n'encapsule pas des trucs, \Ndes méthodes, elle n'agit pas.
-Dialogue: 0,0:11:04.43,0:11:07.33,Conference,,0,0,0,,Une valeur dit "compare moi à quelque-chose"
+Dialogue: 0,0:11:04.43,0:11:07.33,Conference,,0,0,0,,Une valeur dit "compare moi à quelque-chose".
 Dialogue: 0,0:11:07.33,0:11:16.74,Conference,,0,0,0,,"Je te dis explicitement ce que je signifie",\N on la voit directement depuis l'extérieur.
 Dialogue: 0,0:11:16.74,0:11:19.69,Conference,,0,0,0,,Voilà ce qu'est une valeur.
 Dialogue: 0,0:11:19.69,0:11:25.93,Conference,,0,0,0,,Le but de cette conférence, c'est de \Nparler de la "valeur des valeurs".
@@ -173,9 +175,9 @@ Dialogue: 0,0:11:40.65,0:11:45.86,Conference,,0,0,0,,Si vous avez une valeur, qu
 Dialogue: 0,0:11:45.86,0:11:48.99,Conference,,0,0,0,,Oui ! Aucun soucis.\N Ont-ils quelque-chose à craindre de vous ?
 Dialogue: 0,0:11:48.99,0:11:51.33,Conference,,0,0,0,,Car vous vous référez tous\N les 2 à la même valeur.
 Dialogue: 0,0:11:51.33,0:11:53.05,Conference,,0,0,0,,Quelqu’un doit se faire du soucis ?
-Dialogue: 0,0:11:53.05,0:11:59.07,Conference,,0,0,0,,Non, les valeurs peuvent être partagées, c'est très bénéfique.
+Dialogue: 0,0:11:53.05,0:11:59.07,Conference,,0,0,0,,Non, les valeurs peuvent être\N partagées, c'est très bénéfique.
 Dialogue: 0,0:11:59.07,0:12:01.54,Conference,,0,0,0,,Les valeurs encouragent la reproductibilité.
-Dialogue: 0,0:12:01.54,0:12:04.18,Conference,,0,0,0,,Si vous définissez une fonction en terme de valeurs,
+Dialogue: 0,0:12:01.54,0:12:04.18,Conference,,0,0,0,,Si vous définissez une\N fonction en terme de valeurs,
 Dialogue: 0,0:12:04.18,0:12:08.08,Conference,,0,0,0,,chaque fois que vous appelez cette fonction avec la même valeur aurez-vous la même réponse ?
 Dialogue: 0,0:12:08.08,0:12:08.74,Conference,,0,0,0,,Oui !
 Dialogue: 0,0:12:08.74,0:12:13.57,Conference,,0,0,0,,Si vous définissez cette fonction en terme de {\i1}lieux{\i0}, chaque appel vous donnera la même réponse ?
@@ -196,7 +198,7 @@ Dialogue: 0,0:12:49.66,0:12:51.66,Conference,,0,0,0,,Une {\i1}map{\i0} de listes
 Dialogue: 0,0:12:51.66,0:12:57.85,Conference,,0,0,0,,Est-ce-que je peux faire une instance de votre interface fantaisiste dans n'importe quel langage ?
 Dialogue: 0,0:12:57.85,0:13:00.52,Conference,,0,0,0,,Non ! Ce n'est pas facile à fabriquer.
 Dialogue: 0,0:13:00.52,0:13:05.70,Conference,,0,0,0,,Ce n'est pas facile de faire des programmes qui écrivent des programmes ou des tests,
-Dialogue: 0,0:13:05.70,0:13:09.05,Conference,,0,0,0,,si votre programme n'est pas construit sur des valeurs.
+Dialogue: 0,0:13:05.70,0:13:09.05,Conference,,0,0,0,,si votre programme n'est pas\N centré sur des valeurs.
 Dialogue: 0,0:13:09.05,0:13:14.46,Conference,,0,0,0,,Donc le fait que les valeurs soient\N faciles à fabriquer, c'est important.
 Dialogue: 0,0:13:14.46,0:13:17.05,Conference,,0,0,0,,
 Dialogue: 0,0:13:17.13,0:13:21.57,Conference,,0,0,0,,Les valeurs sont indépendantes du langage, \Nça rejoint ce que je viens de dire.
@@ -204,29 +206,29 @@ Dialogue: 0,0:13:21.57,0:13:26.29,Conference,,0,0,0,,Les notions de liste, de no
 Dialogue: 0,0:13:26.29,0:13:30.85,Conference,,0,0,0,,ne sont liées à aucun langage particulier.
 Dialogue: 0,0:13:30.85,0:13:36.72,Conference,,0,0,0,,Leurs agrégats non plus, \Nce sont des notions génériques.
 Dialogue: 0,0:13:36.72,0:13:41.48,Conference,,0,0,0,,Ces idées, les notions de valeur sont génériques.
-Dialogue: 0,0:13:43.01,0:13:48.33,Conference,,0,0,0,,Je pense qu'on n'y réfléchit pa\Ns assez lorsqu'on design nos systèmes.
+Dialogue: 0,0:13:43.01,0:13:48.33,Conference,,0,0,0,,Je pense qu'on n'y réfléchit pas\N assez lorsqu'on conçoit nos systèmes.
 Dialogue: 0,0:13:48.33,0:13:51.97,Conference,,0,0,0,,Au coût réel de la spécificité.
 Dialogue: 0,0:13:51.97,0:13:57.13,Conference,,0,0,0,,On aime la spécificité, quand on utilise Java chaque idée nouvelle reçoit une nouvelle classe.
 Dialogue: 0,0:13:57.13,0:13:59.41,Conference,,0,0,0,,Toute nouveauté apporte de la nouveauté.
 Dialogue: 0,0:13:59.41,0:14:02.13,Conference,,0,0,0,,Qu'est-ce que ça produit ?
-Dialogue: 0,0:14:02.13,0:14:06.43,Conference,,0,0,0,,Vous vous retrouvez avec cette explosion\N de code, cette profusion de code,
+Dialogue: 0,0:14:02.13,0:14:06.43,Conference,,0,0,0,,Vous vous retrouvez avec cette explosion\N de code, cette profusion de code.
 Dialogue: 0,0:14:06.43,0:14:11.72,Conference,,0,0,0,,L'{\i1}Orienté Objet {\i0}était sensé soutenir la ré-utilisabilité, c'est l'exact opposé, surtout dans les langages typés.
 Dialogue: 0,0:14:11.72,0:14:15.01,Conference,,0,0,0,,Vous obtenez peu de ré-utilisabilité \Ncar vous faites du nouveau à chaque fois.
 Dialogue: 0,0:14:15.01,0:14:17.23,Conference,,0,0,0,,Et que signifie plus de code ?
 Dialogue: 0,0:14:17.23,0:14:22.37,Conference,,0,0,0,,Plus de code égal plus de bugs, forcément.
 Dialogue: 0,0:14:22.37,0:14:26.13,Conference,,0,0,0,,Un autre aspect intéressant des valeurs \Nc'est qu'elles s’agrègent en valeurs.
 Dialogue: 0,0:14:26.13,0:14:28.75,Conference,,0,0,0,,Je veux que vous réfléchissiez bien à cela.
-Dialogue: 0,0:14:28.75,0:14:33.01,Conference,,0,0,0,,Nous avons parlé de 42, de strings, de choses {\i1}atomiques{\i0}
+Dialogue: 0,0:14:28.75,0:14:33.01,Conference,,0,0,0,,Nous avons parlé de 42, de {\i1}strings{\i0}, \Nde choses {\i1}atomiques{\i0}.
 Dialogue: 0,0:14:33.01,0:14:38.37,Conference,,0,0,0,,Mais une liste de choses immuable \Nest elle-même une chose immuable.
 Dialogue: 0,0:14:38.36,0:14:39.76,Conference,,0,0,0,,Et ainsi de suite.
 Dialogue: 0,0:14:39.76,0:14:44.01,Conference,,0,0,0,,Quand vous agrégez des valeurs, \Nces agrégats sont aussi des valeurs.
-Dialogue: 0,0:14:44.01,0:14:47.68,Conference,,0,0,0,,Et j'ai l'impression qu'on à tendance à s'arrêter en chemin, on se dit "bien sûr que les string sont immuables"
+Dialogue: 0,0:14:44.01,0:14:47.68,Conference,,0,0,0,,Et on a tendance à s'arrêter en chemin. \NOn se dit "bien sûr que les {\i1}string{\i0} sont immuables"
 Dialogue: 0,0:14:47.68,0:14:51.26,Conference,,0,0,0,,Mais une collection immuable... \NNon merci, je n'en vois pas l'intérêt.
 Dialogue: 0,0:14:51.26,0:14:52.65,Conference,,0,0,0,,Mais vous devriez.
-Dialogue: 0,0:14:52.65,0:14:57.60,Conference,,0,0,0,,Elle a tous les attributs désirables d'une string immuable,
-Dialogue: 0,0:14:57.60,0:15:00.89,Conference,,0,0,0,,Plus personne ici ne veut programmer\N à nouveau avec des string mutables.
+Dialogue: 0,0:14:52.65,0:14:57.60,Conference,,0,0,0,,Elle a tous les attributs \Ndésirables d'une {\i1}string{\i0} immuable.
+Dialogue: 0,0:14:57.60,0:15:00.89,Conference,,0,0,0,,Plus personne ici ne veut programmer\N à nouveau avec des {\i1}string{\i0} mutables.
 Dialogue: 0,0:15:00.89,0:15:04.86,Conference,,0,0,0,,Pourquoi continuer à programmer avec\N des collections mutables ? Vous ne devriez pas.
-Dialogue: 0,0:15:04.86,0:15:10.03,Conference,,0,0,0,,Il y a un réel bénéfice pourtant à le faire.
+Dialogue: 0,0:15:04.86,0:15:10.03,Conference,,0,0,0,,Il y a pourtant un réel bénéfice à le faire.
 Dialogue: 0,0:15:10.03,0:15:12.51,Conference,,0,0,0,,Par exemple, comparez ça aux objets.
 Dialogue: 0,0:15:12.51,0:15:15.39,Conference,,0,0,0,,Si vous voulez partager un \Nobjet vous devez faire quoi ?
 Dialogue: 0,0:15:15.39,0:15:20.40,Conference,,0,0,0,,Vous devez définir un objet, son interface etc..\N Mais après vous devez faire quoi ?
@@ -235,33 +237,33 @@ Dialogue: 0,0:15:24.34,0:15:26.82,Conference,,0,0,0,,Une sorte de politique de v
 Dialogue: 0,0:15:26.82,0:15:31.90,Conference,,0,0,0,,Très difficile à réaliser, beaucoup de langages ne vous donnent pas les ressources pour le faire correctement.
 Dialogue: 0,0:15:31.90,0:15:36.57,Conference,,0,0,0,,"Voici une serviette en papier, nous y avons défini comment nous allons utiliser cet objet"
 Dialogue: 0,0:15:36.57,0:15:42.50,Conference,,0,0,0,,Même si vous y parvenez.. Il y aussi d'autres problèmes : comment vous le copier ? Quelle est la stratégie de clonage ? etc...
-Dialogue: 0,0:15:42.50,0:15:47.20,Conference,,0,0,0,,Disons que vous avez réussi à achever \Nce travail, pour chacune de vos classes,
-Dialogue: 0,0:15:47.20,0:15:51.10,Conference,,0,0,0,,Et maintenant vous construisez quelque-chose\N qui composé de ces éléments,
+Dialogue: 0,0:15:42.50,0:15:47.20,Conference,,0,0,0,,Disons que vous avez réussi à achever \Nce travail, pour chacune de vos classes.
+Dialogue: 0,0:15:47.20,0:15:51.10,Conference,,0,0,0,,Et maintenant vous construisez \Nquelque-chose composée de ces éléments.
 Dialogue: 0,0:15:51.10,0:15:54.06,Conference,,0,0,0,,Retrouvez-vous votre politique \Nde verrouillage après les avoir combinés ?
 Dialogue: 0,0:15:54.06,0:15:57.65,Conference,,0,0,0,,Non ! Tout s'est évanoui, vous \Ndevez refaire le travail encore une fois.
-Dialogue: 0,0:15:57.65,0:16:01.28,Conference,,0,0,0,,Ce composite, dont j'ai une politique de\N verrouillage pour chacune de ses parties, 
-Dialogue: 0,0:16:01.28,0:16:03.87,Conference,,0,0,0,,n'en a plus lui même. Je dois en fournir une nouvelle.
+Dialogue: 0,0:15:57.65,0:16:01.28,Conference,,0,0,0,,Ce composite, dont j'ai une politique de\N verrouillage pour chaque constituant,
+Dialogue: 0,0:16:01.28,0:16:03.87,Conference,,0,0,0,,n'en a plus lui-même. \NJe dois en fournir une nouvelle.
 Dialogue: 0,0:16:03.87,0:16:07.26,Conference,,0,0,0,,Une nouvelle pour le clonage, \Npour tout le reste, une fois encore.
-Dialogue: 0,0:16:07.26,0:16:13.65,Conference,,0,0,0,,Les valeurs désagrégeant en valeurs, tous les bénéfices se retrouvent sur les agrégats.
-Dialogue: 0,0:16:13.65,0:16:18.27,Conference,,0,0,0,,Il y'a d'autres bénéfices à utiliser des valeurs, et ont les à tout le temps sous les yeux,
+Dialogue: 0,0:16:07.26,0:16:13.65,Conference,,0,0,0,,Les valeurs s’agrègent en valeurs, tous les\N bénéfices s'appliquent aux agrégats.
+Dialogue: 0,0:16:13.65,0:16:18.27,Conference,,0,0,0,,Il y'a d'autres bénéfices à utiliser des\N valeurs, et ont le voit tous les jours.
 Dialogue: 0,0:16:18.27,0:16:20.34,Conference,,0,0,0,,Les valeurs sont faciles à transmettre.
 Dialogue: 0,0:16:20.34,0:16:24.10,Conference,,0,0,0,,Si j'ai une information utile, je peux vous l'envoyer
-Dialogue: 0,0:16:24.10,0:16:28.61,Conference,,0,0,0,,Et je sais que je vous ai communiqué ce que j'ai vu.s
-Dialogue: 0,0:16:28.61,0:16:33.38,Conference,,0,0,0,,Si j'ai vu un truc intéressant et que \Nje vous communique {\i1}le lieu{\i0} où je l'ai vue,
+Dialogue: 0,0:16:24.10,0:16:28.61,Conference,,0,0,0,,et je sais que je vous ai \Ncommuniqué ce que j'ai vu.
+Dialogue: 0,0:16:28.61,0:16:33.38,Conference,,0,0,0,,Si j'ai vu un truc intéressant et que \Nje vous communique {\i1}le lieu{\i0} où je l'ai vue.
 Dialogue: 0,0:16:33.38,0:16:36.92,Conference,,0,0,0,,Qu'est-ce que je vous ai vraiment transmis ?
 Dialogue: 0,0:16:36.92,0:16:39.69,Conference,,0,0,0,,Rien ! Aucune information ça c'est sûr.
-Dialogue: 0,0:16:39.69,0:16:43.15,Conference,,0,0,0,,Vous allez regarder ce qu'il s'y trouve \Net verrez autre chose que ce que j'ai vu.
+Dialogue: 0,0:16:39.69,0:16:43.15,Conference,,0,0,0,,Vous allez regarder ce qu'il s'y trouve \Net verrez une chose différente de ce que j'ai vu.
 Dialogue: 0,0:16:43.15,0:16:45.70,Conference,,0,0,0,,Ça marche aussi dans l'autre sens.
 Dialogue: 0,0:16:45.70,0:16:49.21,Conference,,0,0,0,,Quand je veux percevoir \Nquelque-chose, si c'est une valeur,
 Dialogue: 0,0:16:49.21,0:16:51.58,Conference,,0,0,0,,je peux prendre mon temps pour la regarder.
-Dialogue: 0,0:16:51.58,0:16:55.65,Conference,,0,0,0,,surtout si c'est un ensemble de valeurs, un truc composite.
+Dialogue: 0,0:16:51.58,0:16:55.65,Conference,,0,0,0,,Surtout si c'est un ensemble\N de valeurs, un truc composite.
 Dialogue: 0,0:16:55.65,0:17:00.64,Conference,,0,0,0,,Si je veux percevoir un truc basé\N sur des lieux, comment je m'y prends ?
 Dialogue: 0,0:17:00.64,0:17:05.24,Conference,,0,0,0,,Il y a tout un tas d'endroits où je veux\N regarder. Qu'est ce que je dois faire ?
 Dialogue: 0,0:17:05.24,0:17:09.80,Conference,,0,0,0,,Je dois arrêter le monde ! S'il te plaît,\Narrête toi le temps que je regarde.
-Dialogue: 0,0:17:09.81,0:17:13.53,Conference,,0,0,0,,Sinon, pendant que j'en regarde une, l'autre a changé.
-Dialogue: 0,0:17:13.54,0:17:17.72,Conference,,0,0,0,,le temps a en quelque sorte {\i1}poursuivi le tout{\i0}, \Net j'ignore si le tout était cohérent.
+Dialogue: 0,0:17:09.81,0:17:13.53,Conference,,0,0,0,,Sinon, alors que j'en\N regarde une, l'autre a changé.
+Dialogue: 0,0:17:13.53,0:17:17.72,Conference,,0,0,0,,Le temps a en quelque sorte {\i1}poursuivi le tout{\i0}, \Net j'ignore si le tout était cohérent.
 Dialogue: 0,0:17:17.72,0:17:21.57,Conference,,0,0,0,,Je dois prendre alors une \Ndécision basée sur rien de cohérent.
-Dialogue: 0,0:17:21.57,0:17:24.70,Conference,,0,0,0,,Et cela s'applique aussi à la mémoire.\NComment se souvient-ton d'un truc ?
+Dialogue: 0,0:17:21.57,0:17:24.70,Conference,,0,0,0,,Ça s'applique aussi à la mémoire.\NComment se souvient-on d'un truc ?
 Dialogue: 0,0:17:24.70,0:17:30.24,Conference,,0,0,0,,Si vous rencontrez un objet durant l'éxecution de votre programme, et que vous voulez vous en souvenir
 Dialogue: 0,0:17:30.24,0:17:33.07,Conference,,0,0,0,,qu'est ce que vous faites ?
 Dialogue: 0,0:17:33.07,0:17:36.48,Conference,,0,0,0,,Vous gardez juste la référence ?
@@ -269,8 +271,8 @@ Dialogue: 0,0:17:36.48,0:17:40.17,Conference,,0,0,0,,Pas suffisant non ? Que fau
 Dialogue: 0,0:17:40.17,0:17:43.58,Conference,,0,0,0,,Le cloner. Comment on le fait ?
 Dialogue: 0,0:17:43.58,0:17:47.61,Conference,,0,0,0,,Ça dépend, exactement. Ça dépend.
 Dialogue: 0,0:17:47.61,0:17:49.16,Conference,,0,0,0,,
-Dialogue: 0,0:17:49.16,0:17:53.97,Conference,,0,0,0,,Je vous invite à pensez à cela à un autre niveau, au delà de vos boîes et de vos processus,
-Dialogue: 0,0:17:53.97,0:17:58.78,Conference,,0,0,0,,car les qualités des valeurs se\N retrouvent au niveau du système.
+Dialogue: 0,0:17:49.16,0:17:53.97,Conference,,0,0,0,,Je vous invite à penser à cela à un autre niveau, au delà de vos boîtes et de vos processus,
+Dialogue: 0,0:17:53.97,0:17:58.78,Conference,,0,0,0,,car les qualités des valeurs se\N retrouvent à l'échelle du système.
 Dialogue: 0,0:17:58.78,0:18:01.92,Conference,,0,0,0,,Et en particulier, les valeurs font les meilleures interfaces.
 Dialogue: 0,0:18:01.92,0:18:06.77,Conference,,0,0,0,,Sur ce point, je crois qu'il n'y a pas\N de débats, on le fait déjà tous.
 Dialogue: 0,0:18:06.77,0:18:09.95,Conference,,0,0,0,,Qu'est ce que vous envoyez sur le réseau ?
@@ -488,5 +490,3 @@ Dialogue: 0,0:31:19.95,0:31:25.47,Conference,,0,0,0,,et ce que je recommanderais
 Dialogue: 0,0:31:25.47,0:31:28.00,Conference,,0,0,0,,lorsque pour fabriquez vos programmes.
 Dialogue: 0,0:31:28.20,0:31:29.76,Conference,,0,0,0,,Merci
 Dialogue: 0,0:31:30.78,0:31:34.54,Conference,,0,0,0,,Sous-titres : @Galileo51 Galilei
-Dialogue: 0,0:31:34.82,0:31:35.88,Conference,,0,0,0,,
-Dialogue: 0,0:31:35.88,0:31:37.88,Conference,,0,0,0,,
