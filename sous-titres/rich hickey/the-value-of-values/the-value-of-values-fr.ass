@@ -16,9 +16,9 @@ Video File: The Value of Values with Rich Hickey.mp4
 Video AR Mode: 4
 Video AR Value: 1.777778
 Video Zoom Percent: 0.750000
-Scroll Position: 402
-Active Line: 417
-Video Position: 51846
+Scroll Position: 447
+Active Line: 462
+Video Position: 56820
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -431,7 +431,7 @@ Dialogue: 0,0:27:42.45,0:27:44.74,Conference,,0,0,0,,Les logs sont aussi remplis
 Dialogue: 0,0:27:44.74,0:27:47.04,Conference,,0,0,0,,Pleins de trucs à propos du\N du système lui même.
 Dialogue: 0,0:27:47.04,0:27:52.54,Conference,,0,0,0,,Il y a de l'information utile, métier ici. Nous n'avons pas encore construit de base de données pour stocker ça.
 Dialogue: 0,0:27:52.54,0:27:54.61,Conference,,0,0,0,,Mais c'est de notre faute.
-Dialogue: 0,0:27:54.61,0:28:00.00,Conference,,0,0,0,,Donc je pense que nous entrons dans \Nce que j'appelle l'{\i1}ère de l'espace{\i0}.
+Dialogue: 0,0:27:54.61,0:28:00.00,Conference,,0,0,0,,Donc je pense que nous entrons dans \Nce que j'appelle l'{\i1}âge de l'espace{\i0}.
 Dialogue: 0,0:28:00.00,0:28:02.42,Conference,,0,0,0,,Une nouvelle définition, l'espace.
 Dialogue: 0,0:28:02.42,0:28:08.57,Conference,,0,0,0,,"L'étendue illimitée dans laquelle toutes les choses se trouvent et tous les évènements ont lieu."
 Dialogue: 0,0:28:08.57,0:28:10.98,Conference,,0,0,0,,Ce qui est intéressant dans\N la définition du mot {\i1}espace{\i0}
@@ -444,4 +444,49 @@ Dialogue: 0,0:28:34.33,0:28:38.35,Conference,,0,0,0,,jour après jour, 7j/7, enc
 Dialogue: 0,0:28:38.35,0:28:43.86,Conference,,0,0,0,,vous n’exécutez pas votre programme\N quelque-part mais dans {\i1}l'espace{\i0}.
 Dialogue: 0,0:28:43.86,0:28:46.96,Conference,,0,0,0,,Vous ne voyez pas les bords, vous n'êtes pas limité.
 Dialogue: 0,0:28:46.96,0:28:49.92,Conference,,0,0,0,,Vous avez besoin d'une nouvelle chose vous l'obtenez.
-Dialogue: 0,0:28:49.92,0:28:54.25,Conference,,0,0,0,,
+Dialogue: 0,0:28:49.92,0:28:55.63,Conference,,0,0,0,,Si S3*({\i1}Service d'hébergement d'Amazo{\i0}n) ne se remplit jamais, ce n'est pas le cloud, c'est l'espace.
+Dialogue: 0,0:28:55.63,0:28:59.70,Conference,,0,0,0,,À chaque fois que vous {\i1}uploadez{\i0} \Nun fichier sur S3 c'est assuré.
+Dialogue: 0,0:28:59.70,0:29:02.38,Conference,,0,0,0,,Cela vous arrive de penser à ses limites ?
+Dialogue: 0,0:29:02.38,0:29:08.32,Conference,,0,0,0,,La plupart du temps on ne s'intéresse pas aux limites de l'espace. Pas moi en tout cas.
+Dialogue: 0,0:29:09.96,0:29:12.84,Conference,,0,0,0,,Les systèmes d'information devraient avoir une autre approche.
+Dialogue: 0,0:29:12.84,0:29:17.09,Conference,,0,0,0,,Ils devraient postuler que de nouveaux faits \Ndemandent de l'espace supplémentaire.
+Dialogue: 0,0:29:17.09,0:29:20.18,Conference,,0,0,0,,Ça devrait signer la fin du\N {\i1}Place Oriented Programming{\i0}.
+Dialogue: 0,0:29:20.18,0:29:23.77,Conference,,0,0,0,,Vous avez eu les moyens de\N d'en faire pendant longtemps.
+Dialogue: 0,0:29:23.77,0:29:25.54,Conference,,0,0,0,,Vous pouvez vous permettre de le faire.
+Dialogue: 0,0:29:25.54,0:29:30.13,Conference,,0,0,0,,Pourquoi faire autre chose ? Êtes-vous déjà dit "j'aimerais bien {\i1}log{\i0} mais je ne peux pas ?"
+Dialogue: 0,0:29:30.24,0:29:32.85,Conference,,0,0,0,,"Mon disque n'a que 5MB".
+Dialogue: 0,0:29:32.85,0:29:36.10,Conference,,0,0,0,,Quelqu'un a déjà eu un disque de 5MB ?
+Dialogue: 0,0:29:36.17,0:29:42.20,Conference,,0,0,0,,Ça coûtait des centaines de dollars. Ce n'est plus comme ça aujourd'hui non ?
+Dialogue: 0,0:29:42.29,0:29:44.86,Conference,,0,0,0,,Donc vous pouvez vous permettre de le faire.
+Dialogue: 0,0:29:44.86,0:29:47.72,Conference,,0,0,0,,Beaucoup de choses intéressantes vont se produire en vous servant de cette approche.
+Dialogue: 0,0:29:47.72,0:29:52.22,Conference,,0,0,0,,Beaucoup de ce qui arrive en mémoire avec le ramasse-miettes va arriver avec l'espace de stockage.
+Dialogue: 0,0:29:52.22,0:29:55.57,Conference,,0,0,0,,Il y aura des déchêts.
+Dialogue: 0,0:29:55.86,0:30:01.21,Conference,,0,0,0,,Mais ce n'est pas un problème,\N on apprend à gérer ces choses.
+Dialogue: 0,0:30:01.21,0:30:03.71,Conference,,0,0,0,,Pour résumer,
+Dialogue: 0,0:30:03.98,0:30:09.69,Conference,,0,0,0,,Malheureusement je crois qu'on \Ncontinue à faire du {\i1}Place Oriented Programming{\i0}.
+Dialogue: 0,0:30:09.69,0:30:12.60,Conference,,0,0,0,,La raison s'en est allée, et le plus triste
+Dialogue: 0,0:30:12.60,0:30:15.42,Conference,,0,0,0,,c'est qu'on continue à faire des \N{\i1}nouvelles{\i0} choses dans cette optique.
+Dialogue: 0,0:30:15.42,0:30:19.72,Conference,,0,0,0,,Des langages tout neufs, des bases de données toutes neuves
+Dialogue: 0,0:30:19.72,0:30:23.65,Conference,,0,0,0,,Qui conservent cette approche, \Ntoujours bâtie sur des {\i1}lieux{\i0}.
+Dialogue: 0,0:30:23.65,0:30:28.51,Conference,,0,0,0,,Bien qu'elle soit invalide depuis\N au moins 10 ans, 5 ans sûrs.
+Dialogue: 0,0:30:28.66,0:30:31.13,Conference,,0,0,0,,La raison s'est envolée.
+Dialogue: 0,0:30:31.13,0:30:35.90,Conference,,0,0,0,,Vous passez à côté de tous\N les bénéfices que j'ai listés avant.
+Dialogue: 0,0:30:35.90,0:30:39.06,Conference,,0,0,0,,Et je peux vous parler de chacun\N de ces bénéfices pendant une heure.
+Dialogue: 0,0:30:39.06,0:30:43.24,Conference,,0,0,0,,Il y a énormément de bénéfices à utiliser les valeurs.
+Dialogue: 0,0:30:43.24,0:30:46.45,Conference,,0,0,0,,Nous le savons, regardez nos \Npropres systèmes d'information,
+Dialogue: 0,0:30:46.45,0:30:50.29,Conference,,0,0,0,,ceux qu'on utilise nous-mêmes. Nous \Nprouvons que nous le savons déjà.
+Dialogue: 0,0:30:50.29,0:30:52.92,Conference,,0,0,0,,On n'écrase pas nos logs, nos contrôles de sources... 
+Dialogue: 0,0:30:52.92,0:30:56.26,Conference,,0,0,0,,On est prêts. On est dans l'{\i1}âge de\N l'espace{\i0}, pour nous-mêmes.
+Dialogue: 0,0:30:56.26,0:31:00.19,Conference,,0,0,0,,Mais nous devons l'être aussi pour les \Nboîtes pour lesquelles nous travaillons.
+Dialogue: 0,0:31:00.19,0:31:03.30,Conference,,0,0,0,,Il y a clairement une demande ici. La poussée des Big Data,
+Dialogue: 0,0:31:03.30,0:31:07.52,Conference,,0,0,0,,le minage des {\i1}logs{\i0}, tracer et dater tout
+Dialogue: 0,0:31:07.52,0:31:10.32,Conference,,0,0,0,,
+Dialogue: 0,0:31:10.32,0:31:13.28,Conference,,0,0,0,,Ils en veulent, la demande est claire.
+Dialogue: 0,0:31:13.29,0:31:15.32,Conference,,0,0,0,,Nous avons les ressources pour le faire,
+Dialogue: 0,0:31:15.32,0:31:19.95,Conference,,0,0,0,,et je pense que le challenge c'est \Nde faire en sorte qu'on y arrive.
+Dialogue: 0,0:31:19.95,0:31:25.47,Conference,,0,0,0,,et ce que je recommanderais, c'est que vous essayiez de prendre une approche orientée information,
+Dialogue: 0,0:31:25.47,0:31:28.00,Conference,,0,0,0,,lorsque pour fabriquez vos programmes.
+Dialogue: 0,0:31:28.20,0:31:29.76,Conference,,0,0,0,,Merci
+Dialogue: 0,0:31:30.78,0:31:34.54,Conference,,0,0,0,,Sous-titres : @Galileo51 Galilei
+Dialogue: 0,0:31:34.82,0:31:35.88,Conference,,0,0,0,,
+Dialogue: 0,0:31:35.88,0:31:37.88,Conference,,0,0,0,,
