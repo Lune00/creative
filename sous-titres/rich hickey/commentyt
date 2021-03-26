@@ -1,20 +1,28 @@
-//Courte présentation de Rich https://harfangk.github.io/2017/12/08/rich-hickey-interview-from-codequarterly.html
+Rich Hickey est surtout connu comme le créateur de Clojure, un dialecte de Lisp, et Datomic, un système de base de données. Rich Hickey est un développeur et un consultant respecté dans son domaine depuis plusieurs décennies. Avant de commencer sa carrière dans le développement informatique il a notamment obtenu un diplôme en composition musicale et travaillait dans un studio d'enregistrement.
  
-//Courte présentation du contenu de la conférence, a qui ça s'adresse
+Cette conférence aborde la valeur des valeurs dans le design et la conception des programmes, ainsi que les concepts fondamentaux qui définissent les systèmes d'information. Rich Hickey est un penseur précieux dans le domaine du développement informatique. Il suit avec attention les publications académiques de son domaine, et passe beaucoup de temps à lire et étudier d'autres auteurs. Il s'intéresse notamment aux concepts définis en physique pour essayer de penser les propriétés désirables des programmes et des systèmes d'information. Il s'intéresse tout particulièrement aux sources de complexité dans les programmes. En ce sens, il défend des concepts et des idées qui existent pour la plupart depuis les années 70 mais qui n'étaient pas toujours aisées à mettre en pratique étant données les limitations techniques de l'époque. Rich Hickey fait donc un travail précieux de ramener, étendre et moderniser des concepts fondamentaux. C'est notamment ce qu'il a fait en créant le langage Clojure, un lisp moderne pour la programmation fonctionnelle. Les nouveautés sont souvent dans le passé, et pour faire progresser son domaine il faut monter sur les épaules des géants, tous ceux qui nous ont précédé.
 
+Cette conférence est assez technique et intéressera avant tout celles et ceux qui ont une appétence pour la programmation. Mais même en laissant de côté certains aspects techniques, je pense qu'elle aborde des concepts fondamentaux et dispose d'un potentiel philosophique appréciable par tout un chacun.
 
-
-Cette conférence est assez condensée et percutante, parfois provocatrice et cela mérite quelques précisions. Cette conférence est prévue à la base pour tenir sur une heure donc Rich Hickey a du la condenser. Surtout, il fait cette conférence lors de l'évènement Jax, une conférence organisée par la communauté Java, dont il a longtemps fait partie lui-même. Dans ce contexte, le but affiché de son intervention est de bousculer l'auditoire afin d'essayer de le convaincre. Un auditoire qui n'est pas acquis à sa cause.
+Cette conférence est assez condensée et percutante, parfois provocatrice et cela mérite quelques précisions. Cette conférence est prévue à la base pour tenir sur une heure donc Rich Hickey a du la condenser. Surtout, il fait cette conférence lors de l’événement Jax, une conférence organisée par la communauté Java, dont il a longtemps fait partie lui-même. Dans ce contexte, le but affiché de son intervention est de bousculer l'auditoire afin d'essayer de le convaincre. Un auditoire qui n'est pas acquis à sa cause.
 
 Si vous avez l'impression que Rich Hickey se prête à un bashing gratuit du paradigme Orienté Objet, vous vous méprenez. Rich Hickey a lui-même travaillé une grande partie de sa carrière dans ce paradigme, notamment en Java et en C++. Son langage Clojure est d'ailleurs hosté sur la JVM et il a notamment donné un cours avancé de C++ à l'université de New-York. C'est justement parce qu'il connait les problèmes de ce paradigme de manière approfondie qu'il en fait une critique aussi développée et intéressante.
 
-Si vous avez été intéressé par les idées défendues ici mais que vous ne saisissez pas bien tout, c'est bien normal. Je vous recommande donc vivement d'aller regarder son autre conférence Are we there yet ? Dans celle-ci Rich Hickey dispose d'une bonne heure et est face à des étudiants. En plus d'avoir davantage de temps pour développer ses idées il a un ton et une approche beaucoup plus pédagogique. Il prend plus de temps pour expliquer ses idées et va plus en profondeur sur de nombreux aspects. Cette conférence fait partie de ma to-subtitle list.
+Si vous avez été intéressé par les idées défendues ici mais que vous ne saisissez pas bien tout, c'est bien normal. Je vous recommande donc vivement d'aller regarder son autre conférence Are we there yet ? (voir lien plus bas) Dans celle-ci Rich Hickey dispose d'une bonne heure et est face à des étudiants. En plus d'avoir davantage de temps pour développer ses idées il a un ton et une approche beaucoup plus pédagogique. Il prend plus de temps pour expliquer ses idées. Cette conférence fait partie de ma "to-subtitle list".
 
-PS : j'ai décidé de garder pafois des anglicismes dans le sous-titrage pour ne pas trop dénaturer le propos original. Il est malheureusement impossible de proposer des définitions dans les sous-titres car je n'ai pas l'espace ni le temps nécessaire pour le faire. N'hésitez pas à mettre en pause ou à revenir en arrière si vous n'avez pas bien compris un terme ou un point.
+PS : j'ai décidé de garder parfois des anglicismes dans le sous-titrage pour ne pas trop dénaturer le propos original. Il est malheureusement impossible de proposer des définitions dans les sous-titres car je n'ai pas l'espace ni le temps nécessaire pour le faire. N'hésitez pas à mettre en pause ou à revenir en arrière si vous n'avez pas bien compris un terme ou un point.
 
+Références : 
 
+- La conférence Are we there yet ? (sur ma liste de conférences à sous-titre)
+https://www.youtube.com/watch?v=ScEPu1cs4l0&t=632s
 
+- Une interview intéressante de Rich Hickey à lire (en anglais)
+https://harfangk.github.io/2017/12/08/rich-hickey-interview-from-codequarterly.html
+
+- Un dépôt qui recense tous les travaux de Rich Hickey et toutes les vidéos de ses conférences
+https://github.com/tallesl/Rich-Hickey-fanclub
 
 //Commentaire :
 
-La valeur des valeurs, une conférence de Rich Hickey, programmeur indépendant, conférencier, consultant et notamment créateur de Clojure. La conférence aborde la valeur des valeurs dans le design d'un programme, et des concepts fondamentaux concernant les systèmes d'information. Plus de détails dans la description, bon visionnage !
+La valeur des valeurs, une conférence de Rich Hickey, programmeur indépendant, consultant et notamment créateur de Clojure. La conférence aborde la valeur des valeurs dans le design d'un programme, et des concepts fondamentaux concernant les systèmes d'information. Plus de détails dans la description, bon visionnage !
