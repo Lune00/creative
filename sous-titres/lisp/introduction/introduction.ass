@@ -10,13 +10,14 @@ PlayResX: 490
 PlayResY: 360
 
 [Aegisub Project Garbage]
-Audio File: /home/paul/tmp/creative/sous-titres/lisp/introduction/Lecture 1A_ Overview and Introduction to Lisp.mp4
-Video File: /home/paul/tmp/creative/sous-titres/lisp/introduction/Lecture 1A_ Overview and Introduction to Lisp.mp4
+Audio File: Lecture 1A_ Overview and Introduction to Lisp.mp4
+Video File: Lecture 1A_ Overview and Introduction to Lisp.mp4
 Video AR Mode: 4
 Video AR Value: 1.361111
 Video Zoom Percent: 1.375000
-Active Line: 3
-Video Position: 2121
+Scroll Position: 17
+Active Line: 33
+Video Position: 4909
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -30,12 +31,33 @@ Dialogue: 0,0:00:10.98,0:00:13.95,Conference,,0,0,0,, Introduction à Lisp
 Dialogue: 0,0:00:14.67,0:00:21.45,Conference,,0,0,0,,Bienvenue dans ce cours\N de {\i1}Computer Science{\i0}.
 Dialogue: 0,0:00:28.44,0:00:32.84,Conference,,0,0,0,,A vrai dire c'est un départ désastreux, {\i1}Computer Science{\i0} est un terme très mauvais.
 Dialogue: 0,0:00:32.84,0:00:36.10,Conference,,0,0,0,,Pour commencer, ce n'est pas une science.
-Dialogue: 0,0:00:36.10,0:00:40.29,Conference,,0,0,0,,Ça pourrait être de\N l’ingénieure ou de l'art.
+Dialogue: 0,0:00:36.10,0:00:40.29,Conference,,0,0,0,,Ça pourrait être de\N l'ingénierie ou de l'art.
 Dialogue: 0,0:00:40.29,0:00:45.23,Conference,,0,0,0,,Mais au fond, ce qu'on appelle {\i1}Computer Science{\i0} a beaucoup en commun avec la magie.
 Dialogue: 0,0:00:45.23,0:00:47.48,Conference,,0,0,0,,Nous allons voir ça dans ce cours.
 Dialogue: 0,0:00:47.48,0:00:48.98,Conference,,0,0,0,,Ce n'est donc pas une science.
 Dialogue: 0,0:00:48.98,0:00:53.49,Conference,,0,0,0,,Ça ne parle pas non\N plus vraiment d'ordinateur.
-Dialogue: 0,0:00:53.49,0:00:56.60,Conference,,0,0,0,,Ça n'est pas à propos \Ndes ordinateurs au même titre 
+Dialogue: 0,0:00:53.49,0:00:56.60,Conference,,0,0,0,,Ça n'est pas à propos \Ndes ordinateurs au même titre
 Dialogue: 0,0:00:56.60,0:01:00.99,Conference,,0,0,0,,que la physique n'est pas vraiment à propos des accélérateurs de particules.
 Dialogue: 0,0:01:00.99,0:01:06.61,Conference,,0,0,0,,Et que la biologie n'est pas à propos des microscopes et des boîtes de Pétri.
-Dialogue: 0,0:01:06.61,0:01:08.61,Conference,,0,0,0,,
+Dialogue: 0,0:01:07.96,0:01:11.73,Conference,,0,0,0,,Ça n'est pas à propos des ordinateurs au même titre que la géométrie
+Dialogue: 0,0:01:11.73,0:01:15.81,Conference,,0,0,0,,ne consiste pas à utiliser\N des instruments de mesure.
+Dialogue: 0,0:01:16.53,0:01:21.39,Conference,,0,0,0,,Il y a d'ailleurs beaucoup de points communs entre l'informatique et la géométrie.
+Dialogue: 0,0:01:21.39,0:01:25.63,Conference,,0,0,0,,La géométrie est aussi un\N domaine au nom bancal.
+Dialogue: 0,0:01:25.63,0:01:29.89,Conference,,0,0,0,,Son nom vient de Gaïa, la Terre, et {\i1}métron{\i0} qui signifie {\i1}mesurer{\i0}.
+Dialogue: 0,0:01:29.89,0:01:34.37,Conference,,0,0,0,,La géométrie signifiait à la base {\i1}mesurer{\i0} ou {\i1}étudier{\i0} la Terre.
+Dialogue: 0,0:01:34.37,0:01:37.82,Conference,,0,0,0,,On l'a appelé ainsi car quelques siècles auparavant
+Dialogue: 0,0:01:37.82,0:01:42.67,Conference,,0,0,0,,les prêtres en Égypte ont \Ndéveloppé les bases de la géométrie
+Dialogue: 0,0:01:42.67,0:01:49.46,Conference,,0,0,0,,pour savoir comment restaurer les limites des terres agricoles, détruites à chaque crue du Nil.
+Dialogue: 0,0:01:49.46,0:01:55.65,Conference,,0,0,0,,Pour les Égyptiens, la géométrie consistait bien à utiliser des outils de mesure.
+Dialogue: 0,0:01:55.65,0:02:01.07,Conference,,0,0,0,,La raison pour laquelle nous pensons que les {\i1}computer science{\i0} parlent d'ordinateurs est à peu près la même.
+Dialogue: 0,0:02:01.07,0:02:04.68,Conference,,0,0,0,,Celle qui a amené les Égyptiens à penser que la géométrie consistait {\i1}à mesurer{\i0}.
+Dialogue: 0,0:02:04.68,0:02:11.09,Conference,,0,0,0,,Cela arrive quand un nouveau domaine vient de démarrer, et qu'on le comprend pas encore bien.
+Dialogue: 0,0:02:11.09,0:02:17.63,Conference,,0,0,0,,On confond facilement {\i1}l'essence{\i0} de notre activité avec les outils que l'on utilise pour le faire.
+Dialogue: 0,0:02:17.63,0:02:20.56,Conference,,0,0,0,,Si l'on compare les deux situations,
+Dialogue: 0,0:02:20.56,0:02:24.89,Conference,,0,0,0,,nous en savons probablement moins sur l'essence des {\i1}computer science{\i0},
+Dialogue: 0,0:02:24.89,0:02:29.24,Conference,,0,0,0,,que les Égyptiens sur {\i1}l'essence{\i0} de la géométrie.
+Dialogue: 0,0:02:30.83,0:02:34.48,Conference,,0,0,0,,Qu'est-ce-que j'entends pas l'{\i1}essence{\i0} des {\i1}computer science{\i0} ou de la géométrie ?
+Dialogue: 0,0:02:34.48,0:02:37.92,Conference,,0,0,0,,C'est certain que les Égyptiens utilisaient des instruments de mesure,
+Dialogue: 0,0:02:37.92,0:02:41.70,Conference,,0,0,0,,Mais quand on jette un regard sur ce qu'ils faisaient, plusieurs siècles après,
+Dialogue: 0,0:02:41.70,0:02:43.80,Conference,,0,0,0,,lorsqu'on se demande ce\N qu'ils faisaient vraiment,
+Dialogue: 0,0:02:43.80,0:02:51.63,Conference,,0,0,0,,on réalise qu'ils commençaient à formaliser les notions de temps et d'espace.
