@@ -15,9 +15,9 @@ Video File: Lecture 1A_ Overview and Introduction to Lisp.mp4
 Video AR Mode: 4
 Video AR Value: 1.361111
 Video Zoom Percent: 1.375000
-Scroll Position: 17
-Active Line: 33
-Video Position: 4909
+Scroll Position: 36
+Active Line: 42
+Video Position: 6458
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -61,3 +61,11 @@ Dialogue: 0,0:02:34.48,0:02:37.92,Conference,,0,0,0,,C'est certain que les Égyp
 Dialogue: 0,0:02:37.92,0:02:41.70,Conference,,0,0,0,,Mais quand on jette un regard sur ce qu'ils faisaient, plusieurs siècles après,
 Dialogue: 0,0:02:41.70,0:02:43.80,Conference,,0,0,0,,lorsqu'on se demande ce\N qu'ils faisaient vraiment,
 Dialogue: 0,0:02:43.80,0:02:51.63,Conference,,0,0,0,,on réalise qu'ils commençaient à formaliser les notions de temps et d'espace.
+Dialogue: 0,0:02:51.63,0:02:57.96,Conference,,0,0,0,,Ils ont ouvert une voie pour parler formellement de vérités mathématiques.
+Dialogue: 0,0:02:57.96,0:03:04.16,Conference,,0,0,0,,Qui a conduit à la méthode axiomatique, à la base des mathématiques modernes.
+Dialogue: 0,0:03:04.16,0:03:12.26,Conference,,0,0,0,,Trouver une façon de parler avec précision d'un {\i1}savoir déclaratif{\i0} : qu'est-ce qui est vrai ?
+Dialogue: 0,0:03:12.65,0:03:16.19,Conference,,0,0,0,,De la même manière, je pense que des gens diront dans le futur
+Dialogue: 0,0:03:16.18,0:03:21.73,Conference,,0,0,0,,"Les premier pas au 20e siècle consistaient à triturer les ordinateurs."
+Dialogue: 0,0:03:21.73,0:03:32.64,Conference,,0,0,0,,"Mais en vérité, ils commençaient à apprendre à formaliser une intuition sur les processus."
+Dialogue: 0,0:03:32.64,0:03:35.47,Conference,,0,0,0,,{\i1}Comment réaliser des choses ?{\i0}
+Dialogue: 0,0:03:35.47,0:03:37.47,Conference,,0,0,0,,
